@@ -1,0 +1,14 @@
+# Veri dosyaları (büyük, scraper ile üretilir)
+urunler.json
+urunler_raw.json
+hal_fiyatlari.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+
+# IDE
+.vscode/
+.idea/
