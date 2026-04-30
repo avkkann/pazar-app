@@ -1,7 +1,5 @@
-# Veri dosyaları (büyük, scraper ile üretilir)
-urunler.json
+# Scraper ham çıktısı
 urunler_raw.json
-hal_fiyatlari.json
 
 # Python
 __pycache__/
