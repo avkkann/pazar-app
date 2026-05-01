@@ -2,505 +2,538 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pazar & Hal Fiyat Karşılaştırması</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Pazar — Fiyat Karşılaştırma</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green: #1D9E75;
+      --green-dark: #167a5a;
+      --green-light: #e8f7f2;
+      --orange: #F97316;
+      --orange-light: #fff4ed;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-400: #9ca3af;
+      --gray-600: #4b5563;
+      --gray-900: #111827;
+      --radius: 14px;
+      --radius-sm: 8px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f0f4f0;
-      color: #1a2e1a;
-    }
-
-    header {
-      background: linear-gradient(135deg, #1b5e20, #2e7d32);
-      color: #fff;
-      padding: 20px 24px;
-    }
-    header h1 { font-size: 1.5rem; }
-    header p  { font-size: .85rem; opacity: .8; margin-top: 4px; }
-
-    .controls {
-      max-width: 960px;
-      margin: 20px auto;
-      padding: 0 16px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-    }
-
-    input[type="text"] {
-      flex: 1;
-      min-width: 220px;
-      padding: 11px 14px;
-      border: 1.5px solid #ccc;
-      border-radius: 8px;
-      font-size: 1rem;
-    }
-    input[type="text"]:focus { outline: none; border-color: #4caf50; }
-
-    select {
-      padding: 10px 12px;
-      border: 1.5px solid #ccc;
-      border-radius: 8px;
-      font-size: .88rem;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
       background: #fff;
+      color: var(--gray-900);
+      max-width: 480px;
+      margin: 0 auto;
+      min-height: 100vh;
+      padding-bottom: 80px;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: var(--green);
+      padding: 52px 20px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-left { display: flex; align-items: center; gap: 10px; }
+    .header-logo {
+      width: 36px; height: 36px;
+      background: #fff;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
+    .header-title { color: #fff; }
+    .header-title h1 { font-size: 1.2rem; font-weight: 800; letter-spacing: -.3px; }
+    .header-title p  { font-size: .72rem; opacity: .8; margin-top: 1px; }
+    .header-bell {
+      width: 38px; height: 38px;
+      background: rgba(255,255,255,.18);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
       cursor: pointer;
+      position: relative;
     }
-    select:focus { outline: none; border-color: #4caf50; }
-
-    .count {
-      max-width: 960px;
-      margin: 0 auto 12px;
-      padding: 0 16px;
-      font-size: .85rem;
-      color: #555;
+    .header-bell svg { width: 18px; height: 18px; stroke: #fff; fill: none; }
+    .bell-dot {
+      position: absolute; top: 7px; right: 7px;
+      width: 7px; height: 7px;
+      background: #F97316;
+      border-radius: 50%;
+      border: 1.5px solid var(--green);
     }
 
-    .grid {
-      max-width: 960px;
-      margin: 0 auto 60px;
-      padding: 0 16px;
+    /* ── SEARCH ── */
+    .search-wrap {
+      padding: 16px 16px 8px;
+      background: var(--green);
+    }
+    .search-inner {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .search-box {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border-radius: 12px;
+      padding: 11px 14px;
+      gap: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.12);
+    }
+    .search-box svg { width: 18px; height: 18px; stroke: var(--gray-400); flex-shrink: 0; }
+    .search-box input {
+      border: none; outline: none; flex: 1;
+      font-family: inherit; font-size: .92rem; color: var(--gray-900);
+      background: transparent;
+    }
+    .search-box input::placeholder { color: var(--gray-400); }
+    .barcode-btn {
+      width: 44px; height: 44px;
+      background: rgba(255,255,255,.2);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; flex-shrink: 0;
+    }
+    .barcode-btn svg { width: 22px; height: 22px; stroke: #fff; fill: none; }
+
+    /* ── CATEGORY PILLS ── */
+    .cat-wrap {
+      background: var(--green);
+      padding: 10px 16px 16px;
+    }
+    .cat-scroll {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding-bottom: 2px;
+    }
+    .cat-scroll::-webkit-scrollbar { display: none; }
+    .cat-pill {
+      flex-shrink: 0;
+      padding: 7px 18px;
+      border-radius: 999px;
+      font-size: .82rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 2px solid rgba(255,255,255,.4);
+      color: rgba(255,255,255,.85);
+      background: transparent;
+      transition: all .15s;
+      white-space: nowrap;
+    }
+    .cat-pill.active {
+      background: #fff;
+      color: var(--green);
+      border-color: #fff;
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .stats-bar span { font-size: .8rem; color: var(--gray-400); }
+    .stats-bar strong { color: var(--gray-900); }
+
+    /* ── PRODUCT LIST ── */
+    .product-list {
+      padding: 12px 16px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 12px;
     }
 
-    /* ── Ürün Kartı ── */
+    /* ── CARD ── */
     .card {
-      background: #fff;
-      border-radius: 14px;
-      box-shadow: 0 2px 10px rgba(0,0,0,.08);
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius);
       overflow: hidden;
+      background: #fff;
     }
 
-    .card-header {
+    .card-body {
       display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 14px 16px 10px;
-      border-bottom: 1px solid #f0f0f0;
+      gap: 12px;
+      padding: 14px 14px 10px;
     }
-    .card-header img, .card-header .no-img {
-      width: 58px;
-      height: 58px;
+
+    .card-img-wrap {
+      width: 76px; height: 76px; flex-shrink: 0;
+      border-radius: var(--radius-sm);
+      background: var(--gray-100);
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem;
+    }
+    .card-img-wrap img {
+      width: 100%; height: 100%;
       object-fit: contain;
-      border-radius: 8px;
-      background: #f5f5f5;
-      flex-shrink: 0;
     }
-    .card-header .no-img {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.7rem;
+
+    .card-info { flex: 1; min-width: 0; }
+    .card-name {
+      font-size: .9rem; font-weight: 700;
+      line-height: 1.3;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
-    .card-title { font-weight: 700; font-size: .95rem; line-height: 1.3; }
-    .card-sub   { margin-top: 4px; font-size: .78rem; color: #888; }
-    .card-sub span {
+    .card-unit {
       display: inline-block;
-      background: #e8f5e9;
-      color: #2e7d32;
+      margin-top: 4px;
+      font-size: .7rem; font-weight: 600;
+      color: var(--gray-600);
+      background: var(--gray-100);
       border-radius: 4px;
-      padding: 1px 7px;
-      margin-right: 4px;
+      padding: 2px 7px;
     }
-
-    /* ── Karşılaştırma Paneli ── */
-    .compare-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: 90px;
-    }
-
-    .compare-panel {
-      padding: 12px 16px;
-    }
-    .compare-panel + .compare-panel {
-      border-left: 1px solid #eee;
-    }
-
-    .panel-label {
-      font-size: .72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .04em;
-      color: #888;
-      margin-bottom: 6px;
-    }
-    .panel-label.hal-label { color: #e65100; }
-    .panel-label.market-label { color: #1565c0; }
 
     /* Hal fiyatı */
-    .hal-price {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: #e65100;
-      line-height: 1;
-    }
-    .hal-sub {
-      font-size: .73rem;
-      color: #999;
-      margin-top: 3px;
-    }
-    .hal-none {
-      font-size: .85rem;
-      color: #bbb;
-      font-style: italic;
-    }
-
-    /* Market fiyatları */
-    .market-best {
-      font-size: 1.4rem;
-      font-weight: 800;
-      color: #1565c0;
-      line-height: 1;
-    }
-    .market-best-name {
-      font-size: .73rem;
-      color: #888;
-      margin-top: 3px;
-    }
-
-    .market-list {
+    .hal-row {
+      display: flex; align-items: baseline; gap: 6px;
       margin-top: 8px;
-      border-top: 1px solid #f5f5f5;
     }
-    .market-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 5px 0;
-      font-size: .8rem;
-      border-bottom: 1px solid #f9f9f9;
-    }
-    .market-item:last-child { border-bottom: none; }
-
-    .m-tag {
-      font-size: .68rem;
-      font-weight: 700;
-      color: #fff;
-      padding: 2px 7px;
-      border-radius: 4px;
-      min-width: 50px;
-      text-align: center;
+    .hal-badge {
+      font-size: .65rem; font-weight: 700;
+      background: var(--orange-light); color: var(--orange);
+      border-radius: 4px; padding: 2px 6px;
       flex-shrink: 0;
     }
+    .hal-price {
+      font-size: 1.15rem; font-weight: 800;
+      color: var(--orange); line-height: 1;
+    }
+    .hal-none { font-size: .75rem; color: var(--gray-400); margin-top: 8px; }
+
+    /* Market listesi */
+    .market-list {
+      padding: 0 14px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .market-row {
+      display: flex; align-items: center; gap: 8px;
+      padding: 5px 0;
+      border-top: 1px solid var(--gray-100);
+    }
+    .m-badge {
+      font-size: .65rem; font-weight: 700; color: #fff;
+      padding: 2px 7px; border-radius: 4px;
+      min-width: 48px; text-align: center; flex-shrink: 0;
+    }
     .m-a101        { background: #e31e24; }
-    .m-bim         { background: #d4241e; }
+    .m-bim         { background: #c0392b; }
     .m-carrefour   { background: #0047a5; }
     .m-migros      { background: #e30613; }
     .m-sok         { background: #f5a623; color: #333; }
     .m-tarim_kredi { background: #2e7d32; }
-    .m-default     { background: #757575; }
+    .m-default     { background: #6b7280; }
 
-    .m-price { margin-left: auto; font-weight: 700; }
+    .m-name { font-size: .75rem; color: var(--gray-600); flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .m-price { font-size: .82rem; font-weight: 700; color: var(--gray-900); margin-left: auto; flex-shrink: 0; }
+    .m-price.cheapest { color: var(--green); }
 
-    /* ── Tasarruf rozeti ── */
+    /* ── SAVINGS BAR ── */
     .savings-bar {
-      background: #e8f5e9;
-      padding: 7px 16px;
-      font-size: .8rem;
-      color: #2e7d32;
-      font-weight: 600;
-      border-top: 1px solid #c8e6c9;
+      padding: 9px 14px;
+      font-size: .78rem; font-weight: 600;
+      display: flex; align-items: center; gap: 6px;
+      border-top: 1px solid var(--gray-100);
     }
-    .savings-bar.loss { background: #fce4ec; color: #c62828; border-top-color: #f8bbd0; }
-    .savings-bar.neutral { background: #f5f5f5; color: #777; border-top-color: #eee; }
+    .savings-bar.cheaper { background: var(--green-light); color: var(--green-dark); }
+    .savings-bar.pricier { background: #fef2f2; color: #dc2626; }
+    .savings-bar.equal   { background: var(--gray-50); color: var(--gray-600); }
+    .savings-bar svg { width: 14px; height: 14px; flex-shrink: 0; }
 
-    /* ── Yükleme / Hata ── */
-    .loading, .error, .empty {
-      text-align: center;
-      padding: 80px 20px;
-      color: #888;
-      font-size: 1rem;
+    /* ── LOADING / EMPTY ── */
+    .state-msg {
+      text-align: center; padding: 60px 20px;
+      color: var(--gray-400); font-size: .9rem;
     }
-    .error { color: #c62828; }
 
-    /* ── Durum çubuğu ── */
-    .status-bar {
-      background: #fff3e0;
-      border-bottom: 1px solid #ffe0b2;
-      padding: 8px 24px;
-      font-size: .8rem;
-      color: #e65100;
+    /* ── BOTTOM NAV ── */
+    .bottom-nav {
+      position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 100%; max-width: 480px;
+      background: #fff;
+      border-top: 1px solid var(--gray-200);
       display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
+      z-index: 200;
     }
-    .status-bar span { display: flex; align-items: center; gap: 5px; }
-    .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-    .dot-ok   { background: #43a047; }
-    .dot-warn { background: #ef6c00; }
-    .dot-err  { background: #e53935; }
-
-    @media (max-width: 600px) {
-      .compare-row { grid-template-columns: 1fr; }
-      .compare-panel + .compare-panel { border-left: none; border-top: 1px solid #eee; }
+    .nav-item {
+      flex: 1; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 10px 4px 14px;
+      cursor: pointer; gap: 4px;
+      font-size: .65rem; font-weight: 600;
+      color: var(--gray-400);
+      border: none; background: none; font-family: inherit;
     }
+    .nav-item svg { width: 22px; height: 22px; stroke: currentColor; fill: none; }
+    .nav-item.active { color: var(--green); }
+    .nav-item.active svg { stroke: var(--green); }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>🛒 Pazar & Hal Fiyat Karşılaştırması</h1>
-  <p id="subtitle">Yükleniyor...</p>
+<!-- HEADER -->
+<header class="header">
+  <div class="header-left">
+    <div class="header-logo">🛒</div>
+    <div class="header-title">
+      <h1>Pazar</h1>
+      <p id="subtitle">Yükleniyor...</p>
+    </div>
+  </div>
+  <div class="header-bell">
+    <svg viewBox="0 0 24 24" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg>
+    <span class="bell-dot"></span>
+  </div>
 </header>
 
-<div class="status-bar" id="statusBar"></div>
-
-<div class="controls">
-  <input type="text" id="search" placeholder="Ürün ara (domates, elma, patates...)" />
-  <select id="market">
-    <option value="">Tüm Marketler</option>
-    <option value="a101">A101</option>
-    <option value="bim">BİM</option>
-    <option value="carrefour">CarrefourSA</option>
-    <option value="migros">Migros</option>
-    <option value="sok">ŞOK</option>
-    <option value="tarim_kredi">Tarım Kredi</option>
-  </select>
-  <select id="sirala">
-    <option value="">Sıralama</option>
-    <option value="fiyat_asc">Market: Düşük → Yüksek</option>
-    <option value="fiyat_desc">Market: Yüksek → Düşük</option>
-    <option value="tasarruf">En Fazla Tasarruf (Hal vs Market)</option>
-    <option value="ad_asc">İsim: A → Z</option>
-  </select>
+<!-- SEARCH + BARCODE -->
+<div class="search-wrap">
+  <div class="search-inner">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" stroke-width="2" fill="none"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="search" placeholder="Ürün ara..." autocomplete="off" />
+    </div>
+    <div class="barcode-btn" title="Barkod Tara">
+      <svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M3 5h2M7 5h1M11 5h3M17 5h1M21 5h-2M3 7v10M21 7v10M3 19h2M7 19h1M11 19h3M17 19h1M21 19h-2M7 7v10M11 7v10M15 7v10M17 7v10"/></svg>
+    </div>
+  </div>
 </div>
 
-<div class="count" id="count"></div>
-<div class="grid" id="grid">
-  <div class="loading">⏳ Veriler yükleniyor...</div>
+<!-- CATEGORY PILLS -->
+<div class="cat-wrap">
+  <div class="cat-scroll" id="catScroll">
+    <button class="cat-pill active" data-cat="tumu">Tümü</button>
+    <button class="cat-pill" data-cat="meyve">🍎 Meyve</button>
+    <button class="cat-pill" data-cat="sebze">🥦 Sebze</button>
+  </div>
 </div>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <span><strong id="countNum">0</strong> ürün listeleniyor</span>
+  <span id="halDate"></span>
+</div>
+
+<!-- PRODUCT LIST -->
+<div class="product-list" id="productList">
+  <div class="state-msg">⏳ Veriler yükleniyor...</div>
+</div>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <button class="nav-item active">
+    <svg viewBox="0 0 24 24" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    Ana Sayfa
+  </button>
+  <button class="nav-item">
+    <svg viewBox="0 0 24 24" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 001.97-1.67L23 6H6"/></svg>
+    Sepetim
+  </button>
+  <button class="nav-item">
+    <svg viewBox="0 0 24 24" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+    Fırsatlar
+  </button>
+  <button class="nav-item">
+    <svg viewBox="0 0 24 24" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    Profil
+  </button>
+</nav>
 
 <script>
+const GREEN  = '#1D9E75';
+const ORANGE = '#F97316';
+
 const MARKET_AD = {
   a101: 'A101', bim: 'BİM', carrefour: 'CarrefourSA',
-  migros: 'Migros', sok: 'ŞOK', tarim_kredi: 'Tarım Kredi'
+  migros: 'Migros', sok: 'ŞOK', tarim_kredi: 'T.Kredi'
 };
 
 let tumUrunler = [];
-let halMap = {};   // normalize edilmiş ad -> hal kaydı
-let halMeta = {};
+let halMap     = {};
+let aktifKat   = 'tumu';
 
-// ── Kelime normalizasyonu (TR) ──
-function normalize(s) {
-  return (s || '')
-    .toLowerCase()
+/* ── Normalizasyon ── */
+function norm(s) {
+  return (s || '').toLowerCase()
     .replace(/ğ/g,'g').replace(/ü/g,'u').replace(/ş/g,'s')
     .replace(/ı/g,'i').replace(/ö/g,'o').replace(/ç/g,'c')
-    .replace(/[^a-z0-9 ]/g,'')
-    .trim();
+    .replace(/[^a-z0-9 ]/g,'').trim();
 }
 
-// Hal verisindeki ürün adını market adıyla eşleştirmek için basit skor
-function matchScore(halAd, marketAd) {
-  const hNorm = normalize(halAd);
-  const mNorm = normalize(marketAd);
-  if (hNorm === mNorm) return 100;
-  // Her iki taraftaki kelimelerin kesişimi
-  const hWords = hNorm.split(/\s+/).filter(w => w.length > 2);
+function halEsles(marketUrun) {
+  const mNorm = norm(marketUrun.ad);
   const mWords = mNorm.split(/\s+/).filter(w => w.length > 2);
-  if (!hWords.length || !mWords.length) return 0;
-  const inter = hWords.filter(w => mWords.includes(w));
-  return Math.round((inter.length / Math.max(hWords.length, mWords.length)) * 100);
-}
-
-// Bir market ürünü için en iyi hal eşleşmesini bul
-function findHal(marketUrun) {
-  const mNorm = normalize(marketUrun.ad);
   let best = null, bestScore = 0;
-  for (const [key, record] of Object.entries(halMap)) {
-    const score = matchScore(key, mNorm);
-    if (score > bestScore) { bestScore = score; best = record; }
+  for (const [key, rec] of Object.entries(halMap)) {
+    const hWords = key.split(/\s+/).filter(w => w.length > 2);
+    if (!hWords.length || !mWords.length) continue;
+    const inter = hWords.filter(w => mWords.includes(w)).length;
+    const score = inter / Math.max(hWords.length, mWords.length);
+    if (score > bestScore) { bestScore = score; best = rec; }
   }
-  return bestScore >= 50 ? best : null;
+  return bestScore >= 0.5 ? best : null;
 }
 
-// ── Veri Yükle ──
+function kategoriBelirle(u) {
+  const kats = (u.kategoriler || []).join(' ').toLowerCase();
+  if (kats.includes('meyve')) return 'meyve';
+  if (kats.includes('sebze')) return 'sebze';
+  const top = norm(u.top_kategori || u.ana_kategori || '');
+  if (top.includes('meyve')) return 'meyve';
+  if (top.includes('sebze')) return 'sebze';
+  return 'diger';
+}
+
+/* ── Para formatı ── */
+function tl(v) {
+  if (v == null) return '—';
+  return v.toLocaleString('tr-TR', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' ₺';
+}
+
+/* ── Veri yükle ── */
 Promise.allSettled([
   fetch('/api/urunler').then(r => r.json()),
   fetch('/api/hal').then(r => r.json()),
-]).then(([urunRes, halRes]) => {
-  const statusBar = document.getElementById('statusBar');
-  let subtitleParts = [];
-
-  if (urunRes.status === 'fulfilled' && urunRes.value.urunler) {
-    tumUrunler = urunRes.value.urunler;
-    subtitleParts.push(`${urunRes.value.toplam_urun} market ürünü — ${urunRes.value.cekme_tarihi}`);
-    statusBar.innerHTML += `<span><span class="dot dot-ok"></span>Market verisi: ${urunRes.value.toplam_urun} ürün</span>`;
-  } else {
-    statusBar.innerHTML += `<span><span class="dot dot-err"></span>Market verisi yüklenemedi (scraper.py çalıştırın)</span>`;
+]).then(([uRes, hRes]) => {
+  if (uRes.status === 'fulfilled' && uRes.value.urunler) {
+    tumUrunler = uRes.value.urunler;
+    document.getElementById('subtitle').textContent =
+      `${uRes.value.toplam_urun} ürün • ${(uRes.value.cekme_tarihi || '').slice(0,10)}`;
   }
-
-  if (halRes.status === 'fulfilled' && halRes.value.urunler) {
-    halMeta = halRes.value;
-    halRes.value.urunler.forEach(u => {
-      const key = normalize(u.ad);
-      // Aynı ürünün birden fazla kaydı varsa en düşük fiyatlısını al
-      if (!halMap[key] || (u.fiyat !== null && u.fiyat < (halMap[key].fiyat || 9999))) {
-        halMap[key] = u;
-      }
+  if (hRes.status === 'fulfilled' && hRes.value.urunler) {
+    hRes.value.urunler.forEach(u => {
+      const k = norm(u.ad);
+      if (!halMap[k] || (u.fiyat != null && u.fiyat < (halMap[k].fiyat ?? 9999)))
+        halMap[k] = u;
     });
-    subtitleParts.push(`${halRes.value.toplam_urun} hal ürünü — ${halRes.value.bulten_tarihi || halRes.value.cekme_tarihi}`);
-    statusBar.innerHTML += `<span><span class="dot dot-ok"></span>Hal verisi: ${halRes.value.toplam_urun} ürün (${halRes.value.bulten_tarihi || ''})</span>`;
-  } else {
-    statusBar.innerHTML += `<span><span class="dot dot-warn"></span>Hal verisi yüklenemedi (hal_scraper.py çalıştırın)</span>`;
-  }
-
-  document.getElementById('subtitle').textContent = subtitleParts.join(' | ') || 'Veri yüklenemedi';
-
-  if (!tumUrunler.length) {
-    document.getElementById('grid').innerHTML = '<div class="error">❌ Market verisi yok. Önce scraper.py çalıştırın.</div>';
-    return;
+    const bt = hRes.value.bulten_tarihi || '';
+    document.getElementById('halDate').textContent = bt ? `Hal: ${bt.slice(0,10)}` : '';
   }
   render();
 });
 
-// ── Filtre & Sırala ──
-function getFiltered() {
-  const q    = document.getElementById('search').value.toLowerCase().trim();
-  const mkt  = document.getElementById('market').value;
-  const sort = document.getElementById('sirala').value;
-
-  let list = tumUrunler.filter(u => findHal(u) !== null);
-
-  if (q) list = list.filter(u =>
-    normalize(u.ad).includes(normalize(q)) ||
-    normalize(u.marka || '').includes(normalize(q))
-  );
-  if (mkt) list = list.filter(u => (u.fiyatlar || []).some(f => f.market === mkt));
-
-  if (sort === 'fiyat_asc')  list = [...list].sort((a,b) => (a.en_dusuk_fiyat||9999) - (b.en_dusuk_fiyat||9999));
-  if (sort === 'fiyat_desc') list = [...list].sort((a,b) => (b.en_dusuk_fiyat||0) - (a.en_dusuk_fiyat||0));
-  if (sort === 'ad_asc')     list = [...list].sort((a,b) => (a.ad||'').localeCompare(b.ad||'','tr'));
-  if (sort === 'tasarruf') {
-    list = [...list].sort((a,b) => {
-      const halA = findHal(a); const halB = findHal(b);
-      const savA = halA && halA.fiyat && a.en_dusuk_fiyat ? a.en_dusuk_fiyat - halA.fiyat : -9999;
-      const savB = halB && halB.fiyat && b.en_dusuk_fiyat ? b.en_dusuk_fiyat - halB.fiyat : -9999;
-      return savB - savA;
-    });
-  }
-
-  return list;
+/* ── Filtrele ── */
+function getList() {
+  const q = norm(document.getElementById('search').value);
+  return tumUrunler
+    .filter(u => halEsles(u) !== null)
+    .filter(u => aktifKat === 'tumu' || kategoriBelirle(u) === aktifKat)
+    .filter(u => !q || norm(u.ad).includes(q) || norm(u.marka||'').includes(q));
 }
 
-// ── Para formatı ──
-function fmtTL(val) {
-  if (val == null) return '—';
-  return val.toLocaleString('tr-TR', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' ₺';
-}
+/* ── Kart HTML ── */
+function cardHTML(u) {
+  const hal = halEsles(u);
+  const halFiyat = hal ? hal.fiyat : null;
+  const marketler = (u.fiyatlar || []).filter(f => f.fiyat != null).sort((a,b) => a.fiyat - b.fiyat);
+  const minMarket = marketler[0]?.fiyat ?? null;
 
-// ── Kart HTML ──
-function kartHTML(u) {
-  const halKayit = findHal(u);
-  const halFiyat = halKayit ? halKayit.fiyat : null;
-  const marketMin = u.en_dusuk_fiyat;
-
-  // Resim
+  /* Görsel */
   const img = u.resim
-    ? `<img src="${u.resim}" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+    ? `<img src="${u.resim}" alt="" loading="lazy" onerror="this.style.display='none';this.parentNode.querySelector('.fallback').style.display='flex'">`
     : '';
-  const noImg = `<div class="no-img" ${u.resim ? 'style="display:none"' : ''}>🥦</div>`;
+  const fallbackStyle = u.resim ? 'display:none' : '';
 
-  // Meta bilgiler
-  const kat  = u.top_kategori || u.ana_kategori || '';
-  const meta = (kat ? `<span>${kat}</span>` : '') +
-               (u.agirlik_hacim ? `<span>${u.agirlik_hacim}</span>` : '');
+  /* Birim etiketi */
+  const birim = u.agirlik_hacim ? `<span class="card-unit">${u.agirlik_hacim}</span>` : '';
 
-  // Hal paneli
-  let halPanel = '';
+  /* Hal satırı */
+  let halHTML = '';
   if (halFiyat != null) {
-    halPanel = `
-      <div class="hal-price">${fmtTL(halFiyat)}</div>
-      <div class="hal-sub">${halKayit.birim || 'Kg'} — ${halKayit.turu || ''}</div>
-    `;
+    halHTML = `<div class="hal-row">
+      <span class="hal-badge">HAL</span>
+      <span class="hal-price">${tl(halFiyat)}</span>
+    </div>`;
   } else {
-    halPanel = `<div class="hal-none">Hal verisi bulunamadı</div>`;
+    halHTML = `<p class="hal-none">Hal verisi yok</p>`;
   }
 
-  // Market paneli
-  const marketFiyatlar = (u.fiyatlar || [])
-    .filter(f => f.fiyat != null)
-    .sort((a, b) => a.fiyat - b.fiyat);
+  /* Market satırları (max 3) */
+  const marketHTML = marketler.slice(0, 3).map((f, i) => `
+    <div class="market-row">
+      <span class="m-badge m-${f.market || 'default'}">${MARKET_AD[f.market] || f.market || '?'}</span>
+      <span class="m-name">${f.depo_adi || ''}</span>
+      <span class="m-price ${i === 0 ? 'cheapest' : ''}">${tl(f.fiyat)}</span>
+    </div>`).join('');
 
-  let marketPanel = '';
-  if (marketFiyatlar.length) {
-    const best = marketFiyatlar[0];
-    const bestName = MARKET_AD[best.market] || best.market || '?';
-    marketPanel = `
-      <div class="market-best">${fmtTL(best.fiyat)}</div>
-      <div class="market-best-name">En ucuz: ${bestName} ${best.depo_adi ? '— ' + best.depo_adi : ''}</div>
-      <div class="market-list">
-        ${marketFiyatlar.map(f => `
-          <div class="market-item">
-            <span class="m-tag m-${f.market || 'default'}">${MARKET_AD[f.market] || f.market || '?'}</span>
-            <span class="m-price">${fmtTL(f.fiyat)}</span>
-          </div>
-        `).join('')}
-      </div>
-    `;
-  } else {
-    marketPanel = `<div class="hal-none">Market fiyatı yok</div>`;
-  }
-
-  // Tasarruf çubuğu
-  let savingsBar = '';
-  if (halFiyat != null && marketMin != null) {
-    const diff = marketMin - halFiyat;
-    if (Math.abs(diff) < 0.01) {
-      savingsBar = `<div class="savings-bar neutral">≈ Hal ve en ucuz market fiyatı yakın</div>`;
-    } else if (diff > 0) {
-      savingsBar = `<div class="savings-bar">💰 Halde ${fmtTL(halFiyat)}, en ucuz markette ${fmtTL(marketMin)} — Markette <strong>${fmtTL(diff)} daha pahalı</strong></div>`;
+  /* Tasarruf barı */
+  let savingsHTML = '';
+  if (halFiyat != null && minMarket != null) {
+    const diff = minMarket - halFiyat;
+    if (diff > 0.01) {
+      savingsHTML = `<div class="savings-bar cheaper">
+        <svg viewBox="0 0 24 24" stroke-width="2.5" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
+        Halde <strong>${tl(diff)} daha ucuz</strong> (en ucuz market: ${tl(minMarket)})
+      </div>`;
+    } else if (diff < -0.01) {
+      savingsHTML = `<div class="savings-bar pricier">
+        <svg viewBox="0 0 24 24" stroke-width="2.5" fill="none"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+        Market <strong>${tl(-diff)} daha ucuz</strong> (hal: ${tl(halFiyat)})
+      </div>`;
     } else {
-      savingsBar = `<div class="savings-bar loss">⚠️ Halde ${fmtTL(halFiyat)}, en ucuz markette ${fmtTL(marketMin)} — Market <strong>${fmtTL(-diff)} daha ucuz</strong></div>`;
+      savingsHTML = `<div class="savings-bar equal">Hal ve market fiyatı yakın</div>`;
     }
-  } else if (halFiyat != null) {
-    savingsBar = `<div class="savings-bar neutral">🏪 Hal fiyatı: ${fmtTL(halFiyat)} — Market verisi yok</div>`;
   }
 
-  return `
-    <div class="card">
-      <div class="card-header">
-        ${img}${noImg}
-        <div>
-          <div class="card-title">${u.ad}</div>
-          <div class="card-sub">${meta}</div>
-        </div>
+  return `<div class="card">
+    <div class="card-body">
+      <div class="card-img-wrap">
+        ${img}
+        <span class="fallback" style="${fallbackStyle}; display:${u.resim?'none':'flex'}; align-items:center; justify-content:center; font-size:1.8rem;">🛒</span>
       </div>
-      <div class="compare-row">
-        <div class="compare-panel">
-          <div class="panel-label hal-label">🏭 Hal (Toptancı)</div>
-          ${halPanel}
-        </div>
-        <div class="compare-panel">
-          <div class="panel-label market-label">🛒 Market Fiyatları</div>
-          ${marketPanel}
-        </div>
+      <div class="card-info">
+        <div class="card-name" title="${u.ad}">${u.ad}</div>
+        ${birim}
+        ${halHTML}
       </div>
-      ${savingsBar}
     </div>
-  `;
+    ${marketHTML ? `<div class="market-list">${marketHTML}</div>` : ''}
+    ${savingsHTML}
+  </div>`;
 }
 
-// ── Render ──
+/* ── Render ── */
 function render() {
-  const list = getFiltered();
-  document.getElementById('count').textContent = `${list.length} ürün listeleniyor`;
-  document.getElementById('grid').innerHTML = list.length
-    ? list.map(kartHTML).join('')
-    : '<div class="empty">🔍 Ürün bulunamadı.</div>';
+  const list = getList();
+  document.getElementById('countNum').textContent = list.length;
+  document.getElementById('productList').innerHTML = list.length
+    ? list.map(cardHTML).join('')
+    : '<div class="state-msg">🔍 Ürün bulunamadı.</div>';
 }
 
-// ── Eventler ──
+/* ── Olaylar ── */
 document.getElementById('search').addEventListener('input', render);
-document.getElementById('market').addEventListener('change', render);
-document.getElementById('sirala').addEventListener('change', render);
-</script>
 
+document.getElementById('catScroll').addEventListener('click', e => {
+  const pill = e.target.closest('.cat-pill');
+  if (!pill) return;
+  document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+  pill.classList.add('active');
+  aktifKat = pill.dataset.cat;
+  render();
+});
+</script>
 </body>
 </html>
