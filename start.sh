@@ -1,15 +1,9 @@
 #!/bin/bash
 
-echo "=== Hal fiyatlari cekiliyor... ==="
-python hal_scraper.py
+echo "=== Scraper'lar calistiriliyor... ==="
+python run_scrapers.py
 if [ $? -ne 0 ]; then
-  echo "[UYARI] hal_scraper.py basarisiz oldu, mevcut veri kullanilacak."
-fi
-
-echo "=== Market fiyatlari cekiliyor... ==="
-python scraper.py
-if [ $? -ne 0 ]; then
-  echo "[UYARI] scraper.py basarisiz oldu, mevcut veri kullanilacak."
+  echo "[UYARI] Scraper'lar basarisiz, mevcut JSON dosyalari kullanilacak."
 fi
 
 echo "=== Sunucu baslatiliyor... ==="
