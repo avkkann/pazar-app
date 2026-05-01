@@ -7,4 +7,9 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "=== Sunucu baslatiliyor... ==="
-exec gunicorn server:app --bind "0.0.0.0:${PORT:-8000}" --workers 1 --timeout 120
+exec gunicorn server:app \
+  --bind "0.0.0.0:${PORT:-8000}" \
+  --workers 1 \
+  --timeout 120 \
+  --graceful-timeout 30 \
+  --keep-alive 5

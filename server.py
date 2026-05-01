@@ -1,11 +1,14 @@
 from flask import Flask, jsonify, send_from_directory
-import json, os, threading
+import json, os, threading, signal, sys
+from datetime import datetime
 
 app = Flask(__name__, static_folder=".")
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-_scraper_lock = threading.Lock()
+_scraper_lock    = threading.Lock()
 _scraper_running = False
+_shutdown        = False
+_start_time      = datetime.utcnow()
 
 
 def load_json(filename):
@@ -23,6 +26,37 @@ def _run_scrapers_bg():
         run_scrapers.main()
     finally:
         _scraper_running = False
+
+
+# ── Graceful shutdown ──────────────────────────────────────────
+def _handle_sigterm(signum, frame):
+    """
+    Railway SIGTERM gönderince önce in-flight isteklerin bitmesi beklenir,
+    sonra süreç temiz kapanır. Daemon thread'ler (scraper) otomatik durur.
+    """
+    global _shutdown
+    _shutdown = True
+    print("SIGTERM alindi, graceful shutdown basliyor...", flush=True)
+    sys.exit(0)
+
+signal.signal(signal.SIGTERM, _handle_sigterm)
+
+
+# ── Routes ────────────────────────────────────────────────────
+
+@app.route("/health")
+def health():
+    urunler_ok = os.path.exists(os.path.join(BASE_DIR, "urunler.json"))
+    hal_ok     = os.path.exists(os.path.join(BASE_DIR, "hal_fiyatlari.json"))
+    uptime_s   = int((datetime.utcnow() - _start_time).total_seconds())
+    status = {
+        "status":          "ok" if (urunler_ok and hal_ok) else "degraded",
+        "uptime_seconds":  uptime_s,
+        "urunler_json":    urunler_ok,
+        "hal_json":        hal_ok,
+        "scraper_running": _scraper_running,
+    }
+    return jsonify(status), 200 if status["status"] == "ok" else 503
 
 
 @app.route("/")
