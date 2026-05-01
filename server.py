@@ -1,8 +1,11 @@
-from flask import Flask, jsonify, send_from_directory, abort
-import json, os
+from flask import Flask, jsonify, send_from_directory, request
+import json, os, threading
 
 app = Flask(__name__, static_folder=".")
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+_scraper_lock = threading.Lock()
+_scraper_running = False
 
 
 def load_json(filename):
@@ -11,6 +14,15 @@ def load_json(filename):
         return None
     with open(path, encoding="utf-8") as f:
         return json.load(f)
+
+
+def _run_scrapers_bg():
+    global _scraper_running
+    try:
+        import run_scrapers
+        run_scrapers.main()
+    finally:
+        _scraper_running = False
 
 
 @app.route("/")
@@ -22,7 +34,7 @@ def index():
 def urunler():
     data = load_json("urunler.json")
     if data is None:
-        return jsonify({"hata": "urunler.json bulunamadı. Önce scraper.py çalıştırın."}), 404
+        return jsonify({"hata": "urunler.json bulunamadi."}), 404
     return jsonify(data)
 
 
@@ -30,8 +42,33 @@ def urunler():
 def hal():
     data = load_json("hal_fiyatlari.json")
     if data is None:
-        return jsonify({"hata": "hal_fiyatlari.json bulunamadı. Önce hal_scraper.py çalıştırın."}), 404
+        return jsonify({"hata": "hal_fiyatlari.json bulunamadi."}), 404
     return jsonify(data)
+
+
+@app.route("/api/guncelle")
+def guncelle():
+    global _scraper_running
+
+    # API key kontrolü
+    api_key = os.environ.get("API_KEY", "")
+    if not api_key:
+        return jsonify({"hata": "Sunucuda API_KEY tanimli degil."}), 500
+
+    gelen_key = request.headers.get("X-API-Key") or request.args.get("key", "")
+    if gelen_key != api_key:
+        return jsonify({"hata": "Gecersiz API key."}), 401
+
+    # Eş zamanlı çalışmayı engelle
+    with _scraper_lock:
+        if _scraper_running:
+            return jsonify({"durum": "zaten_calisiyor", "mesaj": "Scraper zaten calisiyor."}), 409
+        _scraper_running = True
+
+    thread = threading.Thread(target=_run_scrapers_bg, daemon=True)
+    thread.start()
+
+    return jsonify({"durum": "baslatildi", "mesaj": "Scraper'lar arka planda baslatildi."}), 202
 
 
 @app.route("/<path:filename>")
@@ -41,5 +78,5 @@ def static_files(filename):
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8000))
-    print(f"Pazar + Hal Fiyatlari sunucusu basliyor... http://localhost:{port}")
+    print(f"Sunucu basliyor... http://localhost:{port}")
     app.run(host="0.0.0.0", port=port, debug=False)
