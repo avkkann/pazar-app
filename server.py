@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, send_from_directory, request
+from flask import Flask, jsonify, send_from_directory
 import json, os, threading
 
 app = Flask(__name__, static_folder=".")
@@ -46,20 +46,10 @@ def hal():
     return jsonify(data)
 
 
-@app.route("/api/guncelle")
+@app.route("/api/guncelle-d5336945")
 def guncelle():
     global _scraper_running
 
-    # API key kontrolü
-    api_key = os.environ.get("API_KEY", "")
-    if not api_key:
-        return jsonify({"hata": "Sunucuda API_KEY tanimli degil."}), 500
-
-    gelen_key = request.headers.get("X-API-Key") or request.args.get("key", "")
-    if gelen_key != api_key:
-        return jsonify({"hata": "Gecersiz API key."}), 401
-
-    # Eş zamanlı çalışmayı engelle
     with _scraper_lock:
         if _scraper_running:
             return jsonify({"durum": "zaten_calisiyor", "mesaj": "Scraper zaten calisiyor."}), 409
