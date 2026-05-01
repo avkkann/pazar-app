@@ -8,13 +8,6 @@ import time
 import requests
 import urllib3
 from datetime import datetime
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
-from webdriver_manager.chrome import ChromeDriverManager
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -39,6 +32,14 @@ CATEGORY_KEYWORD = "Meyve ve Sebze"
 
 
 def get_cookies_via_browser():
+    from selenium import webdriver
+    from selenium.webdriver.chrome.service import Service
+    from selenium.webdriver.chrome.options import Options
+    from selenium.webdriver.support.ui import WebDriverWait
+    from selenium.webdriver.support import expected_conditions as EC
+    from selenium.webdriver.common.by import By
+    from webdriver_manager.chrome import ChromeDriverManager
+
     print("Tarayici baslatiliyor (cookie alma)...")
     options = Options()
     options.add_argument("--headless=new")
@@ -127,9 +128,13 @@ def scrape():
     print("  Cookie olmadan API deneniyor...")
     test = fetch_page(session, 0)
     if not test or not test.get("content"):
-        print("  Cookie gerekli, tarayici baslatiliyor...")
-        cookies = get_cookies_via_browser()
-        session.cookies.update(cookies)
+        try:
+            print("  Cookie gerekli, tarayici baslatiliyor...")
+            cookies = get_cookies_via_browser()
+            session.cookies.update(cookies)
+        except Exception as e:
+            print(f"  [UYARI] Tarayici kullanilamiyor: {e}")
+            print("  Cookie olmadan devam ediliyor...")
 
     products = []
 
