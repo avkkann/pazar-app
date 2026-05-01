@@ -116,7 +116,7 @@ def scrape():
     print("\n[Sayfa 1] GET isteği...")
     resp = fetch_with_retry(sess, "GET", BASE_URL)
     if not resp:
-        print("[HATA] Sayfa 1 alinамadi.")
+        print("[HATA] Sayfa 1 alinamadi.")
         return None
 
     soup = BeautifulSoup(resp.content, "html.parser")
