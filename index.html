@@ -1,4 +1,4 @@
-<!-- v5 -->
+<!-- v6 -->
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -34,7 +34,7 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; background: #F9FAFB; color: #111827; }
 
     body {
       font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -720,6 +720,14 @@ function getList() {
   const q = norm(document.getElementById('search').value);
   return tumUrunler
     .filter(u => halEsles(u) !== null)
+    .filter(u => {
+      const hal = halEsles(u);
+      if (!hal?.fiyat) return true;
+      const marketler = (u.fiyatlar || []).filter(f => f.fiyat != null);
+      if (!marketler.length) return true;
+      const minMarket = Math.min(...marketler.map(f => f.fiyat));
+      return minMarket / hal.fiyat <= 5;
+    })
     .filter(u => aktifKat === 'tumu' || kategori(u) === aktifKat)
     .filter(u => !q || norm(u.ad).includes(q) || norm(u.marka || '').includes(q));
 }
