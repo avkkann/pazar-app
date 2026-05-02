@@ -38,8 +38,8 @@
 
     body {
       font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: var(--bg);
-      color: var(--gray-900);
+      background: #F9FAFB !important;
+      color: #111827 !important;
       max-width: 600px;
       margin: 0 auto;
       min-height: 100dvh;
@@ -52,16 +52,8 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background-color: var(--primary);
-      background-image:
-        repeating-linear-gradient(
-          45deg,
-          transparent,
-          transparent 22px,
-          rgba(255,255,255,.035) 22px,
-          rgba(255,255,255,.035) 23px
-        );
-      padding: 48px 18px 18px;
+      background: #0F5132 !important;
+      padding: 20px 16px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -292,9 +284,9 @@
 
     /* ─── CARD ─── */
     .card {
-      background: var(--card);
+      background: white !important;
       border-radius: var(--radius-card);
-      box-shadow: var(--shadow-card);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important;
       overflow: hidden;
       border: 1px solid rgba(0,0,0,.05);
       transition: box-shadow .2s, transform .15s;
