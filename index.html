@@ -723,14 +723,19 @@ Promise.allSettled([
 function getList() {
   const q = norm(document.getElementById('search').value);
   return tumUrunler
-    .filter(u => halEsles(u) !== null)
     .filter(u => {
-      const hal = halEsles(u);
-      if (!hal?.fiyat) return true;
+      const hal      = halEsles(u);
       const marketler = (u.fiyatlar || []).filter(f => f.fiyat != null);
-      if (!marketler.length) return true;
-      const minMarket = Math.min(...marketler.map(f => f.fiyat));
-      return minMarket / hal.fiyat <= 5;
+      const hasHal    = hal?.fiyat != null;
+      const hasMarket = marketler.length > 0;
+      // En az bir kaynakta veri olmalı
+      if (!hasHal && !hasMarket) return false;
+      // İkisi de varsa 5x fark kontrolü (yanlış eşleşme filtresi)
+      if (hasHal && hasMarket) {
+        const minMarket = Math.min(...marketler.map(f => f.fiyat));
+        if (minMarket / hal.fiyat > 5) return false;
+      }
+      return true;
     })
     .filter(u => aktifKat === 'tumu' || kategori(u) === aktifKat)
     .filter(u => !q || norm(u.ad).includes(q) || norm(u.marka || '').includes(q));
@@ -793,10 +798,10 @@ function cardHTML(u) {
         ${halBlock}
       </div>
     </div>
-    ${marketRows ? `<div class="market-section">
+    <div class="market-section">
       <div class="market-section-label">Market Fiyatları</div>
-      ${marketRows}
-    </div>` : ''}
+      ${marketRows || '<p class="hal-none">Market verisi yok</p>'}
+    </div>
     ${savingsBar}
   </div>`;
 }
