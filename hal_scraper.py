@@ -5,6 +5,7 @@ Antalya Yas Sebze ve Meyve Komisyoncular Dernegi gunluk fiyat listesi.
 """
 
 import json
+import os
 import re
 import time
 import requests
@@ -12,7 +13,11 @@ from datetime import datetime
 from bs4 import BeautifulSoup
 
 SOURCE_URL  = "https://antalyakomisyonculardernegi.com/hal-fiyatlari/1"
-OUTPUT_FILE = "hal_fiyatlari.json"
+
+_BASE_DIR   = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR    = os.environ.get("RAILWAY_VOLUME_MOUNT_PATH", _BASE_DIR)
+os.makedirs(DATA_DIR, exist_ok=True)
+OUTPUT_FILE = os.path.join(DATA_DIR, "hal_fiyatlari.json")
 MAX_RETRIES = 3
 
 HEADERS = {

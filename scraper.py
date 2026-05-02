@@ -4,6 +4,7 @@ Sonuclari urunler.json dosyasina kaydeder.
 """
 
 import json
+import os
 import time
 import requests
 import urllib3
@@ -13,7 +14,10 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 API_URL     = "https://api.marketfiyati.org.tr/api/v2/searchByCategories"
 BASE_URL    = "https://marketfiyati.org.tr/kategori/"
-OUTPUT_FILE = "urunler.json"
+_BASE_DIR   = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR    = os.environ.get("RAILWAY_VOLUME_MOUNT_PATH", _BASE_DIR)
+os.makedirs(DATA_DIR, exist_ok=True)
+OUTPUT_FILE = os.path.join(DATA_DIR, "urunler.json")
 PAGE_SIZE   = 48
 MAX_RETRIES = 3
 

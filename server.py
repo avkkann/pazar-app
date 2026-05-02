@@ -4,6 +4,11 @@ from datetime import datetime
 
 app = Flask(__name__, static_folder=".")
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR  = os.environ.get("RAILWAY_VOLUME_MOUNT_PATH", BASE_DIR)
+os.makedirs(DATA_DIR, exist_ok=True)
+
+URUNLER_FILE = os.path.join(DATA_DIR, "urunler.json")
+HAL_FILE     = os.path.join(DATA_DIR, "hal_fiyatlari.json")
 
 _scraper_lock    = threading.Lock()
 _scraper_running = False
@@ -11,11 +16,10 @@ _shutdown        = False
 _start_time      = datetime.utcnow()
 
 
-def load_json(filename):
-    path = os.path.join(BASE_DIR, filename)
-    if not os.path.exists(path):
+def load_json(filepath):
+    if not os.path.exists(filepath):
         return None
-    with open(path, encoding="utf-8") as f:
+    with open(filepath, encoding="utf-8") as f:
         return json.load(f)
 
 
@@ -46,8 +50,8 @@ signal.signal(signal.SIGTERM, _handle_sigterm)
 
 @app.route("/health")
 def health():
-    urunler_ok = os.path.exists(os.path.join(BASE_DIR, "urunler.json"))
-    hal_ok     = os.path.exists(os.path.join(BASE_DIR, "hal_fiyatlari.json"))
+    urunler_ok = os.path.exists(URUNLER_FILE)
+    hal_ok     = os.path.exists(HAL_FILE)
     uptime_s   = int((datetime.utcnow() - _start_time).total_seconds())
     status = {
         "status":          "ok" if (urunler_ok and hal_ok) else "degraded",
@@ -70,7 +74,7 @@ def index():
 
 @app.route("/api/urunler")
 def urunler():
-    data = load_json("urunler.json")
+    data = load_json(URUNLER_FILE)
     if data is None:
         return jsonify({"hata": "urunler.json bulunamadi."}), 404
     return jsonify(data)
@@ -78,7 +82,7 @@ def urunler():
 
 @app.route("/api/hal")
 def hal():
-    data = load_json("hal_fiyatlari.json")
+    data = load_json(HAL_FILE)
     if data is None:
         return jsonify({"hata": "hal_fiyatlari.json bulunamadi."}), 404
     return jsonify(data)
