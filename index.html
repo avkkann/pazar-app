@@ -714,7 +714,7 @@ Promise.allSettled([
     const bt = hR.value.bulten_tarihi || '';
     if (bt) {
       document.getElementById('halDate').innerHTML =
-        `<span class="hal-date-badge" title="Hal fiyatları günlük olarak güncellenir, bir önceki güne aittir">Dün itibarıyla hal fiyatları (${bt.slice(0,10)})</span>`;
+        `<span class="hal-date-badge">Hal verisi: ${bt.slice(0,10)}</span>`;
     }
   }
   render();
