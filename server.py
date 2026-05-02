@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, send_from_directory
+from flask import Flask, jsonify, send_from_directory, make_response
 import json, os, threading, signal, sys
 from datetime import datetime
 
@@ -61,7 +61,11 @@ def health():
 
 @app.route("/")
 def index():
-    return send_from_directory(BASE_DIR, "index.html")
+    resp = make_response(send_from_directory(BASE_DIR, "index.html"))
+    resp.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    resp.headers["Pragma"] = "no-cache"
+    resp.headers["Expires"] = "0"
+    return resp
 
 
 @app.route("/api/urunler")
