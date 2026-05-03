@@ -727,15 +727,14 @@ const ONCELIKLI = [
   'makarna','pirinc','un','seker','tuz'
 ];
 
-function oncelikSirasi(u) {
-  const ad = norm(u.ad);
-  const idx = ONCELIKLI.findIndex(k => ad.includes(k));
-  return idx === -1 ? ONCELIKLI.length : idx;
+function minFiyat(u) {
+  const prices = (u.fiyatlar || []).map(f => f.fiyat).filter(p => p != null);
+  return prices.length ? Math.min(...prices) : (u.en_dusuk_fiyat ?? Infinity);
 }
 
 function getList() {
   const q = norm(document.getElementById('search').value);
-  return tumUrunler
+  const filtered = tumUrunler
     .filter(u => {
       const hal      = halEsles(u);
       const marketler = (u.fiyatlar || []).filter(f => f.fiyat != null);
@@ -749,8 +748,24 @@ function getList() {
       return true;
     })
     .filter(u => aktifKat === 'tumu' || kategori(u) === aktifKat)
-    .filter(u => !q || norm(u.ad).includes(q) || norm(u.marka || '').includes(q))
-    .sort((a, b) => oncelikSirasi(a) - oncelikSirasi(b));
+    .filter(u => !q || norm(u.ad).includes(q) || norm(u.marka || '').includes(q));
+
+  // Her öncelikli keyword için en ucuz 1 ürünü öne al
+  const champIds = new Set();
+  const champions = [];
+  for (const keyword of ONCELIKLI) {
+    const eslesen = filtered.filter(u => norm(u.ad).includes(keyword));
+    if (!eslesen.length) continue;
+    const ucuzu = eslesen.reduce((en, u) => minFiyat(u) < minFiyat(en) ? u : en);
+    if (!champIds.has(ucuzu.id)) {
+      champIds.add(ucuzu.id);
+      champions.push(ucuzu);
+    }
+  }
+
+  // Geri kalanlar: şampiyon olmayanlar orijinal sırayla
+  const rest = filtered.filter(u => !champIds.has(u.id));
+  return [...champions, ...rest];
 }
 
 function cardHTML(u) {
