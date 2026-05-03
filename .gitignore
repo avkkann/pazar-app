@@ -1,7 +1,5 @@
-# Scraper çıktıları — Railway Volume'da tutulur, git'e girmez
+# Scraper ham çıktısı
 urunler_raw.json
-urunler.json
-hal_fiyatlari.json
 
 # Python
 __pycache__/
