@@ -594,6 +594,11 @@
     <button class="cat-pill active" data-cat="tumu">Tümü</button>
     <button class="cat-pill" data-cat="meyve">🍎 Meyve</button>
     <button class="cat-pill" data-cat="sebze">🥦 Sebze</button>
+    <button class="cat-pill" data-cat="et-tavuk">🥩 Et &amp; Tavuk</button>
+    <button class="cat-pill" data-cat="sut-kahvalti">🧀 Süt &amp; Kahvaltı</button>
+    <button class="cat-pill" data-cat="temel-gida">🛒 Temel Gıda</button>
+    <button class="cat-pill" data-cat="icecek">🥤 İçecek</button>
+    <button class="cat-pill" data-cat="temizlik">🧴 Temizlik</button>
   </div>
 </div>
 
@@ -680,15 +685,20 @@ function halEsles(u) {
 }
 
 function kategori(u) {
-  // Her kategori değerini tek tek tam eşleşme ile karşılaştır (büyük/küçük harf duyarsız)
-  const cats = (u.kategoriler || []).map(c => c.toLowerCase().trim());
-  if (cats.includes('meyve')) return 'meyve';
-  if (cats.includes('sebze')) return 'sebze';
+  const ana  = norm(u.ana_kategori || '');
+  const cats = (u.kategoriler || []).map(c => norm(c));
+  const top  = norm(u.top_kategori || '');
 
-  const top = (u.top_kategori || '').toLowerCase().trim();
-  const ana = (u.ana_kategori || '').toLowerCase().trim();
-  if (top === 'meyve' || ana === 'meyve') return 'meyve';
-  if (top === 'sebze' || ana === 'sebze') return 'sebze';
+  // ana_kategori → slug eşlemesi (norm ile Türkçe/noktalama normalize edildi)
+  if (ana === 'et tavuk ve balik' || ana.startsWith('et '))  return 'et-tavuk';
+  if (ana === 'sut urunleri ve kahvaltilik')                  return 'sut-kahvalti';
+  if (ana === 'temel gida')                                   return 'temel-gida';
+  if (ana === 'icecek')                                       return 'icecek';
+  if (ana === 'temizlik ve kisisel bakim')                    return 'temizlik';
+
+  // Meyve/sebze: hem ana_kategori hem kategoriler array'inden kontrol
+  if (cats.includes('meyve') || top === 'meyve' || ana === 'meyve' || ana === 'meyve ve sebze') return 'meyve';
+  if (cats.includes('sebze') || top === 'sebze' || ana === 'sebze')                              return 'sebze';
 
   return 'diger';
 }
