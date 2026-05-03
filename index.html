@@ -720,6 +720,19 @@ Promise.allSettled([
   render();
 });
 
+const ONCELIKLI = [
+  'yumurta','ekmek','sut','domates','salatalik','patates','sogan','biber',
+  'elma','muz','portakal','limon','havuc','ispanak','marul',
+  'peynir','yogurt','tereyagi','zeytinyagi',
+  'makarna','pirinc','un','seker','tuz'
+];
+
+function oncelikSirasi(u) {
+  const ad = norm(u.ad);
+  const idx = ONCELIKLI.findIndex(k => ad.includes(k));
+  return idx === -1 ? ONCELIKLI.length : idx;
+}
+
 function getList() {
   const q = norm(document.getElementById('search').value);
   return tumUrunler
@@ -728,9 +741,7 @@ function getList() {
       const marketler = (u.fiyatlar || []).filter(f => f.fiyat != null);
       const hasHal    = hal?.fiyat != null;
       const hasMarket = marketler.length > 0;
-      // En az bir kaynakta veri olmalı
       if (!hasHal && !hasMarket) return false;
-      // İkisi de varsa 5x fark kontrolü (yanlış eşleşme filtresi)
       if (hasHal && hasMarket) {
         const minMarket = Math.min(...marketler.map(f => f.fiyat));
         if (minMarket / hal.fiyat > 5) return false;
@@ -738,7 +749,8 @@ function getList() {
       return true;
     })
     .filter(u => aktifKat === 'tumu' || kategori(u) === aktifKat)
-    .filter(u => !q || norm(u.ad).includes(q) || norm(u.marka || '').includes(q));
+    .filter(u => !q || norm(u.ad).includes(q) || norm(u.marka || '').includes(q))
+    .sort((a, b) => oncelikSirasi(a) - oncelikSirasi(b));
 }
 
 function cardHTML(u) {
