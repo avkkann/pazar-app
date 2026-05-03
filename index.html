@@ -689,16 +689,16 @@ function kategori(u) {
   const cats = (u.kategoriler || []).map(c => norm(c));
   const top  = norm(u.top_kategori || '');
 
-  // ana_kategori → slug eşlemesi (norm ile Türkçe/noktalama normalize edildi)
-  if (ana === 'et tavuk ve balik' || ana.startsWith('et '))  return 'et-tavuk';
-  if (ana === 'sut urunleri ve kahvaltilik')                  return 'sut-kahvalti';
-  if (ana === 'temel gida')                                   return 'temel-gida';
-  if (ana === 'icecek')                                       return 'icecek';
-  if (ana === 'temizlik ve kisisel bakim')                    return 'temizlik';
+  if (ana.includes('et') && (ana.includes('tavuk') || ana.includes('balik'))) return 'et-tavuk';
+  if (ana.includes('sut') && ana.includes('kahvalti'))                         return 'sut-kahvalti';
+  if (ana.includes('temel') && ana.includes('gida'))                           return 'temel-gida';
+  if (ana === 'icecek' || ana.includes('icecek'))                              return 'icecek';
+  if (ana.includes('temizlik'))                                                return 'temizlik';
 
-  // Meyve/sebze: hem ana_kategori hem kategoriler array'inden kontrol
-  if (cats.includes('meyve') || top === 'meyve' || ana === 'meyve' || ana === 'meyve ve sebze') return 'meyve';
-  if (cats.includes('sebze') || top === 'sebze' || ana === 'sebze')                              return 'sebze';
+  if (cats.includes('meyve') || top === 'meyve' || ana === 'meyve') return 'meyve';
+  if (cats.includes('sebze') || top === 'sebze' || ana === 'sebze') return 'sebze';
+  if (ana.includes('meyve')) return 'meyve';
+  if (ana.includes('sebze')) return 'sebze';
 
   return 'diger';
 }
@@ -731,10 +731,8 @@ Promise.allSettled([
 });
 
 const ONCELIKLI = [
-  'yumurta','ekmek','sut','domates','salatalik','patates','sogan','biber',
-  'elma','muz','portakal','limon','havuc','ispanak','marul',
-  'peynir','yogurt','tereyagi','zeytinyagi',
-  'makarna','pirinc','un','seker','tuz'
+  'yumurta','sut','ekmek','domates','salatalik','patates','sogan',
+  'elma','muz','portakal','limon','yogurt','peynir','tereyagi'
 ];
 
 function minFiyat(u) {
@@ -826,7 +824,7 @@ function cardHTML(u) {
     }
   }
 
-  return `<div class="card">
+  return `<div class="card" data-category="${kategori(u)}">
     <div class="card-main">
       <div class="card-img">${imgInner}</div>
       <div class="card-info">
