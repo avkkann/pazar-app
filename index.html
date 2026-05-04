@@ -594,9 +594,9 @@
     <button class="cat-pill active" data-cat="tumu">Tümü</button>
     <button class="cat-pill" data-cat="meyve">🍎 Meyve</button>
     <button class="cat-pill" data-cat="sebze">🥦 Sebze</button>
-    <button class="cat-pill" data-cat="et-tavuk">🥩 Et &amp; Tavuk</button>
-    <button class="cat-pill" data-cat="sut-kahvalti">🧀 Süt &amp; Kahvaltı</button>
-    <button class="cat-pill" data-cat="temel-gida">🛒 Temel Gıda</button>
+    <button class="cat-pill" data-cat="et">🥩 Et &amp; Tavuk</button>
+    <button class="cat-pill" data-cat="sut">🧀 Süt &amp; Kahvaltı</button>
+    <button class="cat-pill" data-cat="gida">🛒 Temel Gıda</button>
     <button class="cat-pill" data-cat="icecek">🥤 İçecek</button>
     <button class="cat-pill" data-cat="temizlik">🧴 Temizlik</button>
   </div>
@@ -687,18 +687,25 @@ function halEsles(u) {
 function kategori(u) {
   const ana  = norm(u.ana_kategori || '');
   const cats = (u.kategoriler || []).map(c => norm(c));
-  const top  = norm(u.top_kategori || '');
 
-  if (ana.includes('et') && (ana.includes('tavuk') || ana.includes('balik'))) return 'et-tavuk';
-  if (ana.includes('sut') && ana.includes('kahvalti'))                         return 'sut-kahvalti';
-  if (ana.includes('temel') && ana.includes('gida'))                           return 'temel-gida';
-  if (ana === 'icecek' || ana.includes('icecek'))                              return 'icecek';
-  if (ana.includes('temizlik'))                                                return 'temizlik';
+  if (ana.includes('et') && (ana.includes('tavuk') || ana.includes('balik'))) return 'et';
+  if (ana.includes('sut'))                                                      return 'sut';
+  if (ana.includes('temel') && ana.includes('gida'))                           return 'gida';
+  if (ana.includes('icecek'))                                                   return 'icecek';
+  if (ana.includes('temizlik'))                                                 return 'temizlik';
 
-  if (cats.includes('meyve') || top === 'meyve' || ana === 'meyve') return 'meyve';
-  if (cats.includes('sebze') || top === 'sebze' || ana === 'sebze') return 'sebze';
-  if (ana.includes('meyve')) return 'meyve';
-  if (ana.includes('sebze')) return 'sebze';
+  // "Meyve ve Sebze" birleşik kategorisi: sub-kategori varsa kullan, yoksa sebze
+  if (ana === 'meyve ve sebze' || ana === 'sebze') {
+    if (cats.some(c => c === 'meyve')) return 'meyve';
+    return 'sebze';
+  }
+  if (ana === 'meyve') return 'meyve';
+
+  // Yedek: kategoriler dizisine bak
+  if (cats.some(c => c === 'meyve'))  return 'meyve';
+  if (cats.some(c => c === 'sebze'))  return 'sebze';
+  if (cats.some(c => c.includes('meyve'))) return 'meyve';
+  if (cats.some(c => c.includes('sebze'))) return 'sebze';
 
   return 'diger';
 }
