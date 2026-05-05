@@ -705,6 +705,8 @@ function ustKategori(anaKat) {
   return 'diger';
 }
 
+const KAT_EMOJI = { meyve:'🍎', sebze:'🥦', et:'🥩', sut:'🧀', gida:'🛒', icecek:'🥤', temizlik:'🧴' };
+
 function tl(v) {
   if (v == null) return '—';
   return v.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' ₺';
@@ -784,9 +786,10 @@ function cardHTML(u) {
   const marketler = (u.fiyatlar || []).filter(f => f.fiyat != null).sort((a, b) => a.fiyat - b.fiyat);
   const minMarket = marketler[0]?.fiyat ?? null;
 
+  const emoji = KAT_EMOJI[ustKategori(u.ana_kategori)] || '📦';
   const imgInner = u.resim
-    ? `<img src="${u.resim}" alt="" loading="lazy" onerror="this.style.display='none'">`
-    : '🛒';
+    ? `<img src="${u.resim}" alt="" loading="lazy" onerror="this.outerHTML='${emoji}'">`
+    : emoji;
 
   const halBlock = halFiyat != null
     ? `<div class="hal-block">
