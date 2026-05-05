@@ -541,7 +541,7 @@
 
 <!-- BOTTOM NAV (viewport-fixed, her iki ekranın dışında) -->
 <nav class="bottom-nav">
-  <button class="nav-btn active">
+  <button class="nav-btn active" id="navHome" onclick="showScreen('screen-home')">
     <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
     Ana Sayfa
   </button>
@@ -615,20 +615,45 @@ function refreshEkleBtns(id, inCart) {
   });
 }
 
+function showScreen(id) {
+  const home  = document.getElementById('screen-home');
+  const cat   = document.getElementById('screen-cat');
+  const sp    = document.getElementById('screen-sepet');
+  const nav   = document.querySelector('.bottom-nav');
+
+  // Hepsini sıfırla
+  home.classList.remove('pushed');
+  cat.classList.remove('open');
+  sp.classList.remove('open');
+  nav.classList.remove('hidden');
+
+  // Hedef ekranı aç
+  if (id === 'screen-cat') {
+    home.classList.add('pushed');
+    cat.classList.add('open');
+    cat.scrollTop = 0;
+    nav.classList.add('hidden');
+  } else if (id === 'screen-sepet') {
+    home.classList.add('pushed');
+    sp.classList.add('open');
+    sp.scrollTop = 0;
+    // bottom-nav sepet ekranında görünür kalır
+  }
+  // screen-home: sıfırlama yeterli
+
+  // Aktif nav butonunu güncelle
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  if (id === 'screen-home')  document.getElementById('navHome').classList.add('active');
+  if (id === 'screen-sepet') document.getElementById('navSepet').classList.add('active');
+}
+
 function openSepet() {
   renderSepet();
-  document.getElementById('screen-home').classList.add('pushed');
-  document.getElementById('screen-sepet').classList.add('open');
-  document.getElementById('screen-sepet').scrollTop = 0;
-  document.querySelector('.bottom-nav').classList.add('hidden');
+  showScreen('screen-sepet');
 }
 
 function closeSepet() {
-  document.getElementById('screen-sepet').classList.remove('open');
-  if (!document.getElementById('screen-cat').classList.contains('open')) {
-    document.getElementById('screen-home').classList.remove('pushed');
-  }
-  document.querySelector('.bottom-nav').classList.remove('hidden');
+  showScreen('screen-home');
 }
 
 function renderSepet() {
@@ -894,16 +919,11 @@ function openCategory(slug) {
     ? list.map(cardHTML).join('')
     : `<div class="state-msg"><span class="state-icon">🔍</span>Bu kategoride ürün bulunamadı.</div>`;
 
-  document.getElementById('screen-home').classList.add('pushed');
-  document.getElementById('screen-cat').classList.add('open');
-  document.getElementById('screen-cat').scrollTop = 0;
-  document.querySelector('.bottom-nav').classList.add('hidden');
+  showScreen('screen-cat');
 }
 
 function goBack() {
-  document.getElementById('screen-home').classList.remove('pushed');
-  document.getElementById('screen-cat').classList.remove('open');
-  document.querySelector('.bottom-nav').classList.remove('hidden');
+  showScreen('screen-home');
 }
 
 document.getElementById('search').addEventListener('input', function() {
@@ -924,9 +944,11 @@ document.getElementById('search').addEventListener('input', function() {
   }
 });
 
+// showScreen() tüm aktif state'i yönetiyor; onclick'i olan butonlar zaten çağırıyor.
+// Diğer nav butonlar (Fırsatlar, Profil) için temel active toggle:
 document.querySelectorAll('.nav-btn').forEach(btn => {
+  if (btn.id === 'navHome' || btn.id === 'navSepet') return;
   btn.addEventListener('click', () => {
-    if (btn.id === 'navSepet') return; // openSepet() zaten onclick'te
     document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
   });
