@@ -1,642 +1,626 @@
-<!-- v9 -->
 <!DOCTYPE html>
-<html lang="tr" style="background:#F9FAFB;color:#111827;">
+<html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <title>Pazar — Haldeki fiyatı, markete gitmeden bil</title>
   <style>
-    :root {
-      --primary:       #0F5132;
-      --primary-mid:   #1a7a4e;
-      --primary-light: #ECFDF5;
-      --primary-text:  #065F46;
-      --border:        #E5E7EB;
-      --border-green:  #D1FAE5;
-      --bg:            #F9FAFB;
-      --card:          #FFFFFF;
-      --gray-100:      #F3F4F6;
-      --gray-400:      #9CA3AF;
-      --gray-500:      #6B7280;
-      --gray-700:      #374151;
-      --gray-900:      #111827;
-      --radius-card:   16px;
-      --shadow-card:   0 2px 12px rgba(0,0,0,.06);
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
-    *, *::before, *::after {
-      box-sizing: border-box; margin: 0; padding: 0;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    html { background: #F9FAFB; color: #111827; height: 100%; }
-
-    body {
+    html, body {
       font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #F9FAFB !important;
-      color: #111827 !important;
-      height: 100%;
-      overflow: hidden;
+      background: #F9FAFB; color: #111827;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ─── APP SHELL ─── */
-    #app {
-      position: relative;
-      overflow: hidden;
+    /* ── EKRANLAR ── */
+    .screen {
+      display: none;
+      min-height: 100dvh;
       max-width: 600px;
       margin: 0 auto;
-      height: 100dvh;
+      background: #F9FAFB;
+      padding-bottom: 72px;
     }
+    #screen-home { display: block; }
 
-    /* ─── SCREENS ─── */
-    .screen {
-      position: absolute;
-      inset: 0;
-      overflow-y: auto;
-      overflow-x: hidden;
-      background: var(--bg);
-      transition: transform .3s cubic-bezier(.4,0,.2,1);
-      will-change: transform;
-      padding-bottom: 80px;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    #screen-cat   { display: none; }
-    #screen-sepet { display: none; }
-
-    #screen-home { transform: translateX(0);    z-index: 1; }
-    #screen-cat  { transform: translateX(100%); z-index: 2;
-                   box-shadow: -8px 0 28px rgba(0,0,0,.14); }
-    #screen-home.pushed { transform: translateX(-28%); }
-    #screen-cat.open    { transform: translateX(0); }
-
-    /* ─── HEADER ─── */
+    /* ── HEADER ── */
     .header {
-      position: sticky; top: 0; z-index: 100;
-      background: #0F5132 !important;
+      background: #0F5132;
       padding: 20px 16px 16px;
-      display: flex; align-items: center; justify-content: space-between; gap: 12px;
-    }
-    .header::after {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-      height: 1px; background: rgba(255,255,255,.12);
-    }
-    .header-brand { display: flex; align-items: center; gap: 13px; flex: 1; min-width: 0; }
-    .header-logo {
-      width: 44px; height: 44px; background: #1a6840; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-      border: 1.5px solid rgba(255,255,255,.25); box-shadow: 0 2px 8px rgba(0,0,0,.2);
-    }
-    .header-logo span {
-      font-family: Georgia, 'Times New Roman', serif;
-      font-weight: 900; font-size: 1.35rem; color: #fff; line-height: 1; letter-spacing: -.5px;
-    }
-    .header-text { min-width: 0; }
-    .header-text h1 {
-      font-family: Georgia, 'Times New Roman', serif;
-      font-weight: 800; font-size: 1.5rem; color: #fff; letter-spacing: -.4px; line-height: 1;
-    }
-    .header-text p {
-      font-size: .71rem; font-style: italic; color: rgba(255,255,255,.68);
-      margin-top: 4px; font-weight: 400; white-space: nowrap;
-      overflow: hidden; text-overflow: ellipsis;
-    }
-    .header-actions { display: flex; gap: 8px; flex-shrink: 0; }
-    .header-btn {
-      width: 38px; height: 38px; background: rgba(255,255,255,.12);
-      border: 1px solid rgba(255,255,255,.22); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; position: relative; transition: background .15s;
-    }
-    .header-btn:hover { background: rgba(255,255,255,.2); }
-    .header-btn svg { width: 16px; height: 16px; stroke: rgba(255,255,255,.9); fill: none; stroke-width: 2; }
-    .bell-dot {
-      position: absolute; top: 6px; right: 6px; width: 8px; height: 8px;
-      background: #FCD34D; border-radius: 50%; border: 1.5px solid var(--primary);
-    }
-
-    /* ─── SUB-HEADER ─── */
-    .header-sub {
-      position: sticky; top: 0; z-index: 100;
-      background: #0F5132 !important;
-      padding: 14px 16px;
       display: flex; align-items: center; gap: 12px;
+      position: sticky; top: 0; z-index: 50;
     }
-    .header-sub::after {
-      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-      height: 1px; background: rgba(255,255,255,.12);
+    .header-logo {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: rgba(255,255,255,.15);
+      display: flex; align-items: center; justify-content: center;
+      font-family: Georgia, serif; font-size: 1.3rem; font-weight: 900; color: #fff;
+      flex-shrink: 0;
+    }
+    .header-text h1 {
+      font-family: Georgia, serif; font-size: 1.45rem; font-weight: 800;
+      color: #fff; line-height: 1;
+    }
+    .header-text p { font-size: .68rem; color: rgba(255,255,255,.7); margin-top: 3px; font-style: italic; }
+
+    .header-sub {
+      background: #0F5132;
+      padding: 13px 16px;
+      display: flex; align-items: center; gap: 12px;
+      position: sticky; top: 0; z-index: 50;
+    }
+    .header-sub h2 {
+      font-family: Georgia, serif; font-size: 1.15rem; font-weight: 800; color: #fff;
     }
     .back-btn {
-      width: 38px; height: 38px; flex-shrink: 0;
-      background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      cursor: pointer; transition: background .15s;
+      width: 36px; height: 36px; flex-shrink: 0;
+      background: rgba(255,255,255,.15); border: none; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; cursor: pointer;
     }
-    .back-btn:hover { background: rgba(255,255,255,.2); }
     .back-btn svg { width: 18px; height: 18px; stroke: #fff; fill: none; stroke-width: 2.5; }
-    .header-sub h2 {
-      flex: 1;
-      font-family: Georgia, 'Times New Roman', serif;
-      font-size: 1.2rem; font-weight: 800; color: #fff; letter-spacing: -.3px;
-    }
 
-    /* ─── SEARCH BAR ─── */
-    .search-wrap {
-      background: var(--card); padding: 12px 14px; border-bottom: 1px solid var(--border);
-    }
+    /* ── ARAMA ── */
+    .search-wrap { background: #fff; padding: 11px 14px; border-bottom: 1px solid #E5E7EB; }
     .search-box {
-      display: flex; align-items: center; gap: 9px;
-      background: #fff; border: 1.5px solid var(--border-green); border-radius: 11px;
-      padding: 10px 13px; transition: border-color .15s, box-shadow .15s;
+      display: flex; align-items: center; gap: 8px;
+      background: #F9FAFB; border: 1.5px solid #D1FAE5; border-radius: 10px; padding: 10px 12px;
     }
-    .search-box:focus-within {
-      border-color: var(--primary-mid); box-shadow: 0 0 0 3px rgba(15,81,50,.1);
-    }
-    .search-box svg { width: 15px; height: 15px; stroke: var(--gray-400); fill: none; stroke-width: 2; flex-shrink: 0; }
+    .search-box:focus-within { border-color: #1a7a4e; }
+    .search-box svg { width: 15px; height: 15px; stroke: #9CA3AF; fill: none; stroke-width: 2; flex-shrink: 0; }
     .search-box input {
       flex: 1; border: none; outline: none; background: transparent;
+      font-size: .875rem; color: #111827;
       font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
-      font-size: .88rem; color: var(--gray-900);
     }
-    .search-box input::placeholder { color: var(--gray-400); }
+    .search-box input::placeholder { color: #9CA3AF; }
 
-    /* ─── CATEGORY GRID ─── */
+    /* ── KATEGORİ GRİD ── */
     .cat-grid {
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 12px; padding: 16px 14px;
     }
     .cat-card {
-      background: #fff; border-radius: 16px;
-      border: 1px solid var(--border); box-shadow: var(--shadow-card);
+      background: #fff; border: 1px solid #E5E7EB; border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.05);
       padding: 22px 12px 18px;
       display: flex; flex-direction: column; align-items: center; gap: 7px;
-      cursor: pointer; transition: transform .15s, box-shadow .15s;
-      user-select: none;
+      cursor: pointer; transition: transform .15s; user-select: none;
     }
-    .cat-card:active { transform: scale(.95); box-shadow: none; }
-    .cat-card-emoji { font-size: 2.6rem; line-height: 1; }
-    .cat-card-name {
-      font-size: .86rem; font-weight: 700; color: var(--gray-900);
-      text-align: center; line-height: 1.35;
-    }
-    .cat-card-count { font-size: .7rem; color: var(--gray-400); font-weight: 500; }
-    .cat-card.loading { opacity: .4; pointer-events: none; }
+    .cat-card:active { transform: scale(.95); }
+    .cat-card-emoji { font-size: 2.5rem; line-height: 1; }
+    .cat-card-name { font-size: .84rem; font-weight: 700; color: #111827; text-align: center; line-height: 1.35; }
+    .cat-card-count { font-size: .68rem; color: #9CA3AF; }
 
-    /* ─── STATS ROW ─── */
+    /* ── STATS ── */
     .stats-row {
-      padding: 9px 16px;
+      padding: 8px 16px; font-size: .72rem; color: #9CA3AF;
       display: flex; justify-content: space-between; align-items: center;
-      font-size: .73rem; color: var(--gray-400);
     }
-    .stats-row b { color: var(--gray-700); font-weight: 700; }
-    .hal-date-badge {
-      display: flex; align-items: center; gap: 5px;
-      font-size: .68rem; font-weight: 600; color: var(--primary-text);
-      background: var(--primary-light); border: 1px solid var(--border-green);
-      border-radius: 6px; padding: 3px 9px;
-    }
-    .hal-date-badge::before {
-      content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--primary);
+    .stats-row b { color: #374151; }
+    .hal-badge {
+      font-size: .66rem; font-weight: 600; color: #065F46;
+      background: #ECFDF5; border: 1px solid #D1FAE5; border-radius: 6px; padding: 3px 8px;
     }
 
-    /* ─── PRODUCT LIST ─── */
-    .product-list { padding: 6px 14px 20px; display: flex; flex-direction: column; gap: 12px; }
+    /* ── ÜRÜN LİSTESİ ── */
+    .product-list { padding: 6px 14px 20px; display: flex; flex-direction: column; gap: 10px; }
 
-    /* ─── CARD ─── */
+    /* ── KART ── */
     .card {
-      background: white !important; border-radius: var(--radius-card);
-      box-shadow: 0 2px 8px rgba(0,0,0,.06) !important;
-      overflow: hidden; border: 1px solid rgba(0,0,0,.05);
-      transition: transform .15s;
+      background: #fff; border-radius: 14px;
+      border: 1px solid rgba(0,0,0,.06); box-shadow: 0 2px 8px rgba(0,0,0,.05); overflow: hidden;
     }
-    .card:active { transform: scale(.994); }
-    .card-main { display: flex; gap: 13px; padding: 14px 14px 12px; }
+    .card-main { display: flex; gap: 12px; padding: 13px 13px 11px; }
     .card-img {
-      width: 78px; height: 78px; flex-shrink: 0; border-radius: 10px;
-      background: linear-gradient(135deg,#F9FAFB,#F3F4F6); border: 1px solid var(--border);
-      overflow: hidden; display: flex; align-items: center; justify-content: center;
-      font-size: 1.9rem;
+      width: 72px; height: 72px; flex-shrink: 0; border-radius: 10px;
+      background: #F3F4F6; border: 1px solid #E5E7EB;
+      display: flex; align-items: center; justify-content: center; font-size: 1.8rem; overflow: hidden;
     }
     .card-img img { width: 100%; height: 100%; object-fit: contain; }
     .card-info { flex: 1; min-width: 0; }
     .card-name {
-      font-size: .9rem; font-weight: 700; line-height: 1.35; color: var(--gray-900);
+      font-size: .88rem; font-weight: 700; color: #111827; line-height: 1.35;
       display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
     }
     .card-unit {
-      display: inline-block; margin-top: 4px; font-size: .66rem; font-weight: 600;
-      color: var(--gray-500); background: var(--gray-100); border: 1px solid var(--border);
-      border-radius: 5px; padding: 2px 7px;
+      display: inline-block; margin-top: 4px;
+      font-size: .63rem; font-weight: 600; color: #6B7280;
+      background: #F3F4F6; border: 1px solid #E5E7EB; border-radius: 4px; padding: 2px 6px;
     }
-    .hal-block { margin-top: 10px; }
-    .hal-label { font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--gray-500); }
-    .hal-price-row { display: flex; align-items: baseline; gap: 4px; margin-top: 1px; }
-    .hal-price {
-      font-size: 1.35rem; font-weight: 700; color: var(--gray-900); line-height: 1; letter-spacing: -.5px;
-    }
-    .hal-unit-text { font-size: .7rem; color: var(--gray-400); font-weight: 500; }
-    .hal-none { font-size: .75rem; color: var(--gray-400); margin-top: 10px; font-style: italic; }
+    .hal-block { margin-top: 8px; }
+    .hal-label { font-size: .58rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: #6B7280; }
+    .hal-price { font-size: 1.25rem; font-weight: 800; color: #111827; line-height: 1; letter-spacing: -.5px; }
+    .hal-unit-text { font-size: .68rem; color: #9CA3AF; margin-left: 3px; }
+    .hal-none { font-size: .73rem; color: #9CA3AF; margin-top: 8px; font-style: italic; }
 
-    /* ─── MARKET SECTION ─── */
-    .market-section { border-top: 1px solid var(--border); padding: 10px 14px; }
+    /* ── MARKET BÖLÜMÜ ── */
+    .market-section { border-top: 1px solid #F3F4F6; padding: 9px 13px; }
     .market-section-label {
-      font-size: .6rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: .1em; color: var(--gray-400); margin-bottom: 8px;
+      font-size: .58rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .1em; color: #9CA3AF; margin-bottom: 7px;
     }
-    .market-row {
-      display: flex; align-items: center; gap: 9px;
-      padding: 5px 0; border-top: 1px solid #F3F4F6;
-    }
-    .market-row:first-of-type { border-top: none; }
+    .market-row { display: flex; align-items: center; gap: 8px; padding: 4px 0; border-top: 1px solid #F9FAFB; }
+    .market-row:first-child { border-top: none; }
     .m-tag {
-      font-size: .58rem; font-weight: 700; color: #fff; padding: 3px 8px;
-      border-radius: 5px; min-width: 52px; text-align: center; flex-shrink: 0;
-      letter-spacing: .04em; text-transform: uppercase;
+      font-size: .56rem; font-weight: 700; color: #fff; padding: 3px 7px;
+      border-radius: 4px; min-width: 48px; text-align: center; flex-shrink: 0;
+      text-transform: uppercase; letter-spacing: .04em;
     }
-    .m-a101        { background: #DC2626; }
-    .m-bim         { background: #991B1B; }
-    .m-carrefour   { background: #1D4ED8; }
-    .m-migros      { background: #E53E3E; }
-    .m-sok         { background: #D97706; }
-    .m-tarim_kredi { background: #15803D; }
-    .m-default     { background: #6B7280; }
+    .m-a101 { background: #DC2626; } .m-bim { background: #991B1B; }
+    .m-carrefour { background: #1D4ED8; } .m-migros { background: #E53E3E; }
+    .m-sok { background: #D97706; } .m-tarim_kredi { background: #15803D; }
+    .m-default { background: #6B7280; }
     .m-store {
-      font-size: .74rem; color: var(--gray-500); flex: 1; min-width: 0;
+      font-size: .72rem; color: #6B7280; flex: 1; min-width: 0;
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
-    .m-price { font-size: .83rem; font-weight: 700; color: var(--gray-700); flex-shrink: 0; letter-spacing: -.2px; }
-    .m-price.best { color: var(--primary); }
+    .m-price { font-size: .8rem; font-weight: 700; color: #374151; flex-shrink: 0; }
+    .m-price.best { color: #0F5132; }
 
-    /* ─── SAVINGS BAR ─── */
+    /* ── TASARRUF BARI ── */
     .savings-bar {
-      padding: 10px 14px; font-size: .77rem; font-weight: 600;
-      display: flex; align-items: center; gap: 8px; border-top: 1px solid var(--border);
+      padding: 9px 13px; font-size: .74rem; font-weight: 600;
+      display: flex; align-items: center; gap: 7px; border-top: 1px solid #E5E7EB;
     }
-    .savings-bar.cheaper { background: var(--primary-light); color: var(--primary-text); }
+    .savings-bar.cheaper { background: #ECFDF5; color: #065F46; }
     .savings-bar.pricier { background: #FEF2F2; color: #991B1B; }
-    .savings-bar.equal   { background: var(--gray-100); color: var(--gray-500); }
-    .savings-icon {
-      width: 18px; height: 18px; flex-shrink: 0; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: .65rem; font-weight: 800;
-    }
-    .cheaper .savings-icon { background: var(--primary-text); color: #fff; }
-    .pricier .savings-icon { background: #991B1B; color: #fff; }
-    .equal   .savings-icon { background: var(--gray-400); color: #fff; }
+    .savings-bar.equal   { background: #F3F4F6; color: #6B7280; }
 
-    /* ─── EMPTY / SKELETON ─── */
-    .state-msg {
-      text-align: center; padding: 60px 24px; color: var(--gray-400);
-      font-size: .9rem; line-height: 1.6;
-    }
-    .state-msg .state-icon { font-size: 2.5rem; display: block; margin-bottom: 12px; opacity: .5; }
-    .loading-card {
-      background: var(--card); border-radius: var(--radius-card); padding: 16px;
-      border: 1px solid rgba(0,0,0,.05); display: flex; gap: 13px;
-    }
-    .skel {
-      background: linear-gradient(90deg,#F3F4F6 25%,#E9EAED 50%,#F3F4F6 75%);
-      background-size: 200% 100%; animation: shimmer 1.4s infinite; border-radius: 8px;
-    }
-    .skel-img   { width: 78px; height: 78px; flex-shrink: 0; border-radius: 10px; }
-    .skel-lines { flex: 1; display: flex; flex-direction: column; gap: 8px; padding-top: 4px; }
-    .skel-line  { height: 10px; }
-    .skel-line.w70 { width: 70%; }
-    .skel-line.w40 { width: 40%; }
-    .skel-line.w55 { width: 55%; }
-    @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
-
-    /* ─── BOTTOM NAV ─── */
-    .bottom-nav {
-      position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
-      width: 100%; max-width: 600px;
-      background: var(--card);
-      box-shadow: 0 -1px 0 var(--border), 0 -6px 20px rgba(0,0,0,.06);
-      display: flex; z-index: 300;
-      transition: transform .3s cubic-bezier(.4,0,.2,1);
-    }
-    .bottom-nav.hidden { transform: translateX(-50%) translateY(100%); }
-    .nav-btn {
-      flex: 1; display: flex; flex-direction: column; align-items: center;
-      justify-content: center; padding: 8px 4px 14px; gap: 3px;
-      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
-      font-size: .6rem; font-weight: 600; color: var(--gray-400);
-      background: none; border: none; cursor: pointer; transition: color .15s; letter-spacing: .02em;
-    }
-    .nav-btn svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2; }
-    .nav-btn { position: relative; }
-    .nav-btn.active { color: var(--primary); }
-    .nav-btn.active svg { stroke: var(--primary); }
-    .nav-badge {
-      position: absolute; top: 4px; right: calc(50% - 16px);
-      background: #DC2626; color: #fff;
-      font-size: .5rem; font-weight: 800; min-width: 16px; height: 16px;
-      border-radius: 8px; padding: 0 3px;
-      display: none; align-items: center; justify-content: center;
-      border: 1.5px solid #fff;
-    }
-    .nav-badge.visible { display: flex; }
-
-    /* ─── SEPETE EKLE BUTONU ─── */
+    /* ── SEPETE EKLE ── */
+    .card-footer { display: flex; justify-content: flex-end; padding: 0 13px 11px; }
     .btn-ekle {
       display: flex; align-items: center; gap: 5px;
-      margin: 0 14px 12px auto;
-      padding: 6px 13px;
-      background: var(--primary); color: #fff;
-      border: none; border-radius: 8px;
-      font-size: .74rem; font-weight: 700;
-      cursor: pointer; transition: background .15s, transform .1s;
-      line-height: 1;
+      padding: 6px 12px; background: #0F5132; color: #fff;
+      border: none; border-radius: 7px;
+      font-size: .72rem; font-weight: 700; cursor: pointer;
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
     }
-    .btn-ekle:active { transform: scale(.95); }
-    .btn-ekle svg { width: 12px; height: 12px; stroke: #fff; fill: none; stroke-width: 2.5; flex-shrink: 0; }
-    .btn-ekle.added { background: var(--gray-400); }
+    .btn-ekle:active { background: #1a7a4e; }
+    .btn-ekle.added { background: #9CA3AF; }
+    .btn-ekle svg { width: 11px; height: 11px; stroke: #fff; fill: none; stroke-width: 2.5; }
 
-    /* ─── SEPET KALEM ─── */
-    .cart-list { padding: 10px 14px; display: flex; flex-direction: column; gap: 10px; }
+    /* ── SEPET ── */
+    .cart-list { padding: 10px 14px; display: flex; flex-direction: column; gap: 9px; }
     .cart-item {
-      background: #fff; border-radius: 12px; border: 1px solid var(--border);
-      box-shadow: var(--shadow-card);
-      display: flex; align-items: center; gap: 12px; padding: 12px 14px;
+      background: #fff; border-radius: 12px; border: 1px solid #E5E7EB;
+      box-shadow: 0 1px 4px rgba(0,0,0,.05);
+      display: flex; align-items: center; gap: 11px; padding: 11px 13px;
     }
     .cart-item-img {
-      width: 46px; height: 46px; border-radius: 8px; flex-shrink: 0;
-      background: var(--gray-100); border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.4rem; overflow: hidden;
+      width: 44px; height: 44px; flex-shrink: 0; border-radius: 8px;
+      background: #F3F4F6; border: 1px solid #E5E7EB;
+      display: flex; align-items: center; justify-content: center; font-size: 1.3rem; overflow: hidden;
     }
     .cart-item-img img { width: 100%; height: 100%; object-fit: contain; }
     .cart-item-info { flex: 1; min-width: 0; }
-    .cart-item-name { font-size: .84rem; font-weight: 700; color: var(--gray-900); line-height: 1.3;
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .cart-item-sub  { font-size: .68rem; color: var(--gray-400); margin-top: 2px; }
-    .cart-item-del {
-      width: 30px; height: 30px; flex-shrink: 0;
-      background: #FEF2F2; border: 1px solid #FECACA; border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; transition: background .15s;
+    .cart-item-name {
+      font-size: .83rem; font-weight: 700; color: #111827; line-height: 1.3;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
-    .cart-item-del:hover { background: #FEE2E2; }
-    .cart-item-del svg { width: 14px; height: 14px; stroke: #DC2626; fill: none; stroke-width: 2; }
-
-    /* ─── KARŞILAŞTIR BUTONU ─── */
+    .cart-item-sub { font-size: .67rem; color: #9CA3AF; margin-top: 2px; }
+    .cart-del {
+      width: 28px; height: 28px; flex-shrink: 0;
+      background: #FEF2F2; border: 1px solid #FECACA; border-radius: 7px;
+      display: flex; align-items: center; justify-content: center; cursor: pointer;
+    }
+    .cart-del svg { width: 13px; height: 13px; stroke: #DC2626; fill: none; stroke-width: 2; }
     .btn-compare {
-      display: block; width: calc(100% - 28px); margin: 4px 14px 16px;
-      padding: 14px; background: var(--primary); color: #fff;
+      display: block; margin: 6px 14px 4px; width: calc(100% - 28px);
+      padding: 13px; background: #0F5132; color: #fff;
       border: none; border-radius: 12px;
-      font-size: .9rem; font-weight: 700; cursor: pointer;
-      transition: background .15s; text-align: center;
+      font-size: .88rem; font-weight: 700; cursor: pointer; text-align: center;
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
     }
-    .btn-compare:hover { background: var(--primary-mid); }
-    .btn-compare:disabled { background: var(--gray-400); cursor: default; }
+    .btn-compare:hover { background: #1a7a4e; }
 
-    /* ─── KARŞILAŞTIRMA SONUÇLARI ─── */
-    .compare-wrap { padding: 0 14px 20px; }
+    /* ── KARŞILAŞTIRMA ── */
+    .compare-wrap { padding: 12px 14px 20px; }
     .compare-title {
-      font-size: .7rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: .08em; color: var(--gray-400); padding: 4px 0 10px;
+      font-size: .68rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .08em; color: #9CA3AF; margin-bottom: 10px;
     }
     .compare-savings {
-      background: var(--primary-light); border: 1px solid var(--border-green);
-      border-radius: 10px; padding: 11px 14px; margin-bottom: 10px;
-      font-size: .82rem; color: var(--primary-text); font-weight: 600;
-      display: flex; align-items: center; gap: 10px;
+      background: #ECFDF5; border: 1px solid #D1FAE5; border-radius: 10px;
+      padding: 10px 13px; margin-bottom: 10px;
+      font-size: .8rem; color: #065F46; font-weight: 600;
+      display: flex; align-items: center; gap: 8px;
     }
-    .compare-savings-ico { font-size: 1.2rem; flex-shrink: 0; }
     .compare-row {
-      background: #fff; border-radius: 12px; border: 1px solid var(--border);
-      box-shadow: var(--shadow-card);
-      display: flex; align-items: center; gap: 12px;
-      padding: 12px 14px; margin-bottom: 8px;
+      background: #fff; border-radius: 12px; border: 1px solid #E5E7EB;
+      box-shadow: 0 1px 4px rgba(0,0,0,.05);
+      display: flex; align-items: center; gap: 11px;
+      padding: 11px 13px; margin-bottom: 8px;
     }
-    .compare-row.best { border-color: var(--border-green); background: var(--primary-light); }
+    .compare-row.best { background: #ECFDF5; border-color: #D1FAE5; }
     .compare-rank {
-      width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
-      background: var(--gray-100); color: var(--gray-500);
+      width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0;
+      background: #F3F4F6; color: #6B7280;
       display: flex; align-items: center; justify-content: center;
-      font-size: .7rem; font-weight: 800;
+      font-size: .68rem; font-weight: 800;
     }
-    .compare-row.best .compare-rank { background: var(--primary); color: #fff; }
+    .compare-row.best .compare-rank { background: #0F5132; color: #fff; }
     .compare-info { flex: 1; min-width: 0; }
-    .compare-mname { font-size: .85rem; font-weight: 700; color: var(--gray-900); }
-    .compare-row.best .compare-mname { color: var(--primary-text); }
-    .compare-detail { font-size: .68rem; color: var(--gray-400); margin-top: 2px; }
-    .compare-total { font-size: 1rem; font-weight: 800; color: var(--gray-900); flex-shrink: 0; letter-spacing: -.3px; }
-    .compare-row.best .compare-total { color: var(--primary-text); }
+    .compare-mname { font-size: .83rem; font-weight: 700; color: #111827; }
+    .compare-row.best .compare-mname { color: #065F46; }
+    .compare-detail { font-size: .67rem; color: #9CA3AF; margin-top: 2px; }
+    .compare-total { font-size: .95rem; font-weight: 800; color: #111827; flex-shrink: 0; }
+    .compare-row.best .compare-total { color: #065F46; }
+
+    /* ── BOŞLUK / MESAJ ── */
+    .state-msg { text-align: center; padding: 50px 24px; color: #9CA3AF; font-size: .88rem; line-height: 1.6; }
+    .state-msg .icon { font-size: 2.5rem; display: block; margin-bottom: 10px; }
+
+    /* ── ALT NAV ── */
+    .bottom-nav {
+      position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+      width: 100%; max-width: 600px;
+      background: #fff; border-top: 1px solid #E5E7EB;
+      box-shadow: 0 -4px 16px rgba(0,0,0,.06);
+      display: flex; z-index: 100;
+    }
+    .nav-btn {
+      flex: 1; display: flex; flex-direction: column; align-items: center;
+      justify-content: center; padding: 8px 4px 13px; gap: 3px;
+      background: none; border: none; cursor: pointer;
+      font-size: .58rem; font-weight: 600; color: #9CA3AF; letter-spacing: .02em;
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+      transition: color .15s;
+    }
+    .nav-btn svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2; }
+    .nav-btn.active { color: #0F5132; }
   </style>
 </head>
-<body style="background:#F9FAFB;color:#111827;">
-<div id="app">
+<body>
 
-  <!-- ═══ EKRAN 1: ANA SAYFA ═══ -->
-  <div id="screen-home" class="screen">
+<!-- ══ EKRAN 1: ANA SAYFA ══ -->
+<div id="screen-home" class="screen">
 
-    <header class="header">
-      <div class="header-brand">
-        <div class="header-logo"><span>P</span></div>
-        <div class="header-text">
-          <h1>Pazar</h1>
-          <p>Haldeki fiyatı, markete gitmeden bil</p>
-        </div>
-      </div>
-      <div class="header-actions">
-        <button class="header-btn" title="Bildirimler">
-          <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
-          <span class="bell-dot"></span>
-        </button>
-      </div>
-    </header>
-
-    <div class="search-wrap">
-      <div class="search-box">
-        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        <input id="search" type="text" placeholder="Tüm kategorilerde ara… örn. domates" autocomplete="off" />
-      </div>
+  <header class="header">
+    <div class="header-logo">P</div>
+    <div class="header-text">
+      <h1>Pazar</h1>
+      <p>Haldeki fiyatı, markete gitmeden bil</p>
     </div>
+  </header>
 
-    <!-- Kategori grid (varsayılan görünüm) -->
-    <div id="home-cats" class="cat-grid">
-      <div class="cat-card loading"><div class="cat-card-emoji">🍎</div><div class="cat-card-name">Meyve &amp; Sebze</div><div class="cat-card-count">yükleniyor…</div></div>
-      <div class="cat-card loading"><div class="cat-card-emoji">🥩</div><div class="cat-card-name">Et &amp; Tavuk</div><div class="cat-card-count">yükleniyor…</div></div>
-      <div class="cat-card loading"><div class="cat-card-emoji">🧀</div><div class="cat-card-name">Süt &amp; Kahvaltı</div><div class="cat-card-count">yükleniyor…</div></div>
-      <div class="cat-card loading"><div class="cat-card-emoji">🛒</div><div class="cat-card-name">Temel Gıda</div><div class="cat-card-count">yükleniyor…</div></div>
-      <div class="cat-card loading"><div class="cat-card-emoji">🥤</div><div class="cat-card-name">İçecek</div><div class="cat-card-count">yükleniyor…</div></div>
-      <div class="cat-card loading"><div class="cat-card-emoji">🧴</div><div class="cat-card-name">Temizlik</div><div class="cat-card-count">yükleniyor…</div></div>
+  <div class="search-wrap">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input id="search" type="text" placeholder="Tüm kategorilerde ara… örn. domates" autocomplete="off">
     </div>
-
-    <!-- Arama sonuçları (arama varken gösterilir) -->
-    <div id="home-search" style="display:none">
-      <div class="stats-row">
-        <span><b id="searchCount">0</b> sonuç bulundu</span>
-      </div>
-      <div class="product-list" id="searchList"></div>
-    </div>
-
   </div>
 
-  <!-- ═══ EKRAN 3: SEPET ═══ -->
-  <div id="screen-sepet" class="screen" style="z-index:3">
+  <div id="home-cats" class="cat-grid"></div>
 
-    <header class="header-sub">
-      <button class="back-btn" onclick="closeSepet()">
-        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-      </button>
-      <h2>Sepetim (<span id="sepetCount">0</span>)</h2>
-      <div style="width:38px;flex-shrink:0"></div>
-    </header>
-
-    <div id="sepetContent">
-      <div class="state-msg">
-        <span class="state-icon">🛒</span>
-        Sepetiniz boş.<br>Ürün kartlarındaki + butonuna basın.
-      </div>
-    </div>
-
-  </div>
-
-  <!-- ═══ EKRAN 2: KATEGORİ ═══ -->
-  <div id="screen-cat" class="screen">
-
-    <header class="header-sub">
-      <button class="back-btn" onclick="goBack()">
-        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-      </button>
-      <h2 id="cat-title">Kategori</h2>
-      <div style="width:38px;flex-shrink:0"></div>
-    </header>
-
-    <div class="stats-row">
-      <span><b id="countNum">—</b> ürün listeleniyor</span>
-      <span id="halDate"></span>
-    </div>
-
-    <div class="product-list" id="productList">
-      <div class="loading-card">
-        <div class="skel skel-img"></div>
-        <div class="skel-lines">
-          <div class="skel skel-line w70"></div>
-          <div class="skel skel-line w40"></div>
-          <div class="skel skel-line w55" style="margin-top:4px"></div>
-        </div>
-      </div>
-      <div class="loading-card">
-        <div class="skel skel-img"></div>
-        <div class="skel-lines">
-          <div class="skel skel-line w70"></div>
-          <div class="skel skel-line w40"></div>
-          <div class="skel skel-line w55" style="margin-top:4px"></div>
-        </div>
-      </div>
-      <div class="loading-card">
-        <div class="skel skel-img"></div>
-        <div class="skel-lines">
-          <div class="skel skel-line w70"></div>
-          <div class="skel skel-line w40"></div>
-          <div class="skel skel-line w55" style="margin-top:4px"></div>
-        </div>
-      </div>
-    </div>
-
+  <div id="home-search" style="display:none">
+    <div class="stats-row"><span><b id="searchCount">0</b> sonuç</span></div>
+    <div class="product-list" id="searchList"></div>
   </div>
 
 </div>
 
-<!-- BOTTOM NAV (viewport-fixed, her iki ekranın dışında) -->
+<!-- ══ EKRAN 2: KATEGORİ ══ -->
+<div id="screen-cat" class="screen">
+
+  <header class="header-sub">
+    <button class="back-btn" onclick="showScreen('screen-home')">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <h2 id="cat-title">Kategori</h2>
+  </header>
+
+  <div class="stats-row">
+    <span><b id="countNum">—</b> ürün listeleniyor</span>
+    <span id="halDate"></span>
+  </div>
+
+  <div class="product-list" id="productList"></div>
+
+</div>
+
+<!-- ══ EKRAN 3: SEPET ══ -->
+<div id="screen-sepet" class="screen">
+
+  <header class="header-sub">
+    <button class="back-btn" onclick="showScreen('screen-home')">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <h2>Sepetim (<span id="sepetCount">0</span>)</h2>
+  </header>
+
+  <div id="sepetContent">
+    <div class="state-msg"><span class="icon">🛒</span>Sepetiniz boş.<br>Ürün kartlarındaki + butonuna basın.</div>
+  </div>
+
+</div>
+
+<!-- ALT NAV -->
 <nav class="bottom-nav">
   <button class="nav-btn active" id="navHome" onclick="showScreen('screen-home')">
     <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
     Ana Sayfa
   </button>
-  <button class="nav-btn" id="navSepet" onclick="openSepet()">
-    <span class="nav-badge" id="sepetBadge">0</span>
+  <button class="nav-btn" id="navSepet" onclick="goSepet()">
     <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 001.97-1.67L23 6H6"/></svg>
     Sepetim
   </button>
-  <button class="nav-btn">
+  <button class="nav-btn" onclick="alert('Yakında!')">
     <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
     Fırsatlar
   </button>
-  <button class="nav-btn">
+  <button class="nav-btn" onclick="alert('Yakında!')">
     <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
     Profil
   </button>
 </nav>
 
 <script>
-const MARKET_AD = {
+// ── SABİTLER ──────────────────────────────────────────
+const MARKET_NAMES = {
   a101:'A101', bim:'BİM', carrefour:'CarrefourSA',
   migros:'Migros', sok:'ŞOK', tarim_kredi:'T.Kredi'
 };
-
 const KAT_EMOJI = {
-  meyve:'🍎', sebze:'🥦', et:'🥩', sut:'🧀', gida:'🛒', icecek:'🥤', temizlik:'🧴'
+  meyve:'🍎', sebze:'🥦', et:'🥩', sut:'🧀',
+  gida:'🛒', icecek:'🥤', temizlik:'🧴', diger:'📦'
 };
-
 const KATEGORILER = [
   { slug:'meyve-sebze', label:'Meyve & Sebze', emoji:'🍎', cats:['meyve','sebze'] },
-  { slug:'et',          label:'Et & Tavuk',     emoji:'🥩', cats:['et'] },
-  { slug:'sut',         label:'Süt & Kahvaltı', emoji:'🧀', cats:['sut'] },
-  { slug:'gida',        label:'Temel Gıda',     emoji:'🛒', cats:['gida'] },
-  { slug:'icecek',      label:'İçecek',         emoji:'🥤', cats:['icecek'] },
-  { slug:'temizlik',    label:'Temizlik',        emoji:'🧴', cats:['temizlik'] },
+  { slug:'et',          label:'Et & Tavuk',    emoji:'🥩', cats:['et'] },
+  { slug:'sut',         label:'Süt & Kahvaltı',emoji:'🧀', cats:['sut'] },
+  { slug:'gida',        label:'Temel Gıda',    emoji:'🛒', cats:['gida'] },
+  { slug:'icecek',      label:'İçecek',        emoji:'🥤', cats:['icecek'] },
+  { slug:'temizlik',    label:'Temizlik',       emoji:'🧴', cats:['temizlik'] },
+];
+const ONCELIKLI = [
+  'yumurta','sut','ekmek','domates','salatalik',
+  'patates','sogan','elma','muz','portakal',
+  'limon','yogurt','peynir','tereyagi'
 ];
 
-let tumUrunler = [], halMap = {};
-let sepet = JSON.parse(localStorage.getItem('pazar_sepet') || '[]');
+// ── DURUM ─────────────────────────────────────────────
+let urunler = [], halMap = {};
+let sepet   = JSON.parse(localStorage.getItem('pazar_sepet') || '[]');
 
+// ── NAVİGASYON ────────────────────────────────────────
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.style.display = 'none');
+  document.getElementById(id).style.display = 'block';
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  if (id === 'screen-home')  document.getElementById('navHome').classList.add('active');
+  if (id === 'screen-sepet') document.getElementById('navSepet').classList.add('active');
+}
+
+function goSepet() {
+  renderSepet();
+  showScreen('screen-sepet');
+}
+
+// ── YARDIMCILAR ───────────────────────────────────────
+function norm(s) {
+  return (s||'').toLowerCase()
+    .replace(/ğ/g,'g').replace(/ü/g,'u').replace(/ş/g,'s')
+    .replace(/ı/g,'i').replace(/ö/g,'o').replace(/ç/g,'c')
+    .replace(/[^a-z0-9 ]/g,'').trim();
+}
+
+function tl(v) {
+  return v == null ? '—' :
+    v.toLocaleString('tr-TR',{minimumFractionDigits:2,maximumFractionDigits:2}) + ' ₺';
+}
+
+function ustKategori(k) {
+  k = k || '';
+  if (['Meyve'].includes(k)) return 'meyve';
+  if (['Sebze'].includes(k)) return 'sebze';
+  if (['Şarküteri','Beyaz Et','Kırmızı Et','Deniz Ürünleri','Sakatat'].includes(k)) return 'et';
+  if (['Süt','Yoğurt','Peynir','Tereyağı ve Margarin','Kaymak ve Krema','Yumurta',
+       'Zeytin','Bal ve Reçel','Helva Tahin ve Pekmez','Kahvaltılık Gevrek Bar ve Granola',
+       'Sürülebilir Ürünler ve Kahvaltılık Soslar','Ayran ve Kefir'].includes(k)) return 'sut';
+  if (['Mantı Makarna ve Erişte','Pasta Malzemeleri','Hazır Gıda','Bakliyat',
+       'Ekmek ve Unlu Mamüller','Konserve','Salça','Ketçap Mayonez Sos ve Sirkeler',
+       'Sıvı Yağlar','Tuz Baharat ve Harçlar','Şeker ve Tatlandırıcılar',
+       'Turşu','Un ve İrmik','Bebek Mamaları'].includes(k)) return 'gida';
+  if (['Meyve Suyu','Su','Maden Suyu','Çay ve Bitki Çayları',
+       'Gazsız İçecekler','Gazlı İçecekler','Kahve'].includes(k)) return 'icecek';
+  if (['Bulaşık Temizlik Ürünleri','Kağıt Havlu','Kağıt Peçete ve Mendil',
+       'Genel Temizlik Ürünleri','Hijyenik Ped','Çamaşır Temizlik Ürünleri',
+       'Saç Bakım','Cilt Bakımı','Parfüm Deodorant Kolonya ve Kokular',
+       'Mutfak Sarf Malzemeleri'].includes(k)) return 'temizlik';
+  return 'diger';
+}
+
+function halEsles(u) {
+  const mW = norm(u.ad).split(/\s+/).filter(w => w.length > 2);
+  let best = null, bestSc = 0;
+  for (const [key, rec] of Object.entries(halMap)) {
+    const hW = key.split(/\s+/).filter(w => w.length > 2);
+    if (!hW.length || !mW.length) continue;
+    const sc = hW.filter(w => mW.includes(w)).length / Math.max(hW.length, mW.length);
+    if (sc > bestSc) { bestSc = sc; best = rec; }
+  }
+  return bestSc >= 0.5 ? best : null;
+}
+
+function minFiyat(u) {
+  const ps = (u.fiyatlar||[]).map(f => f.fiyat).filter(p => p != null);
+  return ps.length ? Math.min(...ps) : (u.en_dusuk_fiyat ?? Infinity);
+}
+
+// ── ÜRÜN LİSTESİ ──────────────────────────────────────
+function getList(cats, q) {
+  const qn = norm(q || '');
+  let list = urunler.filter(u => {
+    const hal = halEsles(u);
+    const mkt = (u.fiyatlar||[]).filter(f => f.fiyat != null);
+    if (!hal?.fiyat && !mkt.length) return false;
+    if (hal?.fiyat && mkt.length) {
+      const mn = Math.min(...mkt.map(f => f.fiyat));
+      if (mn / hal.fiyat > 5) return false;
+    }
+    return true;
+  });
+  if (cats) list = list.filter(u => cats.includes(ustKategori(u.ana_kategori)));
+  if (qn)   list = list.filter(u => norm(u.ad).includes(qn) || norm(u.marka||'').includes(qn));
+
+  const used = new Set(), champions = [];
+  for (const kw of ONCELIKLI) {
+    const match = list.filter(u => norm(u.ad).includes(kw));
+    if (!match.length) continue;
+    const best = match.reduce((a,b) => minFiyat(a) <= minFiyat(b) ? a : b);
+    if (!used.has(best.id)) { used.add(best.id); champions.push(best); }
+  }
+  return [...champions, ...list.filter(u => !used.has(u.id))];
+}
+
+// ── KART HTML ─────────────────────────────────────────
+function cardHTML(u) {
+  const hal      = halEsles(u);
+  const halFiyat = hal?.fiyat ?? null;
+  const mktler   = (u.fiyatlar||[]).filter(f => f.fiyat != null).sort((a,b) => a.fiyat - b.fiyat);
+  const minMkt   = mktler[0]?.fiyat ?? null;
+  const emoji    = KAT_EMOJI[ustKategori(u.ana_kategori)] || '📦';
+  const img      = u.resim
+    ? `<img src="${u.resim}" alt="" loading="lazy" onerror="this.outerHTML='${emoji}'">`
+    : emoji;
+
+  const halBlock = halFiyat != null
+    ? `<div class="hal-block">
+        <div class="hal-label">Hal Fiyatı</div>
+        <div><span class="hal-price">${tl(halFiyat)}</span><span class="hal-unit-text">/ ${hal.birim||'Kg'}</span></div>
+       </div>`
+    : `<p class="hal-none">Hal verisi yok</p>`;
+
+  const mktRows = mktler.slice(0,4).map((f,i) =>
+    `<div class="market-row">
+      <span class="m-tag m-${f.market||'default'}">${MARKET_NAMES[f.market]||f.market||'?'}</span>
+      <span class="m-store">${f.depo_adi||''}</span>
+      <span class="m-price${i===0?' best':''}">${tl(f.fiyat)}</span>
+    </div>`).join('');
+
+  let savings = '';
+  if (halFiyat != null && minMkt != null) {
+    const d = minMkt - halFiyat;
+    if      (d >  0.01) savings = `<div class="savings-bar cheaper">✓ Halde <b>${tl(d)} daha ucuz</b> · Market: ${tl(minMkt)}</div>`;
+    else if (d < -0.01) savings = `<div class="savings-bar pricier">↓ Market <b>${tl(-d)} daha ucuz</b> · Hal: ${tl(halFiyat)}</div>`;
+    else                savings = `<div class="savings-bar equal">≈ Fiyatlar birbirine yakın</div>`;
+  }
+
+  const inCart = sepet.some(s => s.id === u.id);
+  const ekle   = `<div class="card-footer">
+    <button class="btn-ekle${inCart?' added':''}" data-pid="${u.id}" onclick="toggleSepet(${u.id})">
+      ${inCart
+        ? `<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Eklendi`
+        : `<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Sepete Ekle`}
+    </button>
+  </div>`;
+
+  return `<div class="card">
+    <div class="card-main">
+      <div class="card-img">${img}</div>
+      <div class="card-info">
+        <div class="card-name">${u.ad}</div>
+        ${u.agirlik_hacim ? `<span class="card-unit">${u.agirlik_hacim}</span>` : ''}
+        ${halBlock}
+      </div>
+    </div>
+    <div class="market-section">
+      <div class="market-section-label">Market Fiyatları</div>
+      ${mktRows || '<p class="hal-none">Market verisi yok</p>'}
+    </div>
+    ${savings}
+    ${ekle}
+  </div>`;
+}
+
+// ── KATEGORİ GRİD ─────────────────────────────────────
+function renderCatGrid() {
+  const cnt = {};
+  for (const u of urunler) {
+    const k = ustKategori(u.ana_kategori);
+    cnt[k] = (cnt[k] || 0) + 1;
+  }
+  document.getElementById('home-cats').innerHTML = KATEGORILER.map(k => {
+    const total = k.cats.reduce((s, c) => s + (cnt[c] || 0), 0);
+    return `<div class="cat-card" onclick="openCategory('${k.slug}')">
+      <div class="cat-card-emoji">${k.emoji}</div>
+      <div class="cat-card-name">${k.label}</div>
+      <div class="cat-card-count">${total} ürün</div>
+    </div>`;
+  }).join('');
+}
+
+// ── KATEGORİ EKRANI ───────────────────────────────────
+function openCategory(slug) {
+  const kat  = KATEGORILER.find(k => k.slug === slug);
+  document.getElementById('cat-title').textContent = kat.label;
+  const list = getList(kat.cats, '');
+  document.getElementById('countNum').textContent = list.length;
+  document.getElementById('productList').innerHTML = list.length
+    ? list.map(cardHTML).join('')
+    : `<div class="state-msg"><span class="icon">🔍</span>Bu kategoride ürün bulunamadı.</div>`;
+  showScreen('screen-cat');
+  document.getElementById('screen-cat').scrollTop = 0;
+}
+
+// ── ARAMA ─────────────────────────────────────────────
+document.getElementById('search').addEventListener('input', function() {
+  const q = this.value.trim();
+  document.getElementById('home-cats').style.display   = q ? 'none' : '';
+  document.getElementById('home-search').style.display = q ? 'block' : 'none';
+  if (!q) return;
+  const list = getList(null, q);
+  document.getElementById('searchCount').textContent = list.length;
+  document.getElementById('searchList').innerHTML = list.length
+    ? list.map(cardHTML).join('')
+    : `<div class="state-msg"><span class="icon">🔍</span>Sonuç bulunamadı.</div>`;
+});
+
+// ── SEPET ─────────────────────────────────────────────
 function saveSepet() {
   localStorage.setItem('pazar_sepet', JSON.stringify(sepet));
-  const n = sepet.length;
-  const badge = document.getElementById('sepetBadge');
-  badge.textContent = n;
-  badge.classList.toggle('visible', n > 0);
+  document.getElementById('sepetCount').textContent = sepet.length;
 }
 
-function addToSepet(id) {
-  if (sepet.find(s => s.id === id)) { removeFromSepetById(id); return; }
-  const u = tumUrunler.find(u => u.id === id);
-  if (!u) return;
-  sepet.push({ id:u.id, ad:u.ad, marka:u.marka, resim:u.resim,
-               agirlik_hacim:u.agirlik_hacim, ana_kategori:u.ana_kategori, fiyatlar:u.fiyatlar });
-  saveSepet();
-  refreshEkleBtns(id, true);
+function toggleSepet(id) {
+  if (sepet.find(s => s.id === id)) {
+    sepet = sepet.filter(s => s.id !== id);
+    saveSepet();
+    setEkleBtns(id, false);
+  } else {
+    const u = urunler.find(u => u.id === id);
+    if (!u) return;
+    sepet.push({
+      id: u.id, ad: u.ad, marka: u.marka, resim: u.resim,
+      agirlik_hacim: u.agirlik_hacim, ana_kategori: u.ana_kategori, fiyatlar: u.fiyatlar
+    });
+    saveSepet();
+    setEkleBtns(id, true);
+  }
 }
 
-function removeFromSepetById(id) {
-  sepet = sepet.filter(s => s.id !== id);
-  saveSepet();
-  refreshEkleBtns(id, false);
-}
-
-function refreshEkleBtns(id, inCart) {
+function setEkleBtns(id, inCart) {
   document.querySelectorAll(`.btn-ekle[data-pid="${id}"]`).forEach(btn => {
-    btn.classList.toggle('added', inCart);
+    btn.className = 'btn-ekle' + (inCart ? ' added' : '');
     btn.innerHTML = inCart
       ? `<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Eklendi`
       : `<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Sepete Ekle`;
   });
 }
 
-function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(s => s.style.display = 'none');
-  document.getElementById(id).style.display = 'block';
-}
-
-function openSepet() {
+function removeFromSepet(id) {
+  sepet = sepet.filter(s => s.id !== id);
+  saveSepet();
+  setEkleBtns(id, false);
   renderSepet();
-  showScreen('screen-sepet');
-}
-
-function closeSepet() {
-  showScreen('screen-home');
 }
 
 function renderSepet() {
   document.getElementById('sepetCount').textContent = sepet.length;
   const el = document.getElementById('sepetContent');
   if (!sepet.length) {
-    el.innerHTML = `<div class="state-msg"><span class="state-icon">🛒</span>Sepetiniz boş.<br>Ürün kartlarındaki + butonuna basın.</div>`;
+    el.innerHTML = `<div class="state-msg"><span class="icon">🛒</span>Sepetiniz boş.<br>Ürün kartlarındaki + butonuna basın.</div>`;
     return;
   }
   const items = sepet.map(u => {
@@ -651,303 +635,76 @@ function renderSepet() {
         <div class="cart-item-name">${u.ad}</div>
         ${sub ? `<div class="cart-item-sub">${sub}</div>` : ''}
       </div>
-      <button class="cart-item-del" onclick="removeFromSepet(${JSON.stringify(u.id)})">
+      <button class="cart-del" onclick="removeFromSepet(${u.id})">
         <svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>
       </button>
     </div>`;
   }).join('');
   el.innerHTML = `<div class="cart-list">${items}</div>
     <button class="btn-compare" onclick="karsilastir()">Marketleri Karşılaştır →</button>
-    <div id="compareResults"></div>`;
+    <div id="compareOut"></div>`;
 }
 
-function removeFromSepet(id) {
-  sepet = sepet.filter(s => s.id !== id);
-  saveSepet();
-  refreshEkleBtns(id, false);
-  renderSepet();
-}
-
+// ── KARŞILAŞTIRMA ─────────────────────────────────────
 function karsilastir() {
   const mkts = {};
   for (const item of sepet) {
-    const byMkt = {};
-    for (const f of (item.fiyatlar||[]).filter(f=>f.fiyat!=null)) {
-      const key = f.market || 'diger';
-      if (!byMkt[key] || f.fiyat < byMkt[key].fiyat) byMkt[key] = f;
+    const byM = {};
+    for (const f of (item.fiyatlar||[]).filter(f => f.fiyat != null)) {
+      const k = f.market || 'diger';
+      if (!byM[k] || f.fiyat < byM[k].fiyat) byM[k] = f;
     }
-    for (const [key, f] of Object.entries(byMkt)) {
-      if (!mkts[key]) mkts[key] = { name: MARKET_AD[key]||key, total:0, count:0 };
-      mkts[key].total += f.fiyat;
-      mkts[key].count += 1;
+    for (const [k, f] of Object.entries(byM)) {
+      if (!mkts[k]) mkts[k] = { name: MARKET_NAMES[k] || k, total: 0, count: 0 };
+      mkts[k].total += f.fiyat;
+      mkts[k].count += 1;
     }
   }
-  const sorted = Object.entries(mkts)
-    .map(([,d]) => d)
-    .sort((a,b) => b.count - a.count || a.total - b.total);
-
-  const el = document.getElementById('compareResults');
+  const sorted = Object.values(mkts).sort((a,b) => b.count - a.count || a.total - b.total);
   if (!sorted.length) {
-    el.innerHTML = `<div class="state-msg" style="padding:20px 24px"><span class="state-icon">😕</span>Market fiyat verisi bulunamadı.</div>`;
+    document.getElementById('compareOut').innerHTML =
+      `<div class="state-msg">Market fiyat verisi bulunamadı.</div>`;
     return;
   }
   const best   = sorted[0];
-  const second = sorted.find(m => m.name !== best.name);
-  const savings = second && second.count === best.count ? second.total - best.total : 0;
-
-  const savingsHtml = savings > 0.01
-    ? `<div class="compare-savings">
-        <span class="compare-savings-ico">💡</span>
-        <span><strong>${best.name}</strong>'ten alırsan <strong>${tl(savings)} tasarruf</strong> edersin</span>
-       </div>` : '';
-
-  const rows = sorted.map((m,i) => {
-    const eksik = sepet.length - m.count;
-    const detail = eksik > 0 ? `${m.count}/${sepet.length} ürün mevcut` : `Tüm ürünler mevcut`;
-    return `<div class="compare-row${i===0?' best':''}">
-      <div class="compare-rank">${i+1}</div>
+  const sec    = sorted.find(m => m.name !== best.name && m.count === best.count);
+  const saving = sec ? sec.total - best.total : 0;
+  const savHtml = saving > 0.01
+    ? `<div class="compare-savings">💡 <span><b>${best.name}</b>'ten alırsan <b>${tl(saving)} tasarruf</b> edersin</span></div>`
+    : '';
+  const rows = sorted.map((m, i) => `
+    <div class="compare-row${i === 0 ? ' best' : ''}">
+      <div class="compare-rank">${i + 1}</div>
       <div class="compare-info">
         <div class="compare-mname">${m.name}</div>
-        <div class="compare-detail">${detail}</div>
+        <div class="compare-detail">${m.count === sepet.length ? 'Tüm ürünler mevcut' : m.count + '/' + sepet.length + ' ürün'}</div>
       </div>
       <div class="compare-total">${tl(m.total)}</div>
-    </div>`;
-  }).join('');
-
-  el.innerHTML = `<div class="compare-wrap">
-    <div class="compare-title">Market Karşılaştırması</div>
-    ${savingsHtml}${rows}
-  </div>`;
-  el.scrollIntoView({ behavior:'smooth', block:'nearest' });
-}
-
-function norm(s) {
-  return (s||'').toLowerCase()
-    .replace(/ğ/g,'g').replace(/ü/g,'u').replace(/ş/g,'s')
-    .replace(/ı/g,'i').replace(/ö/g,'o').replace(/ç/g,'c')
-    .replace(/[^a-z0-9 ]/g,'').trim();
-}
-
-function halEsles(u) {
-  const mW = norm(u.ad).split(/\s+/).filter(w=>w.length>2);
-  let best=null, bestScore=0;
-  for (const [key,rec] of Object.entries(halMap)) {
-    const hW=key.split(/\s+/).filter(w=>w.length>2);
-    if (!hW.length||!mW.length) continue;
-    const score=hW.filter(w=>mW.includes(w)).length/Math.max(hW.length,mW.length);
-    if (score>bestScore) { bestScore=score; best=rec; }
-  }
-  return bestScore>=0.5 ? best : null;
-}
-
-function ustKategori(anaKat) {
-  const k = anaKat || '';
-  if (['Meyve'].includes(k)) return 'meyve';
-  if (['Sebze'].includes(k)) return 'sebze';
-  if (['Şarküteri','Beyaz Et','Kırmızı Et','Deniz Ürünleri','Sakatat'].includes(k)) return 'et';
-  if (['Süt','Yoğurt','Peynir','Tereyağı ve Margarin','Kaymak ve Krema','Yumurta','Zeytin',
-       'Bal ve Reçel','Helva Tahin ve Pekmez','Kahvaltılık Gevrek Bar ve Granola',
-       'Sürülebilir Ürünler ve Kahvaltılık Soslar','Ayran ve Kefir'].includes(k)) return 'sut';
-  if (['Mantı Makarna ve Erişte','Pasta Malzemeleri','Hazır Gıda','Bakliyat',
-       'Ekmek ve Unlu Mamüller','Konserve','Salça','Ketçap Mayonez Sos ve Sirkeler',
-       'Sıvı Yağlar','Tuz Baharat ve Harçlar','Şeker ve Tatlandırıcılar','Turşu',
-       'Un ve İrmik','Bebek Mamaları'].includes(k)) return 'gida';
-  if (['Meyve Suyu','Su','Maden Suyu','Çay ve Bitki Çayları','Gazsız İçecekler',
-       'Gazlı İçecekler','Kahve'].includes(k)) return 'icecek';
-  if (['Bulaşık Temizlik Ürünleri','Kağıt Havlu','Kağıt Peçete ve Mendil',
-       'Genel Temizlik Ürünleri','Hijyenik Ped','Çamaşır Temizlik Ürünleri',
-       'Saç Bakım','Cilt Bakımı','Parfüm Deodorant Kolonya ve Kokular',
-       'Mutfak Sarf Malzemeleri'].includes(k)) return 'temizlik';
-  return 'diger';
-}
-
-function tl(v) {
-  if (v==null) return '—';
-  return v.toLocaleString('tr-TR',{minimumFractionDigits:2,maximumFractionDigits:2})+' ₺';
-}
-
-const ONCELIKLI = [
-  'yumurta','sut','ekmek','domates','salatalik','patates','sogan',
-  'elma','muz','portakal','limon','yogurt','peynir','tereyagi'
-];
-
-function minFiyat(u) {
-  const prices=(u.fiyatlar||[]).map(f=>f.fiyat).filter(p=>p!=null);
-  return prices.length ? Math.min(...prices) : (u.en_dusuk_fiyat??Infinity);
-}
-
-function getList(cats) {
-  const q = norm(document.getElementById('search').value);
-  const filtered = tumUrunler
-    .filter(u => {
-      const hal=halEsles(u);
-      const mkt=(u.fiyatlar||[]).filter(f=>f.fiyat!=null);
-      if (!hal?.fiyat && !mkt.length) return false;
-      if (hal?.fiyat && mkt.length) {
-        const minM=Math.min(...mkt.map(f=>f.fiyat));
-        if (minM/hal.fiyat>5) return false;
-      }
-      return true;
-    })
-    .filter(u => !cats || cats.includes(ustKategori(u.ana_kategori)))
-    .filter(u => !q || norm(u.ad).includes(q) || norm(u.marka||'').includes(q));
-
-  const champIds=new Set(), champions=[];
-  for (const kw of ONCELIKLI) {
-    const match=filtered.filter(u=>norm(u.ad).includes(kw));
-    if (!match.length) continue;
-    const best=match.reduce((a,b)=>minFiyat(a)<=minFiyat(b)?a:b);
-    if (!champIds.has(best.id)) { champIds.add(best.id); champions.push(best); }
-  }
-  return [...champions, ...filtered.filter(u=>!champIds.has(u.id))];
-}
-
-function cardHTML(u) {
-  const hal      = halEsles(u);
-  const halFiyat = hal?.fiyat??null;
-  const marketler= (u.fiyatlar||[]).filter(f=>f.fiyat!=null).sort((a,b)=>a.fiyat-b.fiyat);
-  const minMarket= marketler[0]?.fiyat??null;
-
-  const emoji    = KAT_EMOJI[ustKategori(u.ana_kategori)]||'📦';
-  const imgInner = u.resim
-    ? `<img src="${u.resim}" alt="" loading="lazy" onerror="this.outerHTML='${emoji}'">`
-    : emoji;
-
-  const halBlock = halFiyat!=null
-    ? `<div class="hal-block">
-        <div class="hal-label">Hal Fiyatı</div>
-        <div class="hal-price-row">
-          <span class="hal-price">${tl(halFiyat)}</span>
-          <span class="hal-unit-text">/ ${hal.birim||'Kg'}</span>
-        </div>
-       </div>`
-    : `<p class="hal-none">Hal verisi bulunamadı</p>`;
-
-  const marketRows = marketler.slice(0,4).map((f,i)=>
-    `<div class="market-row">
-      <span class="m-tag m-${f.market||'default'}">${MARKET_AD[f.market]||f.market||'?'}</span>
-      <span class="m-store">${f.depo_adi||''}</span>
-      <span class="m-price${i===0?' best':''}">${tl(f.fiyat)}</span>
     </div>`).join('');
-
-  let savingsBar='';
-  if (halFiyat!=null && minMarket!=null) {
-    const diff=minMarket-halFiyat;
-    if (diff>0.01) {
-      savingsBar=`<div class="savings-bar cheaper"><span class="savings-icon">✓</span>Halde <strong>${tl(diff)} daha ucuz</strong>&nbsp;· En ucuz market: ${tl(minMarket)}</div>`;
-    } else if (diff<-0.01) {
-      savingsBar=`<div class="savings-bar pricier"><span class="savings-icon">↓</span>Market <strong>${tl(-diff)} daha ucuz</strong>&nbsp;· Hal fiyatı: ${tl(halFiyat)}</div>`;
-    } else {
-      savingsBar=`<div class="savings-bar equal"><span class="savings-icon">≈</span>Hal ve market fiyatı birbirine yakın</div>`;
-    }
-  }
-
-  const inCart   = sepet.some(s => s.id === u.id);
-  const ekleBtn  = `<div style="padding:0 14px 12px;display:flex;justify-content:flex-end">
-    <button class="btn-ekle${inCart?' added':''}" data-pid="${u.id}" onclick="addToSepet(${JSON.stringify(u.id)})">
-      ${inCart
-        ? `<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Eklendi`
-        : `<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Sepete Ekle`}
-    </button>
-  </div>`;
-
-  return `<div class="card" data-category="${ustKategori(u.ana_kategori)}">
-    <div class="card-main">
-      <div class="card-img">${imgInner}</div>
-      <div class="card-info">
-        <div class="card-name">${u.ad}</div>
-        ${u.agirlik_hacim?`<span class="card-unit">${u.agirlik_hacim}</span>`:''}
-        ${halBlock}
-      </div>
-    </div>
-    <div class="market-section">
-      <div class="market-section-label">Market Fiyatları</div>
-      ${marketRows||'<p class="hal-none">Market verisi yok</p>'}
-    </div>
-    ${savingsBar}
-    ${ekleBtn}
-  </div>`;
-}
-
-function renderCatGrid() {
-  document.getElementById('home-cats').innerHTML = KATEGORILER.map(k => {
-    const count = tumUrunler.filter(u => {
-      if (!k.cats.includes(ustKategori(u.ana_kategori))) return false;
-      const hal=halEsles(u);
-      const mkt=(u.fiyatlar||[]).filter(f=>f.fiyat!=null);
-      return hal?.fiyat!=null || mkt.length>0;
-    }).length;
-    return `<div class="cat-card" onclick="openCategory('${k.slug}')">
-      <div class="cat-card-emoji">${k.emoji}</div>
-      <div class="cat-card-name">${k.label}</div>
-      <div class="cat-card-count">${count} ürün</div>
+  document.getElementById('compareOut').innerHTML = `
+    <div class="compare-wrap">
+      <div class="compare-title">Market Karşılaştırması</div>
+      ${savHtml}${rows}
     </div>`;
-  }).join('');
 }
 
-function openCategory(slug) {
-  const kat = KATEGORILER.find(k=>k.slug===slug);
-  document.getElementById('cat-title').textContent = kat.label;
-
-  const list = getList(kat.cats);
-  document.getElementById('countNum').textContent = list.length;
-  document.getElementById('productList').innerHTML = list.length
-    ? list.map(cardHTML).join('')
-    : `<div class="state-msg"><span class="state-icon">🔍</span>Bu kategoride ürün bulunamadı.</div>`;
-
-  showScreen('screen-cat');
-}
-
-function goBack() {
-  showScreen('screen-home');
-}
-
-document.getElementById('search').addEventListener('input', function() {
-  const q = this.value.trim();
-  const homeCats   = document.getElementById('home-cats');
-  const homeSearch = document.getElementById('home-search');
-  if (q) {
-    homeCats.style.display   = 'none';
-    homeSearch.style.display = 'block';
-    const list = getList(null);
-    document.getElementById('searchCount').textContent = list.length;
-    document.getElementById('searchList').innerHTML = list.length
-      ? list.map(cardHTML).join('')
-      : `<div class="state-msg"><span class="state-icon">🔍</span>Aradığınız ürün bulunamadı.<br>Farklı bir kelime deneyin.</div>`;
-  } else {
-    homeCats.style.display   = '';
-    homeSearch.style.display = 'none';
-  }
-});
-
-// showScreen() tüm aktif state'i yönetiyor; onclick'i olan butonlar zaten çağırıyor.
-// Diğer nav butonlar (Fırsatlar, Profil) için temel active toggle:
-document.querySelectorAll('.nav-btn').forEach(btn => {
-  if (btn.id === 'navHome' || btn.id === 'navSepet') return;
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-  });
-});
-
-// Badge'ı sayfa yüklenince restore et
-saveSepet();
-
+// ── VERİ YÜKLE ────────────────────────────────────────
 Promise.allSettled([
-  fetch('/api/urunler').then(r=>r.json()),
-  fetch('/api/hal').then(r=>r.json()),
-]).then(([uR,hR]) => {
-  if (uR.status==='fulfilled' && uR.value.urunler) tumUrunler=uR.value.urunler;
-  if (hR.status==='fulfilled' && hR.value.urunler) {
-    hR.value.urunler.forEach(u => {
-      const k=norm(u.ad);
-      if (!halMap[k]||(u.fiyat!=null&&u.fiyat<(halMap[k].fiyat??9999))) halMap[k]=u;
-    });
-    const bt=hR.value.bulten_tarihi||'';
-    if (bt) document.getElementById('halDate').innerHTML=
-      `<span class="hal-date-badge">Hal verisi: ${bt.slice(0,10)}</span>`;
+  fetch('/api/urunler').then(r => r.json()),
+  fetch('/api/hal').then(r => r.json()),
+]).then(([uR, hR]) => {
+  if (uR.status === 'fulfilled' && uR.value.urunler) urunler = uR.value.urunler;
+  if (hR.status === 'fulfilled' && hR.value.urunler) {
+    for (const u of hR.value.urunler) {
+      const k = norm(u.ad);
+      if (!halMap[k] || (u.fiyat != null && u.fiyat < (halMap[k].fiyat ?? 9999))) halMap[k] = u;
+    }
+    const bt = hR.value.bulten_tarihi || '';
+    if (bt) document.getElementById('halDate').innerHTML =
+      `<span class="hal-badge">Hal: ${bt.slice(0, 10)}</span>`;
   }
   renderCatGrid();
+  saveSepet();
 });
 </script>
 </body>
