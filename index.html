@@ -62,6 +62,9 @@
       -webkit-overflow-scrolling: touch;
     }
 
+    #screen-cat   { display: none; }
+    #screen-sepet { display: none; }
+
     #screen-home { transform: translateX(0);    z-index: 1; }
     #screen-cat  { transform: translateX(100%); z-index: 2;
                    box-shadow: -8px 0 28px rgba(0,0,0,.14); }
@@ -616,35 +619,8 @@ function refreshEkleBtns(id, inCart) {
 }
 
 function showScreen(id) {
-  const home  = document.getElementById('screen-home');
-  const cat   = document.getElementById('screen-cat');
-  const sp    = document.getElementById('screen-sepet');
-  const nav   = document.querySelector('.bottom-nav');
-
-  // Hepsini sıfırla
-  home.classList.remove('pushed');
-  cat.classList.remove('open');
-  sp.classList.remove('open');
-  nav.classList.remove('hidden');
-
-  // Hedef ekranı aç
-  if (id === 'screen-cat') {
-    home.classList.add('pushed');
-    cat.classList.add('open');
-    cat.scrollTop = 0;
-    nav.classList.add('hidden');
-  } else if (id === 'screen-sepet') {
-    home.classList.add('pushed');
-    sp.classList.add('open');
-    sp.scrollTop = 0;
-    // bottom-nav sepet ekranında görünür kalır
-  }
-  // screen-home: sıfırlama yeterli
-
-  // Aktif nav butonunu güncelle
-  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-  if (id === 'screen-home')  document.getElementById('navHome').classList.add('active');
-  if (id === 'screen-sepet') document.getElementById('navSepet').classList.add('active');
+  document.querySelectorAll('.screen').forEach(s => s.style.display = 'none');
+  document.getElementById(id).style.display = 'block';
 }
 
 function openSepet() {
