@@ -322,8 +322,105 @@
       background: none; border: none; cursor: pointer; transition: color .15s; letter-spacing: .02em;
     }
     .nav-btn svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2; }
+    .nav-btn { position: relative; }
     .nav-btn.active { color: var(--primary); }
     .nav-btn.active svg { stroke: var(--primary); }
+    .nav-badge {
+      position: absolute; top: 4px; right: calc(50% - 16px);
+      background: #DC2626; color: #fff;
+      font-size: .5rem; font-weight: 800; min-width: 16px; height: 16px;
+      border-radius: 8px; padding: 0 3px;
+      display: none; align-items: center; justify-content: center;
+      border: 1.5px solid #fff;
+    }
+    .nav-badge.visible { display: flex; }
+
+    /* ─── SEPETE EKLE BUTONU ─── */
+    .btn-ekle {
+      display: flex; align-items: center; gap: 5px;
+      margin: 0 14px 12px auto;
+      padding: 6px 13px;
+      background: var(--primary); color: #fff;
+      border: none; border-radius: 8px;
+      font-size: .74rem; font-weight: 700;
+      cursor: pointer; transition: background .15s, transform .1s;
+      line-height: 1;
+    }
+    .btn-ekle:active { transform: scale(.95); }
+    .btn-ekle svg { width: 12px; height: 12px; stroke: #fff; fill: none; stroke-width: 2.5; flex-shrink: 0; }
+    .btn-ekle.added { background: var(--gray-400); }
+
+    /* ─── SEPET KALEM ─── */
+    .cart-list { padding: 10px 14px; display: flex; flex-direction: column; gap: 10px; }
+    .cart-item {
+      background: #fff; border-radius: 12px; border: 1px solid var(--border);
+      box-shadow: var(--shadow-card);
+      display: flex; align-items: center; gap: 12px; padding: 12px 14px;
+    }
+    .cart-item-img {
+      width: 46px; height: 46px; border-radius: 8px; flex-shrink: 0;
+      background: var(--gray-100); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; overflow: hidden;
+    }
+    .cart-item-img img { width: 100%; height: 100%; object-fit: contain; }
+    .cart-item-info { flex: 1; min-width: 0; }
+    .cart-item-name { font-size: .84rem; font-weight: 700; color: var(--gray-900); line-height: 1.3;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .cart-item-sub  { font-size: .68rem; color: var(--gray-400); margin-top: 2px; }
+    .cart-item-del {
+      width: 30px; height: 30px; flex-shrink: 0;
+      background: #FEF2F2; border: 1px solid #FECACA; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: background .15s;
+    }
+    .cart-item-del:hover { background: #FEE2E2; }
+    .cart-item-del svg { width: 14px; height: 14px; stroke: #DC2626; fill: none; stroke-width: 2; }
+
+    /* ─── KARŞILAŞTIR BUTONU ─── */
+    .btn-compare {
+      display: block; width: calc(100% - 28px); margin: 4px 14px 16px;
+      padding: 14px; background: var(--primary); color: #fff;
+      border: none; border-radius: 12px;
+      font-size: .9rem; font-weight: 700; cursor: pointer;
+      transition: background .15s; text-align: center;
+    }
+    .btn-compare:hover { background: var(--primary-mid); }
+    .btn-compare:disabled { background: var(--gray-400); cursor: default; }
+
+    /* ─── KARŞILAŞTIRMA SONUÇLARI ─── */
+    .compare-wrap { padding: 0 14px 20px; }
+    .compare-title {
+      font-size: .7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .08em; color: var(--gray-400); padding: 4px 0 10px;
+    }
+    .compare-savings {
+      background: var(--primary-light); border: 1px solid var(--border-green);
+      border-radius: 10px; padding: 11px 14px; margin-bottom: 10px;
+      font-size: .82rem; color: var(--primary-text); font-weight: 600;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .compare-savings-ico { font-size: 1.2rem; flex-shrink: 0; }
+    .compare-row {
+      background: #fff; border-radius: 12px; border: 1px solid var(--border);
+      box-shadow: var(--shadow-card);
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 14px; margin-bottom: 8px;
+    }
+    .compare-row.best { border-color: var(--border-green); background: var(--primary-light); }
+    .compare-rank {
+      width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+      background: var(--gray-100); color: var(--gray-500);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .7rem; font-weight: 800;
+    }
+    .compare-row.best .compare-rank { background: var(--primary); color: #fff; }
+    .compare-info { flex: 1; min-width: 0; }
+    .compare-mname { font-size: .85rem; font-weight: 700; color: var(--gray-900); }
+    .compare-row.best .compare-mname { color: var(--primary-text); }
+    .compare-detail { font-size: .68rem; color: var(--gray-400); margin-top: 2px; }
+    .compare-total { font-size: 1rem; font-weight: 800; color: var(--gray-900); flex-shrink: 0; letter-spacing: -.3px; }
+    .compare-row.best .compare-total { color: var(--primary-text); }
   </style>
 </head>
 <body style="background:#F9FAFB;color:#111827;">
@@ -371,6 +468,26 @@
         <span><b id="searchCount">0</b> sonuç bulundu</span>
       </div>
       <div class="product-list" id="searchList"></div>
+    </div>
+
+  </div>
+
+  <!-- ═══ EKRAN 3: SEPET ═══ -->
+  <div id="screen-sepet" class="screen" style="z-index:3">
+
+    <header class="header-sub">
+      <button class="back-btn" onclick="closeSepet()">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <h2>Sepetim (<span id="sepetCount">0</span>)</h2>
+      <div style="width:38px;flex-shrink:0"></div>
+    </header>
+
+    <div id="sepetContent">
+      <div class="state-msg">
+        <span class="state-icon">🛒</span>
+        Sepetiniz boş.<br>Ürün kartlarındaki + butonuna basın.
+      </div>
     </div>
 
   </div>
@@ -428,7 +545,8 @@
     <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
     Ana Sayfa
   </button>
-  <button class="nav-btn">
+  <button class="nav-btn" id="navSepet" onclick="openSepet()">
+    <span class="nav-badge" id="sepetBadge">0</span>
     <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 001.97-1.67L23 6H6"/></svg>
     Sepetim
   </button>
@@ -462,6 +580,145 @@ const KATEGORILER = [
 ];
 
 let tumUrunler = [], halMap = {};
+let sepet = JSON.parse(localStorage.getItem('pazar_sepet') || '[]');
+
+function saveSepet() {
+  localStorage.setItem('pazar_sepet', JSON.stringify(sepet));
+  const n = sepet.length;
+  const badge = document.getElementById('sepetBadge');
+  badge.textContent = n;
+  badge.classList.toggle('visible', n > 0);
+}
+
+function addToSepet(id) {
+  if (sepet.find(s => s.id === id)) { removeFromSepetById(id); return; }
+  const u = tumUrunler.find(u => u.id === id);
+  if (!u) return;
+  sepet.push({ id:u.id, ad:u.ad, marka:u.marka, resim:u.resim,
+               agirlik_hacim:u.agirlik_hacim, ana_kategori:u.ana_kategori, fiyatlar:u.fiyatlar });
+  saveSepet();
+  refreshEkleBtns(id, true);
+}
+
+function removeFromSepetById(id) {
+  sepet = sepet.filter(s => s.id !== id);
+  saveSepet();
+  refreshEkleBtns(id, false);
+}
+
+function refreshEkleBtns(id, inCart) {
+  document.querySelectorAll(`.btn-ekle[data-pid="${id}"]`).forEach(btn => {
+    btn.classList.toggle('added', inCart);
+    btn.innerHTML = inCart
+      ? `<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Eklendi`
+      : `<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Sepete Ekle`;
+  });
+}
+
+function openSepet() {
+  renderSepet();
+  document.getElementById('screen-home').classList.add('pushed');
+  document.getElementById('screen-sepet').classList.add('open');
+  document.getElementById('screen-sepet').scrollTop = 0;
+  document.querySelector('.bottom-nav').classList.add('hidden');
+}
+
+function closeSepet() {
+  document.getElementById('screen-sepet').classList.remove('open');
+  if (!document.getElementById('screen-cat').classList.contains('open')) {
+    document.getElementById('screen-home').classList.remove('pushed');
+  }
+  document.querySelector('.bottom-nav').classList.remove('hidden');
+}
+
+function renderSepet() {
+  document.getElementById('sepetCount').textContent = sepet.length;
+  const el = document.getElementById('sepetContent');
+  if (!sepet.length) {
+    el.innerHTML = `<div class="state-msg"><span class="state-icon">🛒</span>Sepetiniz boş.<br>Ürün kartlarındaki + butonuna basın.</div>`;
+    return;
+  }
+  const items = sepet.map(u => {
+    const emoji = KAT_EMOJI[ustKategori(u.ana_kategori)] || '📦';
+    const img   = u.resim
+      ? `<img src="${u.resim}" alt="" loading="lazy" onerror="this.outerHTML='${emoji}'">`
+      : emoji;
+    const sub = [u.agirlik_hacim, u.marka].filter(Boolean).join(' · ');
+    return `<div class="cart-item">
+      <div class="cart-item-img">${img}</div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${u.ad}</div>
+        ${sub ? `<div class="cart-item-sub">${sub}</div>` : ''}
+      </div>
+      <button class="cart-item-del" onclick="removeFromSepet(${JSON.stringify(u.id)})">
+        <svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>
+      </button>
+    </div>`;
+  }).join('');
+  el.innerHTML = `<div class="cart-list">${items}</div>
+    <button class="btn-compare" onclick="karsilastir()">Marketleri Karşılaştır →</button>
+    <div id="compareResults"></div>`;
+}
+
+function removeFromSepet(id) {
+  sepet = sepet.filter(s => s.id !== id);
+  saveSepet();
+  refreshEkleBtns(id, false);
+  renderSepet();
+}
+
+function karsilastir() {
+  const mkts = {};
+  for (const item of sepet) {
+    const byMkt = {};
+    for (const f of (item.fiyatlar||[]).filter(f=>f.fiyat!=null)) {
+      const key = f.market || 'diger';
+      if (!byMkt[key] || f.fiyat < byMkt[key].fiyat) byMkt[key] = f;
+    }
+    for (const [key, f] of Object.entries(byMkt)) {
+      if (!mkts[key]) mkts[key] = { name: MARKET_AD[key]||key, total:0, count:0 };
+      mkts[key].total += f.fiyat;
+      mkts[key].count += 1;
+    }
+  }
+  const sorted = Object.entries(mkts)
+    .map(([,d]) => d)
+    .sort((a,b) => b.count - a.count || a.total - b.total);
+
+  const el = document.getElementById('compareResults');
+  if (!sorted.length) {
+    el.innerHTML = `<div class="state-msg" style="padding:20px 24px"><span class="state-icon">😕</span>Market fiyat verisi bulunamadı.</div>`;
+    return;
+  }
+  const best   = sorted[0];
+  const second = sorted.find(m => m.name !== best.name);
+  const savings = second && second.count === best.count ? second.total - best.total : 0;
+
+  const savingsHtml = savings > 0.01
+    ? `<div class="compare-savings">
+        <span class="compare-savings-ico">💡</span>
+        <span><strong>${best.name}</strong>'ten alırsan <strong>${tl(savings)} tasarruf</strong> edersin</span>
+       </div>` : '';
+
+  const rows = sorted.map((m,i) => {
+    const eksik = sepet.length - m.count;
+    const detail = eksik > 0 ? `${m.count}/${sepet.length} ürün mevcut` : `Tüm ürünler mevcut`;
+    return `<div class="compare-row${i===0?' best':''}">
+      <div class="compare-rank">${i+1}</div>
+      <div class="compare-info">
+        <div class="compare-mname">${m.name}</div>
+        <div class="compare-detail">${detail}</div>
+      </div>
+      <div class="compare-total">${tl(m.total)}</div>
+    </div>`;
+  }).join('');
+
+  el.innerHTML = `<div class="compare-wrap">
+    <div class="compare-title">Market Karşılaştırması</div>
+    ${savingsHtml}${rows}
+  </div>`;
+  el.scrollIntoView({ behavior:'smooth', block:'nearest' });
+}
 
 function norm(s) {
   return (s||'').toLowerCase()
@@ -584,6 +841,15 @@ function cardHTML(u) {
     }
   }
 
+  const inCart   = sepet.some(s => s.id === u.id);
+  const ekleBtn  = `<div style="padding:0 14px 12px;display:flex;justify-content:flex-end">
+    <button class="btn-ekle${inCart?' added':''}" data-pid="${u.id}" onclick="addToSepet(${JSON.stringify(u.id)})">
+      ${inCart
+        ? `<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Eklendi`
+        : `<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Sepete Ekle`}
+    </button>
+  </div>`;
+
   return `<div class="card" data-category="${ustKategori(u.ana_kategori)}">
     <div class="card-main">
       <div class="card-img">${imgInner}</div>
@@ -598,6 +864,7 @@ function cardHTML(u) {
       ${marketRows||'<p class="hal-none">Market verisi yok</p>'}
     </div>
     ${savingsBar}
+    ${ekleBtn}
   </div>`;
 }
 
@@ -659,10 +926,14 @@ document.getElementById('search').addEventListener('input', function() {
 
 document.querySelectorAll('.nav-btn').forEach(btn => {
   btn.addEventListener('click', () => {
+    if (btn.id === 'navSepet') return; // openSepet() zaten onclick'te
     document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
     btn.classList.add('active');
   });
 });
+
+// Badge'ı sayfa yüklenince restore et
+saveSepet();
 
 Promise.allSettled([
   fetch('/api/urunler').then(r=>r.json()),
