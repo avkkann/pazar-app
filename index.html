@@ -684,39 +684,24 @@ function halEsles(u) {
   return bestScore >= 0.5 ? best : null;
 }
 
-const KATI_MAP = (() => {
-  const raw = {
-    meyve:    ['Meyve'],
-    sebze:    ['Sebze'],
-    et:       ['Şarküteri','Beyaz Et','Kırmızı Et','Deniz Ürünleri','Sakatat'],
-    sut:      ['Süt','Yoğurt','Tereyağı ve Margarin','Peynir','Kaymak ve Krema','Ayran ve Kefir',
-               'Yumurta','Zeytin','Sürülebilir Ürünler ve Kahvaltılık Soslar','Bal ve Reçel',
-               'Helva Tahin ve Pekmez','Kahvaltılık Gevrek Bar ve Granola'],
-    gida:     ['Mantı Makarna ve Erişte','Tuz Baharat ve Harçlar','Ekmek ve Unlu Mamüller',
-               'Bakliyat','Ketçap Mayonez Sos ve Sirkeler','Hazır Gıda','Salça','Turşu',
-               'Un ve İrmik','Konserve','Sıvı Yağlar','Şeker ve Tatlandırıcılar',
-               'Pasta Malzemeleri','Bebek Mamaları'],
-    icecek:   ['Kahve','Su','Gazlı İçecekler','Meyve Suyu','Çay ve Bitki Çayları',
-               'Gazsız İçecekler','Maden Suyu'],
-    temizlik: ['Genel Temizlik Ürünleri','Cilt Bakımı','Hijyenik Ped',
-               'Bulaşık Temizlik Ürünleri','Mutfak Sarf Malzemeleri',
-               'Parfüm Deodorant Kolonya ve Kokular']
-  };
-  const map = {};
-  for (const [kat, sublar] of Object.entries(raw))
-    for (const sub of sublar) map[norm(sub)] = kat;
-  return map;
-})();
-
-function kategori(u) {
-  // Önce ana_kategori ile doğrudan eşleştir
-  const ana = norm(u.ana_kategori || '');
-  if (KATI_MAP[ana]) return KATI_MAP[ana];
-  // Yoksa kategoriler dizisini tara
-  for (const c of (u.kategoriler || [])) {
-    const r = KATI_MAP[norm(c)];
-    if (r) return r;
-  }
+function ustKategori(anaKat) {
+  const k = anaKat || '';
+  if (['Meyve'].includes(k)) return 'meyve';
+  if (['Sebze'].includes(k)) return 'sebze';
+  if (['Şarküteri','Beyaz Et','Kırmızı Et','Deniz Ürünleri','Sakatat'].includes(k)) return 'et';
+  if (['Süt','Yoğurt','Peynir','Tereyağı ve Margarin','Kaymak ve Krema','Yumurta','Zeytin',
+       'Bal ve Reçel','Helva Tahin ve Pekmez','Kahvaltılık Gevrek Bar ve Granola',
+       'Sürülebilir Ürünler ve Kahvaltılık Soslar','Ayran ve Kefir'].includes(k)) return 'sut';
+  if (['Mantı Makarna ve Erişte','Pasta Malzemeleri','Hazır Gıda','Bakliyat',
+       'Ekmek ve Unlu Mamüller','Konserve','Salça','Ketçap Mayonez Sos ve Sirkeler',
+       'Sıvı Yağlar','Tuz Baharat ve Harçlar','Şeker ve Tatlandırıcılar','Turşu',
+       'Un ve İrmik','Bebek Mamaları'].includes(k)) return 'gida';
+  if (['Meyve Suyu','Su','Maden Suyu','Çay ve Bitki Çayları','Gazsız İçecekler',
+       'Gazlı İçecekler','Kahve'].includes(k)) return 'icecek';
+  if (['Bulaşık Temizlik Ürünleri','Kağıt Havlu','Kağıt Peçete ve Mendil',
+       'Genel Temizlik Ürünleri','Hijyenik Ped','Çamaşır Temizlik Ürünleri',
+       'Saç Bakım','Cilt Bakımı','Parfüm Deodorant Kolonya ve Kokular',
+       'Mutfak Sarf Malzemeleri'].includes(k)) return 'temizlik';
   return 'diger';
 }
 
@@ -772,7 +757,7 @@ function getList() {
       }
       return true;
     })
-    .filter(u => aktifKat === 'tumu' || kategori(u) === aktifKat)
+    .filter(u => aktifKat === 'tumu' || ustKategori(u.ana_kategori) === aktifKat)
     .filter(u => !q || norm(u.ad).includes(q) || norm(u.marka || '').includes(q));
 
   // Her öncelikli keyword için en ucuz 1 ürünü öne al
@@ -841,7 +826,7 @@ function cardHTML(u) {
     }
   }
 
-  return `<div class="card" data-category="${kategori(u)}">
+  return `<div class="card" data-category="${ustKategori(u.ana_kategori)}">
     <div class="card-main">
       <div class="card-img">${imgInner}</div>
       <div class="card-info">
