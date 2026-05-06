@@ -721,6 +721,7 @@ function addToCart(ad, fiyat, market) {
   const badge = document.getElementById('cart-badge');
   if(badge) badge.textContent = cart.length;
   if(typeof renderCart === 'function') renderCart();
+  document.getElementById('cart-badge').textContent = JSON.parse(localStorage.getItem('pazar_cart') || '[]').length;
 }
 
 function renderCart() {
@@ -745,9 +746,8 @@ function removeFromCart(index) {
   let cart = JSON.parse(localStorage.getItem('pazar_cart') || '[]');
   cart.splice(index, 1);
   localStorage.setItem('pazar_cart', JSON.stringify(cart));
-  const badge = document.getElementById('cart-badge');
-  if(badge) badge.textContent = cart.length;
-  if(typeof renderCart === 'function') renderCart();
+  document.getElementById('cart-badge').textContent = cart.length;
+  renderCart();
 }
 
 (function() {
@@ -786,6 +786,11 @@ function loadData() {
 }
 
 loadData();
+
+// ── BADGE INIT ────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('cart-badge').textContent = JSON.parse(localStorage.getItem('pazar_cart') || '[]').length;
+});
 
 // ── SERVICE WORKER ────────────────────────────────────
 if ('serviceWorker' in navigator) {
