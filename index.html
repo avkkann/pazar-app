@@ -519,7 +519,7 @@ function cardHTML(u) {
   const _addMkt   = mktler[0] ? (MARKET_NAMES[mktler[0].market] || mktler[0].market || '?') : 'Hal';
   const _addAd    = u.ad.replace(/'/g, '&#39;');
   const ekle   = `<div class="card-footer">
-    <button class="btn-ekle${inCart?' added':''}" data-pid="${u.id}" onclick="toggleSepet(${u.id}); addToCart('${_addAd}', ${_addFiyat}, '${_addMkt}')">
+    <button class="btn-ekle${inCart?' added':''}" data-pid="${u.id}" onclick="toggleSepet('${u.id}'); addToCart('${_addAd}', ${_addFiyat}, '${_addMkt}')">
       ${inCart
         ? `<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Eklendi`
         : `<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Sepete Ekle`}
@@ -645,7 +645,7 @@ function renderSepet() {
         <div class="cart-item-name">${u.ad}</div>
         ${sub ? `<div class="cart-item-sub">${sub}</div>` : ''}
       </div>
-      <button class="cart-del" onclick="removeFromSepet(${u.id})">
+      <button class="cart-del" onclick="removeFromSepet('${u.id}')">
         <svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>
       </button>
     </div>`;
