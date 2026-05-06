@@ -103,6 +103,15 @@ def guncelle():
     return jsonify({"durum": "baslatildi", "mesaj": "Scraper'lar arka planda baslatildi."}), 202
 
 
+@app.route("/sw.js")
+def service_worker():
+    resp = make_response(send_from_directory(BASE_DIR, "sw.js"))
+    resp.headers["Content-Type"] = "application/javascript"
+    resp.headers["Service-Worker-Allowed"] = "/"
+    resp.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    return resp
+
+
 @app.route("/<path:filename>")
 def static_files(filename):
     return send_from_directory(BASE_DIR, filename)

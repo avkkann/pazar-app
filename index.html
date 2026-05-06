@@ -763,23 +763,40 @@ const initCart = JSON.parse(localStorage.getItem('pazar_cart') || '[]');
 if(badge) badge.textContent = initCart.length;
 
 // ── VERİ YÜKLE ────────────────────────────────────────
-Promise.allSettled([
-  fetch('/api/urunler').then(r => r.json()),
-  fetch('/api/hal').then(r => r.json()),
-]).then(([uR, hR]) => {
-  if (uR.status === 'fulfilled' && uR.value.urunler) urunler = uR.value.urunler;
-  if (hR.status === 'fulfilled' && hR.value.urunler) {
-    for (const u of hR.value.urunler) {
-      const k = norm(u.ad);
-      if (!halMap[k] || (u.fiyat != null && u.fiyat < (halMap[k].fiyat ?? 9999))) halMap[k] = u;
+function loadData() {
+  return Promise.allSettled([
+    fetch('/api/urunler').then(r => r.json()),
+    fetch('/api/hal').then(r => r.json()),
+  ]).then(([uR, hR]) => {
+    let changed = false;
+    if (uR.status === 'fulfilled' && uR.value.urunler) { urunler = uR.value.urunler; changed = true; }
+    if (hR.status === 'fulfilled' && hR.value.urunler) {
+      halMap = {};
+      for (const u of hR.value.urunler) {
+        const k = norm(u.ad);
+        if (!halMap[k] || (u.fiyat != null && u.fiyat < (halMap[k].fiyat ?? 9999))) halMap[k] = u;
+      }
+      const bt = hR.value.bulten_tarihi || '';
+      if (bt) document.getElementById('halDate').innerHTML =
+        `<span class="hal-badge">Hal: ${bt.slice(0, 10)}</span>`;
+      changed = true;
     }
-    const bt = hR.value.bulten_tarihi || '';
-    if (bt) document.getElementById('halDate').innerHTML =
-      `<span class="hal-badge">Hal: ${bt.slice(0, 10)}</span>`;
-  }
-  renderCatGrid();
-  saveSepet();
-});
+    if (changed) { renderCatGrid(); saveSepet(); }
+  });
+}
+
+loadData();
+
+// ── SERVICE WORKER ────────────────────────────────────
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js');
+  let _swUpdateTimer = null;
+  navigator.serviceWorker.addEventListener('message', event => {
+    if (event.data?.type !== 'DATA_UPDATED') return;
+    clearTimeout(_swUpdateTimer);
+    _swUpdateTimer = setTimeout(() => loadData(), 300);
+  });
+}
 </script>
 </body>
 </html>
