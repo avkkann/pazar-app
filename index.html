@@ -725,13 +725,16 @@ function addToCart(ad, fiyat, market) {
 }
 
 function renderCart() {
+  window.cart = JSON.parse(localStorage.getItem('pazar_cart') || '[]');
+  const badge = document.getElementById('cart-badge');
+  if(badge) badge.textContent = window.cart.length;
   const list = document.getElementById('cart-list');
-  if (!list) return;
-  if (cart.length === 0) {
+  if(!list) return;
+  if(window.cart.length === 0) {
     list.innerHTML = '<p style="text-align:center;color:#888;padding:40px">Sepetiniz boş</p>';
     return;
   }
-  list.innerHTML = cart.map((item, i) => `
+  list.innerHTML = window.cart.map((item,i) => `
     <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:white;border-radius:12px;margin-bottom:8px;border:1px solid #eee">
       <div>
         <div style="font-weight:500">${item.ad}</div>
@@ -789,7 +792,9 @@ loadData();
 
 // ── BADGE INIT ────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('cart-badge').textContent = JSON.parse(localStorage.getItem('pazar_cart') || '[]').length;
+  window.cart = JSON.parse(localStorage.getItem('pazar_cart') || '[]');
+  document.getElementById('cart-badge').textContent = window.cart.length;
+  if(typeof renderCart === 'function') renderCart();
 });
 
 // ── SERVICE WORKER ────────────────────────────────────
