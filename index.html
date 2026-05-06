@@ -712,15 +712,15 @@ function updateBadge() {
   }
 }
 
-function addToCart(urunAdi, fiyat, market, pid) {
-  const existing = cart.find(i => i.ad === urunAdi);
-  if (existing) { existing.adet++; }
-  else { cart.push({ ad: urunAdi, fiyat: fiyat, market: market, adet: 1, pid: pid }); }
+function addToCart(ad, fiyat, market) {
+  let cart = JSON.parse(localStorage.getItem('pazar_cart') || '[]');
+  const idx = cart.findIndex(i => i.ad === ad);
+  if(idx >= 0) { cart[idx].adet++; }
+  else { cart.push({ad, fiyat, market, adet:1}); }
   localStorage.setItem('pazar_cart', JSON.stringify(cart));
-  renderCart();
   const badge = document.getElementById('cart-badge');
-  if (badge) { badge.textContent = cart.length; badge.style.display = cart.length ? 'inline-block' : 'none'; }
-  updateBadge();
+  if(badge) badge.textContent = cart.length;
+  if(typeof renderCart === 'function') renderCart();
 }
 
 function renderCart() {
@@ -742,20 +742,12 @@ function renderCart() {
 }
 
 function removeFromCart(index) {
-  const pid = cart[index]?.pid;
+  let cart = JSON.parse(localStorage.getItem('pazar_cart') || '[]');
   cart.splice(index, 1);
   localStorage.setItem('pazar_cart', JSON.stringify(cart));
-  document.getElementById('cart-badge').textContent = cart.length;
-  renderCart();
   const badge = document.getElementById('cart-badge');
-  if (badge) { badge.textContent = cart.length; badge.style.display = cart.length ? 'inline-block' : 'none'; }
-  if (pid) {
-    document.querySelectorAll(`[data-urun-id="${pid}"] .btn-ekle`).forEach(btn => {
-      btn.className = 'btn-ekle';
-      btn.innerHTML = `<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Sepete Ekle`;
-    });
-  }
-  updateBadge();
+  if(badge) badge.textContent = cart.length;
+  if(typeof renderCart === 'function') renderCart();
 }
 
 (function() {
@@ -765,6 +757,10 @@ function removeFromCart(index) {
   if (badge && cart.length) { badge.textContent = cart.length; badge.style.display = 'inline-block'; }
   updateBadge();
 })();
+
+const badge = document.getElementById('cart-badge');
+const initCart = JSON.parse(localStorage.getItem('pazar_cart') || '[]');
+if(badge) badge.textContent = initCart.length;
 
 // ── VERİ YÜKLE ────────────────────────────────────────
 Promise.allSettled([
