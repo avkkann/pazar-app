@@ -337,7 +337,6 @@
   <div id="sepetContent">
     <div class="state-msg"><span class="icon">🛒</span>Sepetiniz boş.<br>Ürün kartlarındaki + butonuna basın.</div>
   </div>
-  <div id="cart-list"></div>
 
 </div>
 
@@ -519,14 +518,14 @@ function cardHTML(u) {
   const _addMkt   = mktler[0] ? (MARKET_NAMES[mktler[0].market] || mktler[0].market || '?') : 'Hal';
   const _addAd    = u.ad.replace(/'/g, '&#39;');
   const ekle   = `<div class="card-footer">
-    <button class="btn-ekle${inCart?' added':''}" data-pid="${u.id}" onclick="toggleSepet('${u.id}'); addToCart('${_addAd}', ${_addFiyat}, '${_addMkt}')">
+    <button class="btn-ekle${inCart?' added':''}" data-pid="${u.id}" onclick="toggleSepet('${u.id}'); addToCart('${_addAd}', ${_addFiyat}, '${_addMkt}', '${u.id}')">
       ${inCart
         ? `<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Eklendi`
         : `<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Sepete Ekle`}
     </button>
   </div>`;
 
-  return `<div class="card">
+  return `<div class="card" data-urun-id="${u.id}">
     <div class="card-main">
       <div class="card-img">${img}</div>
       <div class="card-info">
@@ -639,12 +638,18 @@ function renderSepet() {
       ? `<img src="${u.resim}" alt="" loading="lazy" onerror="this.outerHTML='${emoji}'">`
       : emoji;
     const sub = [u.agirlik_hacim, u.marka].filter(Boolean).join(' · ');
+    const mktF = (u.fiyatlar||[]).filter(f => f.fiyat != null).sort((a,b) => a.fiyat - b.fiyat)[0];
+    const fiyatStr = mktF
+      ? `<div style="text-align:right;color:#0F5132;font-size:.82rem;font-weight:700;flex-shrink:0;margin-right:6px;line-height:1.4">
+           ${tl(mktF.fiyat)}<br><span style="font-size:.65rem;font-weight:500">${MARKET_NAMES[mktF.market]||mktF.market||'?'}</span>
+         </div>` : '';
     return `<div class="cart-item">
       <div class="cart-item-img">${img}</div>
       <div class="cart-item-info">
         <div class="cart-item-name">${u.ad}</div>
         ${sub ? `<div class="cart-item-sub">${sub}</div>` : ''}
       </div>
+      ${fiyatStr}
       <button class="cart-del" onclick="removeFromSepet('${u.id}')">
         <svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>
       </button>
@@ -689,7 +694,7 @@ function karsilastir() {
         <div class="compare-mname">${m.name}</div>
         <div class="compare-detail">${m.count === sepet.length ? 'Tüm ürünler mevcut' : m.count + '/' + sepet.length + ' ürün'}</div>
       </div>
-      <div class="compare-total">${tl(m.total)}</div>
+      <div class="compare-total">Toplam: ${tl(m.total)}</div>
     </div>`).join('');
   document.getElementById('compareOut').innerHTML = `
     <div class="compare-wrap">
@@ -699,10 +704,10 @@ function karsilastir() {
 }
 
 // ── YENİ SEPET (pazar_cart) ───────────────────────────
-function addToCart(urunAdi, fiyat, market) {
+function addToCart(urunAdi, fiyat, market, pid) {
   const existing = cart.find(i => i.ad === urunAdi);
   if (existing) { existing.adet++; }
-  else { cart.push({ ad: urunAdi, fiyat: fiyat, market: market, adet: 1 }); }
+  else { cart.push({ ad: urunAdi, fiyat: fiyat, market: market, adet: 1, pid: pid }); }
   localStorage.setItem('pazar_cart', JSON.stringify(cart));
   renderCart();
   const badge = document.getElementById('cart-badge');
@@ -728,11 +733,18 @@ function renderCart() {
 }
 
 function removeFromCart(index) {
+  const pid = cart[index]?.pid;
   cart.splice(index, 1);
   localStorage.setItem('pazar_cart', JSON.stringify(cart));
   renderCart();
   const badge = document.getElementById('cart-badge');
   if (badge) { badge.textContent = cart.length; badge.style.display = cart.length ? 'inline-block' : 'none'; }
+  if (pid) {
+    document.querySelectorAll(`[data-urun-id="${pid}"] .btn-ekle`).forEach(btn => {
+      btn.className = 'btn-ekle';
+      btn.innerHTML = `<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Sepete Ekle`;
+    });
+  }
 }
 
 (function() {
