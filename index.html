@@ -706,7 +706,10 @@ function karsilastir() {
 // ── YENİ SEPET (pazar_cart) ───────────────────────────
 function updateBadge() {
   const badge = document.getElementById('cart-badge');
-  if (badge) badge.textContent = cart.length;
+  if (badge) {
+    badge.textContent = cart.length;
+    badge.style.display = cart.length ? 'inline-block' : 'none';
+  }
 }
 
 function addToCart(urunAdi, fiyat, market, pid) {
