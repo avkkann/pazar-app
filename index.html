@@ -269,6 +269,11 @@
     }
     .nav-btn svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2; }
     .nav-btn.active { color: #0F5132; }
+    .cart-badge {
+      background: #0F5132; color: #fff; border-radius: 999px;
+      font-size: .5rem; font-weight: 700; padding: 1px 5px; line-height: 1.5;
+      min-width: 14px; text-align: center; display: inline-block; margin-left: 2px;
+    }
   </style>
 </head>
 <body>
@@ -332,6 +337,7 @@
   <div id="sepetContent">
     <div class="state-msg"><span class="icon">🛒</span>Sepetiniz boş.<br>Ürün kartlarındaki + butonuna basın.</div>
   </div>
+  <div id="cart-list"></div>
 
 </div>
 
@@ -343,7 +349,7 @@
   </button>
   <button class="nav-btn" id="navSepet" onclick="goSepet()">
     <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 001.97-1.67L23 6H6"/></svg>
-    Sepetim
+    Sepetim<span id="cart-badge" class="cart-badge" style="display:none">0</span>
   </button>
   <button class="nav-btn" onclick="alert('Yakında!')">
     <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
@@ -382,6 +388,7 @@ const ONCELIKLI = [
 // ── DURUM ─────────────────────────────────────────────
 let urunler = [], halMap = {};
 let sepet   = JSON.parse(localStorage.getItem('pazar_sepet') || '[]');
+window.cart = [];
 
 // ── NAVİGASYON ────────────────────────────────────────
 function showScreen(id) {
@@ -508,8 +515,11 @@ function cardHTML(u) {
   }
 
   const inCart = sepet.some(s => s.id === u.id);
+  const _addFiyat = mktler[0]?.fiyat ?? halFiyat ?? 0;
+  const _addMkt   = mktler[0] ? (MARKET_NAMES[mktler[0].market] || mktler[0].market || '?') : 'Hal';
+  const _addAd    = u.ad.replace(/'/g, '&#39;');
   const ekle   = `<div class="card-footer">
-    <button class="btn-ekle${inCart?' added':''}" data-pid="${u.id}" onclick="toggleSepet(${u.id})">
+    <button class="btn-ekle${inCart?' added':''}" data-pid="${u.id}" onclick="toggleSepet(${u.id}); addToCart('${_addAd}', ${_addFiyat}, '${_addMkt}')">
       ${inCart
         ? `<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Eklendi`
         : `<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Sepete Ekle`}
@@ -687,6 +697,50 @@ function karsilastir() {
       ${savHtml}${rows}
     </div>`;
 }
+
+// ── YENİ SEPET (pazar_cart) ───────────────────────────
+function addToCart(urunAdi, fiyat, market) {
+  const existing = cart.find(i => i.ad === urunAdi);
+  if (existing) { existing.adet++; }
+  else { cart.push({ ad: urunAdi, fiyat: fiyat, market: market, adet: 1 }); }
+  localStorage.setItem('pazar_cart', JSON.stringify(cart));
+  renderCart();
+  const badge = document.getElementById('cart-badge');
+  if (badge) { badge.textContent = cart.length; badge.style.display = cart.length ? 'inline-block' : 'none'; }
+}
+
+function renderCart() {
+  const list = document.getElementById('cart-list');
+  if (!list) return;
+  if (cart.length === 0) {
+    list.innerHTML = '<p style="text-align:center;color:#888;padding:40px">Sepetiniz boş</p>';
+    return;
+  }
+  list.innerHTML = cart.map((item, i) => `
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:white;border-radius:12px;margin-bottom:8px;border:1px solid #eee">
+      <div>
+        <div style="font-weight:500">${item.ad}</div>
+        <div style="font-size:12px;color:#666">${item.fiyat} ₺ · ${item.market}</div>
+      </div>
+      <button onclick="removeFromCart(${i})" style="background:#fee;border:none;border-radius:8px;padding:6px 10px;cursor:pointer;color:#c00">Sil</button>
+    </div>
+  `).join('');
+}
+
+function removeFromCart(index) {
+  cart.splice(index, 1);
+  localStorage.setItem('pazar_cart', JSON.stringify(cart));
+  renderCart();
+  const badge = document.getElementById('cart-badge');
+  if (badge) { badge.textContent = cart.length; badge.style.display = cart.length ? 'inline-block' : 'none'; }
+}
+
+(function() {
+  const saved = localStorage.getItem('pazar_cart');
+  if (saved) { cart = JSON.parse(saved); renderCart(); }
+  const badge = document.getElementById('cart-badge');
+  if (badge && cart.length) { badge.textContent = cart.length; badge.style.display = 'inline-block'; }
+})();
 
 // ── VERİ YÜKLE ────────────────────────────────────────
 Promise.allSettled([
