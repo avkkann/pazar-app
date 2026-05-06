@@ -745,6 +745,7 @@ function removeFromCart(index) {
   const pid = cart[index]?.pid;
   cart.splice(index, 1);
   localStorage.setItem('pazar_cart', JSON.stringify(cart));
+  document.getElementById('cart-badge').textContent = cart.length;
   renderCart();
   const badge = document.getElementById('cart-badge');
   if (badge) { badge.textContent = cart.length; badge.style.display = cart.length ? 'inline-block' : 'none'; }
