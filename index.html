@@ -670,15 +670,15 @@ function karsilastir() {
       mkts[k].count += 1;
     }
   }
-  const sorted = Object.values(mkts).sort((a,b) => b.count - a.count || a.total - b.total);
+  const sorted = Object.values(mkts).sort((a,b) => a.total - b.total);
   if (!sorted.length) {
     document.getElementById('compareOut').innerHTML =
       `<div class="state-msg">Market fiyat verisi bulunamadı.</div>`;
     return;
   }
-  const best   = sorted[0];
-  const sec    = sorted.find(m => m.name !== best.name && m.count === best.count);
-  const saving = sec ? sec.total - best.total : 0;
+  const best    = sorted[0];
+  const worst   = sorted[sorted.length - 1];
+  const saving  = worst.total - best.total;
   const savHtml = saving > 0.01
     ? `<div class="compare-savings">💡 <span><b>${best.name}</b>'ten alırsan <b>${tl(saving)} tasarruf</b> edersin</span></div>`
     : '';
