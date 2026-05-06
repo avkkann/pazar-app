@@ -704,6 +704,11 @@ function karsilastir() {
 }
 
 // ── YENİ SEPET (pazar_cart) ───────────────────────────
+function updateBadge() {
+  const badge = document.getElementById('cart-badge');
+  if (badge) badge.textContent = cart.length;
+}
+
 function addToCart(urunAdi, fiyat, market, pid) {
   const existing = cart.find(i => i.ad === urunAdi);
   if (existing) { existing.adet++; }
@@ -712,6 +717,7 @@ function addToCart(urunAdi, fiyat, market, pid) {
   renderCart();
   const badge = document.getElementById('cart-badge');
   if (badge) { badge.textContent = cart.length; badge.style.display = cart.length ? 'inline-block' : 'none'; }
+  updateBadge();
 }
 
 function renderCart() {
@@ -745,6 +751,7 @@ function removeFromCart(index) {
       btn.innerHTML = `<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Sepete Ekle`;
     });
   }
+  updateBadge();
 }
 
 (function() {
@@ -752,6 +759,7 @@ function removeFromCart(index) {
   if (saved) { cart = JSON.parse(saved); renderCart(); }
   const badge = document.getElementById('cart-badge');
   if (badge && cart.length) { badge.textContent = cart.length; badge.style.display = 'inline-block'; }
+  updateBadge();
 })();
 
 // ── VERİ YÜKLE ────────────────────────────────────────
