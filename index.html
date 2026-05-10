@@ -45,7 +45,7 @@
 
     /* ── HEADER ── */
     .header {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      background: linear-gradient(135deg, #0F5132 0%, #1D9E75 100%);
       padding: 20px 16px 18px;
       display: flex; align-items: center; gap: 13px;
       position: sticky; top: 0; z-index: 50;
@@ -66,14 +66,14 @@
     .header-text p { font-size: .68rem; color: rgba(255,255,255,.75); margin-top: 3px; font-weight: 500; }
 
     .header-sub {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+      background: linear-gradient(135deg, #0F5132 0%, #1D9E75 100%);
       padding: 14px 16px;
       display: flex; align-items: center; gap: 12px;
       position: sticky; top: 0; z-index: 50;
       box-shadow: 0 2px 12px rgba(15,81,50,.25);
     }
     .header-sub h2 {
-      font-family: 'Inter', sans-serif; font-size: 1.1rem; font-weight: 700; color: #fff;
+      font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; color: #fff;
     }
     .back-btn {
       width: 36px; height: 36px; flex-shrink: 0;
@@ -111,7 +111,7 @@
     /* ── KATEGORİ GRİD ── */
     .cat-grid {
       display: grid; grid-template-columns: 1fr 1fr;
-      gap: 12px; padding: 16px 14px;
+      gap: 12px; padding: 16px 14px 0;
     }
     .cat-card {
       background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px;
@@ -446,13 +446,13 @@ const MARKET_NAMES = {
 };
 const KAT_EMOJI = {
   meyve:'🍎', sebze:'🥦', et:'🥩', sut:'🧀',
-  gida:'🛒', icecek:'🥤', temizlik:'🧴', diger:'📦'
+  gida:'🥫', icecek:'🥤', temizlik:'🧴', diger:'📦'
 };
 const KATEGORILER = [
   { slug:'meyve-sebze', label:'Meyve & Sebze', emoji:'🍎', cats:['meyve','sebze'] },
   { slug:'et',          label:'Et & Tavuk',    emoji:'🥩', cats:['et'] },
   { slug:'sut',         label:'Süt & Kahvaltı',emoji:'🧀', cats:['sut'] },
-  { slug:'gida',        label:'Temel Gıda',    emoji:'🛒', cats:['gida'] },
+  { slug:'gida',        label:'Temel Gıda',    emoji:'🥫', cats:['gida'] },
   { slug:'icecek',      label:'İçecek',        emoji:'🥤', cats:['icecek'] },
   { slug:'temizlik',    label:'Temizlik',       emoji:'🧴', cats:['temizlik'] },
 ];
