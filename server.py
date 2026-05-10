@@ -112,8 +112,18 @@ def sw():
     return response
 
 
-@app.route("/<path:filename>")
+@app.route("/manifest.json")
+def manifest():
+    return send_from_directory(BASE_DIR, "manifest.json")
+
+
+@app.route("/static/<path:filename>")
 def static_files(filename):
+    return send_from_directory(os.path.join(BASE_DIR, "static"), filename)
+
+
+@app.route("/<path:filename>")
+def serve_file(filename):
     return send_from_directory(BASE_DIR, filename)
 
 
