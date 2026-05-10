@@ -4,7 +4,7 @@ from datetime import datetime
 
 app = Flask(__name__, static_folder=".")
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DATA_DIR  = os.environ.get("RAILWAY_VOLUME_MOUNT_PATH", BASE_DIR)
+DATA_DIR  = BASE_DIR
 os.makedirs(DATA_DIR, exist_ok=True)
 
 URUNLER_FILE = os.path.join(DATA_DIR, "urunler.json")
