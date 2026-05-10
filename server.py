@@ -90,17 +90,17 @@ def hal():
 
 @app.route("/api/guncelle-d5336945")
 def guncelle():
-    global _scraper_running
+    def run_scrapers():
+        try:
+            import run_scrapers as rs
+            rs.main()
+        except Exception as e:
+            print(f"Scraper hatasi: {e}", flush=True)
 
-    with _scraper_lock:
-        if _scraper_running:
-            return jsonify({"durum": "zaten_calisiyor", "mesaj": "Scraper zaten calisiyor."}), 409
-        _scraper_running = True
-
-    thread = threading.Thread(target=_run_scrapers_bg, daemon=True)
+    thread = threading.Thread(target=run_scrapers)
+    thread.daemon = True
     thread.start()
-
-    return jsonify({"durum": "baslatildi", "mesaj": "Scraper'lar arka planda baslatildi."}), 202
+    return jsonify({"durum": "baslatildi", "mesaj": "Scraper arka planda calisiyor"}), 200
 
 
 @app.route("/sw.js")
