@@ -796,10 +796,10 @@ function loadData() {
 loadData();
 
 // ── BADGE INIT ────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', function() {
-  window.cart = JSON.parse(localStorage.getItem('pazar_cart') || '[]');
-  document.getElementById('cart-badge').textContent = window.cart.length;
-  if(typeof renderCart === 'function') renderCart();
+window.addEventListener('load', function() {
+  const cart = JSON.parse(localStorage.getItem('pazar_cart') || '[]');
+  const badge = document.getElementById('cart-badge');
+  if(badge) badge.textContent = cart.length;
 });
 
 // ── SERVICE WORKER ────────────────────────────────────
