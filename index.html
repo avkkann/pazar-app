@@ -397,6 +397,7 @@
   </div>
 
   <div class="product-list" id="productList"></div>
+  <div id="scroll-sentinel" style="height:1px;margin-bottom:8px"></div>
 
 </div>
 
@@ -454,14 +455,9 @@ const KATEGORILER = [
   { slug:'icecek',      label:'İçecek',        emoji:'🥤', cats:['icecek'] },
   { slug:'temizlik',    label:'Temizlik',       emoji:'🧴', cats:['temizlik'] },
 ];
-const ONCELIKLI = [
-  'yumurta','sut','ekmek','domates','salatalik',
-  'patates','sogan','elma','muz','portakal',
-  'limon','yogurt','peynir','tereyagi'
-];
-
 // ── DURUM ─────────────────────────────────────────────
 let urunler = [], halMap = {};
+let currentKategori = null, currentSayfa = 1, toplamSayfa = 1, yukleniyor = false;
 let sepet   = JSON.parse(localStorage.getItem('pazar_sepet') || '[]');
 
 // ── NAVİGASYON ────────────────────────────────────────
@@ -524,35 +520,17 @@ function halEsles(u) {
   return bestSc >= 0.5 ? best : null;
 }
 
-function minFiyat(u) {
-  const ps = (u.fiyatlar||[]).map(f => f.fiyat).filter(p => p != null);
-  return ps.length ? Math.min(...ps) : (u.en_dusuk_fiyat ?? Infinity);
-}
-
-// ── ÜRÜN LİSTESİ ──────────────────────────────────────
-function getList(cats, q) {
-  const qn = norm(q || '');
-  let list = urunler.filter(u => {
-    const hal = halEsles(u);
-    const mkt = (u.fiyatlar||[]).filter(f => f.fiyat != null);
-    if (!hal?.fiyat && !mkt.length) return false;
-    if (hal?.fiyat && mkt.length) {
-      const mn = Math.min(...mkt.map(f => f.fiyat));
-      if (mn / hal.fiyat > 5) return false;
-    }
-    return true;
-  });
-  if (cats) list = list.filter(u => cats.includes(ustKategori(u.ana_kategori)));
-  if (qn)   list = list.filter(u => norm(u.ad).includes(qn) || norm(u.marka||'').includes(qn));
-
-  const used = new Set(), champions = [];
-  for (const kw of ONCELIKLI) {
-    const match = list.filter(u => norm(u.ad).includes(kw));
-    if (!match.length) continue;
-    const best = match.reduce((a,b) => minFiyat(a) <= minFiyat(b) ? a : b);
-    if (!used.has(best.id)) { used.add(best.id); champions.push(best); }
-  }
-  return [...champions, ...list.filter(u => !used.has(u.id))];
+// ── SKELETON ──────────────────────────────────────────
+function skeletonHTML(n = 4) {
+  return Array(n).fill(`
+    <div class="skeleton-card">
+      <div class="skeleton skeleton-img"></div>
+      <div class="skeleton-body">
+        <div class="skeleton skeleton-line"></div>
+        <div class="skeleton skeleton-line short"></div>
+        <div class="skeleton skeleton-line price"></div>
+      </div>
+    </div>`).join('');
 }
 
 // ── KART HTML ─────────────────────────────────────────
@@ -620,45 +598,86 @@ function cardHTML(u) {
 
 // ── KATEGORİ GRİD ─────────────────────────────────────
 function renderCatGrid() {
-  const cnt = {};
-  for (const u of urunler) {
-    const k = ustKategori(u.ana_kategori);
-    cnt[k] = (cnt[k] || 0) + 1;
-  }
-  document.getElementById('home-cats').innerHTML = KATEGORILER.map(k => {
-    const total = k.cats.reduce((s, c) => s + (cnt[c] || 0), 0);
-    return `<div class="cat-card" onclick="openCategory('${k.slug}')">
+  document.getElementById('home-cats').innerHTML = KATEGORILER.map(k =>
+    `<div class="cat-card" onclick="openCategory('${k.slug}')">
       <div class="cat-card-emoji">${k.emoji}</div>
       <div class="cat-card-name">${k.label}</div>
-      <div class="cat-card-count">${total} ürün</div>
-    </div>`;
-  }).join('');
+    </div>`
+  ).join('');
 }
 
 // ── KATEGORİ EKRANI ───────────────────────────────────
-function openCategory(slug) {
-  const kat  = KATEGORILER.find(k => k.slug === slug);
+async function openCategory(slug) {
+  const kat = KATEGORILER.find(k => k.slug === slug);
   document.getElementById('cat-title').textContent = kat.label;
-  const list = getList(kat.cats, '');
-  document.getElementById('countNum').textContent = list.length;
-  document.getElementById('productList').innerHTML = list.length
-    ? list.map(cardHTML).join('')
-    : `<div class="state-msg"><span class="icon">🔍</span>Bu kategoride ürün bulunamadı.</div>`;
+  document.getElementById('productList').innerHTML = skeletonHTML();
+  document.getElementById('countNum').textContent = '…';
+  currentKategori = slug;
+  currentSayfa = 1;
+  toplamSayfa = 1;
+  urunler = [];
   showScreen('screen-cat');
   document.getElementById('screen-cat').scrollTop = 0;
+  await loadKategoriSayfasi(slug, 1);
 }
 
+async function loadKategoriSayfasi(slug, sayfa) {
+  if (yukleniyor) return;
+  yukleniyor = true;
+  try {
+    const res  = await fetch(`/api/urunler?kategori=${slug}&sayfa=${sayfa}`);
+    const data = await res.json();
+    toplamSayfa = data.sayfa_sayisi;
+    urunler = urunler.concat(data.urunler);
+    const list = document.getElementById('productList');
+    if (sayfa === 1) {
+      document.getElementById('countNum').textContent = data.toplam;
+      list.innerHTML = data.urunler.length
+        ? data.urunler.map(cardHTML).join('')
+        : `<div class="state-msg"><span class="icon">🔍</span>Bu kategoride ürün bulunamadı.</div>`;
+    } else {
+      list.insertAdjacentHTML('beforeend', data.urunler.map(cardHTML).join(''));
+    }
+  } catch(e) {
+    console.error('Veri yükleme hatası:', e);
+  } finally {
+    yukleniyor = false;
+  }
+}
+
+// ── SONSUZ SCROLL ─────────────────────────────────────
+const scrollObserver = new IntersectionObserver(entries => {
+  if (entries[0].isIntersecting && !yukleniyor && currentSayfa < toplamSayfa) {
+    currentSayfa++;
+    loadKategoriSayfasi(currentKategori, currentSayfa);
+  }
+}, { rootMargin: '300px' });
+const _sentinel = document.getElementById('scroll-sentinel');
+if (_sentinel) scrollObserver.observe(_sentinel);
+
 // ── ARAMA ─────────────────────────────────────────────
+let _searchTimer = null;
 document.getElementById('search').addEventListener('input', function() {
   const q = this.value.trim();
   document.getElementById('home-cats').style.display   = q ? 'none' : '';
   document.getElementById('home-search').style.display = q ? 'block' : 'none';
   if (!q) return;
-  const list = getList(null, q);
-  document.getElementById('searchCount').textContent = list.length;
-  document.getElementById('searchList').innerHTML = list.length
-    ? list.map(cardHTML).join('')
-    : `<div class="state-msg"><span class="icon">🔍</span>Sonuç bulunamadı.</div>`;
+  clearTimeout(_searchTimer);
+  _searchTimer = setTimeout(async () => {
+    document.getElementById('searchList').innerHTML = skeletonHTML(3);
+    try {
+      const res  = await fetch(`/api/urunler/ara?q=${encodeURIComponent(q)}`);
+      const data = await res.json();
+      document.getElementById('searchCount').textContent = data.toplam;
+      document.getElementById('searchList').innerHTML = data.urunler.length
+        ? data.urunler.map(cardHTML).join('')
+        : `<div class="state-msg"><span class="icon">🔍</span>Sonuç bulunamadı.</div>`;
+      urunler = urunler.concat(data.urunler.filter(u => !urunler.find(x => x.id === u.id)));
+    } catch(e) {
+      document.getElementById('searchList').innerHTML =
+        `<div class="state-msg"><span class="icon">⚠️</span>Arama hatası.</div>`;
+    }
+  }, 350);
 });
 
 // ── SEPET ─────────────────────────────────────────────
@@ -781,25 +800,20 @@ function karsilastir() {
 
 // ── VERİ YÜKLE ────────────────────────────────────────
 function loadData() {
-  return Promise.allSettled([
-    fetch('/api/urunler').then(r => r.json()),
-    fetch('/api/hal').then(r => r.json()),
-  ]).then(([uR, hR]) => {
-    let changed = false;
-    if (uR.status === 'fulfilled' && uR.value.urunler) { urunler = uR.value.urunler; changed = true; }
-    if (hR.status === 'fulfilled' && hR.value.urunler) {
+  return fetch('/api/hal').then(r => r.json()).then(data => {
+    if (data.urunler) {
       halMap = {};
-      for (const u of hR.value.urunler) {
+      for (const u of data.urunler) {
         const k = norm(u.ad);
         if (!halMap[k] || (u.fiyat != null && u.fiyat < (halMap[k].fiyat ?? 9999))) halMap[k] = u;
       }
-      const bt = hR.value.bulten_tarihi || '';
+      const bt = data.bulten_tarihi || '';
       if (bt) document.getElementById('halDate').innerHTML =
         `<span class="hal-badge">Hal: ${bt.slice(0, 10)}</span>`;
-      changed = true;
     }
-    if (changed) { renderCatGrid(); saveSepet(); }
-  });
+    renderCatGrid();
+    saveSepet();
+  }).catch(() => { renderCatGrid(); saveSepet(); });
 }
 
 loadData();

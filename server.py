@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, send_from_directory, make_response
+from flask import Flask, jsonify, send_from_directory, make_response, request
 import json, os, threading, signal, sys
 from datetime import datetime
 
@@ -14,6 +14,46 @@ _scraper_lock    = threading.Lock()
 _scraper_running = False
 _shutdown        = False
 _start_time      = datetime.utcnow()
+
+
+PAGE_SIZE = 48
+
+KATEGORI_MAP = {
+    'meyve-sebze': ['Meyve', 'Sebze', 'Meyve ve Sebze'],
+    'et':          ['Şarküteri', 'Beyaz Et', 'Kırmızı Et', 'Deniz Ürünleri', 'Sakatat',
+                    'Et, Tavuk ve Balık'],
+    'sut':         ['Süt', 'Yoğurt', 'Peynir', 'Tereyağı ve Margarin', 'Kaymak ve Krema',
+                    'Yumurta', 'Zeytin', 'Bal ve Reçel', 'Helva Tahin ve Pekmez',
+                    'Kahvaltılık Gevrek Bar ve Granola', 'Sürülebilir Ürünler ve Kahvaltılık Soslar',
+                    'Ayran ve Kefir', 'Süt Ürünleri ve Kahvaltılık'],
+    'gida':        ['Mantı Makarna ve Erişte', 'Pasta Malzemeleri', 'Hazır Gıda', 'Bakliyat',
+                    'Ekmek ve Unlu Mamüller', 'Konserve', 'Salça', 'Ketçap Mayonez Sos ve Sirkeler',
+                    'Sıvı Yağlar', 'Tuz Baharat ve Harçlar', 'Şeker ve Tatlandırıcılar',
+                    'Turşu', 'Un ve İrmik', 'Bebek Mamaları', 'Temel Gıda'],
+    'icecek':      ['Meyve Suyu', 'Su', 'Maden Suyu', 'Çay ve Bitki Çayları',
+                    'Gazsız İçecekler', 'Gazlı İçecekler', 'Kahve', 'İçecek'],
+    'temizlik':    ['Bulaşık Temizlik Ürünleri', 'Kağıt Havlu', 'Kağıt Peçete ve Mendil',
+                    'Genel Temizlik Ürünleri', 'Hijyenik Ped', 'Çamaşır Temizlik Ürünleri',
+                    'Saç Bakım', 'Cilt Bakımı', 'Parfüm Deodorant Kolonya ve Kokular',
+                    'Mutfak Sarf Malzemeleri', 'Temizlik ve Kişisel Bakım'],
+}
+
+
+def slim_urun(u):
+    fiyatlar = sorted(
+        [f for f in (u.get('fiyatlar') or []) if f.get('fiyat') is not None],
+        key=lambda f: f['fiyat']
+    )[:3]
+    return {
+        'id':             u.get('id'),
+        'ad':             u.get('ad'),
+        'marka':          u.get('marka'),
+        'agirlik_hacim':  u.get('agirlik_hacim'),
+        'ana_kategori':   u.get('ana_kategori'),
+        'resim':          u.get('resim'),
+        'en_dusuk_fiyat': u.get('en_dusuk_fiyat'),
+        'fiyatlar':       fiyatlar,
+    }
 
 
 def load_json(filepath):
@@ -77,7 +117,54 @@ def urunler():
     data = load_json(URUNLER_FILE)
     if data is None:
         return jsonify({"hata": "urunler.json bulunamadi."}), 404
-    return jsonify(data)
+
+    kategori = request.args.get('kategori', '').strip()
+    try:
+        sayfa = max(1, int(request.args.get('sayfa', 1)))
+    except ValueError:
+        sayfa = 1
+
+    tum = data.get('urunler', [])
+    if kategori and kategori in KATEGORI_MAP:
+        cat_set = set(KATEGORI_MAP[kategori])
+        tum = [u for u in tum if u.get('ana_kategori') in cat_set]
+
+    toplam       = len(tum)
+    sayfa_sayisi = max(1, (toplam + PAGE_SIZE - 1) // PAGE_SIZE)
+    baslangic    = (sayfa - 1) * PAGE_SIZE
+
+    return jsonify({
+        'toplam':       toplam,
+        'sayfa':        sayfa,
+        'sayfa_sayisi': sayfa_sayisi,
+        'urunler':      [slim_urun(u) for u in tum[baslangic: baslangic + PAGE_SIZE]],
+    })
+
+
+@app.route("/api/urunler/ara")
+def urunler_ara():
+    data = load_json(URUNLER_FILE)
+    if data is None:
+        return jsonify({"hata": "urunler.json bulunamadi."}), 404
+
+    q = request.args.get('q', '').strip()
+    if not q:
+        return jsonify({'urunler': [], 'toplam': 0})
+
+    def norm_tr(s):
+        return (s or '').lower() \
+            .replace('ğ','g').replace('ü','u').replace('ş','s') \
+            .replace('ı','i').replace('ö','o').replace('ç','c')
+
+    qn = norm_tr(q)
+    sonuclar = [
+        u for u in data.get('urunler', [])
+        if qn in norm_tr(u.get('ad','')) or qn in norm_tr(u.get('marka','') or '')
+    ]
+    return jsonify({
+        'toplam':  len(sonuclar),
+        'urunler': [slim_urun(u) for u in sonuclar[:96]],
+    })
 
 
 @app.route("/api/hal")
