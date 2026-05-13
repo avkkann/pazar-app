@@ -269,73 +269,54 @@
 
     /* ── KARŞILAŞTIRMA ── */
     .compare-wrap { padding: 12px 14px 20px; }
-    .compare-title {
+    .cmp-sec-label {
       font-size: .68rem; font-weight: 700; text-transform: uppercase;
       letter-spacing: .08em; color: var(--text-muted); margin-bottom: 10px;
     }
-    .compare-savings {
-      background: #ECFDF5; border: 1px solid #D1FAE5; border-radius: 12px;
-      padding: 11px 14px; margin-bottom: 10px;
-      font-size: .8rem; color: #065F46; font-weight: 600;
-      display: flex; align-items: center; gap: 8px;
+    .cmp-opt-cards { display: flex; flex-direction: column; gap: 8px; }
+    .cmp-opt {
+      background: var(--card-bg); border: 1.5px solid var(--border); border-radius: 14px;
+      padding: 13px 14px; display: flex; align-items: center;
+      justify-content: space-between; cursor: pointer; transition: all .18s;
     }
-    .compare-row {
-      background: var(--card-bg); border-radius: 14px; border: 1px solid var(--border);
-      box-shadow: 0 2px 8px rgba(0,0,0,.05);
-      display: flex; align-items: center; gap: 12px;
+    .cmp-opt:active { transform: scale(.98); }
+    .cmp-opt.selected { background: #ECFDF5; border-color: #6EE7B7; }
+    .cmp-opt.unavail { opacity: .45; cursor: default; }
+    .cmp-opt-title { font-size: .85rem; font-weight: 700; color: var(--text); }
+    .cmp-opt.selected .cmp-opt-title { color: #065F46; }
+    .cmp-opt-sub { font-size: .7rem; color: var(--text-muted); margin-top: 2px; }
+    .cmp-opt-right { text-align: right; flex-shrink: 0; margin-left: 10px; }
+    .cmp-opt-price { font-size: .95rem; font-weight: 800; color: var(--text); }
+    .cmp-opt.selected .cmp-opt-price { color: #065F46; }
+    .cmp-opt-save { font-size: .72rem; color: #059669; font-weight: 600; margin-top: 2px; }
+    .cmp-detail { margin-top: 14px; }
+    .cmp-mkt-block {
+      background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px;
       padding: 12px 14px; margin-bottom: 8px;
-      transition: all 0.2s ease;
     }
-    .compare-row.best { background: #ECFDF5; border-color: #D1FAE5; }
-    .compare-rank {
-      width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
-      background: var(--bg); color: var(--text-muted);
-      display: flex; align-items: center; justify-content: center;
-      font-size: .68rem; font-weight: 800;
+    .cmp-mkt-name { font-size: .8rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .cmp-mkt-item {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 5px 0; border-bottom: 1px solid var(--border); font-size: .8rem;
     }
-    .compare-row.best .compare-rank { background: var(--primary); color: #fff; }
-    .compare-info { flex: 1; min-width: 0; }
-    .compare-mname { font-size: .83rem; font-weight: 700; color: var(--text); }
-    .compare-row.best .compare-mname { color: #065F46; }
-    .compare-detail { font-size: .67rem; color: var(--text-muted); margin-top: 2px; }
-    .compare-total { font-size: .95rem; font-weight: 800; color: var(--text); flex-shrink: 0; }
-    .compare-row.best .compare-total { color: #065F46; }
-    .cmp-section-title {
-      font-size: .68rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: .08em; color: var(--text-muted); margin: 16px 0 10px;
+    .cmp-mkt-item:last-of-type { border-bottom: none; }
+    .cmp-mkt-item-name {
+      color: var(--text); flex: 1; min-width: 0;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-right: 8px;
     }
-    .cmp-section-title:first-child { margin-top: 0; }
-    .cmp-none {
-      background: #FEF3C7; border: 1px solid #FDE68A; border-radius: 12px;
-      padding: 11px 14px; font-size: .8rem; color: #92400E; font-weight: 500;
-      margin-bottom: 8px;
+    .cmp-mkt-item-price { font-weight: 700; color: var(--text); flex-shrink: 0; }
+    .cmp-mkt-subtotal {
+      text-align: right; font-size: .78rem; font-weight: 700;
+      color: var(--text-muted); margin-top: 8px; padding-top: 6px;
+      border-top: 1px solid var(--border);
     }
-    .cmp-combo { margin-bottom: 4px; }
-    .cmp-combo-row {
-      display: flex; align-items: center; gap: 8px;
-      padding: 9px 0; border-bottom: 1px solid var(--border); font-size: .82rem;
-    }
-    .cmp-combo-row:last-child { border-bottom: none; }
-    .cmp-combo-urun { flex: 1; min-width: 0; color: var(--text); font-weight: 500;
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .cmp-combo-market { font-size: .72rem; color: var(--text-muted); white-space: nowrap; }
-    .cmp-combo-fiyat { font-weight: 700; color: var(--text); flex-shrink: 0; }
-    .cmp-combo-total {
-      font-size: .85rem; color: var(--text-muted); text-align: center;
-      padding: 8px 0 4px;
-    }
-    .cmp-combo-total b { color: #065F46; }
-    .cmp-summary {
-      background: var(--bg); border-radius: 14px; padding: 12px 14px;
-      margin-top: 10px; border: 1px solid var(--border);
-    }
-    .cmp-summary-row {
+    .cmp-grand {
       display: flex; justify-content: space-between; align-items: center;
-      font-size: .82rem; color: var(--text); padding: 4px 0;
+      padding: 10px 14px; font-size: .9rem; font-weight: 800; color: var(--text);
+      background: var(--bg); border-radius: 14px; margin-bottom: 6px;
+      border: 1px solid var(--border);
     }
-    .cmp-summary-row .cmp-best { font-weight: 800; color: #065F46; }
-    .cmp-fark { margin-top: 6px; padding-top: 8px; border-top: 1px solid var(--border); }
-    .cmp-fark span:last-child { font-weight: 700; color: #065F46; }
+    .cmp-grand-save { background: #ECFDF5; border-color: #D1FAE5; color: #065F46; }
 
     /* ── SKELETON LOADING ── */
     .skeleton {
@@ -818,6 +799,13 @@ function renderSepet() {
 }
 
 // ── KARŞILAŞTIRMA ─────────────────────────────────────
+function _combos(arr, k) {
+  if (k === 0) return [[]];
+  if (arr.length < k) return [];
+  const [h, ...t] = arr;
+  return [..._combos(t, k - 1).map(c => [h, ...c]), ..._combos(t, k)];
+}
+
 function karsilastir() {
   if (!sepet.length) {
     document.getElementById('compareOut').innerHTML =
@@ -825,7 +813,6 @@ function karsilastir() {
     return;
   }
 
-  // Her market için ürün bazlı en ucuz fiyat tablosu
   const mkts = {};
   for (const item of sepet) {
     for (const f of (item.fiyatlar || []).filter(f => f.fiyat != null)) {
@@ -835,66 +822,128 @@ function karsilastir() {
         mkts[k].items[item.id] = f.fiyat;
     }
   }
+  const allKeys = Object.keys(mkts);
 
-  // BÖLÜM 1: tüm sepeti olan marketler, ucuzdan pahalıya
-  const tam = Object.values(mkts)
-    .filter(m => sepet.every(item => item.id in m.items))
-    .map(m => ({ name: m.name, total: sepet.reduce((s, item) => s + m.items[item.id], 0) }))
-    .sort((a, b) => a.total - b.total);
-
-  let b1Html;
-  if (!tam.length) {
-    b1Html = `<div class="cmp-none">Tüm ürünleri tek marketten alabileceğin bir market bulunamadı.</div>`;
-  } else {
-    b1Html = tam.map((m, i) => `
-      <div class="compare-row${i === 0 ? ' best' : ''}">
-        <div class="compare-rank">${i + 1}</div>
-        <div class="compare-info">
-          <div class="compare-mname">${m.name}</div>
-          <div class="compare-detail">Tüm ürünler bu markette mevcut</div>
-        </div>
-        <div class="compare-total">${tl(m.total)}</div>
-      </div>`).join('');
+  function evalCombo(keys) {
+    let total = 0;
+    const assignment = {};
+    for (const item of sepet) {
+      let best = null;
+      for (const k of keys) {
+        if (item.id in mkts[k].items) {
+          const p = mkts[k].items[item.id];
+          if (!best || p < best.price) best = { key: k, name: mkts[k].name, price: p };
+        }
+      }
+      if (!best) return null;
+      total += best.price;
+      assignment[item.id] = best;
+    }
+    return { total, assignment };
   }
 
-  // BÖLÜM 2: her ürün için en ucuz market
-  const combo = sepet.map(item => {
-    let bestM = null, bestP = Infinity;
-    for (const m of Object.values(mkts)) {
-      if (item.id in m.items && m.items[item.id] < bestP) {
-        bestP = m.items[item.id];
-        bestM = m.name;
-      }
+  function bestN(n) {
+    if (n > allKeys.length) return null;
+    let best = null;
+    for (const combo of _combos(allKeys, n)) {
+      const r = evalCombo(combo);
+      if (r && (!best || r.total < best.total)) best = r;
     }
-    return { ad: item.ad || item.marka || '?', market: bestM, fiyat: bestP === Infinity ? null : bestP };
-  });
-  const comboTotal = combo.reduce((s, c) => s + (c.fiyat || 0), 0);
+    return best;
+  }
 
-  const comboRows = combo.map(c => `
-    <div class="cmp-combo-row">
-      <span class="cmp-combo-urun">${c.ad}</span>
-      <span class="cmp-combo-market">${c.market || '—'}</span>
-      <span class="cmp-combo-fiyat">${tl(c.fiyat)}</span>
-    </div>`).join('');
+  const opts = [bestN(1), bestN(2), bestN(3)];
+  const base = opts[0] ? opts[0].total : null;
+  window._cmpState = { opts, mkts };
 
-  const enUcuzTek = tam.length ? tam[0].total : null;
-  const fark = enUcuzTek != null ? enUcuzTek - comboTotal : null;
-  const summaryHtml = `
-    <div class="cmp-summary">
-      ${enUcuzTek != null ? `<div class="cmp-summary-row"><span>En ucuz tek market</span><span>${tl(enUcuzTek)}</span></div>` : ''}
-      <div class="cmp-summary-row"><span>Karma alışveriş</span><span class="cmp-best">${tl(comboTotal)}</span></div>
-      ${fark != null && fark > 0.01 ? `<div class="cmp-summary-row cmp-fark"><span>Fark</span><span>💰 ${tl(fark)} tasarruf</span></div>` : ''}
-    </div>`;
+  const MFROM = {
+    a101: "A101'den", bim: "BİM'den", carrefour: "CarrefourSA'dan",
+    migros: "Migros'tan", sok: "ŞOK'tan", tarim_kredi: "T.Kredi'den"
+  };
+
+  function mktNames(opt) {
+    return [...new Set(Object.values(opt.assignment).map(a => a.name))].join(', ');
+  }
+
+  const labels = ['1 marketten al', '2 marketten al', '3 marketten al'];
+  const cards = opts.map((opt, i) => {
+    if (!opt) return `
+      <div class="cmp-opt unavail">
+        <div>
+          <div class="cmp-opt-title">${labels[i]}</div>
+          <div class="cmp-opt-sub">Yeterli market verisi yok</div>
+        </div>
+      </div>`;
+    const save = base != null && i > 0 && opt.total < base ? base - opt.total : null;
+    return `
+      <div class="cmp-opt" onclick="showKombo(${i})">
+        <div>
+          <div class="cmp-opt-title">${labels[i]}</div>
+          <div class="cmp-opt-sub">${mktNames(opt)}</div>
+        </div>
+        <div class="cmp-opt-right">
+          <div class="cmp-opt-price">${tl(opt.total)}</div>
+          <div class="cmp-opt-save">${save != null ? '💰 ' + tl(save) + ' tasarruf' : '&nbsp;'}</div>
+        </div>
+      </div>`;
+  }).join('');
 
   document.getElementById('compareOut').innerHTML = `
     <div class="compare-wrap">
-      <div class="cmp-section-title">Bölüm 1 — Tam Sepet Marketleri</div>
-      ${b1Html}
-      <div class="cmp-section-title">Bölüm 2 — En Ucuz Kombinasyon</div>
-      <div class="cmp-combo">${comboRows}</div>
-      <div class="cmp-combo-total">Bu kombinasyonla <b>${tl(comboTotal)}</b> ödersin</div>
-      ${summaryHtml}
+      <div class="cmp-sec-label">Kaç Markete Gitmeye Değer?</div>
+      <div class="cmp-opt-cards">${cards}</div>
+      <div id="cmpDetail" class="cmp-detail"></div>
     </div>`;
+}
+
+function showKombo(idx) {
+  const { opts, mkts } = window._cmpState || {};
+  if (!opts) return;
+  const opt = opts[idx];
+  if (!opt) return;
+
+  document.querySelectorAll('.cmp-opt').forEach((el, i) => {
+    el.classList.toggle('selected', i === idx);
+  });
+
+  const MFROM = {
+    a101: "A101'den", bim: "BİM'den", carrefour: "CarrefourSA'dan",
+    migros: "Migros'tan", sok: "ŞOK'tan", tarim_kredi: "T.Kredi'den"
+  };
+
+  const groups = {};
+  for (const item of sepet) {
+    const a = opt.assignment[item.id];
+    if (!a) continue;
+    if (!groups[a.key]) groups[a.key] = {
+      from: MFROM[a.key] || a.name + "'den",
+      items: [], total: 0
+    };
+    groups[a.key].items.push({
+      ad: (item.ad || item.marka || '?') + (item.agirlik_hacim ? ' ' + item.agirlik_hacim : ''),
+      fiyat: a.price
+    });
+    groups[a.key].total += a.price;
+  }
+
+  const base = opts[0] ? opts[0].total : null;
+  const save = base != null && idx > 0 && opt.total < base ? base - opt.total : null;
+
+  const blocks = Object.values(groups).map(g => `
+    <div class="cmp-mkt-block">
+      <div class="cmp-mkt-name">🛒 ${g.from} alacakların:</div>
+      ${g.items.map(it => `
+        <div class="cmp-mkt-item">
+          <span class="cmp-mkt-item-name">${it.ad}</span>
+          <span class="cmp-mkt-item-price">${tl(it.fiyat)}</span>
+        </div>`).join('')}
+      <div class="cmp-mkt-subtotal">Toplam: ${tl(g.total)}</div>
+    </div>`).join('');
+
+  document.getElementById('cmpDetail').innerHTML =
+    blocks +
+    `<div class="cmp-grand"><span>Genel Toplam</span><span>${tl(opt.total)}</span></div>` +
+    (save != null ? `<div class="cmp-grand cmp-grand-save"><span>💰 Tasarruf</span><span>${tl(save)}</span></div>` : '');
 }
 
 // ── VERİ YÜKLE ────────────────────────────────────────
