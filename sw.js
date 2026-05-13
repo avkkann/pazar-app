@@ -1,9 +1,12 @@
-const CACHE_NAME = 'pazar-cache-v1';
-const API_URLS = ['/api/urunler', '/api/hal'];
+const CACHE_NAME = 'pazar-cache-v2';
+const DATA_URLS = [
+  new URL('./data/urunler.json', self.location).href,
+  new URL('./data/hal.json', self.location).href,
+];
 
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(API_URLS))
+    caches.open(CACHE_NAME).then(cache => cache.addAll(DATA_URLS))
   );
   self.skipWaiting();
 });
@@ -19,7 +22,7 @@ self.addEventListener('activate', event => {
 
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
-  if (API_URLS.includes(url.pathname)) {
+  if (DATA_URLS.includes(url.href)) {
     event.respondWith(staleWhileRevalidate(event.request));
   }
 });

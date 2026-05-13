@@ -456,8 +456,17 @@ const KATEGORILER = [
   { slug:'icecek',      label:'İçecek',        emoji:'🥤', cats:['icecek'] },
   { slug:'temizlik',    label:'Temizlik',       emoji:'🧴', cats:['temizlik'] },
 ];
+const KATEGORI_MAP = {
+  'meyve-sebze': new Set(['Meyve', 'Sebze', 'Meyve ve Sebze']),
+  'et':          new Set(['Şarküteri', 'Beyaz Et', 'Kırmızı Et', 'Deniz Ürünleri', 'Sakatat', 'Et, Tavuk ve Balık']),
+  'sut':         new Set(['Süt', 'Yoğurt', 'Peynir', 'Tereyağı ve Margarin', 'Kaymak ve Krema', 'Yumurta', 'Zeytin', 'Bal ve Reçel', 'Helva Tahin ve Pekmez', 'Kahvaltılık Gevrek Bar ve Granola', 'Sürülebilir Ürünler ve Kahvaltılık Soslar', 'Ayran ve Kefir', 'Süt Ürünleri ve Kahvaltılık']),
+  'gida':        new Set(['Mantı Makarna ve Erişte', 'Pasta Malzemeleri', 'Hazır Gıda', 'Bakliyat', 'Ekmek ve Unlu Mamüller', 'Konserve', 'Salça', 'Ketçap Mayonez Sos ve Sirkeler', 'Sıvı Yağlar', 'Tuz Baharat ve Harçlar', 'Şeker ve Tatlandırıcılar', 'Turşu', 'Un ve İrmik', 'Bebek Mamaları', 'Temel Gıda']),
+  'icecek':      new Set(['Meyve Suyu', 'Su', 'Maden Suyu', 'Çay ve Bitki Çayları', 'Gazsız İçecekler', 'Gazlı İçecekler', 'Kahve', 'İçecek']),
+  'temizlik':    new Set(['Bulaşık Temizlik Ürünleri', 'Kağıt Havlu', 'Kağıt Peçete ve Mendil', 'Genel Temizlik Ürünleri', 'Hijyenik Ped', 'Çamaşır Temizlik Ürünleri', 'Saç Bakım', 'Cilt Bakımı', 'Parfüm Deodorant Kolonya ve Kokular', 'Mutfak Sarf Malzemeleri', 'Temizlik ve Kişisel Bakım']),
+};
+const PAGE_SIZE = 48;
 // ── DURUM ─────────────────────────────────────────────
-let urunler = [], halMap = {};
+let urunler = [], halMap = {}, allUrunler = [];
 let currentKategori = null, currentSayfa = 1, toplamSayfa = 1, yukleniyor = false;
 let sepet   = JSON.parse(localStorage.getItem('pazar_sepet') || '[]');
 
@@ -481,6 +490,18 @@ function norm(s) {
     .replace(/ğ/g,'g').replace(/ü/g,'u').replace(/ş/g,'s')
     .replace(/ı/g,'i').replace(/ö/g,'o').replace(/ç/g,'c')
     .replace(/[^a-z0-9 ]/g,'').trim();
+}
+
+function slimUrun(u) {
+  const fiyatlar = (u.fiyatlar || [])
+    .filter(f => f.fiyat != null)
+    .sort((a, b) => a.fiyat - b.fiyat)
+    .slice(0, 3);
+  return {
+    id: u.id, ad: u.ad, marka: u.marka,
+    agirlik_hacim: u.agirlik_hacim, ana_kategori: u.ana_kategori,
+    resim: u.resim, en_dusuk_fiyat: u.en_dusuk_fiyat, fiyatlar
+  };
 }
 
 function tl(v) {
@@ -626,18 +647,23 @@ async function loadKategoriSayfasi(slug, sayfa) {
   if (yukleniyor) return;
   yukleniyor = true;
   try {
-    const res  = await fetch(`/api/urunler?kategori=${slug}&sayfa=${sayfa}`);
-    const data = await res.json();
-    toplamSayfa = data.sayfa_sayisi;
-    urunler = urunler.concat(data.urunler);
+    const catSet = KATEGORI_MAP[slug];
+    const filtered = catSet
+      ? allUrunler.filter(u => catSet.has(u.ana_kategori))
+      : allUrunler;
+    const toplam = filtered.length;
+    toplamSayfa = Math.max(1, Math.ceil(toplam / PAGE_SIZE));
+    const start = (sayfa - 1) * PAGE_SIZE;
+    const pageItems = filtered.slice(start, start + PAGE_SIZE).map(slimUrun);
+    urunler = urunler.concat(pageItems);
     const list = document.getElementById('productList');
     if (sayfa === 1) {
-      document.getElementById('countNum').textContent = data.toplam;
-      list.innerHTML = data.urunler.length
-        ? data.urunler.map(cardHTML).join('')
+      document.getElementById('countNum').textContent = toplam;
+      list.innerHTML = pageItems.length
+        ? pageItems.map(cardHTML).join('')
         : `<div class="state-msg"><span class="icon">🔍</span>Bu kategoride ürün bulunamadı.</div>`;
     } else {
-      list.insertAdjacentHTML('beforeend', data.urunler.map(cardHTML).join(''));
+      list.insertAdjacentHTML('beforeend', pageItems.map(cardHTML).join(''));
     }
   } catch(e) {
     console.error('Veri yükleme hatası:', e);
@@ -664,20 +690,18 @@ document.getElementById('search').addEventListener('input', function() {
   document.getElementById('home-search').style.display = q ? 'block' : 'none';
   if (!q) return;
   clearTimeout(_searchTimer);
-  _searchTimer = setTimeout(async () => {
+  _searchTimer = setTimeout(() => {
     document.getElementById('searchList').innerHTML = skeletonHTML(3);
-    try {
-      const res  = await fetch(`/api/urunler/ara?q=${encodeURIComponent(q)}`);
-      const data = await res.json();
-      document.getElementById('searchCount').textContent = data.toplam;
-      document.getElementById('searchList').innerHTML = data.urunler.length
-        ? data.urunler.map(cardHTML).join('')
-        : `<div class="state-msg"><span class="icon">🔍</span>Sonuç bulunamadı.</div>`;
-      urunler = urunler.concat(data.urunler.filter(u => !urunler.find(x => x.id === u.id)));
-    } catch(e) {
-      document.getElementById('searchList').innerHTML =
-        `<div class="state-msg"><span class="icon">⚠️</span>Arama hatası.</div>`;
-    }
+    const qn = norm(q);
+    const results = allUrunler
+      .filter(u => norm(u.ad).includes(qn) || norm(u.marka || '').includes(qn))
+      .slice(0, 96)
+      .map(slimUrun);
+    document.getElementById('searchCount').textContent = results.length;
+    document.getElementById('searchList').innerHTML = results.length
+      ? results.map(cardHTML).join('')
+      : `<div class="state-msg"><span class="icon">🔍</span>Sonuç bulunamadı.</div>`;
+    urunler = urunler.concat(results.filter(u => !urunler.find(x => x.id === u.id)));
   }, 350);
 });
 
@@ -801,17 +825,21 @@ function karsilastir() {
 
 // ── VERİ YÜKLE ────────────────────────────────────────
 function loadData() {
-  return fetch('/api/hal').then(r => r.json()).then(data => {
-    if (data.urunler) {
+  return Promise.all([
+    fetch('./data/hal.json').then(r => r.json()),
+    fetch('./data/urunler.json').then(r => r.json()),
+  ]).then(([halData, urunlerData]) => {
+    if (halData.urunler) {
       halMap = {};
-      for (const u of data.urunler) {
+      for (const u of halData.urunler) {
         const k = norm(u.ad);
         if (!halMap[k] || (u.fiyat != null && u.fiyat < (halMap[k].fiyat ?? 9999))) halMap[k] = u;
       }
-      const bt = data.bulten_tarihi || '';
+      const bt = halData.bulten_tarihi || '';
       if (bt) document.getElementById('halDate').innerHTML =
         `<span class="hal-badge">Hal: ${bt.slice(0, 10)}</span>`;
     }
+    if (urunlerData.urunler) allUrunler = urunlerData.urunler;
     renderCatGrid();
     saveSepet();
   }).catch(() => { renderCatGrid(); saveSepet(); });
@@ -827,7 +855,7 @@ window.addEventListener('load', function() {
 
 // ── SERVICE WORKER ────────────────────────────────────
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js');
+  navigator.serviceWorker.register('./sw.js');
   let _swUpdateTimer = null;
   navigator.serviceWorker.addEventListener('message', event => {
     if (event.data?.type !== 'DATA_UPDATED') return;

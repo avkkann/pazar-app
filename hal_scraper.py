@@ -15,9 +15,9 @@ from bs4 import BeautifulSoup
 SOURCE_URL  = "https://antalyakomisyonculardernegi.com/hal-fiyatlari/1"
 
 _BASE_DIR   = os.path.dirname(os.path.abspath(__file__))
-DATA_DIR    = _BASE_DIR
+DATA_DIR    = os.path.join(_BASE_DIR, "data")
 os.makedirs(DATA_DIR, exist_ok=True)
-OUTPUT_FILE = os.path.join(DATA_DIR, "hal_fiyatlari.json")
+OUTPUT_FILE = os.path.join(DATA_DIR, "hal.json")
 MAX_RETRIES = 3
 
 HEADERS = {
