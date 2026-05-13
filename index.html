@@ -300,6 +300,42 @@
     .compare-detail { font-size: .67rem; color: var(--text-muted); margin-top: 2px; }
     .compare-total { font-size: .95rem; font-weight: 800; color: var(--text); flex-shrink: 0; }
     .compare-row.best .compare-total { color: #065F46; }
+    .cmp-section-title {
+      font-size: .68rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .08em; color: var(--text-muted); margin: 16px 0 10px;
+    }
+    .cmp-section-title:first-child { margin-top: 0; }
+    .cmp-none {
+      background: #FEF3C7; border: 1px solid #FDE68A; border-radius: 12px;
+      padding: 11px 14px; font-size: .8rem; color: #92400E; font-weight: 500;
+      margin-bottom: 8px;
+    }
+    .cmp-combo { margin-bottom: 4px; }
+    .cmp-combo-row {
+      display: flex; align-items: center; gap: 8px;
+      padding: 9px 0; border-bottom: 1px solid var(--border); font-size: .82rem;
+    }
+    .cmp-combo-row:last-child { border-bottom: none; }
+    .cmp-combo-urun { flex: 1; min-width: 0; color: var(--text); font-weight: 500;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .cmp-combo-market { font-size: .72rem; color: var(--text-muted); white-space: nowrap; }
+    .cmp-combo-fiyat { font-weight: 700; color: var(--text); flex-shrink: 0; }
+    .cmp-combo-total {
+      font-size: .85rem; color: var(--text-muted); text-align: center;
+      padding: 8px 0 4px;
+    }
+    .cmp-combo-total b { color: #065F46; }
+    .cmp-summary {
+      background: var(--bg); border-radius: 14px; padding: 12px 14px;
+      margin-top: 10px; border: 1px solid var(--border);
+    }
+    .cmp-summary-row {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: .82rem; color: var(--text); padding: 4px 0;
+    }
+    .cmp-summary-row .cmp-best { font-weight: 800; color: #065F46; }
+    .cmp-fark { margin-top: 6px; padding-top: 8px; border-top: 1px solid var(--border); }
+    .cmp-fark span:last-child { font-weight: 700; color: #065F46; }
 
     /* ── SKELETON LOADING ── */
     .skeleton {
@@ -783,44 +819,81 @@ function renderSepet() {
 
 // ── KARŞILAŞTIRMA ─────────────────────────────────────
 function karsilastir() {
-  const mkts = {};
-  for (const item of sepet) {
-    const byM = {};
-    for (const f of (item.fiyatlar||[]).filter(f => f.fiyat != null)) {
-      const k = f.market || 'diger';
-      if (!byM[k] || f.fiyat < byM[k].fiyat) byM[k] = f;
-    }
-    for (const [k, f] of Object.entries(byM)) {
-      if (!mkts[k]) mkts[k] = { name: MARKET_NAMES[k] || k, total: 0, count: 0 };
-      mkts[k].total += f.fiyat;
-      mkts[k].count += 1;
-    }
-  }
-  const sorted = Object.values(mkts).sort((a,b) => a.total - b.total);
-  if (!sorted.length) {
+  if (!sepet.length) {
     document.getElementById('compareOut').innerHTML =
-      `<div class="state-msg">Market fiyat verisi bulunamadı.</div>`;
+      `<div class="state-msg">Sepetiniz boş.</div>`;
     return;
   }
-  const best    = sorted[0];
-  const worst   = sorted[sorted.length - 1];
-  const saving  = worst.total - best.total;
-  const savHtml = saving > 0.01
-    ? `<div class="compare-savings">💡 <span><b>${best.name}</b>'ten alırsan <b>${tl(saving)} tasarruf</b> edersin</span></div>`
-    : '';
-  const rows = sorted.map((m, i) => `
-    <div class="compare-row${i === 0 ? ' best' : ''}">
-      <div class="compare-rank">${i + 1}</div>
-      <div class="compare-info">
-        <div class="compare-mname">${m.name}</div>
-        <div class="compare-detail">${m.count === sepet.length ? 'Tüm ürünler mevcut' : m.count + '/' + sepet.length + ' ürün'}</div>
-      </div>
-      <div class="compare-total">Toplam: ${tl(m.total)}</div>
+
+  // Her market için ürün bazlı en ucuz fiyat tablosu
+  const mkts = {};
+  for (const item of sepet) {
+    for (const f of (item.fiyatlar || []).filter(f => f.fiyat != null)) {
+      const k = f.market || 'diger';
+      if (!mkts[k]) mkts[k] = { name: MARKET_NAMES[k] || k, items: {} };
+      if (!(item.id in mkts[k].items) || f.fiyat < mkts[k].items[item.id])
+        mkts[k].items[item.id] = f.fiyat;
+    }
+  }
+
+  // BÖLÜM 1: tüm sepeti olan marketler, ucuzdan pahalıya
+  const tam = Object.values(mkts)
+    .filter(m => sepet.every(item => item.id in m.items))
+    .map(m => ({ name: m.name, total: sepet.reduce((s, item) => s + m.items[item.id], 0) }))
+    .sort((a, b) => a.total - b.total);
+
+  let b1Html;
+  if (!tam.length) {
+    b1Html = `<div class="cmp-none">Tüm ürünleri tek marketten alabileceğin bir market bulunamadı.</div>`;
+  } else {
+    b1Html = tam.map((m, i) => `
+      <div class="compare-row${i === 0 ? ' best' : ''}">
+        <div class="compare-rank">${i + 1}</div>
+        <div class="compare-info">
+          <div class="compare-mname">${m.name}</div>
+          <div class="compare-detail">Tüm ürünler bu markette mevcut</div>
+        </div>
+        <div class="compare-total">${tl(m.total)}</div>
+      </div>`).join('');
+  }
+
+  // BÖLÜM 2: her ürün için en ucuz market
+  const combo = sepet.map(item => {
+    let bestM = null, bestP = Infinity;
+    for (const m of Object.values(mkts)) {
+      if (item.id in m.items && m.items[item.id] < bestP) {
+        bestP = m.items[item.id];
+        bestM = m.name;
+      }
+    }
+    return { ad: item.ad || item.marka || '?', market: bestM, fiyat: bestP === Infinity ? null : bestP };
+  });
+  const comboTotal = combo.reduce((s, c) => s + (c.fiyat || 0), 0);
+
+  const comboRows = combo.map(c => `
+    <div class="cmp-combo-row">
+      <span class="cmp-combo-urun">${c.ad}</span>
+      <span class="cmp-combo-market">${c.market || '—'}</span>
+      <span class="cmp-combo-fiyat">${tl(c.fiyat)}</span>
     </div>`).join('');
+
+  const enUcuzTek = tam.length ? tam[0].total : null;
+  const fark = enUcuzTek != null ? enUcuzTek - comboTotal : null;
+  const summaryHtml = `
+    <div class="cmp-summary">
+      ${enUcuzTek != null ? `<div class="cmp-summary-row"><span>En ucuz tek market</span><span>${tl(enUcuzTek)}</span></div>` : ''}
+      <div class="cmp-summary-row"><span>Karma alışveriş</span><span class="cmp-best">${tl(comboTotal)}</span></div>
+      ${fark != null && fark > 0.01 ? `<div class="cmp-summary-row cmp-fark"><span>Fark</span><span>💰 ${tl(fark)} tasarruf</span></div>` : ''}
+    </div>`;
+
   document.getElementById('compareOut').innerHTML = `
     <div class="compare-wrap">
-      <div class="compare-title">Market Karşılaştırması</div>
-      ${savHtml}${rows}
+      <div class="cmp-section-title">Bölüm 1 — Tam Sepet Marketleri</div>
+      ${b1Html}
+      <div class="cmp-section-title">Bölüm 2 — En Ucuz Kombinasyon</div>
+      <div class="cmp-combo">${comboRows}</div>
+      <div class="cmp-combo-total">Bu kombinasyonla <b>${tl(comboTotal)}</b> ödersin</div>
+      ${summaryHtml}
     </div>`;
 }
 
