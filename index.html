@@ -318,6 +318,54 @@
     }
     .cmp-grand-save { background: #ECFDF5; border-color: #D1FAE5; color: #065F46; }
 
+    /* ── DETAY EKRANI ── */
+    .detay-img-wrap {
+      display: flex; justify-content: center; align-items: center;
+      background: var(--bg); padding: 24px 16px; min-height: 180px; font-size: 5rem;
+    }
+    .detay-img-wrap img {
+      max-width: 180px; max-height: 180px; object-fit: contain; border-radius: 12px;
+    }
+    .detay-info { padding: 16px 16px 4px; }
+    .detay-name { font-size: 1.15rem; font-weight: 800; color: var(--text); line-height: 1.3; }
+    .detay-unit { font-size: .82rem; color: var(--text-muted); margin-top: 4px; font-weight: 500; }
+    .detay-marka { font-size: .78rem; color: var(--text-muted); margin-top: 2px; }
+    .detay-section { padding: 14px 16px 0; }
+    .detay-sec-label {
+      font-size: .65rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .08em; color: var(--text-muted); margin-bottom: 10px;
+    }
+    .detay-hal-box {
+      background: #ECFDF5; border: 1px solid #D1FAE5; border-radius: 14px; padding: 14px 16px;
+    }
+    .detay-hal-price { font-size: 2rem; font-weight: 800; color: #065F46; line-height: 1.1; }
+    .detay-hal-desc { font-size: .75rem; color: #047857; margin-top: 5px; }
+    .detay-mkt-list {
+      background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; overflow: hidden;
+    }
+    .detay-mkt-row {
+      display: flex; align-items: center; gap: 10px; padding: 11px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .detay-mkt-row:last-child { border-bottom: none; }
+    .detay-mkt-row.best { background: #F0FDF4; }
+    .detay-mkt-store { flex: 1; font-size: .72rem; color: var(--text-muted); }
+    .detay-mkt-price { font-size: .88rem; font-weight: 700; color: var(--text); flex-shrink: 0; }
+    .detay-mkt-row.best .detay-mkt-price { color: #059669; font-size: .95rem; }
+    .detay-mkt-row.worst .detay-mkt-price { text-decoration: line-through; color: var(--text-muted); font-weight: 500; }
+    .detay-btn-ekle {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      margin: 20px 16px 24px; padding: 15px; border: none; border-radius: 14px;
+      width: calc(100% - 32px); background: var(--primary); color: #fff;
+      font-size: 1rem; font-weight: 700; cursor: pointer;
+      font-family: 'Inter', sans-serif; transition: background .18s;
+    }
+    .detay-btn-ekle.added { background: #059669; }
+    .detay-btn-ekle svg {
+      width: 18px; height: 18px; stroke: currentColor; fill: none;
+      stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round;
+    }
+
     /* ── SKELETON LOADING ── */
     .skeleton {
       background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
@@ -436,6 +484,17 @@
 
 </div>
 
+<!-- ══ EKRAN 4: DETAY ══ -->
+<div id="screen-detay" class="screen">
+  <header class="header-sub">
+    <button class="back-btn" onclick="goBack()">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <h2>Ürün Detayı</h2>
+  </header>
+  <div id="detayContent"></div>
+</div>
+
 <!-- ALT NAV -->
 <nav class="bottom-nav">
   <button class="nav-btn active" id="navHome" onclick="showScreen('screen-home')">
@@ -487,6 +546,7 @@ const PAGE_SIZE = 48;
 let urunler = [], halMap = {}, allUrunler = [];
 let currentKategori = null, currentSayfa = 1, toplamSayfa = 1, yukleniyor = false;
 let sepet   = JSON.parse(localStorage.getItem('pazar_sepet') || '[]');
+let _prevScreen = 'screen-home';
 
 // ── NAVİGASYON ────────────────────────────────────────
 function showScreen(id) {
@@ -500,6 +560,87 @@ function showScreen(id) {
 function goSepet() {
   renderSepet();
   showScreen('screen-sepet');
+}
+
+function goBack() {
+  if (_prevScreen === 'screen-sepet') { renderSepet(); }
+  showScreen(_prevScreen);
+}
+
+function openDetay(urunId) {
+  const screens = ['screen-home', 'screen-cat', 'screen-sepet'];
+  _prevScreen = screens.find(id => {
+    const el = document.getElementById(id);
+    return el && el.style.display !== 'none';
+  }) || 'screen-home';
+
+  let u = allUrunler.find(x => String(x.id) === String(urunId));
+  if (!u) u = sepet.find(s => String(s.id) === String(urunId));
+  if (!u) return;
+
+  const hal      = halEsles(u);
+  const halFiyat = hal?.fiyat ?? null;
+  const mktler   = (u.fiyatlar || []).filter(f => f.fiyat != null).sort((a, b) => a.fiyat - b.fiyat);
+  const emoji    = KAT_EMOJI[ustKategori(u.ana_kategori)] || '📦';
+  const imgHtml  = u.resim
+    ? `<img src="${u.resim}" alt="" loading="lazy" onerror="this.outerHTML='${emoji}'">`
+    : emoji;
+
+  const halSection = halFiyat != null ? `
+    <div class="detay-section">
+      <div class="detay-sec-label">Hal Fiyatı</div>
+      <div class="detay-hal-box">
+        <div class="detay-hal-price">${tl(halFiyat)}</div>
+        <div class="detay-hal-desc">Toptancı hal fiyatı · ${hal.birim || 'Kg'}</div>
+      </div>
+    </div>` : '';
+
+  const mktRows = mktler.map((f, i) => {
+    const isFirst = i === 0;
+    const isLast  = i === mktler.length - 1 && mktler.length > 1;
+    return `<div class="detay-mkt-row${isFirst ? ' best' : isLast ? ' worst' : ''}">
+      <span class="m-tag m-${f.market || 'default'}">${MARKET_NAMES[f.market] || f.market || '?'}</span>
+      <span class="detay-mkt-store">${f.depo_adi || ''}</span>
+      <span class="detay-mkt-price">${tl(f.fiyat)}</span>
+    </div>`;
+  }).join('');
+
+  const inCart = sepet.some(s => String(s.id) === String(urunId));
+  const btnHtml = `<button id="detayEkleBtn" class="detay-btn-ekle${inCart ? ' added' : ''}"
+    onclick="toggleSepet('${u.id}'); renderDetayBtn('${u.id}')">
+    ${inCart
+      ? `<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Sepette`
+      : `<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Sepete Ekle`}
+  </button>`;
+
+  document.getElementById('detayContent').innerHTML = `
+    <div class="detay-img-wrap">${imgHtml}</div>
+    <div class="detay-info">
+      <div class="detay-name">${u.ad}</div>
+      ${u.agirlik_hacim ? `<div class="detay-unit">${u.agirlik_hacim}</div>` : ''}
+      ${u.marka ? `<div class="detay-marka">${u.marka}</div>` : ''}
+    </div>
+    ${halSection}
+    <div class="detay-section">
+      <div class="detay-sec-label">Market Fiyatları</div>
+      <div class="detay-mkt-list">
+        ${mktRows || '<div style="padding:12px 14px;font-size:.82rem;color:var(--text-muted)">Market verisi yok</div>'}
+      </div>
+    </div>
+    ${btnHtml}`;
+
+  showScreen('screen-detay');
+  document.getElementById('screen-detay').scrollTop = 0;
+}
+
+function renderDetayBtn(urunId) {
+  const btn = document.getElementById('detayEkleBtn');
+  if (!btn) return;
+  const inCart = sepet.some(s => String(s.id) === String(urunId));
+  btn.className = 'detay-btn-ekle' + (inCart ? ' added' : '');
+  btn.innerHTML = inCart
+    ? `<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Sepette`
+    : `<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Sepete Ekle`;
 }
 
 // ── YARDIMCILAR ───────────────────────────────────────
@@ -611,14 +752,14 @@ function cardHTML(u) {
   const _addMkt   = mktler[0] ? (MARKET_NAMES[mktler[0].market] || mktler[0].market || '?') : 'Hal';
   const _addAd    = u.ad.replace(/'/g, '&#39;');
   const ekle   = `<div class="card-footer">
-    <button class="btn-ekle${inCart?' added':''}" data-pid="${u.id}" onclick="toggleSepet('${u.id}')">
+    <button class="btn-ekle${inCart?' added':''}" data-pid="${u.id}" onclick="event.stopPropagation(); toggleSepet('${u.id}')">
       ${inCart
         ? `<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Eklendi`
         : `<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Sepete Ekle`}
     </button>
   </div>`;
 
-  return `<div class="card" data-urun-id="${u.id}">
+  return `<div class="card" data-urun-id="${u.id}" onclick="openDetay('${u.id}')" style="cursor:pointer">
     <div class="card-main">
       <div class="card-img">${img}</div>
       <div class="card-info">
@@ -781,14 +922,14 @@ function renderSepet() {
       ? `<div style="text-align:right;color:#0F5132;font-size:.82rem;font-weight:700;flex-shrink:0;margin-right:6px;line-height:1.4">
            ${tl(mktF.fiyat)}<br><span style="font-size:.65rem;font-weight:500">${MARKET_NAMES[mktF.market]||mktF.market||'?'}</span>
          </div>` : '';
-    return `<div class="cart-item">
+    return `<div class="cart-item" onclick="openDetay('${u.id}')" style="cursor:pointer">
       <div class="cart-item-img">${img}</div>
       <div class="cart-item-info">
         <div class="cart-item-name">${u.ad}</div>
         ${sub ? `<div class="cart-item-sub">${sub}</div>` : ''}
       </div>
       ${fiyatStr}
-      <button class="cart-del" onclick="removeFromSepet('${u.id}')">
+      <button class="cart-del" onclick="event.stopPropagation(); removeFromSepet('${u.id}')">
         <svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>
       </button>
     </div>`;
