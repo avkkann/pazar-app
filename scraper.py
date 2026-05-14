@@ -8,6 +8,7 @@ import os
 import time
 import requests
 import urllib3
+import concurrent.futures
 from datetime import datetime
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -20,15 +21,16 @@ os.makedirs(DATA_DIR, exist_ok=True)
 OUTPUT_FILE = os.path.join(DATA_DIR, "urunler.json")
 PAGE_SIZE   = 48
 MAX_RETRIES = 3
+MAX_WORKERS = 3
 
-# (slug, api_keyword) çiftleri
+# (slug, api_keyword, dosya_adi) üçlüleri
 CATEGORIES = [
-    ("meyve-ve-sebze",              "Meyve ve Sebze"),
-    ("et-tavuk-balik",              "Et, Tavuk ve Balık"),
-    ("sut-urunleri-ve-kahvaltilik", "Süt Ürünleri ve Kahvaltılık"),
-    ("temel-gida",                  "Temel Gıda"),
-    ("icecek",                      "İçecek"),
-    ("temizlik-ve-kisisel-bakim",   "Temizlik ve Kişisel Bakım"),
+    ("meyve-ve-sebze",              "Meyve ve Sebze",                "urunler_meyve"),
+    ("et-tavuk-balik",              "Et, Tavuk ve Balık",            "urunler_et"),
+    ("sut-urunleri-ve-kahvaltilik", "Süt Ürünleri ve Kahvaltılık",   "urunler_sut"),
+    ("temel-gida",                  "Temel Gıda",                    "urunler_gida"),
+    ("icecek",                      "İçecek",                        "urunler_icecek"),
+    ("temizlik-ve-kisisel-bakim",   "Temizlik ve Kişisel Bakım",     "urunler_temizlik"),
 ]
 
 HEADERS = {
@@ -76,6 +78,14 @@ def get_cookies_via_browser(slug):
     return cookies
 
 
+def make_session(cookies=None):
+    session = requests.Session()
+    session.headers.update(HEADERS)
+    if cookies:
+        session.cookies.update(cookies)
+    return session
+
+
 def fetch_page(session, keyword, page_num):
     payload = {
         "menuCategory": True,
@@ -85,7 +95,7 @@ def fetch_page(session, keyword, page_num):
     }
     for attempt in range(1, MAX_RETRIES + 1):
         try:
-            resp = session.post(API_URL, json=payload, timeout=30, verify=False)
+            resp = session.post(API_URL, json=payload, timeout=60, verify=False)
             resp.raise_for_status()
             return resp.json()
         except Exception as e:
@@ -126,7 +136,8 @@ def parse_product(item, kategori_adi):
     }
 
 
-def scrape_category(session, slug, keyword):
+def scrape_category(cookies, slug, keyword, dosya_adi):
+    session = make_session(cookies)
     print(f"\n--- Kategori: {keyword} ---")
 
     data = fetch_page(session, keyword, 0)
@@ -151,9 +162,13 @@ def scrape_category(session, slug, keyword):
             break
         products.extend(parse_product(item, keyword) for item in page_items)
         page += 1
-        time.sleep(1)
+        time.sleep(0.5)
 
-    print(f"  Tamamlandi: {len(products)} urun")
+    # Kategori için ayrı JSON kaydet
+    cat_file = os.path.join(DATA_DIR, f"{dosya_adi}.json")
+    with open(cat_file, "w", encoding="utf-8") as f:
+        json.dump(products, f, ensure_ascii=False, indent=2)
+    print(f"  Tamamlandi: {len(products)} urun -> {cat_file}")
     return products
 
 
@@ -163,30 +178,43 @@ def scrape():
     print(f"Baslangic: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 60)
 
-    session = requests.Session()
-    session.headers.update(HEADERS)
+    # Eski birlesik dosyayi sil
+    if os.path.exists(OUTPUT_FILE):
+        os.remove(OUTPUT_FILE)
+        print(f"Silindi: {OUTPUT_FILE}")
 
     # Cookie olmadan dene; başarısız olursa tarayıcı ile al
     print("\nCookie olmadan API deneniyor...")
-    test = fetch_page(session, CATEGORIES[0][1], 0)
+    test_session = make_session()
+    test = fetch_page(test_session, CATEGORIES[0][1], 0)
+    cookies = {}
     if not test or not test.get("content"):
         try:
             print("Cookie gerekli, tarayici baslatiliyor...")
             cookies = get_cookies_via_browser(CATEGORIES[0][0])
-            session.cookies.update(cookies)
         except Exception as e:
             print(f"[UYARI] Tarayici kullanilamiyor: {e}")
             print("Cookie olmadan devam ediliyor...")
 
     all_products = []
-    for slug, keyword in CATEGORIES:
-        products = scrape_category(session, slug, keyword)
-        all_products.extend(products)
-        time.sleep(2)
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+        futures = {
+            executor.submit(scrape_category, cookies, slug, keyword, dosya_adi): keyword
+            for slug, keyword, dosya_adi in CATEGORIES
+        }
+        for future in concurrent.futures.as_completed(futures):
+            keyword = futures[future]
+            try:
+                products = future.result()
+                all_products.extend(products)
+            except Exception as e:
+                print(f"[HATA] {keyword}: {e}")
+            time.sleep(1)
 
     output = {
         "kaynak":       "marketfiyati.org.tr",
-        "kategoriler":  [kw for _, kw in CATEGORIES],
+        "kategoriler":  [kw for _, kw, _ in CATEGORIES],
         "cekme_tarihi": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "toplam_urun":  len(all_products),
         "urunler":      all_products,
