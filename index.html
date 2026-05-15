@@ -387,6 +387,34 @@
     .skeleton-line.short { width: 55%; }
     .skeleton-line.price { height: 20px; width: 40%; }
 
+    /* ── KOMPAKT KART ── */
+    .card { max-height: 90px; }
+    .card-row {
+      display: flex; align-items: center; gap: 10px; padding: 10px 12px;
+    }
+    .card-img { width: 60px; height: 60px; }
+    .card-name {
+      font-size: .82rem; font-weight: 700; color: var(--text);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .card-hal-badge { font-size: .6rem; color: #059669; font-weight: 600; }
+    .card-mid { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+    .card-right {
+      display: flex; flex-direction: column; align-items: flex-end;
+      justify-content: space-between; height: 60px; flex-shrink: 0;
+    }
+    .card-price { font-size: 1rem; font-weight: 800; color: var(--primary); white-space: nowrap; line-height: 1; }
+    .card-mkt-lbl { font-size: .6rem; color: var(--text-muted); font-weight: 500; white-space: nowrap; }
+    .btn-ekle {
+      width: 28px; height: 28px; border: none; border-radius: 8px;
+      background: var(--primary); color: #fff;
+      font-size: 1.1rem; font-weight: 700; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .18s;
+    }
+    .btn-ekle.added { background: #059669; }
+    .btn-ekle:active { transform: scale(.9); }
+
     /* ── BOŞLUK / MESAJ ── */
     .state-msg {
       text-align: center; padding: 60px 24px;
@@ -721,57 +749,35 @@ async function loadCat(slug) {
 
 // ── KART HTML ─────────────────────────────────────────
 function cardHTML(u) {
-  const hal      = halEsles(u);
-  const halFiyat = hal?.fiyat ?? null;
-  const mktler   = (u.market_fiyatlari || []).filter(f => f.fiyat != null).sort((a,b) => a.fiyat - b.fiyat);
-  const minMkt   = mktler[0]?.fiyat ?? null;
-  const emoji    = KAT_EMOJI[ustKategori(u.ana_kategori)] || '📦';
-  const img      = u.resim
+  const mktler  = (u.market_fiyatlari || []).filter(f => f.fiyat != null).sort((a,b) => a.fiyat - b.fiyat);
+  const cheapest = mktler[0];
+  const emoji   = KAT_EMOJI[ustKategori(u.ana_kategori)] || '📦';
+  const img     = u.resim
     ? `<img src="${u.resim}" alt="" loading="lazy" onerror="this.outerHTML='${emoji}'">`
     : emoji;
 
-  const halBlock = halFiyat != null
-    ? `<div class="hal-block">
-        <div class="hal-label">Hal Fiyatı</div>
-        <div><span class="hal-price">${tl(halFiyat)}</span><span class="hal-unit-text">/ ${hal.birim||'Kg'}</span></div>
-       </div>`
-    : `<p class="hal-none">Hal verisi yok</p>`;
-
-  const mktRows = mktler.slice(0,4).map((f,i) =>
-    `<div class="market-row">
-      <span class="m-tag m-${f.market||'default'}">${MARKET_NAMES[f.market]||f.market||'?'}</span>
-      <span class="m-price${i===0?' best':''}">${tl(f.fiyat)}</span>
-    </div>`).join('');
-
-  let savings = '';
-  if (halFiyat != null && minMkt != null) {
-    const d = minMkt - halFiyat;
-    if      (d >  0.01) savings = `<div class="savings-bar cheaper">✓ Halde <b>${tl(d)} daha ucuz</b> · Market: ${tl(minMkt)}</div>`;
-    else if (d < -0.01) savings = `<div class="savings-bar pricier">↓ Market <b>${tl(-d)} daha ucuz</b> · Hal: ${tl(halFiyat)}</div>`;
-    else                savings = `<div class="savings-bar equal">≈ Fiyatlar birbirine yakın</div>`;
-  }
+  const hal = halEsles(u);
+  const halFiyat = hal?.fiyat ?? null;
+  const halBadge = halFiyat != null
+    ? `<span class="card-hal-badge">Hal: ${tl(halFiyat)}</span>` : '';
 
   const inCart = sepet.some(s => s._id === u._id);
   return `<div class="card" data-urun-id="${u._id}" onclick="openDetay('${u._id}')" style="cursor:pointer">
-    <div class="card-main">
+    <div class="card-row">
       <div class="card-img">${img}</div>
-      <div class="card-info">
+      <div class="card-mid">
         <div class="card-name">${u.ad}</div>
         ${u.agirlik_hacim ? `<span class="card-unit">${u.agirlik_hacim}</span>` : ''}
-        ${halBlock}
+        ${halBadge}
       </div>
-    </div>
-    <div class="market-section">
-      <div class="market-section-label">Market Fiyatları</div>
-      ${mktRows || '<p class="hal-none">Market verisi yok</p>'}
-    </div>
-    ${savings}
-    <div class="card-footer">
-      <button class="btn-ekle${inCart?' added':''}" data-pid="${u._id}" onclick="event.stopPropagation(); toggleSepet('${u._id}')">
-        ${inCart
-          ? `<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Eklendi`
-          : `<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Sepete Ekle`}
-      </button>
+      <div class="card-right">
+        <div class="card-price">${cheapest ? tl(cheapest.fiyat) : '—'}</div>
+        <div class="card-mkt-lbl">${cheapest ? (MARKET_NAMES[cheapest.market] || cheapest.market || '') : ''}</div>
+        <button class="btn-ekle${inCart ? ' added' : ''}" data-pid="${u._id}"
+          onclick="event.stopPropagation(); toggleSepet('${u._id}')">
+          ${inCart ? '✓' : '+'}
+        </button>
+      </div>
     </div>
   </div>`;
 }
@@ -895,9 +901,7 @@ function toggleSepet(id) {
 function setEkleBtns(id, inCart) {
   document.querySelectorAll(`.btn-ekle[data-pid="${id}"]`).forEach(btn => {
     btn.className = 'btn-ekle' + (inCart ? ' added' : '');
-    btn.innerHTML = inCart
-      ? `<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Eklendi`
-      : `<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Sepete Ekle`;
+    btn.textContent = inCart ? '✓' : '+';
   });
 }
 
