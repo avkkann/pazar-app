@@ -510,7 +510,7 @@
     <button class="filter-pill"        data-market="a101"        onclick="setMarketFilter('a101')">A101</button>
     <button class="filter-pill"        data-market="bim"         onclick="setMarketFilter('bim')">BİM</button>
     <button class="filter-pill"        data-market="migros"      onclick="setMarketFilter('migros')">Migros</button>
-    <button class="filter-pill"        data-market="carrefour"   onclick="setMarketFilter('carrefour')">CarrefourSA</button>
+    <button class="filter-pill"        data-market="carrefoursa" onclick="setMarketFilter('carrefoursa')">CarrefourSA</button>
     <button class="filter-pill"        data-market="sok"         onclick="setMarketFilter('sok')">ŞOK</button>
     <button class="filter-pill"        data-market="tarim_kredi" onclick="setMarketFilter('tarim_kredi')">Tarım Kredi</button>
   </div>
@@ -860,7 +860,7 @@ function applyMarketFilter() {
       visible++;
     } else {
       const markets = (card.dataset.markets || '').split(',').filter(Boolean);
-      const show = markets.some(m => m.includes(activeMarket));
+      const show = markets.includes(activeMarket);
       card.style.display = show ? '' : 'none';
       if (show) visible++;
     }
