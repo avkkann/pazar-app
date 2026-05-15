@@ -106,25 +106,24 @@ def fetch_page(session, keyword, page_num):
 
 
 def parse_product(item, kategori_adi):
-    fiyatlar = []
+    market_fiyatlari = []
     for depot in item.get("productDepotInfoList") or []:
         fiyat = depot.get("price")
         if fiyat is not None:
-            fiyatlar.append({
-                "market":   depot.get("marketAdi"),
-                "depo_adi": depot.get("depotName"),
-                "fiyat":    fiyat,
+            market_fiyatlari.append({
+                "market": depot.get("marketAdi"),
+                "fiyat":  fiyat,
             })
 
-    prices = [f["fiyat"] for f in fiyatlar]
+    prices = [f["fiyat"] for f in market_fiyatlari]
 
     return {
-        "ad":             item.get("title"),
-        "ana_kategori":   item.get("main_category") or kategori_adi,
-        "agirlik_hacim":  item.get("refinedVolumeOrWeight"),
-        "resim":          item.get("imageUrl"),
-        "en_dusuk_fiyat": min(prices) if prices else None,
-        "fiyatlar":       fiyatlar,
+        "ad":               item.get("title"),
+        "ana_kategori":     item.get("main_category") or kategori_adi,
+        "agirlik_hacim":    item.get("refinedVolumeOrWeight"),
+        "resim":            item.get("imageUrl"),
+        "en_dusuk_fiyat":   min(prices) if prices else None,
+        "market_fiyatlari": market_fiyatlari,
     }
 
 

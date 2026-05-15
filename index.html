@@ -526,27 +526,30 @@ const KAT_EMOJI = {
   gida:'🥫', icecek:'🥤', temizlik:'🧴', diger:'📦'
 };
 const KATEGORILER = [
-  { slug:'meyve-sebze', label:'Meyve & Sebze', emoji:'🍎', cats:['meyve','sebze'] },
-  { slug:'et',          label:'Et & Tavuk',    emoji:'🥩', cats:['et'] },
-  { slug:'sut',         label:'Süt & Kahvaltı',emoji:'🧀', cats:['sut'] },
-  { slug:'gida',        label:'Temel Gıda',    emoji:'🥫', cats:['gida'] },
-  { slug:'icecek',      label:'İçecek',        emoji:'🥤', cats:['icecek'] },
-  { slug:'temizlik',    label:'Temizlik',       emoji:'🧴', cats:['temizlik'] },
+  { slug:'meyve-sebze', label:'Meyve & Sebze', emoji:'🍎', file:'urunler_meyve' },
+  { slug:'et',          label:'Et & Tavuk',    emoji:'🥩', file:'urunler_et'    },
+  { slug:'sut',         label:'Süt & Kahvaltı',emoji:'🧀', file:'urunler_sut'   },
+  { slug:'gida',        label:'Temel Gıda',    emoji:'🥫', file:'urunler_gida'  },
+  { slug:'icecek',      label:'İçecek',        emoji:'🥤', file:'urunler_icecek'},
+  { slug:'temizlik',    label:'Temizlik',       emoji:'🧴', file:'urunler_temizlik'},
 ];
-const KATEGORI_MAP = {
-  'meyve-sebze': new Set(['Meyve', 'Sebze', 'Meyve ve Sebze']),
-  'et':          new Set(['Şarküteri', 'Beyaz Et', 'Kırmızı Et', 'Deniz Ürünleri', 'Sakatat', 'Et, Tavuk ve Balık']),
-  'sut':         new Set(['Süt', 'Yoğurt', 'Peynir', 'Tereyağı ve Margarin', 'Kaymak ve Krema', 'Yumurta', 'Zeytin', 'Bal ve Reçel', 'Helva Tahin ve Pekmez', 'Kahvaltılık Gevrek Bar ve Granola', 'Sürülebilir Ürünler ve Kahvaltılık Soslar', 'Ayran ve Kefir', 'Süt Ürünleri ve Kahvaltılık']),
-  'gida':        new Set(['Mantı Makarna ve Erişte', 'Pasta Malzemeleri', 'Hazır Gıda', 'Bakliyat', 'Ekmek ve Unlu Mamüller', 'Konserve', 'Salça', 'Ketçap Mayonez Sos ve Sirkeler', 'Sıvı Yağlar', 'Tuz Baharat ve Harçlar', 'Şeker ve Tatlandırıcılar', 'Turşu', 'Un ve İrmik', 'Bebek Mamaları', 'Temel Gıda']),
-  'icecek':      new Set(['Meyve Suyu', 'Su', 'Maden Suyu', 'Çay ve Bitki Çayları', 'Gazsız İçecekler', 'Gazlı İçecekler', 'Kahve', 'İçecek']),
-  'temizlik':    new Set(['Bulaşık Temizlik Ürünleri', 'Kağıt Havlu', 'Kağıt Peçete ve Mendil', 'Genel Temizlik Ürünleri', 'Hijyenik Ped', 'Çamaşır Temizlik Ürünleri', 'Saç Bakım', 'Cilt Bakımı', 'Parfüm Deodorant Kolonya ve Kokular', 'Mutfak Sarf Malzemeleri', 'Temizlik ve Kişisel Bakım']),
-};
 const PAGE_SIZE = 48;
+
 // ── DURUM ─────────────────────────────────────────────
-let urunler = [], halMap = {}, allUrunler = [];
+let halMap = {};
+let catCache = {};    // slug → [products with _id]
+let productMap = {};  // _id → product
+let urunler = [];     // görünen ürünler (toggleSepet için)
 let currentKategori = null, currentSayfa = 1, toplamSayfa = 1, yukleniyor = false;
-let sepet   = JSON.parse(localStorage.getItem('pazar_sepet') || '[]');
 let _prevScreen = 'screen-home';
+
+// Eski format sepeti temizle (id → _id migrasyonu)
+let _rawSepet = JSON.parse(localStorage.getItem('pazar_sepet') || '[]');
+if (_rawSepet.length && _rawSepet[0].id !== undefined && _rawSepet[0]._id === undefined) {
+  _rawSepet = [];
+  localStorage.setItem('pazar_sepet', '[]');
+}
+let sepet = _rawSepet;
 
 // ── NAVİGASYON ────────────────────────────────────────
 function showScreen(id) {
@@ -557,13 +560,10 @@ function showScreen(id) {
   if (id === 'screen-sepet') document.getElementById('navSepet').classList.add('active');
 }
 
-function goSepet() {
-  renderSepet();
-  showScreen('screen-sepet');
-}
+function goSepet() { renderSepet(); showScreen('screen-sepet'); }
 
 function goBack() {
-  if (_prevScreen === 'screen-sepet') { renderSepet(); }
+  if (_prevScreen === 'screen-sepet') renderSepet();
   showScreen(_prevScreen);
 }
 
@@ -574,13 +574,12 @@ function openDetay(urunId) {
     return el && el.style.display !== 'none';
   }) || 'screen-home';
 
-  let u = allUrunler.find(x => String(x.id) === String(urunId));
-  if (!u) u = sepet.find(s => String(s.id) === String(urunId));
+  let u = productMap[urunId] || sepet.find(s => s._id === urunId);
   if (!u) return;
 
   const hal      = halEsles(u);
   const halFiyat = hal?.fiyat ?? null;
-  const mktler   = (u.fiyatlar || []).filter(f => f.fiyat != null).sort((a, b) => a.fiyat - b.fiyat);
+  const mktler   = (u.market_fiyatlari || []).filter(f => f.fiyat != null).sort((a, b) => a.fiyat - b.fiyat);
   const emoji    = KAT_EMOJI[ustKategori(u.ana_kategori)] || '📦';
   const imgHtml  = u.resim
     ? `<img src="${u.resim}" alt="" loading="lazy" onerror="this.outerHTML='${emoji}'">`
@@ -596,18 +595,16 @@ function openDetay(urunId) {
     </div>` : '';
 
   const mktRows = mktler.map((f, i) => {
-    const isFirst = i === 0;
-    const isLast  = i === mktler.length - 1 && mktler.length > 1;
+    const isFirst = i === 0, isLast = i === mktler.length - 1 && mktler.length > 1;
     return `<div class="detay-mkt-row${isFirst ? ' best' : isLast ? ' worst' : ''}">
       <span class="m-tag m-${f.market || 'default'}">${MARKET_NAMES[f.market] || f.market || '?'}</span>
-      <span class="detay-mkt-store">${f.depo_adi || ''}</span>
       <span class="detay-mkt-price">${tl(f.fiyat)}</span>
     </div>`;
   }).join('');
 
-  const inCart = sepet.some(s => String(s.id) === String(urunId));
+  const inCart = sepet.some(s => s._id === urunId);
   const btnHtml = `<button id="detayEkleBtn" class="detay-btn-ekle${inCart ? ' added' : ''}"
-    onclick="toggleSepet('${u.id}'); renderDetayBtn('${u.id}')">
+    onclick="toggleSepet('${u._id}'); renderDetayBtn('${u._id}')">
     ${inCart
       ? `<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Sepette`
       : `<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Sepete Ekle`}
@@ -618,7 +615,6 @@ function openDetay(urunId) {
     <div class="detay-info">
       <div class="detay-name">${u.ad}</div>
       ${u.agirlik_hacim ? `<div class="detay-unit">${u.agirlik_hacim}</div>` : ''}
-      ${u.marka ? `<div class="detay-marka">${u.marka}</div>` : ''}
     </div>
     ${halSection}
     <div class="detay-section">
@@ -636,7 +632,7 @@ function openDetay(urunId) {
 function renderDetayBtn(urunId) {
   const btn = document.getElementById('detayEkleBtn');
   if (!btn) return;
-  const inCart = sepet.some(s => String(s.id) === String(urunId));
+  const inCart = sepet.some(s => s._id === urunId);
   btn.className = 'detay-btn-ekle' + (inCart ? ' added' : '');
   btn.innerHTML = inCart
     ? `<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Sepette`
@@ -649,18 +645,6 @@ function norm(s) {
     .replace(/ğ/g,'g').replace(/ü/g,'u').replace(/ş/g,'s')
     .replace(/ı/g,'i').replace(/ö/g,'o').replace(/ç/g,'c')
     .replace(/[^a-z0-9 ]/g,'').trim();
-}
-
-function slimUrun(u) {
-  const fiyatlar = (u.fiyatlar || [])
-    .filter(f => f.fiyat != null)
-    .sort((a, b) => a.fiyat - b.fiyat)
-    .slice(0, 3);
-  return {
-    id: u.id, ad: u.ad, marka: u.marka,
-    agirlik_hacim: u.agirlik_hacim, ana_kategori: u.ana_kategori,
-    resim: u.resim, en_dusuk_fiyat: u.en_dusuk_fiyat, fiyatlar
-  };
 }
 
 function tl(v) {
@@ -714,11 +698,31 @@ function skeletonHTML(n = 4) {
     </div>`).join('');
 }
 
+// ── ID ATAMA & KATEGORİ YÜKLEME ───────────────────────
+function assignIds(slug, products) {
+  products.forEach((u, i) => {
+    u._id = slug + '_' + i;
+    productMap[u._id] = u;
+  });
+  return products;
+}
+
+async function loadCat(slug) {
+  if (catCache[slug]) return catCache[slug];
+  const kat = KATEGORILER.find(k => k.slug === slug);
+  const resp = await fetch('./data/' + kat.file + '.json');
+  const data = await resp.json();
+  const products = Array.isArray(data) ? data : (data.urunler || []);
+  assignIds(slug, products);
+  catCache[slug] = products;
+  return products;
+}
+
 // ── KART HTML ─────────────────────────────────────────
 function cardHTML(u) {
   const hal      = halEsles(u);
   const halFiyat = hal?.fiyat ?? null;
-  const mktler   = (u.fiyatlar||[]).filter(f => f.fiyat != null).sort((a,b) => a.fiyat - b.fiyat);
+  const mktler   = (u.market_fiyatlari || []).filter(f => f.fiyat != null).sort((a,b) => a.fiyat - b.fiyat);
   const minMkt   = mktler[0]?.fiyat ?? null;
   const emoji    = KAT_EMOJI[ustKategori(u.ana_kategori)] || '📦';
   const img      = u.resim
@@ -735,7 +739,6 @@ function cardHTML(u) {
   const mktRows = mktler.slice(0,4).map((f,i) =>
     `<div class="market-row">
       <span class="m-tag m-${f.market||'default'}">${MARKET_NAMES[f.market]||f.market||'?'}</span>
-      <span class="m-store">${f.depo_adi||''}</span>
       <span class="m-price${i===0?' best':''}">${tl(f.fiyat)}</span>
     </div>`).join('');
 
@@ -747,19 +750,8 @@ function cardHTML(u) {
     else                savings = `<div class="savings-bar equal">≈ Fiyatlar birbirine yakın</div>`;
   }
 
-  const inCart = sepet.some(s => s.id === u.id);
-  const _addFiyat = mktler[0]?.fiyat ?? halFiyat ?? 0;
-  const _addMkt   = mktler[0] ? (MARKET_NAMES[mktler[0].market] || mktler[0].market || '?') : 'Hal';
-  const _addAd    = u.ad.replace(/'/g, '&#39;');
-  const ekle   = `<div class="card-footer">
-    <button class="btn-ekle${inCart?' added':''}" data-pid="${u.id}" onclick="event.stopPropagation(); toggleSepet('${u.id}')">
-      ${inCart
-        ? `<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Eklendi`
-        : `<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Sepete Ekle`}
-    </button>
-  </div>`;
-
-  return `<div class="card" data-urun-id="${u.id}" onclick="openDetay('${u.id}')" style="cursor:pointer">
+  const inCart = sepet.some(s => s._id === u._id);
+  return `<div class="card" data-urun-id="${u._id}" onclick="openDetay('${u._id}')" style="cursor:pointer">
     <div class="card-main">
       <div class="card-img">${img}</div>
       <div class="card-info">
@@ -773,7 +765,13 @@ function cardHTML(u) {
       ${mktRows || '<p class="hal-none">Market verisi yok</p>'}
     </div>
     ${savings}
-    ${ekle}
+    <div class="card-footer">
+      <button class="btn-ekle${inCart?' added':''}" data-pid="${u._id}" onclick="event.stopPropagation(); toggleSepet('${u._id}')">
+        ${inCart
+          ? `<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Eklendi`
+          : `<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Sepete Ekle`}
+      </button>
+    </div>
   </div>`;
 }
 
@@ -806,14 +804,11 @@ async function loadKategoriSayfasi(slug, sayfa) {
   if (yukleniyor) return;
   yukleniyor = true;
   try {
-    const catSet = KATEGORI_MAP[slug];
-    const filtered = catSet
-      ? allUrunler.filter(u => catSet.has(u.ana_kategori))
-      : allUrunler;
-    const toplam = filtered.length;
+    const products = catCache[slug] || await loadCat(slug);
+    const toplam = products.length;
     toplamSayfa = Math.max(1, Math.ceil(toplam / PAGE_SIZE));
     const start = (sayfa - 1) * PAGE_SIZE;
-    const pageItems = filtered.slice(start, start + PAGE_SIZE).map(slimUrun);
+    const pageItems = products.slice(start, start + PAGE_SIZE);
     urunler = urunler.concat(pageItems);
     const list = document.getElementById('productList');
     if (sayfa === 1) {
@@ -843,24 +838,31 @@ if (_sentinel) scrollObserver.observe(_sentinel);
 
 // ── ARAMA ─────────────────────────────────────────────
 let _searchTimer = null;
+let _allLoaded = false;
+
+async function loadAllCats() {
+  if (_allLoaded) return;
+  await Promise.all(KATEGORILER.map(k => loadCat(k.slug)));
+  _allLoaded = true;
+}
+
 document.getElementById('search').addEventListener('input', function() {
   const q = this.value.trim();
   document.getElementById('home-cats').style.display   = q ? 'none' : '';
   document.getElementById('home-search').style.display = q ? 'block' : 'none';
   if (!q) return;
   clearTimeout(_searchTimer);
-  _searchTimer = setTimeout(() => {
+  _searchTimer = setTimeout(async () => {
     document.getElementById('searchList').innerHTML = skeletonHTML(3);
+    await loadAllCats();
     const qn = norm(q);
-    const results = allUrunler
-      .filter(u => norm(u.ad).includes(qn) || norm(u.marka || '').includes(qn))
-      .slice(0, 96)
-      .map(slimUrun);
+    const allProducts = KATEGORILER.flatMap(k => catCache[k.slug] || []);
+    const results = allProducts.filter(u => norm(u.ad).includes(qn)).slice(0, 96);
     document.getElementById('searchCount').textContent = results.length;
     document.getElementById('searchList').innerHTML = results.length
       ? results.map(cardHTML).join('')
       : `<div class="state-msg"><span class="icon">🔍</span>Sonuç bulunamadı.</div>`;
-    urunler = urunler.concat(results.filter(u => !urunler.find(x => x.id === u.id)));
+    results.forEach(u => { if (!urunler.find(x => x._id === u._id)) urunler.push(u); });
   }, 350);
 });
 
@@ -868,20 +870,21 @@ document.getElementById('search').addEventListener('input', function() {
 function saveSepet() {
   localStorage.setItem('pazar_sepet', JSON.stringify(sepet));
   const badge = document.getElementById('sepetCount');
-  if(badge) badge.textContent = sepet.length;
+  if (badge) badge.textContent = sepet.length;
 }
 
 function toggleSepet(id) {
-  if (sepet.find(s => s.id === id)) {
-    sepet = sepet.filter(s => s.id !== id);
+  if (sepet.find(s => s._id === id)) {
+    sepet = sepet.filter(s => s._id !== id);
     saveSepet();
     setEkleBtns(id, false);
   } else {
-    const u = urunler.find(u => u.id === id);
+    const u = productMap[id] || urunler.find(u => u._id === id);
     if (!u) return;
     sepet.push({
-      id: u.id, ad: u.ad, marka: u.marka, resim: u.resim,
-      agirlik_hacim: u.agirlik_hacim, ana_kategori: u.ana_kategori, fiyatlar: u.fiyatlar
+      _id: u._id, ad: u.ad, resim: u.resim,
+      agirlik_hacim: u.agirlik_hacim, ana_kategori: u.ana_kategori,
+      market_fiyatlari: u.market_fiyatlari
     });
     saveSepet();
     setEkleBtns(id, true);
@@ -898,7 +901,7 @@ function setEkleBtns(id, inCart) {
 }
 
 function removeFromSepet(id) {
-  sepet = sepet.filter(s => s.id !== id);
+  sepet = sepet.filter(s => s._id !== id);
   saveSepet();
   setEkleBtns(id, false);
   renderSepet();
@@ -916,20 +919,19 @@ function renderSepet() {
     const img   = u.resim
       ? `<img src="${u.resim}" alt="" loading="lazy" onerror="this.outerHTML='${emoji}'">`
       : emoji;
-    const sub = [u.agirlik_hacim, u.marka].filter(Boolean).join(' · ');
-    const mktF = (u.fiyatlar||[]).filter(f => f.fiyat != null).sort((a,b) => a.fiyat - b.fiyat)[0];
+    const mktF = (u.market_fiyatlari || []).filter(f => f.fiyat != null).sort((a,b) => a.fiyat - b.fiyat)[0];
     const fiyatStr = mktF
       ? `<div style="text-align:right;color:#0F5132;font-size:.82rem;font-weight:700;flex-shrink:0;margin-right:6px;line-height:1.4">
            ${tl(mktF.fiyat)}<br><span style="font-size:.65rem;font-weight:500">${MARKET_NAMES[mktF.market]||mktF.market||'?'}</span>
          </div>` : '';
-    return `<div class="cart-item" onclick="openDetay('${u.id}')" style="cursor:pointer">
+    return `<div class="cart-item" onclick="openDetay('${u._id}')" style="cursor:pointer">
       <div class="cart-item-img">${img}</div>
       <div class="cart-item-info">
         <div class="cart-item-name">${u.ad}</div>
-        ${sub ? `<div class="cart-item-sub">${sub}</div>` : ''}
+        ${u.agirlik_hacim ? `<div class="cart-item-sub">${u.agirlik_hacim}</div>` : ''}
       </div>
       ${fiyatStr}
-      <button class="cart-del" onclick="event.stopPropagation(); removeFromSepet('${u.id}')">
+      <button class="cart-del" onclick="event.stopPropagation(); removeFromSepet('${u._id}')">
         <svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>
       </button>
     </div>`;
@@ -949,36 +951,32 @@ function _combos(arr, k) {
 
 function karsilastir() {
   if (!sepet.length) {
-    document.getElementById('compareOut').innerHTML =
-      `<div class="state-msg">Sepetiniz boş.</div>`;
+    document.getElementById('compareOut').innerHTML = `<div class="state-msg">Sepetiniz boş.</div>`;
     return;
   }
-
   const mkts = {};
   for (const item of sepet) {
-    for (const f of (item.fiyatlar || []).filter(f => f.fiyat != null)) {
+    for (const f of (item.market_fiyatlari || []).filter(f => f.fiyat != null)) {
       const k = f.market || 'diger';
       if (!mkts[k]) mkts[k] = { name: MARKET_NAMES[k] || k, items: {} };
-      if (!(item.id in mkts[k].items) || f.fiyat < mkts[k].items[item.id])
-        mkts[k].items[item.id] = f.fiyat;
+      if (!(item._id in mkts[k].items) || f.fiyat < mkts[k].items[item._id])
+        mkts[k].items[item._id] = f.fiyat;
     }
   }
   const allKeys = Object.keys(mkts);
 
   function evalCombo(keys) {
-    let total = 0;
-    const assignment = {};
+    let total = 0; const assignment = {};
     for (const item of sepet) {
       let best = null;
       for (const k of keys) {
-        if (item.id in mkts[k].items) {
-          const p = mkts[k].items[item.id];
+        if (item._id in mkts[k].items) {
+          const p = mkts[k].items[item._id];
           if (!best || p < best.price) best = { key: k, name: mkts[k].name, price: p };
         }
       }
       if (!best) return null;
-      total += best.price;
-      assignment[item.id] = best;
+      total += best.price; assignment[item._id] = best;
     }
     return { total, assignment };
   }
@@ -997,36 +995,26 @@ function karsilastir() {
   const base = opts[0] ? opts[0].total : null;
   window._cmpState = { opts, mkts };
 
-  const MFROM = {
-    a101: "A101'den", bim: "BİM'den", carrefour: "CarrefourSA'dan",
-    migros: "Migros'tan", sok: "ŞOK'tan", tarim_kredi: "T.Kredi'den"
-  };
-
   function mktNames(opt) {
     return [...new Set(Object.values(opt.assignment).map(a => a.name))].join(', ');
   }
 
   const labels = ['1 marketten al', '2 marketten al', '3 marketten al'];
   const cards = opts.map((opt, i) => {
-    if (!opt) return `
-      <div class="cmp-opt unavail">
-        <div>
-          <div class="cmp-opt-title">${labels[i]}</div>
-          <div class="cmp-opt-sub">Yeterli market verisi yok</div>
-        </div>
-      </div>`;
+    if (!opt) return `<div class="cmp-opt unavail"><div>
+      <div class="cmp-opt-title">${labels[i]}</div>
+      <div class="cmp-opt-sub">Yeterli market verisi yok</div></div></div>`;
     const save = base != null && i > 0 && opt.total < base ? base - opt.total : null;
-    return `
-      <div class="cmp-opt" onclick="showKombo(${i})">
-        <div>
-          <div class="cmp-opt-title">${labels[i]}</div>
-          <div class="cmp-opt-sub">${mktNames(opt)}</div>
-        </div>
-        <div class="cmp-opt-right">
-          <div class="cmp-opt-price">${tl(opt.total)}</div>
-          <div class="cmp-opt-save">${save != null ? '💰 ' + tl(save) + ' tasarruf' : '&nbsp;'}</div>
-        </div>
-      </div>`;
+    return `<div class="cmp-opt" onclick="showKombo(${i})">
+      <div>
+        <div class="cmp-opt-title">${labels[i]}</div>
+        <div class="cmp-opt-sub">${mktNames(opt)}</div>
+      </div>
+      <div class="cmp-opt-right">
+        <div class="cmp-opt-price">${tl(opt.total)}</div>
+        <div class="cmp-opt-save">${save != null ? '💰 ' + tl(save) + ' tasarruf' : '&nbsp;'}</div>
+      </div>
+    </div>`;
   }).join('');
 
   document.getElementById('compareOut').innerHTML = `
@@ -1042,28 +1030,18 @@ function showKombo(idx) {
   if (!opts) return;
   const opt = opts[idx];
   if (!opt) return;
-
-  document.querySelectorAll('.cmp-opt').forEach((el, i) => {
-    el.classList.toggle('selected', i === idx);
-  });
+  document.querySelectorAll('.cmp-opt').forEach((el, i) => el.classList.toggle('selected', i === idx));
 
   const MFROM = {
-    a101: "A101'den", bim: "BİM'den", carrefour: "CarrefourSA'dan",
-    migros: "Migros'tan", sok: "ŞOK'tan", tarim_kredi: "T.Kredi'den"
+    a101:"A101'den", bim:"BİM'den", carrefour:"CarrefourSA'dan",
+    migros:"Migros'tan", sok:"ŞOK'tan", tarim_kredi:"T.Kredi'den"
   };
-
   const groups = {};
   for (const item of sepet) {
-    const a = opt.assignment[item.id];
+    const a = opt.assignment[item._id];
     if (!a) continue;
-    if (!groups[a.key]) groups[a.key] = {
-      from: MFROM[a.key] || a.name + "'den",
-      items: [], total: 0
-    };
-    groups[a.key].items.push({
-      ad: (item.ad || item.marka || '?') + (item.agirlik_hacim ? ' ' + item.agirlik_hacim : ''),
-      fiyat: a.price
-    });
+    if (!groups[a.key]) groups[a.key] = { from: MFROM[a.key] || a.name + "'den", items: [], total: 0 };
+    groups[a.key].items.push({ ad: item.ad + (item.agirlik_hacim ? ' ' + item.agirlik_hacim : ''), fiyat: a.price });
     groups[a.key].total += a.price;
   }
 
@@ -1073,11 +1051,10 @@ function showKombo(idx) {
   const blocks = Object.values(groups).map(g => `
     <div class="cmp-mkt-block">
       <div class="cmp-mkt-name">🛒 ${g.from} alacakların:</div>
-      ${g.items.map(it => `
-        <div class="cmp-mkt-item">
-          <span class="cmp-mkt-item-name">${it.ad}</span>
-          <span class="cmp-mkt-item-price">${tl(it.fiyat)}</span>
-        </div>`).join('')}
+      ${g.items.map(it => `<div class="cmp-mkt-item">
+        <span class="cmp-mkt-item-name">${it.ad}</span>
+        <span class="cmp-mkt-item-price">${tl(it.fiyat)}</span>
+      </div>`).join('')}
       <div class="cmp-mkt-subtotal">Toplam: ${tl(g.total)}</div>
     </div>`).join('');
 
@@ -1087,12 +1064,9 @@ function showKombo(idx) {
     (save != null ? `<div class="cmp-grand cmp-grand-save"><span>💰 Tasarruf</span><span>${tl(save)}</span></div>` : '');
 }
 
-// ── VERİ YÜKLE ────────────────────────────────────────
+// ── VERİ YÜKLE (sadece hal.json — ürünler lazy) ───────
 function loadData() {
-  return Promise.all([
-    fetch('./data/hal.json').then(r => r.json()),
-    fetch('./data/urunler.json').then(r => r.json()),
-  ]).then(([halData, urunlerData]) => {
+  return fetch('./data/hal.json').then(r => r.json()).then(halData => {
     if (halData.urunler) {
       halMap = {};
       for (const u of halData.urunler) {
@@ -1103,7 +1077,6 @@ function loadData() {
       if (bt) document.getElementById('halDate').innerHTML =
         `<span class="hal-badge">Hal: ${bt.slice(0, 10)}</span>`;
     }
-    if (urunlerData.urunler) allUrunler = urunlerData.urunler;
     renderCatGrid();
     saveSepet();
   }).catch(() => { renderCatGrid(); saveSepet(); });
