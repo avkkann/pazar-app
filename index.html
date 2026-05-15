@@ -387,6 +387,25 @@
     .skeleton-line.short { width: 55%; }
     .skeleton-line.price { height: 20px; width: 40%; }
 
+    /* ── MARKET FİLTRE ── */
+    .filter-wrap {
+      display: flex; gap: 6px; overflow-x: auto; padding: 8px 14px;
+      background: var(--card-bg); border-bottom: 1px solid var(--border);
+      scrollbar-width: none;
+    }
+    .filter-wrap::-webkit-scrollbar { display: none; }
+    .filter-pill {
+      flex-shrink: 0; padding: 5px 13px; border-radius: 999px;
+      border: 1.5px solid var(--border); background: var(--bg);
+      font-size: .7rem; font-weight: 600; color: var(--text-muted);
+      cursor: pointer; font-family: 'Inter', sans-serif;
+      transition: all .15s; white-space: nowrap;
+    }
+    .filter-pill.active {
+      background: var(--primary); border-color: var(--primary); color: #fff;
+    }
+    .filter-pill:not(.active):hover { border-color: var(--primary); color: var(--primary); }
+
     /* ── KOMPAKT KART ── */
     .card { max-height: 90px; }
     .card-row {
@@ -486,6 +505,16 @@
     <h2 id="cat-title">Kategori</h2>
   </header>
 
+  <div class="filter-wrap">
+    <button class="filter-pill active" data-market="all"         onclick="setMarketFilter(null)">Tümü</button>
+    <button class="filter-pill"        data-market="a101"        onclick="setMarketFilter('a101')">A101</button>
+    <button class="filter-pill"        data-market="bim"         onclick="setMarketFilter('bim')">BİM</button>
+    <button class="filter-pill"        data-market="migros"      onclick="setMarketFilter('migros')">Migros</button>
+    <button class="filter-pill"        data-market="carrefour"   onclick="setMarketFilter('carrefour')">CarrefourSA</button>
+    <button class="filter-pill"        data-market="sok"         onclick="setMarketFilter('sok')">ŞOK</button>
+    <button class="filter-pill"        data-market="tarim_kredi" onclick="setMarketFilter('tarim_kredi')">Tarım Kredi</button>
+  </div>
+
   <div class="stats-row">
     <span><b id="countNum">—</b> ürün listeleniyor</span>
     <span id="halDate"></span>
@@ -569,6 +598,7 @@ let catCache = {};    // slug → [products with _id]
 let productMap = {};  // _id → product
 let urunler = [];     // görünen ürünler (toggleSepet için)
 let currentKategori = null, currentSayfa = 1, toplamSayfa = 1, yukleniyor = false;
+let activeMarket = null;
 let _prevScreen = 'screen-home';
 
 // Eski format sepeti temizle (id → _id migrasyonu)
@@ -802,16 +832,36 @@ async function openCategory(slug) {
   currentSayfa = 1;
   toplamSayfa = 1;
   urunler = [];
+  activeMarket = null;
+  document.querySelectorAll('.filter-pill').forEach(p =>
+    p.classList.toggle('active', p.dataset.market === 'all')
+  );
   showScreen('screen-cat');
   document.getElementById('screen-cat').scrollTop = 0;
   await loadKategoriSayfasi(slug, 1);
+}
+
+function setMarketFilter(market) {
+  activeMarket = market;
+  document.querySelectorAll('.filter-pill').forEach(p =>
+    p.classList.toggle('active', p.dataset.market === (market || 'all'))
+  );
+  currentSayfa = 1;
+  toplamSayfa = 1;
+  urunler = [];
+  document.getElementById('productList').innerHTML = skeletonHTML(3);
+  loadKategoriSayfasi(currentKategori, 1);
 }
 
 async function loadKategoriSayfasi(slug, sayfa) {
   if (yukleniyor) return;
   yukleniyor = true;
   try {
-    const products = catCache[slug] || await loadCat(slug);
+    if (!catCache[slug]) await loadCat(slug);
+    const all = catCache[slug] || [];
+    const products = activeMarket
+      ? all.filter(u => (u.market_fiyatlari || []).some(f => f.market === activeMarket && f.fiyat != null))
+      : all;
     const toplam = products.length;
     toplamSayfa = Math.max(1, Math.ceil(toplam / PAGE_SIZE));
     const start = (sayfa - 1) * PAGE_SIZE;
@@ -822,7 +872,7 @@ async function loadKategoriSayfasi(slug, sayfa) {
       document.getElementById('countNum').textContent = toplam;
       list.innerHTML = pageItems.length
         ? pageItems.map(cardHTML).join('')
-        : `<div class="state-msg"><span class="icon">🔍</span>Bu kategoride ürün bulunamadı.</div>`;
+        : `<div class="state-msg"><span class="icon">🔍</span>Bu markette ürün bulunamadı.</div>`;
     } else {
       list.insertAdjacentHTML('beforeend', pageItems.map(cardHTML).join(''));
     }
