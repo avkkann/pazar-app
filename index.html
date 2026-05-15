@@ -791,8 +791,10 @@ function cardHTML(u) {
   const halBadge = halFiyat != null
     ? `<span class="card-hal-badge">Hal: ${tl(halFiyat)}</span>` : '';
 
+  const marketList = mktler.map(f => (f.market || '').toLowerCase()).join(',');
+
   const inCart = sepet.some(s => s._id === u._id);
-  return `<div class="card" data-urun-id="${u._id}" onclick="openDetay('${u._id}')" style="cursor:pointer">
+  return `<div class="card" data-urun-id="${u._id}" data-markets="${marketList}" onclick="openDetay('${u._id}')" style="cursor:pointer">
     <div class="card-row">
       <div class="card-img">${img}</div>
       <div class="card-mid">
@@ -846,11 +848,24 @@ function setMarketFilter(market) {
   document.querySelectorAll('.filter-pill').forEach(p =>
     p.classList.toggle('active', p.dataset.market === (market || 'all'))
   );
-  currentSayfa = 1;
-  toplamSayfa = 1;
-  urunler = [];
-  document.getElementById('productList').innerHTML = skeletonHTML(3);
-  loadKategoriSayfasi(currentKategori, 1);
+  applyMarketFilter();
+}
+
+function applyMarketFilter() {
+  const list = document.getElementById('productList');
+  let visible = 0;
+  list.querySelectorAll('.card').forEach(card => {
+    if (!activeMarket) {
+      card.style.display = '';
+      visible++;
+    } else {
+      const markets = (card.dataset.markets || '').split(',').filter(Boolean);
+      const show = markets.some(m => m.includes(activeMarket));
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    }
+  });
+  document.getElementById('countNum').textContent = visible;
 }
 
 async function loadKategoriSayfasi(slug, sayfa) {
@@ -859,23 +874,20 @@ async function loadKategoriSayfasi(slug, sayfa) {
   try {
     if (!catCache[slug]) await loadCat(slug);
     const all = catCache[slug] || [];
-    const products = activeMarket
-      ? all.filter(u => (u.market_fiyatlari || []).some(f => f.market === activeMarket && f.fiyat != null))
-      : all;
-    const toplam = products.length;
+    const toplam = all.length;
     toplamSayfa = Math.max(1, Math.ceil(toplam / PAGE_SIZE));
     const start = (sayfa - 1) * PAGE_SIZE;
-    const pageItems = products.slice(start, start + PAGE_SIZE);
+    const pageItems = all.slice(start, start + PAGE_SIZE);
     urunler = urunler.concat(pageItems);
     const list = document.getElementById('productList');
     if (sayfa === 1) {
-      document.getElementById('countNum').textContent = toplam;
       list.innerHTML = pageItems.length
         ? pageItems.map(cardHTML).join('')
-        : `<div class="state-msg"><span class="icon">🔍</span>Bu markette ürün bulunamadı.</div>`;
+        : `<div class="state-msg"><span class="icon">🔍</span>Ürün bulunamadı.</div>`;
     } else {
       list.insertAdjacentHTML('beforeend', pageItems.map(cardHTML).join(''));
     }
+    applyMarketFilter();
   } catch(e) {
     console.error('Veri yükleme hatası:', e);
   } finally {
