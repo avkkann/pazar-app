@@ -68,77 +68,32 @@ def parse_fiyat(text):
 
 def parse_products(soup):
     """
-    ANTKOMDER sayfasındaki ürün bloklarını parse eder.
-    Sayfa div tabanlı bir grid kullanıyor; fiyatlar ₺ sembolüyle işaretlenmiş.
-    Bugünün fiyatı "Fiyat Bekleniyor" ise dünün fiyatını kullanır.
+    ANTKOMDER sayfasindaki tabloyu parse eder.
+    Baslik satiri: # | Urunler | Bugun fiyati | Onceki gun
+    Bugunun fiyati "Fiyat Bekleniyor" ise onceki gunun fiyatini kullanir.
     """
+    table = soup.find("table")
+    if not table:
+        return []
+
     products = []
-
-    # Strateji 1: tüm text node'larını tara, ₺ içeren satırları bul
-    # Sayfayı satır bazlı işle
-    all_text_blocks = []
-
-    # Tüm olası kapsayıcıları dene
-    containers = soup.find_all(["div", "li", "tr"])
-
-    # Her container'da ürün adı + fiyat çiftini ara
-    seen_names = set()
-
-    # Önce tüm img alt / title attribute'larını topla (ürün isimleri burada olabilir)
-    # Sonra fiyat metinlerini bul
-
-    # Yaklaşım: tüm element text'lerini sıraya koy, ürün/fiyat pattern'i ara
-    full_text = soup.get_text(separator="\n")
-    lines = [l.strip() for l in full_text.splitlines() if l.strip()]
-
-    i = 0
-    while i < len(lines):
-        line = lines[i]
-
-        # Fiyat satırı değilse ve uzunsa ürün adı olabilir
-        fiyat_match = re.search(r"\d[\d.,]*\s*₺|₺\s*\d[\d.,]*|Fiyat Bekleniyor", line, re.IGNORECASE)
-
-        if not fiyat_match and len(line) >= 3 and len(line) <= 60:
-            # Muhtemel ürün adı; peşindeki satırlarda fiyat ara
-            urun_adi = line
-            bugun_fiyat = None
-            dun_fiyat = None
-
-            for j in range(i + 1, min(i + 8, len(lines))):
-                fmatch = re.search(r"\d[\d.,]*\s*₺|₺\s*[\d.,]+", lines[j])
-                bekleniyor = "bekleniyor" in lines[j].lower()
-
-                if bekleniyor and bugun_fiyat is None:
-                    bugun_fiyat = None  # henüz yok
-                elif fmatch:
-                    f = parse_fiyat(lines[j])
-                    if f is not None and f > 0:
-                        if bugun_fiyat is None and not bekleniyor:
-                            bugun_fiyat = f
-                        elif dun_fiyat is None:
-                            dun_fiyat = f
-                            break
-
-            # Fiyat: bugün varsa bugün, yoksa dün
-            nihai_fiyat = bugun_fiyat if bugun_fiyat is not None else dun_fiyat
-
-            if nihai_fiyat and urun_adi not in seen_names:
-                # Menü / navigasyon metnini filtrele
-                skip_keywords = [
-                    "anasayfa", "hakkımızda", "iletişim", "menü", "fiyat listesi",
-                    "hal fiyatları", "günlük", "tarih", "dernek", "komisyoncu",
-                    "antalya", "copyright", "tüm haklar", "sosyal medya"
-                ]
-                if not any(kw in urun_adi.lower() for kw in skip_keywords):
-                    seen_names.add(urun_adi)
-                    products.append({
-                        "ad":     urun_adi,
-                        "fiyat":  nihai_fiyat,
-                        "birim":  "Kg",
-                        "sehir":  "Antalya",
-                    })
-        i += 1
-
+    for row in table.find_all("tr")[1:]:   # ilk satir baslik
+        cols = [td.get_text(strip=True) for td in row.find_all(["td", "th"])]
+        if len(cols) < 2:
+            continue
+        urun_adi = cols[1].strip()
+        if not urun_adi:
+            continue
+        bugun = parse_fiyat(cols[2]) if len(cols) > 2 else None
+        dun   = parse_fiyat(cols[3]) if len(cols) > 3 else None
+        fiyat = bugun if bugun is not None else dun
+        if fiyat:
+            products.append({
+                "ad":    urun_adi,
+                "fiyat": fiyat,
+                "birim": "Kg",
+                "sehir": "Antalya",
+            })
     return products
 
 
@@ -156,11 +111,17 @@ def scrape():
 
     soup = BeautifulSoup(resp.content, "html.parser")
 
-    # Bülten tarihi: sayfadaki sütun başlıklarından al
+    # Bülten tarihi: tablo başlığının 3. sütunundan al ("15-05-2026 (Bugün)")
     tarih_str = ""
-    tarih_match = re.search(r"(\d{2}[-./]\d{2}[-./]\d{4})", resp.text)
-    if tarih_match:
-        tarih_str = tarih_match.group(1)
+    table = soup.find("table")
+    if table:
+        header = table.find("tr")
+        if header:
+            cols = [c.get_text(strip=True) for c in header.find_all(["th", "td"])]
+            raw = cols[2] if len(cols) > 2 else ""
+            m = re.search(r"\d{2}[-./]\d{2}[-./]\d{4}", raw)
+            if m:
+                tarih_str = m.group(0)
     if not tarih_str:
         tarih_str = datetime.now().strftime("%Y-%m-%d")
     print(f"  Tarih: {tarih_str}")
