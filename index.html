@@ -406,7 +406,43 @@
     }
     .filter-pill:not(.active):hover { border-color: var(--primary); color: var(--primary); }
 
-    /* ── KOMPAKT KART ── */
+    /* ── HAL BÖLÜMÜ BUTONU ── */
+.hal-section-btn {
+  display: flex; align-items: center; gap: 12px;
+  background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+  border-radius: 16px; padding: 16px 14px;
+  cursor: pointer; transition: all 0.2s ease;
+  box-shadow: 0 2px 12px rgba(245,158,11,.3);
+}
+.hal-section-btn:active { transform: scale(.98); }
+.hal-section-icon { font-size: 1.8rem; }
+.hal-section-text { flex: 1; }
+.hal-section-title { font-size: .95rem; font-weight: 700; color: #fff; }
+.hal-section-sub { font-size: .68rem; color: rgba(255,255,255,.8); margin-top: 2px; }
+.hal-section-arrow { width: 20px; height: 20px; stroke: rgba(255,255,255,.7); fill: none; stroke-width: 2.5; }
+
+/* ── HAL HEADER ── */
+.header-hal {
+  background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+  padding: 14px 16px; display: flex; align-items: center; gap: 12px;
+  position: sticky; top: 0; z-index: 50;
+  box-shadow: 0 2px 12px rgba(245,158,11,.25);
+}
+.header-hal h2 { font-size: 1rem; font-weight: 700; color: #fff; }
+
+/* ── HAL LİSTE ── */
+.hal-list { padding: 12px 14px 20px; display: flex; flex-direction: column; gap: 8px; }
+.hal-card {
+  background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border);
+  padding: 12px 14px; display: flex; align-items: center; gap: 10px;
+}
+.hal-card-icon { font-size: 1.4rem; }
+.hal-card-info { flex: 1; }
+.hal-card-name { font-size: .82rem; font-weight: 600; color: var(--text); }
+.hal-card-unit { font-size: .63rem; color: var(--text-muted); margin-top: 2px; }
+.hal-card-price { font-size: .95rem; font-weight: 800; color: #D97706; }
+
+/* ── KOMPAKT KART ── */
     .card { max-height: 90px; }
     .card-row {
       display: flex; align-items: center; gap: 10px; padding: 10px 12px;
@@ -489,6 +525,17 @@
 
   <div id="home-cats" class="cat-grid"></div>
 
+  <div id="home-hal" style="padding:16px 14px 0">
+    <div class="hal-section-btn" onclick="openHalScreen()">
+      <span class="hal-section-icon">🏭</span>
+      <div class="hal-section-text">
+        <div class="hal-section-title">Hal Fiyatları</div>
+        <div class="hal-section-sub">Antalya hal güncel fiyat listesi</div>
+      </div>
+      <svg class="hal-section-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    </div>
+  </div>
+
   <div id="home-search" style="display:none">
     <div class="stats-row"><span><b id="searchCount">0</b> sonuç</span></div>
     <div class="product-list" id="searchList"></div>
@@ -551,6 +598,17 @@
     <h2>Ürün Detayı</h2>
   </header>
   <div id="detayContent"></div>
+</div>
+
+<!-- ══ EKRAN 5: HAL FİYATLARI ══ -->
+<div id="screen-hal" class="screen">
+  <header class="header-hal">
+    <button class="back-btn" onclick="showScreen('screen-home')">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <h2>Antalya Hal Fiyatları</h2>
+  </header>
+  <div id="halContent"></div>
 </div>
 
 <!-- ALT NAV -->
@@ -1180,6 +1238,37 @@ function loadData() {
     renderCatGrid();
     saveSepet();
   }).catch(() => { renderCatGrid(); saveSepet(); });
+}
+
+function openHalScreen() {
+  renderHalScreen();
+  showScreen('screen-hal');
+}
+
+function renderHalScreen() {
+  const container = document.getElementById('halContent');
+  if (!window.halVerisi) {
+    container.innerHTML = '<div class="state-msg"><span class="icon">🏭</span>Hal verisi yükleniyor...</div>';
+    return;
+  }
+  const data = window.halVerisi;
+  const dateStr = data.bulten_tarihi || '';
+  const tarihDisplay = dateStr ? `<div style="padding:8px 14px;font-size:.72rem;color:var(--text-muted);border-bottom:1px solid var(--border)">📅 ${dateStr}</div>` : '';
+  const products = data.urunler || [];
+  if (!products.length) {
+    container.innerHTML = tarihDisplay + '<div class="state-msg"><span class="icon">🏭</span>Hal verisi bulunamadı.</div>';
+    return;
+  }
+  const cards = products.map(u => `
+    <div class="hal-card">
+      <div class="hal-card-icon">🥬</div>
+      <div class="hal-card-info">
+        <div class="hal-card-name">${u.ad}</div>
+        <div class="hal-card-unit">${u.birim || 'Kg'}</div>
+      </div>
+      <div class="hal-card-price">${tl(u.fiyat)}</div>
+    </div>`).join('');
+  container.innerHTML = tarihDisplay + '<div class="hal-list">' + cards + '</div>';
 }
 
 loadData();
