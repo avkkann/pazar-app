@@ -417,6 +417,7 @@
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
     .card-hal-badge { font-size: .6rem; color: #059669; font-weight: 600; }
+    .card-hal-price { font-size: .6rem; color: #E86E00; font-weight: 600; margin-top: 2px; }
     .card-mid { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
     .card-right {
       display: flex; flex-direction: column; align-items: flex-end;
@@ -790,6 +791,8 @@ function cardHTML(u) {
   const halFiyat = hal?.fiyat ?? null;
   const halBadge = halFiyat != null
     ? `<span class="card-hal-badge">Hal: ${tl(halFiyat)}</span>` : '';
+  const halPriceBadge = halFiyat != null
+    ? `<span class="card-hal-price">🏭 Hal: ${tl(halFiyat)}</span>` : '';
 
   let gosterilenFiyat = cheapest ? cheapest.fiyat : null;
   let gosterilenMarket = cheapest ? cheapest.market : '';
@@ -806,6 +809,7 @@ function cardHTML(u) {
         <div class="card-name">${u.ad}</div>
         ${u.agirlik_hacim ? `<span class="card-unit">${u.agirlik_hacim}</span>` : ''}
         ${halBadge}
+        ${halPriceBadge}
       </div>
       <div class="card-right">
         <div class="card-price">${gosterilenFiyat != null ? tl(gosterilenFiyat) : '—'}</div>
@@ -1162,6 +1166,7 @@ function showKombo(idx) {
 // ── VERİ YÜKLE (sadece hal.json — ürünler lazy) ───────
 function loadData() {
   return fetch('./data/hal.json').then(r => r.json()).then(halData => {
+    window.halVerisi = halData;
     if (halData.urunler) {
       halMap = {};
       for (const u of halData.urunler) {
