@@ -853,7 +853,7 @@ function setMarketFilter(market) {
 
 function filterUrunler(secilenMarket) {
   let visible = 0;
-  document.querySelectorAll('.urun-card, [class*="card"]').forEach(card => {
+  document.querySelectorAll('#productList .card').forEach(card => {
     if (secilenMarket === 'tumu') {
       card.style.display = '';
       visible++;
