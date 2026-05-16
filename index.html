@@ -791,6 +791,13 @@ function cardHTML(u) {
   const halBadge = halFiyat != null
     ? `<span class="card-hal-badge">Hal: ${tl(halFiyat)}</span>` : '';
 
+  let gosterilenFiyat = cheapest ? cheapest.fiyat : null;
+  let gosterilenMarket = cheapest ? cheapest.market : '';
+  if (window.aktifMarket && window.aktifMarket !== 'all' && window.aktifMarket !== 'tumu') {
+    const mf = (u.market_fiyatlari || []).find(f => f.market === window.aktifMarket);
+    if (mf) { gosterilenFiyat = mf.fiyat; gosterilenMarket = mf.market; }
+  }
+
   const inCart = sepet.some(s => s._id === u._id);
   return `<div class="card" data-urun-id="${u._id}" data-markets="${(u.market_fiyatlari||[]).map(f=>f.market).join(',')}" onclick="openDetay('${u._id}')" style="cursor:pointer">
     <div class="card-row">
@@ -801,8 +808,8 @@ function cardHTML(u) {
         ${halBadge}
       </div>
       <div class="card-right">
-        <div class="card-price">${cheapest ? tl(cheapest.fiyat) : '—'}</div>
-        <div class="card-mkt-lbl">${cheapest ? (MARKET_NAMES[cheapest.market] || cheapest.market || '') : ''}</div>
+        <div class="card-price">${gosterilenFiyat != null ? tl(gosterilenFiyat) : '—'}</div>
+        <div class="card-mkt-lbl">${MARKET_NAMES[gosterilenMarket] || gosterilenMarket || ''}</div>
         <button class="btn-ekle${inCart ? ' added' : ''}" data-pid="${u._id}"
           onclick="event.stopPropagation(); toggleSepet('${u._id}')">
           ${inCart ? '✓' : '+'}
