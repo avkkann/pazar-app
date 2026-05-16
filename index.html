@@ -436,8 +436,11 @@
 }
 .header-hal h2 { font-size: 1rem; font-weight: 700; color: #fff; }
 
-/* ── HAL LİSTE ── */
-.hal-list { padding: 12px 14px 20px; display: flex; flex-direction: column; gap: 8px; }
+/* ── HAL GRID ── */
+.hal-grid { padding: 8px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.hal-grid-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+.hal-filter-btn { padding: 6px 12px; border-radius: 20px; border: 1px solid var(--border); background: var(--card-bg); font-size: .75rem; cursor: pointer; }
+.hal-filter-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
 .hal-card {
   background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border);
   padding: 12px 14px; display: flex; align-items: center; gap: 10px;
@@ -681,13 +684,7 @@ function showScreen(id) {
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   if (id === 'screen-home')  document.getElementById('navHome').classList.add('active');
   if (id === 'screen-sepet') document.getElementById('navSepet').classList.add('active');
-  if (id === 'screen-hal') {
-    fetch('./data/hal.json').then(r => r.json()).then(d => {
-      const urunler = d.urunler || d;
-      const halContent = document.getElementById('halContent');
-      halContent.innerHTML = urunler.map(u => `<div style="background:white;border-radius:12px;padding:12px 16px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 1px 4px rgba(0,0,0,0.08)"><span style="font-weight:500">${u.ad}</span><span style="color:#E67E22;font-weight:700">${u.fiyat} ₺/kg</span></div>`).join('');
-    });
-  }
+  if (id === 'screen-hal') { renderHalScreen(); showScreen('screen-hal'); }
 }
 
 function goSepet() { renderSepet(); showScreen('screen-sepet'); }
@@ -850,13 +847,28 @@ async function loadCat(slug) {
 }
 
 // ── KART HTML ─────────────────────────────────────────
+function placeholderRenk(kategori) {
+  const renkler = {
+    'meyve': {bg:'#FFF3E0', emoji:'🍎'},
+    'sebze': {bg:'#E8F5E9', emoji:'🥦'},
+    'et': {bg:'#FCE4EC', emoji:'🥩'},
+    'sut': {bg:'#E3F2FD', emoji:'🧀'},
+    'gida': {bg:'#F3E5F5', emoji:'🛒'},
+    'icecek': {bg:'#E0F7FA', emoji:'🥤'},
+    'temizlik': {bg:'#F9FBE7', emoji:'🧴'}
+  };
+  return renkler[kategori] || {bg:'#F5F5F5', emoji:'📦'};
+}
+
 function cardHTML(u) {
   const mktler  = (u.market_fiyatlari || []).filter(f => f.fiyat != null).sort((a,b) => a.fiyat - b.fiyat);
   const cheapest = mktler[0];
-  const emoji   = KAT_EMOJI[ustKategori(u.ana_kategori)] || '📦';
-  const img     = u.resim
-    ? `<img src="${u.resim}" alt="" loading="lazy" onerror="this.outerHTML='<div style=\\'display:flex;align-items:center;justify-content:center;height:100%;font-size:2rem\\'>${emoji}</div>'">`
-    : `<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:2rem">${emoji}</div>`;
+  const anaKat = ustKategori(u.ana_kategori);
+  const emoji   = KAT_EMOJI[anaKat] || '📦';
+  const ph = placeholderRenk(anaKat);
+  const img = u.resim
+    ? `<img src="${u.resim}" alt="" loading="lazy" onerror="this.outerHTML='<div style=\\'display:flex;align-items:center;justify-content:center;height:100%;font-size:2rem;background:${ph.bg}\\'>${ph.emoji}</div>'">`
+    : `<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:2rem;background:${ph.bg}">${ph.emoji}</div>`;
 
   const hal = halEsles(u);
   const halFiyat = hal?.fiyat ?? null;
@@ -869,7 +881,7 @@ function cardHTML(u) {
     if (mf) { gosterilenFiyat = mf.fiyat; gosterilenMarket = mf.market; }
   }
   return `<div class="product-card" data-urun-id="${u._id}" data-markets="${(u.market_fiyatlari||[]).map(f=>f.market).join(',')}" onclick="openDetay('${u._id}')" style="cursor:pointer;position:relative">
-    <div style="height:120px;background:#f5f5f5;display:flex;align-items:center;justify-content:center;overflow:hidden">${img}</div>
+    <div style="height:120px;display:flex;align-items:center;justify-content:center;overflow:hidden">${img}</div>
     <div class="product-card-body">
       <div class="product-name">${u.ad}</div>
       ${u.agirlik_hacim ? `<div style="font-size:10px;color:#999;margin-top:2px">${u.agirlik_hacim}</div>` : ''}
@@ -1253,25 +1265,51 @@ function renderHalScreen() {
   const data = window.halVerisi;
   const dateStr = data.bulten_tarihi || '';
   const tarihDisplay = dateStr ? `<div style="padding:10px 14px;font-size:.75rem;color:var(--text-muted);border-bottom:1px solid var(--border);text-align:center">📅 ${dateStr}</div>` : '';
+  const sebzeAdlari = ['domates','biber','patlıcan','kabak','salatalık','soğan','sarımsak','ıspanak','marul','havuç','patates','pırasa','kereviz','enginar','bamya','semizotu','roka','tere'];
+  const getHalKat = ad => {
+    const lower = ad.toLowerCase();
+    return sebzeAdlari.some(s => lower.includes(s)) ? 'sebze' : 'meyve';
+  };
+  const halEmojiler = { sebze: '🥦', meyve: '🍎' };
+  const halRenkler = { sebze: '#E8F5E9', meyve: '#FFF3E0' };
   const products = (data.urunler || []).slice().sort((a, b) => a.ad.localeCompare(b.ad, 'tr'));
   if (!products.length) {
     container.innerHTML = tarihDisplay + '<div class="state-msg"><span class="icon">🏭</span>Hal verisi bulunamadı.</div>';
     return;
   }
-  const emojiMap = { 'Domates':'🍅', 'Salatalık':'🥒', 'Elma':'🍎', 'Portakal':'🍊', 'Limon':'🍋', 'Biber':'🫑', 'Soğan':'🧅', 'Patates':'🥔', 'Havuç':'🥕', 'Marul':'🥬', 'Mantar':'🍄', 'Üzüm':'🍇', 'Muz':'🍌', 'Kiraz':'🍒', 'Erik':'🫐', 'Şeftali':'🍑', 'Armut':'🍐', 'Kavun':'🍈', 'Karpuz':'🍉', 'Çilek':'🍓', 'Greyfurt':'🍊', 'Nane':'🌿', 'Maydanoz':'🌿', 'Dereotu':'🌿', 'Roka':'🌿', 'Ispanak':'🌿', 'Kabak':'🎃' };
-  const getEmoji = name => emojiMap[name] || '🥬';
-  const cards = products.map(u => `
-    <div class="hal-card">
-      <div class="hal-card-icon">${getEmoji(u.ad)}</div>
-      <div class="hal-card-info"><div class="hal-card-name">${u.ad}</div></div>
-      <div class="hal-card-price">${tl(u.fiyat)} <span style="font-size:.65rem;font-weight:400">₺/kg</span></div>
-    </div>`).join('');
-  container.innerHTML = tarihDisplay + `<div style="padding:10px 14px"><input type="text" id="halSearch" placeholder="🔍 Ürün ara..." style="width:100%;padding:9px 12px;border-radius:10px;border:1px solid var(--border);font-size:.82rem;background:var(--card-bg);color:var(--text)"></div><div class="hal-list" id="halList">${cards}</div>`;
-  document.getElementById('halSearch').addEventListener('input', function() {
-    const q = this.value.toLowerCase().trim();
-    document.querySelectorAll('#halList .hal-card').forEach(c => {
-      c.style.display = c.querySelector('.hal-card-name').textContent.toLowerCase().includes(q) ? '' : 'none';
-    });
+  const filtersHtml = `<div style="padding:8px 14px;display:flex;gap:8px">
+    <button class="hal-filter-btn active" data-kat="tum" onclick="halFiltrele('tum',this)">Tümü</button>
+    <button class="hal-filter-btn" data-kat="meyve" onclick="halFiltrele('meyve',this)">🍎 Meyve</button>
+    <button class="hal-filter-btn" data-kat="sebze" onclick="halFiltrele('sebze',this)">🥦 Sebze</button>
+  </div>`;
+  const cards = products.map(u => {
+    const kat = getHalKat(u.ad);
+    return `<div class="hal-grid-card" data-kat="${kat}">
+      <div style="height:80px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;background:${halRenkler[kat]};border-radius:12px 12px 0 0">${halEmojiler[kat]}</div>
+      <div style="padding:8px">
+        <div style="font-size:11px;font-weight:500;color:var(--text);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:26px">${u.ad}</div>
+        <div style="font-size:13px;font-weight:700;color:#0F5132;margin-top:4px">${tl(u.fiyat)} <span style="font-size:10px;font-weight:400">₺/kg</span></div>
+        ${dateStr ? `<div style="font-size:9px;color:var(--text-muted);margin-top:2px">${dateStr}</div>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+  container.innerHTML = tarihDisplay + filtersHtml + `<div class="hal-grid" id="halList">${cards}</div>`;
+  document.getElementById('halSearch')?.addEventListener('input', halArama);
+}
+
+function halFiltrele(kat, btn) {
+  document.querySelectorAll('.hal-filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('#halList .hal-grid-card').forEach(c => {
+    c.style.display = kat === 'tum' || c.dataset.kat === kat ? '' : 'none';
+  });
+}
+
+function halArama() {
+  const q = document.getElementById('halSearch').value.toLowerCase().trim();
+  document.querySelectorAll('#halList .hal-grid-card').forEach(c => {
+    const name = c.querySelector('div:nth-child(2) div:first-child').textContent.toLowerCase();
+    c.style.display = name.includes(q) ? '' : 'none';
   });
 }
 
