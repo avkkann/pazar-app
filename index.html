@@ -791,10 +791,8 @@ function cardHTML(u) {
   const halBadge = halFiyat != null
     ? `<span class="card-hal-badge">Hal: ${tl(halFiyat)}</span>` : '';
 
-  const marketList = (u.market_fiyatlari || []).map(f => f.market || '').join(',');
-
   const inCart = sepet.some(s => s._id === u._id);
-  return `<div class="card" data-urun-id="${u._id}" data-markets="${marketList}" onclick="openDetay('${u._id}')" style="cursor:pointer">
+  return `<div class="card" data-urun-id="${u._id}" data-markets="${(u.market_fiyatlari||[]).map(f=>f.market).join(',')}" onclick="openDetay('${u._id}')" style="cursor:pointer">
     <div class="card-row">
       <div class="card-img">${img}</div>
       <div class="card-mid">
