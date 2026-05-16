@@ -130,7 +130,7 @@ def merge_products(products):
         if key not in merged:
             merged[key] = {'ad': p['ad'], 'fiyat': p['fiyat'], 'birim': p['birim'], 'sehir': p['sehir'], 'count': 1}
         else:
-            merged[key]['fiyat'] = (merged[key]['fiyat'] * merged[key]['count'] + p['fiyat']) / (merged[key]['count'] + 1)
+            merged[key]['fiyat'] = round((merged[key]['fiyat'] * merged[key]['count'] + p['fiyat']) / (merged[key]['count'] + 1), 2)
             merged[key]['count'] += 1
     result = []
     for v in merged.values():
@@ -195,7 +195,7 @@ def scrape():
         excel_name: 'Export to Excel',
         '_wpcmWpid': '',
         'wpcmVal': '',
-        'ctl00$ctl37$g_7e86b8d6_3aea_47cf_b1c1_939799a091e0$rblExcelOptions': '0',
+        'ctl00$ctl37$g_7e86b8d6_3aea_47cf_b1c1_939799a091e0$rblExcelOptions': '2',
     }
 
     print(f"\nExcel export cekiliyor...")
