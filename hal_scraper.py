@@ -1,7 +1,7 @@
 """
 Antalya Hal Fiyatlari Scraper
-Kaynak: antalyakomisyonculardernegi.com/hal-fiyatlari/1
-Antalya Yas Sebze ve Meyve Komisyoncular Dernegi gunluk fiyat listesi.
+Kaynak: hal.gov.tr/Sayfalar/FiyatDetaylari.aspx
+T.C. Ticaret Bakanlığı Hal Kayıt Sistemi gunluk fiyat listesi.
 """
 
 import json
@@ -12,11 +12,10 @@ import requests
 from datetime import datetime
 from bs4 import BeautifulSoup
 
-SOURCE_BASE = "https://antalyakomisyonculardernegi.com"
-SOURCE_URL  = SOURCE_BASE + "/hal-fiyatlari/"
+SOURCE_URL = "https://www.hal.gov.tr/Sayfalar/FiyatDetaylari.aspx"
 
-_BASE_DIR   = os.path.dirname(os.path.abspath(__file__))
-DATA_DIR    = os.path.join(_BASE_DIR, "data")
+_BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(_BASE_DIR, "data")
 os.makedirs(DATA_DIR, exist_ok=True)
 OUTPUT_FILE = os.path.join(DATA_DIR, "hal.json")
 MAX_RETRIES = 3
@@ -30,12 +29,15 @@ HEADERS = {
 }
 
 
-def fetch_with_retry(url):
+def fetch_with_retry(url, method='get', **kwargs):
     sess = requests.Session()
     sess.headers.update(HEADERS)
     for attempt in range(1, MAX_RETRIES + 1):
         try:
-            resp = sess.get(url, timeout=20)
+            if method == 'post':
+                resp = sess.post(url, **kwargs)
+            else:
+                resp = sess.get(url, **kwargs)
             resp.raise_for_status()
             return resp
         except Exception as e:
@@ -45,18 +47,66 @@ def fetch_with_retry(url):
     return None
 
 
+def parse_excel_response(content):
+    """Excel (HTML format) ciktisini parse eder."""
+    try:
+        text = content.decode('utf-16')
+    except Exception:
+        return [], ""
+
+    soup = BeautifulSoup(text, 'html.parser')
+    rows = soup.find_all('tr')
+    if not rows:
+        return [], ""
+
+    products = []
+    tarih_str = ""
+
+    for row in rows[1:]:
+        cols = [td.get_text(strip=True) for td in row.find_all(['td', 'th'])]
+        if len(cols) < 5:
+            continue
+
+        if cols[0].startswith('Bulten Tarihi'):
+            m = re.search(r'\d{2}[-./]\d{2}[-./]\d{4}', cols[0])
+            if m:
+                tarih_str = m.group(0)
+            continue
+
+        if cols[0] in ('Urün Adı', 'Ürün Adı', '', '12345678910...'):
+            continue
+
+        ad = cols[0]
+        birim = cols[5] if len(cols) > 5 else 'Kg'
+        fiyat_str = cols[3] if len(cols) > 3 else ''
+        fiyat = parse_fiyat(fiyat_str)
+
+        if ad and fiyat:
+            products.append({
+                "ad": ad,
+                "fiyat": fiyat,
+                "birim": birim,
+                "sehir": "Antalya",
+            })
+
+    if not tarih_str:
+        m = re.search(r'\d{2}[-./]\d{2}[-./]\d{4}', text)
+        if m:
+            tarih_str = m.group(0)
+
+    return products, tarih_str
+
+
 def parse_fiyat(text):
-    """'80.00 ₺' veya '₺ 80,00' gibi metni float'a cevirir. Gecersizse None."""
+    """'80,00' gibi metni float'a cevirir."""
     if not text:
         return None
     cleaned = text.strip()
-    if "bekleniyor" in cleaned.lower() or cleaned == "" or cleaned == "-":
+    if cleaned in ("", "-"):
         return None
-    # Sadece rakam ve nokta/virgül kal
     numeric = re.sub(r"[^\d.,]", "", cleaned)
     if not numeric:
         return None
-    # Türkçe format: 1.234,56 → 1234.56
     if "," in numeric and "." in numeric:
         numeric = numeric.replace(".", "").replace(",", ".")
     elif "," in numeric:
@@ -67,101 +117,73 @@ def parse_fiyat(text):
         return None
 
 
-def parse_products(soup):
-    """
-    ANTKOMDER sayfasindaki tabloyu parse eder.
-    Baslik satiri: # | Urunler | Bugun fiyati | Onceki gun
-    Bugunun fiyati "Fiyat Bekleniyor" ise onceki gunun fiyatini kullanir.
-    """
-    table = soup.find("table")
-    if not table:
-        return []
-
-    products = []
-    for row in table.find_all("tr")[1:]:   # ilk satir baslik
-        cols = [td.get_text(strip=True) for td in row.find_all(["td", "th"])]
-        if len(cols) < 2:
-            continue
-        urun_adi = cols[1].strip()
-        if not urun_adi:
-            continue
-        bugun = parse_fiyat(cols[2]) if len(cols) > 2 else None
-        dun   = parse_fiyat(cols[3]) if len(cols) > 3 else None
-        fiyat = bugun if bugun is not None else dun
-        if fiyat:
-            products.append({
-                "ad":    urun_adi,
-                "fiyat": fiyat,
-                "birim": "Kg",
-                "sehir": "Antalya",
-            })
-    return products
-
-
 def scrape():
     print("=" * 60)
-    print("Antalya Hal Fiyatlari Scraper (ANTKOMDER)")
+    print("Antalya Hal Fiyatlari Scraper (hal.gov.tr)")
     print(f"Baslangic: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 60)
 
-    all_products = []
-    tarih_str = ""
-    page = 1
+    print(f"\nSayfa cekiliyor: {SOURCE_URL}")
+    resp = fetch_with_retry(SOURCE_URL)
+    if not resp:
+        print("[HATA] Sayfa alinamadi.")
+        return None
 
-    while True:
-        url = SOURCE_URL + str(page)
-        print(f"\nSayfa {page} cekiliyor: {url}")
-        resp = fetch_with_retry(url)
-        if not resp or resp.status_code != 200:
-            print(f"  [Bitti] Sayfa {page} alinamadi veya hata (status {resp.status_code if resp else 'None'}).")
-            break
+    soup = BeautifulSoup(resp.content, 'html.parser')
 
-        soup = BeautifulSoup(resp.content, "html.parser")
-        table = soup.find("table")
-        if not table:
-            print(f"  [Bitti] Sayfa {page}: tablo yok.")
-            break
+    vs = soup.find('input', {'name': '__VIEWSTATE'}).get('value', '')
+    vsg = soup.find('input', {'name': '__VIEWSTATEGENERATOR'}).get('value', '')
+    ev = soup.find('input', {'name': '__EVENTVALIDATION'}).get('value', '')
+    rd = soup.find('input', {'name': '__REQUESTDIGEST'}).get('value', '')
+    date_input = soup.find('input', {'id': lambda i: i and 'dateControlDate' in i})
+    btn_excel = soup.find('input', {'id': lambda i: i and 'btnExcel' in i})
 
-        if page == 1:
-            header = table.find("tr")
-            if header:
-                cols = [c.get_text(strip=True) for c in header.find_all(["th", "td"])]
-                raw = cols[2] if len(cols) > 2 else ""
-                m = re.search(r"\d{2}[-./]\d{2}[-./]\d{4}", raw)
-                if m:
-                    tarih_str = m.group(0)
-            if not tarih_str:
-                tarih_str = datetime.now().strftime("%Y-%m-%d")
-            print(f"  Tarih: {tarih_str}")
+    date_name = date_input.get('name')
+    excel_name = btn_excel.get('name')
 
-        rows = table.find_all("tr")
-        page_products = parse_products(soup)
-        print(f"  Sayfa {page}: {len(page_products)} urun")
-        if not page_products:
-            print(f"  [Bitti] Sayfa {page}: urun yok.")
-            break
+    today = datetime.now().strftime("%d.%m.%Y")
+    print(f"  Tarih: {today}")
 
-        all_products.extend(page_products)
-        page += 1
+    data = {
+        '__VIEWSTATE': vs,
+        '__VIEWSTATEGENERATOR': vsg,
+        '__EVENTVALIDATION': ev,
+        '__REQUESTDIGEST': rd,
+        date_name: today,
+        excel_name: 'Export to Excel',
+        '_wpcmWpid': '',
+        'wpcmVal': '',
+        'ctl00$ctl37$g_7e86b8d6_3aea_47cf_b1c1_939799a091e0$rblExcelOptions': '0',
+    }
 
-    print(f"\nToplam cekilen urun: {len(all_products)}")
+    print(f"\nExcel export cekiliyor...")
+    resp2 = fetch_with_retry(SOURCE_URL, method='post',
+                            data=data,
+                            headers={'Content-Type': 'application/x-www-form-urlencoded'},
+                            timeout=30)
+    if not resp2:
+        print("[HATA] Excel export alinamadi.")
+        return None
 
-    if not all_products:
-        print("[UYARI] Hic urun bulunamadi — sayfa yapisi degismis olabilir.")
+    products, tarih_str = parse_excel_response(resp2.content)
+    print(f"  {len(products)} urun parse edildi.")
+
+    if not products:
+        print("[UYARI] Hic urun bulunamadi.")
 
     output = {
-        "kaynak":        "antalyakomisyonculardernegi.com",
-        "sehir":         "Antalya",
-        "bulten_tarihi": tarih_str,
-        "cekme_tarihi":  datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "toplam_urun":   len(all_products),
-        "urunler":       all_products,
+        "kaynak": "hal.gov.tr",
+        "sehir": "Antalya",
+        "bulten_tarihi": tarih_str or today,
+        "cekme_tarihi": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "toplam_urun": len(products),
+        "urunler": products,
     }
 
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
 
-    print(f"\nTamamlandi: {len(all_products)} urun -> {OUTPUT_FILE}")
+    print(f"\nTamamlandi: {len(products)} urun -> {OUTPUT_FILE}")
     return output
 
 

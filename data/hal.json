@@ -1,79 +1,157 @@
 {
-  "kaynak": "antalyakomisyonculardernegi.com",
+  "kaynak": "hal.gov.tr",
   "sehir": "Antalya",
-  "bulten_tarihi": "16-05-2026",
-  "cekme_tarihi": "2026-05-16 17:22:08",
-  "toplam_urun": 12,
+  "bulten_tarihi": "16.05.2026",
+  "cekme_tarihi": "2026-05-16 18:10:10",
+  "toplam_urun": 25,
   "urunler": [
     {
-      "ad": "Domates",
-      "fiyat": 75.0,
+      "ad": "ACUR",
+      "fiyat": 40.71,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
-      "ad": "Domates (Kokteyl)",
-      "fiyat": 60.0,
+      "ad": "ADAÇAYI (YAŞ-TAZE)",
+      "fiyat": 74.65,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
-      "ad": "Sivri Biber",
-      "fiyat": 20.0,
+      "ad": "ADAÇAYI (YAŞ-TAZE)",
+      "fiyat": 334.96,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
-      "ad": "Sivri Biber (Kılcık)",
-      "fiyat": 45.0,
+      "ad": "AHUDUDU(FRAMBUAZ)",
+      "fiyat": 1739.22,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
-      "ad": "Çarlı Biber",
-      "fiyat": 20.0,
+      "ad": "AHUDUDU(FRAMBUAZ)",
+      "fiyat": 1052.8,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
-      "ad": "Dolmalık Biber",
-      "fiyat": 35.0,
+      "ad": "ALABAŞ(KOHLRABİ)",
+      "fiyat": 43.43,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
-      "ad": "Uçburun Köy Biberi",
-      "fiyat": 30.0,
+      "ad": "ALABAŞ(KOHLRABİ)",
+      "fiyat": 38.63,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
-      "ad": "Kapya Biber",
-      "fiyat": 170.0,
+      "ad": "ALABAŞ(KOHLRABİ)",
+      "fiyat": 70.0,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
-      "ad": "Patlıcan",
-      "fiyat": 15.0,
+      "ad": "ANANAS",
+      "fiyat": 92.35,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
-      "ad": "Kabak",
-      "fiyat": 12.0,
+      "ad": "ANDİVA",
+      "fiyat": 25.0,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
-      "ad": "Salatalık",
-      "fiyat": 17.0,
+      "ad": "ARMUT",
+      "fiyat": 28.57,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
-      "ad": "Salatalık (Silor)",
-      "fiyat": 15.0,
+      "ad": "ARMUT",
+      "fiyat": 47.78,
+      "birim": "Kg",
+      "sehir": "Antalya"
+    },
+    {
+      "ad": "ARMUT",
+      "fiyat": 60.93,
+      "birim": "Kg",
+      "sehir": "Antalya"
+    },
+    {
+      "ad": "ARMUT",
+      "fiyat": 35.16,
+      "birim": "Kg",
+      "sehir": "Antalya"
+    },
+    {
+      "ad": "ARMUT",
+      "fiyat": 110.0,
+      "birim": "Kg",
+      "sehir": "Antalya"
+    },
+    {
+      "ad": "ARMUT",
+      "fiyat": 31.34,
+      "birim": "Kg",
+      "sehir": "Antalya"
+    },
+    {
+      "ad": "ARMUT",
+      "fiyat": 68.86,
+      "birim": "Kg",
+      "sehir": "Antalya"
+    },
+    {
+      "ad": "ARMUT",
+      "fiyat": 31.83,
+      "birim": "Kg",
+      "sehir": "Antalya"
+    },
+    {
+      "ad": "ARMUT",
+      "fiyat": 70.5,
+      "birim": "Kg",
+      "sehir": "Antalya"
+    },
+    {
+      "ad": "ASMA YAPRAĞI",
+      "fiyat": 80.77,
+      "birim": "Kg",
+      "sehir": "Antalya"
+    },
+    {
+      "ad": "AVOKADO",
+      "fiyat": 25.17,
+      "birim": "Adet",
+      "sehir": "Antalya"
+    },
+    {
+      "ad": "AVOKADO",
+      "fiyat": 86.53,
+      "birim": "Adet",
+      "sehir": "Antalya"
+    },
+    {
+      "ad": "AYVA",
+      "fiyat": 41.91,
+      "birim": "Kg",
+      "sehir": "Antalya"
+    },
+    {
+      "ad": "BADEM (YAŞ-TAZE)",
+      "fiyat": 79.78,
+      "birim": "Kg",
+      "sehir": "Antalya"
+    },
+    {
+      "ad": "BAKLA TAZE",
+      "fiyat": 35.96,
       "birim": "Kg",
       "sehir": "Antalya"
     }
