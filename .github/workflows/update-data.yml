@@ -21,3 +21,11 @@ jobs:
           git add data/
           git commit -m "Veri guncellendi" || exit 0
           git push
+      - name: Trigger Pages Deploy
+        uses: actions/github-script@v6
+        with:
+          script: |
+            await github.rest.repos.requestPagesBuild({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+            });
