@@ -12,7 +12,8 @@ import requests
 from datetime import datetime
 from bs4 import BeautifulSoup
 
-SOURCE_URL  = "https://antalyakomisyonculardernegi.com/hal-fiyatlari/1"
+SOURCE_BASE = "https://antalyakomisyonculardernegi.com"
+SOURCE_URL  = SOURCE_BASE + "/hal-fiyatlari/"
 
 _BASE_DIR   = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR    = os.path.join(_BASE_DIR, "data")
@@ -103,33 +104,49 @@ def scrape():
     print(f"Baslangic: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 60)
 
-    print(f"\nSayfa cekiliyor: {SOURCE_URL}")
-    resp = fetch_with_retry(SOURCE_URL)
-    if not resp:
-        print("[HATA] Sayfa alinamadi.")
-        return None
-
-    soup = BeautifulSoup(resp.content, "html.parser")
-
-    # Bülten tarihi: tablo başlığının 3. sütunundan al ("15-05-2026 (Bugün)")
+    all_products = []
     tarih_str = ""
-    table = soup.find("table")
-    if table:
-        header = table.find("tr")
-        if header:
-            cols = [c.get_text(strip=True) for c in header.find_all(["th", "td"])]
-            raw = cols[2] if len(cols) > 2 else ""
-            m = re.search(r"\d{2}[-./]\d{2}[-./]\d{4}", raw)
-            if m:
-                tarih_str = m.group(0)
-    if not tarih_str:
-        tarih_str = datetime.now().strftime("%Y-%m-%d")
-    print(f"  Tarih: {tarih_str}")
+    page = 1
 
-    products = parse_products(soup)
-    print(f"  {len(products)} urun parse edildi.")
+    while True:
+        url = SOURCE_URL + str(page)
+        print(f"\nSayfa {page} cekiliyor: {url}")
+        resp = fetch_with_retry(url)
+        if not resp or resp.status_code != 200:
+            print(f"  [Bitti] Sayfa {page} alinamadi veya hata (status {resp.status_code if resp else 'None'}).")
+            break
 
-    if not products:
+        soup = BeautifulSoup(resp.content, "html.parser")
+        table = soup.find("table")
+        if not table:
+            print(f"  [Bitti] Sayfa {page}: tablo yok.")
+            break
+
+        if page == 1:
+            header = table.find("tr")
+            if header:
+                cols = [c.get_text(strip=True) for c in header.find_all(["th", "td"])]
+                raw = cols[2] if len(cols) > 2 else ""
+                m = re.search(r"\d{2}[-./]\d{2}[-./]\d{4}", raw)
+                if m:
+                    tarih_str = m.group(0)
+            if not tarih_str:
+                tarih_str = datetime.now().strftime("%Y-%m-%d")
+            print(f"  Tarih: {tarih_str}")
+
+        rows = table.find_all("tr")
+        page_products = parse_products(soup)
+        print(f"  Sayfa {page}: {len(page_products)} urun")
+        if not page_products:
+            print(f"  [Bitti] Sayfa {page}: urun yok.")
+            break
+
+        all_products.extend(page_products)
+        page += 1
+
+    print(f"\nToplam cekilen urun: {len(all_products)}")
+
+    if not all_products:
         print("[UYARI] Hic urun bulunamadi — sayfa yapisi degismis olabilir.")
 
     output = {
@@ -137,14 +154,14 @@ def scrape():
         "sehir":         "Antalya",
         "bulten_tarihi": tarih_str,
         "cekme_tarihi":  datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "toplam_urun":   len(products),
-        "urunler":       products,
+        "toplam_urun":   len(all_products),
+        "urunler":       all_products,
     }
 
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
 
-    print(f"\nTamamlandi: {len(products)} urun -> {OUTPUT_FILE}")
+    print(f"\nTamamlandi: {len(all_products)} urun -> {OUTPUT_FILE}")
     return output
 
 
