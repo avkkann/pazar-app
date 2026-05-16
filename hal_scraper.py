@@ -47,6 +47,26 @@ def fetch_with_retry(url, method='get', **kwargs):
     return None
 
 
+def title_case(s):
+    """'DOMATES' -> 'Domates', 'YER FISTIGI' -> 'Yer Fistigi'"""
+    if not s:
+        return s
+    small = {
+        've', 'veya', 'ile', 'için', 'de', 'da', 'bu', 'ne', 'ama', 'fakat',
+        'kırmızı', 'beyaz', 'siyah', 'yeşil', 'sarı', 'mavi', 'turuncu', 'mor',
+        'kuru', 'taze', ' Organik', 'iyi', 'tarim', 'geleneksel', 'konvansiyonel'
+    }
+    words = s.split()
+    result = []
+    for i, w in enumerate(words):
+        lower_w = w.lower()
+        if i == 0 or lower_w not in small:
+            result.append(w.capitalize())
+        else:
+            result.append(lower_w)
+    return ' '.join(result)
+
+
 def parse_excel_response(content):
     """Excel (HTML format) ciktisini parse eder."""
     try:
@@ -61,6 +81,7 @@ def parse_excel_response(content):
 
     products = []
     tarih_str = ""
+    MAX_PRICE = 500
 
     for row in rows[1:]:
         cols = [td.get_text(strip=True) for td in row.find_all(['td', 'th'])]
@@ -76,18 +97,22 @@ def parse_excel_response(content):
         if cols[0] in ('Urün Adı', 'Ürün Adı', '', '12345678910...'):
             continue
 
-        ad = cols[0]
+        ad = title_case(cols[0])
         birim = cols[5] if len(cols) > 5 else 'Kg'
         fiyat_str = cols[3] if len(cols) > 3 else ''
         fiyat = parse_fiyat(fiyat_str)
 
-        if ad and fiyat:
-            products.append({
-                "ad": ad,
-                "fiyat": fiyat,
-                "birim": birim,
-                "sehir": "Antalya",
-            })
+        if not fiyat:
+            continue
+        if fiyat > MAX_PRICE:
+            continue
+
+        products.append({
+            "ad": ad,
+            "fiyat": fiyat,
+            "birim": birim,
+            "sehir": "Antalya",
+        })
 
     if not tarih_str:
         m = re.search(r'\d{2}[-./]\d{2}[-./]\d{4}', text)
@@ -95,6 +120,23 @@ def parse_excel_response(content):
             tarih_str = m.group(0)
 
     return products, tarih_str
+
+
+def merge_products(products):
+    """Aynı isimli ürünlerin fiyat ortalamasını al."""
+    merged = {}
+    for p in products:
+        key = p['ad'].lower()
+        if key not in merged:
+            merged[key] = {'ad': p['ad'], 'fiyat': p['fiyat'], 'birim': p['birim'], 'sehir': p['sehir'], 'count': 1}
+        else:
+            merged[key]['fiyat'] = (merged[key]['fiyat'] * merged[key]['count'] + p['fiyat']) / (merged[key]['count'] + 1)
+            merged[key]['count'] += 1
+    result = []
+    for v in merged.values():
+        r = {k: v[k] for k in ['ad', 'fiyat', 'birim', 'sehir']}
+        result.append(r)
+    return result
 
 
 def parse_fiyat(text):
@@ -170,6 +212,10 @@ def scrape():
 
     if not products:
         print("[UYARI] Hic urun bulunamadi.")
+        return None
+
+    products = merge_products(products)
+    print(f"  {len(products)} urun (birlesik sonrasi)")
 
     output = {
         "kaynak": "hal.gov.tr",
