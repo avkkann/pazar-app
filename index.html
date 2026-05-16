@@ -506,7 +506,7 @@
   </header>
 
   <div class="filter-wrap">
-    <button class="filter-pill active" data-market="all"         onclick="setMarketFilter(null)">Tümü</button>
+    <button class="filter-pill active" data-market="all"         onclick="setMarketFilter('all')">Tümü</button>
     <button class="filter-pill"        data-market="a101"        onclick="setMarketFilter('a101')">A101</button>
     <button class="filter-pill"        data-market="bim"         onclick="setMarketFilter('bim')">BİM</button>
     <button class="filter-pill"        data-market="migros"      onclick="setMarketFilter('migros')">Migros</button>
@@ -844,11 +844,18 @@ async function openCategory(slug) {
 }
 
 function setMarketFilter(market) {
-  activeMarket = market;
+  window.aktifMarket = market;
   document.querySelectorAll('.filter-pill').forEach(p =>
-    p.classList.toggle('active', p.dataset.market === (market || 'all'))
+    p.classList.toggle('active', p.dataset.market === market)
   );
-  filterUrunler(activeMarket || 'tumu');
+  document.querySelectorAll('[data-markets]').forEach(kart => {
+    if (market === 'all' || market === 'tumu') {
+      kart.style.display = '';
+    } else {
+      const markets = kart.getAttribute('data-markets') || '';
+      kart.style.display = markets.split(',').includes(market) ? '' : 'none';
+    }
+  });
 }
 
 function filterUrunler(secilenMarket) {
