@@ -510,7 +510,7 @@
     <button class="filter-pill"        data-market="a101"        onclick="setMarketFilter('a101')">A101</button>
     <button class="filter-pill"        data-market="bim"         onclick="setMarketFilter('bim')">BİM</button>
     <button class="filter-pill"        data-market="migros"      onclick="setMarketFilter('migros')">Migros</button>
-    <button class="filter-pill"        data-market="carrefoursa" onclick="setMarketFilter('carrefoursa')">CarrefourSA</button>
+    <button class="filter-pill"        data-market="carrefour"   onclick="setMarketFilter('carrefour')">CarrefourSA</button>
     <button class="filter-pill"        data-market="sok"         onclick="setMarketFilter('sok')">ŞOK</button>
     <button class="filter-pill"        data-market="tarim_kredi" onclick="setMarketFilter('tarim_kredi')">Tarım Kredi</button>
   </div>
@@ -791,7 +791,7 @@ function cardHTML(u) {
   const halBadge = halFiyat != null
     ? `<span class="card-hal-badge">Hal: ${tl(halFiyat)}</span>` : '';
 
-  const marketList = mktler.map(f => (f.market || '').toLowerCase()).join(',');
+  const marketList = (u.market_fiyatlari || []).map(f => f.market || '').join(',');
 
   const inCart = sepet.some(s => s._id === u._id);
   return `<div class="card" data-urun-id="${u._id}" data-markets="${marketList}" onclick="openDetay('${u._id}')" style="cursor:pointer">
@@ -848,19 +848,18 @@ function setMarketFilter(market) {
   document.querySelectorAll('.filter-pill').forEach(p =>
     p.classList.toggle('active', p.dataset.market === (market || 'all'))
   );
-  applyMarketFilter();
+  filterUrunler(activeMarket || 'tumu');
 }
 
-function applyMarketFilter() {
-  const list = document.getElementById('productList');
+function filterUrunler(secilenMarket) {
   let visible = 0;
-  list.querySelectorAll('.card').forEach(card => {
-    if (!activeMarket) {
+  document.querySelectorAll('.urun-card, [class*="card"]').forEach(card => {
+    if (secilenMarket === 'tumu') {
       card.style.display = '';
       visible++;
     } else {
-      const markets = (card.dataset.markets || '').split(',').filter(Boolean);
-      const show = markets.includes(activeMarket);
+      const markets = card.dataset.markets || '';
+      const show = markets.split(',').includes(secilenMarket);
       card.style.display = show ? '' : 'none';
       if (show) visible++;
     }
@@ -887,7 +886,7 @@ async function loadKategoriSayfasi(slug, sayfa) {
     } else {
       list.insertAdjacentHTML('beforeend', pageItems.map(cardHTML).join(''));
     }
-    applyMarketFilter();
+    filterUrunler(activeMarket || 'tumu');
   } catch(e) {
     console.error('Veri yükleme hatası:', e);
   } finally {
