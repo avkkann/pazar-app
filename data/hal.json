@@ -2,7 +2,80 @@
   "kaynak": "antalyakomisyonculardernegi.com",
   "sehir": "Antalya",
   "bulten_tarihi": "16-05-2026",
-  "cekme_tarihi": "2026-05-16 06:08:35",
-  "toplam_urun": 0,
-  "urunler": []
+  "cekme_tarihi": "2026-05-16 17:22:08",
+  "toplam_urun": 12,
+  "urunler": [
+    {
+      "ad": "Domates",
+      "fiyat": 75.0,
+      "birim": "Kg",
+      "sehir": "Antalya"
+    },
+    {
+      "ad": "Domates (Kokteyl)",
+      "fiyat": 60.0,
+      "birim": "Kg",
+      "sehir": "Antalya"
+    },
+    {
+      "ad": "Sivri Biber",
+      "fiyat": 20.0,
+      "birim": "Kg",
+      "sehir": "Antalya"
+    },
+    {
+      "ad": "Sivri Biber (Kılcık)",
+      "fiyat": 45.0,
+      "birim": "Kg",
+      "sehir": "Antalya"
+    },
+    {
+      "ad": "Çarlı Biber",
+      "fiyat": 20.0,
+      "birim": "Kg",
+      "sehir": "Antalya"
+    },
+    {
+      "ad": "Dolmalık Biber",
+      "fiyat": 35.0,
+      "birim": "Kg",
+      "sehir": "Antalya"
+    },
+    {
+      "ad": "Uçburun Köy Biberi",
+      "fiyat": 30.0,
+      "birim": "Kg",
+      "sehir": "Antalya"
+    },
+    {
+      "ad": "Kapya Biber",
+      "fiyat": 170.0,
+      "birim": "Kg",
+      "sehir": "Antalya"
+    },
+    {
+      "ad": "Patlıcan",
+      "fiyat": 15.0,
+      "birim": "Kg",
+      "sehir": "Antalya"
+    },
+    {
+      "ad": "Kabak",
+      "fiyat": 12.0,
+      "birim": "Kg",
+      "sehir": "Antalya"
+    },
+    {
+      "ad": "Salatalık",
+      "fiyat": 17.0,
+      "birim": "Kg",
+      "sehir": "Antalya"
+    },
+    {
+      "ad": "Salatalık (Silor)",
+      "fiyat": 15.0,
+      "birim": "Kg",
+      "sehir": "Antalya"
+    }
+  ]
 }
