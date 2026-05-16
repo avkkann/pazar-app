@@ -1265,7 +1265,7 @@ function renderHalScreen() {
   const data = window.halVerisi;
   const dateStr = data.bulten_tarihi || '';
   const tarihDisplay = dateStr ? `<div style="padding:10px 14px;font-size:.75rem;color:var(--text-muted);border-bottom:1px solid var(--border);text-align:center">📅 ${dateStr}</div>` : '';
-  const sebzeAdlari = ['domates','biber','patlıcan','kabak','salatalık','soğan','sarımsak','ıspanak','marul','havuç','patates','pırasa','kereviz','enginar','bamya','semizotu','roka','tere'];
+  const sebzeAdlari = ['domates','biber','patlıcan','kabak','salatalık','soğan','sarımsak','ıspanak','marul','havuç','patates','pırasa','kereviz','enginar','bamya','roka','tere','acur','alabaş','asma','bakla','bezelye','brokoli','fasulye','karnabahar','lahana','mantar','mercimek','nohut','pancar','pazı','rezene','semizotu','şalgam','turp','maydanoz','dereotu','nane','fesleğen','kuzukulağı','hindiba','kuşkonmaz','arikut','taze','yaprak'];
   const getHalKat = ad => {
     const lower = ad.toLowerCase();
     return sebzeAdlari.some(s => lower.includes(s)) ? 'sebze' : 'meyve';
