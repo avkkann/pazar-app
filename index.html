@@ -841,20 +841,28 @@ async function openCategory(slug) {
   await loadKategoriSayfasi(slug, 1);
 }
 
+function renderUrunler(liste) {
+  const list = document.getElementById('productList');
+  list.innerHTML = liste.length
+    ? liste.map(cardHTML).join('')
+    : `<div class="state-msg"><span class="icon">🔍</span>Bu markette ürün bulunamadı.</div>`;
+  document.getElementById('countNum').textContent = liste.length;
+}
+
 function setMarketFilter(market) {
   window.aktifMarket = market;
   document.querySelectorAll('.filter-pill').forEach(p =>
     p.classList.toggle('active', p.dataset.market === market)
   );
-  const all = window.yuklenenUrunler || [];
-  const filtered = (market === 'all')
-    ? all
-    : all.filter(u => (u.market_fiyatlari || []).some(f => f.market === market));
-  const list = document.getElementById('productList');
-  list.innerHTML = filtered.length
-    ? filtered.map(cardHTML).join('')
-    : `<div class="state-msg"><span class="icon">🔍</span>Bu markette ürün bulunamadı.</div>`;
-  document.getElementById('countNum').textContent = filtered.length;
+  let filtreliUrunler;
+  if (market === 'all' || market === 'tumu') {
+    filtreliUrunler = window.yuklenenUrunler || [];
+  } else {
+    filtreliUrunler = (window.yuklenenUrunler || []).filter(u =>
+      (u.market_fiyatlari || []).some(f => f.market === market)
+    );
+  }
+  renderUrunler(filtreliUrunler);
 }
 
 function filterUrunler(secilenMarket) {
