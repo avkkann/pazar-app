@@ -1253,22 +1253,27 @@ function renderHalScreen() {
   }
   const data = window.halVerisi;
   const dateStr = data.bulten_tarihi || '';
-  const tarihDisplay = dateStr ? `<div style="padding:8px 14px;font-size:.72rem;color:var(--text-muted);border-bottom:1px solid var(--border)">📅 ${dateStr}</div>` : '';
-  const products = data.urunler || [];
+  const tarihDisplay = dateStr ? `<div style="padding:10px 14px;font-size:.75rem;color:var(--text-muted);border-bottom:1px solid var(--border);text-align:center">📅 ${dateStr}</div>` : '';
+  const products = (data.urunler || []).slice().sort((a, b) => a.ad.localeCompare(b.ad, 'tr'));
   if (!products.length) {
     container.innerHTML = tarihDisplay + '<div class="state-msg"><span class="icon">🏭</span>Hal verisi bulunamadı.</div>';
     return;
   }
+  const emojiMap = { 'Domates':'🍅', 'Salatalık':'🥒', 'Elma':'🍎', 'Portakal':'🍊', 'Limon':'🍋', 'Biber':'🫑', 'Soğan':'🧅', 'Patates':'🥔', 'Havuç':'🥕', 'Marul':'🥬', 'Mantar':'🍄', 'Üzüm':'🍇', 'Muz':'🍌', 'Kiraz':'🍒', 'Erik':'🫐', 'Şeftali':'🍑', 'Armut':'🍐', 'Kavun':'🍈', 'Karpuz':'🍉', 'Çilek':'🍓', 'Greyfurt':'🍊', 'Nane':'🌿', 'Maydanoz':'🌿', 'Dereotu':'🌿', 'Roka':'🌿', 'Ispanak':'🌿', 'Kabak':'🎃' };
+  const getEmoji = name => emojiMap[name] || '🥬';
   const cards = products.map(u => `
     <div class="hal-card">
-      <div class="hal-card-icon">🥬</div>
-      <div class="hal-card-info">
-        <div class="hal-card-name">${u.ad}</div>
-        <div class="hal-card-unit">${u.birim || 'Kg'}</div>
-      </div>
-      <div class="hal-card-price">${tl(u.fiyat)}</div>
+      <div class="hal-card-icon">${getEmoji(u.ad)}</div>
+      <div class="hal-card-info"><div class="hal-card-name">${u.ad}</div></div>
+      <div class="hal-card-price">${tl(u.fiyat)} <span style="font-size:.65rem;font-weight:400">₺/kg</span></div>
     </div>`).join('');
-  container.innerHTML = tarihDisplay + '<div class="hal-list">' + cards + '</div>';
+  container.innerHTML = tarihDisplay + `<div style="padding:10px 14px"><input type="text" id="halSearch" placeholder="🔍 Ürün ara..." style="width:100%;padding:9px 12px;border-radius:10px;border:1px solid var(--border);font-size:.82rem;background:var(--card-bg);color:var(--text)"></div><div class="hal-list" id="halList">${cards}</div>`;
+  document.getElementById('halSearch').addEventListener('input', function() {
+    const q = this.value.toLowerCase().trim();
+    document.querySelectorAll('#halList .hal-card').forEach(c => {
+      c.style.display = c.querySelector('.hal-card-name').textContent.toLowerCase().includes(q) ? '' : 'none';
+    });
+  });
 }
 
 loadData();
