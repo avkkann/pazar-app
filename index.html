@@ -851,18 +851,26 @@ function renderUrunler(liste) {
 
 function setMarketFilter(market) {
   window.aktifMarket = market;
-  document.querySelectorAll('.filter-pill').forEach(p =>
-    p.classList.toggle('active', p.dataset.market === market)
-  );
+  const tumUrunler = window.yuklenenUrunler || [];
+
   let filtreliUrunler;
-  if (market === 'all' || market === 'tumu') {
-    filtreliUrunler = window.yuklenenUrunler || [];
+  if (!market || market === 'all' || market === 'tumu') {
+    filtreliUrunler = tumUrunler;
   } else {
-    filtreliUrunler = (window.yuklenenUrunler || []).filter(u =>
-      (u.market_fiyatlari || []).some(f => f.market === market)
-    );
+    filtreliUrunler = tumUrunler.filter(function(urun) {
+      const fiyatlar = urun.market_fiyatlari || urun.fiyatlar || [];
+      return fiyatlar.some(function(f) {
+        return f.market === market;
+      });
+    });
   }
+
   renderUrunler(filtreliUrunler);
+
+  // Pill'leri güncelle
+  document.querySelectorAll('[data-market]').forEach(function(pill) {
+    pill.classList.toggle('active', pill.dataset.market === market);
+  });
 }
 
 function filterUrunler(secilenMarket) {
