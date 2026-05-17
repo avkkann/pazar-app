@@ -402,6 +402,9 @@
       scrollbar-width: none;
     }
     .filter-wrap::-webkit-scrollbar { display: none; }
+    .cat-search-wrap { padding: 8px 12px 0; }
+    .cat-search-wrap input { width: 100%; box-sizing: border-box; padding: 10px 14px; border-radius: 20px; border: 1.5px solid var(--border); background: var(--bg); color: var(--text); font-size: 14px; outline: none; }
+    .cat-search-wrap input:focus { border-color: var(--primary); }
     .filter-pill {
       flex-shrink: 0; padding: 5px 13px; border-radius: 999px;
       border: 1.5px solid var(--border); background: var(--bg);
@@ -563,6 +566,10 @@
     </button>
     <h2 id="cat-title">Kategori</h2>
   </header>
+
+  <div class="cat-search-wrap">
+  <input type="text" id="catSearch" placeholder="Bu kategoride ara..." oninput="catAra(this.value)" autocomplete="off">
+</div>
 
   <div class="filter-wrap">
     <button class="filter-pill active" data-market="all"         onclick="setMarketFilter('all')">Tümü</button>
@@ -906,6 +913,8 @@ function renderCatGrid() {
 
 // ── KATEGORİ EKRANI ───────────────────────────────────
 async function openCategory(slug) {
+  window._catAramaTermi = '';
+  const ci = document.getElementById('catSearch'); if (ci) ci.value = '';
   const kat = KATEGORILER.find(k => k.slug === slug);
   document.getElementById('cat-title').textContent = kat.label;
   document.getElementById('productList').innerHTML = skeletonHTML();
@@ -924,6 +933,7 @@ async function openCategory(slug) {
 }
 
 function renderUrunler(liste) {
+  window._catUrunler = liste;
   const list = document.getElementById('productList');
   list.innerHTML = liste.length
     ? liste.map(cardHTML).join('')
@@ -955,9 +965,17 @@ function setMarketFilter(market) {
   });
 }
 
+function catAra(q) {
+  window._catAramaTermi = q.trim().toLowerCase();
+  filterUrunler();
+}
+
 function filterUrunler(secilenMarket) {
   let visible = 0;
   document.querySelectorAll('#productList .product-card').forEach(card => {
+    const u = window._catUrunler ? window._catUrunler.find(x => x._id === card.dataset.id) : null;
+    const aramaTermi = window._catAramaTermi || '';
+    if (aramaTermi && (!u || !u.ad.toLowerCase().includes(aramaTermi))) { card.style.display = 'none'; return; }
     if (secilenMarket === 'tumu') {
       card.style.display = '';
       visible++;
