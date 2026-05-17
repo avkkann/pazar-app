@@ -23,14 +23,31 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
   if (DATA_URLS.includes(url.href)) {
-    event.respondWith(staleWhileRevalidate(event.request));
+    if (url.href.includes('hal.json')) {
+      // hal.json → cache-first: önce cache'den ver, arka planda güncelleme
+      event.respondWith(cacheFirst(event.request));
+    } else {
+      // diğer data dosyaları → stale-while-revalidate
+      event.respondWith(staleWhileRevalidate(event.request));
+    }
   }
 });
 
+// Cache-first: cache varsa ver, yoksa ağdan çek ve cache'e yaz
+// Güncelleme sadece GitHub Actions'dan gelir (gece 03:00)
+async function cacheFirst(request) {
+  const cache = await caches.open(CACHE_NAME);
+  const cached = await cache.match(request);
+  if (cached) return cached;
+  const response = await fetch(request);
+  if (response.ok) await cache.put(request, response.clone());
+  return response;
+}
+
+// Stale-while-revalidate: cache'den ver, arka planda güncelle
 async function staleWhileRevalidate(request) {
   const cache = await caches.open(CACHE_NAME);
   const cached = await cache.match(request);
-
   const networkPromise = fetch(request).then(async response => {
     if (response.ok) {
       await cache.put(request, response.clone());
@@ -39,6 +56,5 @@ async function staleWhileRevalidate(request) {
     }
     return response;
   }).catch(() => cached);
-
   return cached || networkPromise;
 }
