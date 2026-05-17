@@ -684,7 +684,7 @@ function showScreen(id) {
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   if (id === 'screen-home')  document.getElementById('navHome').classList.add('active');
   if (id === 'screen-sepet') document.getElementById('navSepet').classList.add('active');
-  if (id === 'screen-hal') { renderHalScreen(); showScreen('screen-hal'); }
+  if (id === 'screen-hal') { renderHalScreen(); }
 }
 
 function goSepet() { renderSepet(); showScreen('screen-sepet'); }
@@ -1232,9 +1232,26 @@ function showKombo(idx) {
     (save != null ? `<div class="cmp-grand cmp-grand-save"><span>💰 Tasarruf</span><span>${tl(save)}</span></div>` : '');
 }
 
+// ── HAL.JSON CACHE — tek seferlik fetch ───────────────
+let _halCache = null;
+let _halPromise = null;
+function halVeriGetir() {
+  if (_halCache) return Promise.resolve(_halCache);
+  if (_halPromise) return _halPromise;
+  _halPromise = fetch('./data/hal.json')
+    .then(r => r.json())
+    .then(data => {
+      _halCache = data;
+      window.halVerisi = data;
+      _halPromise = null;
+      return data;
+    });
+  return _halPromise;
+}
+
 // ── VERİ YÜKLE (sadece hal.json — ürünler lazy) ───────
 function loadData() {
-  return fetch('./data/hal.json').then(r => r.json()).then(halData => {
+  return halVeriGetir().then(halData => {
     window.halVerisi = halData;
     if (halData.urunler) {
       halMap = {};
@@ -1265,10 +1282,14 @@ function renderHalScreen() {
   const data = window.halVerisi;
   const dateStr = data.bulten_tarihi || '';
   const tarihDisplay = dateStr ? `<div style="padding:10px 14px;font-size:.75rem;color:var(--text-muted);border-bottom:1px solid var(--border);text-align:center">📅 ${dateStr}</div>` : '';
-  const sebzeAdlari = ['domates','biber','patlıcan','kabak','salatalık','soğan','sarımsak','ıspanak','marul','havuç','patates','pırasa','kereviz','enginar','bamya','roka','tere','acur','alabaş','asma','bakla','bezelye','brokoli','fasulye','karnabahar','lahana','mantar','mercimek','nohut','pancar','pazı','rezene','semizotu','şalgam','turp','maydanoz','dereotu','nane','fesleğen','kuzukulağı','hindiba','kuşkonmaz','arikut','taze','yaprak'];
+  const HAL_SEBZE = new Set(['acur','adacayi (yas-taze)','alabas(kohlrabi)','asma yapragi','bakla taze','balkabagi','bamya taze','barbunya taze','beyaz lahana','bezelye taze','biberiye','brokoli','bruksel lahanasi','deniz borulcesi(deniz otu ege otu)','dereotu (yas-taze)','domates','domates salcalik','ebegumeci','enginar','fasulye taze','fesleGen(reyhan)','hardal otu (yas-taze)','havuc','hindiba (cikori)','hindiba endivyen','hindiba radika','isirgan (yas-taze)','ispanak','kabak','kabak cerezlik','kabak cicegi','karalahana','karnabahar','kaya korugu','kekik (yas-taze)','kereviz','kereviz sap','kiris (ciris)','kisnis','kirmizi lahana','kuskonmaz','kuzukulagi','labada','madimak','mantar','marul gobokli','marul iceberg','marul kivircik','maydanoz','mercan kosk','misir taze','mizuna otu','nane','nohut taze','pakchoi','pancar','patates','patlican','pazi','pirasa','rakula','rezene (yas-taze)','roka','salatalik','salatalik tursuluk','sarimsak kuru','sarimsak taze','semizotu','sogan kuru','yesil sogan','soya filizi','salgam','sevketi bostan','tarhun','tatli patates','tere','turp','turp beyaz','turp otu','limon otu (limon grass)','zencefil','bi̇ber carli̇ston','bi̇ber dolmalik','bi̇ber salcalik (kapya)','bi̇ber si̇vri̇','bi̇beri̇ye','boruice taze','brokoli̇','bruksel lahanasi','deni̇z boruicesi̇(deni̇z otu ege otu)','ebeGumeci̇','engi̇nar','fesleGen(reyhan)','hardal otu','hi̇ndi̇ba (ci̇kori̇)','hi̇ndi̇ba endi̇vyen','hi̇ndi̇ba radi̇ka','keki̇k (yas-taze)','kerevi̇z','kerevi̇z sap','ki̇ri̇s (ci̇ri̇s)','ki̇sni̇s','ki̇rmizi lahana','kuskonmaz','marul gobokli̇','marul ki̇vi̇rci̇k','mi̇sir taze','mi̇zuna otu','pakchoi̇','pirasa','semi̇zotu','soya fi̇li̇zi̇','sevketi̇ bostan','zencefi̇l']);
   const getHalKat = ad => {
-    const lower = ad.toLowerCase();
-    return sebzeAdlari.some(s => lower.includes(s)) ? 'sebze' : 'meyve';
+    const n = (ad||'').toLowerCase()
+      .replace(/ğ/g,'g').replace(/ü/g,'u').replace(/ş/g,'s')
+      .replace(/ı/g,'i').replace(/ö/g,'o').replace(/ç/g,'c').trim();
+    if (HAL_SEBZE.has(n)) return 'sebze';
+    const sebzeKw = ['domates','biber','patlican','kabak','salatalik','sogan','sarimsak','ispanak','marul','havuc','patates','pirasa','kereviz','enginar','bamya','roka','tere','mantar','maydanoz','dereotu','nane','lahana','karnabahar','pancar','pazi','turp','fasulye','borulce','bakla','bezelye','brokoli','semizotu','salgam'];
+    return sebzeKw.some(k => n.includes(k)) ? 'sebze' : 'meyve';
   };
   const halEmojiler = { sebze: '🥦', meyve: '🍎' };
   const halRenkler = { sebze: '#E8F5E9', meyve: '#FFF3E0' };
