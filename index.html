@@ -943,50 +943,43 @@ function renderUrunler(liste) {
 
 function setMarketFilter(market) {
   window.aktifMarket = market;
-  const tumUrunler = window.yuklenenUrunler || [];
-
-  let filtreliUrunler;
-  if (!market || market === 'all' || market === 'tumu') {
-    filtreliUrunler = tumUrunler;
-  } else {
-    filtreliUrunler = tumUrunler.filter(function(urun) {
-      const fiyatlar = urun.market_fiyatlari || urun.fiyatlar || [];
-      return fiyatlar.some(function(f) {
-        return f.market === market;
-      });
-    });
-  }
-
-  renderUrunler(filtreliUrunler);
-
-  // Pill'leri güncelle
-  document.querySelectorAll('[data-market]').forEach(function(pill) {
-    pill.classList.toggle('active', pill.dataset.market === market);
-  });
+  uygulaCatFiltre();
 }
 
 function catAra(q) {
-  window._catAramaTermi = q.trim().toLowerCase();
-  filterUrunler();
+  window._catAramaTermi = (q || '').trim().toLowerCase();
+  uygulaCatFiltre();
 }
 
 function filterUrunler(secilenMarket) {
-  let visible = 0;
-  document.querySelectorAll('#productList .product-card').forEach(card => {
-    const u = window._catUrunler ? window._catUrunler.find(x => x._id === card.dataset.id) : null;
-    const aramaTermi = window._catAramaTermi || '';
-    if (aramaTermi && (!u || !u.ad.toLowerCase().includes(aramaTermi))) { card.style.display = 'none'; return; }
-    if (secilenMarket === 'tumu') {
-      card.style.display = '';
-      visible++;
-    } else {
-      const markets = card.dataset.markets || '';
-      const show = markets.split(',').includes(secilenMarket);
-      card.style.display = show ? '' : 'none';
-      if (show) visible++;
-    }
+  if (secilenMarket !== undefined) window.aktifMarket = secilenMarket;
+  uygulaCatFiltre();
+}
+
+function uygulaCatFiltre() {
+  const aramaTermi = window._catAramaTermi || '';
+  const market = window.aktifMarket || 'all';
+  const tumUrunler = window.yuklenenUrunler || [];
+
+  let filtreliler = tumUrunler;
+
+  if (market && market !== 'all' && market !== 'tumu') {
+    filtreliler = filtreliler.filter(u => {
+      return (u.market_fiyatlari || []).some(f => f.market === market);
+    });
+  }
+
+  if (aramaTermi.length > 0) {
+    filtreliler = filtreliler.filter(u => {
+      return (u.ad || '').toLowerCase().includes(aramaTermi);
+    });
+  }
+
+  document.querySelectorAll('[data-market]').forEach(pill => {
+    pill.classList.toggle('active', pill.dataset.market === market);
   });
-  document.getElementById('countNum').textContent = visible;
+
+  renderUrunler(filtreliler);
 }
 
 async function loadKategoriSayfasi(slug, sayfa) {
