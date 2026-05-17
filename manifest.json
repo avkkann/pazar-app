@@ -2,21 +2,24 @@
   "name": "Pazar - Fiyat Karşılaştırma",
   "short_name": "Pazar",
   "description": "Haldeki fiyatı, markete gitmeden bil",
-  "start_url": "/",
+  "start_url": "/pazar-app/",
+  "scope": "/pazar-app/",
   "display": "standalone",
-  "background_color": "#ffffff",
+  "background_color": "#0F5132",
   "theme_color": "#0F5132",
   "orientation": "portrait",
   "icons": [
     {
-      "src": "/static/icon-192.png",
+      "src": "/pazar-app/static/icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
-      "src": "/static/icon-512.png",
+      "src": "/pazar-app/static/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
