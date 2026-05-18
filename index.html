@@ -1622,6 +1622,7 @@ function renderFirsatlar(tab) {
 }
 
 function _firsatKartHtml(u, badge, badgeClass, altText) {
+  if (!u._id) u._id = u.ad + '_' + (u.agirlik_hacim||'');
   const emoji = KAT_EMOJI[ustKategori(u.ana_kategori||'')] || '📦';
   const fiyat = u.en_dusuk_fiyat != null ? tl(u.en_dusuk_fiyat) : '—';
   const imgHtml = u.resim
@@ -1637,7 +1638,7 @@ function _firsatKartHtml(u, badge, badgeClass, altText) {
     + '<div class="firsat-card-right">'
     + '<div class="firsat-card-price">'+fiyat+'</div>'
     + '<span class="firsat-card-badge '+badgeClass+'">'+badge+'</span>'
-    + '<button class="firsat-card-add" onclick="event.stopPropagation();toggleSepet(\''+u._id+'\');this.textContent=\'✓\';this.style.background=\'#059669\'" style="'+(inCart?'background:#059669':'')+'">'+( inCart?'✓':'+')+'</button>'
+    + '<button class="firsat-card-add" onclick="event.stopPropagation();firsatSepetEkle(this,\''+u._id+'\')" style="'+(inCart?'background:#059669':'')+'">'+( inCart?'✓':'+')+'</button>'
     + '</div></div>';
 }
 
@@ -1771,6 +1772,39 @@ function temaToggle() {
   root.setAttribute('data-theme', isDark ? 'light' : 'dark');
   try { localStorage.setItem('tema', isDark ? 'light' : 'dark'); } catch(e){}
   profilGuncelle();
+}
+
+function firsatSepetEkle(btn, id) {
+  var u = null;
+  if (window.productMap && window.productMap[id]) {
+    u = window.productMap[id];
+  } else {
+    var tumListeler = [window.yuklenenUrunler];
+    for (var i = 0; i < tumListeler.length; i++) {
+      if (!tumListeler[i]) continue;
+      var bulunan = tumListeler[i].find(function(x){ return x._id === id; });
+      if (bulunan) { u = bulunan; break; }
+    }
+  }
+  if (!u) { btn.textContent = '?'; return; }
+  var zatenVar = window.sepet && window.sepet.some(function(s){ return s._id === id; });
+  if (zatenVar) {
+    window.sepet = window.sepet.filter(function(s){ return s._id !== id; });
+    btn.textContent = '+';
+    btn.style.background = '';
+  } else {
+    if (!window.sepet) window.sepet = [];
+    window.sepet.push({
+      _id: u._id, ad: u.ad, resim: u.resim,
+      agirlik_hacim: u.agirlik_hacim, ana_kategori: u.ana_kategori,
+      market_fiyatlari: u.market_fiyatlari
+    });
+    btn.textContent = '✓';
+    btn.style.background = '#059669';
+  }
+  saveSepet();
+  var sc = document.getElementById('sepetCount');
+  if (sc) sc.textContent = window.sepet.length;
 }
 
 function halArama() {
