@@ -18,20 +18,5 @@ self.addEventListener('fetch', event => {
     else event.respondWith(staleWhileRevalidate(event.request));
   }
 });
-async function cacheFirst(request) {
-  const cache = await caches.open(CACHE_NAME);
-  const cached = await cache.match(request);
-  if (cached) return cached;
-  const response = await fetch(request);
-  if (response.ok) await cache.put(request, response.clone());
-  return response;
-}
-async function staleWhileRevalidate(request) {
-  const cache = await caches.open(CACHE_NAME);
-  const cached = await cache.match(request);
-  const networkPromise = fetch(request).then(async response => {
-    if (response.ok) { await cache.put(request, response.clone()); const clients = await self.clients.matchAll({includeUncontrolled:true}); clients.forEach(c => c.postMessage({type:'DATA_UPDATED'})); }
-    return response;
-  }).catch(() => cached);
-  return cached || networkPromise;
-}
+async function cacheFirst(r) { const c = await caches.open(CACHE_NAME); const h = await c.match(r); if (h) return h; const n = await fetch(r); if (n.ok) await c.put(r, n.clone()); return n; }
+async function staleWhileRevalidate(r) { const c = await caches.open(CACHE_NAME); const h = await c.match(r); const np = fetch(r).then(async n => { if (n.ok) { await c.put(r, n.clone()); (await self.clients.matchAll({includeUncontrolled:true})).forEach(cl => cl.postMessage({type:'DATA_UPDATED'})); } return n; }).catch(() => h); return h || np; }

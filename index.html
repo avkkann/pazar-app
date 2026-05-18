@@ -470,41 +470,28 @@
 .firsat-tab.active { color: #7C3AED; border-bottom-color: #7C3AED; }
 .firsat-section { padding: 12px 14px 0; }
 .firsat-section-title { font-size: .78rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
-.firsat-card { background: var(--card-bg); border-radius: 14px; border: 1px solid var(--border); padding: 12px 14px; display: flex; align-items: center; gap: 12px; margin-bottom: 8px; cursor: pointer; }
-.firsat-card-emoji { font-size: 2rem; width: 44px; text-align: center; flex-shrink: 0; }
+.firsat-card { background: var(--card-bg); border-radius: 16px; border: 1px solid var(--border); padding: 12px 14px; display: flex; align-items: center; gap: 12px; margin-bottom: 8px; cursor: pointer; transition: box-shadow .15s; }
+.firsat-card:active { box-shadow: 0 4px 16px rgba(0,0,0,.12); }
+.firsat-card-img { width: 52px; height: 52px; border-radius: 10px; object-fit: contain; background: #F9FAFB; padding: 4px; flex-shrink: 0; }
+.firsat-card-img-ph { width: 52px; height: 52px; border-radius: 10px; background: #F9FAFB; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; flex-shrink: 0; }
 .firsat-card-body { flex: 1; min-width: 0; }
 .firsat-card-name { font-size: .85rem; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .firsat-card-sub { font-size: .72rem; color: var(--text-muted); margin-top: 2px; }
-.firsat-card-right { text-align: right; flex-shrink: 0; }
-.firsat-card-price { font-size: 1rem; font-weight: 800; color: var(--primary); }
-.firsat-card-badge { display: inline-block; font-size: .65rem; font-weight: 700; padding: 2px 7px; border-radius: 999px; margin-top: 3px; }
+.firsat-card-right { text-align: right; flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.firsat-card-price { font-size: 1.05rem; font-weight: 800; color: var(--primary); }
+.firsat-card-badge { display: inline-block; font-size: .68rem; font-weight: 700; padding: 3px 9px; border-radius: 999px; }
+.firsat-card-add { width: 28px; height: 28px; border-radius: 50%; background: var(--primary); color: white; border: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 .firsat-badge-ucuz { background: #DCFCE7; color: #166534; }
 .firsat-badge-hal { background: #FEF3C7; color: #92400E; }
 .firsat-badge-tasarruf { background: #EDE9FE; color: #5B21B6; }
 .firsat-loading { text-align: center; padding: 40px; color: var(--text-muted); font-size: .88rem; }
-
-/* ── PROFİL ── */
-.profil-header { background: linear-gradient(135deg, #0F5132 0%, #065F46 100%); padding: 32px 20px 24px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
-.profil-avatar { width: 72px; height: 72px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 2rem; border: 3px solid rgba(255,255,255,0.4); }
-.profil-isim { font-size: 1.1rem; font-weight: 700; color: #fff; }
-.profil-alt { font-size: .78rem; color: rgba(255,255,255,0.7); }
-.profil-istat { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); margin: 0 0 8px; }
-.profil-istat-item { background: var(--card-bg); padding: 14px 8px; text-align: center; }
-.profil-istat-sayi { font-size: 1.3rem; font-weight: 800; color: var(--primary); }
-.profil-istat-lbl { font-size: .68rem; color: var(--text-muted); margin-top: 2px; }
-.profil-section { padding: 16px 16px 0; }
-.profil-section-title { font-size: .7rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 6px; padding: 0 4px; }
-.profil-item { background: var(--card-bg); border-radius: 14px; padding: 14px 16px; display: flex; align-items: center; gap: 14px; margin-bottom: 8px; cursor: pointer; border: 1px solid var(--border); }
-.profil-item-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
-.profil-item-body { flex: 1; }
-.profil-item-title { font-size: .88rem; font-weight: 600; color: var(--text); }
-.profil-item-sub { font-size: .72rem; color: var(--text-muted); margin-top: 2px; }
-.profil-item-right { font-size: .8rem; color: var(--text-muted); }
-.profil-toggle { width: 44px; height: 24px; border-radius: 12px; background: #D1D5DB; border: none; cursor: pointer; position: relative; transition: background .2s; flex-shrink: 0; }
-.profil-toggle.on { background: var(--primary); }
-.profil-toggle::after { content: ''; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: white; transition: left .2s; }
-.profil-toggle.on::after { left: 23px; }
-.profil-versiyon { text-align: center; padding: 24px; font-size: .72rem; color: var(--text-muted); }
+.firsat-arabar { padding: 10px 14px 0; }
+.firsat-arabar input { width: 100%; box-sizing: border-box; padding: 10px 14px; border-radius: 20px; border: 1.5px solid var(--border); background: var(--bg); color: var(--text); font-size: 14px; outline: none; font-family: inherit; }
+.firsat-arabar input:focus { border-color: #7C3AED; }
+.firsat-ozet { display: flex; gap: 8px; padding: 10px 14px 4px; }
+.firsat-ozet-chip { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 8px 12px; text-align: center; flex: 1; }
+.firsat-ozet-sayi { font-size: 1.1rem; font-weight: 800; color: #7C3AED; }
+.firsat-ozet-lbl { font-size: .65rem; color: var(--text-muted); margin-top: 1px; }
 
 /* ── KOMPAKT KART ── */
     .card { max-height: 90px; }
@@ -691,84 +678,11 @@
     <button class="firsat-tab" onclick="firsatTab('hal',this)">🏭 Hal vs Market</button>
     <button class="firsat-tab" onclick="firsatTab('tasarruf',this)">💜 En Tasarruflu</button>
   </div>
+  <div class="firsat-arabar">
+    <input type="text" id="firsatArama" placeholder="Fırsatlarda ara..." oninput="firsatAra(this.value)" autocomplete="off">
+  </div>
+  <div class="firsat-ozet" id="firsatOzet"></div>
   <div id="firsatContent"></div>
-</div>
-
-<div id="screen-profil" class="screen">
-  <div class="profil-header">
-    <div class="profil-avatar">🛒</div>
-    <div class="profil-isim">Pazar Kullanıcısı</div>
-    <div class="profil-alt">Antalya · Fiyatları takip ediyorsun</div>
-  </div>
-  <div class="profil-istat">
-    <div class="profil-istat-item">
-      <div class="profil-istat-sayi" id="profilToplamUrun">—</div>
-      <div class="profil-istat-lbl">Ürün</div>
-    </div>
-    <div class="profil-istat-item">
-      <div class="profil-istat-sayi" id="profilSepetUrun">0</div>
-      <div class="profil-istat-lbl">Sepette</div>
-    </div>
-    <div class="profil-istat-item">
-      <div class="profil-istat-sayi" id="profilHalUrun">142</div>
-      <div class="profil-istat-lbl">Hal Ürünü</div>
-    </div>
-  </div>
-  <div class="profil-section">
-    <div class="profil-section-title">Veri</div>
-    <div class="profil-item" onclick="goSepet()">
-      <div class="profil-item-icon" style="background:#DCFCE7">🛒</div>
-      <div class="profil-item-body">
-        <div class="profil-item-title">Sepetim</div>
-        <div class="profil-item-sub" id="profilSepetOzet">Sepet boş</div>
-      </div>
-      <div class="profil-item-right">›</div>
-    </div>
-    <div class="profil-item" onclick="openHalScreen()">
-      <div class="profil-item-icon" style="background:#FEF3C7">🏭</div>
-      <div class="profil-item-body">
-        <div class="profil-item-title">Hal Fiyatları</div>
-        <div class="profil-item-sub" id="profilHalTarih">Antalya Hali</div>
-      </div>
-      <div class="profil-item-right">›</div>
-    </div>
-  </div>
-  <div class="profil-section">
-    <div class="profil-section-title">Tercihler</div>
-    <div class="profil-item">
-      <div class="profil-item-icon" style="background:#EDE9FE">🌙</div>
-      <div class="profil-item-body">
-        <div class="profil-item-title">Koyu Tema</div>
-        <div class="profil-item-sub">Şu an aktif</div>
-      </div>
-      <button class="profil-toggle on" id="temaToggle" onclick="temaToggle()"></button>
-    </div>
-  </div>
-  <div class="profil-section">
-    <div class="profil-section-title">Uygulama</div>
-    <div class="profil-item">
-      <div class="profil-item-icon" style="background:#DCFCE7">📊</div>
-      <div class="profil-item-body">
-        <div class="profil-item-title">Veri Kaynağı</div>
-        <div class="profil-item-sub">marketfiyati.org.tr · hal.gov.tr</div>
-      </div>
-    </div>
-    <div class="profil-item">
-      <div class="profil-item-icon" style="background:#FEE2E2">🔄</div>
-      <div class="profil-item-body">
-        <div class="profil-item-title">Son Güncelleme</div>
-        <div class="profil-item-sub" id="profilGuncelleme">Her gece 03:00'da otomatik</div>
-      </div>
-    </div>
-    <div class="profil-item">
-      <div class="profil-item-icon" style="background:#DBEAFE">ℹ️</div>
-      <div class="profil-item-body">
-        <div class="profil-item-title">Pazar Uygulaması</div>
-        <div class="profil-item-sub">Haldeki fiyatı, markete gitmeden bil</div>
-      </div>
-    </div>
-  </div>
-  <div class="profil-versiyon">Pazar v1.0 · Antalya</div>
 </div>
 
 <!-- ALT NAV -->
@@ -785,7 +699,7 @@
     <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
     Fırsatlar
   </button>
-  <button class="nav-btn" id="navProfil" onclick="goProfil()">
+  <button class="nav-btn" onclick="alert('Yakında!')">
     <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
     Profil
   </button>
@@ -1559,6 +1473,9 @@ function goFirsatlar() {
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   const nb = document.getElementById('navFirsat');
   if (nb) nb.classList.add('active');
+  const ara = document.getElementById('firsatArama');
+  if (ara) ara.value = '';
+  window._firsatArama = '';
   renderFirsatlar(_firsatAktifTab);
 }
 
@@ -1566,7 +1483,19 @@ function firsatTab(tab, btn) {
   _firsatAktifTab = tab;
   document.querySelectorAll('.firsat-tab').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
+  const ara = document.getElementById('firsatArama');
+  if (ara) ara.value = '';
+  window._firsatArama = '';
   renderFirsatlar(tab);
+}
+
+function firsatAra(q) {
+  window._firsatArama = (q||'').toLowerCase().trim();
+  const kartlar = document.querySelectorAll('#firsatContent .firsat-card');
+  kartlar.forEach(function(k) {
+    const isim = (k.querySelector('.firsat-card-name')||{}).textContent||'';
+    k.style.display = (!window._firsatArama || isim.toLowerCase().includes(window._firsatArama)) ? '' : 'none';
+  });
 }
 
 function renderFirsatlar(tab) {
@@ -1575,10 +1504,10 @@ function renderFirsatlar(tab) {
   container.innerHTML = '<div class="firsat-loading">⏳ Yükleniyor...</div>';
   const catFiles = ['urunler_meyve','urunler_et','urunler_sut','urunler_gida','urunler_icecek','urunler_temizlik'];
   Promise.all(catFiles.map(f => fetch('./data/'+f+'.json').then(r=>r.json()).catch(()=>[])))
-    .then(results => {
-      const tumUrunler = results.flatMap(d => Array.isArray(d) ? d : (d.urunler || []));
+    .then(function(results) {
+      const tumUrunler = results.flatMap(function(d){ return Array.isArray(d) ? d : (d.urunler||[]); });
       if (tab === 'ucuz') renderFirsatUcuz(container, tumUrunler);
-      else if (tab === 'hal') renderFirsatHal(container);
+      else if (tab === 'hal') renderFirsatHal(container, tumUrunler);
       else if (tab === 'tasarruf') renderFirsatTasarruf(container, tumUrunler);
     });
 }
@@ -1586,16 +1515,30 @@ function renderFirsatlar(tab) {
 function _firsatKartHtml(u, badge, badgeClass, altText) {
   const emoji = KAT_EMOJI[ustKategori(u.ana_kategori||'')] || '📦';
   const fiyat = u.en_dusuk_fiyat != null ? tl(u.en_dusuk_fiyat) : '—';
+  const imgHtml = u.resim
+    ? '<img class="firsat-card-img" src="'+u.resim+'" alt="" loading="lazy" onerror="this.outerHTML=\'<div class=\\\"firsat-card-img-ph\\\">'+emoji+'</div>\'">'
+    : '<div class="firsat-card-img-ph">'+emoji+'</div>';
+  const inCart = window.sepet && window.sepet.some(function(s){return s._id===u._id;});
   return '<div class="firsat-card">'
-    + '<div class="firsat-card-emoji">'+emoji+'</div>'
+    + imgHtml
     + '<div class="firsat-card-body">'
-    + '<div class="firsat-card-name">'+((u.ad)||'')+'</div>'
+    + '<div class="firsat-card-name">'+(u.ad||'')+'</div>'
     + '<div class="firsat-card-sub">'+altText+'</div>'
     + '</div>'
     + '<div class="firsat-card-right">'
     + '<div class="firsat-card-price">'+fiyat+'</div>'
     + '<span class="firsat-card-badge '+badgeClass+'">'+badge+'</span>'
+    + '<button class="firsat-card-add" onclick="event.stopPropagation();toggleSepet(\''+u._id+'\');this.textContent=\'✓\';this.style.background=\'#059669\'" style="'+(inCart?'background:#059669':'')+'">'+( inCart?'✓':'+')+'</button>'
     + '</div></div>';
+}
+
+function _firsatOzetGuncelle(ucuzSayi, halSayi, tasarrufSayi) {
+  const ozet = document.getElementById('firsatOzet');
+  if (!ozet) return;
+  ozet.innerHTML = ''
+    + '<div class="firsat-ozet-chip"><div class="firsat-ozet-sayi">'+ucuzSayi+'</div><div class="firsat-ozet-lbl">En Ucuz</div></div>'
+    + '<div class="firsat-ozet-chip"><div class="firsat-ozet-sayi">'+halSayi+'</div><div class="firsat-ozet-lbl">Hal Fırsatı</div></div>'
+    + '<div class="firsat-ozet-chip"><div class="firsat-ozet-sayi">'+tasarrufSayi+'</div><div class="firsat-ozet-lbl">Fiyat Farkı</div></div>';
 }
 
 function renderFirsatUcuz(container, tumUrunler) {
@@ -1607,7 +1550,7 @@ function renderFirsatUcuz(container, tumUrunler) {
     katGruplari[kat].push(u);
   });
   const katLabel = {'meyve':'🍎 Meyve & Sebze','sebze':'🥦 Sebze','et':'🥩 Et & Tavuk','sut':'🧀 Süt & Kahvaltı','gida':'🥫 Temel Gıda','icecek':'🥤 İçecek','temizlik':'🧴 Temizlik'};
-  let html = '';
+  let html = '', toplamKart = 0;
   Object.entries(katGruplari).forEach(function(entry) {
     const kat = entry[0], urunler = entry[1];
     const sirali = urunler.slice().sort(function(a,b){return a.en_dusuk_fiyat-b.en_dusuk_fiyat;}).slice(0,5);
@@ -1616,38 +1559,43 @@ function renderFirsatUcuz(container, tumUrunler) {
       const mkt = (u.market_fiyatlari||[]).slice().sort(function(a,b){return a.fiyat-b.fiyat;})[0];
       const altText = mkt ? (MARKET_NAMES[mkt.market]||mkt.market)+' · en ucuz' : '';
       html += _firsatKartHtml(u, 'EN UCUZ', 'firsat-badge-ucuz', altText);
+      toplamKart++;
     });
     html += '</div>';
   });
   container.innerHTML = html || '<div class="firsat-loading">Veri yükleniyor...</div>';
+  _firsatOzetGuncelle(toplamKart, '?', '?');
 }
 
-function renderFirsatHal(container) {
+function renderFirsatHal(container, tumUrunler) {
   halVeriGetir().then(function() {
-    fetch('./data/urunler_meyve.json').then(function(r){return r.json();}).then(function(d) {
-      const urunler = Array.isArray(d) ? d : (d.urunler||[]);
-      const karsilastirmalar = [];
-      urunler.forEach(function(u) {
-        if (!u.en_dusuk_fiyat) return;
-        const hal = halEsles(u);
-        if (!hal) return;
-        const marketKg = halKgHesapla(u.ad, u.en_dusuk_fiyat);
-        const tasarruf = marketKg - hal.fiyat;
-        if (tasarruf > 1) karsilastirmalar.push({u:u, hal:hal, marketKg:marketKg, tasarruf:tasarruf});
-      });
-      karsilastirmalar.sort(function(a,b){return b.tasarruf-a.tasarruf;});
-      if (!karsilastirmalar.length) {
-        container.innerHTML = '<div class="firsat-loading">🏭 Şu an hal daha ucuz olan ürün bulunamadı.</div>';
-        return;
-      }
-      let html = '<div class="firsat-section"><div class="firsat-section-title">🏭 Hal Daha Ucuz</div>';
-      karsilastirmalar.slice(0,20).forEach(function(item) {
-        const altText = 'Hal: '+tl(item.hal.fiyat)+'/kg · Market: '+tl(item.marketKg)+'/kg';
-        html += _firsatKartHtml(item.u, tl(item.tasarruf)+' ucuz', 'firsat-badge-hal', altText);
-      });
-      html += '</div>';
-      container.innerHTML = html;
+    const meyveSebze = (tumUrunler||[]).filter(function(u){
+      const k = ustKategori(u.ana_kategori||'');
+      return k==='meyve'||k==='sebze';
     });
+    const karsilastirmalar = [];
+    meyveSebze.forEach(function(u) {
+      if (!u.en_dusuk_fiyat) return;
+      const hal = halEsles(u);
+      if (!hal) return;
+      const marketKg = halKgHesapla(u.ad, u.en_dusuk_fiyat);
+      const tasarruf = marketKg - hal.fiyat;
+      if (tasarruf > 0.5) karsilastirmalar.push({u:u, hal:hal, marketKg:marketKg, tasarruf:tasarruf});
+    });
+    karsilastirmalar.sort(function(a,b){return b.tasarruf-a.tasarruf;});
+    if (!karsilastirmalar.length) {
+      container.innerHTML = '<div class="firsat-loading">🏭 Şu an hal daha ucuz olan ürün bulunamadı.</div>';
+      _firsatOzetGuncelle('?', 0, '?');
+      return;
+    }
+    let html = '<div class="firsat-section"><div class="firsat-section-title">🏭 Marketten Değil Halden Al — Tasarruf Et</div>';
+    karsilastirmalar.slice(0,20).forEach(function(item) {
+      const altText = 'Hal: '+tl(item.hal.fiyat)+'/kg · Market: '+tl(item.marketKg)+'/kg';
+      html += _firsatKartHtml(item.u, tl(item.tasarruf)+' ucuz', 'firsat-badge-hal', altText);
+    });
+    html += '</div>';
+    container.innerHTML = html;
+    _firsatOzetGuncelle('?', karsilastirmalar.length, '?');
   });
 }
 
@@ -1667,7 +1615,7 @@ function renderFirsatTasarruf(container, tumUrunler) {
     container.innerHTML = '<div class="firsat-loading">💜 Veri yükleniyor...</div>';
     return;
   }
-  let html = '<div class="firsat-section"><div class="firsat-section-title">💜 Markete Göre Fiyat Farkı</div>';
+  let html = '<div class="firsat-section"><div class="firsat-section-title">💜 Markete Göre Fiyat Değişiyor — Ucuzunu Bul</div>';
   firsatlar.slice(0,30).forEach(function(item) {
     const enUcuz = (item.u.market_fiyatlari||[]).slice().sort(function(a,b){return a.fiyat-b.fiyat;})[0];
     const enPahali = (item.u.market_fiyatlari||[]).slice().sort(function(a,b){return b.fiyat-a.fiyat;})[0];
@@ -1676,50 +1624,7 @@ function renderFirsatTasarruf(container, tumUrunler) {
   });
   html += '</div>';
   container.innerHTML = html;
-}
-
-function goProfil() {
-  showScreen('screen-profil');
-  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-  const nb = document.getElementById('navProfil');
-  if (nb) nb.classList.add('active');
-  profilGuncelle();
-}
-
-function profilGuncelle() {
-  const sepetSayi = window.sepet ? window.sepet.length : 0;
-  const sepetEl = document.getElementById('profilSepetUrun');
-  if (sepetEl) sepetEl.textContent = sepetSayi;
-  const ozet = document.getElementById('profilSepetOzet');
-  if (ozet) ozet.textContent = sepetSayi > 0 ? sepetSayi + ' ürün sepette' : 'Sepet boş';
-  const halTarih = document.getElementById('profilHalTarih');
-  if (halTarih && window.halVerisi) {
-    halTarih.textContent = 'Antalya Hali · ' + (window.halVerisi.bulten_tarihi || '');
-  }
-  const toplamEl = document.getElementById('profilToplamUrun');
-  if (toplamEl) {
-    const toplam = 9683;
-    toplamEl.textContent = toplam.toLocaleString('tr-TR');
-  }
-  const halUrunEl = document.getElementById('profilHalUrun');
-  if (halUrunEl && window.halVerisi && window.halVerisi.urunler) {
-    halUrunEl.textContent = window.halVerisi.urunler.length;
-  }
-}
-
-function temaToggle() {
-  const root = document.documentElement;
-  const toggle = document.getElementById('temaToggle');
-  const isDark = root.getAttribute('data-theme') !== 'light';
-  if (isDark) {
-    root.setAttribute('data-theme', 'light');
-    if (toggle) { toggle.classList.remove('on'); }
-    localStorage.setItem('tema', 'light');
-  } else {
-    root.setAttribute('data-theme', 'dark');
-    if (toggle) { toggle.classList.add('on'); }
-    localStorage.setItem('tema', 'dark');
-  }
+  _firsatOzetGuncelle('?', '?', firsatlar.length);
 }
 
 function halArama() {
