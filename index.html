@@ -456,6 +456,54 @@
 .hal-card-unit { font-size: .63rem; color: var(--text-muted); margin-top: 2px; }
 .hal-card-price { font-size: .95rem; font-weight: 800; color: #D97706; }
 
+/* ── FIRSATLAR ── */
+.screen-firsatlar-header {
+  background: linear-gradient(135deg, #7C3AED 0%, #5B21B6 100%);
+  padding: 14px 16px; display: flex; align-items: center; gap: 12px;
+  position: sticky; top: 0; z-index: 50;
+  box-shadow: 0 2px 12px rgba(124,58,237,.25);
+}
+.screen-firsatlar-header h2 { font-size: 1rem; font-weight: 700; color: #fff; }
+.firsat-section { padding: 12px 14px 0; }
+.firsat-section-title {
+  font-size: .78rem; font-weight: 700; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: .05em; margin-bottom: 10px;
+  display: flex; align-items: center; gap: 6px;
+}
+.firsat-card {
+  background: var(--card-bg); border-radius: 14px; border: 1px solid var(--border);
+  padding: 12px 14px; display: flex; align-items: center; gap: 12px;
+  margin-bottom: 8px; cursor: pointer; transition: box-shadow .15s;
+}
+.firsat-card:active { box-shadow: 0 2px 12px rgba(0,0,0,.1); }
+.firsat-card-emoji { font-size: 2rem; width: 44px; text-align: center; flex-shrink: 0; }
+.firsat-card-body { flex: 1; min-width: 0; }
+.firsat-card-name { font-size: .85rem; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.firsat-card-sub { font-size: .72rem; color: var(--text-muted); margin-top: 2px; }
+.firsat-card-right { text-align: right; flex-shrink: 0; }
+.firsat-card-price { font-size: 1rem; font-weight: 800; color: var(--primary); }
+.firsat-card-badge {
+  display: inline-block; font-size: .65rem; font-weight: 700;
+  padding: 2px 7px; border-radius: 999px; margin-top: 3px;
+}
+.firsat-badge-ucuz { background: #DCFCE7; color: #166534; }
+.firsat-badge-hal { background: #FEF3C7; color: #92400E; }
+.firsat-badge-tasarruf { background: #EDE9FE; color: #5B21B6; }
+.firsat-loading { text-align: center; padding: 40px; color: var(--text-muted); font-size: .88rem; }
+.firsat-tabs {
+  display: flex; gap: 0; background: var(--card-bg);
+  border-bottom: 1px solid var(--border); padding: 0 14px;
+  overflow-x: auto; scrollbar-width: none;
+}
+.firsat-tabs::-webkit-scrollbar { display: none; }
+.firsat-tab {
+  flex-shrink: 0; padding: 12px 14px; font-size: .78rem; font-weight: 600;
+  color: var(--text-muted); border-bottom: 2.5px solid transparent;
+  cursor: pointer; white-space: nowrap; background: none; border-top: none;
+  border-left: none; border-right: none; font-family: 'Inter', sans-serif;
+}
+.firsat-tab.active { color: #7C3AED; border-bottom-color: #7C3AED; }
+
 /* ── KOMPAKT KART ── */
     .card { max-height: 90px; }
     .card-row {
@@ -629,6 +677,21 @@
   <div id="halContent"></div>
 </div>
 
+<div id="screen-firsatlar" class="screen">
+  <header class="screen-firsatlar-header">
+    <button class="back-btn" onclick="showScreen('screen-home')">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <h2>⚡ Fırsatlar</h2>
+  </header>
+  <div class="firsat-tabs">
+    <button class="firsat-tab active" onclick="firsatTab('ucuz',this)">💰 En Ucuz</button>
+    <button class="firsat-tab" onclick="firsatTab('hal',this)">🏭 Hal vs Market</button>
+    <button class="firsat-tab" onclick="firsatTab('tasarruf',this)">💜 En Tasarruflu</button>
+  </div>
+  <div id="firsatContent"></div>
+</div>
+
 <!-- ALT NAV -->
 <nav class="bottom-nav">
   <button class="nav-btn active" id="navHome" onclick="showScreen('screen-home')">
@@ -639,7 +702,7 @@
     <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 001.97-1.67L23 6H6"/></svg>
     Sepetim<span id="sepetCount" class="cart-badge">0</span>
   </button>
-  <button class="nav-btn" onclick="alert('Yakında!')">
+  <button class="nav-btn" id="navFirsat" onclick="goFirsatlar()">
     <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
     Fırsatlar
   </button>
@@ -1403,6 +1466,140 @@ function halFiltrele(kat, btn) {
   document.querySelectorAll('#halList .hal-grid-card').forEach(c => {
     c.style.display = kat === 'tum' || c.dataset.kat === kat ? '' : 'none';
   });
+}
+
+// ── FIRSATLAR ─────────────────────────────────────────
+let _firsatAktifTab = 'ucuz';
+
+function goFirsatlar() {
+  showScreen('screen-firsatlar');
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('navFirsat').classList.add('active');
+  renderFirsatlar(_firsatAktifTab);
+}
+
+function firsatTab(tab, btn) {
+  _firsatAktifTab = tab;
+  document.querySelectorAll('.firsat-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderFirsatlar(tab);
+}
+
+function renderFirsatlar(tab) {
+  const container = document.getElementById('firsatContent');
+  container.innerHTML = '<div class="firsat-loading">⏳ Yükleniyor...</div>';
+  const catFiles = ['urunler_meyve','urunler_et','urunler_sut','urunler_gida','urunler_icecek','urunler_temizlik'];
+  Promise.all(catFiles.map(f => fetch('./data/'+f+'.json').then(r=>r.json()).catch(()=>[])))
+    .then(results => {
+      const tumUrunler = results.flatMap(d => Array.isArray(d) ? d : (d.urunler || []));
+      if (tab === 'ucuz') renderFirsatUcuz(container, tumUrunler);
+      else if (tab === 'hal') renderFirsatHal(container);
+      else if (tab === 'tasarruf') renderFirsatTasarruf(container, tumUrunler);
+    });
+}
+
+function _firsatKartHtml(u, badge, badgeClass, altText) {
+  const emoji = KAT_EMOJI[ustKategori(u.ana_kategori||'')] || '📦';
+  const fiyat = u.en_dusuk_fiyat ? tl(u.en_dusuk_fiyat)+'₺' : '-';
+  return `<div class="firsat-card" onclick="openDetay('${u._id||''}')">
+    <div class="firsat-card-emoji">${emoji}</div>
+    <div class="firsat-card-body">
+      <div class="firsat-card-name">${u.ad||''}</div>
+      <div class="firsat-card-sub">${altText}</div>
+    </div>
+    <div class="firsat-card-right">
+      <div class="firsat-card-price">${fiyat}</div>
+      <span class="firsat-card-badge ${badgeClass}">${badge}</span>
+    </div>
+  </div>`;
+}
+
+function renderFirsatUcuz(container, tumUrunler) {
+  const KATEGORILER_LABEL = {
+    'meyve-sebze':'Meyve & Sebze','et':'Et & Tavuk','sut':'Süt & Kahvaltı',
+    'gida':'Temel Gıda','icecek':'İçecek','temizlik':'Temizlik'
+  };
+  const katGruplari = {};
+  tumUrunler.forEach(u => {
+    if (!u.en_dusuk_fiyat) return;
+    const kat = ustKategori(u.ana_kategori||'');
+    if (!katGruplari[kat]) katGruplari[kat] = [];
+    katGruplari[kat].push(u);
+  });
+  let html = '';
+  Object.entries(katGruplari).forEach(([kat, urunler]) => {
+    const sirali = urunler.slice().sort((a,b) => a.en_dusuk_fiyat - b.en_dusuk_fiyat).slice(0,5);
+    const label = KATEGORILER_LABEL[kat] || kat;
+    html += `<div class="firsat-section"><div class="firsat-section-title">${KAT_EMOJI[kat]||'📦'} ${label}</div>`;
+    sirali.forEach(u => {
+      const marketler = (u.market_fiyatlari||[]);
+      const enUcukMarket = marketler.sort((a,b)=>a.fiyat-b.fiyat)[0];
+      const altText = enUcukMarket ? (MARKET_NAMES[enUcukMarket.market]||enUcukMarket.market)+' · en ucuz' : '';
+      html += _firsatKartHtml(u, 'EN UCUZ', 'firsat-badge-ucuz', altText);
+    });
+    html += '</div>';
+  });
+  container.innerHTML = html || '<div class="state-msg"><span class="icon">💰</span>Veri yükleniyor...</div>';
+}
+
+function renderFirsatHal(container) {
+  if (!window.halVerisi) {
+    container.innerHTML = '<div class="state-msg"><span class="icon">🏭</span>Hal verisi yükleniyor...</div>';
+    return;
+  }
+  fetch('./data/urunler_meyve.json').then(r=>r.json()).then(d => {
+    const urunler = Array.isArray(d) ? d : (d.urunler||[]);
+    const karsilastirmalar = [];
+    urunler.forEach(u => {
+      if (!u.en_dusuk_fiyat) return;
+      const hal = halEsles(u);
+      if (!hal) return;
+      const marketKg = halKgHesapla(u.ad, u.en_dusuk_fiyat);
+      const tasarruf = marketKg - hal.fiyat;
+      if (tasarruf > 1) {
+        karsilastirmalar.push({u, hal, marketKg, tasarruf});
+      }
+    });
+    karsilastirmalar.sort((a,b) => b.tasarruf - a.tasarruf);
+    if (!karsilastirmalar.length) {
+      container.innerHTML = '<div class="state-msg"><span class="icon">🏭</span>Şu an hal fiyatı daha ucuz olan ürün bulunamadı.</div>';
+      return;
+    }
+    let html = '<div class="firsat-section"><div class="firsat-section-title">🏭 Hal Daha Ucuz — Markete Gitme!</div>';
+    karsilastirmalar.slice(0,20).forEach(({u, hal, marketKg, tasarruf}) => {
+      const altText = `Hal: ${tl(hal.fiyat)}₺/kg · Market: ${tl(marketKg)}₺/kg`;
+      html += _firsatKartHtml(u, tl(tasarruf)+'₺ ucuz', 'firsat-badge-hal', altText);
+    });
+    html += '</div>';
+    container.innerHTML = html;
+  });
+}
+
+function renderFirsatTasarruf(container, tumUrunler) {
+  const firsatlar = [];
+  tumUrunler.forEach(u => {
+    const fiyatlar = (u.market_fiyatlari||[]).map(f=>f.fiyat).filter(Boolean);
+    if (fiyatlar.length < 2) return;
+    const min = Math.min(...fiyatlar);
+    const max = Math.max(...fiyatlar);
+    const fark = max - min;
+    const yuzde = Math.round((fark/max)*100);
+    if (yuzde >= 15) firsatlar.push({u, min, max, fark, yuzde});
+  });
+  firsatlar.sort((a,b) => b.fark - a.fark);
+  if (!firsatlar.length) {
+    container.innerHTML = '<div class="state-msg"><span class="icon">💜</span>Yükleniyor...</div>';
+    return;
+  }
+  let html = '<div class="firsat-section"><div class="firsat-section-title">💜 Markete Göre Değişiyor — Ucuzunu Bul</div>';
+  firsatlar.slice(0,30).forEach(({u, min, max, fark, yuzde}) => {
+    const enUcuz = (u.market_fiyatlari||[]).sort((a,b)=>a.fiyat-b.fiyat)[0];
+    const enPahali = (u.market_fiyatlari||[]).sort((a,b)=>b.fiyat-a.fiyat)[0];
+    const altText = `${MARKET_NAMES[enUcuz?.market]||''} ${tl(min)}₺ · ${MARKET_NAMES[enPahali?.market]||''} ${tl(max)}₺`;
+    html += _firsatKartHtml(u, '%'+yuzde+' fark', 'firsat-badge-tasarruf', altText);
+  });
+  html += '</div>';
+  container.innerHTML = html;
 }
 
 function halArama() {
