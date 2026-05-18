@@ -1,859 +1,805 @@
 {
   "kaynak": "hal.gov.tr",
   "sehir": "Antalya",
-  "bulten_tarihi": "17.05.2026",
-  "cekme_tarihi": "2026-05-17 06:31:22",
-  "toplam_urun": 142,
+  "bulten_tarihi": "18.05.2026",
+  "cekme_tarihi": "2026-05-18 07:06:28",
+  "toplam_urun": 133,
   "urunler": [
     {
       "ad": "Acur",
-      "fiyat": 34.78,
+      "fiyat": 39.44,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Adaçayi (yaş-taze)",
-      "fiyat": 142.49,
+      "fiyat": 66.67,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Alabaş(kohlrabi̇)",
-      "fiyat": 40.6,
+      "fiyat": 26.51,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Ananas",
-      "fiyat": 112.53,
+      "fiyat": 91.61,
+      "birim": "Kg",
+      "sehir": "Antalya"
+    },
+    {
+      "ad": "Andi̇va",
+      "fiyat": 20.0,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Armut",
-      "fiyat": 56.57,
+      "fiyat": 60.19,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Asma Yapraği",
-      "fiyat": 59.22,
+      "fiyat": 47.81,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Avokado",
-      "fiyat": 91.94,
+      "fiyat": 32.47,
       "birim": "Adet",
       "sehir": "Antalya"
     },
     {
       "ad": "Ayva",
-      "fiyat": 52.01,
+      "fiyat": 26.25,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Badem (yaş-taze)",
-      "fiyat": 86.66,
+      "fiyat": 82.47,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Bakla taze",
-      "fiyat": 46.52,
+      "fiyat": 31.52,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Balkabaği",
-      "fiyat": 68.81,
+      "fiyat": 57.87,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Bamya taze",
-      "fiyat": 158.95,
+      "fiyat": 50.17,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Barbunya taze",
-      "fiyat": 95.13,
-      "birim": "Kg",
-      "sehir": "Antalya"
-    },
-    {
-      "ad": "Bergamot",
-      "fiyat": 10.0,
+      "fiyat": 139.95,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Beyaz Lahana",
-      "fiyat": 31.34,
+      "fiyat": 21.43,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Bezelye taze",
-      "fiyat": 31.99,
+      "fiyat": 21.98,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Bi̇ber Çarli̇ston",
-      "fiyat": 19.3,
+      "fiyat": 16.3,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Bi̇ber Dolmalik",
-      "fiyat": 38.12,
+      "fiyat": 33.24,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Bi̇ber Salçalik (kapya)",
-      "fiyat": 174.43,
+      "fiyat": 165.16,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Bi̇ber Si̇vri̇",
-      "fiyat": 56.76,
+      "fiyat": 49.56,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Bi̇beri̇ye",
-      "fiyat": 83.82,
+      "fiyat": 80.05,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Börülce taze",
-      "fiyat": 174.38,
+      "fiyat": 293.94,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Brokoli̇",
-      "fiyat": 84.96,
+      "fiyat": 69.4,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Brüksel Lahanasi",
-      "fiyat": 104.42,
+      "fiyat": 21.98,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Ci̇bes",
-      "fiyat": 206.75,
+      "fiyat": 295.39,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Çağla",
-      "fiyat": 55.88,
+      "fiyat": 26.02,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Çi̇lek",
-      "fiyat": 77.41,
+      "fiyat": 183.27,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Deni̇z Börülcesi̇(deni̇z Otu Ege Otu)",
-      "fiyat": 23.51,
+      "fiyat": 29.66,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Dereotu (yaş-taze)",
-      "fiyat": 14.14,
+      "fiyat": 18.96,
       "birim": "Bağ",
       "sehir": "Antalya"
     },
     {
       "ad": "Domates",
-      "fiyat": 68.5,
+      "fiyat": 67.33,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Domates Salçalik",
-      "fiyat": 43.35,
+      "fiyat": 18.68,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Dut",
-      "fiyat": 84.04,
+      "fiyat": 66.78,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Ebegümeci̇",
-      "fiyat": 141.66,
+      "fiyat": 96.04,
       "birim": "Bağ",
       "sehir": "Antalya"
     },
     {
       "ad": "Elma",
-      "fiyat": 45.92,
+      "fiyat": 54.4,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Elma Amasya",
-      "fiyat": 95.0,
+      "fiyat": 25.0,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Elma Golden",
-      "fiyat": 54.3,
+      "fiyat": 57.69,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Elma Granny Smith",
-      "fiyat": 66.16,
+      "fiyat": 58.98,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Elma Starking",
-      "fiyat": 49.02,
+      "fiyat": 52.38,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Engi̇nar",
-      "fiyat": 54.7,
+      "fiyat": 25.13,
       "birim": "Adet",
       "sehir": "Antalya"
     },
     {
       "ad": "Eri̇k",
-      "fiyat": 71.14,
+      "fiyat": 68.1,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Fasulye taze",
-      "fiyat": 98.0,
+      "fiyat": 67.61,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Fesleğen(reyhan)",
-      "fiyat": 36.79,
+      "fiyat": 38.2,
       "birim": "Bağ",
       "sehir": "Antalya"
     },
     {
       "ad": "Greyfurt",
-      "fiyat": 30.77,
+      "fiyat": 18.49,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Hardal Otu (yaş-taze)",
-      "fiyat": 102.45,
+      "fiyat": 120.0,
       "birim": "Bağ",
       "sehir": "Antalya"
     },
     {
       "ad": "Havuç",
-      "fiyat": 43.51,
+      "fiyat": 19.68,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Hi̇ndi̇ba (çi̇kori̇)",
-      "fiyat": 139.88,
+      "fiyat": 180.3,
       "birim": "Bağ",
       "sehir": "Antalya"
     },
     {
       "ad": "Hi̇ndi̇ba Endi̇vyen",
-      "fiyat": 53.8,
+      "fiyat": 29.78,
       "birim": "Bağ",
       "sehir": "Antalya"
     },
     {
       "ad": "Hi̇ndi̇ba Radi̇ka",
-      "fiyat": 104.3,
+      "fiyat": 17.96,
       "birim": "Bağ",
       "sehir": "Antalya"
     },
     {
       "ad": "Hi̇ndi̇stan Cevi̇zi̇",
-      "fiyat": 70.12,
+      "fiyat": 65.56,
       "birim": "Adet",
       "sehir": "Antalya"
     },
     {
       "ad": "Isirgan (yaş-taze)",
-      "fiyat": 160.19,
+      "fiyat": 30.0,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Ispanak",
-      "fiyat": 45.12,
+      "fiyat": 43.27,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "İnci̇r",
-      "fiyat": 156.61,
+      "fiyat": 21.28,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Kabak",
-      "fiyat": 85.58,
+      "fiyat": 55.7,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Kabak Çerezli̇k",
-      "fiyat": 2.5,
+      "fiyat": 2.0,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Kabak Çi̇çeği̇",
-      "fiyat": 171.17,
+      "fiyat": 163.45,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Kamkat",
-      "fiyat": 244.0,
+      "fiyat": 444.84,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Karalahana",
-      "fiyat": 44.24,
+      "fiyat": 30.69,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Karnabahar",
-      "fiyat": 27.33,
+      "fiyat": 22.55,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Karpuz",
-      "fiyat": 29.58,
+      "fiyat": 32.85,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Kavun",
-      "fiyat": 52.23,
+      "fiyat": 45.91,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Kaya Koruğu",
-      "fiyat": 277.98,
+      "fiyat": 100.0,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Kayisi",
-      "fiyat": 40.01,
+      "fiyat": 55.03,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Keki̇k (yaş-taze)",
-      "fiyat": 142.89,
+      "fiyat": 52.44,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Kerevi̇z",
-      "fiyat": 68.66,
+      "fiyat": 53.38,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Kerevi̇z Sap",
-      "fiyat": 96.72,
+      "fiyat": 105.91,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Kestane",
-      "fiyat": 171.51,
+      "fiyat": 31.27,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Kirmizi Lahana",
-      "fiyat": 88.73,
+      "fiyat": 74.84,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Ki̇raz",
-      "fiyat": 117.56,
+      "fiyat": 138.01,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Ki̇ri̇ş (çi̇ri̇ş)",
-      "fiyat": 37.64,
+      "fiyat": 44.09,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Ki̇şni̇ş",
-      "fiyat": 121.33,
-      "birim": "Kg",
-      "sehir": "Antalya"
-    },
-    {
-      "ad": "Ki̇vano",
-      "fiyat": 193.94,
+      "fiyat": 186.5,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Ki̇vi̇",
-      "fiyat": 57.09,
+      "fiyat": 69.45,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Kuşkonmaz",
-      "fiyat": 286.88,
+      "fiyat": 235.75,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Kuzukulaği",
-      "fiyat": 31.39,
-      "birim": "Kg",
-      "sehir": "Antalya"
-    },
-    {
-      "ad": "Labada",
-      "fiyat": 29.56,
+      "fiyat": 31.18,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Li̇mon",
-      "fiyat": 50.68,
+      "fiyat": 69.46,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Li̇mon Otu (li̇mon Grass)",
-      "fiyat": 200.97,
-      "birim": "Kg",
-      "sehir": "Antalya"
-    },
-    {
-      "ad": "Madimak",
-      "fiyat": 5.76,
+      "fiyat": 216.78,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Mandali̇na",
-      "fiyat": 16.64,
+      "fiyat": 14.88,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Mandali̇na King",
-      "fiyat": 6.62,
-      "birim": "Kg",
-      "sehir": "Antalya"
-    },
-    {
-      "ad": "Mandali̇na Satsuma",
-      "fiyat": 53.69,
+      "fiyat": 2.91,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Mango",
-      "fiyat": 53.86,
+      "fiyat": 55.97,
       "birim": "Adet",
       "sehir": "Antalya"
     },
     {
       "ad": "Mantar",
-      "fiyat": 107.84,
+      "fiyat": 153.53,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Marul Göbekli̇",
-      "fiyat": 42.6,
+      "fiyat": 41.3,
       "birim": "Adet",
       "sehir": "Antalya"
     },
     {
       "ad": "Marul Iceberg",
-      "fiyat": 24.96,
+      "fiyat": 23.16,
       "birim": "Adet",
       "sehir": "Antalya"
     },
     {
       "ad": "Marul Kivircik",
-      "fiyat": 41.8,
+      "fiyat": 33.35,
       "birim": "Adet",
       "sehir": "Antalya"
     },
     {
       "ad": "Maydanoz",
-      "fiyat": 14.91,
+      "fiyat": 13.31,
       "birim": "Bağ",
       "sehir": "Antalya"
     },
     {
       "ad": "Mercan Köşk",
-      "fiyat": 172.34,
+      "fiyat": 124.19,
+      "birim": "Kg",
+      "sehir": "Antalya"
+    },
+    {
+      "ad": "Misir İnci̇ri̇",
+      "fiyat": 7.0,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Misir taze",
-      "fiyat": 40.22,
+      "fiyat": 20.4,
       "birim": "Adet",
       "sehir": "Antalya"
     },
     {
       "ad": "Mi̇zuna Otu",
-      "fiyat": 115.77,
+      "fiyat": 192.22,
       "birim": "Adet",
       "sehir": "Antalya"
     },
     {
       "ad": "Muşmula",
-      "fiyat": 51.18,
+      "fiyat": 22.47,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Muz",
-      "fiyat": 90.52,
+      "fiyat": 61.36,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Nane",
-      "fiyat": 27.89,
+      "fiyat": 14.26,
       "birim": "Bağ",
       "sehir": "Antalya"
     },
     {
       "ad": "Nar",
-      "fiyat": 56.73,
+      "fiyat": 33.06,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Nektari̇n",
-      "fiyat": 35.23,
+      "fiyat": 33.62,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Nohut taze",
-      "fiyat": 55.0,
+      "fiyat": 9.1,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Pakchoi̇",
-      "fiyat": 129.72,
+      "fiyat": 160.0,
       "birim": "Adet",
       "sehir": "Antalya"
     },
     {
       "ad": "Pancar",
-      "fiyat": 38.28,
+      "fiyat": 42.87,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Papaya",
-      "fiyat": 271.65,
+      "fiyat": 120.48,
       "birim": "Adet",
       "sehir": "Antalya"
     },
     {
       "ad": "Patates",
-      "fiyat": 15.98,
+      "fiyat": 24.86,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Patlican",
-      "fiyat": 31.3,
+      "fiyat": 11.81,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Pazi",
-      "fiyat": 100.58,
+      "fiyat": 30.3,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
-      "ad": "Pepi̇no",
-      "fiyat": 49.99,
-      "birim": "Adet",
-      "sehir": "Antalya"
-    },
-    {
       "ad": "Pirasa",
-      "fiyat": 25.34,
+      "fiyat": 22.88,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Pi̇tahaya",
-      "fiyat": 261.07,
+      "fiyat": 392.57,
       "birim": "Adet",
       "sehir": "Antalya"
     },
     {
       "ad": "Pomelo",
-      "fiyat": 50.0,
+      "fiyat": 58.35,
       "birim": "Adet",
       "sehir": "Antalya"
     },
     {
       "ad": "Portakal",
-      "fiyat": 22.99,
+      "fiyat": 21.02,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Portakal Sikmalik",
-      "fiyat": 18.8,
+      "fiyat": 19.27,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Portakal Washi̇ngton",
-      "fiyat": 39.06,
+      "fiyat": 18.96,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Portakal Yafa",
-      "fiyat": 3.0,
+      "fiyat": 6.24,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Pshali̇s(güvey Feneri̇)",
-      "fiyat": 242.73,
+      "fiyat": 188.93,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Rakula",
-      "fiyat": 297.65,
+      "fiyat": 309.0,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Rezene (yaş-taze)",
-      "fiyat": 88.34,
+      "fiyat": 94.45,
       "birim": "Bağ",
       "sehir": "Antalya"
     },
     {
       "ad": "Roka",
-      "fiyat": 11.35,
+      "fiyat": 16.45,
       "birim": "Bağ",
       "sehir": "Antalya"
     },
     {
       "ad": "Salatalik",
-      "fiyat": 32.12,
+      "fiyat": 45.7,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Salatalik Turşuluk",
-      "fiyat": 34.58,
+      "fiyat": 34.31,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Sarimsak kuru",
-      "fiyat": 108.11,
+      "fiyat": 105.78,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Sarimsak taze",
-      "fiyat": 68.69,
+      "fiyat": 54.38,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Semi̇zotu",
-      "fiyat": 100.6,
+      "fiyat": 107.88,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Soğan kuru",
-      "fiyat": 43.66,
+      "fiyat": 25.81,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Soya Fi̇li̇zi̇",
-      "fiyat": 128.54,
+      "fiyat": 237.79,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Şalgam",
-      "fiyat": 49.0,
+      "fiyat": 20.77,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Şeftali̇",
-      "fiyat": 48.84,
+      "fiyat": 43.27,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Şevketi̇ Bostan",
-      "fiyat": 194.49,
+      "fiyat": 267.5,
+      "birim": "Kg",
+      "sehir": "Antalya"
+    },
+    {
+      "ad": "Tamari̇nd(demi̇rhi̇ndi̇)",
+      "fiyat": 463.98,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Tarhun",
-      "fiyat": 175.0,
+      "fiyat": 307.0,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Tatli Patates",
-      "fiyat": 112.35,
+      "fiyat": 92.45,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Tere",
-      "fiyat": 30.24,
+      "fiyat": 13.55,
       "birim": "Bağ",
       "sehir": "Antalya"
     },
     {
       "ad": "Trabzon Hurmasi(cennet Elmasi)",
-      "fiyat": 31.2,
+      "fiyat": 82.36,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Turp",
-      "fiyat": 34.34,
+      "fiyat": 19.92,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Turp beyaz",
-      "fiyat": 47.75,
+      "fiyat": 12.13,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Turp Otu",
-      "fiyat": 141.37,
-      "birim": "Kg",
-      "sehir": "Antalya"
-    },
-    {
-      "ad": "Üvez",
-      "fiyat": 5.0,
+      "fiyat": 141.25,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Üzüm beyaz",
-      "fiyat": 156.35,
+      "fiyat": 176.18,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Üzüm Çeki̇rdeksi̇z",
-      "fiyat": 39.64,
-      "birim": "Kg",
-      "sehir": "Antalya"
-    },
-    {
-      "ad": "Vi̇şne",
-      "fiyat": 407.0,
+      "fiyat": 47.99,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Yeni̇ Dünya(malta Eri̇ği̇)",
-      "fiyat": 40.57,
-      "birim": "Kg",
-      "sehir": "Antalya"
-    },
-    {
-      "ad": "Yer Elmasi",
-      "fiyat": 20.86,
-      "birim": "Kg",
-      "sehir": "Antalya"
-    },
-    {
-      "ad": "Yeşi̇l Kabuklu Findik",
-      "fiyat": 160.0,
+      "fiyat": 31.52,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Yeşi̇l Soğan",
-      "fiyat": 94.68,
-      "birim": "Kg",
-      "sehir": "Antalya"
-    },
-    {
-      "ad": "Yildiz Meyvesi̇",
-      "fiyat": 192.36,
+      "fiyat": 52.71,
       "birim": "Kg",
       "sehir": "Antalya"
     },
     {
       "ad": "Zencefi̇l",
-      "fiyat": 131.43,
-      "birim": "Kg",
-      "sehir": "Antalya"
-    },
-    {
-      "ad": "Zerdali̇",
-      "fiyat": 81.96,
+      "fiyat": 150.76,
       "birim": "Kg",
       "sehir": "Antalya"
     }
