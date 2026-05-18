@@ -869,10 +869,11 @@ function halEsles(u) {
     if (!hW.length) continue;
 
     // Kelime örtüşme skoru
-    const eslesenW = hW.filter(w => mW.includes(w)).length;
+const eslesenW = hW.filter(w => mW.includes(w)).length;
     const sc = eslesenW / Math.max(hW.length, mW.length);
-
-    if (sc > bestSc) { bestSc = sc; best = rec; }
+    const scHalBazli = eslesenW / hW.length;
+    const finalSc = Math.max(sc, scHalBazli >= 1.0 ? 0.9 : 0);
+    if (finalSc > bestSc) { bestSc = finalSc; best = rec; }
   }
 
   if (bestSc < 0.6 || !best) return null;
