@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pazar-cache-v2';
+const CACHE_NAME = 'pazar-cache-v3';
 const DATA_URLS = [
   new URL('./data/urunler.json', self.location).href,
   new URL('./data/hal.json', self.location).href,
@@ -24,17 +24,13 @@ self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
   if (DATA_URLS.includes(url.href)) {
     if (url.href.includes('hal.json')) {
-      // hal.json → cache-first: önce cache'den ver, arka planda güncelleme
       event.respondWith(cacheFirst(event.request));
     } else {
-      // diğer data dosyaları → stale-while-revalidate
       event.respondWith(staleWhileRevalidate(event.request));
     }
   }
 });
 
-// Cache-first: cache varsa ver, yoksa ağdan çek ve cache'e yaz
-// Güncelleme sadece GitHub Actions'dan gelir (gece 03:00)
 async function cacheFirst(request) {
   const cache = await caches.open(CACHE_NAME);
   const cached = await cache.match(request);
@@ -44,7 +40,6 @@ async function cacheFirst(request) {
   return response;
 }
 
-// Stale-while-revalidate: cache'den ver, arka planda güncelle
 async function staleWhileRevalidate(request) {
   const cache = await caches.open(CACHE_NAME);
   const cached = await cache.match(request);
