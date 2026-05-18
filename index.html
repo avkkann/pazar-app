@@ -1030,7 +1030,7 @@ function cardHTML(u) {
       <div class="product-name">${u.ad}</div>
       ${birim ? `<div class="product-unit">${birim}</div>` : ''}
       ${halBadge}
-      <div class="product-price">${gosterilenFiyat != null ? tl(gosterilenFiyat) + ' ₺' : '—'}<span class="product-price-sub">${marketLabel ? ' · ' + marketLabel : ''}</span></div>
+      <div class="product-price">${gosterilenFiyat != null ? tl(gosterilenFiyat) : '—'}<span class="product-price-sub">${marketLabel ? ' · ' + marketLabel : ''}</span></div>
     </div>
     <button class="add-btn" data-pid="${u._id}" onclick="event.stopPropagation(); toggleSepet('${u._id}')" style="${inCart ? 'background:#059669' : ''}">${inCart ? '✓' : '+'}</button>
   </div>`;
