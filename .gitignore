@@ -14,3 +14,5 @@ __pycache__/
 # Test dosyaları
 firsat_kod.txt
 test_export.xlsx
+test_*.py
+*.test.py

@@ -9,7 +9,9 @@ import time
 import requests
 import urllib3
 import concurrent.futures
+import re
 from datetime import datetime
+from urllib.parse import quote
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -22,6 +24,150 @@ OUTPUT_FILE = os.path.join(DATA_DIR, "urunler.json")
 PAGE_SIZE   = 48
 MAX_RETRIES = 5
 MAX_WORKERS = 1
+
+# ==================== RESİM DOLDURMA (Searlo) ====================
+SEARLO_URL          = "https://api.searlo.tech/api/v1/search/images"
+SEARLO_TIMEOUT      = 15
+SEARLO_MATCH_THRESHOLD = 0.65  # %65 eslesme esigi
+SEARLO_API_KEY      = os.environ.get("SEARLO_API_KEY", "").strip()
+
+if not SEARLO_API_KEY:
+    _env_path = os.path.join(_BASE_DIR, ".env")
+    if os.path.exists(_env_path):
+        try:
+            with open(_env_path, encoding="utf-8") as _f:
+                for _line in _f:
+                    _line = _line.strip()
+                    if _line.startswith("SEARLO_API_KEY="):
+                        SEARLO_API_KEY = _line.split("=", 1)[1].strip().strip('"').strip("'")
+                        break
+        except Exception:
+            pass
+
+
+def _normalize_text(s):
+    if not s:
+        return ""
+    s = s.lower()
+    s = re.sub(r"[^\w\s]", " ", s, flags=re.UNICODE)
+    s = re.sub(r"\s+", " ", s).strip()
+    return s
+
+
+def _match_score(aranan, donen):
+    a = _normalize_text(aranan)
+    d = _normalize_text(donen)
+    if not a or not d:
+        return 0.0
+    tokens = [t for t in a.split() if len(t) >= 2]
+    if not tokens:
+        return 0.0
+    hit = sum(1 for t in tokens if t in d)
+    return hit / len(tokens)
+
+
+def _searlo_resim_ara(urun_adi):
+    if not SEARLO_API_KEY:
+        return None, None
+    try:
+        r = requests.get(
+            SEARLO_URL,
+            headers={"x-api-key": SEARLO_API_KEY},
+            params={"q": urun_adi},
+            timeout=SEARLO_TIMEOUT,
+        )
+        if r.status_code != 200:
+            return None, None
+        data = r.json()
+        items = data.get("images") or data.get("items") or data.get("results") or []
+        if not items or not isinstance(items, list):
+            return None, None
+        first = items[0]
+        if not isinstance(first, dict):
+            return None, None
+        img = (first.get("image_url") or first.get("imageUrl") or
+               first.get("original") or first.get("url") or
+               first.get("thumbnail") or first.get("link"))
+        title = first.get("title", "")
+        return img, title
+    except Exception:
+        return None, None
+
+
+def resimleri_doldur():
+    if not SEARLO_API_KEY:
+        print("\n[RESIM] SEARLO_API_KEY yok, resim doldurma atlandi.")
+        return
+
+    print("\n" + "=" * 60)
+    print("RESIM DOLDURMA (Searlo)")
+    print("=" * 60)
+
+    toplam_eksik = 0
+    toplam_dolduruldu = 0
+    toplam_atlandi = 0
+    toplam_hata = 0
+
+    for slug, keyword, dosya_adi in CATEGORIES:
+        cat_file = os.path.join(DATA_DIR, f"{dosya_adi}.json")
+        if not os.path.exists(cat_file):
+            continue
+
+        try:
+            with open(cat_file, encoding="utf-8") as f:
+                products = json.load(f)
+        except Exception as e:
+            print(f"  [HATA] {cat_file} okunamadi: {e}")
+            continue
+
+        eksikler = [p for p in products if not p.get("resim")]
+        if not eksikler:
+            continue
+
+        print(f"\n  {keyword}: {len(eksikler)} eksik resim")
+        kat_dolduruldu = 0
+        kat_atlandi = 0
+        kat_hata = 0
+
+        for i, u in enumerate(eksikler, 1):
+            ad = u.get("ad") or ""
+            agirlik = u.get("agirlik_hacim") or ""
+            sorgu = f"{ad} {agirlik}".strip()
+            if not sorgu:
+                continue
+
+            img, title = _searlo_resim_ara(sorgu)
+            if not img:
+                toplam_hata += 1
+                kat_hata += 1
+                if i % 25 == 0:
+                    print(f"    ... {i}/{len(eksikler)} (dolduruldu:{kat_dolduruldu}, atland:{kat_atlandi}, hata:{kat_hata})")
+                time.sleep(0.3)
+                continue
+
+            skor = _match_score(sorgu, title)
+            if skor >= SEARLO_MATCH_THRESHOLD:
+                u["resim"] = img
+                toplam_dolduruldu += 1
+                kat_dolduruldu += 1
+            else:
+                toplam_atlandi += 1
+                kat_atlandi += 1
+
+            if i % 25 == 0:
+                print(f"    ... {i}/{len(eksikler)} (dolduruldu:{kat_dolduruldu}, atland:{kat_atlandi}, hata:{kat_hata})")
+
+            time.sleep(0.3)
+
+        toplam_eksik += len(eksikler)
+
+        with open(cat_file, "w", encoding="utf-8") as f:
+            json.dump(products, f, ensure_ascii=False, indent=2)
+        print(f"  -> {keyword} sonuc: {kat_dolduruldu} dolduruldu, {kat_atlandi} atlandi (esik altı), {kat_hata} hata")
+
+    print(f"\n[RESIM] TOPLAM: {toplam_eksik} eksik | {toplam_dolduruldu} dolduruldu | {toplam_atlandi} atlandi (esik altı) | {toplam_hata} hata")
+    print("=" * 60)
+
 
 # (slug, api_keyword, dosya_adi) üçlüleri
 CATEGORIES = [
@@ -215,6 +361,7 @@ def scrape():
         json.dump(output, f, ensure_ascii=False, indent=2)
 
     print(f"\nTamamlandi: {len(all_products)} urun -> {OUTPUT_FILE}")
+    resimleri_doldur()
     return output
 
 
