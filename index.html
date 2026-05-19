@@ -1748,7 +1748,7 @@ function goProfil() {
 }
 
 function profilGuncelle() {
-  const sepetSayi = window.sepet ? window.sepet.length : 0;
+  const sepetSayi = sepet.length;
   const el = function(id){ return document.getElementById(id); };
   if (el('profilSepetSayi')) el('profilSepetSayi').textContent = sepetSayi;
   if (el('profilSepetOzet')) el('profilSepetOzet').textContent = sepetSayi > 0 ? sepetSayi + ' ürün sepette' : 'Sepet boş';
