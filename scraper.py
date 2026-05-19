@@ -31,6 +31,7 @@ CATEGORIES = [
     ("temel-gida",                  "Temel Gıda",                    "urunler_gida"),
     ("icecek",                      "İçecek",                        "urunler_icecek"),
     ("temizlik-ve-kisisel-bakim",   "Temizlik ve Kişisel Bakım",     "urunler_temizlik"),
+    ("atistirmalik-ve-tatli",       "Atıştırmalık ve Tatlı",         "urunler_atistirmalik"),
 ]
 
 HEADERS = {
