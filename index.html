@@ -1310,9 +1310,9 @@ function toggleSepet(id) {
 }
 
 function setEkleBtns(id, inCart) {
-  document.querySelectorAll(`.btn-ekle[data-pid="${id}"]`).forEach(btn => {
-    btn.className = 'btn-ekle' + (inCart ? ' added' : '');
+  document.querySelectorAll(`.add-btn[data-pid="${id}"]`).forEach(btn => {
     btn.textContent = inCart ? '✓' : '+';
+    btn.style.background = inCart ? '#059669' : '';
   });
 }
 
