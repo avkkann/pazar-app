@@ -20,8 +20,8 @@ DATA_DIR    = os.path.join(_BASE_DIR, "data")
 os.makedirs(DATA_DIR, exist_ok=True)
 OUTPUT_FILE = os.path.join(DATA_DIR, "urunler.json")
 PAGE_SIZE   = 48
-MAX_RETRIES = 3
-MAX_WORKERS = 3
+MAX_RETRIES = 5
+MAX_WORKERS = 1
 
 # (slug, api_keyword, dosya_adi) üçlüleri
 CATEGORIES = [
