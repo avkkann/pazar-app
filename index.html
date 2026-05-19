@@ -1638,7 +1638,7 @@ function _firsatKartHtml(u, badge, badgeClass, altText) {
     + '<div class="firsat-card-right">'
     + '<div class="firsat-card-price">'+fiyat+'</div>'
     + '<span class="firsat-card-badge '+badgeClass+'">'+badge+'</span>'
-    + '<button class="firsat-card-add" onclick="event.stopPropagation();firsatSepetEkle(this,\''+u._id+'\')" style="'+(inCart?'background:#059669':'')+'">'+( inCart?'✓':'+')+'</button>'
+    + '<button class="firsat-card-add" onclick="event.stopPropagation();firsatSepetEkle(this,\''+btoa(unescape(encodeURIComponent(u._id)))+'\')" style="'+(inCart?'background:#059669':'')+'">'+( inCart?'✓':'+')+'</button>'
     + '</div></div>';
 }
 
@@ -1775,6 +1775,7 @@ function temaToggle() {
 }
 
 function firsatSepetEkle(btn, id) {
+  try { id = decodeURIComponent(escape(atob(id))); } catch(e) {}
   var u = null;
   if (window.productMap && window.productMap[id]) {
     u = window.productMap[id];
