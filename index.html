@@ -1623,7 +1623,7 @@ function renderFirsatlar(tab) {
 
 function _firsatKartHtml(u, badge, badgeClass, altText) {
   if (!u._id) u._id = u.ad + '_' + (u.agirlik_hacim||'');
-  if (window.productMap) window.productMap[u._id] = u;
+  productMap[u._id] = u;
   const emoji = KAT_EMOJI[ustKategori(u.ana_kategori||'')] || '📦';
   const fiyat = u.en_dusuk_fiyat != null ? tl(u.en_dusuk_fiyat) : '—';
   const imgHtml = u.resim
@@ -1778,8 +1778,8 @@ function temaToggle() {
 function firsatSepetEkle(btn, id) {
   try { id = decodeURIComponent(escape(atob(id))); } catch(e) {}
   var u = null;
-  if (window.productMap && window.productMap[id]) {
-    u = window.productMap[id];
+  if (productMap[id]) {
+    u = productMap[id];
   } else {
     var tumListeler = [window.yuklenenUrunler];
     for (var i = 0; i < tumListeler.length; i++) {
