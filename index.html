@@ -1789,14 +1789,13 @@ function firsatSepetEkle(btn, id) {
     }
   }
   if (!u) { btn.textContent = '?'; return; }
-  var zatenVar = window.sepet && window.sepet.some(function(s){ return s._id === id; });
+  var zatenVar = sepet.some(function(s){ return s._id === id; });
   if (zatenVar) {
-    window.sepet = window.sepet.filter(function(s){ return s._id !== id; });
+    sepet = sepet.filter(function(s){ return s._id !== id; });
     btn.textContent = '+';
     btn.style.background = '';
   } else {
-    if (!window.sepet) window.sepet = [];
-    window.sepet.push({
+    sepet.push({
       _id: u._id, ad: u.ad, resim: u.resim,
       agirlik_hacim: u.agirlik_hacim, ana_kategori: u.ana_kategori,
       market_fiyatlari: u.market_fiyatlari
@@ -1806,7 +1805,7 @@ function firsatSepetEkle(btn, id) {
   }
   saveSepet();
   var sc = document.getElementById('sepetCount');
-  if (sc) sc.textContent = window.sepet.length;
+  if (sc) sc.textContent = sepet.length;
 }
 
 function halArama() {
