@@ -663,7 +663,7 @@
     <button class="back-btn" onclick="showScreen('screen-home')">
       <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
     </button>
-    <h2>Sepetim</h2>
+    <h2>Listem</h2>
   </header>
 
   <div id="sepetContent">
@@ -738,7 +738,7 @@
     <div class="profil-item" onclick="goSepet()">
       <div class="profil-item-icon" style="background:#DCFCE7">🛒</div>
       <div class="profil-item-body">
-        <div class="profil-item-title">Sepetim</div>
+        <div class="profil-item-title">Listem</div>
         <div class="profil-item-sub" id="profilSepetOzet">Sepet boş</div>
       </div>
       <div class="profil-item-chevron">›</div>
@@ -806,7 +806,7 @@
   </button>
   <button class="nav-btn" id="navSepet" onclick="goSepet()">
     <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 001.97-1.67L23 6H6"/></svg>
-    Sepetim<span id="sepetCount" class="cart-badge">0</span>
+    Listem<span id="sepetCount" class="cart-badge">0</span>
   </button>
   <button class="nav-btn" id="navFirsat" onclick="goFirsatlar()">
     <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
@@ -913,7 +913,7 @@ function openDetay(urunId) {
     onclick="toggleSepet('${u._id}'); renderDetayBtn('${u._id}')">
     ${inCart
       ? `<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Sepette`
-      : `<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Sepete Ekle`}
+      : `<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Listeme Ekle`}
   </button>`;
 
   document.getElementById('detayContent').innerHTML = `
@@ -942,7 +942,7 @@ function renderDetayBtn(urunId) {
   btn.className = 'detay-btn-ekle' + (inCart ? ' added' : '');
   btn.innerHTML = inCart
     ? `<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Sepette`
-    : `<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Sepete Ekle`;
+    : `<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Listeme Ekle`;
 }
 
 // ── YARDIMCILAR ───────────────────────────────────────
