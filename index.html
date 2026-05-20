@@ -822,7 +822,7 @@ const MARKET_NAMES = {
 };
 const KAT_EMOJI = {
   meyve:'🍎', sebze:'🥦', et:'🥩', sut:'🧀',
-  gida:'🥫', icecek:'🥤', temizlik:'🧴', diger:'📦'
+  gida:'🥫', icecek:'🥤', temizlik:'🧴', atistirmalik:'🍫', diger:'📦'
 };
 const KATEGORILER = [
   { slug:'meyve-sebze', label:'Meyve & Sebze', emoji:'🍎', file:'urunler_meyve' },
@@ -831,6 +831,7 @@ const KATEGORILER = [
   { slug:'gida',        label:'Temel Gıda',    emoji:'🥫', file:'urunler_gida'  },
   { slug:'icecek',      label:'İçecek',        emoji:'🥤', file:'urunler_icecek'},
   { slug:'temizlik',    label:'Temizlik',       emoji:'🧴', file:'urunler_temizlik'},
+  { slug:'atistirmalik',label:'Atıştırmalık',   emoji:'🍫', file:'urunler_atistirmalik'},
 ];
 const PAGE_SIZE = 48;
 
@@ -972,6 +973,7 @@ function ustKategori(k) {
        'Saç Bakım','Cilt Bakımı','Parfüm Deodorant Kolonya ve Kokular',
        'Mutfak Sarf Malzemeleri','Duş Banyo ve Sabun','Ağız Bakım',
        'Bebek ve Hasta Bezi','Temizlik ve Kişisel Bakım'].includes(k)) return 'temizlik';
+  if (['Bisküvi ve Kraker','Cips','Dondurmalar','Gofret','Kek','Kuruyemiş ve Kuru Meyve','Sakız ve Şekerleme','Tatlılar','Çikolata'].includes(k)) return 'atistirmalik';
   return 'diger';
 }
 
@@ -1611,7 +1613,7 @@ function renderFirsatlar(tab) {
   const container = document.getElementById('firsatContent');
   if (!container) return;
   container.innerHTML = '<div class="firsat-loading">⏳ Yükleniyor...</div>';
-  const catFiles = ['urunler_meyve','urunler_et','urunler_sut','urunler_gida','urunler_icecek','urunler_temizlik'];
+  const catFiles = ['urunler_meyve','urunler_et','urunler_sut','urunler_gida','urunler_icecek','urunler_temizlik','urunler_atistirmalik'];
   Promise.all(catFiles.map(f => fetch('./data/'+f+'.json').then(r=>r.json()).catch(()=>[])))
     .then(function(results) {
       const tumUrunler = results.flatMap(function(d){ return Array.isArray(d) ? d : (d.urunler||[]); });
