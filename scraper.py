@@ -361,7 +361,7 @@ def scrape():
         json.dump(output, f, ensure_ascii=False, indent=2)
 
     print(f"\nTamamlandi: {len(all_products)} urun -> {OUTPUT_FILE}")
-    resimleri_doldur()
+# resimleri_doldur()  # Searlo sorunu çözülene kadar devre dışı
     return output
 
 
