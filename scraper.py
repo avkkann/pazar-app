@@ -107,6 +107,8 @@ def resimleri_doldur():
     toplam_dolduruldu = 0
     toplam_atlandi = 0
     toplam_hata = 0
+    GUNLUK_LIMIT = 950
+    istek_sayisi = 0
 
     for slug, keyword, dosya_adi in CATEGORIES:
         cat_file = os.path.join(DATA_DIR, f"{dosya_adi}.json")
@@ -130,6 +132,9 @@ def resimleri_doldur():
         kat_hata = 0
 
         for i, u in enumerate(eksikler, 1):
+            if istek_sayisi >= GUNLUK_LIMIT:
+                print(f"  [LIMIT] Gunluk {GUNLUK_LIMIT} istek limitine ulasildi, durduruluyor.")
+                break
             ad = u.get("ad") or ""
             agirlik = u.get("agirlik_hacim") or ""
             sorgu = f"{ad} {agirlik}".strip()
@@ -137,12 +142,13 @@ def resimleri_doldur():
                 continue
 
             img, title = _searlo_resim_ara(sorgu)
+            istek_sayisi += 1
             if not img:
                 toplam_hata += 1
                 kat_hata += 1
                 if i % 25 == 0:
                     print(f"    ... {i}/{len(eksikler)} (dolduruldu:{kat_dolduruldu}, atland:{kat_atlandi}, hata:{kat_hata})")
-                time.sleep(0.3)
+                time.sleep(6.5)
                 continue
 
             skor = _match_score(sorgu, title)
@@ -157,7 +163,7 @@ def resimleri_doldur():
             if i % 25 == 0:
                 print(f"    ... {i}/{len(eksikler)} (dolduruldu:{kat_dolduruldu}, atland:{kat_atlandi}, hata:{kat_hata})")
 
-            time.sleep(0.3)
+            time.sleep(6.5)
 
         toplam_eksik += len(eksikler)
 
@@ -361,7 +367,7 @@ def scrape():
         json.dump(output, f, ensure_ascii=False, indent=2)
 
     print(f"\nTamamlandi: {len(all_products)} urun -> {OUTPUT_FILE}")
-# resimleri_doldur()  # Searlo sorunu çözülene kadar devre dışı
+    resimleri_doldur()
     return output
 
 
