@@ -717,7 +717,7 @@
   </div>
   <div class="profil-istat">
     <div class="profil-istat-item">
-      <div class="profil-istat-sayi" id="profilToplamUrun">9.683</div>
+      <div class="profil-istat-sayi" id="profilToplamUrun">…</div>
       <div class="profil-istat-lbl">Ürün</div>
     </div>
     <div class="profil-istat-item">
@@ -1757,6 +1757,18 @@ function profilGuncelle() {
   if (el('profilSepetOzet')) el('profilSepetOzet').textContent = sepetSayi > 0 ? sepetSayi + ' ürün sepette' : 'Sepet boş';
   if (el('profilHalTarih') && window.halVerisi) {
     el('profilHalTarih').textContent = 'Antalya Hali · ' + (window.halVerisi.bulten_tarihi || '');
+  }
+  if (el('profilToplamUrun')) {
+    Promise.all(KATEGORILER.map(k =>
+      fetch('./data/' + k.file + '.json').then(r => r.json()).catch(() => null)
+    )).then(results => {
+      const toplam = results.reduce((s, d) => {
+        if (!d) return s;
+        const arr = Array.isArray(d) ? d : (d.urunler || []);
+        return s + arr.length;
+      }, 0);
+      if (el('profilToplamUrun')) el('profilToplamUrun').textContent = toplam.toLocaleString('tr-TR');
+    });
   }
   if (el('profilHalSayi') && window.halVerisi && window.halVerisi.urunler) {
     el('profilHalSayi').textContent = window.halVerisi.urunler.length;
