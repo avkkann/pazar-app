@@ -42,7 +42,7 @@
     "ad": "Lezita Piliç Schnitzel 270 Gr",
     "ana_kategori": "Beyaz Et",
     "agirlik_hacim": "270 GR",
-    "resim": null,
+    "resim": "https://static.ticimax.cloud/35703/uploads/urunresimleri/buyuk/lezita-pilic-schnitzel-270-gr--4433-.jpg",
     "en_dusuk_fiyat": 69.9,
     "market_fiyatlari": [
       {
@@ -367,7 +367,7 @@
     "ad": "Maret Hindi Füme 110 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "110 GR",
-    "resim": null,
+    "resim": "https://cdn.akakce.com/maret/maret-110-gr-hindi-z.jpg",
     "en_dusuk_fiyat": 111.0,
     "market_fiyatlari": [
       {
@@ -631,7 +631,7 @@
     "ad": "Maret Dana Baton Kavurma 1 Kg",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "1 KG",
-    "resim": null,
+    "resim": "https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=1183597307243177",
     "en_dusuk_fiyat": 995.0,
     "market_fiyatlari": [
       {
@@ -657,7 +657,7 @@
     "ad": "Hindi Sosis 130 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "130 GR",
-    "resim": null,
+    "resim": "https://www.aytac.com.tr/documents/perakende_urunleri/aytac-sipsak-hindi-kokteyl-sosis-130-gr.png",
     "en_dusuk_fiyat": 39.0,
     "market_fiyatlari": [
       {
@@ -748,7 +748,7 @@
     "ad": "Keskinoğlu Piliç Buffalo Wings 350 Gr",
     "ana_kategori": "Beyaz Et",
     "agirlik_hacim": "350 GR",
-    "resim": null,
+    "resim": "https://images.migrosone.com/sanalmarket/product/13500035/13500035-98b05a-1650x1650.jpg",
     "en_dusuk_fiyat": 99.95,
     "market_fiyatlari": [
       {
@@ -808,7 +808,7 @@
     "ad": "Tazem Piliç Baget 1 Kg",
     "ana_kategori": "Beyaz Et",
     "agirlik_hacim": "1 KG",
-    "resim": null,
+    "resim": "https://images.migrosone.com/sanalmarket/product/13019539/13019539-9599c2-1650x1650.jpg",
     "en_dusuk_fiyat": 145.0,
     "market_fiyatlari": [
       {
@@ -912,7 +912,7 @@
     "ad": "Tarım Kredi Küvet Fermente Dana Kangal Sucuk 1 Kg",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "1 KG",
-    "resim": null,
+    "resim": "https://www.tkkoop.com.tr/assets/images/urun/base22/123029.jpg",
     "en_dusuk_fiyat": 1099.0,
     "market_fiyatlari": [
       {
@@ -1737,7 +1737,7 @@
     "ad": "Namet Hindi Uzun Sosis 5'li 210 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "210 GR",
-    "resim": null,
+    "resim": "https://www.peynircibaba.com/image/catalog/urunler/8697471722818.jpg",
     "en_dusuk_fiyat": 72.0,
     "market_fiyatlari": [
       {
@@ -1966,7 +1966,7 @@
     "ad": "Donuk Et Karides 1 Kg",
     "ana_kategori": "Deniz Ürünleri",
     "agirlik_hacim": "1 KG",
-    "resim": null,
+    "resim": "https://images.migrosone.com/sanalmarket/product/18010392/18010392_1-6db89f-1650x1650.jpg",
     "en_dusuk_fiyat": 629.0,
     "market_fiyatlari": [
       {
@@ -2708,6 +2708,23 @@
     ]
   },
   {
+    "ad": "Banvit Poşetli Bütün Piliç 1 Kg",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30089743.png",
+    "en_dusuk_fiyat": 129.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 129.9
+      },
+      {
+        "market": "migros",
+        "fiyat": 139.95
+      }
+    ]
+  },
+  {
     "ad": "Erpiliç Tavuk Nugget 700 Gr",
     "ana_kategori": "Beyaz Et",
     "agirlik_hacim": "700 GR",
@@ -2750,7 +2767,7 @@
     "ad": "Lezita Dondurulmuş Piliç Çıtır Kıtır Fileto 700 Gr",
     "ana_kategori": "Beyaz Et",
     "agirlik_hacim": "700 GR",
-    "resim": null,
+    "resim": "https://cdn2.a101.com.tr/dbmk89vnr/CALL/Image/get/qtV3GXofm5_500x500.png",
     "en_dusuk_fiyat": 189.0,
     "market_fiyatlari": [
       {
@@ -2776,7 +2793,7 @@
     "ad": "Dondurulmuş Çıtır Kova 850 Gr",
     "ana_kategori": "Beyaz Et",
     "agirlik_hacim": "850 GR",
-    "resim": null,
+    "resim": "https://cdn.akakce.com/z/keskinoglu/keskinoglu-dondurulmus-pilic-citir-kova-850-gr.jpg",
     "en_dusuk_fiyat": 219.0,
     "market_fiyatlari": [
       {
@@ -2933,19 +2950,6 @@
     ]
   },
   {
-    "ad": "Pınar Çıtır Balık 400 Gr",
-    "ana_kategori": "Deniz Ürünleri",
-    "agirlik_hacim": "400 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/17500973.png",
-    "en_dusuk_fiyat": 414.9,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 414.9
-      }
-    ]
-  },
-  {
     "ad": "Namet Kangal Sucuk 1 Kg",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "1 KG",
@@ -3078,7 +3082,7 @@
     "ad": "Lezita Dondurulmuş Piliç Şinitzel 1.08 Kg",
     "ana_kategori": "Beyaz Et",
     "agirlik_hacim": "1.08 KG",
-    "resim": null,
+    "resim": "https://iis-akakce.akamaized.net/p.z?%2F%2Fmigrostoptanstr01.blob.core.windows.net%2Ftoptanimgs%2F13509440.jpg",
     "en_dusuk_fiyat": 109.5,
     "market_fiyatlari": [
       {
@@ -3110,23 +3114,6 @@
       {
         "market": "a101",
         "fiyat": 119.0
-      }
-    ]
-  },
-  {
-    "ad": "Banvit Poşetli Bütün Piliç 1 Kg",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30089743.png",
-    "en_dusuk_fiyat": 129.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 129.9
-      },
-      {
-        "market": "migros",
-        "fiyat": 139.95
       }
     ]
   },
@@ -3203,7 +3190,7 @@
     "ad": "Tazem Piliç Parmak Bonfile 1 Kg",
     "ana_kategori": "Beyaz Et",
     "agirlik_hacim": "1 KG",
-    "resim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/11002231.png",
     "en_dusuk_fiyat": 259.0,
     "market_fiyatlari": [
       {
@@ -3265,6 +3252,19 @@
       {
         "market": "a101",
         "fiyat": 339.0
+      }
+    ]
+  },
+  {
+    "ad": "Pınar Çıtır Balık 400 Gr",
+    "ana_kategori": "Deniz Ürünleri",
+    "agirlik_hacim": "400 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/17500973.png",
+    "en_dusuk_fiyat": 414.9,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 414.9
       }
     ]
   },
@@ -3639,7 +3639,7 @@
     "ad": "Dondurulmuş Dana Kıyma 1 Kg",
     "ana_kategori": "Kırmızı Et",
     "agirlik_hacim": "1 KG",
-    "resim": null,
+    "resim": "https://cdn2.a101.com.tr/dbmk89vnr/CALL/Image/get/s4SI8bodPN_500x500.png",
     "en_dusuk_fiyat": 650.0,
     "market_fiyatlari": [
       {
@@ -4054,7 +4054,7 @@
     "ad": "Dondurulmuş Piliç Sarma 1 Kg",
     "ana_kategori": "Beyaz Et",
     "agirlik_hacim": "1 KG",
-    "resim": null,
+    "resim": "https://cdn2.a101.com.tr/dbmk89vnr/CALL/Image/get/c7-CUgFGAw_500x500.png",
     "en_dusuk_fiyat": 89.0,
     "market_fiyatlari": [
       {
@@ -4106,7 +4106,7 @@
     "ad": "Maret Dana Balkan Sucuk 100 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "100 GR",
-    "resim": null,
+    "resim": "https://images.migrosone.com/sanalmarket/product/14200186/14200186_1-c5d5a6-1650x1650.jpg",
     "en_dusuk_fiyat": 172.9,
     "market_fiyatlari": [
       {
@@ -4927,7 +4927,7 @@
     "ad": "Dana Kavurma 250 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "250 GR",
-    "resim": null,
+    "resim": "https://online.danet.com.tr/dana-kavurma-i-kare-dilim-i-250-g-kavurma-danet-146-10-B.jpg",
     "en_dusuk_fiyat": 419.0,
     "market_fiyatlari": [
       {
@@ -5135,7 +5135,7 @@
     "ad": "Hasek Şipşak Pişirilmiş Dana Kokoreç 250 Gr",
     "ana_kategori": "Sakatat",
     "agirlik_hacim": "250 GR",
-    "resim": null,
+    "resim": "https://cdn.cimri.io/market/260x260/hasek-250-gr-sipsak-pisirilmis-dana-kokorec-_859910.jpg",
     "en_dusuk_fiyat": 189.9,
     "market_fiyatlari": [
       {
@@ -5308,7 +5308,7 @@
     "ad": "Balık Dünyası Dondurulmuş Halka Kalamar 1 Kg",
     "ana_kategori": "Deniz Ürünleri",
     "agirlik_hacim": "1 KG",
-    "resim": null,
+    "resim": "https://images.migrosone.com/sanalmarket/product/18010389/18010389_1-198779-1650x1650.jpg",
     "en_dusuk_fiyat": 779.9,
     "market_fiyatlari": [
       {
@@ -5838,7 +5838,7 @@
     "ad": "Balık Dünyası Temizlenmiş Sardalya 500 Gr",
     "ana_kategori": "Deniz Ürünleri",
     "agirlik_hacim": "500 GR",
-    "resim": null,
+    "resim": "https://migrostoptanstr01.blob.core.windows.net/toptanimgs/18010143.jpg",
     "en_dusuk_fiyat": 139.0,
     "market_fiyatlari": [
       {
@@ -6210,7 +6210,7 @@
     "ad": "Emin Dondurulmuş Hamburger Köftesi 225 Gr",
     "ana_kategori": "Kırmızı Et",
     "agirlik_hacim": "225 GR",
-    "resim": null,
+    "resim": "https://productimages.hepsiburada.net/s/198/375-375/110000168534337.jpg",
     "en_dusuk_fiyat": 139.0,
     "market_fiyatlari": [
       {
@@ -6314,7 +6314,7 @@
     "ad": "Donuk Et Midye 1 Kg",
     "ana_kategori": "Deniz Ürünleri",
     "agirlik_hacim": "1 KG",
-    "resim": null,
+    "resim": "https://cdn.myikas.com/images/0d1a1f62-d480-49cc-8555-105369207474/94a49f08-80f8-4926-bd37-eedd3d89bfe4/image_1080.jpg",
     "en_dusuk_fiyat": 429.0,
     "market_fiyatlari": [
       {
@@ -6664,7 +6664,7 @@
     "ad": "Özlem Küvet Dana Kış Sucuğu 1 Kg",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "1 KG",
-    "resim": null,
+    "resim": "https://www.tkkoop.com.tr/assets/images/urun/ozlem-kuvet-dana-kis-sucugu_1769774968.jpg",
     "en_dusuk_fiyat": 999.0,
     "market_fiyatlari": [
       {
@@ -7551,7 +7551,7 @@
     "ad": "Fermente Dana Parmak Sucuk 400 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "400 GR",
-    "resim": null,
+    "resim": "https://www.aytac.com.tr/documents/perakende_urunleri/aytac-dana-parmak-fermente-sucuk-673x544.JPG",
     "en_dusuk_fiyat": 379.0,
     "market_fiyatlari": [
       {
@@ -7888,7 +7888,7 @@
     "ad": "Dondurulmuş Dana Köfte 500 Gr",
     "ana_kategori": "Kırmızı Et",
     "agirlik_hacim": "500 GR",
-    "resim": null,
+    "resim": "https://www.aytac.com.tr/documents/perakende_urunleri/aytac-dondurulmus-maydanozlu-dana-kofte-500g.png",
     "en_dusuk_fiyat": 399.0,
     "market_fiyatlari": [
       {
@@ -8091,7 +8091,7 @@
     "ad": "Dondurulmuş Piliç Kasap Köfte 1 Kg",
     "ana_kategori": "Beyaz Et",
     "agirlik_hacim": "1 KG",
-    "resim": null,
+    "resim": "https://cdn.akakce.com/z/lezita/lezita-dondurulmus-pilic-kasap-kofte-1-kg.jpg",
     "en_dusuk_fiyat": 169.0,
     "market_fiyatlari": [
       {
@@ -8208,7 +8208,7 @@
     "ad": "Maret Dana Kangal Sucuk 500 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "500 GR",
-    "resim": null,
+    "resim": "https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=1235981035338137",
     "en_dusuk_fiyat": 289.0,
     "market_fiyatlari": [
       {
@@ -8364,7 +8364,7 @@
     "ad": "Dilimli Piliç Salam 150 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "150 GR",
-    "resim": null,
+    "resim": "https://cdn2.a101.com.tr/dbmk89vnr/CALL/Image/get/7GIWezr3X8_500x500.png",
     "en_dusuk_fiyat": 42.5,
     "market_fiyatlari": [
       {
