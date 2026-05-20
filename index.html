@@ -887,6 +887,7 @@ function openDetay(urunId) {
 
   let u = productMap[urunId] || sepet.find(s => s._id === urunId);
   if (!u) return;
+  productMap[u._id] = u;
 
   const hal      = halEsles(u);
   const halFiyat = hal?.fiyat ?? null;
