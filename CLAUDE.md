@@ -16,7 +16,7 @@ Türkiye'de hal toptancı fiyatları + zincir market fiyatlarını karşılaşt�
 ## Teknik Yapı
 - Frontend: Tek index.html (~1840+ satır), backend yok
 - Hosting: GitHub Pages
-- PWA: sw.js — telefona kurulabiliyor, **cache şu an v19**
+- PWA: sw.js — telefona kurulabiliyor, **cache şu an v23**
 - Otomatik güncelleme: GitHub Actions her gece 03:00 (`.github/workflows/update-data.yml`)
 - **Toplam ürün: ~14.120** (7 kategori)
 
@@ -83,7 +83,7 @@ let _halCache, _halPromise → halVeriGetir() kullan, direkt fetch yapma
 - Skor 0.6+ ve oran 0.1x-5x arası gerekli
 
 ### SW Cache
-Şu an: pazar-cache-v19
+Şu an: pazar-cache-v23
 Her büyük JS değişikliğinde sw.js CACHE_NAME versiyonunu artır!
 
 ### Fiyat
@@ -226,6 +226,10 @@ const catFiles = ['urunler_meyve','urunler_et','urunler_sut','urunler_gida',
 - **2026-05: Profil ürün sayısı dinamik hesaplanıyor**
 - **2026-05: placeholderRenk atıştırmalık branch'ı**
 - **2026-05: manifest.json path düzeltildi (./manifest.json), favicon eklendi, apple-touch-icon göreli path, mobile-web-app-capable meta eklendi, SW cache v19**
+- **2026-05: Header logosu icon-192.png ile değiştirildi (P placeholder kaldırıldı, cache v20)**
+- **2026-05: Searlo resim doldurma aktif edildi: sleep 6.5s + günlük 950 istek limiti (rate limit teşhis edildi: 10 istek/dk ücretsiz plan)**
+- **2026-05: Sepet → Liste dil değişikliği (Sepetim/Sepete Ekle → Listem/Listeme Ekle, cache v21)**
+- **2026-05: Karşılaştırma ekranında en ucuz seçenek otomatik vurgulu + "✓ EN UCUZ" badge eklendi (cache v22-v23)**
 
 ## Bekleyen
 - **Searlo rate limit sorununu araştır:** Dashboard'da plan detayları, saniye/dakika başına istek limiti netleşmeli. Çözülürse `resimleri_doldur()` yorum satırı kaldırılır
