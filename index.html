@@ -731,7 +731,7 @@
     </div>
     <div class="profil-istat-item">
       <div class="profil-istat-sayi" id="profilSepetSayi">0</div>
-      <div class="profil-istat-lbl">Sepette</div>
+      <div class="profil-istat-lbl">Listemde</div>
     </div>
     <div class="profil-istat-item">
       <div class="profil-istat-sayi" id="profilHalSayi">142</div>
@@ -917,7 +917,7 @@ function openDetay(urunId) {
   const btnHtml = `<button id="detayEkleBtn" class="detay-btn-ekle${inCart ? ' added' : ''}"
     onclick="toggleSepet('${u._id}'); renderDetayBtn('${u._id}')">
     ${inCart
-      ? `<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Sepette`
+? `<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Listemde`
       : `<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Listeme Ekle`}
   </button>`;
 
@@ -946,7 +946,7 @@ function renderDetayBtn(urunId) {
   const inCart = sepet.some(s => s._id === urunId);
   btn.className = 'detay-btn-ekle' + (inCart ? ' added' : '');
   btn.innerHTML = inCart
-    ? `<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Sepette`
+    ? `<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Listemde`
     : `<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Listeme Ekle`;
 }
 
@@ -1774,7 +1774,7 @@ function profilGuncelle() {
   const sepetSayi = sepet.length;
   const el = function(id){ return document.getElementById(id); };
   if (el('profilSepetSayi')) el('profilSepetSayi').textContent = sepetSayi;
-  if (el('profilSepetOzet')) el('profilSepetOzet').textContent = sepetSayi > 0 ? sepetSayi + ' ürün sepette' : 'Sepet boş';
+  if (el('profilSepetOzet')) el('profilSepetOzet').textContent = sepetSayi > 0 ? sepetSayi + ' ürün listemde' : 'Liste boş';
   if (el('profilHalTarih') && window.halVerisi) {
     el('profilHalTarih').textContent = 'Antalya Hali · ' + (window.halVerisi.bulten_tarihi || '');
   }
