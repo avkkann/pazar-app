@@ -16,7 +16,7 @@ Türkiye'de hal toptancı fiyatları + zincir market fiyatlarını karşılaşt�
 ## Teknik Yapı
 - Frontend: Tek index.html (~1840+ satır), backend yok
 - Hosting: GitHub Pages
-- PWA: sw.js — telefona kurulabiliyor, **cache şu an v23**
+- PWA: sw.js — telefona kurulabiliyor, **cache şu an v25**
 - Otomatik güncelleme: GitHub Actions her gece 03:00 (`.github/workflows/update-data.yml`)
 - **Toplam ürün: ~14.120** (7 kategori)
 
@@ -83,7 +83,7 @@ let _halCache, _halPromise → halVeriGetir() kullan, direkt fetch yapma
 - Skor 0.6+ ve oran 0.1x-5x arası gerekli
 
 ### SW Cache
-Şu an: pazar-cache-v23
+Şu an: pazar-cache-v25
 Her büyük JS değişikliğinde sw.js CACHE_NAME versiyonunu artır!
 
 ### Fiyat
@@ -116,6 +116,7 @@ const catFiles = ['urunler_meyve','urunler_et','urunler_sut','urunler_gida',
 - saveSepet() **module-scope sepet**'i localStorage'a yazar
 - **HER YERDE `sepet` ve `productMap` kullan**, `window.` KULLANMA
 - Bunlar uyumsuzluk yaratırsa: rozet doğru gösterir ama sepet ekranı boş kalır, profil 0 gösterir, kategori butonu görsel güncellenmez
+- **openDetay productMap'i KOŞULSUZ doldurmalı** (`productMap[u._id] = u`). Yoksa toggleSepet `productMap[id] || urunler.find(...)` fallback'ine düşer ve `urunler` çoğu zaman boş olduğu için sessizce fail eder. Hata Console'a düşmez, sadece sepete ekleme çalışmaz.
 
 ### _firsatKartHtml
 - u._id eksikse oluşturur
@@ -230,6 +231,8 @@ const catFiles = ['urunler_meyve','urunler_et','urunler_sut','urunler_gida',
 - **2026-05: Searlo resim doldurma aktif edildi: sleep 6.5s + günlük 950 istek limiti (rate limit teşhis edildi: 10 istek/dk ücretsiz plan)**
 - **2026-05: Sepet → Liste dil değişikliği (Sepetim/Sepete Ekle → Listem/Listeme Ekle, cache v21)**
 - **2026-05: Karşılaştırma ekranında en ucuz seçenek otomatik vurgulu + "✓ EN UCUZ" badge eklendi (cache v22-v23)**
+- **2026-05: Kalan "Sepette/sepette" referansları "Listemde/listemde" olarak düzeltildi (detay buton state + profil label, cache v24)**
+- **2026-05: openDetay bug fix: productMap[u._id] = u eklendi (kategori detayından "Listeme Ekle" sessizce fail ediyordu, cache v25)**
 
 ## Bekleyen
 - **Searlo rate limit sorununu araştır:** Dashboard'da plan detayları, saniye/dakika başına istek limiti netleşmeli. Çözülürse `resimleri_doldur()` yorum satırı kaldırılır
