@@ -744,7 +744,7 @@
       <div class="profil-item-icon" style="background:#DCFCE7">🛒</div>
       <div class="profil-item-body">
         <div class="profil-item-title">Listem</div>
-        <div class="profil-item-sub" id="profilSepetOzet">Sepet boş</div>
+        <div class="profil-item-sub" id="profilSepetOzet">Liste boş</div>
       </div>
       <div class="profil-item-chevron">›</div>
     </div>
@@ -993,10 +993,13 @@ function ustKategori(k) {
 // Kural 3: Birim normalleştirme (1 adet ≈ 0.2kg, 500gr = 0.5 oran)
 // Kural 4: Minimum %60 kelime örtüşmesi gerekir
 
-const HAL_UYUMSUZ = ['donuk','dondurulmus','konserve','hazir','islenmis',
+const HAL_UYUMSUZ = ['donuk','dondurulmus','dondurulmuş','dondurma','konserve','hazir','islenmis',
   'salca','tursu','kurutulmus','fileto','salam','sucuk','sosis','pastirma',
-  'corba','pure','cipsi','cips','nugget','kroket','burger','superfresh',
-  'pack','paket','kutu','sis','rulo','dilim','mince','frozen'];
+  'corba','pure','püre','cipsi','cips','nugget','kroket','burger','superfresh',
+  'pack','paket','kutu','sis','rulo','dilim','mince','frozen',
+  'recel','reçel','marmelat','meyve suyu','suyu','nektar','smoothie',
+  'sirup','şurup','surup','komposto','kompoto','suzme','sikma','sıkma',
+  'dondurmasi','dondurmali','dondurmalı','tatlandirici','aromali','aromalı'];
 
 function halKgHesapla(ad, fiyat) {
   if (!fiyat || !ad) return fiyat;
