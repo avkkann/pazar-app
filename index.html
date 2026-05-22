@@ -999,7 +999,8 @@ const HAL_UYUMSUZ = ['donuk','dondurulmus','dondurulmuş','dondurma','konserve',
   'pack','paket','kutu','sis','rulo','dilim','mince','frozen',
   'recel','reçel','marmelat','meyve suyu','suyu','nektar','smoothie',
   'sirup','şurup','surup','komposto','kompoto','suzme','sikma','sıkma',
-  'dondurmasi','dondurmali','dondurmalı','tatlandirici','aromali','aromalı'];
+  'dondurmasi','dondurmali','dondurmalı','tatlandirici','aromali','aromalı',
+  'feast','tukas','tukaş','garden','migrosone','tat','penguen'];
 
 function halKgHesapla(ad, fiyat) {
   if (!fiyat || !ad) return fiyat;
@@ -1032,6 +1033,9 @@ function halEsles(u) {
 
   // Dondurulmuş/işlenmiş ürünleri atla
   if (HAL_UYUMSUZ.some(k => urunAdNorm.includes(k))) return null;
+
+  // "Adet" birimi var → birim belirsizliği büyük (1 ananas != 1 limon), hal ile eşleşmesin
+  if (/\b\d+\s*adet\b/.test(urunAdNorm)) return null;
 
   // Market ürün adından ağırlık/birim bilgisini temizle, ana kelimeyi al
   const temizAd = urunAdNorm
