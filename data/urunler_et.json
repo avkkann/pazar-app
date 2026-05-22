@@ -68,32 +68,6 @@
     ]
   },
   {
-    "ad": "Lezita Piliç Nugget 300 Gr",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "300 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/13000319.jpg",
-    "en_dusuk_fiyat": 60.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 60.0
-      }
-    ]
-  },
-  {
-    "ad": "Derya Ton Balığı 320 Gr",
-    "ana_kategori": "Deniz Ürünleri",
-    "agirlik_hacim": "320 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/800346.png",
-    "en_dusuk_fiyat": 92.5,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 92.5
-      }
-    ]
-  },
-  {
     "ad": "Erpiliç Taze Poşetli Bütün Piliç 1 Kg",
     "ana_kategori": "Beyaz Et",
     "agirlik_hacim": "1 KG",
@@ -180,6 +154,19 @@
     ]
   },
   {
+    "ad": "Başyazıcı İnan Kavurma 100 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "100 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30481919.jpg",
+    "en_dusuk_fiyat": 189.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 189.9
+      }
+    ]
+  },
+  {
     "ad": "Bolez Köylüm Poşetli Bütün Piliç 1 Kg",
     "ana_kategori": "Beyaz Et",
     "agirlik_hacim": "1 KG",
@@ -193,15 +180,15 @@
     ]
   },
   {
-    "ad": "Tarım Kredi Dana Füme Kaburga 100 Gr",
+    "ad": "Aytaç Hindi Salam 500 Gr",
     "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "100 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/126101.jpg",
-    "en_dusuk_fiyat": 205.0,
+    "agirlik_hacim": "500 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30389103.png",
+    "en_dusuk_fiyat": 220.9,
     "market_fiyatlari": [
       {
-        "market": "tarim_kredi",
-        "fiyat": 205.0
+        "market": "carrefour",
+        "fiyat": 220.9
       }
     ]
   },
@@ -254,6 +241,19 @@
       {
         "market": "carrefour",
         "fiyat": 256.5
+      }
+    ]
+  },
+  {
+    "ad": "Emin Dana Kuzu Izgara Köfte 400 Gr",
+    "ana_kategori": "Kırmızı Et",
+    "agirlik_hacim": "400 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/100711.png",
+    "en_dusuk_fiyat": 269.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 269.0
       }
     ]
   },
@@ -379,6 +379,19 @@
     ]
   },
   {
+    "ad": "Lezita Piliç Nugget 300 Gr",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "300 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/13000319.jpg",
+    "en_dusuk_fiyat": 60.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 60.0
+      }
+    ]
+  },
+  {
     "ad": "Hastavuk Dondurulmuş Poşetli Bütün Piliç 1 Kg",
     "ana_kategori": "Beyaz Et",
     "agirlik_hacim": "1 KG",
@@ -401,6 +414,19 @@
       {
         "market": "carrefour",
         "fiyat": 81.5
+      }
+    ]
+  },
+  {
+    "ad": "Derya Ton Balığı 320 Gr",
+    "ana_kategori": "Deniz Ürünleri",
+    "agirlik_hacim": "320 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/800346.png",
+    "en_dusuk_fiyat": 92.5,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 92.5
       }
     ]
   },
@@ -457,15 +483,15 @@
     ]
   },
   {
-    "ad": "Lezita Tabaklı Derili But Pirzola 1 Kg",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30064283.png",
-    "en_dusuk_fiyat": 189.9,
+    "ad": "Tarım Kredi Dana Füme Kaburga 100 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "100 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/126101.jpg",
+    "en_dusuk_fiyat": 205.0,
     "market_fiyatlari": [
       {
-        "market": "carrefour",
-        "fiyat": 189.9
+        "market": "tarim_kredi",
+        "fiyat": 205.0
       }
     ]
   },
@@ -479,19 +505,6 @@
       {
         "market": "carrefour",
         "fiyat": 238.9
-      }
-    ]
-  },
-  {
-    "ad": "Emin Dana Baton Sucuk 380 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "380 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bim/100564.jpg",
-    "en_dusuk_fiyat": 249.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 249.0
       }
     ]
   },
@@ -551,7 +564,7 @@
     "ad": "Fermente Dana Parmak Sucuk 400 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "400 GR",
-    "resim": null,
+    "resim": "https://www.aytac.com.tr/documents/perakende_urunleri/aytac-dana-parmak-fermente-sucuk-673x544.JPG",
     "en_dusuk_fiyat": 379.0,
     "market_fiyatlari": [
       {
@@ -635,19 +648,6 @@
       {
         "market": "carrefour",
         "fiyat": 599.0
-      }
-    ]
-  },
-  {
-    "ad": "Pınar İllaki Tekirdağ Köfte 390 Gr",
-    "ana_kategori": "Kırmızı Et",
-    "agirlik_hacim": "390 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30133730.png",
-    "en_dusuk_fiyat": 689.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 689.95
       }
     ]
   },
@@ -829,6 +829,19 @@
     ]
   },
   {
+    "ad": "Lezita Tabaklı Derili But Pirzola 1 Kg",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30064283.png",
+    "en_dusuk_fiyat": 189.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 189.9
+      }
+    ]
+  },
+  {
     "ad": "Polonez Dana Füme Kaburga 80 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "80 GR",
@@ -845,7 +858,7 @@
     "ad": "Tazem Piliç Pirzola 1 Kg",
     "ana_kategori": "Beyaz Et",
     "agirlik_hacim": "1 KG",
-    "resim": null,
+    "resim": "https://images.migrosone.com/sanalmarket/product/13019534/13019534-e84bb3-1650x1650.jpg",
     "en_dusuk_fiyat": 225.0,
     "market_fiyatlari": [
       {
@@ -868,6 +881,19 @@
     ]
   },
   {
+    "ad": "Emin Dana Baton Sucuk 380 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "380 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bim/100564.jpg",
+    "en_dusuk_fiyat": 249.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 249.0
+      }
+    ]
+  },
+  {
     "ad": "Uzman Kasap Kuzu Sac Kavurmalık 400 Gr",
     "ana_kategori": "Kırmızı Et",
     "agirlik_hacim": "400 GR",
@@ -884,7 +910,7 @@
     "ad": "Maret Dana Kangal Sucuk 500 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "500 GR",
-    "resim": null,
+    "resim": "https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=1235981035338137",
     "en_dusuk_fiyat": 289.0,
     "market_fiyatlari": [
       {
@@ -903,32 +929,6 @@
       {
         "market": "a101",
         "fiyat": 299.0
-      }
-    ]
-  },
-  {
-    "ad": "Isıl İşlem Görmüş Dana Kangal Sucuk 500 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "500 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 299.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 299.0
-      }
-    ]
-  },
-  {
-    "ad": "Zel Et Kavurma Konserve 2x80 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "160 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/9024288.png",
-    "en_dusuk_fiyat": 299.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 299.95
       }
     ]
   },
@@ -989,15 +989,15 @@
     ]
   },
   {
-    "ad": "Bolca Hindi Bütün Göğüs Fileto 1 Kg",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30096350.png",
-    "en_dusuk_fiyat": 497.9,
+    "ad": "Pınar İllaki Tekirdağ Köfte 390 Gr",
+    "ana_kategori": "Kırmızı Et",
+    "agirlik_hacim": "390 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30133730.png",
+    "en_dusuk_fiyat": 689.95,
     "market_fiyatlari": [
       {
         "market": "carrefour",
-        "fiyat": 497.9
+        "fiyat": 689.95
       }
     ]
   },
@@ -1084,19 +1084,6 @@
       {
         "market": "migros",
         "fiyat": 79.95
-      }
-    ]
-  },
-  {
-    "ad": "Keskinoğlu Piliç Kokteyl Sosis 500 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "500 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 85.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 85.0
       }
     ]
   },
@@ -1217,19 +1204,6 @@
     ]
   },
   {
-    "ad": "Banvit Piliç Kalçalı But 1 Kg",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/46040147.jpg",
-    "en_dusuk_fiyat": 239.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 239.95
-      }
-    ]
-  },
-  {
     "ad": "Super Kartal Tüp Ançuez 90 Gr",
     "ana_kategori": "Deniz Ürünleri",
     "agirlik_hacim": "90 GR",
@@ -1252,6 +1226,32 @@
       {
         "market": "bim",
         "fiyat": 289.0
+      }
+    ]
+  },
+  {
+    "ad": "Isıl İşlem Görmüş Dana Kangal Sucuk 500 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "500 GR",
+    "resim": "https://lookaside.fbsbx.com/lookaside/crawler/media/?media_id=1235981035338137",
+    "en_dusuk_fiyat": 299.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 299.0
+      }
+    ]
+  },
+  {
+    "ad": "Zel Et Kavurma Konserve 2x80 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "160 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/9024288.png",
+    "en_dusuk_fiyat": 299.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 299.95
       }
     ]
   },
@@ -1298,7 +1298,7 @@
     "ad": "Dana Kavurma 250 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "250 GR",
-    "resim": null,
+    "resim": "https://online.danet.com.tr/dana-kavurma-i-kare-dilim-i-250-g-kavurma-danet-146-10-B.jpg",
     "en_dusuk_fiyat": 419.0,
     "market_fiyatlari": [
       {
@@ -1308,10 +1308,23 @@
     ]
   },
   {
+    "ad": "Bolca Hindi Bütün Göğüs Fileto 1 Kg",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30096350.png",
+    "en_dusuk_fiyat": 497.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 497.9
+      }
+    ]
+  },
+  {
     "ad": "Balık Dünyası Dondurulmuş Halka Kalamar 1 Kg",
     "ana_kategori": "Deniz Ürünleri",
     "agirlik_hacim": "1 KG",
-    "resim": null,
+    "resim": "https://images.migrosone.com/sanalmarket/product/18010389/18010389_1-198779-1650x1650.jpg",
     "en_dusuk_fiyat": 779.9,
     "market_fiyatlari": [
       {
@@ -1343,19 +1356,6 @@
       {
         "market": "carrefour",
         "fiyat": 1219.9
-      }
-    ]
-  },
-  {
-    "ad": "Fümeci Dana Frankfurter Sosis 1 Kg",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30207194.png",
-    "en_dusuk_fiyat": 2799.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 2799.9
       }
     ]
   },
@@ -1393,7 +1393,7 @@
     "ad": "Piliç Salam 1 Kg",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "1 KG",
-    "resim": null,
+    "resim": "https://cdn2.a101.com.tr/dbmk89vnr/CALL/Image/get/qKGJnJExBb_500x500.png",
     "en_dusuk_fiyat": 75.0,
     "market_fiyatlari": [
       {
@@ -1412,6 +1412,19 @@
       {
         "market": "carrefour",
         "fiyat": 76.9
+      }
+    ]
+  },
+  {
+    "ad": "Keskinoğlu Piliç Kokteyl Sosis 500 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "500 GR",
+    "resim": "https://images.migrosone.com/sanalmarket/product/14019052/keskinoglu-kokteyl-sosis-1000-gr-8c22ca-1650x1650.jpg",
+    "en_dusuk_fiyat": 85.0,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 85.0
       }
     ]
   },
@@ -1533,6 +1546,19 @@
     ]
   },
   {
+    "ad": "Banvit Piliç Kalçalı But 1 Kg",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/46040147.jpg",
+    "en_dusuk_fiyat": 239.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 239.95
+      }
+    ]
+  },
+  {
     "ad": "Dana Sarımsaklı Köfte 320 Gr",
     "ana_kategori": "Kırmızı Et",
     "agirlik_hacim": "320 GR",
@@ -1589,19 +1615,6 @@
     ]
   },
   {
-    "ad": "Cumhuriyet Fermente Dana Kangal Sucuk 350 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "350 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/11001053.png",
-    "en_dusuk_fiyat": 449.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 449.0
-      }
-    ]
-  },
-  {
     "ad": "Pınar Misket Köfte 470 Gr",
     "ana_kategori": "Kırmızı Et",
     "agirlik_hacim": "470 GR",
@@ -1624,32 +1637,6 @@
       {
         "market": "carrefour",
         "fiyat": 517.9
-      }
-    ]
-  },
-  {
-    "ad": "Apikoğlu Tavalık Sucuk 200 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30143400.jpg",
-    "en_dusuk_fiyat": 561.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 561.9
-      }
-    ]
-  },
-  {
-    "ad": "Namet Dana Sosis 1 Kg",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30089904.png",
-    "en_dusuk_fiyat": 1099.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 1099.9
       }
     ]
   },
@@ -1680,6 +1667,19 @@
     ]
   },
   {
+    "ad": "Fümeci Dana Frankfurter Sosis 1 Kg",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30207194.png",
+    "en_dusuk_fiyat": 2799.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 2799.9
+      }
+    ]
+  },
+  {
     "ad": "Sultan Dilimli Pastırma 1 Kg",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "1 KG",
@@ -1689,19 +1689,6 @@
       {
         "market": "carrefour",
         "fiyat": 2999.9
-      }
-    ]
-  },
-  {
-    "ad": "Namet 7/24 Hindi Salam 75 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "75 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/sokimages/66649.png",
-    "en_dusuk_fiyat": 32.5,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 32.5
       }
     ]
   },
@@ -1840,19 +1827,6 @@
     ]
   },
   {
-    "ad": "Hasek Şipşak Pişirilmiş Dana Kokoreç 250 Gr",
-    "ana_kategori": "Sakatat",
-    "agirlik_hacim": "250 GR",
-    "resim": "https://cdn.cimri.io/market/260x260/hasek-250-gr-sipsak-pisirilmis-dana-kokorec-_859910.jpg",
-    "en_dusuk_fiyat": 189.9,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 189.9
-      }
-    ]
-  },
-  {
     "ad": "Fermente Dana Kangal Sucuk 200 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "200 GR",
@@ -1862,19 +1836,6 @@
       {
         "market": "bim",
         "fiyat": 209.0
-      }
-    ]
-  },
-  {
-    "ad": "Tarım Kredi Dana Pastırma 120 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "120 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/tarimkrediimages/114755.png",
-    "en_dusuk_fiyat": 219.9,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 219.9
       }
     ]
   },
@@ -1970,6 +1931,32 @@
     ]
   },
   {
+    "ad": "Cumhuriyet Fermente Dana Kangal Sucuk 350 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "350 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/11001053.png",
+    "en_dusuk_fiyat": 449.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 449.0
+      }
+    ]
+  },
+  {
+    "ad": "Apikoğlu Tavalık Sucuk 200 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30143400.jpg",
+    "en_dusuk_fiyat": 561.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 561.9
+      }
+    ]
+  },
+  {
     "ad": "Pınar Ekonomik 10'lu Sosis 430 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "430 GR",
@@ -2009,6 +1996,19 @@
     ]
   },
   {
+    "ad": "Namet Dana Sosis 1 Kg",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30089904.png",
+    "en_dusuk_fiyat": 1099.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 1099.9
+      }
+    ]
+  },
+  {
     "ad": "Fümeci Sade Hindi But Füme 1 Kg",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "1 KG",
@@ -2035,28 +2035,15 @@
     ]
   },
   {
-    "ad": "Namet Piliç Jambon 7/24 50 Gr",
+    "ad": "Namet 7/24 Hindi Salam 75 Gr",
     "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "50 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30057068.jpg",
-    "en_dusuk_fiyat": 42.5,
+    "agirlik_hacim": "75 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/sokimages/66649.png",
+    "en_dusuk_fiyat": 32.5,
     "market_fiyatlari": [
       {
-        "market": "carrefour",
-        "fiyat": 42.5
-      }
-    ]
-  },
-  {
-    "ad": "Banvit Dondurulmuş Piliç Pirzola 1 Kg",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/bim/1712933.jpg",
-    "en_dusuk_fiyat": 69.5,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 69.5
+        "market": "sok",
+        "fiyat": 32.5
       }
     ]
   },
@@ -2165,6 +2152,32 @@
     ]
   },
   {
+    "ad": "Hasek Şipşak Pişirilmiş Dana Kokoreç 250 Gr",
+    "ana_kategori": "Sakatat",
+    "agirlik_hacim": "250 GR",
+    "resim": "https://cdn.cimri.io/market/260x260/hasek-250-gr-sipsak-pisirilmis-dana-kokorec-_859910.jpg",
+    "en_dusuk_fiyat": 189.9,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 189.9
+      }
+    ]
+  },
+  {
+    "ad": "Tarım Kredi Dana Pastırma 120 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "120 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/tarimkrediimages/114755.png",
+    "en_dusuk_fiyat": 219.9,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 219.9
+      }
+    ]
+  },
+  {
     "ad": "Tarım Kredi Fermente Dana Kangal Sucuk 180 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "180 GR",
@@ -2252,19 +2265,6 @@
       {
         "market": "carrefour",
         "fiyat": 428.9
-      }
-    ]
-  },
-  {
-    "ad": "Erşan Frankfurter Sosis 400 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "400 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30450368.jpg",
-    "en_dusuk_fiyat": 509.5,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 509.5
       }
     ]
   },
@@ -2364,14 +2364,27 @@
     ]
   },
   {
-    "ad": "Aspiliç Piliç Büfe Salam 1 Kg",
+    "ad": "Namet Piliç Jambon 7/24 50 Gr",
     "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "50 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30057068.jpg",
+    "en_dusuk_fiyat": 42.5,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 42.5
+      }
+    ]
+  },
+  {
+    "ad": "Banvit Dondurulmuş Piliç Pirzola 1 Kg",
+    "ana_kategori": "Beyaz Et",
     "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/11003003.png",
+    "resim": "https://cdn.marketfiyati.org.tr/bim/1712933.jpg",
     "en_dusuk_fiyat": 69.5,
     "market_fiyatlari": [
       {
-        "market": "a101",
+        "market": "bim",
         "fiyat": 69.5
       }
     ]
@@ -2416,23 +2429,10 @@
     ]
   },
   {
-    "ad": "Polonez Macar Salam 90 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "90 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/14109289.png",
-    "en_dusuk_fiyat": 129.9,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 129.9
-      }
-    ]
-  },
-  {
     "ad": "Dardanel Ton Balığı 2x200 Gr",
     "ana_kategori": "Deniz Ürünleri",
     "agirlik_hacim": "400 GR",
-    "resim": null,
+    "resim": "https://cdn.akakce.com/x/dardanel/dardanel-aycicek-yagli-2x140-gr.jpg",
     "en_dusuk_fiyat": 154.0,
     "market_fiyatlari": [
       {
@@ -2546,19 +2546,6 @@
     ]
   },
   {
-    "ad": "Banvit Piliç Pirzola 1 Kg",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/46040145.png",
-    "en_dusuk_fiyat": 249.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 249.95
-      }
-    ]
-  },
-  {
     "ad": "Marines Okyanus Lokumu 500 Gr",
     "ana_kategori": "Deniz Ürünleri",
     "agirlik_hacim": "500 GR",
@@ -2611,10 +2598,23 @@
     ]
   },
   {
+    "ad": "Erşan Frankfurter Sosis 400 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "400 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30450368.jpg",
+    "en_dusuk_fiyat": 509.5,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 509.5
+      }
+    ]
+  },
+  {
     "ad": "Özcanlar Kaşarlı Köfte 330 Gr",
     "ana_kategori": "Kırmızı Et",
     "agirlik_hacim": "330 GR",
-    "resim": null,
+    "resim": "https://yemeksepeti.dhmedia.io/image/product-information-management/689dc080da9782b722b19c11.jpg?height=480",
     "en_dusuk_fiyat": 566.9,
     "market_fiyatlari": [
       {
@@ -2697,23 +2697,6 @@
     ]
   },
   {
-    "ad": "Namet 7/24 Dana Macar Salam 60 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "60 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30079250.jpg",
-    "en_dusuk_fiyat": 56.5,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 56.5
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 56.5
-      }
-    ]
-  },
-  {
     "ad": "Keskinoğlu Piliç Nugget 300 Gr",
     "ana_kategori": "Beyaz Et",
     "agirlik_hacim": "300 GR",
@@ -2757,10 +2740,10 @@
     ]
   },
   {
-    "ad": "Erpiliç Dondurulmuş Sarma Piliç Tabak 1 Kg",
-    "ana_kategori": "Beyaz Et",
+    "ad": "Aspiliç Piliç Büfe Salam 1 Kg",
+    "ana_kategori": "Şarküteri",
     "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/11003025.png",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/11003003.png",
     "en_dusuk_fiyat": 69.5,
     "market_fiyatlari": [
       {
@@ -2783,15 +2766,15 @@
     ]
   },
   {
-    "ad": "Gedik Piliç Baget 1 Kg",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/13019307.jpg",
-    "en_dusuk_fiyat": 145.0,
+    "ad": "Polonez Macar Salam 90 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "90 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/14109289.png",
+    "en_dusuk_fiyat": 129.9,
     "market_fiyatlari": [
       {
-        "market": "sok",
-        "fiyat": 145.0
+        "market": "migros",
+        "fiyat": 129.9
       }
     ]
   },
@@ -2799,7 +2782,7 @@
     "ad": "Donuk Piliç Nugget 1 Kg",
     "ana_kategori": "Beyaz Et",
     "agirlik_hacim": "1 KG",
-    "resim": null,
+    "resim": "https://static.ticimax.cloud/36626/uploads/urunresimleri/buyuk/gedik-donuk-nugget-1-kg-c-83a9.jpg",
     "en_dusuk_fiyat": 149.0,
     "market_fiyatlari": [
       {
@@ -2865,10 +2848,23 @@
     ]
   },
   {
+    "ad": "Banvit Piliç Pirzola 1 Kg",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/46040145.png",
+    "en_dusuk_fiyat": 249.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 249.95
+      }
+    ]
+  },
+  {
     "ad": "Bolez Köylüm Piliç Baget 1 Kg",
     "ana_kategori": "Beyaz Et",
     "agirlik_hacim": "1 KG",
-    "resim": null,
+    "resim": "https://images.migrosone.com/sanalmarket/product/13000298/13000298_1-45a568-1650x1650.jpg",
     "en_dusuk_fiyat": 249.95,
     "market_fiyatlari": [
       {
@@ -3021,6 +3017,23 @@
     ]
   },
   {
+    "ad": "Namet 7/24 Dana Macar Salam 60 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "60 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30079250.jpg",
+    "en_dusuk_fiyat": 56.5,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 56.5
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 56.5
+      }
+    ]
+  },
+  {
     "ad": "Lezita Piliç Kangal Sucuk 250 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "250 GR",
@@ -3043,6 +3056,19 @@
       {
         "market": "a101",
         "fiyat": 69.0
+      }
+    ]
+  },
+  {
+    "ad": "Erpiliç Dondurulmuş Sarma Piliç Tabak 1 Kg",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/11003025.png",
+    "en_dusuk_fiyat": 69.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 69.5
       }
     ]
   },
@@ -3129,27 +3155,27 @@
     ]
   },
   {
-    "ad": "Pınar Gurme Hindi Füme 150 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "150 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30489066.jpg",
-    "en_dusuk_fiyat": 142.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 142.9
-      }
-    ]
-  },
-  {
     "ad": "Fide Klasik Ton Balığı 480 Gr",
     "ana_kategori": "Deniz Ürünleri",
     "agirlik_hacim": "480 GR",
-    "resim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30485059.jpg",
     "en_dusuk_fiyat": 145.0,
     "market_fiyatlari": [
       {
         "market": "bim",
+        "fiyat": 145.0
+      }
+    ]
+  },
+  {
+    "ad": "Gedik Piliç Baget 1 Kg",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/13019307.jpg",
+    "en_dusuk_fiyat": 145.0,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
         "fiyat": 145.0
       }
     ]
@@ -3177,19 +3203,6 @@
       {
         "market": "migros",
         "fiyat": 199.95
-      }
-    ]
-  },
-  {
-    "ad": "Bolca Hindi Akdeniz Soslu Sote But 500 Gr",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/13302782.png",
-    "en_dusuk_fiyat": 209.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 209.95
       }
     ]
   },
@@ -3272,19 +3285,6 @@
     ]
   },
   {
-    "ad": "Erşan Kuru Et 100 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "100 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30275143.png",
-    "en_dusuk_fiyat": 427.5,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 427.5
-      }
-    ]
-  },
-  {
     "ad": "Cumhuriyet Dana Kangal Sucuk 400 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "400 GR",
@@ -3301,7 +3301,7 @@
     "ad": "Tarım Kredi Küvet Fermente Dana Kangal Sucuk 1 Kg",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "1 KG",
-    "resim": null,
+    "resim": "https://www.tkkoop.com.tr/assets/images/urun/base22/123029.jpg",
     "en_dusuk_fiyat": 1099.0,
     "market_fiyatlari": [
       {
@@ -3393,19 +3393,6 @@
     ]
   },
   {
-    "ad": "Tombik Piliç Kangal Sucuk 250 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "250 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/100787.png",
-    "en_dusuk_fiyat": 59.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 59.0
-      }
-    ]
-  },
-  {
     "ad": "Polonez Dana Macar Salam 50 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "50 GR",
@@ -3462,6 +3449,19 @@
     ]
   },
   {
+    "ad": "Pınar Gurme Hindi Füme 150 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "150 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30489066.jpg",
+    "en_dusuk_fiyat": 142.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 142.9
+      }
+    ]
+  },
+  {
     "ad": "Balıkdünyası Dondurulmuş Somon %10 Glaze 440 Gr",
     "ana_kategori": "Deniz Ürünleri",
     "agirlik_hacim": "440 GR",
@@ -3484,6 +3484,19 @@
       {
         "market": "carrefour",
         "fiyat": 199.9
+      }
+    ]
+  },
+  {
+    "ad": "Bolca Hindi Akdeniz Soslu Sote But 500 Gr",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "500 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/13302782.png",
+    "en_dusuk_fiyat": 209.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 209.95
       }
     ]
   },
@@ -3557,19 +3570,6 @@
     ]
   },
   {
-    "ad": "Aytaç Dana Kangal Sucuk 200 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30457207.png",
-    "en_dusuk_fiyat": 296.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 296.9
-      }
-    ]
-  },
-  {
     "ad": "Torku Dana Kangal Sucuk 500 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "500 GR",
@@ -3596,19 +3596,15 @@
     ]
   },
   {
-    "ad": "Dardanel Az Yağlı Füme Ton 280 Gr",
-    "ana_kategori": "Deniz Ürünleri",
-    "agirlik_hacim": "280 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30442334.png",
-    "en_dusuk_fiyat": 429.9,
+    "ad": "Erşan Kuru Et 100 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "100 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30275143.png",
+    "en_dusuk_fiyat": 427.5,
     "market_fiyatlari": [
       {
         "market": "carrefour",
-        "fiyat": 429.9
-      },
-      {
-        "market": "migros",
-        "fiyat": 429.95
+        "fiyat": 427.5
       }
     ]
   },
@@ -3717,15 +3713,15 @@
     ]
   },
   {
-    "ad": "Şenpiliç Dondurulmuş Piliç Ciğer 1 Kg",
-    "ana_kategori": "Sakatat",
-    "agirlik_hacim": "1 KG",
-    "resim": null,
-    "en_dusuk_fiyat": 59.5,
+    "ad": "Tombik Piliç Kangal Sucuk 250 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "250 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/100787.png",
+    "en_dusuk_fiyat": 59.0,
     "market_fiyatlari": [
       {
-        "market": "a101",
-        "fiyat": 59.5
+        "market": "bim",
+        "fiyat": 59.0
       }
     ]
   },
@@ -3746,7 +3742,7 @@
     "ad": "Acılı Piliç Kebap 400 Gr",
     "ana_kategori": "Beyaz Et",
     "agirlik_hacim": "400 GR",
-    "resim": null,
+    "resim": "https://images.migrosone.com/sanalmarket/product/13500033/13500033_1-852cec-1650x1650.jpg",
     "en_dusuk_fiyat": 69.0,
     "market_fiyatlari": [
       {
@@ -3785,7 +3781,7 @@
     "ad": "Bakpiliç Donuk Poşetli Bütün Piliç 1 Kg",
     "ana_kategori": "Beyaz Et",
     "agirlik_hacim": "1 KG",
-    "resim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/migros/13025478.jpg",
     "en_dusuk_fiyat": 119.9,
     "market_fiyatlari": [
       {
@@ -3850,7 +3846,7 @@
     "ad": "Tazem Piliç Üst Kanat 1 Kg",
     "ana_kategori": "Beyaz Et",
     "agirlik_hacim": "1 KG",
-    "resim": null,
+    "resim": "https://images.migrosone.com/tazedirekt/product/13019524/13019524_yan-267c4d-680x454.jpg",
     "en_dusuk_fiyat": 259.0,
     "market_fiyatlari": [
       {
@@ -3869,6 +3865,19 @@
       {
         "market": "bim",
         "fiyat": 279.0
+      }
+    ]
+  },
+  {
+    "ad": "Aytaç Dana Kangal Sucuk 200 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30457207.png",
+    "en_dusuk_fiyat": 296.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 296.9
       }
     ]
   },
@@ -3925,6 +3934,23 @@
     ]
   },
   {
+    "ad": "Dardanel Az Yağlı Füme Ton 280 Gr",
+    "ana_kategori": "Deniz Ürünleri",
+    "agirlik_hacim": "280 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30442334.png",
+    "en_dusuk_fiyat": 429.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 429.9
+      },
+      {
+        "market": "migros",
+        "fiyat": 429.95
+      }
+    ]
+  },
+  {
     "ad": "Özlem Çemeni Sıyrılmış Dana Pastırma 100 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "100 GR",
@@ -3967,25 +3993,12 @@
     "ad": "Maret Dana Baton Kavurma 1 Kg",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "1 KG",
-    "resim": null,
+    "resim": "https://lookaside.fbsbx.com/lookaside/crawler/instagram/DQw-bbQgHgZ/0/image.jpg",
     "en_dusuk_fiyat": 995.0,
     "market_fiyatlari": [
       {
         "market": "bim",
         "fiyat": 995.0
-      }
-    ]
-  },
-  {
-    "ad": "Namet Kangal Sucuk Acılı 1 Kg",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30235032.png",
-    "en_dusuk_fiyat": 1499.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 1499.9
       }
     ]
   },
@@ -4003,19 +4016,6 @@
     ]
   },
   {
-    "ad": "Fümeci Dana Bacon 1 Kg",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30234901.png",
-    "en_dusuk_fiyat": 4499.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 4499.9
-      }
-    ]
-  },
-  {
     "ad": "Lezita Piliç Dilimli Salam 60 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "60 GR",
@@ -4025,6 +4025,19 @@
       {
         "market": "a101",
         "fiyat": 20.0
+      }
+    ]
+  },
+  {
+    "ad": "Şenpiliç Dondurulmuş Piliç Ciğer 1 Kg",
+    "ana_kategori": "Sakatat",
+    "agirlik_hacim": "1 KG",
+    "resim": null,
+    "en_dusuk_fiyat": 59.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 59.5
       }
     ]
   },
@@ -4064,19 +4077,6 @@
       {
         "market": "a101",
         "fiyat": 95.0
-      }
-    ]
-  },
-  {
-    "ad": "Beşler Piliç Kokteyl Sosis 220 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "220 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30300204.png",
-    "en_dusuk_fiyat": 95.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 95.9
       }
     ]
   },
@@ -4136,7 +4136,7 @@
     "ad": "Kuzey Balık Dondurulmuş Temizlenmiş Alabalık 320 Gr",
     "ana_kategori": "Deniz Ürünleri",
     "agirlik_hacim": "320 GR",
-    "resim": null,
+    "resim": "https://cdn.cimri.io/market/260x260/kuzey-balik-320-gr-dondurulmus-temizlenmis-alabalik-_1979698.jpg",
     "en_dusuk_fiyat": 139.0,
     "market_fiyatlari": [
       {
@@ -4172,19 +4172,6 @@
     ]
   },
   {
-    "ad": "Migros Dana Sucuk 250 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "250 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/14200158.png",
-    "en_dusuk_fiyat": 199.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 199.0
-      }
-    ]
-  },
-  {
     "ad": "Baştacı Dilimli Dana Sucuk 250 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "250 GR",
@@ -4207,19 +4194,6 @@
       {
         "market": "migros",
         "fiyat": 229.95
-      }
-    ]
-  },
-  {
-    "ad": "Akşeker Dana Kangal Sucuk 450 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "450 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 239.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 239.0
       }
     ]
   },
@@ -4319,6 +4293,19 @@
     ]
   },
   {
+    "ad": "Namet Kangal Sucuk Acılı 1 Kg",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30235032.png",
+    "en_dusuk_fiyat": 1499.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 1499.9
+      }
+    ]
+  },
+  {
     "ad": "Namet Fıstıklı Macar Salam 1 Kg",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "1 KG",
@@ -4345,6 +4332,19 @@
     ]
   },
   {
+    "ad": "Fümeci Dana Bacon 1 Kg",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30234901.png",
+    "en_dusuk_fiyat": 4499.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 4499.9
+      }
+    ]
+  },
+  {
     "ad": "Erpiliç Piliç Kalçalı But 1 Kg",
     "ana_kategori": "Beyaz Et",
     "agirlik_hacim": "1 KG",
@@ -4354,6 +4354,19 @@
       {
         "market": "bim",
         "fiyat": 85.0
+      }
+    ]
+  },
+  {
+    "ad": "Beşler Piliç Kokteyl Sosis 220 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "220 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30300204.png",
+    "en_dusuk_fiyat": 95.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 95.9
       }
     ]
   },
@@ -4423,19 +4436,6 @@
     ]
   },
   {
-    "ad": "Lezita Dondurulmuş Piliç But Izgara Tava 1 Kg",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/11002839.png",
-    "en_dusuk_fiyat": 179.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 179.0
-      }
-    ]
-  },
-  {
     "ad": "Banvit Dondurulmuş Piliç Çıtır Burger 1 Kg",
     "ana_kategori": "Beyaz Et",
     "agirlik_hacim": "1 KG",
@@ -4475,15 +4475,15 @@
     ]
   },
   {
-    "ad": "Gedik Piliç But Pirzola 1 Kg",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "1 KG",
-    "resim": null,
-    "en_dusuk_fiyat": 225.0,
+    "ad": "Migros Dana Sucuk 250 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "250 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/14200158.png",
+    "en_dusuk_fiyat": 199.0,
     "market_fiyatlari": [
       {
-        "market": "sok",
-        "fiyat": 225.0
+        "market": "migros",
+        "fiyat": 199.0
       }
     ]
   },
@@ -4497,6 +4497,19 @@
       {
         "market": "a101",
         "fiyat": 235.0
+      }
+    ]
+  },
+  {
+    "ad": "Akşeker Dana Kangal Sucuk 450 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "450 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 239.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 239.0
       }
     ]
   },
@@ -4639,19 +4652,6 @@
     ]
   },
   {
-    "ad": "Bolez Köylüm Piliç Bonfile 1 Kg",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/13019505.jpg",
-    "en_dusuk_fiyat": 489.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 489.95
-      }
-    ]
-  },
-  {
     "ad": "Namet Dana Jambon 1 Kg",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "1 KG",
@@ -4760,6 +4760,19 @@
     ]
   },
   {
+    "ad": "Lezita Dondurulmuş Piliç But Izgara Tava 1 Kg",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/11002839.png",
+    "en_dusuk_fiyat": 179.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 179.0
+      }
+    ]
+  },
+  {
     "ad": "Akşeker Donuk Kuzu Dilim Kokoreç 200 Gr",
     "ana_kategori": "Sakatat",
     "agirlik_hacim": "200 GR",
@@ -4782,6 +4795,19 @@
       {
         "market": "sok",
         "fiyat": 209.0
+      }
+    ]
+  },
+  {
+    "ad": "Gedik Piliç But Pirzola 1 Kg",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://images.migrosone.com/sanalmarket/product/13019534/13019534-e84bb3-1650x1650.jpg",
+    "en_dusuk_fiyat": 225.0,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 225.0
       }
     ]
   },
@@ -4903,19 +4929,6 @@
     ]
   },
   {
-    "ad": "Cumhuriyet Dana Parmak Sucuk 300 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "300 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/sokimages/98015.png",
-    "en_dusuk_fiyat": 359.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 359.0
-      }
-    ]
-  },
-  {
     "ad": "Dardanel Donuk Haşlanmış Norveç Karidesi 200 Gr",
     "ana_kategori": "Deniz Ürünleri",
     "agirlik_hacim": "200 GR",
@@ -4955,6 +4968,19 @@
     ]
   },
   {
+    "ad": "Bolez Köylüm Piliç Bonfile 1 Kg",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/13019505.jpg",
+    "en_dusuk_fiyat": 489.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 489.95
+      }
+    ]
+  },
+  {
     "ad": "Balık Dünyası Dondurulmuş Et Karides 41/50 1 Kg",
     "ana_kategori": "Deniz Ürünleri",
     "agirlik_hacim": "1 KG",
@@ -4964,32 +4990,6 @@
       {
         "market": "migros",
         "fiyat": 809.9
-      }
-    ]
-  },
-  {
-    "ad": "Dardanel Somon Havyar 115 Gr",
-    "ana_kategori": "Deniz Ürünleri",
-    "agirlik_hacim": "115 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30261082.png",
-    "en_dusuk_fiyat": 989.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 989.0
-      }
-    ]
-  },
-  {
-    "ad": "Namet Dana Karabiberli Fıstıklı Salam 1 Kg",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30174537.png",
-    "en_dusuk_fiyat": 1659.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 1659.9
       }
     ]
   },
@@ -5119,19 +5119,6 @@
     ]
   },
   {
-    "ad": "Uzman Kasap Kuzu Dana Kebap 360 Gr",
-    "ana_kategori": "Kırmızı Et",
-    "agirlik_hacim": "360 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/25030389.jpg",
-    "en_dusuk_fiyat": 225.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 225.95
-      }
-    ]
-  },
-  {
     "ad": "Namet Isıl İşlem Görmüş Dana Kangal Sucuk 280 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "280 GR",
@@ -5167,19 +5154,6 @@
       {
         "market": "migros",
         "fiyat": 275.95
-      }
-    ]
-  },
-  {
-    "ad": "Akşeker Isıl İşlem Görmüş Dana Kangal Sucuk 450 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "450 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/11003188.jpg",
-    "en_dusuk_fiyat": 299.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 299.0
       }
     ]
   },
@@ -5223,19 +5197,6 @@
     ]
   },
   {
-    "ad": "Erşan Antrikot Füme 100 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "100 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30450369.png",
-    "en_dusuk_fiyat": 335.5,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 335.5
-      }
-    ]
-  },
-  {
     "ad": "Sultan Isıl İşlem Görmüş Vakumlu Kangal Sucuk 200 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "200 GR",
@@ -5245,6 +5206,19 @@
       {
         "market": "carrefour",
         "fiyat": 343.9
+      }
+    ]
+  },
+  {
+    "ad": "Cumhuriyet Dana Parmak Sucuk 300 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "300 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/sokimages/98015.png",
+    "en_dusuk_fiyat": 359.0,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 359.0
       }
     ]
   },
@@ -5295,7 +5269,7 @@
     "ad": "Dana Fermente Mangal Sucuk 400 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "400 GR",
-    "resim": null,
+    "resim": "https://www.aytac.com.tr/documents/perakende_urunleri/aytac-dana-parmak-fermente-sucuk-673x544.JPG",
     "en_dusuk_fiyat": 379.0,
     "market_fiyatlari": [
       {
@@ -5348,6 +5322,32 @@
     ]
   },
   {
+    "ad": "Dardanel Somon Havyar 115 Gr",
+    "ana_kategori": "Deniz Ürünleri",
+    "agirlik_hacim": "115 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30261082.png",
+    "en_dusuk_fiyat": 989.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 989.0
+      }
+    ]
+  },
+  {
+    "ad": "Namet Dana Karabiberli Fıstıklı Salam 1 Kg",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30174537.png",
+    "en_dusuk_fiyat": 1659.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 1659.9
+      }
+    ]
+  },
+  {
     "ad": "Hindi Füme Et 60 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "60 GR",
@@ -5387,19 +5387,6 @@
     ]
   },
   {
-    "ad": "Lezita Piliç Kokteyl Sosis 500 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/11003116.jpg",
-    "en_dusuk_fiyat": 85.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 85.0
-      }
-    ]
-  },
-  {
     "ad": "Banvit Piliç Büfe Salam 850 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "850 GR",
@@ -5434,19 +5421,6 @@
       {
         "market": "migros",
         "fiyat": 95.0
-      }
-    ]
-  },
-  {
-    "ad": "Pınar Füme Hindi Karışık Gurme 110 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "110 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30489068.jpg",
-    "en_dusuk_fiyat": 94.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 94.9
       }
     ]
   },
@@ -5520,6 +5494,19 @@
     ]
   },
   {
+    "ad": "Uzman Kasap Kuzu Dana Kebap 360 Gr",
+    "ana_kategori": "Kırmızı Et",
+    "agirlik_hacim": "360 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/25030389.jpg",
+    "en_dusuk_fiyat": 225.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 225.95
+      }
+    ]
+  },
+  {
     "ad": "Fide Light Ton Balığı 2x160 Gr",
     "ana_kategori": "Deniz Ürünleri",
     "agirlik_hacim": "320 GR",
@@ -5529,6 +5516,19 @@
       {
         "market": "migros",
         "fiyat": 279.95
+      }
+    ]
+  },
+  {
+    "ad": "Akşeker Isıl İşlem Görmüş Dana Kangal Sucuk 450 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "450 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/11003188.jpg",
+    "en_dusuk_fiyat": 299.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 299.0
       }
     ]
   },
@@ -5559,6 +5559,19 @@
     ]
   },
   {
+    "ad": "Erşan Antrikot Füme 100 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "100 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30450369.png",
+    "en_dusuk_fiyat": 335.5,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 335.5
+      }
+    ]
+  },
+  {
     "ad": "Erşan Dilimli Seçme Pastırma 120 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "120 GR",
@@ -5581,19 +5594,6 @@
       {
         "market": "carrefour",
         "fiyat": 399.9
-      }
-    ]
-  },
-  {
-    "ad": "Banvit Izgara Tava 1 Kg",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30098646.png",
-    "en_dusuk_fiyat": 450.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 450.0
       }
     ]
   },
@@ -5693,19 +5693,6 @@
     ]
   },
   {
-    "ad": "Carrefour Dana Macar Salam 50 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "50 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30280211.png",
-    "en_dusuk_fiyat": 45.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 45.0
-      }
-    ]
-  },
-  {
     "ad": "Carrefour Ton Balığı 160 Gr",
     "ana_kategori": "Deniz Ürünleri",
     "agirlik_hacim": "160 GR",
@@ -5732,6 +5719,19 @@
     ]
   },
   {
+    "ad": "Lezita Piliç Kokteyl Sosis 500 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "500 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/11003116.jpg",
+    "en_dusuk_fiyat": 85.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 85.0
+      }
+    ]
+  },
+  {
     "ad": "Banvit Kokteyl Piliç Sosis 500 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "500 GR",
@@ -5749,6 +5749,19 @@
       {
         "market": "carrefour",
         "fiyat": 128.9
+      }
+    ]
+  },
+  {
+    "ad": "Pınar Füme Hindi Karışık Gurme 110 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "110 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30489068.jpg",
+    "en_dusuk_fiyat": 94.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 94.9
       }
     ]
   },
@@ -5788,19 +5801,6 @@
       {
         "market": "carrefour",
         "fiyat": 135.9
-      }
-    ]
-  },
-  {
-    "ad": "Coşkun Isıl İşlem Dana Kangal Sucuk 220 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "220 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/11002603.png",
-    "en_dusuk_fiyat": 212.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 212.0
       }
     ]
   },
@@ -5922,19 +5922,6 @@
     ]
   },
   {
-    "ad": "Balık Dünyası Mezgit 500 Gr",
-    "ana_kategori": "Deniz Ürünleri",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30303228.png",
-    "en_dusuk_fiyat": 329.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 329.0
-      }
-    ]
-  },
-  {
     "ad": "Emin Dana Kuşbaşı Et 400 Gr",
     "ana_kategori": "Kırmızı Et",
     "agirlik_hacim": "400 GR",
@@ -5957,6 +5944,19 @@
       {
         "market": "a101",
         "fiyat": 379.0
+      }
+    ]
+  },
+  {
+    "ad": "Banvit Izgara Tava 1 Kg",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30098646.png",
+    "en_dusuk_fiyat": 450.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 450.0
       }
     ]
   },
@@ -6026,19 +6026,6 @@
     ]
   },
   {
-    "ad": "Aytaç Şipşak Piliç Salam Dilimli 60 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "60 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/sokimages/59234.png",
-    "en_dusuk_fiyat": 20.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 20.0
-      }
-    ]
-  },
-  {
     "ad": "Banvit Dilimli Piliç Salam 60 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "60 GR",
@@ -6055,12 +6042,25 @@
     "ad": "Piliç Füme 60 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "60 GR",
-    "resim": null,
+    "resim": "https://online.danet.com.tr/hindi-fume-i-dilimli-i-60-g-fume-danet-135-96-B.jpg",
     "en_dusuk_fiyat": 27.5,
     "market_fiyatlari": [
       {
         "market": "bim",
         "fiyat": 27.5
+      }
+    ]
+  },
+  {
+    "ad": "Carrefour Dana Macar Salam 50 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "50 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30280211.png",
+    "en_dusuk_fiyat": 45.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 45.0
       }
     ]
   },
@@ -6139,19 +6139,6 @@
       {
         "market": "bim",
         "fiyat": 87.5
-      }
-    ]
-  },
-  {
-    "ad": "Aytaç Isıl İşlem Görmüş Piliç Kangal Sucuk 450 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "450 GR",
-    "resim": "https://www.aytac.com.tr/documents/perakende_urunleri/aytac_anadolu_tadi_450g_3.jpg",
-    "en_dusuk_fiyat": 89.5,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 89.5
       }
     ]
   },
@@ -6242,19 +6229,6 @@
     ]
   },
   {
-    "ad": "Balık Dünyası Dondurulmuş Hamsi 500 Gr",
-    "ana_kategori": "Deniz Ürünleri",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30417212.jpg",
-    "en_dusuk_fiyat": 199.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 199.0
-      }
-    ]
-  },
-  {
     "ad": "Lezita Dondurulmuş Tabak Piliç Kanat 1 Kg",
     "ana_kategori": "Beyaz Et",
     "agirlik_hacim": "1 KG",
@@ -6320,6 +6294,19 @@
     ]
   },
   {
+    "ad": "Balık Dünyası Mezgit 500 Gr",
+    "ana_kategori": "Deniz Ürünleri",
+    "agirlik_hacim": "500 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30303228.png",
+    "en_dusuk_fiyat": 329.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 329.0
+      }
+    ]
+  },
+  {
     "ad": "Erpiliç Taze Tabak Kanat Izgara 1 Kg",
     "ana_kategori": "Beyaz Et",
     "agirlik_hacim": "1 KG",
@@ -6355,6 +6342,32 @@
       {
         "market": "tarim_kredi",
         "fiyat": 999.0
+      }
+    ]
+  },
+  {
+    "ad": "Apikoğlu Kekikli Kırmızı Biber Kaplamalı Jambon 1 Kg",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30098591.png",
+    "en_dusuk_fiyat": 2179.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 2179.9
+      }
+    ]
+  },
+  {
+    "ad": "Aytaç Şipşak Piliç Salam Dilimli 60 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "60 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/sokimages/59234.png",
+    "en_dusuk_fiyat": 20.0,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 20.0
       }
     ]
   },
@@ -6401,7 +6414,7 @@
     "ad": "Sultan Dilimli Macar Salam 50 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "50 GR",
-    "resim": null,
+    "resim": "https://percdn.com/f/197145/cG96WmFtNG0vcUp3SzJGdEg4MXZKZWxESUE9PQ/p/sultan-etci-ac-ye-dilimli-dana-macar-salam-50-gr-9775770-sw1670sh1611.webp",
     "en_dusuk_fiyat": 49.52,
     "market_fiyatlari": [
       {
@@ -6411,15 +6424,15 @@
     ]
   },
   {
-    "ad": "Banvit Piliç Kangal Sucuk 250 Gr",
+    "ad": "Aytaç Isıl İşlem Görmüş Piliç Kangal Sucuk 450 Gr",
     "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "250 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/11002028.png",
-    "en_dusuk_fiyat": 65.9,
+    "agirlik_hacim": "450 GR",
+    "resim": "https://www.aytac.com.tr/documents/perakende_urunleri/aytac_anadolu_tadi_450g_3.jpg",
+    "en_dusuk_fiyat": 89.5,
     "market_fiyatlari": [
       {
-        "market": "migros",
-        "fiyat": 65.9
+        "market": "bim",
+        "fiyat": 89.5
       }
     ]
   },
@@ -6453,7 +6466,7 @@
     "ad": "Çemensiz Dana Pastırma 80 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "80 GR",
-    "resim": null,
+    "resim": "https://cdn.cimri.io/market/260x260/sahin-80-gr-cemensiz-dana-pastirma-_1718861.jpg",
     "en_dusuk_fiyat": 149.0,
     "market_fiyatlari": [
       {
@@ -6489,6 +6502,19 @@
     ]
   },
   {
+    "ad": "Balık Dünyası Dondurulmuş Hamsi 500 Gr",
+    "ana_kategori": "Deniz Ürünleri",
+    "agirlik_hacim": "500 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30417212.jpg",
+    "en_dusuk_fiyat": 199.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 199.0
+      }
+    ]
+  },
+  {
     "ad": "Başyazıcı İnan Seçme Pastırma 80 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "80 GR",
@@ -6498,19 +6524,6 @@
       {
         "market": "carrefour",
         "fiyat": 199.9
-      }
-    ]
-  },
-  {
-    "ad": "Bolca Hindi Meksika Soslu Sote But 500 Gr",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/13302783.png",
-    "en_dusuk_fiyat": 209.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 209.95
       }
     ]
   },
@@ -6626,25 +6639,12 @@
     "ad": "Donuk Et Karides 1 Kg",
     "ana_kategori": "Deniz Ürünleri",
     "agirlik_hacim": "1 KG",
-    "resim": null,
+    "resim": "https://images.migrosone.com/sanalmarket/product/18010392/18010392_1-6db89f-1650x1650.jpg",
     "en_dusuk_fiyat": 629.0,
     "market_fiyatlari": [
       {
         "market": "carrefour",
         "fiyat": 629.0
-      }
-    ]
-  },
-  {
-    "ad": "Namet Dana Uzun Sosis 1 Kg",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30174538.png",
-    "en_dusuk_fiyat": 1099.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 1099.9
       }
     ]
   },
@@ -6744,6 +6744,19 @@
     ]
   },
   {
+    "ad": "Banvit Piliç Kangal Sucuk 250 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "250 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/11002028.png",
+    "en_dusuk_fiyat": 65.9,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 65.9
+      }
+    ]
+  },
+  {
     "ad": "Tombik Piliç Sosis 500 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "500 GR",
@@ -6839,41 +6852,15 @@
     ]
   },
   {
-    "ad": "Keskinoğlu Dondurulmuş Piliç Kasap Köfte 1 Kg",
+    "ad": "Bolca Hindi Meksika Soslu Sote But 500 Gr",
     "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/11000394.png",
-    "en_dusuk_fiyat": 169.0,
+    "agirlik_hacim": "500 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/13302783.png",
+    "en_dusuk_fiyat": 209.95,
     "market_fiyatlari": [
       {
-        "market": "a101",
-        "fiyat": 169.0
-      }
-    ]
-  },
-  {
-    "ad": "Lezita Üst Kök Kanat 1 Kg",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30220133.png",
-    "en_dusuk_fiyat": 176.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 176.9
-      }
-    ]
-  },
-  {
-    "ad": "Lezita Dondurulmuş Piliç Bonfile Tabak 1 Kg",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/11002927.jpg",
-    "en_dusuk_fiyat": 189.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 189.0
+        "market": "migros",
+        "fiyat": 209.95
       }
     ]
   },
@@ -6933,7 +6920,7 @@
     "ad": "TK Birlik Gurme Dana Füme Kuru Et 100 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "100 GR",
-    "resim": null,
+    "resim": "https://www.tkkoop.com.tr/assets/images/urun/tk-birlik-gurme-dana-fume-kuru-et-100-g_1770968708.png",
     "en_dusuk_fiyat": 349.0,
     "market_fiyatlari": [
       {
@@ -7012,6 +6999,19 @@
     ]
   },
   {
+    "ad": "Namet Dana Uzun Sosis 1 Kg",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30174538.png",
+    "en_dusuk_fiyat": 1099.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 1099.9
+      }
+    ]
+  },
+  {
     "ad": "Polonez Kangal Sucuk 1 Kg",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "1 KG",
@@ -7025,23 +7025,6 @@
     ]
   },
   {
-    "ad": "Pınar Aç Bitir Hindi Salam Büyük Dilim 60 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "60 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30202211.png",
-    "en_dusuk_fiyat": 38.32,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 38.32
-      },
-      {
-        "market": "migros",
-        "fiyat": 46.9
-      }
-    ]
-  },
-  {
     "ad": "Beşler Bi Lokma Hindi Füme 55 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "55 GR",
@@ -7051,19 +7034,6 @@
       {
         "market": "carrefour",
         "fiyat": 56.9
-      }
-    ]
-  },
-  {
-    "ad": "Soslu Buffalo Wings Tavuk Kanat 350 Gr",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "350 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bim/101389.jpg",
-    "en_dusuk_fiyat": 79.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 79.0
       }
     ]
   },
@@ -7137,6 +7107,32 @@
     ]
   },
   {
+    "ad": "Namet Uzun Dana Sosis 210 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "210 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bim/101640.jpg",
+    "en_dusuk_fiyat": 149.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 149.0
+      }
+    ]
+  },
+  {
+    "ad": "Keskinoğlu Dondurulmuş Piliç Kasap Köfte 1 Kg",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/11000394.png",
+    "en_dusuk_fiyat": 169.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 169.0
+      }
+    ]
+  },
+  {
     "ad": "Emin Dana Dilimli Sucuk 250 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "250 GR",
@@ -7146,6 +7142,32 @@
       {
         "market": "bim",
         "fiyat": 169.0
+      }
+    ]
+  },
+  {
+    "ad": "Lezita Üst Kök Kanat 1 Kg",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30220133.png",
+    "en_dusuk_fiyat": 176.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 176.9
+      }
+    ]
+  },
+  {
+    "ad": "Lezita Dondurulmuş Piliç Bonfile Tabak 1 Kg",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/11002927.jpg",
+    "en_dusuk_fiyat": 189.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 189.0
       }
     ]
   },
@@ -7189,19 +7211,6 @@
       {
         "market": "tarim_kredi",
         "fiyat": 279.0
-      }
-    ]
-  },
-  {
-    "ad": "Fide Ton Soğuk Sıkım Sızma Zeytinyağlı 2x160 Gr",
-    "ana_kategori": "Deniz Ürünleri",
-    "agirlik_hacim": "320 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/9050109.jpg",
-    "en_dusuk_fiyat": 299.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 299.95
       }
     ]
   },
@@ -7361,32 +7370,6 @@
     ]
   },
   {
-    "ad": "Namet Antrikot Pastırma 1 Kg",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/14300508.png",
-    "en_dusuk_fiyat": 2699.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 2699.9
-      }
-    ]
-  },
-  {
-    "ad": "Sultan Dilimli Piliç Salam 50 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "50 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30478100.png",
-    "en_dusuk_fiyat": 23.6,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 23.6
-      }
-    ]
-  },
-  {
     "ad": "Fıstıklı Hindi Salam 50 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "50 GR",
@@ -7452,6 +7435,23 @@
     ]
   },
   {
+    "ad": "Pınar Aç Bitir Hindi Salam Büyük Dilim 60 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "60 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30202211.png",
+    "en_dusuk_fiyat": 38.32,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 38.32
+      },
+      {
+        "market": "migros",
+        "fiyat": 46.9
+      }
+    ]
+  },
+  {
     "ad": "Namet 7/24 Macar Dana Dilimli Salam 50 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "50 GR",
@@ -7474,6 +7474,19 @@
       {
         "market": "bim",
         "fiyat": 49.5
+      }
+    ]
+  },
+  {
+    "ad": "Soslu Buffalo Wings Tavuk Kanat 350 Gr",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "350 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bim/101389.jpg",
+    "en_dusuk_fiyat": 79.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 79.0
       }
     ]
   },
@@ -7520,7 +7533,7 @@
     "ad": "Balık Dünyası Temizlenmiş Sardalya 500 Gr",
     "ana_kategori": "Deniz Ürünleri",
     "agirlik_hacim": "500 GR",
-    "resim": null,
+    "resim": "https://migrostoptanstr01.blob.core.windows.net/toptanimgs/18010143.jpg",
     "en_dusuk_fiyat": 139.0,
     "market_fiyatlari": [
       {
@@ -7539,19 +7552,6 @@
       {
         "market": "migros",
         "fiyat": 139.95
-      }
-    ]
-  },
-  {
-    "ad": "Namet Uzun Dana Sosis 210 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "210 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bim/101640.jpg",
-    "en_dusuk_fiyat": 149.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 149.0
       }
     ]
   },
@@ -7634,6 +7634,19 @@
     ]
   },
   {
+    "ad": "Fide Ton Soğuk Sıkım Sızma Zeytinyağlı 2x160 Gr",
+    "ana_kategori": "Deniz Ürünleri",
+    "agirlik_hacim": "320 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/9050109.jpg",
+    "en_dusuk_fiyat": 299.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 299.95
+      }
+    ]
+  },
+  {
     "ad": "Polonez Karabiberli Füme Et 90 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "90 GR",
@@ -7660,23 +7673,10 @@
     ]
   },
   {
-    "ad": "Pınar Burger Özel 225 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "225 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30077510.png",
-    "en_dusuk_fiyat": 421.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 421.0
-      }
-    ]
-  },
-  {
     "ad": "Özcanlar Çiftlik Köfte 330 Gr",
     "ana_kategori": "Kırmızı Et",
     "agirlik_hacim": "330 GR",
-    "resim": null,
+    "resim": "https://yemeksepeti.dhmedia.io/image/product-information-management/689dc080da9782b722b19c12.jpg?height=480",
     "en_dusuk_fiyat": 566.9,
     "market_fiyatlari": [
       {
@@ -7686,36 +7686,28 @@
     ]
   },
   {
-    "ad": "Polonez Sebzeli Tavuk Jambon 1 Kg",
+    "ad": "Namet Antrikot Pastırma 1 Kg",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30098252.png",
-    "en_dusuk_fiyat": 629.9,
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/14300508.png",
+    "en_dusuk_fiyat": 2699.9,
     "market_fiyatlari": [
       {
         "market": "carrefour",
-        "fiyat": 629.9
+        "fiyat": 2699.9
       }
     ]
   },
   {
-    "ad": "Namet 7/24 Hindi Salam 60 Gr",
+    "ad": "Sultan Dilimli Piliç Salam 50 Gr",
     "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "60 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30079288.png",
-    "en_dusuk_fiyat": 24.5,
+    "agirlik_hacim": "50 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30478100.png",
+    "en_dusuk_fiyat": 23.6,
     "market_fiyatlari": [
       {
-        "market": "migros",
-        "fiyat": 24.5
-      },
-      {
-        "market": "tarim_kredi",
-        "fiyat": 24.5
-      },
-      {
         "market": "carrefour",
-        "fiyat": 25.9
+        "fiyat": 23.6
       }
     ]
   },
@@ -7736,25 +7728,12 @@
     "ad": "Dilimli Piliç Salam 150 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "150 GR",
-    "resim": null,
+    "resim": "https://cdn2.a101.com.tr/dbmk89vnr/CALL/Image/get/7GIWezr3X8_500x500.png",
     "en_dusuk_fiyat": 42.5,
     "market_fiyatlari": [
       {
         "market": "bim",
         "fiyat": 42.5
-      }
-    ]
-  },
-  {
-    "ad": "Pınar Aç Bitir Fıstıklı Hindi Salam 50 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "50 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/14109262.png",
-    "en_dusuk_fiyat": 49.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 49.95
       }
     ]
   },
@@ -7775,7 +7754,7 @@
     "ad": "Gedik Dondurulmuş Piliç Acılı Kebap 1 Kg",
     "ana_kategori": "Beyaz Et",
     "agirlik_hacim": "1 KG",
-    "resim": null,
+    "resim": "https://cdn2.a101.com.tr/dbmk89vnr/CALL/Image/get/VflN6VP2E7_1024x1024.png",
     "en_dusuk_fiyat": 109.5,
     "market_fiyatlari": [
       {
@@ -7818,7 +7797,7 @@
     "ad": "Erşan Dana Kavurma 90 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "90 GR",
-    "resim": null,
+    "resim": "https://cdn.cimri.io/market/260x260/ersan-90-gr-dana-kavurma-_1790223.jpg",
     "en_dusuk_fiyat": 205.5,
     "market_fiyatlari": [
       {
@@ -7880,15 +7859,15 @@
     ]
   },
   {
-    "ad": "Lezita Tabaklı Izgara Üst Kanat 1 Kg",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30064219.png",
-    "en_dusuk_fiyat": 336.9,
+    "ad": "Pınar Burger Özel 225 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "225 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30077510.png",
+    "en_dusuk_fiyat": 421.0,
     "market_fiyatlari": [
       {
         "market": "carrefour",
-        "fiyat": 336.9
+        "fiyat": 421.0
       }
     ]
   },
@@ -7971,6 +7950,19 @@
     ]
   },
   {
+    "ad": "Polonez Sebzeli Tavuk Jambon 1 Kg",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30098252.png",
+    "en_dusuk_fiyat": 629.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 629.9
+      }
+    ]
+  },
+  {
     "ad": "Donuk Yengeç Surimi 1 Kg",
     "ana_kategori": "Deniz Ürünleri",
     "agirlik_hacim": "1 KG",
@@ -8013,7 +8005,7 @@
     "ad": "Pınar Şölen Macar Salam 1 Kg",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "1 KG",
-    "resim": null,
+    "resim": "https://images.migrosone.com/sanalmarket/product/14100110/14100110_yan-5a4501-1650x1650.jpg",
     "en_dusuk_fiyat": 1505.0,
     "market_fiyatlari": [
       {
@@ -8049,6 +8041,27 @@
     ]
   },
   {
+    "ad": "Namet 7/24 Hindi Salam 60 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "60 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30079288.png",
+    "en_dusuk_fiyat": 24.5,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 24.5
+      },
+      {
+        "market": "tarim_kredi",
+        "fiyat": 24.5
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 25.9
+      }
+    ]
+  },
+  {
     "ad": "Aytaç Şipşak Dilimli Hindi Salam 50 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "50 GR",
@@ -8062,15 +8075,15 @@
     ]
   },
   {
-    "ad": "Piliç Sosis 250 Gr",
+    "ad": "Pınar Aç Bitir Fıstıklı Hindi Salam 50 Gr",
     "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "250 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 52.5,
+    "agirlik_hacim": "50 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/14109262.png",
+    "en_dusuk_fiyat": 49.95,
     "market_fiyatlari": [
       {
-        "market": "bim",
-        "fiyat": 52.5
+        "market": "carrefour",
+        "fiyat": 49.95
       }
     ]
   },
@@ -8105,19 +8118,6 @@
     ]
   },
   {
-    "ad": "Banvit Uzun Piliç Sosis 1 Kg",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/bim/1710327.jpg",
-    "en_dusuk_fiyat": 99.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 99.0
-      }
-    ]
-  },
-  {
     "ad": "Lezita Dondurulmuş Piliç Nugget 1 Kg",
     "ana_kategori": "Beyaz Et",
     "agirlik_hacim": "1 KG",
@@ -8140,19 +8140,6 @@
       {
         "market": "bim",
         "fiyat": 109.0
-      }
-    ]
-  },
-  {
-    "ad": "Lezita Dondurulmuş Piliç Baget 1 Kg",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/11001604.png",
-    "en_dusuk_fiyat": 109.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 109.5
       }
     ]
   },
@@ -8209,6 +8196,19 @@
     ]
   },
   {
+    "ad": "Balıkdünyası Dondurulmuş Kalamar %50 Glaze 500 Gr",
+    "ana_kategori": "Deniz Ürünleri",
+    "agirlik_hacim": "500 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/11001936.png",
+    "en_dusuk_fiyat": 199.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 199.0
+      }
+    ]
+  },
+  {
     "ad": "Pınar Doyum Büfe Hindi Salam 700 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "700 GR",
@@ -8244,6 +8244,19 @@
       {
         "market": "a101",
         "fiyat": 335.0
+      }
+    ]
+  },
+  {
+    "ad": "Lezita Tabaklı Izgara Üst Kanat 1 Kg",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30064219.png",
+    "en_dusuk_fiyat": 336.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 336.9
       }
     ]
   },
@@ -8343,19 +8356,6 @@
     ]
   },
   {
-    "ad": "Sultan Kangal Sucuk 1 Kg",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "1 KG",
-    "resim": null,
-    "en_dusuk_fiyat": 1249.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 1249.9
-      }
-    ]
-  },
-  {
     "ad": "Polonez Kasap Sucuk 1 Kg",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "1 KG",
@@ -8404,6 +8404,19 @@
       {
         "market": "bim",
         "fiyat": 47.5
+      }
+    ]
+  },
+  {
+    "ad": "Piliç Sosis 250 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "250 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 52.5,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 52.5
       }
     ]
   },
@@ -8473,15 +8486,28 @@
     ]
   },
   {
-    "ad": "Maret Pratik Macar Salam 50 Gr",
+    "ad": "Banvit Uzun Piliç Sosis 1 Kg",
     "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "50 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30125769.jpg",
-    "en_dusuk_fiyat": 80.95,
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/bim/1710327.jpg",
+    "en_dusuk_fiyat": 99.0,
     "market_fiyatlari": [
       {
-        "market": "carrefour",
-        "fiyat": 80.95
+        "market": "bim",
+        "fiyat": 99.0
+      }
+    ]
+  },
+  {
+    "ad": "Lezita Dondurulmuş Piliç Baget 1 Kg",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/11001604.png",
+    "en_dusuk_fiyat": 109.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 109.5
       }
     ]
   },
@@ -8538,19 +8564,6 @@
       {
         "market": "migros",
         "fiyat": 169.95
-      }
-    ]
-  },
-  {
-    "ad": "Balıkdünyası Dondurulmuş Kalamar %50 Glaze 500 Gr",
-    "ana_kategori": "Deniz Ürünleri",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/11001936.png",
-    "en_dusuk_fiyat": 199.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 199.0
       }
     ]
   },
@@ -8620,19 +8633,6 @@
     ]
   },
   {
-    "ad": "Kocaman Marmara Jumbo Söğüş Karides 200 Gr",
-    "ana_kategori": "Deniz Ürünleri",
-    "agirlik_hacim": "200 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 289.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 289.0
-      }
-    ]
-  },
-  {
     "ad": "Erşan Dilimli Füme Et 120 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "120 GR",
@@ -8646,19 +8646,6 @@
       {
         "market": "carrefour",
         "fiyat": 355.9
-      }
-    ]
-  },
-  {
-    "ad": "Uzman Kasap Dağ Kekikli Dana Çoban Köfte 400 Gr",
-    "ana_kategori": "Kırmızı Et",
-    "agirlik_hacim": "400 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/25030392.png",
-    "en_dusuk_fiyat": 349.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 349.95
       }
     ]
   },
@@ -8702,6 +8689,19 @@
     ]
   },
   {
+    "ad": "Sultan Kangal Sucuk 1 Kg",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "1 KG",
+    "resim": null,
+    "en_dusuk_fiyat": 1249.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 1249.9
+      }
+    ]
+  },
+  {
     "ad": "Hindi Sosis 130 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "130 GR",
@@ -8741,10 +8741,23 @@
     ]
   },
   {
+    "ad": "Maret Pratik Macar Salam 50 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "50 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30125769.jpg",
+    "en_dusuk_fiyat": 80.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 80.95
+      }
+    ]
+  },
+  {
     "ad": "Dondurulmuş Piliç Sarma 1 Kg",
     "ana_kategori": "Beyaz Et",
     "agirlik_hacim": "1 KG",
-    "resim": null,
+    "resim": "https://cdn2.a101.com.tr/dbmk89vnr/CALL/Image/get/c7-CUgFGAw_500x500.png",
     "en_dusuk_fiyat": 89.0,
     "market_fiyatlari": [
       {
@@ -8802,6 +8815,19 @@
       {
         "market": "tarim_kredi",
         "fiyat": 109.0
+      }
+    ]
+  },
+  {
+    "ad": "Lezita Dondurulmuş Piliç Şinitzel 1.08 Kg",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "1.08 KG",
+    "resim": "https://iis-akakce.akamaized.net/p.z?%2F%2Fmigrostoptanstr01.blob.core.windows.net%2Ftoptanimgs%2F13509440.jpg",
+    "en_dusuk_fiyat": 109.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 109.5
       }
     ]
   },
@@ -8875,19 +8901,6 @@
     ]
   },
   {
-    "ad": "Erpiliç Dondurulmuş Pişmiş Soslu Kanat 1 Kg",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/11000428.png",
-    "en_dusuk_fiyat": 129.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 129.5
-      }
-    ]
-  },
-  {
     "ad": "Emin Dondurulmuş Hamburger Köftesi 225 Gr",
     "ana_kategori": "Kırmızı Et",
     "agirlik_hacim": "225 GR",
@@ -8897,19 +8910,6 @@
       {
         "market": "bim",
         "fiyat": 139.0
-      }
-    ]
-  },
-  {
-    "ad": "Lezita Tam Tahıllı Çıtır Jumbo Fileto 300 Gr",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "300 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/13500027.png",
-    "en_dusuk_fiyat": 139.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 139.95
       }
     ]
   },
@@ -8970,28 +8970,28 @@
     ]
   },
   {
-    "ad": "Başyazıcıoğlu İnan Dana Pastırma 120 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "120 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/14309080.png",
-    "en_dusuk_fiyat": 299.0,
+    "ad": "Kocaman Marmara Jumbo Söğüş Karides 200 Gr",
+    "ana_kategori": "Deniz Ürünleri",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.akakce.com/kocaman/kocaman-200-gr-marmara-karides-sogus-salamura-z.jpg",
+    "en_dusuk_fiyat": 289.0,
     "market_fiyatlari": [
       {
-        "market": "migros",
-        "fiyat": 299.0
+        "market": "carrefour",
+        "fiyat": 289.0
       }
     ]
   },
   {
-    "ad": "Taşkasap Dana Hamburger Köfte 265 Gr",
+    "ad": "Uzman Kasap Dağ Kekikli Dana Çoban Köfte 400 Gr",
     "ana_kategori": "Kırmızı Et",
-    "agirlik_hacim": "265 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 358.9,
+    "agirlik_hacim": "400 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/25030392.png",
+    "en_dusuk_fiyat": 349.95,
     "market_fiyatlari": [
       {
-        "market": "carrefour",
-        "fiyat": 358.9
+        "market": "migros",
+        "fiyat": 349.95
       }
     ]
   },
@@ -9052,19 +9052,6 @@
     ]
   },
   {
-    "ad": "Migros Hindi Füme 90 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "90 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/14900080.png",
-    "en_dusuk_fiyat": 44.9,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 44.9
-      }
-    ]
-  },
-  {
     "ad": "Polonez Hindi Füme Eti 50 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "50 GR",
@@ -9095,23 +9082,10 @@
     ]
   },
   {
-    "ad": "Keskinoğlu Piliç Kasap Köfte 300 Gr",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "300 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/13500037.png",
-    "en_dusuk_fiyat": 69.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 69.95
-      }
-    ]
-  },
-  {
     "ad": "Namet Hindi Uzun Sosis 5'li 210 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "210 GR",
-    "resim": null,
+    "resim": "https://www.peynircibaba.com/image/catalog/urunler/8697471722818.jpg",
     "en_dusuk_fiyat": 72.0,
     "market_fiyatlari": [
       {
@@ -9155,15 +9129,15 @@
     ]
   },
   {
-    "ad": "Lezita Dondurulmuş Piliç Şinitzel 1.08 Kg",
+    "ad": "Erpiliç Dondurulmuş Pişmiş Soslu Kanat 1 Kg",
     "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "1.08 KG",
-    "resim": null,
-    "en_dusuk_fiyat": 109.5,
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/11000428.png",
+    "en_dusuk_fiyat": 129.5,
     "market_fiyatlari": [
       {
         "market": "a101",
-        "fiyat": 109.5
+        "fiyat": 129.5
       }
     ]
   },
@@ -9177,6 +9151,19 @@
       {
         "market": "a101",
         "fiyat": 139.5
+      }
+    ]
+  },
+  {
+    "ad": "Lezita Tam Tahıllı Çıtır Jumbo Fileto 300 Gr",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "300 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/13500027.png",
+    "en_dusuk_fiyat": 139.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 139.95
       }
     ]
   },
@@ -9233,15 +9220,15 @@
     ]
   },
   {
-    "ad": "Tazem Piliç Parmak Bonfile 1 Kg",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "1 KG",
-    "resim": null,
-    "en_dusuk_fiyat": 259.0,
+    "ad": "Başyazıcıoğlu İnan Dana Pastırma 120 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "120 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/14309080.png",
+    "en_dusuk_fiyat": 299.0,
     "market_fiyatlari": [
       {
-        "market": "bim",
-        "fiyat": 259.0
+        "market": "migros",
+        "fiyat": 299.0
       }
     ]
   },
@@ -9255,6 +9242,19 @@
       {
         "market": "a101",
         "fiyat": 330.0
+      }
+    ]
+  },
+  {
+    "ad": "Taşkasap Dana Hamburger Köfte 265 Gr",
+    "ana_kategori": "Kırmızı Et",
+    "agirlik_hacim": "265 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 358.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 358.9
       }
     ]
   },
@@ -9285,19 +9285,6 @@
     ]
   },
   {
-    "ad": "Pınar Sosis 430 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "430 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 429.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 429.9
-      }
-    ]
-  },
-  {
     "ad": "Bolca Hindi Bütün But 1 Kg",
     "ana_kategori": "Beyaz Et",
     "agirlik_hacim": "1 KG",
@@ -9320,6 +9307,19 @@
       {
         "market": "tarim_kredi",
         "fiyat": 485.0
+      }
+    ]
+  },
+  {
+    "ad": "Dana Evlik Fermente Sucuk 400 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "400 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 599.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 599.0
       }
     ]
   },
@@ -9376,6 +9376,19 @@
     ]
   },
   {
+    "ad": "Migros Hindi Füme 90 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "90 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/14900080.png",
+    "en_dusuk_fiyat": 44.9,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 44.9
+      }
+    ]
+  },
+  {
     "ad": "Pınar Aç Bitir Hindi Kokteyl Sosis 170 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "170 GR",
@@ -9402,6 +9415,19 @@
     ]
   },
   {
+    "ad": "Keskinoğlu Piliç Kasap Köfte 300 Gr",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "300 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/13500037.png",
+    "en_dusuk_fiyat": 69.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 69.95
+      }
+    ]
+  },
+  {
     "ad": "Banvit Tabaklı Ciğer 1 Kg",
     "ana_kategori": "Beyaz Et",
     "agirlik_hacim": "1 KG",
@@ -9415,15 +9441,15 @@
     ]
   },
   {
-    "ad": "Beşler Bi Lokma Macar Salam 55 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "55 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30300206.png",
-    "en_dusuk_fiyat": 75.9,
+    "ad": "Erpiliç Dondurulmuş Bütün Poşet Piliç 1 Kg",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/11000243.png",
+    "en_dusuk_fiyat": 79.0,
     "market_fiyatlari": [
       {
-        "market": "carrefour",
-        "fiyat": 75.9
+        "market": "a101",
+        "fiyat": 79.0
       }
     ]
   },
@@ -9480,15 +9506,15 @@
     ]
   },
   {
-    "ad": "Şampiyon Dondurulmuş Dilimli Kuzu Kokoreç 200 Gr",
-    "ana_kategori": "Sakatat",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/11002980.png",
-    "en_dusuk_fiyat": 209.0,
+    "ad": "Banvit Kokteyl Sosis 1 Kg",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30070838.png",
+    "en_dusuk_fiyat": 189.9,
     "market_fiyatlari": [
       {
-        "market": "a101",
-        "fiyat": 209.0
+        "market": "carrefour",
+        "fiyat": 189.9
       }
     ]
   },
@@ -9532,6 +9558,19 @@
     ]
   },
   {
+    "ad": "Tazem Piliç Parmak Bonfile 1 Kg",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/11002231.png",
+    "en_dusuk_fiyat": 259.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 259.0
+      }
+    ]
+  },
+  {
     "ad": "Fish Fish Donuk Karides 500 Gr",
     "ana_kategori": "Deniz Ürünleri",
     "agirlik_hacim": "500 GR",
@@ -9541,19 +9580,6 @@
       {
         "market": "tarim_kredi",
         "fiyat": 269.0
-      }
-    ]
-  },
-  {
-    "ad": "Uzman Kasap Dana Kuzu Kıyma 400 Gr",
-    "ana_kategori": "Kırmızı Et",
-    "agirlik_hacim": "400 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/25030348.png",
-    "en_dusuk_fiyat": 290.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 290.0
       }
     ]
   },
@@ -9580,19 +9606,6 @@
       {
         "market": "carrefour",
         "fiyat": 320.0
-      }
-    ]
-  },
-  {
-    "ad": "Mirza Dana Karaciğer 500 Gr",
-    "ana_kategori": "Sakatat",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30215999.png",
-    "en_dusuk_fiyat": 379.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 379.9
       }
     ]
   },
@@ -9640,6 +9653,19 @@
     ]
   },
   {
+    "ad": "Pınar Sosis 430 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "430 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 429.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 429.9
+      }
+    ]
+  },
+  {
     "ad": "Pınar İllaki Dana Sucuk 240 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "240 GR",
@@ -9653,36 +9679,10 @@
     ]
   },
   {
-    "ad": "Dana Evlik Fermente Sucuk 400 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "400 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 599.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 599.0
-      }
-    ]
-  },
-  {
     "ad": "Pınar Fıstıklı Uzun Hindi Salam 1 Kg",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "1 KG",
     "resim": "https://cdn.marketfiyati.org.tr/migrosimages/13300508.png",
-    "en_dusuk_fiyat": 815.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 815.0
-      }
-    ]
-  },
-  {
-    "ad": "Pınar Hindi Salam Uzun 1 Kg",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/13300507.jpg",
     "en_dusuk_fiyat": 815.0,
     "market_fiyatlari": [
       {
@@ -9748,15 +9748,15 @@
     ]
   },
   {
-    "ad": "Erpiliç Dondurulmuş Bütün Poşet Piliç 1 Kg",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/11000243.png",
-    "en_dusuk_fiyat": 79.0,
+    "ad": "Beşler Bi Lokma Macar Salam 55 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "55 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30300206.png",
+    "en_dusuk_fiyat": 75.9,
     "market_fiyatlari": [
       {
-        "market": "a101",
-        "fiyat": 79.0
+        "market": "carrefour",
+        "fiyat": 75.9
       }
     ]
   },
@@ -9816,7 +9816,7 @@
     "ad": "Keskinoğlu Bütün Piliç 1 Kg",
     "ana_kategori": "Beyaz Et",
     "agirlik_hacim": "1 KG",
-    "resim": null,
+    "resim": "https://images.migrosone.com/sanalmarket/product/13023501/13023501-1bfad8-1650x1650.jpg",
     "en_dusuk_fiyat": 125.0,
     "market_fiyatlari": [
       {
@@ -9842,7 +9842,7 @@
     "ad": "Tazem Piliç Baget 1 Kg",
     "ana_kategori": "Beyaz Et",
     "agirlik_hacim": "1 KG",
-    "resim": null,
+    "resim": "https://images.migrosone.com/sanalmarket/product/13019539/13019539-9599c2-1650x1650.jpg",
     "en_dusuk_fiyat": 145.0,
     "market_fiyatlari": [
       {
@@ -9891,28 +9891,28 @@
     ]
   },
   {
-    "ad": "Banvit Kokteyl Sosis 1 Kg",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30070838.png",
-    "en_dusuk_fiyat": 189.9,
+    "ad": "Şampiyon Dondurulmuş Dilimli Kuzu Kokoreç 200 Gr",
+    "ana_kategori": "Sakatat",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/11002980.png",
+    "en_dusuk_fiyat": 209.0,
     "market_fiyatlari": [
       {
-        "market": "carrefour",
-        "fiyat": 189.9
+        "market": "a101",
+        "fiyat": 209.0
       }
     ]
   },
   {
-    "ad": "Lezita Tabaklı Y. Fileto Bonfile 1 Kg",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30064164.png",
-    "en_dusuk_fiyat": 199.9,
+    "ad": "Uzman Kasap Dana Kuzu Kıyma 400 Gr",
+    "ana_kategori": "Kırmızı Et",
+    "agirlik_hacim": "400 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/25030348.png",
+    "en_dusuk_fiyat": 290.0,
     "market_fiyatlari": [
       {
-        "market": "carrefour",
-        "fiyat": 199.9
+        "market": "migros",
+        "fiyat": 290.0
       }
     ]
   },
@@ -9943,6 +9943,19 @@
     ]
   },
   {
+    "ad": "Mirza Dana Karaciğer 500 Gr",
+    "ana_kategori": "Sakatat",
+    "agirlik_hacim": "500 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30215999.png",
+    "en_dusuk_fiyat": 379.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 379.9
+      }
+    ]
+  },
+  {
     "ad": "Pınar Klasik Kangal Sucuk 225 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "225 GR",
@@ -9952,19 +9965,6 @@
       {
         "market": "migros",
         "fiyat": 469.0
-      }
-    ]
-  },
-  {
-    "ad": "Başyazıcı Kangal Sucuk 200 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30334750.png",
-    "en_dusuk_fiyat": 477.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 477.9
       }
     ]
   },
@@ -9995,15 +9995,15 @@
     ]
   },
   {
-    "ad": "Namet Hindi Füme Jambon 1 Kg",
+    "ad": "Pınar Hindi Salam Uzun 1 Kg",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30174539.png",
-    "en_dusuk_fiyat": 859.9,
+    "resim": "https://cdn.marketfiyati.org.tr/migros/13300507.jpg",
+    "en_dusuk_fiyat": 815.0,
     "market_fiyatlari": [
       {
-        "market": "carrefour",
-        "fiyat": 859.9
+        "market": "migros",
+        "fiyat": 815.0
       }
     ]
   },
@@ -10090,19 +10090,6 @@
     ]
   },
   {
-    "ad": "Başyazıcı İnan Kavurma 100 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "100 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30481919.jpg",
-    "en_dusuk_fiyat": 189.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 189.9
-      }
-    ]
-  },
-  {
     "ad": "Carrefour Isıl İşlem Görmüş Sucuk 200 Gr",
     "ana_kategori": "Şarküteri",
     "agirlik_hacim": "200 GR",
@@ -10116,15 +10103,15 @@
     ]
   },
   {
-    "ad": "Aytaç Hindi Salam 500 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30389103.png",
-    "en_dusuk_fiyat": 220.9,
+    "ad": "Lezita Tabaklı Y. Fileto Bonfile 1 Kg",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30064164.png",
+    "en_dusuk_fiyat": 199.9,
     "market_fiyatlari": [
       {
         "market": "carrefour",
-        "fiyat": 220.9
+        "fiyat": 199.9
       }
     ]
   },
@@ -10155,15 +10142,15 @@
     ]
   },
   {
-    "ad": "Emin Dana Kuzu Izgara Köfte 400 Gr",
-    "ana_kategori": "Kırmızı Et",
-    "agirlik_hacim": "400 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/100711.png",
-    "en_dusuk_fiyat": 269.0,
+    "ad": "Başyazıcı Kangal Sucuk 200 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30334750.png",
+    "en_dusuk_fiyat": 477.9,
     "market_fiyatlari": [
       {
-        "market": "bim",
-        "fiyat": 269.0
+        "market": "carrefour",
+        "fiyat": 477.9
       }
     ]
   },
@@ -10177,6 +10164,19 @@
       {
         "market": "carrefour",
         "fiyat": 599.0
+      }
+    ]
+  },
+  {
+    "ad": "Namet Hindi Füme Jambon 1 Kg",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30174539.png",
+    "en_dusuk_fiyat": 859.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 859.9
       }
     ]
   },

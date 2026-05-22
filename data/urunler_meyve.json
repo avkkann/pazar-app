@@ -65,19 +65,6 @@
     ]
   },
   {
-    "ad": "Mantar Tabak 300 Gr",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "300 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/20001051.png",
-    "en_dusuk_fiyat": 49.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 49.5
-      }
-    ]
-  },
-  {
     "ad": "Sarımsak File 250 Gr",
     "ana_kategori": "Sebze",
     "agirlik_hacim": "250 GR",
@@ -177,6 +164,35 @@
     ]
   },
   {
+    "ad": "Domates Pembe 1 Kg",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/28089158.jpg",
+    "en_dusuk_fiyat": 99.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 99.0
+      },
+      {
+        "market": "tarim_kredi",
+        "fiyat": 99.9
+      },
+      {
+        "market": "migros",
+        "fiyat": 109.95
+      },
+      {
+        "market": "bim",
+        "fiyat": 119.0
+      },
+      {
+        "market": "a101",
+        "fiyat": 119.5
+      }
+    ]
+  },
+  {
     "ad": "Granny Smith Elma 1 Kg",
     "ana_kategori": "Meyve",
     "agirlik_hacim": "1 KG",
@@ -220,6 +236,19 @@
       {
         "market": "a101",
         "fiyat": 129.0
+      }
+    ]
+  },
+  {
+    "ad": "Enginar Baby 8 Adet",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30303523.jpg",
+    "en_dusuk_fiyat": 129.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 129.9
       }
     ]
   },
@@ -272,19 +301,6 @@
       {
         "market": "a101",
         "fiyat": 189.0
-      }
-    ]
-  },
-  {
-    "ad": "Feast Çilek 400 Gr",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "400 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30301933.jpg",
-    "en_dusuk_fiyat": 243.5,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 243.5
       }
     ]
   },
@@ -469,6 +485,19 @@
     ]
   },
   {
+    "ad": "Mantar Tabak 300 Gr",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "300 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/20001051.png",
+    "en_dusuk_fiyat": 49.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 49.5
+      }
+    ]
+  },
+  {
     "ad": "Bostan Patlıcan 1 Kg",
     "ana_kategori": "Sebze",
     "agirlik_hacim": "1 KG",
@@ -584,19 +613,6 @@
     ]
   },
   {
-    "ad": "Marul 1 Adet",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": null,
-    "resim": "https://ardenmarket.com.tr/media/catalog/product/cache/ce320e98947e5c83f08a8e256dc8423e/m/a/marul-adet-1.jpg",
-    "en_dusuk_fiyat": 79.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 79.5
-      }
-    ]
-  },
-  {
     "ad": "Kırmızı Lahana 1 Kg",
     "ana_kategori": "Sebze",
     "agirlik_hacim": "1 KG",
@@ -636,19 +652,6 @@
       {
         "market": "carrefour",
         "fiyat": 119.9
-      }
-    ]
-  },
-  {
-    "ad": "Enginar Baby 8 Adet",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": null,
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30303523.jpg",
-    "en_dusuk_fiyat": 129.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 129.9
       }
     ]
   },
@@ -701,6 +704,19 @@
       {
         "market": "carrefour",
         "fiyat": 205.95
+      }
+    ]
+  },
+  {
+    "ad": "Feast Çilek 400 Gr",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "400 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30301933.jpg",
+    "en_dusuk_fiyat": 243.5,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 243.5
       }
     ]
   },
@@ -850,27 +866,6 @@
     ]
   },
   {
-    "ad": "Kayısı 1 Kg",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000897.png",
-    "en_dusuk_fiyat": 69.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 69.9
-      },
-      {
-        "market": "a101",
-        "fiyat": 75.9
-      },
-      {
-        "market": "sok",
-        "fiyat": 89.9
-      }
-    ]
-  },
-  {
     "ad": "Feast İnce Çubuk Patates 1 Kg",
     "ana_kategori": "Sebze",
     "agirlik_hacim": "1 KG",
@@ -913,6 +908,19 @@
     "ana_kategori": "Meyve",
     "agirlik_hacim": "400 GR",
     "resim": "https://cdn.marketfiyati.org.tr/a101images/20001102.png",
+    "en_dusuk_fiyat": 79.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 79.5
+      }
+    ]
+  },
+  {
+    "ad": "Marul 1 Adet",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": null,
+    "resim": "https://ardenmarket.com.tr/media/catalog/product/cache/ce320e98947e5c83f08a8e256dc8423e/m/a/marul-adet-1.jpg",
     "en_dusuk_fiyat": 79.5,
     "market_fiyatlari": [
       {
@@ -1198,6 +1206,27 @@
     ]
   },
   {
+    "ad": "Kayısı 1 Kg",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000897.png",
+    "en_dusuk_fiyat": 69.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 69.9
+      },
+      {
+        "market": "a101",
+        "fiyat": 75.9
+      },
+      {
+        "market": "sok",
+        "fiyat": 89.9
+      }
+    ]
+  },
+  {
     "ad": "Superfresh Ispanak 450 Gr",
     "ana_kategori": "Sebze",
     "agirlik_hacim": "450 GR",
@@ -1262,19 +1291,6 @@
     "market_fiyatlari": [
       {
         "market": "migros",
-        "fiyat": 79.95
-      }
-    ]
-  },
-  {
-    "ad": "Superfresh Patates Garnitürü 450 Gr",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "450 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30081845.png",
-    "en_dusuk_fiyat": 79.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
         "fiyat": 79.95
       }
     ]
@@ -1581,6 +1597,19 @@
     ]
   },
   {
+    "ad": "Superfresh Patates Garnitürü 450 Gr",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "450 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30081845.png",
+    "en_dusuk_fiyat": 79.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 79.95
+      }
+    ]
+  },
+  {
     "ad": "Ayva Kg",
     "ana_kategori": "Meyve",
     "agirlik_hacim": "1 KG",
@@ -1718,19 +1747,6 @@
       {
         "market": "bim",
         "fiyat": 195.0
-      }
-    ]
-  },
-  {
-    "ad": "Feast Bamya 450 Gr",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "450 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30074619.png",
-    "en_dusuk_fiyat": 203.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 203.95
       }
     ]
   },
@@ -2092,19 +2108,6 @@
     ]
   },
   {
-    "ad": "Lavi Kuşkonmaz 350 Gr",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "350 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/17010067.jpg",
-    "en_dusuk_fiyat": 199.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 199.95
-      }
-    ]
-  },
-  {
     "ad": "Feast Elma Dilim Patates 1 Kg",
     "ana_kategori": "Sebze",
     "agirlik_hacim": "1 KG",
@@ -2114,6 +2117,19 @@
       {
         "market": "carrefour",
         "fiyat": 199.95
+      }
+    ]
+  },
+  {
+    "ad": "Feast Bamya 450 Gr",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "450 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30074619.png",
+    "en_dusuk_fiyat": 203.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 203.95
       }
     ]
   },
@@ -2208,23 +2224,6 @@
       {
         "market": "carrefour",
         "fiyat": 24.9
-      }
-    ]
-  },
-  {
-    "ad": "Avokado 1 Adet",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": null,
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000853.png",
-    "en_dusuk_fiyat": 39.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 39.5
-      },
-      {
-        "market": "bim",
-        "fiyat": 59.0
       }
     ]
   },
@@ -2478,6 +2477,19 @@
     ]
   },
   {
+    "ad": "Lavi Kuşkonmaz 350 Gr",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "350 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/17010067.jpg",
+    "en_dusuk_fiyat": 199.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 199.95
+      }
+    ]
+  },
+  {
     "ad": "Feast Churros Kesim Patates 1 Kg",
     "ana_kategori": "Sebze",
     "agirlik_hacim": "1 KG",
@@ -2581,6 +2593,23 @@
     ]
   },
   {
+    "ad": "Avokado 1 Adet",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000853.png",
+    "en_dusuk_fiyat": 39.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 39.5
+      },
+      {
+        "market": "bim",
+        "fiyat": 59.0
+      }
+    ]
+  },
+  {
     "ad": "Hıyar 1 Kg",
     "ana_kategori": "Sebze",
     "agirlik_hacim": "1 KG",
@@ -2680,35 +2709,6 @@
       {
         "market": "bim",
         "fiyat": 119.0
-      }
-    ]
-  },
-  {
-    "ad": "Domates Pembe 1 Kg",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/28089158.jpg",
-    "en_dusuk_fiyat": 99.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 99.0
-      },
-      {
-        "market": "tarim_kredi",
-        "fiyat": 99.9
-      },
-      {
-        "market": "migros",
-        "fiyat": 109.95
-      },
-      {
-        "market": "bim",
-        "fiyat": 119.0
-      },
-      {
-        "market": "a101",
-        "fiyat": 119.5
       }
     ]
   },
