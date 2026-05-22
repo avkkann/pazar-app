@@ -186,6 +186,61 @@ CATEGORIES = [
     ("atistirmalik-ve-tatli",       "Atıştırmalık ve Tatlı",         "urunler_atistirmalik"),
 ]
 
+DONDURULMUS_ANAHTAR = ['dondurul', 'donuk', 'superfresh', 'feast', 'lapestos']
+DONDURULMUS_ATLA_KAT = ['dondurmalar']
+DONDURULMUS_ATLA_DOSYA = ['urunler_temizlik']
+DONDURULMUS_OUT = 'urunler_dondurulmus'
+
+
+def dondurulmus_ayir():
+    """7 kategoriden dondurulmus urunleri ayir, urunler_dondurulmus.json'a tasi."""
+    print("\n" + "=" * 60)
+    print("DONDURULMUS URUNLERI AYIRMA")
+    print("=" * 60)
+
+    ayrilanlar = []
+    for slug, keyword, dosya_adi in CATEGORIES:
+        if dosya_adi == DONDURULMUS_OUT:
+            continue
+        if dosya_adi in DONDURULMUS_ATLA_DOSYA:
+            continue
+        cat_file = os.path.join(DATA_DIR, f"{dosya_adi}.json")
+        if not os.path.exists(cat_file):
+            continue
+        try:
+            with open(cat_file, encoding="utf-8") as f:
+                products = json.load(f)
+        except Exception as e:
+            print(f"  [HATA] {cat_file} okunamadi: {e}")
+            continue
+
+        kalanlar = []
+        bu_kategori_ayrildi = 0
+        for u in products:
+            ad = (u.get("ad") or "").lower()
+            kat = (u.get("ana_kategori") or "").lower()
+            if any(k in kat for k in DONDURULMUS_ATLA_KAT):
+                kalanlar.append(u)
+                continue
+            if any(k in ad for k in DONDURULMUS_ANAHTAR):
+                u["_original_kategori"] = u.get("ana_kategori")
+                u["ana_kategori"] = "Dondurulmuş Ürünler"
+                ayrilanlar.append(u)
+                bu_kategori_ayrildi += 1
+            else:
+                kalanlar.append(u)
+
+        if bu_kategori_ayrildi > 0:
+            with open(cat_file, "w", encoding="utf-8") as f:
+                json.dump(kalanlar, f, ensure_ascii=False, indent=2)
+            print(f"  {keyword}: {bu_kategori_ayrildi} urun ayrildi, {len(kalanlar)} kaldi")
+
+    out_file = os.path.join(DATA_DIR, f"{DONDURULMUS_OUT}.json")
+    with open(out_file, "w", encoding="utf-8") as f:
+        json.dump(ayrilanlar, f, ensure_ascii=False, indent=2)
+    print(f"\n[DONDURULMUS] TOPLAM: {len(ayrilanlar)} urun -> {out_file}")
+    print("=" * 60)
+
 HEADERS = {
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -368,6 +423,7 @@ def scrape():
 
     print(f"\nTamamlandi: {len(all_products)} urun -> {OUTPUT_FILE}")
     resimleri_doldur()
+    dondurulmus_ayir()
     return output
 
 

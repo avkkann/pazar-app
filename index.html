@@ -831,7 +831,7 @@ const MARKET_NAMES = {
 };
 const KAT_EMOJI = {
   meyve:'🍎', sebze:'🥦', et:'🥩', sut:'🧀',
-  gida:'🥫', icecek:'🥤', temizlik:'🧴', atistirmalik:'🍫', diger:'📦'
+  gida:'🥫', icecek:'🥤', temizlik:'🧴', atistirmalik:'🍫', dondurulmus:'🧊', diger:'📦'
 };
 const KATEGORILER = [
   { slug:'meyve-sebze', label:'Meyve & Sebze', emoji:'🍎', file:'urunler_meyve' },
@@ -841,6 +841,7 @@ const KATEGORILER = [
   { slug:'icecek',      label:'İçecek',        emoji:'🥤', file:'urunler_icecek'},
   { slug:'temizlik',    label:'Temizlik',       emoji:'🧴', file:'urunler_temizlik'},
   { slug:'atistirmalik',label:'Atıştırmalık',   emoji:'🍫', file:'urunler_atistirmalik'},
+  { slug:'dondurulmus', label:'Dondurulmuş',    emoji:'🧊', file:'urunler_dondurulmus'},
 ];
 const PAGE_SIZE = 48;
 
@@ -984,6 +985,7 @@ function ustKategori(k) {
        'Mutfak Sarf Malzemeleri','Duş Banyo ve Sabun','Ağız Bakım',
        'Bebek ve Hasta Bezi','Temizlik ve Kişisel Bakım'].includes(k)) return 'temizlik';
   if (['Bisküvi ve Kraker','Cips','Dondurmalar','Gofret','Kek','Kuruyemiş ve Kuru Meyve','Sakız ve Şekerleme','Tatlılar','Çikolata'].includes(k)) return 'atistirmalik';
+  if (k === 'Dondurulmuş Ürünler') return 'dondurulmus';
   return 'diger';
 }
 
@@ -1119,7 +1121,8 @@ function placeholderRenk(kategori) {
     'gida': {bg:'#F3E5F5', emoji:'🛒'},
     'icecek': {bg:'#E0F7FA', emoji:'🥤'},
     'temizlik': {bg:'#F9FBE7', emoji:'🧴'},
-    'atistirmalik': {bg:'#FFF4E0', emoji:'🍫'}
+    'atistirmalik': {bg:'#FFF4E0', emoji:'🍫'},
+    'dondurulmus': {bg:'#E0F2FE', emoji:'🧊'}
   };
   return renkler[kategori] || {bg:'#F5F5F5', emoji:'📦'};
 }
@@ -1644,7 +1647,7 @@ function renderFirsatlar(tab) {
   const container = document.getElementById('firsatContent');
   if (!container) return;
   container.innerHTML = '<div class="firsat-loading">⏳ Yükleniyor...</div>';
-  const catFiles = ['urunler_meyve','urunler_et','urunler_sut','urunler_gida','urunler_icecek','urunler_temizlik','urunler_atistirmalik'];
+  const catFiles = ['urunler_meyve','urunler_et','urunler_sut','urunler_gida','urunler_icecek','urunler_temizlik','urunler_atistirmalik','urunler_dondurulmus'];
   Promise.all(catFiles.map(f => fetch('./data/'+f+'.json').then(r=>r.json()).catch(()=>[])))
     .then(function(results) {
       const tumUrunler = results.flatMap(function(d){ return Array.isArray(d) ? d : (d.urunler||[]); });
