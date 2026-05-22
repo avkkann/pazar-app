@@ -1103,9 +1103,16 @@ function assignIds(slug, products) {
 async function loadCat(slug) {
   if (catCache[slug]) return catCache[slug];
   const kat = KATEGORILER.find(k => k.slug === slug);
-  const resp = await fetch('./data/' + kat.file + '.json');
-  const data = await resp.json();
-  const products = Array.isArray(data) ? data : (data.urunler || []);
+  let products = [];
+  try {
+    const resp = await fetch('./data/' + kat.file + '.json');
+    if (resp.ok) {
+      const data = await resp.json();
+      products = Array.isArray(data) ? data : (data.urunler || []);
+    }
+  } catch (e) {
+    console.warn('Kategori yuklenemedi:', kat.file, e);
+  }
   assignIds(slug, products);
   catCache[slug] = products;
   return products;
