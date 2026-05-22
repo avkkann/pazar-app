@@ -1253,6 +1253,7 @@ async function loadKategoriSayfasi(slug, sayfa) {
     } else {
       list.insertAdjacentHTML('beforeend', pageItems.map(cardHTML).join(''));
     }
+    document.getElementById('countNum').textContent = all.length;
   } catch(e) {
     console.error('Veri yükleme hatası:', e);
   } finally {
