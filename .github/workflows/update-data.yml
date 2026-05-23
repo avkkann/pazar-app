@@ -22,6 +22,7 @@ jobs:
           git config user.email "actions@github.com"
           git add data/
           git commit -m "Veri guncellendi" || exit 0
+          git pull --rebase origin main
           git push
       - name: Trigger Pages Deploy
         uses: actions/github-script@v6
