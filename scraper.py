@@ -28,7 +28,7 @@ MAX_WORKERS = 1
 # ==================== RESİM DOLDURMA (Searlo) ====================
 SEARLO_URL          = "https://api.searlo.tech/api/v1/search/images"
 SEARLO_TIMEOUT      = 15
-SEARLO_MATCH_THRESHOLD = 0.65  # %65 eslesme esigi
+SEARLO_MATCH_THRESHOLD = 0.55  # %55 eslesme esigi (2026-05: 0.65'ten dusuruldu - eksik resim ~2027, atlanan istekler kredi yiyordu)
 SEARLO_API_KEY      = os.environ.get("SEARLO_API_KEY", "").strip()
 
 if not SEARLO_API_KEY:
