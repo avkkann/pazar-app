@@ -653,7 +653,11 @@
 
   <div class="stats-row">
     <span><b id="countNum">—</b> ürün listeleniyor</span>
-    <span id="halDate"></span>
+    <select id="catSiralama" onchange="setSiralama(this.value)" style="margin-left:auto;font-size:.75rem;padding:4px 8px;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text)">
+      <option value="az">A-Z</option>
+      <option value="ucuz">En ucuz</option>
+      <option value="pahali">En pahalı</option>
+    </select>
   </div>
 
   <div class="product-list" id="productList"></div>
@@ -1222,6 +1226,11 @@ function filterUrunler(secilenMarket) {
   uygulaCatFiltre();
 }
 
+function setSiralama(deger) {
+  window._catSiralama = deger;
+  uygulaCatFiltre();
+}
+
 function uygulaCatFiltre() {
   const aramaTermi = window._catAramaTermi || '';
   const market = window.aktifMarket || 'all';
@@ -1244,6 +1253,15 @@ function uygulaCatFiltre() {
   document.querySelectorAll('[data-market]').forEach(pill => {
     pill.classList.toggle('active', pill.dataset.market === market);
   });
+
+  const sir = window._catSiralama || 'az';
+  if (sir === 'ucuz') {
+    filtreliler = filtreliler.slice().sort((a,b) => (a.en_dusuk_fiyat ?? Infinity) - (b.en_dusuk_fiyat ?? Infinity));
+  } else if (sir === 'pahali') {
+    filtreliler = filtreliler.slice().sort((a,b) => (b.en_dusuk_fiyat ?? -Infinity) - (a.en_dusuk_fiyat ?? -Infinity));
+  } else {
+    filtreliler = filtreliler.slice().sort((a,b) => (a.ad||'').localeCompare(b.ad||'', 'tr'));
+  }
 
   renderUrunler(filtreliler);
 }
