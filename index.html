@@ -654,6 +654,7 @@
   <div class="stats-row">
     <span><b id="countNum">—</b> ürün listeleniyor</span>
     <select id="catSiralama" onchange="setSiralama(this.value)" style="margin-left:auto;font-size:.75rem;padding:4px 8px;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text)">
+      <option value="populer">Popüler</option>
       <option value="az">A-Z</option>
       <option value="ucuz">En ucuz</option>
       <option value="pahali">En pahalı</option>
@@ -1226,6 +1227,24 @@ function filterUrunler(secilenMarket) {
   uygulaCatFiltre();
 }
 
+const POP_KEYWORDS = {
+  "meyve-sebze": ["domates","patates","soğan","muz","elma","salatalık","biber","limon","havuç","portakal","mandalina","patlıcan","kabak","marul","sarımsak","ıspanak","maydanoz","kıvırcık","çilek","armut"],
+  "et": ["kıyma","tavuk göğüs","sucuk","salam","sosis","piliç but","kangal","ton balığı","hindi füme","jambon","pastırma","köfte","kuşbaşı","piliç kanat","piliç fileto","döner","kavurma","ciğer","balık"],
+  "sut": ["süt","yumurta","peynir","yoğurt","beyaz peynir","kaşar","tereyağı","ayran","krema","labne","lor","kefir","süzme","kakaolu","ezine","mozarella","cheddar","çökelek","tulum","tatlandırılmış"],
+  "gida": ["makarna","pirinç","un","şeker","ayçiçek yağı","tuz","bulgur","mercimek","nohut","salça","zeytinyağı","sirke","reçel","bal","fasulye","kuru fasulye","barbunya","yulaf","ketçap","mayonez"],
+  "icecek": ["su","çay","kahve","cola","ayran","portakal suyu","maden suyu","limonata","soda","meyve suyu","ice tea","sprite","fanta","kakao","şalgam","gazoz","fuse tea","cappy","dimes","nescafe"],
+  "temizlik": ["çamaşır deterjanı","bulaşık deterjanı","yumuşatıcı","tuvalet kağıdı","kağıt havlu","peçete","şampuan","sabun","diş macunu","çamaşır suyu","yüzey temizleyici","ped","duş jeli","deodorant","bebek bezi","ıslak mendil","cam temizleyici","saç kremi","sünger","çöp poşeti"],
+  "atistirmalik": ["çikolata","bisküvi","cips","kek","kraker","gofret","sakız","şeker","kuruyemiş","fındık","fıstık","leblebi","badem","ceviz","kuru üzüm","kayısı","jelibon","draje","lokum","helva"],
+  "dondurulmus": ["patates","pizza","nugget","balık","mısır","bezelye","sebze","milföy","mantı","börek","sufle","poğaça","ıspanak","gözleme","muhallebi","tatlı","ekmek","hamur","pilav","yufka"]
+};
+function popScore(ad, slug) {
+  const kws = POP_KEYWORDS[slug] || [];
+  const adLow = (ad || '').toLowerCase();
+  for (let i = 0; i < kws.length; i++) {
+    if (adLow.includes(kws[i])) return i;
+  }
+  return 999;
+}
 function setSiralama(deger) {
   window._catSiralama = deger;
   uygulaCatFiltre();
@@ -1254,13 +1273,23 @@ function uygulaCatFiltre() {
     pill.classList.toggle('active', pill.dataset.market === market);
   });
 
-  const sir = window._catSiralama || 'az';
+  const sir = window._catSiralama || 'populer';
   if (sir === 'ucuz') {
     filtreliler = filtreliler.slice().sort((a,b) => (a.en_dusuk_fiyat ?? Infinity) - (b.en_dusuk_fiyat ?? Infinity));
   } else if (sir === 'pahali') {
     filtreliler = filtreliler.slice().sort((a,b) => (b.en_dusuk_fiyat ?? -Infinity) - (a.en_dusuk_fiyat ?? -Infinity));
-  } else {
+  } else if (sir === 'az') {
     filtreliler = filtreliler.slice().sort((a,b) => (a.ad||'').localeCompare(b.ad||'', 'tr'));
+  } else {
+    filtreliler = filtreliler.slice().sort((a,b) => {
+      const sa = popScore(a.ad, currentKategori);
+      const sb = popScore(b.ad, currentKategori);
+      if (sa !== sb) return sa - sb;
+      const ma = (a.market_fiyatlari || []).length;
+      const mb = (b.market_fiyatlari || []).length;
+      if (ma !== mb) return mb - ma;
+      return (a.en_dusuk_fiyat ?? 99999) - (b.en_dusuk_fiyat ?? 99999);
+    });
   }
 
   renderUrunler(filtreliler);
