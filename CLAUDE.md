@@ -3,6 +3,8 @@
 ## Proje Nedir
 Türkiye'de hal toptancı fiyatları + zincir market fiyatlarını karşılaştıran PWA uygulaması.
 
+> **2026-05-24:** Dondurulmuş canlıya çıktı (217 ürün). Searlo eşik 0.55'e düşürüldü. CI'a git pull --rebase eklendi (race fix).
+
 - **Canlı URL:** https://avkkann.github.io/pazar-app
 - **GitHub:** https://github.com/avkkann/pazar-app
 - **Kullanıcı:** Mustafa Karabıyık (avkkann)
@@ -16,9 +18,9 @@ Türkiye'de hal toptancı fiyatları + zincir market fiyatlarını karşılaşt�
 ## Teknik Yapı
 - Frontend: Tek index.html (~1840+ satır), backend yok
 - Hosting: GitHub Pages
-- PWA: sw.js — telefona kurulabiliyor, **cache şu an v26**
+- PWA: sw.js — telefona kurulabiliyor, **cache şu an v32**
 - Otomatik güncelleme: GitHub Actions her gece 03:00 (`.github/workflows/update-data.yml`)
-- **Toplam ürün: ~14.120** (7 kategori)
+- **Toplam ürün: ~14.269** (8 kategori — dondurulmuş ürünler 8. kategori olarak ayrıldı 2026-05)
 
 ---
 
@@ -42,7 +44,7 @@ JS değişken/fonksiyon/id adları (sepet, productMap, toggleSepet, navSepet, go
 
 ---
 
-## Kategoriler (7 adet — slug → file → emoji)
+## Kategoriler (8 adet — slug → file → emoji)
 ```js
 KATEGORILER = [
   { slug:'meyve-sebze',  file:'urunler_meyve',        emoji:'🍎' },
@@ -51,14 +53,15 @@ KATEGORILER = [
   { slug:'gida',         file:'urunler_gida',         emoji:'🥫' },
   { slug:'icecek',       file:'urunler_icecek',       emoji:'🥤' },
   { slug:'temizlik',     file:'urunler_temizlik',     emoji:'🧴' },
-  { slug:'atistirmalik', file:'urunler_atistirmalik', emoji:'🍫' }, // ← 2026-05 eklendi
+  { slug:'atistirmalik', file:'urunler_atistirmalik', emoji:'🍫' },
+  { slug:'dondurulmus',  file:'urunler_dondurulmus',  emoji:'🧊' }, // ← 2026-05 eklendi (scraper post-process)
 ];
 ```
 
 **KAT_EMOJI** (kart üst köşesindeki emoji):
 ```js
 { meyve:'🍎', sebze:'🥦', et:'🥩', sut:'🧀', gida:'🥫', icecek:'🥤',
-  temizlik:'🧴', atistirmalik:'🍫', diger:'📦' }
+  temizlik:'🧴', atistirmalik:'🍫', dondurulmus:'🧊', diger:'📦' }
 ```
 
 **ustKategori()** — alt kategori → ust slug eşlemesi. Atıştırmalık branch'ı:
@@ -68,8 +71,11 @@ KATEGORILER = [
 → 'atistirmalik'
 ```
 
+**Dondurulmuş branch:** ana_kategori "Dondurulmuş Ürünler" → 'dondurulmus' (scraper post-process bu değeri yazıyor)
+
 **placeholderRenk()** — resim YOK fallback'i: kategori adına göre `{bg, emoji}` döner.
 Atıştırmalık: `{bg:'#FFF4E0', emoji:'🍫'}`.
+Dondurulmuş: `{bg:'#E0F2FE', emoji:'🧊'}`.
 **ÖNEMLİ:** Yeni kategori eklerken placeholderRenk'i de güncelle, yoksa kart 📦 gösterir (detay sayfası KAT_EMOJI'yi okuyor, kart placeholderRenk'i okuyor — farklı kaynaklar).
 
 ---
@@ -81,13 +87,13 @@ let _halCache, _halPromise → halVeriGetir() kullan, direkt fetch yapma
 
 ### halEsles
 - Sadece meyve/sebze eşleşir
-- **HAL_UYUMSUZ listesi** (2026-05 genişletildi): donuk, dondurulmus, dondurulmuş, dondurma, konserve, hazir, islenmis, salca, tursu, kurutulmus, fileto, salam, sucuk, sosis, pastirma, corba, pure, püre, cipsi, cips, nugget, kroket, burger, superfresh, pack, paket, kutu, sis, rulo, dilim, mince, frozen, recel, reçel, marmelat, meyve suyu, suyu, nektar, smoothie, sirup, şurup, surup, komposto, kompoto, suzme, sikma, sıkma, dondurmasi, dondurmali, dondurmalı, tatlandirici, aromali, aromalı
+- **HAL_UYUMSUZ listesi** (2026-05 genişletildi, 60+ madde): donuk, dondurulmus, dondurulmuş, dondurma, konserve, hazir, islenmis, salca, tursu, kurutulmus, fileto, salam, sucuk, sosis, pastirma, corba, pure, püre, cipsi, cips, nugget, kroket, burger, superfresh, pack, paket, kutu, sis, rulo, dilim, mince, frozen, recel, reçel, marmelat, meyve suyu, suyu, nektar, smoothie, sirup, şurup, surup, komposto, kompoto, suzme, sikma, sıkma, dondurmasi, dondurmali, dondurmalı, tatlandirici, aromali, aromalı, feast, tukas, tukaş, garden, migrosone, tat, penguen, lapestos, yagi, yağı
+- **"adet" birimi filtresi**: ürün adında `\d+\s*adet` regex'i eşleşirse hal eşleştirme iptal (ananas, karpuz gibi büyük meyveler için yanlış birim varsayımını önler)
 - Birim normalize: "300 Gr" → kg'a çevrilir
 - Skor 0.6+ ve oran 0.1x-5x arası gerekli
-- **Yeni "Dondurulmuş Ürünler" kategorisi eklenirse bu liste güncellenmeyebilir** — kategori ana_kategori filtresinden zaten elenecek
 
 ### SW Cache
-Şu an: pazar-cache-v26
+Şu an: pazar-cache-v32
 Her büyük JS/HTML değişikliğinde sw.js CACHE_NAME versiyonunu artır!
 
 ### Fiyat
@@ -105,8 +111,31 @@ _id yoksa: u._id = u.ad + '_' + u.agirlik_hacim ile oluşturuluyor
 **Yeni kategori eklerken buraya da eklemek ZORUNLU**, yoksa fırsatlarda görünmez:
 ```js
 const catFiles = ['urunler_meyve','urunler_et','urunler_sut','urunler_gida',
-                  'urunler_icecek','urunler_temizlik','urunler_atistirmalik'];
+                  'urunler_icecek','urunler_temizlik','urunler_atistirmalik','urunler_dondurulmus'];
 ```
+
+### Fırsatlar İstatistik Kartları (2026-05)
+- `_firsatOzetHesapla(tumUrunler)` — Fırsatlar açıldığında üç sayıyı paralel hesaplar (En Ucuz / Hal Fırsatı / Fiyat Farkı)
+- Tab değişimde sayılar bozulmaz, daima tüm sekmeler için dolu görünür
+- Hal Fırsatı async hesaplanır (halVeriGetir bekler), önce '…' sonra gerçek sayı yazar
+- renderFirsatUcuz / renderFirsatHal / renderFirsatTasarruf fonksiyonları artık _firsatOzetGuncelle ÇAĞIRMAZ
+
+### Kategori countNum (2026-05 fix)
+- `loadKategoriSayfasi` sonunda `document.getElementById('countNum').textContent = all.length` zorunlu
+- Önceden sadece filtre tetiklenince güncellenirdi → ilk açılışta '…' kalırdı
+
+### loadCat 404 dayanıklılığı (2026-05 fix)
+- Kategori JSON dosyası 404 veya parse hatası verirse boş array döner (try/catch + resp.ok kontrol)
+- Yeni kategori eklendiğinde scraper henüz çalışmadıysa "Ürün bulunamadı" gösterir, hata vermez
+
+### Dondurulmuş Kategori (2026-05 eklendi)
+- scraper.py post-process: 7 ana kategori normal scrape edildikten sonra `dondurulmus_ayir()` çalışır
+- DONDURULMUS_ANAHTAR: ['dondurul', 'donuk', 'superfresh', 'feast', 'lapestos']
+- DONDURULMUS_ATLA_KAT: ['dondurmalar'] (ice cream — bunlar atıştırmalıkta kalmalı)
+- DONDURULMUS_ATLA_DOSYA: ['urunler_temizlik'] (Koroplast yanlış pozitifini önler)
+- Eşleşen ürünler ana_kategori'si "Dondurulmuş Ürünler" olarak değiştirilip urunler_dondurulmus.json'a taşınır
+- Orijinal kategori `_original_kategori` alanında saklanır
+- Yaklaşık 218 ürün
 
 ### Ürün Kartı
 - product-card-img: 130px yükseklik, object-fit: contain
@@ -162,7 +191,7 @@ const catFiles = ['urunler_meyve','urunler_et','urunler_sut','urunler_gida',
 
 ---
 
-## Searlo Resim Doldurma (2026-05 AKTİF)
+## Searlo Resim Doldurma (2026-05 AKTİF — ÇALIŞIYOR)
 - **API:** `https://api.searlo.tech/api/v1/search/images`
 - **Header:** `x-api-key: sk_...`
 - **Param:** `q=ürün adı`
@@ -176,16 +205,16 @@ const catFiles = ['urunler_meyve','urunler_et','urunler_sut','urunler_gida',
   - `time.sleep(6.5)` her istek arasında (dakikada ~9 istek, marjlı)
   - `GUNLUK_LIMIT = 950` sayacı → güvenli marj, limit aşılmaz
   - `resimleri_doldur()` aktif (yorum kaldırıldı)
-- **Yaklaşık kapsama:** ~2000 eksik resim varsa 3 günde tamamen dolar (her gece ~950)
+- **Doğrulama (2026-05):** 1361 istek yapılmış, ~%85.8 kapsama (12.242/14.269 ürün resimli). Çalışıyor.
 
 ---
 
 ## Önemli Fonksiyonlar
 - halVeriGetir() — tek fetch cache
-- halEsles(u) — hal eşleştirme (HAL_UYUMSUZ filtresi + ana_kategori meyve/sebze)
+- halEsles(u) — hal eşleştirme (HAL_UYUMSUZ filtresi + adet birimi filtresi + ana_kategori meyve/sebze)
 - halKgHesapla(ad, f) — birim normalize
-- loadCat(slug) — kategori JSON yükle (catCache)
-- loadKategoriSayfasi(slug, sayfa) — sayfa render
+- loadCat(slug) — kategori JSON yükle (catCache, 404'te boş array)
+- loadKategoriSayfasi(slug, sayfa) — sayfa render (countNum güncelleme sonda)
 - uygulaCatFiltre() — market + arama filtresi
 - cardHTML(u) — ürün kartı HTML (placeholderRenk kullanır)
 - openDetay(urunId) — ürün detay (KAT_EMOJI kullanır, **productMap[u._id] = u zorunlu**)
@@ -193,13 +222,15 @@ const catFiles = ['urunler_meyve','urunler_et','urunler_sut','urunler_gida',
 - setEkleBtns(id, inCart) — `.add-btn[data-pid]` görsel güncelle
 - firsatSepetEkle(btn, id) — fırsatlar sepete ekle (base64 decode + module-scope sepet)
 - _firsatKartHtml(u, badge, cls, alt) — fırsat kartı HTML
-- renderFirsatlar(tab) — fırsatlar render (catFiles HARDCODED!)
+- renderFirsatlar(tab) — fırsatlar render (catFiles HARDCODED!) + _firsatOzetHesapla çağrısı
+- _firsatOzetHesapla(tumUrunler) — 3 istatistik sayısını paralel hesaplar (2026-05)
 - renderFirsatHal(container, tumUrunler) — Hal vs Market sekmesi (sadece meyve+sebze, HAL_UYUMSUZ filtresi)
 - karsilastir() — Listem market karşılaştırma + optimal alışveriş (bestN(1/2/3) + bestIdx vurgu)
 - showKombo(idx) — karşılaştırma detayı (selected toggling YOK, sadece detay güncellenir)
 - profilGuncelle() — profil istatistikleri (Promise.all dinamik)
 - temaToggle() — tema değiştir (data-theme attribute)
 - placeholderRenk(anaKat) — resim YOK için {bg, emoji}
+- (scraper.py) dondurulmus_ayir() — post-process: dondurulmuş ürünleri ayrı dosyaya taşır (2026-05)
 
 ---
 
@@ -252,15 +283,21 @@ const catFiles = ['urunler_meyve','urunler_et','urunler_sut','urunler_gida',
 - **2026-05: Kalan "Sepette/sepette" referansları "Listemde/listemde" olarak düzeltildi (detay buton state + profil label, cache v24)**
 - **2026-05: openDetay bug fix: productMap[u._id] = u eklendi (kategori detayından "Listeme Ekle" sessizce fail ediyordu, cache v25)**
 - **2026-05: HAL_UYUMSUZ listesi genişletildi (dondurulmuş/reçel/meyve suyu/smoothie/kompoto/sıkma/marmelat vs hal ile eşleşmeyecek), profil "Sepet boş" → "Liste boş" (cache v26)**
+- **2026-05: countNum fix — kategori ekranında "..." yerine ürün sayısı gösteriliyor (cache v27)**
+- **2026-05: HAL_UYUMSUZ market markaları + "adet" birimi filtresi (Feast Çilek, Ananas 1 Adet vs hal ile eşleşmiyor, cache v28)**
+- **2026-05: HAL_UYUMSUZ lapestos + yağı (Dnk Lapestos donuk meyve serisi + Avokado Yağı elendi, cache v29)**
+- **2026-05: Fırsatlar istatistik kartları her tab'da dolu görünüyor (_firsatOzetHesapla paralel hesaplama, cache v30)**
+- **2026-05: 8. kategori — Dondurulmuş Ürünler (scraper post-process, ~218 ürün, cache v31)**
+- **2026-05: loadCat 404 dayanıklılığı (yeni kategori scrape edilmemişken zarif boş ekran, cache v32)**
+- **2026-05: Bug 10 yan etki — Atıştırmalık tek kart sorunu (Dondurulmuş eklenince grid 2x4 tam doldu)**
+- **2026-05: Searlo doğrulandı — 1361 istek yapılmış, ~%85.8 kapsama (12.242/14.269 ürün resimli). Çalışıyor.**
 
 ## Bekleyen
-- **Searlo gerçek çalıştığını doğrula:** GitHub Actions logu (sabah 03:00 sonrası) `[LIMIT] Gunluk 950 istek...` mesajı görünmeli, 0 ihlal olmalı. Searlo dashboard ~1176 istek olmalı (226+950). Resimsiz ürünlerden bir kısmı resimli olmalı.
-- **Dondurulmuş Ürünler kategorisi:** yeni 8. kategori olarak eklensin (scraper.py, urunler_dondurulmus.json, KATEGORILER, KAT_EMOJI, ustKategori, placeholderRenk, renderFirsatlar catFiles güncellenmeli — büyük iş, ayrı sohbet)
 - Sıralama seçeneği (En ucuz / A-Z)
 - Fiyat geçmişi grafiği
 - Sepet paylaşma (WhatsApp)
 - Şehir seçimi (hal.gov.tr iller)
-- Ürün resimleri (eksik resimler — Searlo 3 günde doldurmalı, sonuç yarın görülür)
+- Ürün resimleri (eksik ~2267/14430 = %15.7 — Searlo eşik 0.55, takip)
 - Landing page (OpenDesign'da yapılıyor — v1 ve v2 hazır ama v2 mobilde bozuk; v3 bekleniyor)
 
 ---
@@ -282,6 +319,7 @@ test_*.py
 *.test.py
 firsat_kod.txt
 test_export.xlsx
+scraper.py.bak
 ```
 **.env içinde API key var, asla repo'ya gitmemeli!**
 
