@@ -45,6 +45,19 @@ if not SEARLO_API_KEY:
             pass
 
 
+def _make_sid(slug_kisa, ad):
+    """Stable ID üretir: slug_kisa + '_' + normalize(ad)"""
+    import re
+    if not ad:
+        return slug_kisa + "_unknown"
+    n = ad.lower()
+    replacements = {'ı':'i','ğ':'g','ü':'u','ş':'s','ö':'o','ç':'c'}
+    for k, v in replacements.items():
+        n = n.replace(k, v)
+    n = re.sub(r'[^a-z0-9]+', '-', n).strip('-')
+    return f"{slug_kisa}_{n}"
+
+
 def _normalize_text(s):
     if not s:
         return ""
@@ -225,6 +238,7 @@ def dondurulmus_ayir():
             if any(k in ad for k in DONDURULMUS_ANAHTAR):
                 u["_original_kategori"] = u.get("ana_kategori")
                 u["ana_kategori"] = "Dondurulmuş Ürünler"
+                u["_sid"] = _make_sid("dondurulmus", u.get("ad") or "")
                 ayrilanlar.append(u)
                 bu_kategori_ayrildi += 1
             else:
@@ -313,7 +327,7 @@ def fetch_page(session, keyword, page_num):
     return None
 
 
-def parse_product(item, kategori_adi):
+def parse_product(item, kategori_adi, slug_kisa="urun"):
     market_fiyatlari = []
     for depot in item.get("productDepotInfoList") or []:
         fiyat = depot.get("price")
@@ -324,9 +338,11 @@ def parse_product(item, kategori_adi):
             })
 
     prices = [f["fiyat"] for f in market_fiyatlari]
+    ad = item.get("title")
 
     return {
-        "ad":               item.get("title"),
+        "_sid":             _make_sid(slug_kisa, ad),
+        "ad":               ad,
         "ana_kategori":     item.get("main_category") or kategori_adi,
         "agirlik_hacim":    item.get("refinedVolumeOrWeight"),
         "resim":            item.get("imageUrl"),
@@ -339,6 +355,17 @@ def scrape_category(cookies, slug, keyword, dosya_adi):
     session = make_session(cookies)
     print(f"\n--- Kategori: {keyword} ---")
 
+    SLUG_KISA_MAP = {
+        "meyve-ve-sebze": "meyve",
+        "et-tavuk-balik": "et",
+        "sut-urunleri-ve-kahvaltilik": "sut",
+        "temel-gida": "gida",
+        "icecek": "icecek",
+        "temizlik-ve-kisisel-bakim": "temizlik",
+        "atistirmalik-ve-tatli": "atistirmalik",
+    }
+    slug_kisa = SLUG_KISA_MAP.get(slug, "urun")
+
     data = fetch_page(session, keyword, 0)
     if not data or not data.get("content"):
         print(f"  [ATLA] Veri alinamadi: {keyword}")
@@ -348,7 +375,7 @@ def scrape_category(cookies, slug, keyword, dosya_adi):
     items = data.get("content") or []
     print(f"  Toplam: {total} | Sayfa 1: {len(items)} urun")
 
-    products = [parse_product(item, keyword) for item in items]
+    products = [parse_product(item, keyword, slug_kisa) for item in items]
 
     page = 1
     while len(products) < total:
@@ -359,7 +386,7 @@ def scrape_category(cookies, slug, keyword, dosya_adi):
         page_items = data.get("content") or []
         if not page_items:
             break
-        products.extend(parse_product(item, keyword) for item in page_items)
+        products.extend(parse_product(item, keyword, slug_kisa) for item in page_items)
         page += 1
         time.sleep(0.5)
 
@@ -424,7 +451,56 @@ def scrape():
     print(f"\nTamamlandi: {len(all_products)} urun -> {OUTPUT_FILE}")
     resimleri_doldur()
     dondurulmus_ayir()
+    gecmis_kaydet()
     return output
+
+
+def gecmis_kaydet():
+    """Her ürün × market için fiyat değiştiyse geçmiş_fiyatlar.json'a kayıt ekler."""
+    print("\n--- Gecmis fiyat kaydi ---")
+    from datetime import datetime
+    bugun = datetime.now().strftime("%Y-%m-%d")
+    gecmis_dosya = os.path.join(DATA_DIR, "gecmis_fiyatlar.json")
+
+    if os.path.exists(gecmis_dosya):
+        with open(gecmis_dosya, "r", encoding="utf-8") as f:
+            gecmis = json.load(f)
+    else:
+        gecmis = {}
+
+    tum_dosyalar = [d for _, _, d in CATEGORIES] + [DONDURULMUS_OUT]
+    yeni_kayit = 0
+    for dosya_adi in tum_dosyalar:
+        yol = os.path.join(DATA_DIR, f"{dosya_adi}.json")
+        if not os.path.exists(yol):
+            continue
+        with open(yol, "r", encoding="utf-8") as f:
+            urunler = json.load(f)
+        for u in urunler:
+            sid = u.get("_sid")
+            if not sid:
+                continue
+            for mf in (u.get("market_fiyatlari") or []):
+                market = mf.get("market")
+                fiyat = mf.get("fiyat")
+                if not market or fiyat is None:
+                    continue
+                kayitlar = gecmis.setdefault(sid, [])
+                son = None
+                for k in reversed(kayitlar):
+                    if k.get("m") == market:
+                        son = k
+                        break
+                if son and son.get("t") == bugun:
+                    continue
+                if son and son.get("f") == fiyat:
+                    continue
+                kayitlar.append({"t": bugun, "m": market, "f": fiyat})
+                yeni_kayit += 1
+
+    with open(gecmis_dosya, "w", encoding="utf-8") as f:
+        json.dump(gecmis, f, ensure_ascii=False, separators=(",", ":"))
+    print(f"  {yeni_kayit} yeni fiyat kaydi eklendi -> {gecmis_dosya}")
 
 
 if __name__ == "__main__":
