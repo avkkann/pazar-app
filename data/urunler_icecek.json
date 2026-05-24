@@ -580,6 +580,19 @@
     ]
   },
   {
+    "ad": "Avşar Mango Ananas Aromalı Maden Suyu 1.2 Lt",
+    "ana_kategori": "Maden Suyu",
+    "agirlik_hacim": "1.2 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/8040156.jpg",
+    "en_dusuk_fiyat": 82.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 82.0
+      }
+    ]
+  },
+  {
     "ad": "Yakamoz Karadut Aromalı İçecek 5 Lt",
     "ana_kategori": "Meyve Suyu",
     "agirlik_hacim": "5 LT",
@@ -709,19 +722,6 @@
     ]
   },
   {
-    "ad": "Tchibo Barista Caffe Creme Çekirdek Kahve 1 Kg",
-    "ana_kategori": "Kahve",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30284010.png",
-    "en_dusuk_fiyat": 1321.99,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 1321.99
-      }
-    ]
-  },
-  {
     "ad": "Jacobs 2si 1 Arada 10 Gr",
     "ana_kategori": "Kahve",
     "agirlik_hacim": "10.5 GR",
@@ -808,6 +808,19 @@
       {
         "market": "bim",
         "fiyat": 47.5
+      }
+    ]
+  },
+  {
+    "ad": "Coca-Cola Orijinal Tat 330 Ml",
+    "ana_kategori": "Gazlı İçecekler",
+    "agirlik_hacim": "330 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/8010001.jpg",
+    "en_dusuk_fiyat": 50.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 50.0
       }
     ]
   },
@@ -919,19 +932,6 @@
     ]
   },
   {
-    "ad": "Avşar Mango Ananas Aromalı Maden Suyu 1.2 Lt",
-    "ana_kategori": "Maden Suyu",
-    "agirlik_hacim": "1.2 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/8040156.jpg",
-    "en_dusuk_fiyat": 82.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 82.0
-      }
-    ]
-  },
-  {
     "ad": "Damla Minera Limonlu Maden Suyu 1.2 Lt",
     "ana_kategori": "Maden Suyu",
     "agirlik_hacim": "1.2 LT",
@@ -980,19 +980,6 @@
       {
         "market": "a101",
         "fiyat": 110.95
-      }
-    ]
-  },
-  {
-    "ad": "Teekanne Nane Çayı 20'li 30 Gr",
-    "ana_kategori": "Çay ve Bitki Çayları",
-    "agirlik_hacim": "30 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 124.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 124.95
       }
     ]
   },
@@ -1079,6 +1066,19 @@
       {
         "market": "carrefour",
         "fiyat": 1249.0
+      }
+    ]
+  },
+  {
+    "ad": "Tchibo Barista Caffe Creme Çekirdek Kahve 1 Kg",
+    "ana_kategori": "Kahve",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30284010.png",
+    "en_dusuk_fiyat": 1321.99,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 1321.99
       }
     ]
   },
@@ -1213,19 +1213,6 @@
       {
         "market": "tarim_kredi",
         "fiyat": 49.0
-      }
-    ]
-  },
-  {
-    "ad": "Coca-Cola Orijinal Tat 330 Ml",
-    "ana_kategori": "Gazlı İçecekler",
-    "agirlik_hacim": "330 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/8010001.jpg",
-    "en_dusuk_fiyat": 50.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 50.0
       }
     ]
   },
@@ -1384,6 +1371,19 @@
       {
         "market": "migros",
         "fiyat": 109.95
+      }
+    ]
+  },
+  {
+    "ad": "Teekanne Nane Çayı 20'li 30 Gr",
+    "ana_kategori": "Çay ve Bitki Çayları",
+    "agirlik_hacim": "30 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 124.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 124.95
       }
     ]
   },
@@ -3710,23 +3710,6 @@
     ]
   },
   {
-    "ad": "Dimes %100 Elma Suyu 1 Lt",
-    "ana_kategori": "Meyve Suyu",
-    "agirlik_hacim": "1 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30091518.png",
-    "en_dusuk_fiyat": 65.99,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 65.99
-      },
-      {
-        "market": "migros",
-        "fiyat": 120.0
-      }
-    ]
-  },
-  {
     "ad": "Nescafé 3'ü 1 Arada Sütlü Köpüklü 10 Adet",
     "ana_kategori": "Kahve",
     "agirlik_hacim": null,
@@ -3801,6 +3784,19 @@
       {
         "market": "bim",
         "fiyat": 119.0
+      }
+    ]
+  },
+  {
+    "ad": "Beta Tea Taç Yaprak Bardak Poşet 50 Gr",
+    "ana_kategori": "Çay ve Bitki Çayları",
+    "agirlik_hacim": "50 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30110308.png",
+    "en_dusuk_fiyat": 121.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 121.9
       }
     ]
   },
@@ -4098,6 +4094,23 @@
     ]
   },
   {
+    "ad": "Dimes %100 Elma Suyu 1 Lt",
+    "ana_kategori": "Meyve Suyu",
+    "agirlik_hacim": "1 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30091518.png",
+    "en_dusuk_fiyat": 65.99,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 65.99
+      },
+      {
+        "market": "migros",
+        "fiyat": 120.0
+      }
+    ]
+  },
+  {
     "ad": "Coca-Cola Euro 2024 2x1 Lt",
     "ana_kategori": "Gazlı İçecekler",
     "agirlik_hacim": "1 LT",
@@ -4159,19 +4172,6 @@
       {
         "market": "migros",
         "fiyat": 97.97
-      }
-    ]
-  },
-  {
-    "ad": "Beta Tea Taç Yaprak Bardak Poşet 50 Gr",
-    "ana_kategori": "Çay ve Bitki Çayları",
-    "agirlik_hacim": "50 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30110308.png",
-    "en_dusuk_fiyat": 121.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 121.9
       }
     ]
   },
@@ -5468,7 +5468,7 @@
     "ad": "Doğadan Beyaz Çay Sade 18'li 25 Gr",
     "ana_kategori": "Çay ve Bitki Çayları",
     "agirlik_hacim": "25.2 GR",
-    "resim": null,
+    "resim": "https://imgs.search.brave.com/Q5kFZ7bt-7DuHBWmiFeEOj5tNFHz7dUti4OmLb2yDvc/rs:fit:360:283:1:0/g:ce/aHR0cHM6Ly9jZG4u/ZHNtY2RuLmNvbS90/eTE2MzcvcHJvZC9R/Qy8yMDI1MDIxNS8y/MS9lM2MyNWQ0Ny0y/YmU5LTM0ZWQtYmJl/ZS1lYzQyYTRmMWNh/NDIvMV9vcmdfem9v/bS5qcGc",
     "en_dusuk_fiyat": 80.47,
     "market_fiyatlari": [
       {
@@ -5858,19 +5858,6 @@
     ]
   },
   {
-    "ad": "Jacobs Monarch Filtre Kahve 250 Gr",
-    "ana_kategori": "Kahve",
-    "agirlik_hacim": "250 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30002328.png",
-    "en_dusuk_fiyat": 209.99,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 209.99
-      }
-    ]
-  },
-  {
     "ad": "Tchibo Cafissimo Espresso Caramel Kapsül Kahve 10'lu 75 Gr",
     "ana_kategori": "Kahve",
     "agirlik_hacim": "75 GR",
@@ -5932,6 +5919,19 @@
       {
         "market": "carrefour",
         "fiyat": 605.9
+      }
+    ]
+  },
+  {
+    "ad": "Jacobs Monarch Gold Ekonomik Paket 200 Gr",
+    "ana_kategori": "Kahve",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/3231411.png",
+    "en_dusuk_fiyat": 699.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 699.95
       }
     ]
   },
@@ -6010,19 +6010,6 @@
       {
         "market": "carrefour",
         "fiyat": 29.95
-      }
-    ]
-  },
-  {
-    "ad": "Sırma Karma Mango 250 Ml",
-    "ana_kategori": "Maden Suyu",
-    "agirlik_hacim": "250 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30470306.png",
-    "en_dusuk_fiyat": 34.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 34.9
       }
     ]
   },
@@ -6246,6 +6233,19 @@
     ]
   },
   {
+    "ad": "Jacobs Monarch Filtre Kahve 250 Gr",
+    "ana_kategori": "Kahve",
+    "agirlik_hacim": "250 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30002328.png",
+    "en_dusuk_fiyat": 209.99,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 209.99
+      }
+    ]
+  },
+  {
     "ad": "Ahmad Tea Earl Grey Demlik Poşet Çay 48'li 154 Gr",
     "ana_kategori": "Çay ve Bitki Çayları",
     "agirlik_hacim": "154 GR",
@@ -6289,15 +6289,15 @@
     ]
   },
   {
-    "ad": "Jacobs Monarch Gold Ekonomik Paket 200 Gr",
+    "ad": "Venado Stella Filtre Kahve 1 Kg",
     "ana_kategori": "Kahve",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/3231411.png",
-    "en_dusuk_fiyat": 699.95,
+    "agirlik_hacim": "1 KG",
+    "resim": null,
+    "en_dusuk_fiyat": 678.99,
     "market_fiyatlari": [
       {
-        "market": "migros",
-        "fiyat": 699.95
+        "market": "carrefour",
+        "fiyat": 678.99
       }
     ]
   },
@@ -6393,6 +6393,19 @@
       {
         "market": "bim",
         "fiyat": 29.5
+      }
+    ]
+  },
+  {
+    "ad": "Sırma Karma Mango 250 Ml",
+    "ana_kategori": "Maden Suyu",
+    "agirlik_hacim": "250 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30470306.png",
+    "en_dusuk_fiyat": 34.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 34.9
       }
     ]
   },
@@ -6626,19 +6639,6 @@
       {
         "market": "carrefour",
         "fiyat": 292.5
-      }
-    ]
-  },
-  {
-    "ad": "Venado Stella Filtre Kahve 1 Kg",
-    "ana_kategori": "Kahve",
-    "agirlik_hacim": "1 KG",
-    "resim": null,
-    "en_dusuk_fiyat": 678.99,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 678.99
       }
     ]
   },
@@ -7345,19 +7345,6 @@
     ]
   },
   {
-    "ad": "Cafex Cappuccino Kahve 18 Gr",
-    "ana_kategori": "Kahve",
-    "agirlik_hacim": "18 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/13000155.png",
-    "en_dusuk_fiyat": 7.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 7.0
-      }
-    ]
-  },
-  {
     "ad": "Mila Doğal Kaynak Suyu 500 Ml",
     "ana_kategori": "Su",
     "agirlik_hacim": "500 ML",
@@ -7371,6 +7358,19 @@
       {
         "market": "carrefour",
         "fiyat": 11.75
+      }
+    ]
+  },
+  {
+    "ad": "Berk Filiz Çay 100 Gr",
+    "ana_kategori": "Çay ve Bitki Çayları",
+    "agirlik_hacim": "100 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 13.5,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 13.5
       }
     ]
   },
@@ -7507,6 +7507,27 @@
     ]
   },
   {
+    "ad": "Nescafe Xpress Cafe Choco 250 Ml",
+    "ana_kategori": "Gazsız İçecekler",
+    "agirlik_hacim": "250 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/8059621.jpg",
+    "en_dusuk_fiyat": 54.5,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 54.5
+      },
+      {
+        "market": "migros",
+        "fiyat": 54.9
+      },
+      {
+        "market": "sok",
+        "fiyat": 70.0
+      }
+    ]
+  },
+  {
     "ad": "Booly Karadut Aromalı İçecek 3 Lt",
     "ana_kategori": "Meyve Suyu",
     "agirlik_hacim": "3 LT",
@@ -7584,19 +7605,6 @@
       {
         "market": "carrefour",
         "fiyat": 65.5
-      }
-    ]
-  },
-  {
-    "ad": "Fanta Portakal Aromalı Gazoz 2.5 Lt",
-    "ana_kategori": "Gazlı İçecekler",
-    "agirlik_hacim": "2.5 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/8022690.png",
-    "en_dusuk_fiyat": 80.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 80.0
       }
     ]
   },
@@ -7726,15 +7734,15 @@
     ]
   },
   {
-    "ad": "Berk Filiz Çay 100 Gr",
-    "ana_kategori": "Çay ve Bitki Çayları",
-    "agirlik_hacim": "100 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 13.5,
+    "ad": "Cafex Cappuccino Kahve 18 Gr",
+    "ana_kategori": "Kahve",
+    "agirlik_hacim": "18 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/13000155.png",
+    "en_dusuk_fiyat": 7.0,
     "market_fiyatlari": [
       {
-        "market": "bim",
-        "fiyat": 13.5
+        "market": "a101",
+        "fiyat": 7.0
       }
     ]
   },
@@ -7834,27 +7842,6 @@
     ]
   },
   {
-    "ad": "Nescafe Xpress Cafe Choco 250 Ml",
-    "ana_kategori": "Gazsız İçecekler",
-    "agirlik_hacim": "250 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/8059621.jpg",
-    "en_dusuk_fiyat": 54.5,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 54.5
-      },
-      {
-        "market": "migros",
-        "fiyat": 54.9
-      },
-      {
-        "market": "sok",
-        "fiyat": 70.0
-      }
-    ]
-  },
-  {
     "ad": "Black Bruin Enerji İçeceği 1 Lt",
     "ana_kategori": "Gazlı İçecekler",
     "agirlik_hacim": "1 LT",
@@ -7890,6 +7877,19 @@
       {
         "market": "a101",
         "fiyat": 65.0
+      }
+    ]
+  },
+  {
+    "ad": "Fanta Portakal Aromalı Gazoz 2.5 Lt",
+    "ana_kategori": "Gazlı İçecekler",
+    "agirlik_hacim": "2.5 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/8022690.png",
+    "en_dusuk_fiyat": 80.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 80.0
       }
     ]
   },
@@ -8213,19 +8213,6 @@
     ]
   },
   {
-    "ad": "Su 12x330 Ml",
-    "ana_kategori": "Su",
-    "agirlik_hacim": null,
-    "resim": null,
-    "en_dusuk_fiyat": 53.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 53.0
-      }
-    ]
-  },
-  {
     "ad": "Red Bull Red Edition Enerji İçeceği 250 Ml",
     "ana_kategori": "Gazlı İçecekler",
     "agirlik_hacim": "250 ML",
@@ -8330,6 +8317,19 @@
       {
         "market": "migros",
         "fiyat": 80.47
+      }
+    ]
+  },
+  {
+    "ad": "Saf Chocolate Chip Energy Bar 50 Gr",
+    "ana_kategori": "Gazlı İçecekler",
+    "agirlik_hacim": "50 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30469420.jpg",
+    "en_dusuk_fiyat": 80.75,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 80.75
       }
     ]
   },
@@ -8528,6 +8528,19 @@
     ]
   },
   {
+    "ad": "Su 12x330 Ml",
+    "ana_kategori": "Su",
+    "agirlik_hacim": null,
+    "resim": null,
+    "en_dusuk_fiyat": 53.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 53.0
+      }
+    ]
+  },
+  {
     "ad": "Doğadan Limonlu Yeşil Çay 20 Adet",
     "ana_kategori": "Çay ve Bitki Çayları",
     "agirlik_hacim": null,
@@ -8537,19 +8550,6 @@
       {
         "market": "carrefour",
         "fiyat": 80.0
-      }
-    ]
-  },
-  {
-    "ad": "Saf Chocolate Chip Energy Bar 50 Gr",
-    "ana_kategori": "Gazlı İçecekler",
-    "agirlik_hacim": "50 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30469420.jpg",
-    "en_dusuk_fiyat": 80.75,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 80.75
       }
     ]
   },
@@ -8873,19 +8873,6 @@
     ]
   },
   {
-    "ad": "Yörsan Susurluk Ayran %2.3 Yağlı 265 Ml",
-    "ana_kategori": "Ayran ve Kefir",
-    "agirlik_hacim": "265 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/11550060.jpg",
-    "en_dusuk_fiyat": 28.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 28.95
-      }
-    ]
-  },
-  {
     "ad": "Cafex Latte Soğuk Kahve 250 Ml",
     "ana_kategori": "Gazsız İçecekler",
     "agirlik_hacim": "250 ML",
@@ -9126,6 +9113,19 @@
     ]
   },
   {
+    "ad": "Loco No 15 Yeşil Erik 900 Ml",
+    "ana_kategori": "Gazsız İçecekler",
+    "agirlik_hacim": "900 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/17570038.jpg",
+    "en_dusuk_fiyat": 950.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 950.95
+      }
+    ]
+  },
+  {
     "ad": "Capri Sun Safari 200 Ml",
     "ana_kategori": "Meyve Suyu",
     "agirlik_hacim": "200 ML",
@@ -9182,6 +9182,19 @@
       {
         "market": "carrefour",
         "fiyat": 22.5
+      }
+    ]
+  },
+  {
+    "ad": "Yörsan Susurluk Ayran %2.3 Yağlı 265 Ml",
+    "ana_kategori": "Ayran ve Kefir",
+    "agirlik_hacim": "265 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/11550060.jpg",
+    "en_dusuk_fiyat": 28.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 28.95
       }
     ]
   },
@@ -9264,19 +9277,6 @@
       {
         "market": "a101",
         "fiyat": 69.5
-      }
-    ]
-  },
-  {
-    "ad": "Damla Premium Su 750 Ml",
-    "ana_kategori": "Su",
-    "agirlik_hacim": "750 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30074538.png",
-    "en_dusuk_fiyat": 75.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 75.0
       }
     ]
   },
@@ -9644,36 +9644,6 @@
     ]
   },
   {
-    "ad": "San Pellegrino Limonata 200 Ml",
-    "ana_kategori": "Gazsız İçecekler",
-    "agirlik_hacim": "200 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30008347.png",
-    "en_dusuk_fiyat": 84.99,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 84.99
-      }
-    ]
-  },
-  {
-    "ad": "Uludağ Premium Maden Suyu 750 Ml",
-    "ana_kategori": "Maden Suyu",
-    "agirlik_hacim": "750 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30085474.png",
-    "en_dusuk_fiyat": 99.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 99.0
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 104.0
-      }
-    ]
-  },
-  {
     "ad": "Nescafé 3'ü 1 Arada Extra 10 Adet",
     "ana_kategori": "Kahve",
     "agirlik_hacim": null,
@@ -9696,6 +9666,32 @@
       {
         "market": "carrefour",
         "fiyat": 127.5
+      }
+    ]
+  },
+  {
+    "ad": "Beta Fusion Collection Mix Fruit Çayı 75 Gr",
+    "ana_kategori": "Çay ve Bitki Çayları",
+    "agirlik_hacim": "75 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30240689.png",
+    "en_dusuk_fiyat": 139.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 139.0
+      }
+    ]
+  },
+  {
+    "ad": "Nestlé Pure Life Su 6x1.9 Lt",
+    "ana_kategori": "Su",
+    "agirlik_hacim": "9 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/8061656.png",
+    "en_dusuk_fiyat": 169.75,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 169.75
       }
     ]
   },
@@ -9933,19 +9929,6 @@
     ]
   },
   {
-    "ad": "Dooy Vişne Nektarı 1 Lt",
-    "ana_kategori": "Meyve Suyu",
-    "agirlik_hacim": "1 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/13001964.png",
-    "en_dusuk_fiyat": 55.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 55.0
-      }
-    ]
-  },
-  {
     "ad": "Lipton Yeşil Çaylı Çilek Aromalı İçecek 1 Lt",
     "ana_kategori": "Gazsız İçecekler",
     "agirlik_hacim": "1 LT",
@@ -9955,6 +9938,19 @@
       {
         "market": "migros",
         "fiyat": 57.0
+      }
+    ]
+  },
+  {
+    "ad": "Binvezir Şişe Ayran 1.5 Lt",
+    "ana_kategori": "Ayran ve Kefir",
+    "agirlik_hacim": "1.5 LT",
+    "resim": null,
+    "en_dusuk_fiyat": 59.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 59.0
       }
     ]
   },
@@ -10023,6 +10019,36 @@
       {
         "market": "migros",
         "fiyat": 79.95
+      }
+    ]
+  },
+  {
+    "ad": "San Pellegrino Limonata 200 Ml",
+    "ana_kategori": "Gazsız İçecekler",
+    "agirlik_hacim": "200 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30008347.png",
+    "en_dusuk_fiyat": 84.99,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 84.99
+      }
+    ]
+  },
+  {
+    "ad": "Uludağ Premium Maden Suyu 750 Ml",
+    "ana_kategori": "Maden Suyu",
+    "agirlik_hacim": "750 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30085474.png",
+    "en_dusuk_fiyat": 99.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 99.0
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 104.0
       }
     ]
   },
@@ -10104,19 +10130,6 @@
     ]
   },
   {
-    "ad": "Beta Fusion Collection Mix Fruit Çayı 75 Gr",
-    "ana_kategori": "Çay ve Bitki Çayları",
-    "agirlik_hacim": "75 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30240689.png",
-    "en_dusuk_fiyat": 139.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 139.0
-      }
-    ]
-  },
-  {
     "ad": "Nescafé Klasik Instant Kahve 100 Gr",
     "ana_kategori": "Kahve",
     "agirlik_hacim": "100 GR",
@@ -10126,19 +10139,6 @@
       {
         "market": "bim",
         "fiyat": 149.0
-      }
-    ]
-  },
-  {
-    "ad": "Nestlé Pure Life Su 6x1.9 Lt",
-    "ana_kategori": "Su",
-    "agirlik_hacim": "9 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/8061656.png",
-    "en_dusuk_fiyat": 169.75,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 169.75
       }
     ]
   },
@@ -10195,6 +10195,19 @@
       {
         "market": "carrefour",
         "fiyat": 22.95
+      }
+    ]
+  },
+  {
+    "ad": "İçilebilir Probiyotik Yoğurt 250 Ml",
+    "ana_kategori": "Ayran ve Kefir",
+    "agirlik_hacim": "250 ML",
+    "resim": null,
+    "en_dusuk_fiyat": 24.5,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 24.5
       }
     ]
   },
@@ -10285,6 +10298,19 @@
     ]
   },
   {
+    "ad": "Dooy Vişne Nektarı 1 Lt",
+    "ana_kategori": "Meyve Suyu",
+    "agirlik_hacim": "1 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/13001964.png",
+    "en_dusuk_fiyat": 55.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 55.0
+      }
+    ]
+  },
+  {
     "ad": "Su 6x1 Lt",
     "ana_kategori": "Su",
     "agirlik_hacim": "6 LT",
@@ -10320,19 +10346,6 @@
       {
         "market": "a101",
         "fiyat": 57.0
-      }
-    ]
-  },
-  {
-    "ad": "Binvezir Şişe Ayran 1.5 Lt",
-    "ana_kategori": "Ayran ve Kefir",
-    "agirlik_hacim": "1.5 LT",
-    "resim": null,
-    "en_dusuk_fiyat": 59.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 59.0
       }
     ]
   },
@@ -10402,19 +10415,6 @@
       {
         "market": "tarim_kredi",
         "fiyat": 79.9
-      }
-    ]
-  },
-  {
-    "ad": "Lipton Ihlamur Bardak Poşet 20 Adet",
-    "ana_kategori": "Çay ve Bitki Çayları",
-    "agirlik_hacim": null,
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30071930.jpg",
-    "en_dusuk_fiyat": 114.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 114.95
       }
     ]
   },
@@ -10583,19 +10583,6 @@
     ]
   },
   {
-    "ad": "İçilebilir Probiyotik Yoğurt 250 Ml",
-    "ana_kategori": "Ayran ve Kefir",
-    "agirlik_hacim": "250 ML",
-    "resim": null,
-    "en_dusuk_fiyat": 24.5,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 24.5
-      }
-    ]
-  },
-  {
     "ad": "Bi Mango Exotic Buzlu Çay 330 Ml",
     "ana_kategori": "Gazsız İçecekler",
     "agirlik_hacim": "330 ML",
@@ -10605,19 +10592,6 @@
       {
         "market": "a101",
         "fiyat": 24.5
-      }
-    ]
-  },
-  {
-    "ad": "Birşah Çilekli Kefir 200 Ml",
-    "ana_kategori": "Ayran ve Kefir",
-    "agirlik_hacim": "200 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/12000149.jpg",
-    "en_dusuk_fiyat": 33.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 33.5
       }
     ]
   },
@@ -10810,6 +10784,19 @@
     ]
   },
   {
+    "ad": "Doğadan Ayvalı Ihlamur Çayı 18 Adet",
+    "ana_kategori": "Çay ve Bitki Çayları",
+    "agirlik_hacim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30356391.png",
+    "en_dusuk_fiyat": 80.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 80.0
+      }
+    ]
+  },
+  {
     "ad": "Sırma C+ Limon Aromalı Maden Suyu 6x200 Ml",
     "ana_kategori": "Maden Suyu",
     "agirlik_hacim": "1.2 LT",
@@ -10845,6 +10832,19 @@
       {
         "market": "carrefour",
         "fiyat": 93.5
+      }
+    ]
+  },
+  {
+    "ad": "Lipton Ihlamur Bardak Poşet 20 Adet",
+    "ana_kategori": "Çay ve Bitki Çayları",
+    "agirlik_hacim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30071930.jpg",
+    "en_dusuk_fiyat": 114.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 114.95
       }
     ]
   },
@@ -10936,6 +10936,19 @@
       {
         "market": "migros",
         "fiyat": 17.5
+      }
+    ]
+  },
+  {
+    "ad": "Birşah Çilekli Kefir 200 Ml",
+    "ana_kategori": "Ayran ve Kefir",
+    "agirlik_hacim": "200 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/12000149.jpg",
+    "en_dusuk_fiyat": 33.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 33.5
       }
     ]
   },
@@ -11086,19 +11099,6 @@
     "market_fiyatlari": [
       {
         "market": "migros",
-        "fiyat": 80.0
-      }
-    ]
-  },
-  {
-    "ad": "Doğadan Ayvalı Ihlamur Çayı 18 Adet",
-    "ana_kategori": "Çay ve Bitki Çayları",
-    "agirlik_hacim": null,
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30356391.png",
-    "en_dusuk_fiyat": 80.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
         "fiyat": 80.0
       }
     ]
@@ -13155,19 +13155,6 @@
     ]
   },
   {
-    "ad": "Exotic Portakal Nar Suyu 300 Ml",
-    "ana_kategori": "Gazsız İçecekler",
-    "agirlik_hacim": "300 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/8072636.jpg",
-    "en_dusuk_fiyat": 75.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 75.0
-      }
-    ]
-  },
-  {
     "ad": "İstanbul Osmanlı Dibek Kahvesi 200 Gr",
     "ana_kategori": "Kahve",
     "agirlik_hacim": "200 GR",
@@ -13211,6 +13198,23 @@
       {
         "market": "carrefour",
         "fiyat": 89.95
+      }
+    ]
+  },
+  {
+    "ad": "Eker Kefir 1 Lt",
+    "ana_kategori": "Ayran ve Kefir",
+    "agirlik_hacim": "1 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/12001287.jpg",
+    "en_dusuk_fiyat": 99.0,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 99.0
+      },
+      {
+        "market": "migros",
+        "fiyat": 104.95
       }
     ]
   },
@@ -13362,19 +13366,6 @@
     ]
   },
   {
-    "ad": "Lipton Ice Tea Karpuz 330 Ml",
-    "ana_kategori": "Gazsız İçecekler",
-    "agirlik_hacim": "330 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/13002150.png",
-    "en_dusuk_fiyat": 47.5,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 47.5
-      }
-    ]
-  },
-  {
     "ad": "Fruko Gazoz 2.5 Lt",
     "ana_kategori": "Gazlı İçecekler",
     "agirlik_hacim": "2.5 LT",
@@ -13473,6 +13464,19 @@
     ]
   },
   {
+    "ad": "Exotic Portakal Nar Suyu 300 Ml",
+    "ana_kategori": "Gazsız İçecekler",
+    "agirlik_hacim": "300 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/8072636.jpg",
+    "en_dusuk_fiyat": 75.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 75.0
+      }
+    ]
+  },
+  {
     "ad": "Doğadan Fonksiyonel Karma Çay 18 Adet",
     "ana_kategori": "Çay ve Bitki Çayları",
     "agirlik_hacim": null,
@@ -13494,6 +13498,19 @@
     "market_fiyatlari": [
       {
         "market": "migros",
+        "fiyat": 82.5
+      }
+    ]
+  },
+  {
+    "ad": "Damla Minera Elmalı Maden Suyu 1.2 Lt",
+    "ana_kategori": "Maden Suyu",
+    "agirlik_hacim": "1.2 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30340811.png",
+    "en_dusuk_fiyat": 82.5,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
         "fiyat": 82.5
       }
     ]
@@ -13521,23 +13538,6 @@
       {
         "market": "carrefour",
         "fiyat": 95.0
-      }
-    ]
-  },
-  {
-    "ad": "Eker Kefir 1 Lt",
-    "ana_kategori": "Ayran ve Kefir",
-    "agirlik_hacim": "1 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/12001287.jpg",
-    "en_dusuk_fiyat": 99.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 99.0
-      },
-      {
-        "market": "migros",
-        "fiyat": 104.95
       }
     ]
   },
@@ -13758,6 +13758,19 @@
     ]
   },
   {
+    "ad": "Lipton Ice Tea Karpuz 330 Ml",
+    "ana_kategori": "Gazsız İçecekler",
+    "agirlik_hacim": "330 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/13002150.png",
+    "en_dusuk_fiyat": 47.5,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 47.5
+      }
+    ]
+  },
+  {
     "ad": "Didi Bergamot 1.5 Lt",
     "ana_kategori": "Gazsız İçecekler",
     "agirlik_hacim": "1.5 LT",
@@ -13866,19 +13879,6 @@
       {
         "market": "migros",
         "fiyat": 80.47
-      }
-    ]
-  },
-  {
-    "ad": "Damla Minera Elmalı Maden Suyu 1.2 Lt",
-    "ana_kategori": "Maden Suyu",
-    "agirlik_hacim": "1.2 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30340811.png",
-    "en_dusuk_fiyat": 82.5,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 82.5
       }
     ]
   },
@@ -15410,23 +15410,6 @@
     ]
   },
   {
-    "ad": "Eker Pancarlı Limonlu Zencefil Kefir 290 Ml",
-    "ana_kategori": "Ayran ve Kefir",
-    "agirlik_hacim": "290 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/11559403.jpg",
-    "en_dusuk_fiyat": 39.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 39.95
-      },
-      {
-        "market": "migros",
-        "fiyat": 53.95
-      }
-    ]
-  },
-  {
     "ad": "Uludağ Premium Su 750 Ml",
     "ana_kategori": "Su",
     "agirlik_hacim": "750 ML",
@@ -15660,6 +15643,19 @@
     ]
   },
   {
+    "ad": "Pepsi Zero Sugar 4x330 Ml",
+    "ana_kategori": "Gazlı İçecekler",
+    "agirlik_hacim": "1.32 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/8011896.jpg",
+    "en_dusuk_fiyat": 187.5,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 187.5
+      }
+    ]
+  },
+  {
     "ad": "Karadem Harman Çay 1 Kg",
     "ana_kategori": "Çay ve Bitki Çayları",
     "agirlik_hacim": "1 KG",
@@ -15777,6 +15773,23 @@
       {
         "market": "migros",
         "fiyat": 38.9
+      }
+    ]
+  },
+  {
+    "ad": "Eker Pancarlı Limonlu Zencefil Kefir 290 Ml",
+    "ana_kategori": "Ayran ve Kefir",
+    "agirlik_hacim": "290 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/11559403.jpg",
+    "en_dusuk_fiyat": 39.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 39.95
+      },
+      {
+        "market": "migros",
+        "fiyat": 53.95
       }
     ]
   },
@@ -15975,19 +15988,6 @@
     ]
   },
   {
-    "ad": "Pepsi Zero Sugar 4x330 Ml",
-    "ana_kategori": "Gazlı İçecekler",
-    "agirlik_hacim": "1.32 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/8011896.jpg",
-    "en_dusuk_fiyat": 187.5,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 187.5
-      }
-    ]
-  },
-  {
     "ad": "Lipton Extra Dem Siyah Çay 500 Gr",
     "ana_kategori": "Çay ve Bitki Çayları",
     "agirlik_hacim": "500 GR",
@@ -16143,19 +16143,6 @@
       {
         "market": "migros",
         "fiyat": 18.5
-      }
-    ]
-  },
-  {
-    "ad": "Assu Mineralli Su 5 Lt",
-    "ana_kategori": "Maden Suyu",
-    "agirlik_hacim": "5 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/8060059.png",
-    "en_dusuk_fiyat": 36.5,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 36.5
       }
     ]
   },
@@ -16379,6 +16366,19 @@
     ]
   },
   {
+    "ad": "Exotic Portakal Nar Suyu 750 Ml",
+    "ana_kategori": "Gazsız İçecekler",
+    "agirlik_hacim": "750 ML",
+    "resim": null,
+    "en_dusuk_fiyat": 127.5,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 127.5
+      }
+    ]
+  },
+  {
     "ad": "Tchibo Gold Ekonomik Paket 75 Gr",
     "ana_kategori": "Kahve",
     "agirlik_hacim": "75 GR",
@@ -16487,6 +16487,19 @@
       {
         "market": "bim",
         "fiyat": 35.0
+      }
+    ]
+  },
+  {
+    "ad": "Assu Mineralli Su 5 Lt",
+    "ana_kategori": "Maden Suyu",
+    "agirlik_hacim": "5 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/8060059.png",
+    "en_dusuk_fiyat": 36.5,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 36.5
       }
     ]
   },
@@ -16697,19 +16710,6 @@
       {
         "market": "carrefour",
         "fiyat": 123.99
-      }
-    ]
-  },
-  {
-    "ad": "Exotic Portakal Nar Suyu 750 Ml",
-    "ana_kategori": "Gazsız İçecekler",
-    "agirlik_hacim": "750 ML",
-    "resim": null,
-    "en_dusuk_fiyat": 127.5,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 127.5
       }
     ]
   },
@@ -17208,19 +17208,6 @@
     ]
   },
   {
-    "ad": "Kristal Portakallı Gazlı İçecek 1 Lt",
-    "ana_kategori": "Gazlı İçecekler",
-    "agirlik_hacim": "1 LT",
-    "resim": null,
-    "en_dusuk_fiyat": 27.5,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 27.5
-      }
-    ]
-  },
-  {
     "ad": "Kefirix Yaban Mersinli Kefir 250 Ml",
     "ana_kategori": "Ayran ve Kefir",
     "agirlik_hacim": "250 ML",
@@ -17427,6 +17414,19 @@
     ]
   },
   {
+    "ad": "Kocatepe Dibek Kahvesi 100 Gr",
+    "ana_kategori": "Kahve",
+    "agirlik_hacim": "100 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30272186.png",
+    "en_dusuk_fiyat": 139.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 139.95
+      }
+    ]
+  },
+  {
     "ad": "Kefirzadem Kefir 1 Lt",
     "ana_kategori": "Ayran ve Kefir",
     "agirlik_hacim": "1 LT",
@@ -17604,6 +17604,19 @@
     ]
   },
   {
+    "ad": "Kristal Portakallı Gazlı İçecek 1 Lt",
+    "ana_kategori": "Gazlı İçecekler",
+    "agirlik_hacim": "1 LT",
+    "resim": null,
+    "en_dusuk_fiyat": 27.5,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 27.5
+      }
+    ]
+  },
+  {
     "ad": "Uludağ Premium Kaynak Suyu 1 Lt",
     "ana_kategori": "Su",
     "agirlik_hacim": "1 LT",
@@ -17764,19 +17777,6 @@
       {
         "market": "carrefour",
         "fiyat": 136.99
-      }
-    ]
-  },
-  {
-    "ad": "Kocatepe Dibek Kahvesi 100 Gr",
-    "ana_kategori": "Kahve",
-    "agirlik_hacim": "100 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30272186.png",
-    "en_dusuk_fiyat": 139.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 139.95
       }
     ]
   },
@@ -19242,19 +19242,6 @@
     ]
   },
   {
-    "ad": "Vip Salep 17 Gr",
-    "ana_kategori": "Gazsız İçecekler",
-    "agirlik_hacim": "17 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/301658.png",
-    "en_dusuk_fiyat": 5.75,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 5.75
-      }
-    ]
-  },
-  {
     "ad": "Nescafé Ice Toffee Nut Aromalı 10 Gr",
     "ana_kategori": "Kahve",
     "agirlik_hacim": "10.5 GR",
@@ -19476,6 +19463,19 @@
     ]
   },
   {
+    "ad": "Damla Su 6 Lt",
+    "ana_kategori": "Su",
+    "agirlik_hacim": "6 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30057198.png",
+    "en_dusuk_fiyat": 94.25,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 94.25
+      }
+    ]
+  },
+  {
     "ad": "Nescafé Gold Blend 37 Eko Paket Kahve 80 Gr",
     "ana_kategori": "Kahve",
     "agirlik_hacim": "80 GR",
@@ -19528,19 +19528,6 @@
     ]
   },
   {
-    "ad": "Keyfe Özel Seri Teneke Türk Kahvesi 250 Gr",
-    "ana_kategori": "Kahve",
-    "agirlik_hacim": "250 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/30000453.png",
-    "en_dusuk_fiyat": 159.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 159.0
-      }
-    ]
-  },
-  {
     "ad": "Elite Organic Mor Smoothie 946 Ml",
     "ana_kategori": "Gazsız İçecekler",
     "agirlik_hacim": "946 ML",
@@ -19554,6 +19541,19 @@
     ]
   },
   {
+    "ad": "The Whirl Lungo Medium Kapsül Kahve 55 Gr",
+    "ana_kategori": "Kahve",
+    "agirlik_hacim": "55 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30422642.jpg",
+    "en_dusuk_fiyat": 349.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 349.95
+      }
+    ]
+  },
+  {
     "ad": "Ahmad Tea English Breakfast Demlik Poşet Çay 100 Adet 320 GR",
     "ana_kategori": "Çay ve Bitki Çayları",
     "agirlik_hacim": null,
@@ -19563,6 +19563,19 @@
       {
         "market": "migros",
         "fiyat": 519.95
+      }
+    ]
+  },
+  {
+    "ad": "Vip Salep 17 Gr",
+    "ana_kategori": "Gazsız İçecekler",
+    "agirlik_hacim": "17 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/301658.png",
+    "en_dusuk_fiyat": 5.75,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 5.75
       }
     ]
   },
@@ -19871,19 +19884,6 @@
     ]
   },
   {
-    "ad": "Damla Su 6 Lt",
-    "ana_kategori": "Su",
-    "agirlik_hacim": "6 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30057198.png",
-    "en_dusuk_fiyat": 94.25,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 94.25
-      }
-    ]
-  },
-  {
     "ad": "Migros Vişne Limon Çilek İçeceği 1.5 Lt",
     "ana_kategori": "Meyve Suyu",
     "agirlik_hacim": "1.5 LT",
@@ -19897,6 +19897,19 @@
     ]
   },
   {
+    "ad": "Keyfe Özel Seri Teneke Türk Kahvesi 250 Gr",
+    "ana_kategori": "Kahve",
+    "agirlik_hacim": "250 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/30000453.png",
+    "en_dusuk_fiyat": 159.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 159.0
+      }
+    ]
+  },
+  {
     "ad": "Migros Gold Kahve Ekonomik Paket 200 Gr",
     "ana_kategori": "Kahve",
     "agirlik_hacim": "200 GR",
@@ -19906,19 +19919,6 @@
       {
         "market": "migros",
         "fiyat": 199.95
-      }
-    ]
-  },
-  {
-    "ad": "The Whirl Lungo Medium Kapsül Kahve 55 Gr",
-    "ana_kategori": "Kahve",
-    "agirlik_hacim": "55 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30422642.jpg",
-    "en_dusuk_fiyat": 349.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 349.95
       }
     ]
   },
@@ -20876,6 +20876,19 @@
     ]
   },
   {
+    "ad": "Kınık Gazoz 6x200 Ml",
+    "ana_kategori": "Gazlı İçecekler",
+    "agirlik_hacim": "1.2 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/13002276.png",
+    "en_dusuk_fiyat": 79.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 79.5
+      }
+    ]
+  },
+  {
     "ad": "Kızılay Karadut Frenk Üzümü Meyve Suyu 6x200 Ml",
     "ana_kategori": "Gazsız İçecekler",
     "agirlik_hacim": "1.2 LT",
@@ -20945,19 +20958,6 @@
     ]
   },
   {
-    "ad": "The Whirl Espresso Tanned Balanced Kahve 250 Gr",
-    "ana_kategori": "Kahve",
-    "agirlik_hacim": "250 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30498913.jpg",
-    "en_dusuk_fiyat": 285.99,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 285.99
-      }
-    ]
-  },
-  {
     "ad": "Herby Premium Matcha Sade Çay 25 Gr",
     "ana_kategori": "Çay ve Bitki Çayları",
     "agirlik_hacim": "25 GR",
@@ -20967,6 +20967,19 @@
       {
         "market": "migros",
         "fiyat": 349.95
+      }
+    ]
+  },
+  {
+    "ad": "Assu Mineralli Su 500 Ml",
+    "ana_kategori": "Maden Suyu",
+    "agirlik_hacim": "500 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/8060057.jpg",
+    "en_dusuk_fiyat": 5.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 5.95
       }
     ]
   },
@@ -21152,19 +21165,6 @@
     ]
   },
   {
-    "ad": "Kınık Gazoz 6x200 Ml",
-    "ana_kategori": "Gazlı İçecekler",
-    "agirlik_hacim": "1.2 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/13002276.png",
-    "en_dusuk_fiyat": 79.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 79.5
-      }
-    ]
-  },
-  {
     "ad": "Sek Laktozsuz Kahve Kreması 10x15 Ml",
     "ana_kategori": "Kahve",
     "agirlik_hacim": "150 ML",
@@ -21234,23 +21234,6 @@
     ]
   },
   {
-    "ad": "Eduscho Traditional Filtre Kahve 250 Gr",
-    "ana_kategori": "Kahve",
-    "agirlik_hacim": "250 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/30000844.png",
-    "en_dusuk_fiyat": 247.45,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 247.45
-      },
-      {
-        "market": "migros",
-        "fiyat": 329.95
-      }
-    ]
-  },
-  {
     "ad": "Beta Seylan Çayı 50 Gr",
     "ana_kategori": "Çay ve Bitki Çayları",
     "agirlik_hacim": "50 GR",
@@ -21260,6 +21243,19 @@
       {
         "market": "carrefour",
         "fiyat": 256.0
+      }
+    ]
+  },
+  {
+    "ad": "The Whirl Espresso Tanned Balanced Kahve 250 Gr",
+    "ana_kategori": "Kahve",
+    "agirlik_hacim": "250 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30498913.jpg",
+    "en_dusuk_fiyat": 285.99,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 285.99
       }
     ]
   },
@@ -21333,19 +21329,6 @@
       {
         "market": "carrefour",
         "fiyat": 5.5
-      }
-    ]
-  },
-  {
-    "ad": "Assu Mineralli Su 500 Ml",
-    "ana_kategori": "Maden Suyu",
-    "agirlik_hacim": "500 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/8060057.jpg",
-    "en_dusuk_fiyat": 5.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 5.95
       }
     ]
   },
@@ -21608,6 +21591,23 @@
     ]
   },
   {
+    "ad": "Eduscho Traditional Filtre Kahve 250 Gr",
+    "ana_kategori": "Kahve",
+    "agirlik_hacim": "250 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/30000844.png",
+    "en_dusuk_fiyat": 247.45,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 247.45
+      },
+      {
+        "market": "migros",
+        "fiyat": 329.95
+      }
+    ]
+  },
+  {
     "ad": "Eduscho Intense Çözünebilir Kahve 100 Gr",
     "ana_kategori": "Kahve",
     "agirlik_hacim": "100 GR",
@@ -21720,23 +21720,6 @@
     ]
   },
   {
-    "ad": "Coca-Cola Zero Sugar 250 Ml",
-    "ana_kategori": "Gazlı İçecekler",
-    "agirlik_hacim": "250 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30022134.png",
-    "en_dusuk_fiyat": 49.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 49.0
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 49.0
-      }
-    ]
-  },
-  {
     "ad": "Saka Doğal Maden Suyu 6x200 Ml",
     "ana_kategori": "Maden Suyu",
     "agirlik_hacim": "1.2 LT",
@@ -21806,19 +21789,6 @@
       {
         "market": "carrefour",
         "fiyat": 69.95
-      }
-    ]
-  },
-  {
-    "ad": "Ben Organic Nar Suyu 250 Ml",
-    "ana_kategori": "Meyve Suyu",
-    "agirlik_hacim": "250 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30488157.jpg",
-    "en_dusuk_fiyat": 76.41,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 76.41
       }
     ]
   },
@@ -21918,6 +21888,23 @@
     ]
   },
   {
+    "ad": "Eker Orman Meyveli Kefir 1 Lt",
+    "ana_kategori": "Ayran ve Kefir",
+    "agirlik_hacim": "1 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/11559399.jpg",
+    "en_dusuk_fiyat": 131.5,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 131.5
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 131.75
+      }
+    ]
+  },
+  {
     "ad": "Activia Ahududu & Hibiskus Probiyotik Yoğurt İçeceği 4x80 Ml",
     "ana_kategori": "Ayran ve Kefir",
     "agirlik_hacim": "320 ML",
@@ -21927,6 +21914,19 @@
       {
         "market": "migros",
         "fiyat": 131.9
+      }
+    ]
+  },
+  {
+    "ad": "Elite Organik Smoothie Well Greens 414 Ml",
+    "ana_kategori": "Meyve Suyu",
+    "agirlik_hacim": "414 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/9112155.jpg",
+    "en_dusuk_fiyat": 136.5,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 136.5
       }
     ]
   },
@@ -22115,6 +22115,23 @@
     ]
   },
   {
+    "ad": "Coca-Cola Zero Sugar 250 Ml",
+    "ana_kategori": "Gazlı İçecekler",
+    "agirlik_hacim": "250 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30022134.png",
+    "en_dusuk_fiyat": 49.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 49.0
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 49.0
+      }
+    ]
+  },
+  {
     "ad": "Uludağ Frutti Extra Orman Meyveli Meyve Sulu Maden Suyu 1 Adet",
     "ana_kategori": "Maden Suyu",
     "agirlik_hacim": null,
@@ -22163,6 +22180,19 @@
       {
         "market": "migros",
         "fiyat": 61.95
+      }
+    ]
+  },
+  {
+    "ad": "Ben Organic Nar Suyu 250 Ml",
+    "ana_kategori": "Meyve Suyu",
+    "agirlik_hacim": "250 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30488157.jpg",
+    "en_dusuk_fiyat": 76.41,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 76.41
       }
     ]
   },
@@ -22223,36 +22253,6 @@
       {
         "market": "migros",
         "fiyat": 119.95
-      }
-    ]
-  },
-  {
-    "ad": "Eker Orman Meyveli Kefir 1 Lt",
-    "ana_kategori": "Ayran ve Kefir",
-    "agirlik_hacim": "1 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/11559399.jpg",
-    "en_dusuk_fiyat": 131.5,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 131.5
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 131.75
-      }
-    ]
-  },
-  {
-    "ad": "Elite Organik Smoothie Well Greens 414 Ml",
-    "ana_kategori": "Meyve Suyu",
-    "agirlik_hacim": "414 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/9112155.jpg",
-    "en_dusuk_fiyat": 136.5,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 136.5
       }
     ]
   },
@@ -22671,6 +22671,19 @@
     ]
   },
   {
+    "ad": "Coca-Cola 2.5 Lt Pet",
+    "ana_kategori": "Gazlı İçecekler",
+    "agirlik_hacim": "2.5 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30039137.png",
+    "en_dusuk_fiyat": 90.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 90.0
+      }
+    ]
+  },
+  {
     "ad": "Doğuş Earl Grey Demlik Poşet Çay 48 Adet 153 Gr",
     "ana_kategori": "Çay ve Bitki Çayları",
     "agirlik_hacim": "153 GR",
@@ -22706,27 +22719,6 @@
       {
         "market": "migros",
         "fiyat": 195.5
-      }
-    ]
-  },
-  {
-    "ad": "Çaykur Rize Turist Çay 1 Kg",
-    "ana_kategori": "Çay ve Bitki Çayları",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/13000054.png",
-    "en_dusuk_fiyat": 299.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 299.0
-      },
-      {
-        "market": "tarim_kredi",
-        "fiyat": 329.0
-      },
-      {
-        "market": "migros",
-        "fiyat": 339.95
       }
     ]
   },
@@ -22900,19 +22892,6 @@
     ]
   },
   {
-    "ad": "Zen Hippi Blue Bubble Tea 300 Ml",
-    "ana_kategori": "Gazsız İçecekler",
-    "agirlik_hacim": "300 ML",
-    "resim": null,
-    "en_dusuk_fiyat": 59.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 59.0
-      }
-    ]
-  },
-  {
     "ad": "Exotic Portakal Suyu 300 Ml",
     "ana_kategori": "Gazsız İçecekler",
     "agirlik_hacim": "300 ML",
@@ -22948,19 +22927,6 @@
       {
         "market": "carrefour",
         "fiyat": 80.0
-      }
-    ]
-  },
-  {
-    "ad": "Coca-Cola 2.5 Lt Pet",
-    "ana_kategori": "Gazlı İçecekler",
-    "agirlik_hacim": "2.5 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30039137.png",
-    "en_dusuk_fiyat": 90.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 90.0
       }
     ]
   },
@@ -23073,6 +23039,40 @@
       {
         "market": "carrefour",
         "fiyat": 184.9
+      }
+    ]
+  },
+  {
+    "ad": "Jacobs Capsule Espresso 7 Classico 52 Gr",
+    "ana_kategori": "Kahve",
+    "agirlik_hacim": "52 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/3271976.png",
+    "en_dusuk_fiyat": 288.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 288.95
+      }
+    ]
+  },
+  {
+    "ad": "Çaykur Rize Turist Çay 1 Kg",
+    "ana_kategori": "Çay ve Bitki Çayları",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/13000054.png",
+    "en_dusuk_fiyat": 299.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 299.0
+      },
+      {
+        "market": "tarim_kredi",
+        "fiyat": 329.0
+      },
+      {
+        "market": "migros",
+        "fiyat": 339.95
       }
     ]
   },
@@ -23224,6 +23224,19 @@
     ]
   },
   {
+    "ad": "Zen Hippi Blue Bubble Tea 300 Ml",
+    "ana_kategori": "Gazsız İçecekler",
+    "agirlik_hacim": "300 ML",
+    "resim": null,
+    "en_dusuk_fiyat": 59.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 59.0
+      }
+    ]
+  },
+  {
     "ad": "Kızılay Afyon Doğal Maden Suyu 6x200 Ml",
     "ana_kategori": "Maden Suyu",
     "agirlik_hacim": "1.2 LT",
@@ -23285,19 +23298,6 @@
       {
         "market": "migros",
         "fiyat": 80.47
-      }
-    ]
-  },
-  {
-    "ad": "Beta Tea Herbtea Collection Ihlamur 32 Gr",
-    "ana_kategori": "Çay ve Bitki Çayları",
-    "agirlik_hacim": "32 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30240708.png",
-    "en_dusuk_fiyat": 81.75,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 81.75
       }
     ]
   },
@@ -23367,6 +23367,31 @@
     ]
   },
   {
+    "ad": "Çaykur Tiryaki Çay 500 Gr",
+    "ana_kategori": "Çay ve Bitki Çayları",
+    "agirlik_hacim": "500 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30088502.jpg",
+    "en_dusuk_fiyat": 149.95,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 149.95
+      },
+      {
+        "market": "tarim_kredi",
+        "fiyat": 165.0
+      },
+      {
+        "market": "migros",
+        "fiyat": 169.95
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 169.95
+      }
+    ]
+  },
+  {
     "ad": "Migros Filtre Kahve Kenya 225 Gr",
     "ana_kategori": "Kahve",
     "agirlik_hacim": "225 GR",
@@ -23376,19 +23401,6 @@
       {
         "market": "migros",
         "fiyat": 179.0
-      }
-    ]
-  },
-  {
-    "ad": "Jacobs Capsule Espresso 7 Classico 52 Gr",
-    "ana_kategori": "Kahve",
-    "agirlik_hacim": "52 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/3271976.png",
-    "en_dusuk_fiyat": 288.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 288.95
       }
     ]
   },
@@ -23639,6 +23651,19 @@
     ]
   },
   {
+    "ad": "Beta Tea Herbtea Collection Ihlamur 32 Gr",
+    "ana_kategori": "Çay ve Bitki Çayları",
+    "agirlik_hacim": "32 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30240708.png",
+    "en_dusuk_fiyat": 81.75,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 81.75
+      }
+    ]
+  },
+  {
     "ad": "Avoya Blend Portakal Çiçekli Limon Zencefilli Gazlı İçecek 750 Ml",
     "ana_kategori": "Gazlı İçecekler",
     "agirlik_hacim": "750 ML",
@@ -23674,31 +23699,6 @@
       {
         "market": "carrefour",
         "fiyat": 114.95
-      }
-    ]
-  },
-  {
-    "ad": "Çaykur Tiryaki Çay 500 Gr",
-    "ana_kategori": "Çay ve Bitki Çayları",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30088502.jpg",
-    "en_dusuk_fiyat": 149.95,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 149.95
-      },
-      {
-        "market": "tarim_kredi",
-        "fiyat": 165.0
-      },
-      {
-        "market": "migros",
-        "fiyat": 169.95
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 169.95
       }
     ]
   },
@@ -25271,6 +25271,19 @@
     ]
   },
   {
+    "ad": "Sprite 330 Ml",
+    "ana_kategori": "Gazlı İçecekler",
+    "agirlik_hacim": "330 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/8030000.png",
+    "en_dusuk_fiyat": 50.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 50.0
+      }
+    ]
+  },
+  {
     "ad": "Sprite Gazoz 1 Lt",
     "ana_kategori": "Gazlı İçecekler",
     "agirlik_hacim": "1 LT",
@@ -25323,19 +25336,6 @@
       {
         "market": "carrefour",
         "fiyat": 74.93
-      }
-    ]
-  },
-  {
-    "ad": "Avoya Çilek-Gül Maden Suyu 6x200 Ml",
-    "ana_kategori": "Maden Suyu",
-    "agirlik_hacim": "1.2 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/13003072.jpg",
-    "en_dusuk_fiyat": 75.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 75.0
       }
     ]
   },
@@ -25632,19 +25632,6 @@
     ]
   },
   {
-    "ad": "Sprite 330 Ml",
-    "ana_kategori": "Gazlı İçecekler",
-    "agirlik_hacim": "330 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/8030000.png",
-    "en_dusuk_fiyat": 50.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 50.0
-      }
-    ]
-  },
-  {
     "ad": "Fuse Tea Mango Ananas 330 Ml",
     "ana_kategori": "Gazsız İçecekler",
     "agirlik_hacim": "330 ML",
@@ -25723,6 +25710,19 @@
       {
         "market": "carrefour",
         "fiyat": 69.9
+      }
+    ]
+  },
+  {
+    "ad": "Avoya Çilek-Gül Maden Suyu 6x200 Ml",
+    "ana_kategori": "Maden Suyu",
+    "agirlik_hacim": "1.2 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/13003072.jpg",
+    "en_dusuk_fiyat": 75.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 75.0
       }
     ]
   },
@@ -25998,15 +25998,15 @@
     ]
   },
   {
-    "ad": "Uludağ Frutti Extra Yeşil Limon 250 Ml",
-    "ana_kategori": "Maden Suyu",
-    "agirlik_hacim": "250 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30093376.png",
-    "en_dusuk_fiyat": 39.75,
+    "ad": "Migros Kahve Beyazlatıcı 200 Gr",
+    "ana_kategori": "Kahve",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/3411972.png",
+    "en_dusuk_fiyat": 47.95,
     "market_fiyatlari": [
       {
-        "market": "carrefour",
-        "fiyat": 39.75
+        "market": "migros",
+        "fiyat": 47.95
       }
     ]
   },
@@ -26261,6 +26261,19 @@
     ]
   },
   {
+    "ad": "Uludağ Frutti Extra Yeşil Limon 250 Ml",
+    "ana_kategori": "Maden Suyu",
+    "agirlik_hacim": "250 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30093376.png",
+    "en_dusuk_fiyat": 39.75,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 39.75
+      }
+    ]
+  },
+  {
     "ad": "Kilikya Şalgam Suyu Normal 1 Lt",
     "ana_kategori": "Gazsız İçecekler",
     "agirlik_hacim": "1 LT",
@@ -26274,19 +26287,6 @@
     ]
   },
   {
-    "ad": "Migros Kahve Beyazlatıcı 200 Gr",
-    "ana_kategori": "Kahve",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/3411972.png",
-    "en_dusuk_fiyat": 47.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 47.95
-      }
-    ]
-  },
-  {
     "ad": "Kefirix Kefir Çilekli 250 Ml",
     "ana_kategori": "Ayran ve Kefir",
     "agirlik_hacim": "250 ML",
@@ -26296,6 +26296,19 @@
       {
         "market": "a101",
         "fiyat": 49.5
+      }
+    ]
+  },
+  {
+    "ad": "Karadem Demlik Poşet Çay 48 Adet 163 Gr",
+    "ana_kategori": "Çay ve Bitki Çayları",
+    "agirlik_hacim": "163 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/13000721.png",
+    "en_dusuk_fiyat": 52.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 52.0
       }
     ]
   },
@@ -26473,23 +26486,6 @@
     ]
   },
   {
-    "ad": "Coca-cola Zero Sugar Şişe 6x250 Ml",
-    "ana_kategori": "Gazlı İçecekler",
-    "agirlik_hacim": "1.5 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30021243.png",
-    "en_dusuk_fiyat": 300.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 300.0
-      },
-      {
-        "market": "migros",
-        "fiyat": 304.9
-      }
-    ]
-  },
-  {
     "ad": "Tchibo Espresso Sicilia 250 Gr",
     "ana_kategori": "Kahve",
     "agirlik_hacim": "250 GR",
@@ -26641,19 +26637,6 @@
       {
         "market": "tarim_kredi",
         "fiyat": 49.9
-      }
-    ]
-  },
-  {
-    "ad": "Karadem Demlik Poşet Çay 48 Adet 163 Gr",
-    "ana_kategori": "Çay ve Bitki Çayları",
-    "agirlik_hacim": "163 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/13000721.png",
-    "en_dusuk_fiyat": 52.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 52.0
       }
     ]
   },
@@ -26827,6 +26810,19 @@
     ]
   },
   {
+    "ad": "Carrefour Gold Kahve 200 Gr",
+    "ana_kategori": "Kahve",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30207275.jpg",
+    "en_dusuk_fiyat": 218.5,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 218.5
+      }
+    ]
+  },
+  {
     "ad": "Lipton Yellow Label Çay 1 Kg",
     "ana_kategori": "Çay ve Bitki Çayları",
     "agirlik_hacim": "1 KG",
@@ -26840,6 +26836,23 @@
       {
         "market": "a101",
         "fiyat": 320.0
+      }
+    ]
+  },
+  {
+    "ad": "Coca-cola Zero Sugar Şişe 6x250 Ml",
+    "ana_kategori": "Gazlı İçecekler",
+    "agirlik_hacim": "1.5 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30021243.png",
+    "en_dusuk_fiyat": 300.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 300.0
+      },
+      {
+        "market": "migros",
+        "fiyat": 304.9
       }
     ]
   },
@@ -26866,19 +26879,6 @@
       {
         "market": "migros",
         "fiyat": 403.17
-      }
-    ]
-  },
-  {
-    "ad": "Organuca Hindistan Cevizi Ananas Mango Aromalı Matcha Tozu 25 Gr",
-    "ana_kategori": "Çay ve Bitki Çayları",
-    "agirlik_hacim": "25 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/3130038.jpg",
-    "en_dusuk_fiyat": 499.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 499.95
       }
     ]
   },
@@ -27214,19 +27214,6 @@
     ]
   },
   {
-    "ad": "Carrefour Gold Kahve 200 Gr",
-    "ana_kategori": "Kahve",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30207275.jpg",
-    "en_dusuk_fiyat": 218.5,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 218.5
-      }
-    ]
-  },
-  {
     "ad": "Coca-Cola Şişe 6x250 Ml",
     "ana_kategori": "Gazlı İçecekler",
     "agirlik_hacim": "1.5 LT",
@@ -27240,6 +27227,19 @@
       {
         "market": "migros",
         "fiyat": 304.9
+      }
+    ]
+  },
+  {
+    "ad": "Organuca Hindistan Cevizi Ananas Mango Aromalı Matcha Tozu 25 Gr",
+    "ana_kategori": "Çay ve Bitki Çayları",
+    "agirlik_hacim": "25 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/3130038.jpg",
+    "en_dusuk_fiyat": 499.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 499.95
       }
     ]
   },
@@ -27361,6 +27361,19 @@
       {
         "market": "bim",
         "fiyat": 39.5
+      }
+    ]
+  },
+  {
+    "ad": "İçim Kefir Çilek 250 Ml",
+    "ana_kategori": "Ayran ve Kefir",
+    "agirlik_hacim": "250 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/11550050.png",
+    "en_dusuk_fiyat": 44.5,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 44.5
       }
     ]
   },
@@ -27536,6 +27549,19 @@
     ]
   },
   {
+    "ad": "Nescafé 3'ü 1 Arada Ice Choco Çikolata Aromalı 10'lu 106 Gr",
+    "ana_kategori": "Kahve",
+    "agirlik_hacim": "106 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/3220012.png",
+    "en_dusuk_fiyat": 79.5,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 79.5
+      }
+    ]
+  },
+  {
     "ad": "Üstad Türk Kahvesi 100 Gr",
     "ana_kategori": "Kahve",
     "agirlik_hacim": "100 GR",
@@ -27545,23 +27571,6 @@
       {
         "market": "a101",
         "fiyat": 89.5
-      }
-    ]
-  },
-  {
-    "ad": "Nescafé Gold Filtre Kahve 250 Gr",
-    "ana_kategori": "Kahve",
-    "agirlik_hacim": "250 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30383984.png",
-    "en_dusuk_fiyat": 213.99,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 213.99
-      },
-      {
-        "market": "migros",
-        "fiyat": 389.95
       }
     ]
   },
@@ -27601,19 +27610,6 @@
       {
         "market": "carrefour",
         "fiyat": 330.0
-      }
-    ]
-  },
-  {
-    "ad": "Ahmad Tea Ceylon Tea Dökme Çay 400 Gr",
-    "ana_kategori": "Çay ve Bitki Çayları",
-    "agirlik_hacim": "400 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30351975.jpg",
-    "en_dusuk_fiyat": 719.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 719.95
       }
     ]
   },
@@ -27705,19 +27701,6 @@
       {
         "market": "carrefour",
         "fiyat": 42.7
-      }
-    ]
-  },
-  {
-    "ad": "İçim Kefir Çilek 250 Ml",
-    "ana_kategori": "Ayran ve Kefir",
-    "agirlik_hacim": "250 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/11550050.png",
-    "en_dusuk_fiyat": 44.5,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 44.5
       }
     ]
   },
@@ -27834,28 +27817,15 @@
     ]
   },
   {
-    "ad": "Nescafé 3'ü 1 Arada Ice Choco Çikolata Aromalı 10'lu 106 Gr",
-    "ana_kategori": "Kahve",
-    "agirlik_hacim": "106 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/3220012.png",
-    "en_dusuk_fiyat": 79.5,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 79.5
-      }
-    ]
-  },
-  {
-    "ad": "Uludağ Frutti Cmax Limon 6x200 Ml",
+    "ad": "Damla Minera Mango-Ananas Maden Suyu 1.2 Lt",
     "ana_kategori": "Maden Suyu",
     "agirlik_hacim": "1.2 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30391728.png",
-    "en_dusuk_fiyat": 105.5,
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30340814.png",
+    "en_dusuk_fiyat": 82.5,
     "market_fiyatlari": [
       {
         "market": "carrefour",
-        "fiyat": 105.5
+        "fiyat": 82.5
       }
     ]
   },
@@ -27958,6 +27928,23 @@
     ]
   },
   {
+    "ad": "Nescafé Gold Filtre Kahve 250 Gr",
+    "ana_kategori": "Kahve",
+    "agirlik_hacim": "250 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30383984.png",
+    "en_dusuk_fiyat": 213.99,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 213.99
+      },
+      {
+        "market": "migros",
+        "fiyat": 389.95
+      }
+    ]
+  },
+  {
     "ad": "Doğuş Rize Çay 1 Kg",
     "ana_kategori": "Çay ve Bitki Çayları",
     "agirlik_hacim": "1 KG",
@@ -27971,6 +27958,19 @@
       {
         "market": "migros",
         "fiyat": 279.95
+      }
+    ]
+  },
+  {
+    "ad": "Ahmad Tea Ceylon Tea Dökme Çay 400 Gr",
+    "ana_kategori": "Çay ve Bitki Çayları",
+    "agirlik_hacim": "400 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30351975.jpg",
+    "en_dusuk_fiyat": 719.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 719.95
       }
     ]
   },
@@ -28181,19 +28181,6 @@
     ]
   },
   {
-    "ad": "Damla Minera Mango-Ananas Maden Suyu 1.2 Lt",
-    "ana_kategori": "Maden Suyu",
-    "agirlik_hacim": "1.2 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30340814.png",
-    "en_dusuk_fiyat": 82.5,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 82.5
-      }
-    ]
-  },
-  {
     "ad": "Fruit&More Tropical Berry Smoothie 330 Ml",
     "ana_kategori": "Meyve Suyu",
     "agirlik_hacim": "330 ML",
@@ -28245,6 +28232,19 @@
       {
         "market": "migros",
         "fiyat": 99.5
+      }
+    ]
+  },
+  {
+    "ad": "Uludağ Frutti Cmax Limon 6x200 Ml",
+    "ana_kategori": "Maden Suyu",
+    "agirlik_hacim": "1.2 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30391728.png",
+    "en_dusuk_fiyat": 105.5,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 105.5
       }
     ]
   },

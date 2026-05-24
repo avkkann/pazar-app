@@ -13,6 +13,19 @@
     ]
   },
   {
+    "ad": "Xroll Karamelli Bar Çikolata 40 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "40 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/17001380.jpg",
+    "en_dusuk_fiyat": 10.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 10.0
+      }
+    ]
+  },
+  {
     "ad": "Eti Form Kepekli Bisküvi 45 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "45 GR",
@@ -22,19 +35,6 @@
       {
         "market": "migros",
         "fiyat": 15.0
-      }
-    ]
-  },
-  {
-    "ad": "Seven Stick Şeftalili Halka Yumuşak Şeker 100 Gr",
-    "ana_kategori": "Sakız ve Şekerleme",
-    "agirlik_hacim": "100 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/27001877.png",
-    "en_dusuk_fiyat": 19.75,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 19.75
       }
     ]
   },
@@ -353,19 +353,6 @@
     ]
   },
   {
-    "ad": "Xroll Karamelli Bar Çikolata 40 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "40 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/17001380.jpg",
-    "en_dusuk_fiyat": 10.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 10.0
-      }
-    ]
-  },
-  {
     "ad": "Bubblicious Karışık Meyveli Sakız 38 Gr",
     "ana_kategori": "Sakız ve Şekerleme",
     "agirlik_hacim": "38 GR",
@@ -418,6 +405,19 @@
       {
         "market": "migros",
         "fiyat": 15.0
+      }
+    ]
+  },
+  {
+    "ad": "Seven Stick Şeftalili Halka Yumuşak Şeker 100 Gr",
+    "ana_kategori": "Sakız ve Şekerleme",
+    "agirlik_hacim": "100 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/27001877.png",
+    "en_dusuk_fiyat": 19.75,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 19.75
       }
     ]
   },
@@ -1320,6 +1320,23 @@
     ]
   },
   {
+    "ad": "Master Potato Acılı Baharatlı Cips 160 Gr",
+    "ana_kategori": "Cips",
+    "agirlik_hacim": "160 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30428684.png",
+    "en_dusuk_fiyat": 99.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 99.0
+      },
+      {
+        "market": "migros",
+        "fiyat": 120.0
+      }
+    ]
+  },
+  {
     "ad": "Nero Kremalı Kakaolu Bisküvi 4x110 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "440 GR",
@@ -1355,19 +1372,6 @@
       {
         "market": "migros",
         "fiyat": 118.45
-      }
-    ]
-  },
-  {
-    "ad": "Master Farm Cranberry  150 Gr",
-    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
-    "agirlik_hacim": "150 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30394775.png",
-    "en_dusuk_fiyat": 119.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 119.95
       }
     ]
   },
@@ -1528,6 +1532,23 @@
     ]
   },
   {
+    "ad": "Haribo Berries 80 Gr",
+    "ana_kategori": "Sakız ve Şekerleme",
+    "agirlik_hacim": "80 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30033741.png",
+    "en_dusuk_fiyat": 43.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 43.0
+      },
+      {
+        "market": "migros",
+        "fiyat": 44.95
+      }
+    ]
+  },
+  {
     "ad": "Kekspır Sade Marshmallowlu Kek 8x23 Gr",
     "ana_kategori": "Kek",
     "agirlik_hacim": "184 GR",
@@ -1644,23 +1665,6 @@
     ]
   },
   {
-    "ad": "Züber Noutos Yoğurt ve Mevsim Yeşillikli Cips 55 Gr",
-    "ana_kategori": "Cips",
-    "agirlik_hacim": "55 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/13002895.jpg",
-    "en_dusuk_fiyat": 69.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 69.95
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 71.0
-      }
-    ]
-  },
-  {
     "ad": "Eti Petit Beurre Bisküvi 800 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "800 GR",
@@ -1704,23 +1708,6 @@
     ]
   },
   {
-    "ad": "Master Potato Acılı Baharatlı Cips 160 Gr",
-    "ana_kategori": "Cips",
-    "agirlik_hacim": "160 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30428684.png",
-    "en_dusuk_fiyat": 99.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 99.0
-      },
-      {
-        "market": "migros",
-        "fiyat": 120.0
-      }
-    ]
-  },
-  {
     "ad": "Dr. Oetker Çilekli Köstebek Pasta 430 Gr",
     "ana_kategori": "Tatlılar",
     "agirlik_hacim": "430 GR",
@@ -1734,6 +1721,19 @@
       {
         "market": "migros",
         "fiyat": 164.45
+      }
+    ]
+  },
+  {
+    "ad": "Master Farm Cranberry  150 Gr",
+    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
+    "agirlik_hacim": "150 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30394775.png",
+    "en_dusuk_fiyat": 119.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 119.95
       }
     ]
   },
@@ -1906,23 +1906,6 @@
     ]
   },
   {
-    "ad": "Haribo Berries 80 Gr",
-    "ana_kategori": "Sakız ve Şekerleme",
-    "agirlik_hacim": "80 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30033741.png",
-    "en_dusuk_fiyat": 43.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 43.0
-      },
-      {
-        "market": "migros",
-        "fiyat": 44.95
-      }
-    ]
-  },
-  {
     "ad": "Wasa Sandwich French Herbs 30 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "30 GR",
@@ -2018,6 +2001,23 @@
       {
         "market": "bim",
         "fiyat": 69.5
+      }
+    ]
+  },
+  {
+    "ad": "Züber Noutos Yoğurt ve Mevsim Yeşillikli Cips 55 Gr",
+    "ana_kategori": "Cips",
+    "agirlik_hacim": "55 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/13002895.jpg",
+    "en_dusuk_fiyat": 69.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 69.95
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 71.0
       }
     ]
   },
@@ -2169,19 +2169,6 @@
     ]
   },
   {
-    "ad": "Nestlé Crunch Pirinç Patlaklı Sütlü Çikolata 32 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "32 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/27001359.jpg",
-    "en_dusuk_fiyat": 22.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 22.0
-      }
-    ]
-  },
-  {
     "ad": "McVitie's Digestive Original Bisküvi 133 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "133 GR",
@@ -2293,6 +2280,19 @@
       {
         "market": "migros",
         "fiyat": 44.95
+      }
+    ]
+  },
+  {
+    "ad": "Osmanoğlu Damak Tadı Supangle 200 Gr",
+    "ana_kategori": "Tatlılar",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bimages/1100349.jpg",
+    "en_dusuk_fiyat": 45.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 45.0
       }
     ]
   },
@@ -2470,19 +2470,6 @@
     ]
   },
   {
-    "ad": "Joytop Sert Şeker Ekşili Lolipop 88 Gr",
-    "ana_kategori": "Sakız ve Şekerleme",
-    "agirlik_hacim": "88 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/27002329.jpg",
-    "en_dusuk_fiyat": 19.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 19.5
-      }
-    ]
-  },
-  {
     "ad": "Ülker Çifte Kavrulmuş Pötibör 175 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "175 GR",
@@ -2496,15 +2483,15 @@
     ]
   },
   {
-    "ad": "Toybox Oyuncak & Lolipop 10 Gr",
-    "ana_kategori": "Sakız ve Şekerleme",
-    "agirlik_hacim": "10 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/mimages/toybox-10-g.jpg",
-    "en_dusuk_fiyat": 25.45,
+    "ad": "Nestlé Crunch Pirinç Patlaklı Sütlü Çikolata 32 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "32 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/27001359.jpg",
+    "en_dusuk_fiyat": 22.0,
     "market_fiyatlari": [
       {
-        "market": "migros",
-        "fiyat": 25.45
+        "market": "a101",
+        "fiyat": 22.0
       }
     ]
   },
@@ -2560,19 +2547,6 @@
     ]
   },
   {
-    "ad": "Osmanoğlu Damak Tadı Supangle 200 Gr",
-    "ana_kategori": "Tatlılar",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bimages/1100349.jpg",
-    "en_dusuk_fiyat": 45.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 45.0
-      }
-    ]
-  },
-  {
     "ad": "Eker Sakızlı Muhallebi 150 Gr",
     "ana_kategori": "Tatlılar",
     "agirlik_hacim": "150 GR",
@@ -2590,6 +2564,23 @@
     ]
   },
   {
+    "ad": "İkram Çikolata Kremalı Bisküvi 252 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "252 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/17001873.png",
+    "en_dusuk_fiyat": 46.17,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 46.17
+      },
+      {
+        "market": "a101",
+        "fiyat": 64.0
+      }
+    ]
+  },
+  {
     "ad": "Haribo Cocoballs Yumuşak Şeker 175 Gr",
     "ana_kategori": "Sakız ve Şekerleme",
     "agirlik_hacim": "175 GR",
@@ -2599,6 +2590,19 @@
       {
         "market": "a101",
         "fiyat": 48.0
+      }
+    ]
+  },
+  {
+    "ad": "Nestlé Crunch Sütlü Tablet Çikolata 70 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "70 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 49.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 49.0
       }
     ]
   },
@@ -2629,6 +2633,19 @@
       {
         "market": "carrefour",
         "fiyat": 54.0
+      }
+    ]
+  },
+  {
+    "ad": "Torku Çilekli Kaplamalı Bar 240 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "240 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 55.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 55.0
       }
     ]
   },
@@ -2702,15 +2719,15 @@
     ]
   },
   {
-    "ad": "Saklıköy Çikolata Kremalı Bisküvi 435 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "435 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/17003285.jpg",
-    "en_dusuk_fiyat": 99.0,
+    "ad": "Long Chips Domalan Mantarı Aromalı Çerez 75 Gr",
+    "ana_kategori": "Cips",
+    "agirlik_hacim": "75 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/5080197.jpg",
+    "en_dusuk_fiyat": 99.95,
     "market_fiyatlari": [
       {
-        "market": "bim",
-        "fiyat": 99.0
+        "market": "migros",
+        "fiyat": 99.95
       }
     ]
   },
@@ -2724,19 +2741,6 @@
       {
         "market": "carrefour",
         "fiyat": 99.95
-      }
-    ]
-  },
-  {
-    "ad": "Naturella Kakao Çilek Vanilya 1.4 Lt",
-    "ana_kategori": "Dondurmalar",
-    "agirlik_hacim": "1.4 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/11570158.jpg",
-    "en_dusuk_fiyat": 120.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 120.0
       }
     ]
   },
@@ -2853,6 +2857,19 @@
     ]
   },
   {
+    "ad": "Joytop Sert Şeker Ekşili Lolipop 88 Gr",
+    "ana_kategori": "Sakız ve Şekerleme",
+    "agirlik_hacim": "88 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/27002329.jpg",
+    "en_dusuk_fiyat": 19.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 19.5
+      }
+    ]
+  },
+  {
     "ad": "Külah Dondurma 10 Adet",
     "ana_kategori": "Dondurmalar",
     "agirlik_hacim": null,
@@ -2892,6 +2909,19 @@
     ]
   },
   {
+    "ad": "Toybox Oyuncak & Lolipop 10 Gr",
+    "ana_kategori": "Sakız ve Şekerleme",
+    "agirlik_hacim": "10 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/mimages/toybox-10-g.jpg",
+    "en_dusuk_fiyat": 25.45,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 25.45
+      }
+    ]
+  },
+  {
     "ad": "Sütaş Tatlımmm Çilek 4x65 Gr",
     "ana_kategori": "Tatlılar",
     "agirlik_hacim": "260 GR",
@@ -2905,23 +2935,6 @@
     ]
   },
   {
-    "ad": "İkram Çikolata Kremalı Bisküvi 252 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "252 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/17001873.png",
-    "en_dusuk_fiyat": 46.17,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 46.17
-      },
-      {
-        "market": "a101",
-        "fiyat": 64.0
-      }
-    ]
-  },
-  {
     "ad": "Cake Craft Karadut Cheesecake 150 Gr",
     "ana_kategori": "Tatlılar",
     "agirlik_hacim": "150 GR",
@@ -2931,19 +2944,6 @@
       {
         "market": "sok",
         "fiyat": 47.5
-      }
-    ]
-  },
-  {
-    "ad": "Nestlé Crunch Sütlü Tablet Çikolata 70 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "70 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 49.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 49.0
       }
     ]
   },
@@ -2978,19 +2978,6 @@
       {
         "market": "migros",
         "fiyat": 50.95
-      }
-    ]
-  },
-  {
-    "ad": "Torku Çilekli Kaplamalı Bar 240 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "240 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 55.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 55.0
       }
     ]
   },
@@ -3051,6 +3038,19 @@
     ]
   },
   {
+    "ad": "Saklıköy Çikolata Kremalı Bisküvi 435 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "435 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/17003285.jpg",
+    "en_dusuk_fiyat": 99.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 99.0
+      }
+    ]
+  },
+  {
     "ad": "Tarım Kredi Çiğ Kabak Çekirdeği 250 Gr",
     "ana_kategori": "Kuruyemiş ve Kuru Meyve",
     "agirlik_hacim": "250 GR",
@@ -3060,19 +3060,6 @@
       {
         "market": "tarim_kredi",
         "fiyat": 99.9
-      }
-    ]
-  },
-  {
-    "ad": "Long Chips Domalan Mantarı Aromalı Çerez 75 Gr",
-    "ana_kategori": "Cips",
-    "agirlik_hacim": "75 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/5080197.jpg",
-    "en_dusuk_fiyat": 99.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 99.95
       }
     ]
   },
@@ -3094,6 +3081,19 @@
     ]
   },
   {
+    "ad": "Naturella Kakao Çilek Vanilya 1.4 Lt",
+    "ana_kategori": "Dondurmalar",
+    "agirlik_hacim": "1.4 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/11570158.jpg",
+    "en_dusuk_fiyat": 120.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 120.0
+      }
+    ]
+  },
+  {
     "ad": "Ülker Çokomel Çilekli Marshmallowlu Bisküvi 420 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "420 GR",
@@ -3107,19 +3107,6 @@
     ]
   },
   {
-    "ad": "Untad Pastalı Kek Sade 280 Gr",
-    "ana_kategori": "Kek",
-    "agirlik_hacim": "280 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30091066.jpg",
-    "en_dusuk_fiyat": 149.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 149.0
-      }
-    ]
-  },
-  {
     "ad": "Bonte Çikolatalı Bisküvili Draje 160 Gr",
     "ana_kategori": "Çikolata",
     "agirlik_hacim": "160 GR",
@@ -3129,6 +3116,19 @@
       {
         "market": "a101",
         "fiyat": 160.0
+      }
+    ]
+  },
+  {
+    "ad": "Simbat Fındık İçi 150 Gr",
+    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
+    "agirlik_hacim": "150 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/500173.png",
+    "en_dusuk_fiyat": 188.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 188.0
       }
     ]
   },
@@ -3198,32 +3198,6 @@
       {
         "market": "tarim_kredi",
         "fiyat": 16.9
-      }
-    ]
-  },
-  {
-    "ad": "Olips Mentollü Şeker 28 Gr",
-    "ana_kategori": "Sakız ve Şekerleme",
-    "agirlik_hacim": "28 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/702953.png",
-    "en_dusuk_fiyat": 12.5,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 12.5
-      }
-    ]
-  },
-  {
-    "ad": "Ülker Süper Halley 30 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "30 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7018210.png",
-    "en_dusuk_fiyat": 12.5,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 12.5
       }
     ]
   },
@@ -3396,6 +3370,19 @@
     ]
   },
   {
+    "ad": "Ülker Antep Fıstıklı Çikolata 30 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "30 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/27002688.jpg",
+    "en_dusuk_fiyat": 49.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 49.0
+      }
+    ]
+  },
+  {
     "ad": "Samba İnce Trüf Mantarlı Patates Cipsi 135 Gr",
     "ana_kategori": "Cips",
     "agirlik_hacim": "135 GR",
@@ -3409,10 +3396,10 @@
     ]
   },
   {
-    "ad": "Cino Çikolata Kaplamalı Fındıklı Gofret 350 Gr",
-    "ana_kategori": "Gofret",
-    "agirlik_hacim": "350 GR",
-    "resim": null,
+    "ad": "Luppo Şeftalili Marshmallowlu Kek 182 Gr",
+    "ana_kategori": "Kek",
+    "agirlik_hacim": "182 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/17002811.jpg",
     "en_dusuk_fiyat": 65.0,
     "market_fiyatlari": [
       {
@@ -3461,15 +3448,15 @@
     ]
   },
   {
-    "ad": "Simbat Fındık İçi 150 Gr",
-    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
-    "agirlik_hacim": "150 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/500173.png",
-    "en_dusuk_fiyat": 188.0,
+    "ad": "Untad Pastalı Kek Sade 280 Gr",
+    "ana_kategori": "Kek",
+    "agirlik_hacim": "280 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30091066.jpg",
+    "en_dusuk_fiyat": 149.0,
     "market_fiyatlari": [
       {
-        "market": "bim",
-        "fiyat": 188.0
+        "market": "carrefour",
+        "fiyat": 149.0
       }
     ]
   },
@@ -3517,15 +3504,28 @@
     ]
   },
   {
-    "ad": "Migros Kürecik Ekşi Kaplamalı Karışık Meyve Aromalı Şekerleme 25 Gr",
+    "ad": "Olips Mentollü Şeker 28 Gr",
     "ana_kategori": "Sakız ve Şekerleme",
-    "agirlik_hacim": "25 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/3500031.png",
-    "en_dusuk_fiyat": 11.95,
+    "agirlik_hacim": "28 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/702953.png",
+    "en_dusuk_fiyat": 12.5,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 12.5
+      }
+    ]
+  },
+  {
+    "ad": "Ülker Süper Halley 30 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "30 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7018210.png",
+    "en_dusuk_fiyat": 12.5,
     "market_fiyatlari": [
       {
         "market": "migros",
-        "fiyat": 11.95
+        "fiyat": 12.5
       }
     ]
   },
@@ -3636,6 +3636,19 @@
     ]
   },
   {
+    "ad": "Ülker Dankek Vişneli Mini Mekik Kek 135 Gr",
+    "ana_kategori": "Kek",
+    "agirlik_hacim": "135 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30489848.jpg",
+    "en_dusuk_fiyat": 33.53,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 33.53
+      }
+    ]
+  },
+  {
     "ad": "Gofret Çilek Kremalı 128 G Çizmeci",
     "ana_kategori": "Gofret",
     "agirlik_hacim": "128 GR",
@@ -3662,32 +3675,6 @@
     ]
   },
   {
-    "ad": "Greta Zeytinli Kekikli Kraker 120 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "120 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bim/1705929.jpg",
-    "en_dusuk_fiyat": 45.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 45.0
-      }
-    ]
-  },
-  {
-    "ad": "Ülker Antep Fıstıklı Çikolata 30 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "30 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/27002688.jpg",
-    "en_dusuk_fiyat": 49.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 49.0
-      }
-    ]
-  },
-  {
     "ad": "Humm Organik Kayısılı Fındıklı Bar 27 Gr",
     "ana_kategori": "Kuruyemiş ve Kuru Meyve",
     "agirlik_hacim": "27 GR",
@@ -3701,10 +3688,10 @@
     ]
   },
   {
-    "ad": "Luppo Şeftalili Marshmallowlu Kek 182 Gr",
-    "ana_kategori": "Kek",
-    "agirlik_hacim": "182 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/17002811.jpg",
+    "ad": "Cino Çikolata Kaplamalı Fındıklı Gofret 350 Gr",
+    "ana_kategori": "Gofret",
+    "agirlik_hacim": "350 GR",
+    "resim": null,
     "en_dusuk_fiyat": 65.0,
     "market_fiyatlari": [
       {
@@ -3796,19 +3783,6 @@
     ]
   },
   {
-    "ad": "Eti Fıstıkişi Antep Fıstıklı Çikolata 50 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "50 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/7031269.jpg",
-    "en_dusuk_fiyat": 100.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 100.0
-      }
-    ]
-  },
-  {
     "ad": "Tada Glutensiz Ispanaklı İnce Gevrek 85 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "85 GR",
@@ -3831,6 +3805,32 @@
       {
         "market": "carrefour",
         "fiyat": 185.0
+      }
+    ]
+  },
+  {
+    "ad": "Danvita Peynirli Kraker 130 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "130 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/7020115.jpg",
+    "en_dusuk_fiyat": 289.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 289.9
+      }
+    ]
+  },
+  {
+    "ad": "Ülker Ece Trio İkramlık Çikolata 300 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "300 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30316579.png",
+    "en_dusuk_fiyat": 295.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 295.0
       }
     ]
   },
@@ -3873,6 +3873,19 @@
     ]
   },
   {
+    "ad": "Migros Kürecik Ekşi Kaplamalı Karışık Meyve Aromalı Şekerleme 25 Gr",
+    "ana_kategori": "Sakız ve Şekerleme",
+    "agirlik_hacim": "25 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/3500031.png",
+    "en_dusuk_fiyat": 11.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 11.95
+      }
+    ]
+  },
+  {
     "ad": "Torku Fındık Kremalı Bisküvi 61 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "61 GR",
@@ -3903,19 +3916,6 @@
     ]
   },
   {
-    "ad": "KitKat Chunky Bitter Kaplamalı Gofret 38 Gr",
-    "ana_kategori": "Gofret",
-    "agirlik_hacim": "38 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 17.5,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 17.5
-      }
-    ]
-  },
-  {
     "ad": "Torku 1 Daha Limonlu Cheesecake Gofret 35 Gr",
     "ana_kategori": "Gofret",
     "agirlik_hacim": "35 GR",
@@ -3925,23 +3925,6 @@
       {
         "market": "a101",
         "fiyat": 19.95
-      }
-    ]
-  },
-  {
-    "ad": "Dr. Oetker Yogotella Çilekli & Muzlu 68 Gr",
-    "ana_kategori": "Tatlılar",
-    "agirlik_hacim": "68 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/7100244.jpg",
-    "en_dusuk_fiyat": 22.05,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 22.05
-      },
-      {
-        "market": "migros",
-        "fiyat": 31.45
       }
     ]
   },
@@ -3989,19 +3972,6 @@
     ]
   },
   {
-    "ad": "Ülker Dankek Vişneli Mini Mekik Kek 135 Gr",
-    "ana_kategori": "Kek",
-    "agirlik_hacim": "135 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30489848.jpg",
-    "en_dusuk_fiyat": 33.53,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 33.53
-      }
-    ]
-  },
-  {
     "ad": "Şölen Nutymax Antep Fıstık Kremalı Bar Çikolata 44 Gr",
     "ana_kategori": "Çikolata",
     "agirlik_hacim": "44 GR",
@@ -4011,6 +3981,19 @@
       {
         "market": "a101",
         "fiyat": 39.5
+      }
+    ]
+  },
+  {
+    "ad": "Greta Zeytinli Kekikli Kraker 120 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "120 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bim/1705929.jpg",
+    "en_dusuk_fiyat": 45.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 45.0
       }
     ]
   },
@@ -4040,6 +4023,19 @@
       {
         "market": "migros",
         "fiyat": 50.95
+      }
+    ]
+  },
+  {
+    "ad": "Wefood Glutensiz Pirinç Patlağı 100 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "100 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/17003562.jpg",
+    "en_dusuk_fiyat": 65.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 65.0
       }
     ]
   },
@@ -4079,6 +4075,23 @@
       {
         "market": "a101",
         "fiyat": 79.0
+      }
+    ]
+  },
+  {
+    "ad": "Ruffles Klasik Mega Boy Cips 193 Gr",
+    "ana_kategori": "Cips",
+    "agirlik_hacim": "193 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30049129.jpg",
+    "en_dusuk_fiyat": 91.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 91.0
+      },
+      {
+        "market": "migros",
+        "fiyat": 93.95
       }
     ]
   },
@@ -4134,6 +4147,19 @@
     ]
   },
   {
+    "ad": "Eti Fıstıkişi Antep Fıstıklı Çikolata 50 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "50 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/7031269.jpg",
+    "en_dusuk_fiyat": 100.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 100.0
+      }
+    ]
+  },
+  {
     "ad": "Şenocak Çiğ İç Fındık 150 Gr",
     "ana_kategori": "Kuruyemiş ve Kuru Meyve",
     "agirlik_hacim": "150 GR",
@@ -4173,32 +4199,6 @@
     ]
   },
   {
-    "ad": "Danvita Peynirli Kraker 130 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "130 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/7020115.jpg",
-    "en_dusuk_fiyat": 289.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 289.9
-      }
-    ]
-  },
-  {
-    "ad": "Ülker Ece Trio İkramlık Çikolata 300 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "300 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30316579.png",
-    "en_dusuk_fiyat": 295.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 295.0
-      }
-    ]
-  },
-  {
     "ad": "Tarım Kredi Beyaz Çikolata Kaplamalı Gofret 36 Gr",
     "ana_kategori": "Gofret",
     "agirlik_hacim": "36 GR",
@@ -4225,6 +4225,19 @@
     ]
   },
   {
+    "ad": "Süsse Portakal Jöleli Bisküvi 114 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "114 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bimages/702995.jpg",
+    "en_dusuk_fiyat": 14.5,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 14.5
+      }
+    ]
+  },
+  {
     "ad": "Xroll Çikolatalı ve Fındıklı Gofret 33 Gr",
     "ana_kategori": "Gofret",
     "agirlik_hacim": "33 GR",
@@ -4234,6 +4247,19 @@
       {
         "market": "a101",
         "fiyat": 16.0
+      }
+    ]
+  },
+  {
+    "ad": "KitKat Chunky Bitter Kaplamalı Gofret 38 Gr",
+    "ana_kategori": "Gofret",
+    "agirlik_hacim": "38 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 17.5,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 17.5
       }
     ]
   },
@@ -4251,6 +4277,23 @@
     ]
   },
   {
+    "ad": "Dr. Oetker Yogotella Çilekli & Muzlu 68 Gr",
+    "ana_kategori": "Tatlılar",
+    "agirlik_hacim": "68 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/7100244.jpg",
+    "en_dusuk_fiyat": 22.05,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 22.05
+      },
+      {
+        "market": "migros",
+        "fiyat": 31.45
+      }
+    ]
+  },
+  {
     "ad": "Ülker Dido Frambuaz Karamel Çikolata 37 Gr",
     "ana_kategori": "Çikolata",
     "agirlik_hacim": "37 GR",
@@ -4260,27 +4303,6 @@
       {
         "market": "bim",
         "fiyat": 24.5
-      }
-    ]
-  },
-  {
-    "ad": "McVitie's Karamelli Tarçınlı Kremalı Bisküvi 88 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "88 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30389887.png",
-    "en_dusuk_fiyat": 24.85,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 24.85
-      },
-      {
-        "market": "sok",
-        "fiyat": 24.95
-      },
-      {
-        "market": "migros",
-        "fiyat": 28.9
       }
     ]
   },
@@ -4371,19 +4393,6 @@
     ]
   },
   {
-    "ad": "Wefood Glutensiz Pirinç Patlağı 100 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "100 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/17003562.jpg",
-    "en_dusuk_fiyat": 65.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 65.0
-      }
-    ]
-  },
-  {
     "ad": "Ülker Sade Kakaolu Petibör Bisküvi 450 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "450 GR",
@@ -4445,23 +4454,6 @@
       {
         "market": "bim",
         "fiyat": 79.0
-      }
-    ]
-  },
-  {
-    "ad": "Ruffles Klasik Mega Boy Cips 193 Gr",
-    "ana_kategori": "Cips",
-    "agirlik_hacim": "193 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30049129.jpg",
-    "en_dusuk_fiyat": 91.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 91.0
-      },
-      {
-        "market": "migros",
-        "fiyat": 93.95
       }
     ]
   },
@@ -4561,6 +4553,19 @@
     ]
   },
   {
+    "ad": "Rodeo Yer Fıstıklı Kaplamalı Bar 45 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "45 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bim/1711167.jpg",
+    "en_dusuk_fiyat": 12.5,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 12.5
+      }
+    ]
+  },
+  {
     "ad": "Papita Vişneli Kaplamalı Kek 40 Gr",
     "ana_kategori": "Kek",
     "agirlik_hacim": "40 GR",
@@ -4570,19 +4575,6 @@
       {
         "market": "bim",
         "fiyat": 13.0
-      }
-    ]
-  },
-  {
-    "ad": "Süsse Portakal Jöleli Bisküvi 114 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "114 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bimages/702995.jpg",
-    "en_dusuk_fiyat": 14.5,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 14.5
       }
     ]
   },
@@ -4617,6 +4609,27 @@
       {
         "market": "migros",
         "fiyat": 26.9
+      }
+    ]
+  },
+  {
+    "ad": "McVitie's Karamelli Tarçınlı Kremalı Bisküvi 88 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "88 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30389887.png",
+    "en_dusuk_fiyat": 24.85,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 24.85
+      },
+      {
+        "market": "sok",
+        "fiyat": 24.95
+      },
+      {
+        "market": "migros",
+        "fiyat": 28.9
       }
     ]
   },
@@ -4721,19 +4734,6 @@
       {
         "market": "tarim_kredi",
         "fiyat": 49.9
-      }
-    ]
-  },
-  {
-    "ad": "Xroll Karamelli Çikolata Bar Poşet 250 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "250 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/27001007.png",
-    "en_dusuk_fiyat": 59.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 59.0
       }
     ]
   },
@@ -4927,19 +4927,6 @@
     ]
   },
   {
-    "ad": "Rodeo Yer Fıstıklı Kaplamalı Bar 45 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "45 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bim/1711167.jpg",
-    "en_dusuk_fiyat": 12.5,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 12.5
-      }
-    ]
-  },
-  {
     "ad": "Eti Mısırlı Balık Kraker 70 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "70 GR",
@@ -5068,6 +5055,19 @@
       {
         "market": "carrefour",
         "fiyat": 56.5
+      }
+    ]
+  },
+  {
+    "ad": "Xroll Karamelli Çikolata Bar Poşet 250 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "250 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/27001007.png",
+    "en_dusuk_fiyat": 59.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 59.0
       }
     ]
   },
@@ -5449,6 +5449,19 @@
     ]
   },
   {
+    "ad": "Eti Petito Mini Sütlü Çikolata 32 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "32 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/27000207.png",
+    "en_dusuk_fiyat": 35.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 35.0
+      }
+    ]
+  },
+  {
     "ad": "Carrefour Tuzlu Yer Fıstığı 150 Gr",
     "ana_kategori": "Kuruyemiş ve Kuru Meyve",
     "agirlik_hacim": "150 GR",
@@ -5570,19 +5583,6 @@
       {
         "market": "bim",
         "fiyat": 70.0
-      }
-    ]
-  },
-  {
-    "ad": "Birye Süt Kaymaklı Kurabiye 400 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "400 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 79.0,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 79.0
       }
     ]
   },
@@ -5784,19 +5784,6 @@
     ]
   },
   {
-    "ad": "Eti Petito Mini Sütlü Çikolata 32 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "32 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/27000207.png",
-    "en_dusuk_fiyat": 35.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 35.0
-      }
-    ]
-  },
-  {
     "ad": "Roko Çikolatalı Dondurma 65 Ml",
     "ana_kategori": "Dondurmalar",
     "agirlik_hacim": "65 ML",
@@ -5879,6 +5866,19 @@
     ]
   },
   {
+    "ad": "Ülker Probis Kremalı Bisküvi 3x75 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "225 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/17003408.png",
+    "en_dusuk_fiyat": 55.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 55.0
+      }
+    ]
+  },
+  {
     "ad": "Pakmaya Bitter Çikolatalı Sos 122 Gr",
     "ana_kategori": "Tatlılar",
     "agirlik_hacim": "122 GR",
@@ -5901,6 +5901,19 @@
       {
         "market": "sok",
         "fiyat": 70.0
+      }
+    ]
+  },
+  {
+    "ad": "Birye Süt Kaymaklı Kurabiye 400 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "400 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 79.0,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 79.0
       }
     ]
   },
@@ -5961,19 +5974,6 @@
       {
         "market": "a101",
         "fiyat": 120.0
-      }
-    ]
-  },
-  {
-    "ad": "Çizmeci Time Wafer Master Kış Tasarım 400 Gr",
-    "ana_kategori": "Gofret",
-    "agirlik_hacim": "400 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/7031014.jpg",
-    "en_dusuk_fiyat": 199.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 199.95
       }
     ]
   },
@@ -6223,19 +6223,6 @@
     ]
   },
   {
-    "ad": "Ülker Probis Kremalı Bisküvi 3x75 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "225 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/17003408.png",
-    "en_dusuk_fiyat": 55.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 55.0
-      }
-    ]
-  },
-  {
     "ad": "Çerezos Ultra Fıstık Aromalı Mısır Çerezi Dev Boy 150 Gr",
     "ana_kategori": "Cips",
     "agirlik_hacim": "150 GR",
@@ -6336,6 +6323,19 @@
       {
         "market": "a101",
         "fiyat": 199.0
+      }
+    ]
+  },
+  {
+    "ad": "Çizmeci Time Wafer Master Kış Tasarım 400 Gr",
+    "ana_kategori": "Gofret",
+    "agirlik_hacim": "400 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/7031014.jpg",
+    "en_dusuk_fiyat": 199.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 199.95
       }
     ]
   },
@@ -6470,6 +6470,19 @@
       {
         "market": "a101",
         "fiyat": 20.0
+      }
+    ]
+  },
+  {
+    "ad": "Saklıköy Antep Fıstıklı Kremalı Bisküvi 78 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "78.5 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/17003565.jpg",
+    "en_dusuk_fiyat": 24.5,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 24.5
       }
     ]
   },
@@ -6620,28 +6633,15 @@
     ]
   },
   {
-    "ad": "Kinder Pingui Sütlü Çikolata Kaplı Kek 120 Gr",
-    "ana_kategori": "Kek",
-    "agirlik_hacim": "120 GR",
+    "ad": "Pacha Kolajenli Kraker Mercimekli 50 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "50 GR",
     "resim": null,
-    "en_dusuk_fiyat": 93.0,
+    "en_dusuk_fiyat": 124.95,
     "market_fiyatlari": [
       {
-        "market": "bim",
-        "fiyat": 93.0
-      }
-    ]
-  },
-  {
-    "ad": "Vivident Cubic Nane Aromalı Sakız 86 Gr",
-    "ana_kategori": "Sakız ve Şekerleme",
-    "agirlik_hacim": "86 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 95.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 95.0
+        "market": "carrefour",
+        "fiyat": 124.95
       }
     ]
   },
@@ -6775,19 +6775,6 @@
     ]
   },
   {
-    "ad": "Migros Kornet Çikolata Kaymak Dondurma 120 Ml",
-    "ana_kategori": "Dondurmalar",
-    "agirlik_hacim": "120 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/11570009.jpg",
-    "en_dusuk_fiyat": 20.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 20.0
-      }
-    ]
-  },
-  {
     "ad": "Eti Crax Thins Mexican Chili 70 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "70 GR",
@@ -6813,19 +6800,6 @@
     "market_fiyatlari": [
       {
         "market": "bim",
-        "fiyat": 24.5
-      }
-    ]
-  },
-  {
-    "ad": "Saklıköy Antep Fıstıklı Kremalı Bisküvi 78 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "78.5 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/17003565.jpg",
-    "en_dusuk_fiyat": 24.5,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
         "fiyat": 24.5
       }
     ]
@@ -6947,6 +6921,19 @@
     ]
   },
   {
+    "ad": "Ülker Rondo Kakaolu Kremalı Bisküvi 8x61 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "488 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/17003024.png",
+    "en_dusuk_fiyat": 64.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 64.5
+      }
+    ]
+  },
+  {
     "ad": "Ülker İnfüze Çilekli Çikolata 60 Gr",
     "ana_kategori": "Çikolata",
     "agirlik_hacim": "60 GR",
@@ -6969,6 +6956,32 @@
       {
         "market": "tarim_kredi",
         "fiyat": 79.9
+      }
+    ]
+  },
+  {
+    "ad": "Kinder Pingui Sütlü Çikolata Kaplı Kek 120 Gr",
+    "ana_kategori": "Kek",
+    "agirlik_hacim": "120 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 93.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 93.0
+      }
+    ]
+  },
+  {
+    "ad": "Vivident Cubic Nane Aromalı Sakız 86 Gr",
+    "ana_kategori": "Sakız ve Şekerleme",
+    "agirlik_hacim": "86 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 95.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 95.0
       }
     ]
   },
@@ -7021,19 +7034,6 @@
       {
         "market": "migros",
         "fiyat": 109.95
-      }
-    ]
-  },
-  {
-    "ad": "Pacha Kolajenli Kraker Mercimekli 50 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "50 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 124.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 124.95
       }
     ]
   },
@@ -7112,6 +7112,19 @@
       {
         "market": "a101",
         "fiyat": 15.0
+      }
+    ]
+  },
+  {
+    "ad": "Migros Kornet Çikolata Kaymak Dondurma 120 Ml",
+    "ana_kategori": "Dondurmalar",
+    "agirlik_hacim": "120 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/11570009.jpg",
+    "en_dusuk_fiyat": 20.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 20.0
       }
     ]
   },
@@ -7267,19 +7280,6 @@
       {
         "market": "carrefour",
         "fiyat": 62.25
-      }
-    ]
-  },
-  {
-    "ad": "Ülker Rondo Kakaolu Kremalı Bisküvi 8x61 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "488 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/17003024.png",
-    "en_dusuk_fiyat": 64.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 64.5
       }
     ]
   },
@@ -7495,19 +7495,6 @@
     ]
   },
   {
-    "ad": "Eti Hoşbeş Vişneli Gofret 66 Gr",
-    "ana_kategori": "Gofret",
-    "agirlik_hacim": "66 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7160270.png",
-    "en_dusuk_fiyat": 33.9,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 33.9
-      }
-    ]
-  },
-  {
     "ad": "Eti Kurabi Kakaolu Kurabiye 198 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "198 GR",
@@ -7633,6 +7620,19 @@
     ]
   },
   {
+    "ad": "Simbat Yerli Dakota Çekirdek 750 Gr",
+    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
+    "agirlik_hacim": "750 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 85.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 85.0
+      }
+    ]
+  },
+  {
     "ad": "Ülker Albeni Kurabiyem Bar Çikolata 170 Gr",
     "ana_kategori": "Çikolata",
     "agirlik_hacim": "170 GR",
@@ -7698,15 +7698,15 @@
     ]
   },
   {
-    "ad": "Carte D'or Dondurma Balbadem Karamel Vanilya 850 Ml",
-    "ana_kategori": "Dondurmalar",
-    "agirlik_hacim": "850 ML",
+    "ad": "Godiva Domes New Year Bademli Çikolata 82 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "82 GR",
     "resim": null,
-    "en_dusuk_fiyat": 275.0,
+    "en_dusuk_fiyat": 249.95,
     "market_fiyatlari": [
       {
-        "market": "bim",
-        "fiyat": 275.0
+        "market": "migros",
+        "fiyat": 249.95
       }
     ]
   },
@@ -7793,6 +7793,19 @@
       {
         "market": "bim",
         "fiyat": 40.0
+      }
+    ]
+  },
+  {
+    "ad": "Eti Hoşbeş Vişneli Gofret 66 Gr",
+    "ana_kategori": "Gofret",
+    "agirlik_hacim": "66 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7160270.png",
+    "en_dusuk_fiyat": 33.9,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 33.9
       }
     ]
   },
@@ -7922,19 +7935,6 @@
     ]
   },
   {
-    "ad": "Simbat Yerli Dakota Çekirdek 750 Gr",
-    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
-    "agirlik_hacim": "750 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 85.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 85.0
-      }
-    ]
-  },
-  {
     "ad": "Balanu Fudge Tarçınlı ve Bademli 100 Gr",
     "ana_kategori": "Çikolata",
     "agirlik_hacim": "100 GR",
@@ -7974,15 +7974,15 @@
     ]
   },
   {
-    "ad": "Dörtlü Kazandibi 4 Adet",
-    "ana_kategori": "Tatlılar",
-    "agirlik_hacim": null,
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30098308.png",
-    "en_dusuk_fiyat": 125.0,
+    "ad": "Ülker Chocobis Bisküvili Çikolata 137 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "137 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 118.95,
     "market_fiyatlari": [
       {
-        "market": "carrefour",
-        "fiyat": 125.0
+        "market": "migros",
+        "fiyat": 118.95
       }
     ]
   },
@@ -8039,19 +8039,6 @@
     ]
   },
   {
-    "ad": "Godiva Domes New Year Bademli Çikolata 82 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "82 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 249.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 249.95
-      }
-    ]
-  },
-  {
     "ad": "Unistanbul Çikolata Fındık Japonesse Kurabiye 110 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "110 GR",
@@ -8061,6 +8048,19 @@
       {
         "market": "migros",
         "fiyat": 249.95
+      }
+    ]
+  },
+  {
+    "ad": "Carte D'or Dondurma Balbadem Karamel Vanilya 850 Ml",
+    "ana_kategori": "Dondurmalar",
+    "agirlik_hacim": "850 ML",
+    "resim": null,
+    "en_dusuk_fiyat": 275.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 275.0
       }
     ]
   },
@@ -8401,15 +8401,15 @@
     ]
   },
   {
-    "ad": "Ülker Chocobis Bisküvili Çikolata 137 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "137 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 118.95,
+    "ad": "Dörtlü Kazandibi 4 Adet",
+    "ana_kategori": "Tatlılar",
+    "agirlik_hacim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30098308.png",
+    "en_dusuk_fiyat": 125.0,
     "market_fiyatlari": [
       {
-        "market": "migros",
-        "fiyat": 118.95
+        "market": "carrefour",
+        "fiyat": 125.0
       }
     ]
   },
@@ -8578,23 +8578,6 @@
     ]
   },
   {
-    "ad": "Ülker Çokonat Antep Fıstıklı 30 Gr",
-    "ana_kategori": "Gofret",
-    "agirlik_hacim": "30 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30479106.jpg",
-    "en_dusuk_fiyat": 31.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 31.95
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 32.5
-      }
-    ]
-  },
-  {
     "ad": "Fropie Pro Yer Fıstık Kakao Meyve Bar 35 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "35 GR",
@@ -8751,6 +8734,19 @@
     ]
   },
   {
+    "ad": "Ferrero Hanuta Crispy Cocoa Plant Based 220 Gr",
+    "ana_kategori": "Gofret",
+    "agirlik_hacim": "220 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/7040355.jpg",
+    "en_dusuk_fiyat": 507.9,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 507.9
+      }
+    ]
+  },
+  {
     "ad": "Ülker Albeni İkramlık Mini Bar 1 Kg",
     "ana_kategori": "Çikolata",
     "agirlik_hacim": "1 KG",
@@ -8889,6 +8885,23 @@
       {
         "market": "migros",
         "fiyat": 28.9
+      }
+    ]
+  },
+  {
+    "ad": "Ülker Çokonat Antep Fıstıklı 30 Gr",
+    "ana_kategori": "Gofret",
+    "agirlik_hacim": "30 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30479106.jpg",
+    "en_dusuk_fiyat": 31.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 31.95
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 32.5
       }
     ]
   },
@@ -9087,19 +9100,6 @@
     ]
   },
   {
-    "ad": "Ferrero Hanuta Crispy Cocoa Plant Based 220 Gr",
-    "ana_kategori": "Gofret",
-    "agirlik_hacim": "220 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/7040355.jpg",
-    "en_dusuk_fiyat": 507.9,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 507.9
-      }
-    ]
-  },
-  {
     "ad": "Kekspır Meyveli Kek 45 Gr",
     "ana_kategori": "Kek",
     "agirlik_hacim": "45 GR",
@@ -9109,6 +9109,19 @@
       {
         "market": "a101",
         "fiyat": 8.5
+      }
+    ]
+  },
+  {
+    "ad": "Kent Missbon Çilek & Elma Sert Şeker 43 Gr",
+    "ana_kategori": "Sakız ve Şekerleme",
+    "agirlik_hacim": "43 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/27002488.jpg",
+    "en_dusuk_fiyat": 12.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 12.5
       }
     ]
   },
@@ -9281,23 +9294,6 @@
     ]
   },
   {
-    "ad": "Kahve Dünyası Tambol Bademli Sütlü Çikolata 77 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "77 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30441474.png",
-    "en_dusuk_fiyat": 69.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 69.9
-      },
-      {
-        "market": "migros",
-        "fiyat": 89.5
-      }
-    ]
-  },
-  {
     "ad": "Tadolya Ay Çöreği 160 Gr",
     "ana_kategori": "Tatlılar",
     "agirlik_hacim": "160 GR",
@@ -9432,6 +9428,19 @@
     ]
   },
   {
+    "ad": "Eti Crax Sade Çubuk Kraker 40 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "40 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/17003050.png",
+    "en_dusuk_fiyat": 7.5,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 7.5
+      }
+    ]
+  },
+  {
     "ad": "Eti Kremalı Bisküvi 61 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "61 GR",
@@ -9441,19 +9450,6 @@
       {
         "market": "carrefour",
         "fiyat": 10.75
-      }
-    ]
-  },
-  {
-    "ad": "Kent Missbon Çilek & Elma Sert Şeker 43 Gr",
-    "ana_kategori": "Sakız ve Şekerleme",
-    "agirlik_hacim": "43 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/27002488.jpg",
-    "en_dusuk_fiyat": 12.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 12.5
       }
     ]
   },
@@ -9596,23 +9592,6 @@
     ]
   },
   {
-    "ad": "McVitie's Cracker Crisp Sour Cream & Chive 110 Gr",
-    "ana_kategori": "Cips",
-    "agirlik_hacim": "110 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/7010270.jpg",
-    "en_dusuk_fiyat": 39.13,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 39.13
-      },
-      {
-        "market": "migros",
-        "fiyat": 55.0
-      }
-    ]
-  },
-  {
     "ad": "Kakaolu Fındıklı Sos Dolgulu Donut 71 Gr",
     "ana_kategori": "Kek",
     "agirlik_hacim": "71 GR",
@@ -9661,6 +9640,23 @@
       {
         "market": "bim",
         "fiyat": 65.0
+      }
+    ]
+  },
+  {
+    "ad": "Kahve Dünyası Tambol Bademli Sütlü Çikolata 77 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "77 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30441474.png",
+    "en_dusuk_fiyat": 69.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 69.9
+      },
+      {
+        "market": "migros",
+        "fiyat": 89.5
       }
     ]
   },
@@ -9733,15 +9729,15 @@
     ]
   },
   {
-    "ad": "Eti Karam Karamelli Çikolata 300 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "300 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/27001811.png",
-    "en_dusuk_fiyat": 189.0,
+    "ad": "Üstad Zarlı Kaju 140 Gr",
+    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
+    "agirlik_hacim": "140 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/15001636.jpg",
+    "en_dusuk_fiyat": 129.5,
     "market_fiyatlari": [
       {
         "market": "a101",
-        "fiyat": 189.0
+        "fiyat": 129.5
       }
     ]
   },
@@ -9781,19 +9777,6 @@
       {
         "market": "carrefour",
         "fiyat": 410.0
-      }
-    ]
-  },
-  {
-    "ad": "Eti Crax Sade Çubuk Kraker 40 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "40 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/17003050.png",
-    "en_dusuk_fiyat": 7.5,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 7.5
       }
     ]
   },
@@ -9859,6 +9842,23 @@
       {
         "market": "carrefour",
         "fiyat": 35.7
+      }
+    ]
+  },
+  {
+    "ad": "McVitie's Cracker Crisp Sour Cream & Chive 110 Gr",
+    "ana_kategori": "Cips",
+    "agirlik_hacim": "110 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/7010270.jpg",
+    "en_dusuk_fiyat": 39.13,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 39.13
+      },
+      {
+        "market": "migros",
+        "fiyat": 55.0
       }
     ]
   },
@@ -10068,19 +10068,6 @@
     ]
   },
   {
-    "ad": "Üstad Zarlı Kaju 140 Gr",
-    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
-    "agirlik_hacim": "140 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/15001636.jpg",
-    "en_dusuk_fiyat": 129.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 129.5
-      }
-    ]
-  },
-  {
     "ad": "Serenin Doğal Dünyası Tahinli Kurabiye 80 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "80 GR",
@@ -10090,6 +10077,19 @@
       {
         "market": "carrefour",
         "fiyat": 139.9
+      }
+    ]
+  },
+  {
+    "ad": "Eti Karam Karamelli Çikolata 300 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "300 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/27001811.png",
+    "en_dusuk_fiyat": 189.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 189.0
       }
     ]
   },
@@ -10211,6 +10211,19 @@
     ]
   },
   {
+    "ad": "Ozmo Fun Meslekler Serisi Figürlü Çikolatalar 23 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "23 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7033767.png",
+    "en_dusuk_fiyat": 25.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 25.0
+      }
+    ]
+  },
+  {
     "ad": "First Sensations Damla Sakızı Aromalı Sakız 27 Gr",
     "ana_kategori": "Sakız ve Şekerleme",
     "agirlik_hacim": "27 GR",
@@ -10276,19 +10289,6 @@
       {
         "market": "migros",
         "fiyat": 49.95
-      }
-    ]
-  },
-  {
-    "ad": "Lifalif Antep Fıstıklı Bar 16x35 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "560 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 52.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 52.95
       }
     ]
   },
@@ -10518,19 +10518,6 @@
     ]
   },
   {
-    "ad": "Ozmo Fun Meslekler Serisi Figürlü Çikolatalar 23 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "23 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7033767.png",
-    "en_dusuk_fiyat": 25.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 25.0
-      }
-    ]
-  },
-  {
     "ad": "Dr. Oetker Creme Ole Çikolatalı 114 Gr",
     "ana_kategori": "Tatlılar",
     "agirlik_hacim": "114 GR",
@@ -10605,6 +10592,19 @@
       {
         "market": "tarim_kredi",
         "fiyat": 52.0
+      }
+    ]
+  },
+  {
+    "ad": "Lifalif Antep Fıstıklı Bar 16x35 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "560 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 52.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 52.95
       }
     ]
   },
@@ -11268,31 +11268,6 @@
     ]
   },
   {
-    "ad": "Dr. Oetker Bitter Çikolatalı Puding 111 Gr",
-    "ana_kategori": "Tatlılar",
-    "agirlik_hacim": "111 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/126093.jpg",
-    "en_dusuk_fiyat": 30.45,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 30.45
-      },
-      {
-        "market": "tarim_kredi",
-        "fiyat": 32.0
-      },
-      {
-        "market": "migros",
-        "fiyat": 45.95
-      },
-      {
-        "market": "a101",
-        "fiyat": 46.0
-      }
-    ]
-  },
-  {
     "ad": "Bounty Hindistan Cevizi Dolgulu Çikolatalı Bar 57 Gr",
     "ana_kategori": "Çikolata",
     "agirlik_hacim": "57 GR",
@@ -11358,6 +11333,27 @@
       {
         "market": "migros",
         "fiyat": 45.95
+      }
+    ]
+  },
+  {
+    "ad": "Eti Bol Antep Fıstıklı Çikolata 30 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "30 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30006842.png",
+    "en_dusuk_fiyat": 55.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 55.0
+      },
+      {
+        "market": "migros",
+        "fiyat": 55.5
+      },
+      {
+        "market": "tarim_kredi",
+        "fiyat": 57.9
       }
     ]
   },
@@ -11440,6 +11436,19 @@
     ]
   },
   {
+    "ad": "Carrefour Susam Kaplamalı Fındık 80 Gr",
+    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
+    "agirlik_hacim": "80 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30356411.png",
+    "en_dusuk_fiyat": 105.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 105.0
+      }
+    ]
+  },
+  {
     "ad": "Çerezya Kaju Kuruyemiş 250 Gr",
     "ana_kategori": "Kuruyemiş ve Kuru Meyve",
     "agirlik_hacim": "250 GR",
@@ -11449,19 +11458,6 @@
       {
         "market": "a101",
         "fiyat": 159.0
-      }
-    ]
-  },
-  {
-    "ad": "Mis Gold Badem Junior 6 Adet 360 Ml",
-    "ana_kategori": "Dondurmalar",
-    "agirlik_hacim": "360 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/sokimages/78080.png",
-    "en_dusuk_fiyat": 175.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 175.0
       }
     ]
   },
@@ -11625,6 +11621,31 @@
     ]
   },
   {
+    "ad": "Dr. Oetker Bitter Çikolatalı Puding 111 Gr",
+    "ana_kategori": "Tatlılar",
+    "agirlik_hacim": "111 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/126093.jpg",
+    "en_dusuk_fiyat": 30.45,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 30.45
+      },
+      {
+        "market": "tarim_kredi",
+        "fiyat": 32.0
+      },
+      {
+        "market": "migros",
+        "fiyat": 45.95
+      },
+      {
+        "market": "a101",
+        "fiyat": 46.0
+      }
+    ]
+  },
+  {
     "ad": "Kent Jelibon Sour Patch Peach 80 Gr",
     "ana_kategori": "Sakız ve Şekerleme",
     "agirlik_hacim": "80 GR",
@@ -11707,27 +11728,6 @@
     ]
   },
   {
-    "ad": "Eti Bol Antep Fıstıklı Çikolata 30 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "30 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30006842.png",
-    "en_dusuk_fiyat": 55.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 55.0
-      },
-      {
-        "market": "migros",
-        "fiyat": 55.5
-      },
-      {
-        "market": "tarim_kredi",
-        "fiyat": 57.9
-      }
-    ]
-  },
-  {
     "ad": "Koket Frambuazlı Cheesecake 200 Gr",
     "ana_kategori": "Tatlılar",
     "agirlik_hacim": "200 GR",
@@ -11758,19 +11758,6 @@
       {
         "market": "carrefour",
         "fiyat": 100.0
-      }
-    ]
-  },
-  {
-    "ad": "Carrefour Susam Kaplamalı Fındık 80 Gr",
-    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
-    "agirlik_hacim": "80 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30356411.png",
-    "en_dusuk_fiyat": 105.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 105.0
       }
     ]
   },
@@ -11810,6 +11797,19 @@
       {
         "market": "bim",
         "fiyat": 165.0
+      }
+    ]
+  },
+  {
+    "ad": "Mis Gold Badem Junior 6 Adet 360 Ml",
+    "ana_kategori": "Dondurmalar",
+    "agirlik_hacim": "360 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/sokimages/78080.png",
+    "en_dusuk_fiyat": 175.0,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 175.0
       }
     ]
   },
@@ -12212,6 +12212,19 @@
     ]
   },
   {
+    "ad": "Eti XL Çikolata Kaplı Sandviç Bisküvi 30 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "30 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bimages/700354.jpg",
+    "en_dusuk_fiyat": 7.5,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 7.5
+      }
+    ]
+  },
+  {
     "ad": "Torku Miniki Gofret 18 Gr",
     "ana_kategori": "Gofret",
     "agirlik_hacim": "18 GR",
@@ -12375,6 +12388,19 @@
     ]
   },
   {
+    "ad": "Tadım Sultaniye Kuru Üzüm 140 Gr",
+    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
+    "agirlik_hacim": "140 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/8089679.png",
+    "en_dusuk_fiyat": 45.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 45.95
+      }
+    ]
+  },
+  {
     "ad": "Master Nut Benekli Leblebi 160 Gr",
     "ana_kategori": "Kuruyemiş ve Kuru Meyve",
     "agirlik_hacim": "160 GR",
@@ -12384,19 +12410,6 @@
       {
         "market": "carrefour",
         "fiyat": 49.0
-      }
-    ]
-  },
-  {
-    "ad": "Vivident 45 Dakika Cüzdan Nane 26 Gr",
-    "ana_kategori": "Sakız ve Şekerleme",
-    "agirlik_hacim": "26 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30463662.png",
-    "en_dusuk_fiyat": 50.45,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 50.45
       }
     ]
   },
@@ -12526,19 +12539,6 @@
     ]
   },
   {
-    "ad": "Tarım Kredi Naturel Paketli Kavrulmuş İç Badem 170 Gr",
-    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
-    "agirlik_hacim": "170 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/103019.jpg",
-    "en_dusuk_fiyat": 114.9,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 114.9
-      }
-    ]
-  },
-  {
     "ad": "Freedo Dondurulmuş Vini Gold Kaymaklı 1 Lt",
     "ana_kategori": "Dondurmalar",
     "agirlik_hacim": "1 LT",
@@ -12574,19 +12574,6 @@
       {
         "market": "bim",
         "fiyat": 5.0
-      }
-    ]
-  },
-  {
-    "ad": "Eti XL Çikolata Kaplı Sandviç Bisküvi 30 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "30 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bimages/700354.jpg",
-    "en_dusuk_fiyat": 7.5,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 7.5
       }
     ]
   },
@@ -12655,6 +12642,19 @@
     ]
   },
   {
+    "ad": "Samba Taco Mısır Cipsi 130 Gr",
+    "ana_kategori": "Cips",
+    "agirlik_hacim": "130 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/15001019.png",
+    "en_dusuk_fiyat": 32.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 32.0
+      }
+    ]
+  },
+  {
     "ad": "Çerezza Popcorn 80 Gr",
     "ana_kategori": "Kuruyemiş ve Kuru Meyve",
     "agirlik_hacim": "80 GR",
@@ -12715,15 +12715,15 @@
     ]
   },
   {
-    "ad": "Tadım Sultaniye Kuru Üzüm 140 Gr",
-    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
-    "agirlik_hacim": "140 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/8089679.png",
-    "en_dusuk_fiyat": 45.95,
+    "ad": "Vivident 45 Dakika Cüzdan Nane 26 Gr",
+    "ana_kategori": "Sakız ve Şekerleme",
+    "agirlik_hacim": "26 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30463662.png",
+    "en_dusuk_fiyat": 50.45,
     "market_fiyatlari": [
       {
-        "market": "migros",
-        "fiyat": 45.95
+        "market": "carrefour",
+        "fiyat": 50.45
       }
     ]
   },
@@ -12797,27 +12797,6 @@
     ]
   },
   {
-    "ad": "Cornetto Disc Vanilya Karamel 130 Ml",
-    "ana_kategori": "Dondurmalar",
-    "agirlik_hacim": "130 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1100913.png",
-    "en_dusuk_fiyat": 75.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 75.0
-      },
-      {
-        "market": "bim",
-        "fiyat": 75.0
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 75.0
-      }
-    ]
-  },
-  {
     "ad": "Wafer Master Çikolatalı Küp Gofret 280 Gr",
     "ana_kategori": "Gofret",
     "agirlik_hacim": "280 GR",
@@ -12870,6 +12849,19 @@
       {
         "market": "carrefour",
         "fiyat": 110.0
+      }
+    ]
+  },
+  {
+    "ad": "Tarım Kredi Naturel Paketli Kavrulmuş İç Badem 170 Gr",
+    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
+    "agirlik_hacim": "170 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/103019.jpg",
+    "en_dusuk_fiyat": 114.9,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 114.9
       }
     ]
   },
@@ -13041,19 +13033,6 @@
     ]
   },
   {
-    "ad": "Tıpıtıp Bubblefresh 27 Gr",
-    "ana_kategori": "Sakız ve Şekerleme",
-    "agirlik_hacim": "27 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30266936.png",
-    "en_dusuk_fiyat": 19.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 19.0
-      }
-    ]
-  },
-  {
     "ad": "Süsse Sade Petibör Bisküvi 175 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "175 GR",
@@ -13106,19 +13085,6 @@
     ]
   },
   {
-    "ad": "Samba Taco Mısır Cipsi 130 Gr",
-    "ana_kategori": "Cips",
-    "agirlik_hacim": "130 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/15001019.png",
-    "en_dusuk_fiyat": 32.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 32.0
-      }
-    ]
-  },
-  {
     "ad": "McVitie's Digestive Zero Sugar Original Bisküvi 133 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "133 GR",
@@ -13145,19 +13111,6 @@
     ]
   },
   {
-    "ad": "Ege Kadayıf Paket 200 Gr",
-    "ana_kategori": "Tatlılar",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/5040037.png",
-    "en_dusuk_fiyat": 54.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 54.95
-      }
-    ]
-  },
-  {
     "ad": "Wefood Karabuğday Patlağı 100 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "100 GR",
@@ -13180,6 +13133,48 @@
       {
         "market": "migros",
         "fiyat": 64.5
+      }
+    ]
+  },
+  {
+    "ad": "Ülker Üzümlü Fındıklı Sütlü Çikolata 60 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "60 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/27001636.png",
+    "en_dusuk_fiyat": 72.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 72.5
+      },
+      {
+        "market": "migros",
+        "fiyat": 72.5
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 73.75
+      }
+    ]
+  },
+  {
+    "ad": "Cornetto Disc Vanilya Karamel 130 Ml",
+    "ana_kategori": "Dondurmalar",
+    "agirlik_hacim": "130 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1100913.png",
+    "en_dusuk_fiyat": 75.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 75.0
+      },
+      {
+        "market": "bim",
+        "fiyat": 75.0
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 75.0
       }
     ]
   },
@@ -13223,6 +13218,19 @@
       {
         "market": "bim",
         "fiyat": 84.5
+      }
+    ]
+  },
+  {
+    "ad": "Magnum Beyaz Dondurma 100 Ml",
+    "ana_kategori": "Dondurmalar",
+    "agirlik_hacim": "100 ML",
+    "resim": null,
+    "en_dusuk_fiyat": 90.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 90.0
       }
     ]
   },
@@ -13321,6 +13329,19 @@
     "market_fiyatlari": [
       {
         "market": "a101",
+        "fiyat": 19.0
+      }
+    ]
+  },
+  {
+    "ad": "Tıpıtıp Bubblefresh 27 Gr",
+    "ana_kategori": "Sakız ve Şekerleme",
+    "agirlik_hacim": "27 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30266936.png",
+    "en_dusuk_fiyat": 19.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
         "fiyat": 19.0
       }
     ]
@@ -13485,6 +13506,19 @@
     ]
   },
   {
+    "ad": "Ege Kadayıf Paket 200 Gr",
+    "ana_kategori": "Tatlılar",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/5040037.png",
+    "en_dusuk_fiyat": 54.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 54.95
+      }
+    ]
+  },
+  {
     "ad": "Bellucci Savoiardi Pasta Altlığı 200 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "200 GR",
@@ -13528,27 +13562,6 @@
     ]
   },
   {
-    "ad": "Ülker Üzümlü Fındıklı Sütlü Çikolata 60 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "60 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/27001636.png",
-    "en_dusuk_fiyat": 72.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 72.5
-      },
-      {
-        "market": "migros",
-        "fiyat": 72.5
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 73.75
-      }
-    ]
-  },
-  {
     "ad": "Draft Gold Bisküvi Kaplamalı Dolgulu Top Gofret 150 Gr",
     "ana_kategori": "Gofret",
     "agirlik_hacim": "150 GR",
@@ -13558,19 +13571,6 @@
       {
         "market": "migros",
         "fiyat": 89.95
-      }
-    ]
-  },
-  {
-    "ad": "Magnum Beyaz Dondurma 100 Ml",
-    "ana_kategori": "Dondurmalar",
-    "agirlik_hacim": "100 ML",
-    "resim": null,
-    "en_dusuk_fiyat": 90.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 90.0
       }
     ]
   },
@@ -13725,31 +13725,6 @@
     ]
   },
   {
-    "ad": "Nestlé Damak Ala %25 Antep Fıstıklı 30 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "30 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 29.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 29.5
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 37.5
-      },
-      {
-        "market": "tarim_kredi",
-        "fiyat": 39.9
-      },
-      {
-        "market": "migros",
-        "fiyat": 49.5
-      }
-    ]
-  },
-  {
     "ad": "Ülker Bol Sütlü Baton Çikolata 30 Gr",
     "ana_kategori": "Çikolata",
     "agirlik_hacim": "30 GR",
@@ -13874,6 +13849,23 @@
       {
         "market": "bim",
         "fiyat": 60.0
+      }
+    ]
+  },
+  {
+    "ad": "Saffet Abdullah Güllaç Mini 100 Gr",
+    "ana_kategori": "Tatlılar",
+    "agirlik_hacim": "100 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1706413.png",
+    "en_dusuk_fiyat": 75.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 75.0
+      },
+      {
+        "market": "migros",
+        "fiyat": 129.95
       }
     ]
   },
@@ -14244,19 +14236,6 @@
     ]
   },
   {
-    "ad": "Amigo Tuzlu Ayçekirdeği İri Boy 400 Gr",
-    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
-    "agirlik_hacim": "400 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/sokimages/96329.png",
-    "en_dusuk_fiyat": 64.9,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 64.9
-      }
-    ]
-  },
-  {
     "ad": "Migros Stick Badem 100 Ml",
     "ana_kategori": "Dondurmalar",
     "agirlik_hacim": "100 ML",
@@ -14292,6 +14271,19 @@
       {
         "market": "migros",
         "fiyat": 78.95
+      }
+    ]
+  },
+  {
+    "ad": "Buono Sütlü Bütün Antep Fıstıklı Çikolata 80 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "80 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 79.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 79.0
       }
     ]
   },
@@ -14515,6 +14507,19 @@
     ]
   },
   {
+    "ad": "Amigo Tuzlu Ayçekirdeği İri Boy 400 Gr",
+    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
+    "agirlik_hacim": "400 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/sokimages/96329.png",
+    "en_dusuk_fiyat": 64.9,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 64.9
+      }
+    ]
+  },
+  {
     "ad": "Patos Rolls Acı Kırmızı Biber Aromalı Mısır Cipsi 185 Gr",
     "ana_kategori": "Cips",
     "agirlik_hacim": "185 GR",
@@ -14545,19 +14550,6 @@
       {
         "market": "a101",
         "fiyat": 74.0
-      }
-    ]
-  },
-  {
-    "ad": "Buono Sütlü Bütün Antep Fıstıklı Çikolata 80 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "80 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 79.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 79.0
       }
     ]
   },
@@ -15147,6 +15139,19 @@
     ]
   },
   {
+    "ad": "Samba Acılı Mısır Cipsi 130 Gr",
+    "ana_kategori": "Cips",
+    "agirlik_hacim": "130 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/15001424.png",
+    "en_dusuk_fiyat": 32.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 32.0
+      }
+    ]
+  },
+  {
     "ad": "Patito Tuz Ve Sirke Aromalı Cips 150 Gr",
     "ana_kategori": "Cips",
     "agirlik_hacim": "150 GR",
@@ -15409,19 +15414,6 @@
     ]
   },
   {
-    "ad": "Royal Gourmet Meyve Sepeti 850 Ml",
-    "ana_kategori": "Dondurmalar",
-    "agirlik_hacim": "850 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30276075.png",
-    "en_dusuk_fiyat": 275.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 275.0
-      }
-    ]
-  },
-  {
     "ad": "Patiswiss Finest Collection Karışık Dolgulu Çikolata 65 Gr",
     "ana_kategori": "Çikolata",
     "agirlik_hacim": "65 GR",
@@ -15457,6 +15449,19 @@
       {
         "market": "a101",
         "fiyat": 3.25
+      }
+    ]
+  },
+  {
+    "ad": "Ice Loly Dondurulmuş Şeftali Ve Mango 30 Ml",
+    "ana_kategori": "Dondurmalar",
+    "agirlik_hacim": "30 ML",
+    "resim": null,
+    "en_dusuk_fiyat": 5.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 5.0
       }
     ]
   },
@@ -15560,19 +15565,6 @@
     ]
   },
   {
-    "ad": "Samba Acılı Mısır Cipsi 130 Gr",
-    "ana_kategori": "Cips",
-    "agirlik_hacim": "130 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/15001424.png",
-    "en_dusuk_fiyat": 32.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 32.0
-      }
-    ]
-  },
-  {
     "ad": "Carrefour Tırtıklı Sade Patates Cipsi 150 Gr",
     "ana_kategori": "Cips",
     "agirlik_hacim": "150 GR",
@@ -15621,19 +15613,6 @@
       {
         "market": "bim",
         "fiyat": 55.0
-      }
-    ]
-  },
-  {
-    "ad": "Migros Klasik Stick Dondurma 100 Ml",
-    "ana_kategori": "Dondurmalar",
-    "agirlik_hacim": "100 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/11570022.png",
-    "en_dusuk_fiyat": 65.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 65.0
       }
     ]
   },
@@ -15759,6 +15738,19 @@
     ]
   },
   {
+    "ad": "Royal Gourmet Meyve Sepeti 850 Ml",
+    "ana_kategori": "Dondurmalar",
+    "agirlik_hacim": "850 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30276075.png",
+    "en_dusuk_fiyat": 275.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 275.0
+      }
+    ]
+  },
+  {
     "ad": "Balanu Proteinli Badem Kurabiyesi Kakaolu 240 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "240 GR",
@@ -15781,19 +15773,6 @@
       {
         "market": "migros",
         "fiyat": 414.5
-      }
-    ]
-  },
-  {
-    "ad": "Ice Loly Dondurulmuş Şeftali Ve Mango 30 Ml",
-    "ana_kategori": "Dondurmalar",
-    "agirlik_hacim": "30 ML",
-    "resim": null,
-    "en_dusuk_fiyat": 5.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 5.0
       }
     ]
   },
@@ -15987,6 +15966,19 @@
     ]
   },
   {
+    "ad": "Migros Klasik Stick Dondurma 100 Ml",
+    "ana_kategori": "Dondurmalar",
+    "agirlik_hacim": "100 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/11570022.png",
+    "en_dusuk_fiyat": 65.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 65.0
+      }
+    ]
+  },
+  {
     "ad": "Milka Oreo Sandwich Çilekli 92 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "92 GR",
@@ -16009,6 +16001,19 @@
       {
         "market": "carrefour",
         "fiyat": 81.0
+      }
+    ]
+  },
+  {
+    "ad": "Bisto Portakallı Kurabiye 500 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "500 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/sokimages/82329.png",
+    "en_dusuk_fiyat": 90.0,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 90.0
       }
     ]
   },
@@ -16078,19 +16083,6 @@
       {
         "market": "tarim_kredi",
         "fiyat": 209.9
-      }
-    ]
-  },
-  {
-    "ad": "Bonheur Kakaolu Dondurma 500 Ml",
-    "ana_kategori": "Dondurmalar",
-    "agirlik_hacim": "500 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30496937.jpg",
-    "en_dusuk_fiyat": 250.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 250.0
       }
     ]
   },
@@ -16285,23 +16277,15 @@
     ]
   },
   {
-    "ad": "Ülker Cocostar 7x22 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "154 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30238364.png",
-    "en_dusuk_fiyat": 51.63,
+    "ad": "Tarım Kredi Tuzsuz İç Yer Fıstığı Doypack 200 Gr",
+    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/114422.jpg",
+    "en_dusuk_fiyat": 54.9,
     "market_fiyatlari": [
       {
-        "market": "carrefour",
-        "fiyat": 51.63
-      },
-      {
         "market": "tarim_kredi",
-        "fiyat": 72.5
-      },
-      {
-        "market": "migros",
-        "fiyat": 76.5
+        "fiyat": 54.9
       }
     ]
   },
@@ -16340,6 +16324,19 @@
     ]
   },
   {
+    "ad": "Torku Miniki Nuga Çikolata Kaplı Bar 240 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "240 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/702783.png",
+    "en_dusuk_fiyat": 65.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 65.0
+      }
+    ]
+  },
+  {
     "ad": "Hastel Hazır Kadayıf Sarma & Gül 350 Gr",
     "ana_kategori": "Tatlılar",
     "agirlik_hacim": "350 GR",
@@ -16349,19 +16346,6 @@
       {
         "market": "a101",
         "fiyat": 69.5
-      }
-    ]
-  },
-  {
-    "ad": "Bisto Portakallı Kurabiye 500 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/sokimages/82329.png",
-    "en_dusuk_fiyat": 90.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 90.0
       }
     ]
   },
@@ -16655,6 +16639,27 @@
     ]
   },
   {
+    "ad": "Ülker Cocostar 7x22 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "154 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30238364.png",
+    "en_dusuk_fiyat": 51.63,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 51.63
+      },
+      {
+        "market": "tarim_kredi",
+        "fiyat": 72.5
+      },
+      {
+        "market": "migros",
+        "fiyat": 76.5
+      }
+    ]
+  },
+  {
     "ad": "Eti Burçak 3lü 393 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "393 GR",
@@ -16676,19 +16681,6 @@
       {
         "market": "sok",
         "fiyat": 73.0
-      }
-    ]
-  },
-  {
-    "ad": "Tarım Kredi Tuzsuz İç Yer Fıstığı Doypack 200 Gr",
-    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/114422.jpg",
-    "en_dusuk_fiyat": 54.9,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 54.9
       }
     ]
   },
@@ -16877,23 +16869,6 @@
       {
         "market": "tarim_kredi",
         "fiyat": 9.0
-      }
-    ]
-  },
-  {
-    "ad": "Eti Topkek Çilekli Kek 40 Gr",
-    "ana_kategori": "Kek",
-    "agirlik_hacim": "40 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30050457.jpg",
-    "en_dusuk_fiyat": 9.28,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 9.28
-      },
-      {
-        "market": "a101",
-        "fiyat": 11.0
       }
     ]
   },
@@ -17245,6 +17220,19 @@
     ]
   },
   {
+    "ad": "Wefood Glutensiz Granül Kuru İncir Ceviz 250 Gr",
+    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
+    "agirlik_hacim": "250 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 240.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 240.0
+      }
+    ]
+  },
+  {
     "ad": "Kidy Şeftali Meyveli Su Buzu 60 Ml",
     "ana_kategori": "Dondurmalar",
     "agirlik_hacim": "60 ML",
@@ -17254,6 +17242,23 @@
       {
         "market": "bim",
         "fiyat": 5.0
+      }
+    ]
+  },
+  {
+    "ad": "Eti Topkek Çilekli Kek 40 Gr",
+    "ana_kategori": "Kek",
+    "agirlik_hacim": "40 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30050457.jpg",
+    "en_dusuk_fiyat": 9.28,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 9.28
+      },
+      {
+        "market": "a101",
+        "fiyat": 11.0
       }
     ]
   },
@@ -17455,6 +17460,19 @@
     ]
   },
   {
+    "ad": "La Lorraine Çikolata Kaplamalı Donut 56 Gr",
+    "ana_kategori": "Kek",
+    "agirlik_hacim": "56 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30465607.png",
+    "en_dusuk_fiyat": 54.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 54.95
+      }
+    ]
+  },
+  {
     "ad": "Lay's Klasik Süper Boy 125 Gr",
     "ana_kategori": "Cips",
     "agirlik_hacim": "125 GR",
@@ -17549,19 +17567,6 @@
     ]
   },
   {
-    "ad": "Nestlé Damak Karamel Krokan Antep Fıstıklı 60 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "60 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30414269.png",
-    "en_dusuk_fiyat": 99.5,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 99.5
-      }
-    ]
-  },
-  {
     "ad": "Noi Ege Bademi Soyulmuş Beyaz Badem İçi 140 Gr",
     "ana_kategori": "Kuruyemiş ve Kuru Meyve",
     "agirlik_hacim": "140 GR",
@@ -17584,19 +17589,6 @@
       {
         "market": "carrefour",
         "fiyat": 220.0
-      }
-    ]
-  },
-  {
-    "ad": "Wefood Glutensiz Granül Kuru İncir Ceviz 250 Gr",
-    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
-    "agirlik_hacim": "250 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 240.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 240.0
       }
     ]
   },
@@ -17781,19 +17773,6 @@
     ]
   },
   {
-    "ad": "La Lorraine Çikolata Kaplamalı Donut 56 Gr",
-    "ana_kategori": "Kek",
-    "agirlik_hacim": "56 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30465607.png",
-    "en_dusuk_fiyat": 54.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 54.95
-      }
-    ]
-  },
-  {
     "ad": "Tayaş Frutty Duo Ananas Mango Yumuşak Şeker 350 Gr",
     "ana_kategori": "Sakız ve Şekerleme",
     "agirlik_hacim": "350 GR",
@@ -17889,6 +17868,19 @@
     ]
   },
   {
+    "ad": "Nestlé Damak Karamel Krokan Antep Fıstıklı 60 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "60 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30414269.png",
+    "en_dusuk_fiyat": 99.5,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 99.5
+      }
+    ]
+  },
+  {
     "ad": "Çizmeci Time Fındık Kremalı Rulo Gofret 280 Gr",
     "ana_kategori": "Gofret",
     "agirlik_hacim": "280 GR",
@@ -17971,19 +17963,15 @@
     ]
   },
   {
-    "ad": "Ozmo Fun Figürlü Sütlü Çikolata 23 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "23 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/701119.png",
-    "en_dusuk_fiyat": 14.8,
+    "ad": "Torku Kare Fındık Kremalı Gofret 30 Gr",
+    "ana_kategori": "Gofret",
+    "agirlik_hacim": "30 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/17003502.jpg",
+    "en_dusuk_fiyat": 13.5,
     "market_fiyatlari": [
       {
-        "market": "carrefour",
-        "fiyat": 14.8
-      },
-      {
-        "market": "bim",
-        "fiyat": 24.5
+        "market": "a101",
+        "fiyat": 13.5
       }
     ]
   },
@@ -18189,6 +18177,19 @@
     ]
   },
   {
+    "ad": "Snickers Yer Fıstıklı Çikolata 50 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "150 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 79.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 79.0
+      }
+    ]
+  },
+  {
     "ad": "Kahve Dünyası Tambol Bol Sütlü Çikolata 77 Gr",
     "ana_kategori": "Çikolata",
     "agirlik_hacim": "77 GR",
@@ -18211,19 +18212,6 @@
       {
         "market": "bim",
         "fiyat": 92.0
-      }
-    ]
-  },
-  {
-    "ad": "Toffifee 125 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "125 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7047105.png",
-    "en_dusuk_fiyat": 99.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 99.0
       }
     ]
   },
@@ -18319,15 +18307,19 @@
     ]
   },
   {
-    "ad": "Torku Kare Fındık Kremalı Gofret 30 Gr",
-    "ana_kategori": "Gofret",
-    "agirlik_hacim": "30 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/17003502.jpg",
-    "en_dusuk_fiyat": 13.5,
+    "ad": "Ozmo Fun Figürlü Sütlü Çikolata 23 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "23 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/701119.png",
+    "en_dusuk_fiyat": 14.8,
     "market_fiyatlari": [
       {
-        "market": "a101",
-        "fiyat": 13.5
+        "market": "carrefour",
+        "fiyat": 14.8
+      },
+      {
+        "market": "bim",
+        "fiyat": 24.5
       }
     ]
   },
@@ -18375,6 +18367,23 @@
       {
         "market": "migros",
         "fiyat": 20.95
+      }
+    ]
+  },
+  {
+    "ad": "Eti Bumbo Portakal Aromalı 110 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "110 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/17002705.png",
+    "en_dusuk_fiyat": 24.0,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 24.0
+      },
+      {
+        "market": "a101",
+        "fiyat": 30.0
       }
     ]
   },
@@ -18498,19 +18507,6 @@
     ]
   },
   {
-    "ad": "Lay's Klasik Mevsim Yeşillikli Fırından Yoğurtlu Cips 125 Gr",
-    "ana_kategori": "Cips",
-    "agirlik_hacim": "125 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bim/501016.jpg",
-    "en_dusuk_fiyat": 64.5,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 64.5
-      }
-    ]
-  },
-  {
     "ad": "Bebeto Şeftali Yumuşak Şeker 400 Gr",
     "ana_kategori": "Sakız ve Şekerleme",
     "agirlik_hacim": "400 GR",
@@ -18541,19 +18537,6 @@
     ]
   },
   {
-    "ad": "Snickers Yer Fıstıklı Çikolata 50 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "150 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 79.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 79.0
-      }
-    ]
-  },
-  {
     "ad": "Glutensiz Ada Damalı Kurabiye 81 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "81 GR",
@@ -18567,6 +18550,19 @@
     ]
   },
   {
+    "ad": "Peyman Bahçeden Cranberry 120 Gr",
+    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
+    "agirlik_hacim": "120 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30411283.png",
+    "en_dusuk_fiyat": 84.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 84.0
+      }
+    ]
+  },
+  {
     "ad": "Lezzethane Yağlı Gevrek Kurabiye 500 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "500 GR",
@@ -18576,6 +18572,19 @@
       {
         "market": "bim",
         "fiyat": 90.0
+      }
+    ]
+  },
+  {
+    "ad": "Toffifee 125 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "125 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7047105.png",
+    "en_dusuk_fiyat": 99.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 99.0
       }
     ]
   },
@@ -18610,19 +18619,6 @@
       {
         "market": "carrefour",
         "fiyat": 107.9
-      }
-    ]
-  },
-  {
-    "ad": "Pol's Freeze Fresh Çilek 15 Gr",
-    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
-    "agirlik_hacim": "15 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/5089510.png",
-    "en_dusuk_fiyat": 124.9,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 124.9
       }
     ]
   },
@@ -18769,23 +18765,6 @@
     ]
   },
   {
-    "ad": "Eti Bumbo Portakal Aromalı 110 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "110 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/17002705.png",
-    "en_dusuk_fiyat": 24.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 24.0
-      },
-      {
-        "market": "a101",
-        "fiyat": 30.0
-      }
-    ]
-  },
-  {
     "ad": "First Sensations Cool Lime 27 Gr",
     "ana_kategori": "Sakız ve Şekerleme",
     "agirlik_hacim": "27 GR",
@@ -18842,6 +18821,19 @@
     ]
   },
   {
+    "ad": "Kent Jelibon Spk Yumuşak Şeker Şeftali 160 Gr",
+    "ana_kategori": "Sakız ve Şekerleme",
+    "agirlik_hacim": "160 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/27002388.png",
+    "en_dusuk_fiyat": 29.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 29.5
+      }
+    ]
+  },
+  {
     "ad": "Çizmeci Time Crepe Fındıklı 75 Gr",
     "ana_kategori": "Gofret",
     "agirlik_hacim": "75 GR",
@@ -18851,19 +18843,6 @@
       {
         "market": "carrefour",
         "fiyat": 29.75
-      }
-    ]
-  },
-  {
-    "ad": "Milka Gofree Çikolatalı 28 Gr",
-    "ana_kategori": "Gofret",
-    "agirlik_hacim": "28 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30095609.png",
-    "en_dusuk_fiyat": 36.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 36.9
       }
     ]
   },
@@ -18881,15 +18860,28 @@
     ]
   },
   {
-    "ad": "Kent Jelibon Sour Patch Kids Şeftali Aromalı 160 Gr",
-    "ana_kategori": "Sakız ve Şekerleme",
-    "agirlik_hacim": "160 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30473981.png",
-    "en_dusuk_fiyat": 59.09,
+    "ad": "Lay's Klasik Mevsim Yeşillikli Fırından Yoğurtlu Cips 125 Gr",
+    "ana_kategori": "Cips",
+    "agirlik_hacim": "125 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bim/501016.jpg",
+    "en_dusuk_fiyat": 64.5,
     "market_fiyatlari": [
       {
-        "market": "carrefour",
-        "fiyat": 59.09
+        "market": "bim",
+        "fiyat": 64.5
+      }
+    ]
+  },
+  {
+    "ad": "Doritos Storms Sweet Chili 125 Gr",
+    "ana_kategori": "Cips",
+    "agirlik_hacim": "125 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/5080293.jpg",
+    "en_dusuk_fiyat": 64.5,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 64.5
       }
     ]
   },
@@ -18920,19 +18912,6 @@
     ]
   },
   {
-    "ad": "Peyman Bahçeden Cranberry 120 Gr",
-    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
-    "agirlik_hacim": "120 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30411283.png",
-    "en_dusuk_fiyat": 84.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 84.0
-      }
-    ]
-  },
-  {
     "ad": "Kahve Dünyası Tambol Bol Sütlü Çikolata 100 Gr",
     "ana_kategori": "Çikolata",
     "agirlik_hacim": "100 GR",
@@ -18955,6 +18934,19 @@
       {
         "market": "carrefour",
         "fiyat": 98.0
+      }
+    ]
+  },
+  {
+    "ad": "Pol's Freeze Fresh Çilek 15 Gr",
+    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
+    "agirlik_hacim": "15 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/5089510.png",
+    "en_dusuk_fiyat": 124.9,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 124.9
       }
     ]
   },
@@ -19075,36 +19067,6 @@
     ]
   },
   {
-    "ad": "Eti Crax Peynirli Kraker 175 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "175 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/17002188.png",
-    "en_dusuk_fiyat": 28.53,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 28.53
-      },
-      {
-        "market": "migros",
-        "fiyat": 39.9
-      }
-    ]
-  },
-  {
-    "ad": "Kent Jelibon Spk Yumuşak Şeker Şeftali 160 Gr",
-    "ana_kategori": "Sakız ve Şekerleme",
-    "agirlik_hacim": "160 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/27002388.png",
-    "en_dusuk_fiyat": 29.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 29.5
-      }
-    ]
-  },
-  {
     "ad": "Probis Muz Kremalı Şekersiz Bisküvi 101 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "101 GR",
@@ -19140,6 +19102,19 @@
       {
         "market": "bim",
         "fiyat": 35.0
+      }
+    ]
+  },
+  {
+    "ad": "Milka Gofree Çikolatalı 28 Gr",
+    "ana_kategori": "Gofret",
+    "agirlik_hacim": "28 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30095609.png",
+    "en_dusuk_fiyat": 36.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 36.9
       }
     ]
   },
@@ -19239,15 +19214,28 @@
     ]
   },
   {
-    "ad": "Doritos Storms Sweet Chili 125 Gr",
-    "ana_kategori": "Cips",
-    "agirlik_hacim": "125 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/5080293.jpg",
-    "en_dusuk_fiyat": 64.5,
+    "ad": "Kent Jelibon Sour Patch Kids Şeftali Aromalı 160 Gr",
+    "ana_kategori": "Sakız ve Şekerleme",
+    "agirlik_hacim": "160 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30473981.png",
+    "en_dusuk_fiyat": 59.09,
     "market_fiyatlari": [
       {
-        "market": "migros",
-        "fiyat": 64.5
+        "market": "carrefour",
+        "fiyat": 59.09
+      }
+    ]
+  },
+  {
+    "ad": "Kent Boringer Çikolata/Karamel/Frambuaz Tatlı Sos 300 Gr",
+    "ana_kategori": "Tatlılar",
+    "agirlik_hacim": "300 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bim/1712780.jpg",
+    "en_dusuk_fiyat": 65.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 65.0
       }
     ]
   },
@@ -19441,23 +19429,27 @@
     ]
   },
   {
-    "ad": "Olips Çiğne Nane Aromalı 47 Gr",
-    "ana_kategori": "Sakız ve Şekerleme",
-    "agirlik_hacim": "47 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30297492.jpg",
-    "en_dusuk_fiyat": 29.95,
+    "ad": "Eti Crax Peynirli Kraker 175 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "175 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/17002188.png",
+    "en_dusuk_fiyat": 28.53,
     "market_fiyatlari": [
       {
+        "market": "carrefour",
+        "fiyat": 28.53
+      },
+      {
         "market": "migros",
-        "fiyat": 29.95
+        "fiyat": 39.9
       }
     ]
   },
   {
-    "ad": "Ülker Stars XL Cookie Coco Star 47 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
+    "ad": "Olips Çiğne Nane Aromalı 47 Gr",
+    "ana_kategori": "Sakız ve Şekerleme",
     "agirlik_hacim": "47 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30482627.jpg",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30297492.jpg",
     "en_dusuk_fiyat": 29.95,
     "market_fiyatlari": [
       {
@@ -19549,19 +19541,6 @@
     ]
   },
   {
-    "ad": "Kent Boringer Çikolata/Karamel/Frambuaz Tatlı Sos 300 Gr",
-    "ana_kategori": "Tatlılar",
-    "agirlik_hacim": "300 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bim/1712780.jpg",
-    "en_dusuk_fiyat": 65.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 65.0
-      }
-    ]
-  },
-  {
     "ad": "Twix Xtra 75 Gr",
     "ana_kategori": "Çikolata",
     "agirlik_hacim": "75 GR",
@@ -19584,6 +19563,19 @@
       {
         "market": "a101",
         "fiyat": 69.0
+      }
+    ]
+  },
+  {
+    "ad": "Ülker Çikolatalı Gofret Mid Size Tablet 100 Gr",
+    "ana_kategori": "Gofret",
+    "agirlik_hacim": "100 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/128519.jpg",
+    "en_dusuk_fiyat": 74.9,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 74.9
       }
     ]
   },
@@ -19821,6 +19813,19 @@
     ]
   },
   {
+    "ad": "Ülker Stars XL Cookie Coco Star 47 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "47 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30482627.jpg",
+    "en_dusuk_fiyat": 29.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 29.95
+      }
+    ]
+  },
+  {
     "ad": "Ülker Oneo Karpuz Şişe Draje Sakız 60 Gr",
     "ana_kategori": "Sakız ve Şekerleme",
     "agirlik_hacim": "60 GR",
@@ -19959,19 +19964,6 @@
     ]
   },
   {
-    "ad": "Ülker Çikolatalı Gofret Mid Size Tablet 100 Gr",
-    "ana_kategori": "Gofret",
-    "agirlik_hacim": "100 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/128519.jpg",
-    "en_dusuk_fiyat": 74.9,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 74.9
-      }
-    ]
-  },
-  {
     "ad": "Simbat Kabuklu Yer Fıstığı 500 Gr",
     "ana_kategori": "Kuruyemiş ve Kuru Meyve",
     "agirlik_hacim": "500 GR",
@@ -20084,6 +20076,19 @@
     ]
   },
   {
+    "ad": "Centro Çikolatalı Gofret 36 Gr",
+    "ana_kategori": "Gofret",
+    "agirlik_hacim": "36 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bimages/centro-cikolatali-gofret-36-g.jpg",
+    "en_dusuk_fiyat": 9.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 9.0
+      }
+    ]
+  },
+  {
     "ad": "Ülker Kremini Karpuzlu Toffee 44 Gr",
     "ana_kategori": "Sakız ve Şekerleme",
     "agirlik_hacim": "44 GR",
@@ -20191,19 +20196,6 @@
       {
         "market": "bim",
         "fiyat": 34.0
-      }
-    ]
-  },
-  {
-    "ad": "Adios Nacho Mısır Cipsi 130 Gr",
-    "ana_kategori": "Cips",
-    "agirlik_hacim": "130 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 39.9,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 39.9
       }
     ]
   },
@@ -20329,19 +20321,15 @@
     ]
   },
   {
-    "ad": "Algida Max Twister Mini Multipack 400 Ml",
-    "ana_kategori": "Dondurmalar",
-    "agirlik_hacim": "400 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1101175.png",
-    "en_dusuk_fiyat": 150.0,
+    "ad": "Godiva Sütlü Karamelli Aslan Tablet Çikolata 86 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "86 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/sokimages/114773.png",
+    "en_dusuk_fiyat": 135.0,
     "market_fiyatlari": [
       {
-        "market": "bim",
-        "fiyat": 150.0
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 150.0
+        "market": "sok",
+        "fiyat": 135.0
       }
     ]
   },
@@ -20411,19 +20399,6 @@
       {
         "market": "carrefour",
         "fiyat": 429.95
-      }
-    ]
-  },
-  {
-    "ad": "Centro Çikolatalı Gofret 36 Gr",
-    "ana_kategori": "Gofret",
-    "agirlik_hacim": "36 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bimages/centro-cikolatali-gofret-36-g.jpg",
-    "en_dusuk_fiyat": 9.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 9.0
       }
     ]
   },
@@ -20565,6 +20540,19 @@
       {
         "market": "tarim_kredi",
         "fiyat": 39.5
+      }
+    ]
+  },
+  {
+    "ad": "Adios Nacho Mısır Cipsi 130 Gr",
+    "ana_kategori": "Cips",
+    "agirlik_hacim": "130 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 39.9,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 39.9
       }
     ]
   },
@@ -20728,15 +20716,19 @@
     ]
   },
   {
-    "ad": "Patiswiss Antep Fıstığı Ve Kadayıf Dolgulu Sütlü Çikolata 100 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "100 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/7030916.jpg",
-    "en_dusuk_fiyat": 197.95,
+    "ad": "Algida Max Twister Mini Multipack 400 Ml",
+    "ana_kategori": "Dondurmalar",
+    "agirlik_hacim": "400 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1101175.png",
+    "en_dusuk_fiyat": 150.0,
     "market_fiyatlari": [
       {
-        "market": "migros",
-        "fiyat": 197.95
+        "market": "bim",
+        "fiyat": 150.0
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 150.0
       }
     ]
   },
@@ -21384,19 +21376,15 @@
     ]
   },
   {
-    "ad": "Godiva %90 Bitter Çikolata Kare 52 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "52 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/27002705.jpg",
-    "en_dusuk_fiyat": 92.0,
+    "ad": "Mom C Vitaminli Organik Lolipop 58 Gr",
+    "ana_kategori": "Sakız ve Şekerleme",
+    "agirlik_hacim": "58 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7110811.png",
+    "en_dusuk_fiyat": 110.95,
     "market_fiyatlari": [
       {
         "market": "migros",
-        "fiyat": 92.0
-      },
-      {
-        "market": "a101",
-        "fiyat": 95.0
+        "fiyat": 110.95
       }
     ]
   },
@@ -21659,6 +21647,23 @@
     ]
   },
   {
+    "ad": "Godiva %90 Bitter Çikolata Kare 52 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "52 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/27002705.jpg",
+    "en_dusuk_fiyat": 92.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 92.0
+      },
+      {
+        "market": "a101",
+        "fiyat": 95.0
+      }
+    ]
+  },
+  {
     "ad": "Soslu Karışık Kuruyemiş 200 Gr",
     "ana_kategori": "Kuruyemiş ve Kuru Meyve",
     "agirlik_hacim": "200 GR",
@@ -21681,19 +21686,6 @@
       {
         "market": "migros",
         "fiyat": 104.95
-      }
-    ]
-  },
-  {
-    "ad": "Mom C Vitaminli Organik Lolipop 58 Gr",
-    "ana_kategori": "Sakız ve Şekerleme",
-    "agirlik_hacim": "58 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7110811.png",
-    "en_dusuk_fiyat": 110.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 110.95
       }
     ]
   },
@@ -21867,6 +21859,19 @@
       {
         "market": "bim",
         "fiyat": 12.0
+      }
+    ]
+  },
+  {
+    "ad": "Migros Kids Vanilyalı Stick Dondurma 70 Ml",
+    "ana_kategori": "Dondurmalar",
+    "agirlik_hacim": "70 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/11570015.jpg",
+    "en_dusuk_fiyat": 14.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 14.0
       }
     ]
   },
@@ -22112,19 +22117,6 @@
     ]
   },
   {
-    "ad": "Onefis Lezzet Bombası 360 Gr",
-    "ana_kategori": "Tatlılar",
-    "agirlik_hacim": "360 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 191.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 191.9
-      }
-    ]
-  },
-  {
     "ad": "Karışık Ekstra 200 Gr",
     "ana_kategori": "Kuruyemiş ve Kuru Meyve",
     "agirlik_hacim": "200 GR",
@@ -22173,19 +22165,6 @@
       {
         "market": "carrefour",
         "fiyat": 4.0
-      }
-    ]
-  },
-  {
-    "ad": "Migros Kids Vanilyalı Stick Dondurma 70 Ml",
-    "ana_kategori": "Dondurmalar",
-    "agirlik_hacim": "70 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/11570015.jpg",
-    "en_dusuk_fiyat": 14.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 14.0
       }
     ]
   },
@@ -22263,6 +22242,19 @@
     ]
   },
   {
+    "ad": "Migros Çikolatalı Puding 150 Gr",
+    "ana_kategori": "Tatlılar",
+    "agirlik_hacim": "150 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/7100295.jpg",
+    "en_dusuk_fiyat": 25.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 25.95
+      }
+    ]
+  },
+  {
     "ad": "Dido Trio Beyaz Çikolatalı Gofret 36 Gr",
     "ana_kategori": "Gofret",
     "agirlik_hacim": "36 GR",
@@ -22285,19 +22277,6 @@
       {
         "market": "bim",
         "fiyat": 39.0
-      }
-    ]
-  },
-  {
-    "ad": "Tadolya Çiçek Dilimi Şam Kurabiye 1 Adet",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": null,
-    "resim": null,
-    "en_dusuk_fiyat": 43.5,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 43.5
       }
     ]
   },
@@ -22462,6 +22441,19 @@
     ]
   },
   {
+    "ad": "Onefis Lezzet Bombası 360 Gr",
+    "ana_kategori": "Tatlılar",
+    "agirlik_hacim": "360 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 191.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 191.9
+      }
+    ]
+  },
+  {
     "ad": "Carte D'or Classic Swiss Karamel/Muz 850 Ml",
     "ana_kategori": "Dondurmalar",
     "agirlik_hacim": "850 ML",
@@ -22540,19 +22532,6 @@
     ]
   },
   {
-    "ad": "Migros Çikolatalı Puding 150 Gr",
-    "ana_kategori": "Tatlılar",
-    "agirlik_hacim": "150 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/7100295.jpg",
-    "en_dusuk_fiyat": 25.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 25.95
-      }
-    ]
-  },
-  {
     "ad": "Algida Viennetta Çikolata Vanilya 90 Ml",
     "ana_kategori": "Dondurmalar",
     "agirlik_hacim": "90 ML",
@@ -22583,19 +22562,6 @@
     ]
   },
   {
-    "ad": "Migros Beyoğlu Bütün Fındıklı Sütlü Çikolata 30 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "30 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7030892.png",
-    "en_dusuk_fiyat": 39.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 39.0
-      }
-    ]
-  },
-  {
     "ad": "Ülker Çizi Çıtır Peynir Biftek 120 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "120 GR",
@@ -22618,6 +22584,19 @@
       {
         "market": "bim",
         "fiyat": 40.0
+      }
+    ]
+  },
+  {
+    "ad": "Tadolya Çiçek Dilimi Şam Kurabiye 1 Adet",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": null,
+    "resim": null,
+    "en_dusuk_fiyat": 43.5,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 43.5
       }
     ]
   },
@@ -22838,6 +22817,19 @@
     ]
   },
   {
+    "ad": "Ekmek Kadayıfı 1 Kg",
+    "ana_kategori": "Tatlılar",
+    "agirlik_hacim": "1 KG",
+    "resim": null,
+    "en_dusuk_fiyat": 340.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 340.0
+      }
+    ]
+  },
+  {
     "ad": "Eti Muzlu Kremalı Bisküvi 61 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "61 GR",
@@ -23019,15 +23011,15 @@
     ]
   },
   {
-    "ad": "Kahve Dünyası Yer Fıstıklı Patlamış Mısırlı Çikolata 80 Gr",
+    "ad": "Migros Beyoğlu Bütün Fındıklı Sütlü Çikolata 30 Gr",
     "ana_kategori": "Çikolata",
-    "agirlik_hacim": "80 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/27002671.jpg",
-    "en_dusuk_fiyat": 39.5,
+    "agirlik_hacim": "30 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7030892.png",
+    "en_dusuk_fiyat": 39.0,
     "market_fiyatlari": [
       {
-        "market": "a101",
-        "fiyat": 39.5
+        "market": "migros",
+        "fiyat": 39.0
       }
     ]
   },
@@ -23062,15 +23054,15 @@
     ]
   },
   {
-    "ad": "Gong Pops Baharatlı Mısır & Pirinç Patlağı 110 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "110 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/17003283.png",
-    "en_dusuk_fiyat": 47.5,
+    "ad": "Haribo Şeftali 70 Gr",
+    "ana_kategori": "Sakız ve Şekerleme",
+    "agirlik_hacim": "70 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/3500032.jpg",
+    "en_dusuk_fiyat": 44.95,
     "market_fiyatlari": [
       {
-        "market": "a101",
-        "fiyat": 47.5
+        "market": "migros",
+        "fiyat": 44.95
       }
     ]
   },
@@ -23161,15 +23153,15 @@
     ]
   },
   {
-    "ad": "Ekmek Kadayıfı 1 Kg",
-    "ana_kategori": "Tatlılar",
-    "agirlik_hacim": "1 KG",
+    "ad": "Patiswiss Antep Fıstıklı Tahin Helva & Krema Dolgulu Sütlü Çikolata 100 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "100 GR",
     "resim": null,
-    "en_dusuk_fiyat": 340.0,
+    "en_dusuk_fiyat": 164.95,
     "market_fiyatlari": [
       {
-        "market": "carrefour",
-        "fiyat": 340.0
+        "market": "migros",
+        "fiyat": 164.95
       }
     ]
   },
@@ -23285,6 +23277,19 @@
     ]
   },
   {
+    "ad": "Kahve Dünyası Yer Fıstıklı Patlamış Mısırlı Çikolata 80 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "80 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/27002671.jpg",
+    "en_dusuk_fiyat": 39.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 39.5
+      }
+    ]
+  },
+  {
     "ad": "Milka Bonibon Tekli 24 Gr",
     "ana_kategori": "Çikolata",
     "agirlik_hacim": "24 GR",
@@ -23298,15 +23303,15 @@
     ]
   },
   {
-    "ad": "Haribo Şeftali 70 Gr",
-    "ana_kategori": "Sakız ve Şekerleme",
-    "agirlik_hacim": "70 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/3500032.jpg",
-    "en_dusuk_fiyat": 44.95,
+    "ad": "Gong Pops Baharatlı Mısır & Pirinç Patlağı 110 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "110 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/17003283.png",
+    "en_dusuk_fiyat": 47.5,
     "market_fiyatlari": [
       {
-        "market": "migros",
-        "fiyat": 44.95
+        "market": "a101",
+        "fiyat": 47.5
       }
     ]
   },
@@ -23479,19 +23484,6 @@
     ]
   },
   {
-    "ad": "Patiswiss Antep Fıstıklı Tahin Helva & Krema Dolgulu Sütlü Çikolata 100 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "100 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 164.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 164.95
-      }
-    ]
-  },
-  {
     "ad": "Lotus Bisküvi 125 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "125 GR",
@@ -23583,23 +23575,6 @@
       {
         "market": "carrefour",
         "fiyat": 24.0
-      }
-    ]
-  },
-  {
-    "ad": "Mood Sütlü Çikolatalı 40 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "40 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/108096.jpg",
-    "en_dusuk_fiyat": 25.0,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 25.0
-      },
-      {
-        "market": "migros",
-        "fiyat": 25.5
       }
     ]
   },
@@ -23775,6 +23750,19 @@
     ]
   },
   {
+    "ad": "Nimet Ayçekirdekli Fırın Kurabiyesi 200 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/28000415.jpg",
+    "en_dusuk_fiyat": 99.75,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 99.75
+      }
+    ]
+  },
+  {
     "ad": "Long Chips Acı Biber Aromalı 75 Gr",
     "ana_kategori": "Cips",
     "agirlik_hacim": "75 GR",
@@ -23835,6 +23823,23 @@
     ]
   },
   {
+    "ad": "Kahve Dünyası Tambol Antep Fıstıklı Sütlü Çikolata 77 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "77 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30446969.png",
+    "en_dusuk_fiyat": 118.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 118.95
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 119.95
+      }
+    ]
+  },
+  {
     "ad": "Carrefour Bio Organik Dut 90 Gr",
     "ana_kategori": "Kuruyemiş ve Kuru Meyve",
     "agirlik_hacim": "90 GR",
@@ -23870,19 +23875,6 @@
       {
         "market": "carrefour",
         "fiyat": 250.0
-      }
-    ]
-  },
-  {
-    "ad": "Tyrrells Cheddar Peynirli Patates Cipsi 150 Gr",
-    "ana_kategori": "Cips",
-    "agirlik_hacim": "150 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/5088380.jpg",
-    "en_dusuk_fiyat": 350.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 350.0
       }
     ]
   },
@@ -23956,6 +23948,23 @@
       {
         "market": "a101",
         "fiyat": 25.0
+      }
+    ]
+  },
+  {
+    "ad": "Mood Sütlü Çikolatalı 40 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "40 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/108096.jpg",
+    "en_dusuk_fiyat": 25.0,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 25.0
+      },
+      {
+        "market": "migros",
+        "fiyat": 25.5
       }
     ]
   },
@@ -24139,36 +24148,6 @@
     ]
   },
   {
-    "ad": "Nimet Ayçekirdekli Fırın Kurabiyesi 200 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/28000415.jpg",
-    "en_dusuk_fiyat": 99.75,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 99.75
-      }
-    ]
-  },
-  {
-    "ad": "Kahve Dünyası Tambol Antep Fıstıklı Sütlü Çikolata 77 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "77 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30446969.png",
-    "en_dusuk_fiyat": 118.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 118.95
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 119.95
-      }
-    ]
-  },
-  {
     "ad": "Nestlé Damak Tablet Dikdörtgen 70 Gr",
     "ana_kategori": "Çikolata",
     "agirlik_hacim": "70 GR",
@@ -24251,6 +24230,19 @@
       {
         "market": "migros",
         "fiyat": 169.9
+      }
+    ]
+  },
+  {
+    "ad": "Tyrrells Cheddar Peynirli Patates Cipsi 150 Gr",
+    "ana_kategori": "Cips",
+    "agirlik_hacim": "150 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/5088380.jpg",
+    "en_dusuk_fiyat": 350.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 350.0
       }
     ]
   },
@@ -24724,19 +24716,6 @@
     ]
   },
   {
-    "ad": "Sriracha Yoğurt Nane Glutensiz Nohut Cipsi 50 Gr",
-    "ana_kategori": "Cips",
-    "agirlik_hacim": "50 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 24.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 24.0
-      }
-    ]
-  },
-  {
     "ad": "Ülker Yupo Meyve Bahçesi 80 Gr",
     "ana_kategori": "Sakız ve Şekerleme",
     "agirlik_hacim": "80 GR",
@@ -24763,15 +24742,15 @@
     ]
   },
   {
-    "ad": "Ülker Biskrem Kakaolu Poşet 200 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7019726.png",
-    "en_dusuk_fiyat": 48.95,
+    "ad": "Cheetos Biftek ve Fıstıklı Mısır Çerezi 46 Gr",
+    "ana_kategori": "Cips",
+    "agirlik_hacim": "46 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/500988.png",
+    "en_dusuk_fiyat": 25.0,
     "market_fiyatlari": [
       {
-        "market": "migros",
-        "fiyat": 48.95
+        "market": "bim",
+        "fiyat": 25.0
       }
     ]
   },
@@ -24845,6 +24824,19 @@
     ]
   },
   {
+    "ad": "Takita Cool Mint Şekersiz Tablet Şeker 12 Gr",
+    "ana_kategori": "Sakız ve Şekerleme",
+    "agirlik_hacim": "12 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7137629.png",
+    "en_dusuk_fiyat": 93.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 93.95
+      }
+    ]
+  },
+  {
     "ad": "Ülker Bonbon Sütlü Şeker 350 Gr",
     "ana_kategori": "Sakız ve Şekerleme",
     "agirlik_hacim": "350 GR",
@@ -24884,19 +24876,6 @@
     ]
   },
   {
-    "ad": "Organik Gurme Çörek Otlu Tuzlu Kurabiye 80 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "80 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 129.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 129.0
-      }
-    ]
-  },
-  {
     "ad": "Godiva Mp Ornament New Year Limited Edition 34 Gr",
     "ana_kategori": "Çikolata",
     "agirlik_hacim": "33.5 GR",
@@ -24932,6 +24911,19 @@
       {
         "market": "tarim_kredi",
         "fiyat": 189.0
+      }
+    ]
+  },
+  {
+    "ad": "Koska Duble Fıstıklı Lokum 250 Gr",
+    "ana_kategori": "Sakız ve Şekerleme",
+    "agirlik_hacim": "250 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7090550.png",
+    "en_dusuk_fiyat": 273.5,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 273.5
       }
     ]
   },
@@ -25005,19 +24997,6 @@
     ]
   },
   {
-    "ad": "Migros Taco Aromalı Mısır ve Pirinç Patlağı 64 Gr",
-    "ana_kategori": "Cips",
-    "agirlik_hacim": "64 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/7012386.jpg",
-    "en_dusuk_fiyat": 16.9,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 16.9
-      }
-    ]
-  },
-  {
     "ad": "Eti Crax Thins Taze Biber Ekşi Krema 12x70 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "840 GR",
@@ -25031,15 +25010,15 @@
     ]
   },
   {
-    "ad": "Cheetos Biftek ve Fıstıklı Mısır Çerezi 46 Gr",
+    "ad": "Sriracha Yoğurt Nane Glutensiz Nohut Cipsi 50 Gr",
     "ana_kategori": "Cips",
-    "agirlik_hacim": "46 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/500988.png",
-    "en_dusuk_fiyat": 25.0,
+    "agirlik_hacim": "50 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 24.0,
     "market_fiyatlari": [
       {
         "market": "bim",
-        "fiyat": 25.0
+        "fiyat": 24.0
       }
     ]
   },
@@ -25083,6 +25062,19 @@
     ]
   },
   {
+    "ad": "Ülker Biskrem Kakaolu Poşet 200 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7019726.png",
+    "en_dusuk_fiyat": 48.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 48.95
+      }
+    ]
+  },
+  {
     "ad": "Eti Form Kızarmış Kepekli Ekmek 138 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "138 GR",
@@ -25113,6 +25105,23 @@
       {
         "market": "carrefour",
         "fiyat": 50.0
+      }
+    ]
+  },
+  {
+    "ad": "Bağdat Kuş Üzümü 40 Gr",
+    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
+    "agirlik_hacim": "40 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30065239.png",
+    "en_dusuk_fiyat": 56.21,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 56.21
+      },
+      {
+        "market": "migros",
+        "fiyat": 79.95
       }
     ]
   },
@@ -25203,19 +25212,6 @@
     ]
   },
   {
-    "ad": "Takita Cool Mint Şekersiz Tablet Şeker 12 Gr",
-    "ana_kategori": "Sakız ve Şekerleme",
-    "agirlik_hacim": "12 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7137629.png",
-    "en_dusuk_fiyat": 93.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 93.95
-      }
-    ]
-  },
-  {
     "ad": "Amigo Dalından Mix 250 Gr",
     "ana_kategori": "Kuruyemiş ve Kuru Meyve",
     "agirlik_hacim": "250 GR",
@@ -25225,6 +25221,19 @@
       {
         "market": "sok",
         "fiyat": 119.0
+      }
+    ]
+  },
+  {
+    "ad": "Organik Gurme Çörek Otlu Tuzlu Kurabiye 80 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "80 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 129.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 129.0
       }
     ]
   },
@@ -25242,28 +25251,15 @@
     ]
   },
   {
-    "ad": "Koska Duble Fıstıklı Lokum 250 Gr",
-    "ana_kategori": "Sakız ve Şekerleme",
-    "agirlik_hacim": "250 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7090550.png",
-    "en_dusuk_fiyat": 273.5,
+    "ad": "Beyoğlu Gala Tane Fındıklı Kremalı Sütlü Çikolata 370 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "370 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/7031202.jpg",
+    "en_dusuk_fiyat": 269.95,
     "market_fiyatlari": [
       {
         "market": "migros",
-        "fiyat": 273.5
-      }
-    ]
-  },
-  {
-    "ad": "Magnum Mini Badem Double Karadut 393 Ml",
-    "ana_kategori": "Dondurmalar",
-    "agirlik_hacim": "393 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/11570365.jpg",
-    "en_dusuk_fiyat": 325.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 325.0
+        "fiyat": 269.95
       }
     ]
   },
@@ -25320,6 +25316,19 @@
     ]
   },
   {
+    "ad": "Migros Taco Aromalı Mısır ve Pirinç Patlağı 64 Gr",
+    "ana_kategori": "Cips",
+    "agirlik_hacim": "64 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/7012386.jpg",
+    "en_dusuk_fiyat": 16.9,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 16.9
+      }
+    ]
+  },
+  {
     "ad": "Nutbari Kakaolu Fındık Krema Grissini 52 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "52 GR",
@@ -25372,27 +25381,6 @@
       {
         "market": "carrefour",
         "fiyat": 24.15
-      }
-    ]
-  },
-  {
-    "ad": "Ülker Olala Frambuazlı Sufle 70 Gr",
-    "ana_kategori": "Kek",
-    "agirlik_hacim": "70 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/107151.jpg",
-    "en_dusuk_fiyat": 24.99,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 24.99
-      },
-      {
-        "market": "migros",
-        "fiyat": 34.95
-      },
-      {
-        "market": "a101",
-        "fiyat": 35.0
       }
     ]
   },
@@ -25637,15 +25625,15 @@
     ]
   },
   {
-    "ad": "Beyoğlu Gala Tane Fındıklı Kremalı Sütlü Çikolata 370 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "370 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/7031202.jpg",
-    "en_dusuk_fiyat": 269.95,
+    "ad": "Magnum Mini Badem Double Karadut 393 Ml",
+    "ana_kategori": "Dondurmalar",
+    "agirlik_hacim": "393 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/11570365.jpg",
+    "en_dusuk_fiyat": 325.0,
     "market_fiyatlari": [
       {
-        "market": "migros",
-        "fiyat": 269.95
+        "market": "sok",
+        "fiyat": 325.0
       }
     ]
   },
@@ -25830,6 +25818,19 @@
     ]
   },
   {
+    "ad": "Pesotti Waffle 165 Gr",
+    "ana_kategori": "Tatlılar",
+    "agirlik_hacim": "165 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 57.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 57.5
+      }
+    ]
+  },
+  {
     "ad": "Ülker Halley Karadut Dolgulu 236 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "236 GR",
@@ -25951,19 +25952,6 @@
       {
         "market": "migros",
         "fiyat": 189.95
-      }
-    ]
-  },
-  {
-    "ad": "Fair Gold Meyve Sepeti Dondurma 900 Ml",
-    "ana_kategori": "Dondurmalar",
-    "agirlik_hacim": "900 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1100143.png",
-    "en_dusuk_fiyat": 190.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 190.0
       }
     ]
   },
@@ -26191,19 +26179,6 @@
     ]
   },
   {
-    "ad": "Pesotti Waffle 165 Gr",
-    "ana_kategori": "Tatlılar",
-    "agirlik_hacim": "165 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 57.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 57.5
-      }
-    ]
-  },
-  {
     "ad": "Bonheur Bitter Çikolatalı Bisküvi 102 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "102 GR",
@@ -26338,6 +26313,19 @@
       {
         "market": "migros",
         "fiyat": 183.75
+      }
+    ]
+  },
+  {
+    "ad": "Fair Gold Meyve Sepeti Dondurma 900 Ml",
+    "ana_kategori": "Dondurmalar",
+    "agirlik_hacim": "900 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1100143.png",
+    "en_dusuk_fiyat": 190.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 190.0
       }
     ]
   },
@@ -27488,6 +27476,27 @@
     ]
   },
   {
+    "ad": "Torku Orman Meyveli Gofret 142 Gr",
+    "ana_kategori": "Gofret",
+    "agirlik_hacim": "142 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/17002396.jpg",
+    "en_dusuk_fiyat": 35.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 35.0
+      },
+      {
+        "market": "tarim_kredi",
+        "fiyat": 44.5
+      },
+      {
+        "market": "migros",
+        "fiyat": 46.9
+      }
+    ]
+  },
+  {
     "ad": "Lezztat Fırın Sütlaç 200 Gr",
     "ana_kategori": "Tatlılar",
     "agirlik_hacim": "200 GR",
@@ -27900,27 +27909,6 @@
     ]
   },
   {
-    "ad": "Torku Orman Meyveli Gofret 142 Gr",
-    "ana_kategori": "Gofret",
-    "agirlik_hacim": "142 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/17002396.jpg",
-    "en_dusuk_fiyat": 35.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 35.0
-      },
-      {
-        "market": "tarim_kredi",
-        "fiyat": 44.5
-      },
-      {
-        "market": "migros",
-        "fiyat": 46.9
-      }
-    ]
-  },
-  {
     "ad": "Tarım Kredi Protein Bar Yer Fıstığı Ve Kakao 32 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "32 GR",
@@ -28214,19 +28202,6 @@
     ]
   },
   {
-    "ad": "Ülker Albeni 40 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "40 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7163010.png",
-    "en_dusuk_fiyat": 20.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 20.0
-      }
-    ]
-  },
-  {
     "ad": "Ülker Dido Çikolata Kaplamalı Gofret 35 Gr",
     "ana_kategori": "Gofret",
     "agirlik_hacim": "35 GR",
@@ -28249,6 +28224,19 @@
       {
         "market": "bim",
         "fiyat": 29.0
+      }
+    ]
+  },
+  {
+    "ad": "Kruvasan Tereyağlı 55 Gr",
+    "ana_kategori": "Kek",
+    "agirlik_hacim": "55 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/5061989.jpg",
+    "en_dusuk_fiyat": 31.47,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 31.47
       }
     ]
   },
@@ -28556,6 +28544,19 @@
     ]
   },
   {
+    "ad": "Ülker Albeni 40 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "40 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7163010.png",
+    "en_dusuk_fiyat": 20.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 20.0
+      }
+    ]
+  },
+  {
     "ad": "Eti Gong Çilekli Yoğurtlu Kaplamalı 30 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "30 GR",
@@ -28599,19 +28600,6 @@
       {
         "market": "a101",
         "fiyat": 46.0
-      }
-    ]
-  },
-  {
-    "ad": "Kruvasan Tereyağlı 55 Gr",
-    "ana_kategori": "Kek",
-    "agirlik_hacim": "55 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/5061989.jpg",
-    "en_dusuk_fiyat": 31.47,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 31.47
       }
     ]
   },
@@ -29071,19 +29059,6 @@
     ]
   },
   {
-    "ad": "Ülker Kremalı Bisküvi 244 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "244 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/17000398.png",
-    "en_dusuk_fiyat": 56.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 56.5
-      }
-    ]
-  },
-  {
     "ad": "Ülker Dolu Dolu %32 Bademli Tablet Çikolata 80 Gr",
     "ana_kategori": "Çikolata",
     "agirlik_hacim": "80 GR",
@@ -29140,6 +29115,23 @@
       {
         "market": "carrefour",
         "fiyat": 99.0
+      }
+    ]
+  },
+  {
+    "ad": "Pez Lisanslı Şeker 26 Gr",
+    "ana_kategori": "Sakız ve Şekerleme",
+    "agirlik_hacim": "25.5 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 119.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 119.0
+      },
+      {
+        "market": "migros",
+        "fiyat": 174.95
       }
     ]
   },
@@ -29364,6 +29356,19 @@
     ]
   },
   {
+    "ad": "Tarım Kredi Marshmallowlu Sandviç Kek 184 Gr",
+    "ana_kategori": "Kek",
+    "agirlik_hacim": "184 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/120127.jpg",
+    "en_dusuk_fiyat": 38.9,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 38.9
+      }
+    ]
+  },
+  {
     "ad": "Ülker Yupo Jelly Kola Aromalı Yumuşak Şeker 80 Gr",
     "ana_kategori": "Sakız ve Şekerleme",
     "agirlik_hacim": "80 GR",
@@ -29403,6 +29408,19 @@
     ]
   },
   {
+    "ad": "Ülker Kremalı Bisküvi 244 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "244 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/17000398.png",
+    "en_dusuk_fiyat": 56.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 56.5
+      }
+    ]
+  },
+  {
     "ad": "Paşa İşlenmiş Yer Fıstığı 180 Gr",
     "ana_kategori": "Kuruyemiş ve Kuru Meyve",
     "agirlik_hacim": "180 GR",
@@ -29412,19 +29430,6 @@
       {
         "market": "carrefour",
         "fiyat": 66.47
-      }
-    ]
-  },
-  {
-    "ad": "Tuzsuz Jumbo Yer Fıstığı 300 Gr",
-    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/27270017.png",
-    "en_dusuk_fiyat": 79.9,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 79.9
       }
     ]
   },
@@ -29451,23 +29456,6 @@
       {
         "market": "migros",
         "fiyat": 85.0
-      }
-    ]
-  },
-  {
-    "ad": "Pez Lisanslı Şeker 26 Gr",
-    "ana_kategori": "Sakız ve Şekerleme",
-    "agirlik_hacim": "25.5 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 119.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 119.0
-      },
-      {
-        "market": "migros",
-        "fiyat": 174.95
       }
     ]
   },
@@ -29708,19 +29696,6 @@
     ]
   },
   {
-    "ad": "Ülker Biskrem Rulo 100 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "100 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7011113.png",
-    "en_dusuk_fiyat": 26.5,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 26.5
-      }
-    ]
-  },
-  {
     "ad": "McVitie's Original Şeker İlavesiz Bisküvi 133 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "133 GR",
@@ -29734,6 +29709,19 @@
     ]
   },
   {
+    "ad": "Uzungil Meyve Aromalı Çifte Kavrulmuş Lokum 180 Gr",
+    "ana_kategori": "Tatlılar",
+    "agirlik_hacim": "180 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7099177.png",
+    "en_dusuk_fiyat": 32.9,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 32.9
+      }
+    ]
+  },
+  {
     "ad": "Eti Tutku 150 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "150 GR",
@@ -29743,19 +29731,6 @@
       {
         "market": "tarim_kredi",
         "fiyat": 35.95
-      }
-    ]
-  },
-  {
-    "ad": "Tarım Kredi Marshmallowlu Sandviç Kek 184 Gr",
-    "ana_kategori": "Kek",
-    "agirlik_hacim": "184 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/120127.jpg",
-    "en_dusuk_fiyat": 38.9,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 38.9
       }
     ]
   },
@@ -29816,6 +29791,19 @@
       {
         "market": "carrefour",
         "fiyat": 62.5
+      }
+    ]
+  },
+  {
+    "ad": "Tuzsuz Jumbo Yer Fıstığı 300 Gr",
+    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/27270017.png",
+    "en_dusuk_fiyat": 79.9,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 79.9
       }
     ]
   },
@@ -30027,6 +30015,19 @@
     ]
   },
   {
+    "ad": "Ülker Biskrem Rulo 100 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "100 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7011113.png",
+    "en_dusuk_fiyat": 26.5,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 26.5
+      }
+    ]
+  },
+  {
     "ad": "Kd Nello Fındıklı Çikolata 33 Gr",
     "ana_kategori": "Çikolata",
     "agirlik_hacim": "33 GR",
@@ -30036,19 +30037,6 @@
       {
         "market": "carrefour",
         "fiyat": 27.0
-      }
-    ]
-  },
-  {
-    "ad": "Uzungil Meyve Aromalı Çifte Kavrulmuş Lokum 180 Gr",
-    "ana_kategori": "Tatlılar",
-    "agirlik_hacim": "180 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7099177.png",
-    "en_dusuk_fiyat": 32.9,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 32.9
       }
     ]
   },
@@ -30299,19 +30287,6 @@
     ]
   },
   {
-    "ad": "Ülker Metro Büyük Boy 108 Adet",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "5.4432 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30124398.png",
-    "en_dusuk_fiyat": 21.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 21.95
-      }
-    ]
-  },
-  {
     "ad": "Pıt Pıt Solucan Yumuşak Şeker 160 Gr",
     "ana_kategori": "Sakız ve Şekerleme",
     "agirlik_hacim": "160 GR",
@@ -30437,6 +30412,19 @@
     ]
   },
   {
+    "ad": "Eti Burçak Kremalı 300 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "300 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30041028.png",
+    "en_dusuk_fiyat": 52.96,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 52.96
+      }
+    ]
+  },
+  {
     "ad": "Haribo Ekşi Mix Yumuşak Şeker 115 Gr",
     "ana_kategori": "Sakız ve Şekerleme",
     "agirlik_hacim": "115 GR",
@@ -30450,27 +30438,6 @@
     ]
   },
   {
-    "ad": "Nutymax Antep Fıstıklı Kremalı Gofret 3x44 Gr",
-    "ana_kategori": "Gofret",
-    "agirlik_hacim": "132 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/27001272.png",
-    "en_dusuk_fiyat": 59.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 59.0
-      },
-      {
-        "market": "bim",
-        "fiyat": 59.0
-      },
-      {
-        "market": "migros",
-        "fiyat": 115.95
-      }
-    ]
-  },
-  {
     "ad": "Wefood Fesleğenli Kraker 40 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "40 GR",
@@ -30480,6 +30447,19 @@
       {
         "market": "carrefour",
         "fiyat": 69.9
+      }
+    ]
+  },
+  {
+    "ad": "Saf Nutrition Vegan Peynir Aromalı Protein Cips 50 Gr",
+    "ana_kategori": "Cips",
+    "agirlik_hacim": "50 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30469373.png",
+    "en_dusuk_fiyat": 95.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 95.0
       }
     ]
   },
@@ -30702,6 +30682,19 @@
     ]
   },
   {
+    "ad": "Ülker Metro Büyük Boy 108 Adet",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "5.4432 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30124398.png",
+    "en_dusuk_fiyat": 21.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 21.95
+      }
+    ]
+  },
+  {
     "ad": "Pakmaya Supangle 138 Gr",
     "ana_kategori": "Tatlılar",
     "agirlik_hacim": "138 GR",
@@ -30728,15 +30721,23 @@
     ]
   },
   {
-    "ad": "Eti Burçak Kremalı 300 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "300 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30041028.png",
-    "en_dusuk_fiyat": 52.96,
+    "ad": "Nutymax Antep Fıstıklı Kremalı Gofret 3x44 Gr",
+    "ana_kategori": "Gofret",
+    "agirlik_hacim": "132 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/27001272.png",
+    "en_dusuk_fiyat": 59.0,
     "market_fiyatlari": [
       {
-        "market": "carrefour",
-        "fiyat": 52.96
+        "market": "a101",
+        "fiyat": 59.0
+      },
+      {
+        "market": "bim",
+        "fiyat": 59.0
+      },
+      {
+        "market": "migros",
+        "fiyat": 115.95
       }
     ]
   },
@@ -30836,19 +30837,6 @@
       {
         "market": "carrefour",
         "fiyat": 78.0
-      }
-    ]
-  },
-  {
-    "ad": "Saf Nutrition Vegan Peynir Aromalı Protein Cips 50 Gr",
-    "ana_kategori": "Cips",
-    "agirlik_hacim": "50 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30469373.png",
-    "en_dusuk_fiyat": 95.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 95.0
       }
     ]
   },
@@ -31505,6 +31493,19 @@
     ]
   },
   {
+    "ad": "Ege Kemalpaşa Tatlısı 140 Gr",
+    "ana_kategori": "Tatlılar",
+    "agirlik_hacim": "140 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/5047880.png",
+    "en_dusuk_fiyat": 49.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 49.95
+      }
+    ]
+  },
+  {
     "ad": "Eti Browni Intense Çikolata Kaplı Kek 3x50 Gr",
     "ana_kategori": "Kek",
     "agirlik_hacim": "150 GR",
@@ -31720,19 +31721,6 @@
     ]
   },
   {
-    "ad": "Anna's Almond 150 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "150 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30004998.png",
-    "en_dusuk_fiyat": 249.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 249.9
-      }
-    ]
-  },
-  {
     "ad": "Xroll Pofuduk Renkli Marshmallowlu Bisküvi 17 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "17 GR",
@@ -31866,19 +31854,6 @@
       {
         "market": "carrefour",
         "fiyat": 49.0
-      }
-    ]
-  },
-  {
-    "ad": "Ege Kemalpaşa Tatlısı 140 Gr",
-    "ana_kategori": "Tatlılar",
-    "agirlik_hacim": "140 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/5047880.png",
-    "en_dusuk_fiyat": 49.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 49.95
       }
     ]
   },
@@ -32035,6 +32010,19 @@
       {
         "market": "migros",
         "fiyat": 147.95
+      }
+    ]
+  },
+  {
+    "ad": "Anna's Almond 150 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "150 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30004998.png",
+    "en_dusuk_fiyat": 249.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 249.9
       }
     ]
   },
@@ -32526,19 +32514,6 @@
     ]
   },
   {
-    "ad": "Ozmo Egg 20 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "20 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7030240.png",
-    "en_dusuk_fiyat": 39.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 39.95
-      }
-    ]
-  },
-  {
     "ad": "Çerezza Patlamış Mısır Cips 80 Gr",
     "ana_kategori": "Cips",
     "agirlik_hacim": "80 GR",
@@ -32690,6 +32665,19 @@
       {
         "market": "a101",
         "fiyat": 145.0
+      }
+    ]
+  },
+  {
+    "ad": "Doritos Storm Avantaj Paketi 346 Gr",
+    "ana_kategori": "Cips",
+    "agirlik_hacim": "346 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 150.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 150.0
       }
     ]
   },
@@ -32925,6 +32913,19 @@
     ]
   },
   {
+    "ad": "Ozmo Egg 20 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "20 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7030240.png",
+    "en_dusuk_fiyat": 39.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 39.95
+      }
+    ]
+  },
+  {
     "ad": "Patos Rolls Acı Kırmızı Biber Aromalı Mısır Cipsi 135 Gr",
     "ana_kategori": "Cips",
     "agirlik_hacim": "135 GR",
@@ -33050,19 +33051,6 @@
       {
         "market": "bim",
         "fiyat": 105.0
-      }
-    ]
-  },
-  {
-    "ad": "Doritos Storm Avantaj Paketi 346 Gr",
-    "ana_kategori": "Cips",
-    "agirlik_hacim": "346 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 150.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 150.0
       }
     ]
   },
@@ -34603,6 +34591,19 @@
     ]
   },
   {
+    "ad": "Ülker 9 Kat Tat Fındıklı Gofret 936 Gr",
+    "ana_kategori": "Gofret",
+    "agirlik_hacim": "936 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30095760.png",
+    "en_dusuk_fiyat": 10.15,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 10.15
+      }
+    ]
+  },
+  {
     "ad": "Migros Kürecik Meyve Aromalı Çiğnenebilir Şekerleme 25 Gr",
     "ana_kategori": "Sakız ve Şekerleme",
     "agirlik_hacim": "25 GR",
@@ -34625,31 +34626,6 @@
       {
         "market": "migros",
         "fiyat": 13.5
-      }
-    ]
-  },
-  {
-    "ad": "Ülker Çikolata Fındık Rüyası 40 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "40.5 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/27000367.jpg",
-    "en_dusuk_fiyat": 21.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 21.0
-      },
-      {
-        "market": "migros",
-        "fiyat": 27.95
-      },
-      {
-        "market": "a101",
-        "fiyat": 32.5
-      },
-      {
-        "market": "tarim_kredi",
-        "fiyat": 34.9
       }
     ]
   },
@@ -34762,6 +34738,19 @@
       {
         "market": "migros",
         "fiyat": 69.9
+      }
+    ]
+  },
+  {
+    "ad": "Oylum Petibör Bisküvi 1 Kg",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/17003257.png",
+    "en_dusuk_fiyat": 75.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 75.0
       }
     ]
   },
@@ -34891,19 +34880,6 @@
     ]
   },
   {
-    "ad": "Algida Cadde İsviçre Çikolata/Karamel/Muz Dondurma 1.105 Lt",
-    "ana_kategori": "Dondurmalar",
-    "agirlik_hacim": "1.105 LT",
-    "resim": null,
-    "en_dusuk_fiyat": 275.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 275.0
-      }
-    ]
-  },
-  {
     "ad": "Ece Çıtır Kadayıf ve Bütün Antep Fıstıklı 300 Gr",
     "ana_kategori": "Çikolata",
     "agirlik_hacim": "300 GR",
@@ -34913,19 +34889,6 @@
       {
         "market": "carrefour",
         "fiyat": 400.0
-      }
-    ]
-  },
-  {
-    "ad": "Ülker 9 Kat Tat Fındıklı Gofret 936 Gr",
-    "ana_kategori": "Gofret",
-    "agirlik_hacim": "936 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30095760.png",
-    "en_dusuk_fiyat": 10.15,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 10.15
       }
     ]
   },
@@ -34977,6 +34940,19 @@
     ]
   },
   {
+    "ad": "Eti Burçak Sütlü Kremalı Yulaflı 100 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "100 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/7010113.jpg",
+    "en_dusuk_fiyat": 19.9,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 19.9
+      }
+    ]
+  },
+  {
     "ad": "Ozmo Hoppo Çilek Kremalı Bisküvi 40 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "40 GR",
@@ -34986,6 +34962,31 @@
       {
         "market": "bim",
         "fiyat": 21.0
+      }
+    ]
+  },
+  {
+    "ad": "Ülker Çikolata Fındık Rüyası 40 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "40.5 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/27000367.jpg",
+    "en_dusuk_fiyat": 21.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 21.0
+      },
+      {
+        "market": "migros",
+        "fiyat": 27.95
+      },
+      {
+        "market": "a101",
+        "fiyat": 32.5
+      },
+      {
+        "market": "tarim_kredi",
+        "fiyat": 34.9
       }
     ]
   },
@@ -35093,23 +35094,6 @@
     ]
   },
   {
-    "ad": "Dr. Oetker Kakaolu Puding 196 Gr",
-    "ana_kategori": "Tatlılar",
-    "agirlik_hacim": "196 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/28000145.png",
-    "en_dusuk_fiyat": 54.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 54.5
-      },
-      {
-        "market": "bim",
-        "fiyat": 54.5
-      }
-    ]
-  },
-  {
     "ad": "Dr. Oetker Cheesecake Yap 222 Gr",
     "ana_kategori": "Tatlılar",
     "agirlik_hacim": "222 GR",
@@ -35123,19 +35107,6 @@
       {
         "market": "migros",
         "fiyat": 84.95
-      }
-    ]
-  },
-  {
-    "ad": "Lay's Baharatlı ve Süzme Peynirli Patates Cipsi 125 Gr",
-    "ana_kategori": "Cips",
-    "agirlik_hacim": "125 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bim/501015.jpg",
-    "en_dusuk_fiyat": 64.5,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 64.5
       }
     ]
   },
@@ -35166,19 +35137,6 @@
       {
         "market": "migros",
         "fiyat": 84.95
-      }
-    ]
-  },
-  {
-    "ad": "Oylum Petibör Bisküvi 1 Kg",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/17003257.png",
-    "en_dusuk_fiyat": 75.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 75.0
       }
     ]
   },
@@ -35235,6 +35193,19 @@
     ]
   },
   {
+    "ad": "Algida Cadde İsviçre Çikolata/Karamel/Muz Dondurma 1.105 Lt",
+    "ana_kategori": "Dondurmalar",
+    "agirlik_hacim": "1.105 LT",
+    "resim": null,
+    "en_dusuk_fiyat": 275.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 275.0
+      }
+    ]
+  },
+  {
     "ad": "Wefood Beyaz Kinoa 300 Gr",
     "ana_kategori": "Kuruyemiş ve Kuru Meyve",
     "agirlik_hacim": "300 GR",
@@ -35244,6 +35215,19 @@
       {
         "market": "carrefour",
         "fiyat": 324.9
+      }
+    ]
+  },
+  {
+    "ad": "Patiswiss Çilekli Yumuşak Şekerleme Dolgulu Bitter Çikolata 105 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "105 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/7031347.jpg",
+    "en_dusuk_fiyat": 329.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 329.95
       }
     ]
   },
@@ -35334,19 +35318,6 @@
       {
         "market": "a101",
         "fiyat": 19.0
-      }
-    ]
-  },
-  {
-    "ad": "Eti Burçak Sütlü Kremalı Yulaflı 100 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "100 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/7010113.jpg",
-    "en_dusuk_fiyat": 19.9,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 19.9
       }
     ]
   },
@@ -35514,6 +35485,23 @@
     ]
   },
   {
+    "ad": "Dr. Oetker Kakaolu Puding 196 Gr",
+    "ana_kategori": "Tatlılar",
+    "agirlik_hacim": "196 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/28000145.png",
+    "en_dusuk_fiyat": 54.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 54.5
+      },
+      {
+        "market": "bim",
+        "fiyat": 54.5
+      }
+    ]
+  },
+  {
     "ad": "Evliya Bayram Kahve Meyveli Sütlü Sert Şeker 500 Gr",
     "ana_kategori": "Sakız ve Şekerleme",
     "agirlik_hacim": "500 GR",
@@ -35548,6 +35536,19 @@
     "market_fiyatlari": [
       {
         "market": "a101",
+        "fiyat": 64.5
+      }
+    ]
+  },
+  {
+    "ad": "Lay's Baharatlı ve Süzme Peynirli Patates Cipsi 125 Gr",
+    "ana_kategori": "Cips",
+    "agirlik_hacim": "125 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bim/501015.jpg",
+    "en_dusuk_fiyat": 64.5,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
         "fiyat": 64.5
       }
     ]
@@ -35621,19 +35622,6 @@
       {
         "market": "carrefour",
         "fiyat": 132.93
-      }
-    ]
-  },
-  {
-    "ad": "Patiswiss Çilekli Yumuşak Şekerleme Dolgulu Bitter Çikolata 105 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "105 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/7031347.jpg",
-    "en_dusuk_fiyat": 329.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 329.95
       }
     ]
   },
@@ -35818,6 +35806,23 @@
     ]
   },
   {
+    "ad": "Eti Pötibör 400 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "400 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30050327.jpg",
+    "en_dusuk_fiyat": 44.07,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 44.07
+      },
+      {
+        "market": "migros",
+        "fiyat": 61.95
+      }
+    ]
+  },
+  {
     "ad": "Biscolata Pia Çikolatalı 100 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "100 GR",
@@ -35913,27 +35918,6 @@
       {
         "market": "carrefour",
         "fiyat": 64.99
-      }
-    ]
-  },
-  {
-    "ad": "Ülker Altınbaşak Grissini Kepekli 125 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "125 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 65.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 65.0
-      },
-      {
-        "market": "sok",
-        "fiyat": 65.0
-      },
-      {
-        "market": "tarim_kredi",
-        "fiyat": 65.0
       }
     ]
   },
@@ -36140,6 +36124,19 @@
     ]
   },
   {
+    "ad": "Nestlé 1927 Çifte Kavrulmuş Fındıklı Gofret 31 Gr",
+    "ana_kategori": "Gofret",
+    "agirlik_hacim": "31 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/7034589.jpg",
+    "en_dusuk_fiyat": 29.5,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 29.5
+      }
+    ]
+  },
+  {
     "ad": "Pakmaya Magnolia Puding 125 Gr",
     "ana_kategori": "Tatlılar",
     "agirlik_hacim": "125 GR",
@@ -36187,23 +36184,6 @@
     ]
   },
   {
-    "ad": "Eti Pötibör 400 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "400 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30050327.jpg",
-    "en_dusuk_fiyat": 44.07,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 44.07
-      },
-      {
-        "market": "migros",
-        "fiyat": 61.95
-      }
-    ]
-  },
-  {
     "ad": "Greta Közlenmiş Kırmızı Biberli Kraker 120 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "120 GR",
@@ -36213,6 +36193,27 @@
       {
         "market": "migros",
         "fiyat": 54.95
+      }
+    ]
+  },
+  {
+    "ad": "Ülker Altınbaşak Grissini Kepekli 125 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "125 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 65.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 65.0
+      },
+      {
+        "market": "sok",
+        "fiyat": 65.0
+      },
+      {
+        "market": "tarim_kredi",
+        "fiyat": 65.0
       }
     ]
   },
@@ -36364,23 +36365,6 @@
     ]
   },
   {
-    "ad": "Toblerone Cheesecake 2x85 Gr",
-    "ana_kategori": "Tatlılar",
-    "agirlik_hacim": "170 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/sok/162243.jpg",
-    "en_dusuk_fiyat": 379.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 379.95
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 398.9
-      }
-    ]
-  },
-  {
     "ad": "Eti Popkek Vişneli 60 Gr",
     "ana_kategori": "Kek",
     "agirlik_hacim": "60 GR",
@@ -36446,19 +36430,6 @@
       {
         "market": "migros",
         "fiyat": 29.5
-      }
-    ]
-  },
-  {
-    "ad": "Ülker Dido Trio Beyaz Sütlü Bitter Çikolatalı Gofret 36 Gr",
-    "ana_kategori": "Gofret",
-    "agirlik_hacim": "36.5 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7160186.png",
-    "en_dusuk_fiyat": 30.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 30.0
       }
     ]
   },
@@ -36561,31 +36532,6 @@
     ]
   },
   {
-    "ad": "Eti Petit Beurre Kakao Kremalı 270 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "270 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/sok/143631.jpg",
-    "en_dusuk_fiyat": 49.7,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 49.7
-      },
-      {
-        "market": "sok",
-        "fiyat": 54.95
-      },
-      {
-        "market": "tarim_kredi",
-        "fiyat": 69.0
-      },
-      {
-        "market": "migros",
-        "fiyat": 69.95
-      }
-    ]
-  },
-  {
     "ad": "Eti Petito Mini 72 Gr",
     "ana_kategori": "Çikolata",
     "agirlik_hacim": "72 GR",
@@ -36616,15 +36562,28 @@
     ]
   },
   {
-    "ad": "Haribo Berries 175 Gr",
-    "ana_kategori": "Sakız ve Şekerleme",
-    "agirlik_hacim": "175 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7111201.png",
-    "en_dusuk_fiyat": 79.95,
+    "ad": "Humm Organic Tahin Pekmez Kurabiye 55 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "55 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30457460.png",
+    "en_dusuk_fiyat": 84.9,
     "market_fiyatlari": [
       {
-        "market": "migros",
-        "fiyat": 79.95
+        "market": "carrefour",
+        "fiyat": 84.9
+      }
+    ]
+  },
+  {
+    "ad": "Lezzethane Süt Kaymaklı Kurabiye 400 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "400 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/702049.png",
+    "en_dusuk_fiyat": 90.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 90.0
       }
     ]
   },
@@ -36758,6 +36717,23 @@
     ]
   },
   {
+    "ad": "Toblerone Cheesecake 2x85 Gr",
+    "ana_kategori": "Tatlılar",
+    "agirlik_hacim": "170 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/sok/162243.jpg",
+    "en_dusuk_fiyat": 379.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 379.95
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 398.9
+      }
+    ]
+  },
+  {
     "ad": "Damla Karışık Meyveli Yumuşak Şeker Licorice 30 Gr",
     "ana_kategori": "Sakız ve Şekerleme",
     "agirlik_hacim": "30 GR",
@@ -36839,6 +36815,19 @@
     ]
   },
   {
+    "ad": "Tarım Kredi Çok Tahıllı Pirinç Patlağı 60 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "60 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/101280.jpg",
+    "en_dusuk_fiyat": 21.0,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 21.0
+      }
+    ]
+  },
+  {
     "ad": "Dr. Oetker Tatlı Sos Vanilinli 80 Gr",
     "ana_kategori": "Tatlılar",
     "agirlik_hacim": "80 GR",
@@ -36865,19 +36854,15 @@
     ]
   },
   {
-    "ad": "Koska Dondurma Külah 36 Gr",
-    "ana_kategori": "Dondurmalar",
-    "agirlik_hacim": "36 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/11570087.jpg",
-    "en_dusuk_fiyat": 34.95,
+    "ad": "Ülker Dido Trio Beyaz Sütlü Bitter Çikolatalı Gofret 36 Gr",
+    "ana_kategori": "Gofret",
+    "agirlik_hacim": "36.5 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7160186.png",
+    "en_dusuk_fiyat": 30.0,
     "market_fiyatlari": [
       {
-        "market": "carrefour",
-        "fiyat": 34.95
-      },
-      {
         "market": "migros",
-        "fiyat": 39.95
+        "fiyat": 30.0
       }
     ]
   },
@@ -36891,6 +36876,31 @@
       {
         "market": "migros",
         "fiyat": 47.5
+      }
+    ]
+  },
+  {
+    "ad": "Eti Petit Beurre Kakao Kremalı 270 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "270 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/sok/143631.jpg",
+    "en_dusuk_fiyat": 49.7,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 49.7
+      },
+      {
+        "market": "sok",
+        "fiyat": 54.95
+      },
+      {
+        "market": "tarim_kredi",
+        "fiyat": 69.0
+      },
+      {
+        "market": "migros",
+        "fiyat": 69.95
       }
     ]
   },
@@ -36994,19 +37004,6 @@
     ]
   },
   {
-    "ad": "Humm Organic Tahin Pekmez Kurabiye 55 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "55 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30457460.png",
-    "en_dusuk_fiyat": 84.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 84.9
-      }
-    ]
-  },
-  {
     "ad": "Tadım Çiğ Badem 90 Gr",
     "ana_kategori": "Kuruyemiş ve Kuru Meyve",
     "agirlik_hacim": "90 GR",
@@ -37016,19 +37013,6 @@
       {
         "market": "carrefour",
         "fiyat": 88.0
-      }
-    ]
-  },
-  {
-    "ad": "Lezzethane Süt Kaymaklı Kurabiye 400 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "400 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/702049.png",
-    "en_dusuk_fiyat": 90.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 90.0
       }
     ]
   },
@@ -37154,19 +37138,6 @@
     ]
   },
   {
-    "ad": "Tarım Kredi Çok Tahıllı Pirinç Patlağı 60 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "60 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/101280.jpg",
-    "en_dusuk_fiyat": 21.0,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 21.0
-      }
-    ]
-  },
-  {
     "ad": "Paşa Kaju & Cranberry Karışık Kuruyemiş 40 Gr",
     "ana_kategori": "Kuruyemiş ve Kuru Meyve",
     "agirlik_hacim": "40 GR",
@@ -37193,6 +37164,36 @@
     ]
   },
   {
+    "ad": "Koska Dondurma Külah 36 Gr",
+    "ana_kategori": "Dondurmalar",
+    "agirlik_hacim": "36 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/11570087.jpg",
+    "en_dusuk_fiyat": 34.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 34.95
+      },
+      {
+        "market": "migros",
+        "fiyat": 39.95
+      }
+    ]
+  },
+  {
+    "ad": "Vivident Storming Karpuz Sakız 33 Gr",
+    "ana_kategori": "Sakız ve Şekerleme",
+    "agirlik_hacim": "33 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/27000183.png",
+    "en_dusuk_fiyat": 39.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 39.5
+      }
+    ]
+  },
+  {
     "ad": "Eti Paykek Meyveli 200 Gr",
     "ana_kategori": "Kek",
     "agirlik_hacim": "200 GR",
@@ -37206,19 +37207,6 @@
       {
         "market": "migros",
         "fiyat": 56.9
-      }
-    ]
-  },
-  {
-    "ad": "Carrefour Acı Baharat Çeşnili Patates Cipsi 135 Gr",
-    "ana_kategori": "Cips",
-    "agirlik_hacim": "135 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30478095.jpg",
-    "en_dusuk_fiyat": 45.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 45.0
       }
     ]
   },
@@ -37537,19 +37525,6 @@
     ]
   },
   {
-    "ad": "Vivident Storming Karpuz Sakız 33 Gr",
-    "ana_kategori": "Sakız ve Şekerleme",
-    "agirlik_hacim": "33 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/27000183.png",
-    "en_dusuk_fiyat": 39.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 39.5
-      }
-    ]
-  },
-  {
     "ad": "Falım Damla Sakızı Aromalı Şekersiz 5'li Sakız 35 Gr",
     "ana_kategori": "Sakız ve Şekerleme",
     "agirlik_hacim": "35 GR",
@@ -37559,6 +37534,19 @@
       {
         "market": "migros",
         "fiyat": 42.95
+      }
+    ]
+  },
+  {
+    "ad": "Carrefour Acı Baharat Çeşnili Patates Cipsi 135 Gr",
+    "ana_kategori": "Cips",
+    "agirlik_hacim": "135 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30478095.jpg",
+    "en_dusuk_fiyat": 45.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 45.0
       }
     ]
   },
@@ -37852,23 +37840,6 @@
     ]
   },
   {
-    "ad": "Bubblicious Çilekli Sakız 38 Gr",
-    "ana_kategori": "Sakız ve Şekerleme",
-    "agirlik_hacim": "38 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/7122113.jpg",
-    "en_dusuk_fiyat": 12.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 12.0
-      },
-      {
-        "market": "migros",
-        "fiyat": 30.95
-      }
-    ]
-  },
-  {
     "ad": "Atıştır Susamlı Çubuk Kraker 100 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "100 GR",
@@ -38102,6 +38073,23 @@
     ]
   },
   {
+    "ad": "Ülker Çokomel Kakaolu Marshmallowlu Bisküvi 420 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "420 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/17002368.jpg",
+    "en_dusuk_fiyat": 135.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 135.0
+      },
+      {
+        "market": "migros",
+        "fiyat": 144.9
+      }
+    ]
+  },
+  {
     "ad": "Lei Badem Kurabiyesi Kakaolu 90 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "90 GR",
@@ -38176,6 +38164,23 @@
       {
         "market": "a101",
         "fiyat": 11.5
+      }
+    ]
+  },
+  {
+    "ad": "Bubblicious Çilekli Sakız 38 Gr",
+    "ana_kategori": "Sakız ve Şekerleme",
+    "agirlik_hacim": "38 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/7122113.jpg",
+    "en_dusuk_fiyat": 12.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 12.0
+      },
+      {
+        "market": "migros",
+        "fiyat": 30.95
       }
     ]
   },
@@ -38421,23 +38426,6 @@
     ]
   },
   {
-    "ad": "Ülker Çokomel Kakaolu Marshmallowlu Bisküvi 420 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "420 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/17002368.jpg",
-    "en_dusuk_fiyat": 135.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 135.0
-      },
-      {
-        "market": "migros",
-        "fiyat": 144.9
-      }
-    ]
-  },
-  {
     "ad": "The LifeCo Chia Puding 53 Gr",
     "ana_kategori": "Tatlılar",
     "agirlik_hacim": "53 GR",
@@ -38580,6 +38568,19 @@
     ]
   },
   {
+    "ad": "Granio Tropik Meyveli Çikolata Kaplamalı Bar 40 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "40 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/124652.jpg",
+    "en_dusuk_fiyat": 27.5,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 27.5
+      }
+    ]
+  },
+  {
     "ad": "Star Krak Kesekağıtlı Sade Popcorn 150 Gr",
     "ana_kategori": "Cips",
     "agirlik_hacim": "150 GR",
@@ -38645,19 +38646,6 @@
       {
         "market": "tarim_kredi",
         "fiyat": 59.5
-      }
-    ]
-  },
-  {
-    "ad": "Ülker İkram Fındıklı Bisküvi 3x84 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "252 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 64.0,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 64.0
       }
     ]
   },
@@ -38896,35 +38884,6 @@
     ]
   },
   {
-    "ad": "Eti Gong 64 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "64 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/17001826.png",
-    "en_dusuk_fiyat": 18.52,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 18.52
-      },
-      {
-        "market": "a101",
-        "fiyat": 20.5
-      },
-      {
-        "market": "migros",
-        "fiyat": 21.5
-      },
-      {
-        "market": "bim",
-        "fiyat": 23.5
-      },
-      {
-        "market": "tarim_kredi",
-        "fiyat": 26.0
-      }
-    ]
-  },
-  {
     "ad": "Probis Atıştırmalık Sandviç Bisküvi 75 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "75 GR",
@@ -38973,36 +38932,6 @@
       {
         "market": "migros",
         "fiyat": 24.95
-      }
-    ]
-  },
-  {
-    "ad": "Granio Tropik Meyveli Çikolata Kaplamalı Bar 40 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "40 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/124652.jpg",
-    "en_dusuk_fiyat": 27.5,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 27.5
-      }
-    ]
-  },
-  {
-    "ad": "Kent Jelibon Sour Patch Strawberry 80 Gr",
-    "ana_kategori": "Sakız ve Şekerleme",
-    "agirlik_hacim": "80 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30473980.png",
-    "en_dusuk_fiyat": 30.55,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 30.55
-      },
-      {
-        "market": "migros",
-        "fiyat": 32.95
       }
     ]
   },
@@ -39062,6 +38991,19 @@
     ]
   },
   {
+    "ad": "Toy Toy Sürpriz Yumurta 2x20 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "40 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/sokimages/76060.png",
+    "en_dusuk_fiyat": 49.95,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 49.95
+      }
+    ]
+  },
+  {
     "ad": "Tadelle Sütlü Fındıklı Tablet Çikolata 60 Gr",
     "ana_kategori": "Çikolata",
     "agirlik_hacim": "60 GR",
@@ -39092,6 +39034,32 @@
       {
         "market": "tarim_kredi",
         "fiyat": 64.0
+      }
+    ]
+  },
+  {
+    "ad": "Ülker İkram Fındıklı Bisküvi 3x84 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "252 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 64.0,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 64.0
+      }
+    ]
+  },
+  {
+    "ad": "Torku Petibör Bisküvi 700 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "700 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1702539.png",
+    "en_dusuk_fiyat": 69.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 69.0
       }
     ]
   },
@@ -39221,19 +39189,6 @@
     ]
   },
   {
-    "ad": "Miskos Kakaolu Kağıt Helva 45 Gr",
-    "ana_kategori": "Gofret",
-    "agirlik_hacim": "45 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/17002725.png",
-    "en_dusuk_fiyat": 12.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 12.5
-      }
-    ]
-  },
-  {
     "ad": "Uno Çikolata Kremalı Kruvasan 30 Gr",
     "ana_kategori": "Kek",
     "agirlik_hacim": "30 GR",
@@ -39285,6 +39240,35 @@
     ]
   },
   {
+    "ad": "Eti Gong 64 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "64 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/17001826.png",
+    "en_dusuk_fiyat": 18.52,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 18.52
+      },
+      {
+        "market": "a101",
+        "fiyat": 20.5
+      },
+      {
+        "market": "migros",
+        "fiyat": 21.5
+      },
+      {
+        "market": "bim",
+        "fiyat": 23.5
+      },
+      {
+        "market": "tarim_kredi",
+        "fiyat": 26.0
+      }
+    ]
+  },
+  {
     "ad": "Granio Kırmızı Meyveli Çikolata Kaplamalı Bar 40 Gr",
     "ana_kategori": "Çikolata",
     "agirlik_hacim": "40 GR",
@@ -39307,6 +39291,23 @@
       {
         "market": "carrefour",
         "fiyat": 30.45
+      }
+    ]
+  },
+  {
+    "ad": "Kent Jelibon Sour Patch Strawberry 80 Gr",
+    "ana_kategori": "Sakız ve Şekerleme",
+    "agirlik_hacim": "80 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30473980.png",
+    "en_dusuk_fiyat": 30.55,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 30.55
+      },
+      {
+        "market": "migros",
+        "fiyat": 32.95
       }
     ]
   },
@@ -39350,19 +39351,6 @@
       {
         "market": "carrefour",
         "fiyat": 42.5
-      }
-    ]
-  },
-  {
-    "ad": "Toy Toy Sürpriz Yumurta 2x20 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "40 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/sokimages/76060.png",
-    "en_dusuk_fiyat": 49.95,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 49.95
       }
     ]
   },
@@ -39436,19 +39424,6 @@
       {
         "market": "carrefour",
         "fiyat": 67.5
-      }
-    ]
-  },
-  {
-    "ad": "Torku Petibör Bisküvi 700 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "700 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1702539.png",
-    "en_dusuk_fiyat": 69.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 69.0
       }
     ]
   },
@@ -39544,6 +39519,19 @@
     ]
   },
   {
+    "ad": "Ritter Sport Çilek-Yoğurt Dolgulu Çikolata 100 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "100 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30031553.png",
+    "en_dusuk_fiyat": 349.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 349.95
+      }
+    ]
+  },
+  {
     "ad": "Lindt Excellence Intense Orange Çikolata 100 Gr",
     "ana_kategori": "Çikolata",
     "agirlik_hacim": "100 GR",
@@ -39579,6 +39567,19 @@
       {
         "market": "carrefour",
         "fiyat": 11.03
+      }
+    ]
+  },
+  {
+    "ad": "Miskos Kakaolu Kağıt Helva 45 Gr",
+    "ana_kategori": "Gofret",
+    "agirlik_hacim": "45 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/17002725.png",
+    "en_dusuk_fiyat": 12.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 12.5
       }
     ]
   },
@@ -39879,19 +39880,6 @@
       {
         "market": "carrefour",
         "fiyat": 250.0
-      }
-    ]
-  },
-  {
-    "ad": "Ritter Sport Çilek-Yoğurt Dolgulu Çikolata 100 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "100 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30031553.png",
-    "en_dusuk_fiyat": 349.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 349.95
       }
     ]
   },
@@ -41160,15 +41148,15 @@
     ]
   },
   {
-    "ad": "Algida Keyif Vişne Ve Limon Dondurma 750 Ml",
-    "ana_kategori": "Dondurmalar",
-    "agirlik_hacim": "750 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/bim/1101430.jpg",
-    "en_dusuk_fiyat": 100.0,
+    "ad": "Guru Moda Glutensiz Çörekotlu Kraker 80 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "80 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30397711.png",
+    "en_dusuk_fiyat": 88.99,
     "market_fiyatlari": [
       {
-        "market": "bim",
-        "fiyat": 100.0
+        "market": "carrefour",
+        "fiyat": 88.99
       }
     ]
   },
@@ -41509,15 +41497,15 @@
     ]
   },
   {
-    "ad": "Guru Moda Glutensiz Çörekotlu Kraker 80 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "80 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30397711.png",
-    "en_dusuk_fiyat": 88.99,
+    "ad": "Algida Keyif Vişne Ve Limon Dondurma 750 Ml",
+    "ana_kategori": "Dondurmalar",
+    "agirlik_hacim": "750 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/bim/1101430.jpg",
+    "en_dusuk_fiyat": 100.0,
     "market_fiyatlari": [
       {
-        "market": "carrefour",
-        "fiyat": 88.99
+        "market": "bim",
+        "fiyat": 100.0
       }
     ]
   },
@@ -42032,6 +42020,19 @@
     ]
   },
   {
+    "ad": "Pakmaya Sütlaç 155 Gr",
+    "ana_kategori": "Tatlılar",
+    "agirlik_hacim": "155 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30115971.png",
+    "en_dusuk_fiyat": 26.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 26.95
+      }
+    ]
+  },
+  {
     "ad": "Toybox Ekşi Meyve Aromalı Sakız 60 Gr",
     "ana_kategori": "Sakız ve Şekerleme",
     "agirlik_hacim": "60 GR",
@@ -42084,10 +42085,10 @@
     ]
   },
   {
-    "ad": "Haribo Veggymix Yumuşak Şeker 80 Gr",
+    "ad": "Haribo Altın Ayıcık 80 Gr",
     "ana_kategori": "Sakız ve Şekerleme",
     "agirlik_hacim": "80 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30345218.png",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30033808.png",
     "en_dusuk_fiyat": 43.0,
     "market_fiyatlari": [
       {
@@ -42097,10 +42098,10 @@
     ]
   },
   {
-    "ad": "Haribo Altın Ayıcık 80 Gr",
+    "ad": "Haribo Veggymix Yumuşak Şeker 80 Gr",
     "ana_kategori": "Sakız ve Şekerleme",
     "agirlik_hacim": "80 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30033808.png",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30345218.png",
     "en_dusuk_fiyat": 43.0,
     "market_fiyatlari": [
       {
@@ -42171,19 +42172,6 @@
       {
         "market": "tarim_kredi",
         "fiyat": 79.9
-      }
-    ]
-  },
-  {
-    "ad": "Algida Magnum Double Chill 85 Ml",
-    "ana_kategori": "Dondurmalar",
-    "agirlik_hacim": "85 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30461937.png",
-    "en_dusuk_fiyat": 90.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 90.0
       }
     ]
   },
@@ -42339,15 +42327,15 @@
     ]
   },
   {
-    "ad": "Pakmaya Sütlaç 155 Gr",
-    "ana_kategori": "Tatlılar",
-    "agirlik_hacim": "155 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30115971.png",
-    "en_dusuk_fiyat": 26.95,
+    "ad": "Cino Para File Çikolata 33 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "33 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/27002340.png",
+    "en_dusuk_fiyat": 27.5,
     "market_fiyatlari": [
       {
-        "market": "carrefour",
-        "fiyat": 26.95
+        "market": "a101",
+        "fiyat": 27.5
       }
     ]
   },
@@ -42451,19 +42439,6 @@
       {
         "market": "migros",
         "fiyat": 49.5
-      }
-    ]
-  },
-  {
-    "ad": "Algida Volcano 83 Ml",
-    "ana_kategori": "Dondurmalar",
-    "agirlik_hacim": "83 ML",
-    "resim": null,
-    "en_dusuk_fiyat": 50.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 50.0
       }
     ]
   },
@@ -42572,6 +42547,19 @@
       {
         "market": "a101",
         "fiyat": 83.0
+      }
+    ]
+  },
+  {
+    "ad": "Algida Magnum Double Chill 85 Ml",
+    "ana_kategori": "Dondurmalar",
+    "agirlik_hacim": "85 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30461937.png",
+    "en_dusuk_fiyat": 90.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 90.0
       }
     ]
   },
@@ -42722,19 +42710,6 @@
     ]
   },
   {
-    "ad": "Cino Para File Çikolata 33 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "33 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/27002340.png",
-    "en_dusuk_fiyat": 27.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 27.5
-      }
-    ]
-  },
-  {
     "ad": "Haribo Solucan 80 Gr",
     "ana_kategori": "Sakız ve Şekerleme",
     "agirlik_hacim": "80 GR",
@@ -42761,6 +42736,19 @@
       {
         "market": "a101",
         "fiyat": 45.0
+      }
+    ]
+  },
+  {
+    "ad": "Algida Volcano 83 Ml",
+    "ana_kategori": "Dondurmalar",
+    "agirlik_hacim": "83 ML",
+    "resim": null,
+    "en_dusuk_fiyat": 50.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 50.0
       }
     ]
   },
@@ -42812,6 +42800,19 @@
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "160 GR",
     "resim": null,
+    "en_dusuk_fiyat": 64.75,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 64.75
+      }
+    ]
+  },
+  {
+    "ad": "Çizi Çıtır Peynir Ve Biftek Parti Boy 160 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "160 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30501728.jpg",
     "en_dusuk_fiyat": 64.75,
     "market_fiyatlari": [
       {
@@ -42951,19 +42952,6 @@
       {
         "market": "carrefour",
         "fiyat": 289.9
-      }
-    ]
-  },
-  {
-    "ad": "Godiva Chocolate Domes Double Çikolatalı 123 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "123 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30251068.png",
-    "en_dusuk_fiyat": 354.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 354.95
       }
     ]
   },
@@ -43225,19 +43213,6 @@
     ]
   },
   {
-    "ad": "Eti Pronot Hindistan Cevizli Kurabiye 85 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "85 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/7012397.jpg",
-    "en_dusuk_fiyat": 73.9,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 73.9
-      }
-    ]
-  },
-  {
     "ad": "Bonheur Freeze Dried İncir 20 Gr",
     "ana_kategori": "Kuruyemiş ve Kuru Meyve",
     "agirlik_hacim": "20 GR",
@@ -43329,6 +43304,19 @@
     ]
   },
   {
+    "ad": "Godiva Chocolate Domes Double Çikolatalı 123 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "123 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30251068.png",
+    "en_dusuk_fiyat": 354.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 354.95
+      }
+    ]
+  },
+  {
     "ad": "Cezerye 50 Gr",
     "ana_kategori": "Sakız ve Şekerleme",
     "agirlik_hacim": "50 GR",
@@ -43389,19 +43377,6 @@
     ]
   },
   {
-    "ad": "Kiddy Çikolata Sürpriz Yumurta 20 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "20 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/27000410.jpg",
-    "en_dusuk_fiyat": 23.75,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 23.75
-      }
-    ]
-  },
-  {
     "ad": "Eti Tutku Kakao Kremalı 100 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "100 GR",
@@ -43424,6 +43399,27 @@
       {
         "market": "a101",
         "fiyat": 29.0
+      }
+    ]
+  },
+  {
+    "ad": "Eti Tartini Frambuazlı 114 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "114 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30464862.png",
+    "en_dusuk_fiyat": 30.63,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 30.63
+      },
+      {
+        "market": "tarim_kredi",
+        "fiyat": 36.0
+      },
+      {
+        "market": "migros",
+        "fiyat": 42.9
       }
     ]
   },
@@ -43784,6 +43780,19 @@
     ]
   },
   {
+    "ad": "Kiddy Çikolata Sürpriz Yumurta 20 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "20 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/27000410.jpg",
+    "en_dusuk_fiyat": 23.75,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 23.75
+      }
+    ]
+  },
+  {
     "ad": "Ülker Probis Kremalı Bisküvi 75 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "75 GR",
@@ -43823,27 +43832,6 @@
       {
         "market": "sok",
         "fiyat": 26.5
-      }
-    ]
-  },
-  {
-    "ad": "Eti Tartini Frambuazlı 114 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "114 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30464862.png",
-    "en_dusuk_fiyat": 30.63,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 30.63
-      },
-      {
-        "market": "tarim_kredi",
-        "fiyat": 36.0
-      },
-      {
-        "market": "migros",
-        "fiyat": 42.9
       }
     ]
   },
@@ -44797,6 +44785,19 @@
     ]
   },
   {
+    "ad": "Dubigof Kakao Kaplı Antep Fıstıklı Gofret 36 Gr",
+    "ana_kategori": "Gofret",
+    "agirlik_hacim": "36 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 8.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 8.5
+      }
+    ]
+  },
+  {
     "ad": "Xroll Beyaz Çikolatalı Gofret 36 Gr",
     "ana_kategori": "Gofret",
     "agirlik_hacim": "36 GR",
@@ -45107,23 +45108,6 @@
     ]
   },
   {
-    "ad": "Tadım Kokteyl 180 Gr",
-    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
-    "agirlik_hacim": "180 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/15000101.png",
-    "en_dusuk_fiyat": 183.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 183.95
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 189.5
-      }
-    ]
-  },
-  {
     "ad": "Carte D'or Bal Badem Vanilya Karamel 850 Ml",
     "ana_kategori": "Dondurmalar",
     "agirlik_hacim": "850 ML",
@@ -45146,19 +45130,6 @@
       {
         "market": "migros",
         "fiyat": 279.9
-      }
-    ]
-  },
-  {
-    "ad": "Dubigof Kakao Kaplı Antep Fıstıklı Gofret 36 Gr",
-    "ana_kategori": "Gofret",
-    "agirlik_hacim": "36 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 8.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 8.5
       }
     ]
   },
@@ -45427,6 +45398,23 @@
     ]
   },
   {
+    "ad": "Tadım Kokteyl 180 Gr",
+    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
+    "agirlik_hacim": "180 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/15000101.png",
+    "en_dusuk_fiyat": 183.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 183.95
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 189.5
+      }
+    ]
+  },
+  {
     "ad": "Carrefour Kavrulmuş Fındık İçi 150 Gr",
     "ana_kategori": "Kuruyemiş ve Kuru Meyve",
     "agirlik_hacim": "150 GR",
@@ -45638,19 +45626,6 @@
     ]
   },
   {
-    "ad": "Çilekli Orman Meyveli Minimix 180 Gr",
-    "ana_kategori": "Dondurmalar",
-    "agirlik_hacim": "180 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30099112.png",
-    "en_dusuk_fiyat": 49.5,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 49.5
-      }
-    ]
-  },
-  {
     "ad": "Nestlé Damak Çikolata 60 Gr",
     "ana_kategori": "Çikolata",
     "agirlik_hacim": "60 GR",
@@ -45798,6 +45773,19 @@
       {
         "market": "carrefour",
         "fiyat": 190.0
+      }
+    ]
+  },
+  {
+    "ad": "Simbat Antep Fıstığı 150 Gr",
+    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
+    "agirlik_hacim": "150 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/500606.png",
+    "en_dusuk_fiyat": 195.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 195.0
       }
     ]
   },
@@ -46074,6 +46062,19 @@
     ]
   },
   {
+    "ad": "Çilekli Orman Meyveli Minimix 180 Gr",
+    "ana_kategori": "Dondurmalar",
+    "agirlik_hacim": "180 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30099112.png",
+    "en_dusuk_fiyat": 49.5,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 49.5
+      }
+    ]
+  },
+  {
     "ad": "Vivident Xylit Storming Damla Sakızlı 33 Gr",
     "ana_kategori": "Sakız ve Şekerleme",
     "agirlik_hacim": "33 GR",
@@ -46143,15 +46144,19 @@
     ]
   },
   {
-    "ad": "Mis Gold Kaymaklı Yarım Yağlı 1 Lt",
-    "ana_kategori": "Dondurmalar",
-    "agirlik_hacim": "1 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/sokimages/40075.png",
-    "en_dusuk_fiyat": 165.0,
+    "ad": "Milka Bonibon 3'lü Paket 73 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "72.9 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30020287.png",
+    "en_dusuk_fiyat": 159.9,
     "market_fiyatlari": [
       {
-        "market": "sok",
-        "fiyat": 165.0
+        "market": "carrefour",
+        "fiyat": 159.9
+      },
+      {
+        "market": "migros",
+        "fiyat": 159.95
       }
     ]
   },
@@ -46178,19 +46183,6 @@
       {
         "market": "tarim_kredi",
         "fiyat": 194.9
-      }
-    ]
-  },
-  {
-    "ad": "Simbat Antep Fıstığı 150 Gr",
-    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
-    "agirlik_hacim": "150 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/500606.png",
-    "en_dusuk_fiyat": 195.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 195.0
       }
     ]
   },
@@ -46501,19 +46493,15 @@
     ]
   },
   {
-    "ad": "Milka Bonibon 3'lü Paket 73 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "72.9 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30020287.png",
-    "en_dusuk_fiyat": 159.9,
+    "ad": "Mis Gold Kaymaklı Yarım Yağlı 1 Lt",
+    "ana_kategori": "Dondurmalar",
+    "agirlik_hacim": "1 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/sokimages/40075.png",
+    "en_dusuk_fiyat": 165.0,
     "market_fiyatlari": [
       {
-        "market": "carrefour",
-        "fiyat": 159.9
-      },
-      {
-        "market": "migros",
-        "fiyat": 159.95
+        "market": "sok",
+        "fiyat": 165.0
       }
     ]
   },
@@ -47394,19 +47382,15 @@
     ]
   },
   {
-    "ad": "Dr. Oetker Çikolatalı Sos 98 Gr",
-    "ana_kategori": "Tatlılar",
-    "agirlik_hacim": "98 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/28000804.png",
-    "en_dusuk_fiyat": 46.0,
+    "ad": "Tada Glutensiz Mısır ve Pirinç Patlağı 60 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "60 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/17002641.png",
+    "en_dusuk_fiyat": 40.0,
     "market_fiyatlari": [
       {
-        "market": "sok",
-        "fiyat": 46.0
-      },
-      {
         "market": "a101",
-        "fiyat": 46.0
+        "fiyat": 40.0
       }
     ]
   },
@@ -47760,15 +47744,19 @@
     ]
   },
   {
-    "ad": "Tada Glutensiz Mısır ve Pirinç Patlağı 60 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "60 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/17002641.png",
-    "en_dusuk_fiyat": 40.0,
+    "ad": "Dr. Oetker Çikolatalı Sos 98 Gr",
+    "ana_kategori": "Tatlılar",
+    "agirlik_hacim": "98 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/28000804.png",
+    "en_dusuk_fiyat": 46.0,
     "market_fiyatlari": [
       {
+        "market": "sok",
+        "fiyat": 46.0
+      },
+      {
         "market": "a101",
-        "fiyat": 40.0
+        "fiyat": 46.0
       }
     ]
   },
@@ -48113,6 +48101,19 @@
     ]
   },
   {
+    "ad": "Buono Bitter Tablet Çikolata 80 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "80 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/701635.png",
+    "en_dusuk_fiyat": 39.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 39.0
+      }
+    ]
+  },
+  {
     "ad": "Eti Crax Thins Mexican Chili 110 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "110 GR",
@@ -48165,19 +48166,6 @@
       {
         "market": "carrefour",
         "fiyat": 50.45
-      }
-    ]
-  },
-  {
-    "ad": "Olips Mentollü 76 Gr",
-    "ana_kategori": "Sakız ve Şekerleme",
-    "agirlik_hacim": "76 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30063338.png",
-    "en_dusuk_fiyat": 54.38,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 54.38
       }
     ]
   },
@@ -48407,19 +48395,6 @@
     ]
   },
   {
-    "ad": "Buono Bitter Tablet Çikolata 80 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "80 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/701635.png",
-    "en_dusuk_fiyat": 39.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 39.0
-      }
-    ]
-  },
-  {
     "ad": "Eti Gong Pops Peynir Acı 50 Gr",
     "ana_kategori": "Cips",
     "agirlik_hacim": "50 GR",
@@ -48468,6 +48443,19 @@
       {
         "market": "a101",
         "fiyat": 43.0
+      }
+    ]
+  },
+  {
+    "ad": "Olips Mentollü 76 Gr",
+    "ana_kategori": "Sakız ve Şekerleme",
+    "agirlik_hacim": "76 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30063338.png",
+    "en_dusuk_fiyat": 54.38,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 54.38
       }
     ]
   },
@@ -48671,6 +48659,19 @@
     ]
   },
   {
+    "ad": "Ülker Altınbaşak Yulaflı 1.104 Kg",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "1.104 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30095832.png",
+    "en_dusuk_fiyat": 11.17,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 11.17
+      }
+    ]
+  },
+  {
     "ad": "Maximus Loading Yer Fıstıklı Çikolatalı Bar 50 Gr",
     "ana_kategori": "Çikolata",
     "agirlik_hacim": "50 GR",
@@ -48808,19 +48809,6 @@
       {
         "market": "tarim_kredi",
         "fiyat": 49.9
-      }
-    ]
-  },
-  {
-    "ad": "Ülker Fındıklı Ve Üzümlü Sütlü Çikolata 60 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "60 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 51.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 51.0
       }
     ]
   },
@@ -49079,15 +49067,19 @@
     ]
   },
   {
-    "ad": "Ülker Çizi Çıtır Peynir ve Soğan 120 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "120 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7010233.png",
-    "en_dusuk_fiyat": 40.0,
+    "ad": "Ülker Dankek Lokmalık Kakaolu 160 Gr",
+    "ana_kategori": "Kek",
+    "agirlik_hacim": "160 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/17000400.png",
+    "en_dusuk_fiyat": 41.27,
     "market_fiyatlari": [
       {
+        "market": "carrefour",
+        "fiyat": 41.27
+      },
+      {
         "market": "migros",
-        "fiyat": 40.0
+        "fiyat": 46.9
       }
     ]
   },
@@ -49195,19 +49187,6 @@
     ]
   },
   {
-    "ad": "Mis Kakao Vanilya Antep 1.5 Lt",
-    "ana_kategori": "Dondurmalar",
-    "agirlik_hacim": "1.5 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/sokimages/61318.png",
-    "en_dusuk_fiyat": 99.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 99.0
-      }
-    ]
-  },
-  {
     "ad": "Ülker Karamel Toffe 350 Gr",
     "ana_kategori": "Sakız ve Şekerleme",
     "agirlik_hacim": "350 GR",
@@ -49295,6 +49274,19 @@
       {
         "market": "a101",
         "fiyat": 220.0
+      }
+    ]
+  },
+  {
+    "ad": "Çiğ Badem İçi 300 Gr",
+    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
+    "agirlik_hacim": "300 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/8080089.png",
+    "en_dusuk_fiyat": 249.9,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 249.9
       }
     ]
   },
@@ -49437,19 +49429,15 @@
     ]
   },
   {
-    "ad": "Ülker Dankek Lokmalık Kakaolu 160 Gr",
-    "ana_kategori": "Kek",
-    "agirlik_hacim": "160 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/17000400.png",
-    "en_dusuk_fiyat": 41.27,
+    "ad": "Ülker Çizi Çıtır Peynir ve Soğan 120 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "120 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7010233.png",
+    "en_dusuk_fiyat": 40.0,
     "market_fiyatlari": [
       {
-        "market": "carrefour",
-        "fiyat": 41.27
-      },
-      {
         "market": "migros",
-        "fiyat": 46.9
+        "fiyat": 40.0
       }
     ]
   },
@@ -49532,6 +49520,19 @@
     ]
   },
   {
+    "ad": "Mis Kakao Vanilya Antep 1.5 Lt",
+    "ana_kategori": "Dondurmalar",
+    "agirlik_hacim": "1.5 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/sokimages/61318.png",
+    "en_dusuk_fiyat": 99.0,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 99.0
+      }
+    ]
+  },
+  {
     "ad": "Mentos Sours Çilekli Şeker 70 Adet",
     "ana_kategori": "Sakız ve Şekerleme",
     "agirlik_hacim": null,
@@ -49597,19 +49598,6 @@
       {
         "market": "carrefour",
         "fiyat": 199.0
-      }
-    ]
-  },
-  {
-    "ad": "Çiğ Badem İçi 300 Gr",
-    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
-    "agirlik_hacim": "300 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/8080089.png",
-    "en_dusuk_fiyat": 249.9,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 249.9
       }
     ]
   },
@@ -49828,19 +49816,6 @@
     ]
   },
   {
-    "ad": "Ülker Dankek Çay Saati Mozaik Kek 200 Gr",
-    "ana_kategori": "Kek",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30061613.png",
-    "en_dusuk_fiyat": 44.77,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 44.77
-      }
-    ]
-  },
-  {
     "ad": "Tadım Fıstıxx Ranch Soslu 180 Gr",
     "ana_kategori": "Kuruyemiş ve Kuru Meyve",
     "agirlik_hacim": "180 GR",
@@ -49863,6 +49838,19 @@
       {
         "market": "bim",
         "fiyat": 57.0
+      }
+    ]
+  },
+  {
+    "ad": "Torku Tam Yulaflı Bisküvi 375 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "375 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1701177.png",
+    "en_dusuk_fiyat": 62.9,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 62.9
       }
     ]
   },
@@ -50482,6 +50470,19 @@
     ]
   },
   {
+    "ad": "Ülker Hanımeller Karışık Tuzlu Kurabiye 150 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "150 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7017997.png",
+    "en_dusuk_fiyat": 40.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 40.0
+      }
+    ]
+  },
+  {
     "ad": "Hanımdan Hazır Kadife Tatlı 140 Gr",
     "ana_kategori": "Tatlılar",
     "agirlik_hacim": "140 GR",
@@ -50564,19 +50565,6 @@
       {
         "market": "migros",
         "fiyat": 64.5
-      }
-    ]
-  },
-  {
-    "ad": "Tadolya Çikolatalı Üzümlü Kesme Kurabiye 1 Adet",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": null,
-    "resim": null,
-    "en_dusuk_fiyat": 65.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 65.0
       }
     ]
   },
@@ -50925,19 +50913,6 @@
     ]
   },
   {
-    "ad": "Ülker Hanımeller Karışık Tuzlu Kurabiye 150 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "150 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7017997.png",
-    "en_dusuk_fiyat": 40.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 40.0
-      }
-    ]
-  },
-  {
     "ad": "Algida Maraş Cup 105 Ml",
     "ana_kategori": "Dondurmalar",
     "agirlik_hacim": "105 ML",
@@ -51029,6 +51004,19 @@
       {
         "market": "migros",
         "fiyat": 62.5
+      }
+    ]
+  },
+  {
+    "ad": "Tadolya Çikolatalı Üzümlü Kesme Kurabiye 1 Adet",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": null,
+    "resim": null,
+    "en_dusuk_fiyat": 65.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 65.0
       }
     ]
   },
@@ -52511,19 +52499,6 @@
     ]
   },
   {
-    "ad": "Bebeto Licorice Yumuşak Şeker 75 Gr",
-    "ana_kategori": "Sakız ve Şekerleme",
-    "agirlik_hacim": "75 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/702938.png",
-    "en_dusuk_fiyat": 29.5,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 29.5
-      }
-    ]
-  },
-  {
     "ad": "Xroll Muzlu Kremalı Bisküvi 4x75 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
     "agirlik_hacim": "300 GR",
@@ -52727,6 +52702,19 @@
       {
         "market": "carrefour",
         "fiyat": 96.3
+      }
+    ]
+  },
+  {
+    "ad": "Ülker Karışık Meyveli Toffee 350 Gr",
+    "ana_kategori": "Sakız ve Şekerleme",
+    "agirlik_hacim": "350 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7110346.png",
+    "en_dusuk_fiyat": 99.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 99.0
       }
     ]
   },
@@ -52941,6 +52929,19 @@
     ]
   },
   {
+    "ad": "Altıntop Mısır Soslu Kuruyemiş 300 Gr",
+    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
+    "agirlik_hacim": "300 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/15001590.png",
+    "en_dusuk_fiyat": 45.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 45.0
+      }
+    ]
+  },
+  {
     "ad": "Milkten Çikolatalı Puding 375 Gr",
     "ana_kategori": "Tatlılar",
     "agirlik_hacim": "375 GR",
@@ -53084,19 +53085,6 @@
       {
         "market": "carrefour",
         "fiyat": 96.3
-      }
-    ]
-  },
-  {
-    "ad": "Ülker Karışık Meyveli Toffee 350 Gr",
-    "ana_kategori": "Sakız ve Şekerleme",
-    "agirlik_hacim": "350 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7110346.png",
-    "en_dusuk_fiyat": 99.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 99.0
       }
     ]
   },
@@ -53298,19 +53286,6 @@
       {
         "market": "bim",
         "fiyat": 29.0
-      }
-    ]
-  },
-  {
-    "ad": "Ege Tepsi Kadayıf 200 Gr",
-    "ana_kategori": "Tatlılar",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/28000657.png",
-    "en_dusuk_fiyat": 29.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 29.5
       }
     ]
   },
@@ -53555,6 +53530,19 @@
     ]
   },
   {
+    "ad": "Ülker Çikolatalı Gofret Mini 1 Kg",
+    "ana_kategori": "Gofret",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30280054.png",
+    "en_dusuk_fiyat": 650.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 650.0
+      }
+    ]
+  },
+  {
     "ad": "Sütaş Bitter Hazır Tatlı Puding 4x90 Gr",
     "ana_kategori": "Tatlılar",
     "agirlik_hacim": "90 GR",
@@ -53590,6 +53578,19 @@
       {
         "market": "a101",
         "fiyat": 28.0
+      }
+    ]
+  },
+  {
+    "ad": "Ege Tepsi Kadayıf 200 Gr",
+    "ana_kategori": "Tatlılar",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/28000657.png",
+    "en_dusuk_fiyat": 29.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 29.5
       }
     ]
   },
@@ -53732,19 +53733,6 @@
       {
         "market": "migros",
         "fiyat": 359.9
-      }
-    ]
-  },
-  {
-    "ad": "Ülker Çikolatalı Gofret Mini 1 Kg",
-    "ana_kategori": "Gofret",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30280054.png",
-    "en_dusuk_fiyat": 650.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 650.0
       }
     ]
   }

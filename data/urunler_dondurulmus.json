@@ -556,6 +556,20 @@
     "_original_kategori": "Meyve"
   },
   {
+    "ad": "Feast Organik Bezelye 450 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "450 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30301919.png",
+    "en_dusuk_fiyat": 144.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 144.9
+      }
+    ],
+    "_original_kategori": "Sebze"
+  },
+  {
     "ad": "Superfresh Dondurulmuş Patates 7x7 1 Kg",
     "ana_kategori": "Dondurulmuş Ürünler",
     "agirlik_hacim": "1 KG",
@@ -615,20 +629,6 @@
       {
         "market": "carrefour",
         "fiyat": 357.95
-      }
-    ],
-    "_original_kategori": "Meyve"
-  },
-  {
-    "ad": "Superfresh Frambuaz 300 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "300 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30468486.jpg",
-    "en_dusuk_fiyat": 399.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 399.9
       }
     ],
     "_original_kategori": "Meyve"
@@ -694,20 +694,6 @@
     "_original_kategori": "Sebze"
   },
   {
-    "ad": "Feast Organik Bezelye 450 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "450 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30301919.png",
-    "en_dusuk_fiyat": 144.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 144.9
-      }
-    ],
-    "_original_kategori": "Sebze"
-  },
-  {
     "ad": "Feast Organik Brokoli 450 Gr",
     "ana_kategori": "Dondurulmuş Ürünler",
     "agirlik_hacim": "450 GR",
@@ -731,6 +717,20 @@
       {
         "market": "carrefour",
         "fiyat": 243.5
+      }
+    ],
+    "_original_kategori": "Meyve"
+  },
+  {
+    "ad": "Superfresh Frambuaz 300 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "300 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30468486.jpg",
+    "en_dusuk_fiyat": 399.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 399.9
       }
     ],
     "_original_kategori": "Meyve"
@@ -806,20 +806,6 @@
     "_original_kategori": "Beyaz Et"
   },
   {
-    "ad": "Banvit Dondurulmuş Çıtır Piliç Finger 1 Kg",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "1 KG",
-    "resim": null,
-    "en_dusuk_fiyat": 229.0,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 229.0
-      }
-    ],
-    "_original_kategori": "Beyaz Et"
-  },
-  {
     "ad": "Dondurulmuş Piliç Bonfile 1 Adet",
     "ana_kategori": "Dondurulmuş Ürünler",
     "agirlik_hacim": null,
@@ -843,6 +829,20 @@
       {
         "market": "a101",
         "fiyat": 189.0
+      }
+    ],
+    "_original_kategori": "Beyaz Et"
+  },
+  {
+    "ad": "Banvit Dondurulmuş Çıtır Piliç Finger 1 Kg",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "1 KG",
+    "resim": null,
+    "en_dusuk_fiyat": 229.0,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 229.0
       }
     ],
     "_original_kategori": "Beyaz Et"
@@ -1115,7 +1115,7 @@
     "ad": "Dondurulmuş Norveç Somon Dilim 500 Gr",
     "ana_kategori": "Dondurulmuş Ürünler",
     "agirlik_hacim": "500 GR",
-    "resim": null,
+    "resim": "https://lookaside.instagram.com/seo/google_widget/crawler/?media_id=3887576076886499658",
     "en_dusuk_fiyat": 249.0,
     "market_fiyatlari": [
       {
@@ -1283,7 +1283,7 @@
     "ad": "Donuk Piliç Nugget 1 Kg",
     "ana_kategori": "Dondurulmuş Ürünler",
     "agirlik_hacim": "1 KG",
-    "resim": null,
+    "resim": "https://static.ticimax.cloud/36626/uploads/urunresimleri/buyuk/gedik-donuk-nugget-1-kg-c-83a9.jpg",
     "en_dusuk_fiyat": 149.0,
     "market_fiyatlari": [
       {
@@ -1381,7 +1381,7 @@
     "ad": "Gedik Dondurulmuş Piliç Acılı Kebap 1 Kg",
     "ana_kategori": "Dondurulmuş Ürünler",
     "agirlik_hacim": "1 KG",
-    "resim": null,
+    "resim": "https://cdn2.a101.com.tr/dbmk89vnr/CALL/Image/get/VflN6VP2E7_1024x1024.png",
     "en_dusuk_fiyat": 109.5,
     "market_fiyatlari": [
       {
@@ -1437,7 +1437,7 @@
     "ad": "Aspiliç Dondurulmuş Piliç Acılı Lokma 500 Gr",
     "ana_kategori": "Dondurulmuş Ürünler",
     "agirlik_hacim": "500 GR",
-    "resim": null,
+    "resim": "https://cdn2.a101.com.tr/dbmk89vnr/CALL/Image/get/HPwF2GK3jB_1024x1024.png",
     "en_dusuk_fiyat": 119.5,
     "market_fiyatlari": [
       {
@@ -1521,7 +1521,7 @@
     "ad": "Banvit Dondurulmuş Soslu Piliç Kanat 1 Kg",
     "ana_kategori": "Dondurulmuş Ürünler",
     "agirlik_hacim": "1 KG",
-    "resim": null,
+    "resim": "https://images.migrosone.com/sanalmarket/product/13019524/13019524-e430fd-1650x1650.jpg",
     "en_dusuk_fiyat": 179.0,
     "market_fiyatlari": [
       {
@@ -1606,20 +1606,6 @@
     "_original_kategori": "Deniz Ürünleri"
   },
   {
-    "ad": "Donuk Bütün Piliç 1 Kg",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "1 KG",
-    "resim": null,
-    "en_dusuk_fiyat": 59.9,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 59.9
-      }
-    ],
-    "_original_kategori": "Beyaz Et"
-  },
-  {
     "ad": "Lezita Dondurulmuş Acılı Piliç Kebap 1 Kg",
     "ana_kategori": "Dondurulmuş Ürünler",
     "agirlik_hacim": "1 KG",
@@ -1660,6 +1646,20 @@
       }
     ],
     "_original_kategori": "Sakatat"
+  },
+  {
+    "ad": "Donuk Bütün Piliç 1 Kg",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "1 KG",
+    "resim": null,
+    "en_dusuk_fiyat": 59.9,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 59.9
+      }
+    ],
+    "_original_kategori": "Beyaz Et"
   },
   {
     "ad": "Donuk İşkembe Çorbası 480 Gr",
@@ -1942,20 +1942,6 @@
     "_original_kategori": "Kırmızı Et"
   },
   {
-    "ad": "Mowi Fyord Donuk Somon Burger 200 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/18010386.jpg",
-    "en_dusuk_fiyat": 269.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 269.95
-      }
-    ],
-    "_original_kategori": "Deniz Ürünleri"
-  },
-  {
     "ad": "Lezita Dondurulmuş Piliç Izgara Köfte 1 Kg",
     "ana_kategori": "Dondurulmuş Ürünler",
     "agirlik_hacim": "1 KG",
@@ -1965,20 +1951,6 @@
       {
         "market": "a101",
         "fiyat": 139.5
-      }
-    ],
-    "_original_kategori": "Beyaz Et"
-  },
-  {
-    "ad": "Banvit Dondurulmuş Piliç Bonfile 1 Kg",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/11002957.png",
-    "en_dusuk_fiyat": 189.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 189.0
       }
     ],
     "_original_kategori": "Beyaz Et"
@@ -2007,6 +1979,20 @@
       {
         "market": "tarim_kredi",
         "fiyat": 259.0
+      }
+    ],
+    "_original_kategori": "Deniz Ürünleri"
+  },
+  {
+    "ad": "Mowi Fyord Donuk Somon Burger 200 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/18010386.jpg",
+    "en_dusuk_fiyat": 269.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 269.95
       }
     ],
     "_original_kategori": "Deniz Ürünleri"
@@ -2063,6 +2049,20 @@
       {
         "market": "a101",
         "fiyat": 180.0
+      }
+    ],
+    "_original_kategori": "Beyaz Et"
+  },
+  {
+    "ad": "Banvit Dondurulmuş Piliç Bonfile 1 Kg",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/11002957.png",
+    "en_dusuk_fiyat": 189.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 189.0
       }
     ],
     "_original_kategori": "Beyaz Et"
@@ -2534,20 +2534,6 @@
     "_original_kategori": "Ekmek ve Unlu Mamüller"
   },
   {
-    "ad": "Superfresh Tereyağlı Milföy Hamuru 1 Kg",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/17555586.jpg",
-    "en_dusuk_fiyat": 214.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 214.95
-      }
-    ],
-    "_original_kategori": "Ekmek ve Unlu Mamüller"
-  },
-  {
     "ad": "Çokça Dondurulmuş Mısır 450 Gr",
     "ana_kategori": "Dondurulmuş Ürünler",
     "agirlik_hacim": "450 GR",
@@ -2575,6 +2561,20 @@
       {
         "market": "carrefour",
         "fiyat": 74.9
+      }
+    ],
+    "_original_kategori": "Ekmek ve Unlu Mamüller"
+  },
+  {
+    "ad": "Superfresh Tereyağlı Milföy Hamuru 1 Kg",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/17555586.jpg",
+    "en_dusuk_fiyat": 214.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 214.95
       }
     ],
     "_original_kategori": "Ekmek ve Unlu Mamüller"
