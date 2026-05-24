@@ -296,9 +296,12 @@ const catFiles = ['urunler_meyve','urunler_et','urunler_sut','urunler_gida',
 - Sıralama seçeneği (En ucuz / A-Z)
 - Fiyat geçmişi grafiği
 - Sepet paylaşma (WhatsApp)
-- Şehir seçimi (hal.gov.tr iller)
+
 - Ürün resimleri (eksik ~2267/14430 = %15.7 — Searlo eşik 0.55, takip)
 - Landing page (OpenDesign'da yapılıyor — v1 ve v2 hazır ama v2 mobilde bozuk; v3 bekleniyor)
+
+## Son notlar
+- **2026-05-24:** hal.gov.tr verisi TR geneli olduğu netleşti — 'Antalya Hali' etiketleri 'Hal Fiyatları' olarak düzeltildi. Şehir seçimi özelliği iptal edildi (kaynak il bazlı veri vermiyor).
 
 ---
 

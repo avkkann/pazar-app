@@ -111,7 +111,7 @@ def parse_excel_response(content):
             "ad": ad,
             "fiyat": fiyat,
             "birim": birim,
-            "sehir": "Antalya",
+            "sehir": "TR",
         })
 
     if not tarih_str:
@@ -161,7 +161,7 @@ def parse_fiyat(text):
 
 def scrape():
     print("=" * 60)
-    print("Antalya Hal Fiyatlari Scraper (hal.gov.tr)")
+    print("Hal Fiyatlari Scraper - TR geneli (hal.gov.tr)")
     print(f"Baslangic: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 60)
 
@@ -219,7 +219,7 @@ def scrape():
 
     output = {
         "kaynak": "hal.gov.tr",
-        "sehir": "Antalya",
+        "sehir": "TR",
         "bulten_tarihi": tarih_str or today,
         "cekme_tarihi": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "toplam_urun": len(products),

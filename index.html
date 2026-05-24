@@ -614,7 +614,7 @@
       <span class="hal-section-icon">🏭</span>
       <div class="hal-section-text">
         <div class="hal-section-title">Hal Fiyatları</div>
-        <div class="hal-section-sub">Antalya hal güncel fiyat listesi</div>
+        <div class="hal-section-sub">Türkiye geneli toptan hal fiyatları</div>
       </div>
       <svg class="hal-section-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
     </div>
@@ -699,7 +699,7 @@
     <button class="back-btn" onclick="showScreen('screen-home')">
       <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
     </button>
-    <h2>Antalya Hal Fiyatları</h2>
+    <h2>Hal Fiyatları</h2>
   </header>
   <div id="halContent"></div>
 </div>
@@ -727,7 +727,7 @@
   <div class="profil-header">
     <div class="profil-avatar" id="profilAvatar">🛒</div>
     <div class="profil-isim">Pazar Kullanıcısı</div>
-    <div class="profil-alt" id="profilAlt">Antalya · Fiyatları takip ediyorsun</div>
+    <div class="profil-alt" id="profilAlt">Fiyatları takip ediyorsun</div>
   </div>
   <div class="profil-istat">
     <div class="profil-istat-item">
@@ -757,7 +757,7 @@
       <div class="profil-item-icon" style="background:#FEF3C7">🏭</div>
       <div class="profil-item-body">
         <div class="profil-item-title">Hal Fiyatları</div>
-        <div class="profil-item-sub" id="profilHalTarih">Antalya Hali</div>
+        <div class="profil-item-sub" id="profilHalTarih">Hal Fiyatları</div>
       </div>
       <div class="profil-item-chevron">›</div>
     </div>
@@ -1904,7 +1904,7 @@ function profilGuncelle() {
   if (el('profilSepetSayi')) el('profilSepetSayi').textContent = sepetSayi;
   if (el('profilSepetOzet')) el('profilSepetOzet').textContent = sepetSayi > 0 ? sepetSayi + ' ürün listemde' : 'Liste boş';
   if (el('profilHalTarih') && window.halVerisi) {
-    el('profilHalTarih').textContent = 'Antalya Hali · ' + (window.halVerisi.bulten_tarihi || '');
+    el('profilHalTarih').textContent = 'Hal Fiyatları · ' + (window.halVerisi.bulten_tarihi || '');
   }
   if (el('profilToplamUrun')) {
     Promise.all(KATEGORILER.map(k =>
