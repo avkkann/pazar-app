@@ -1433,7 +1433,32 @@ function renderSepet() {
   }).join('');
   el.innerHTML = `<div class="cart-list">${items}</div>
     <button class="btn-compare" onclick="karsilastir()">Marketleri Karşılaştır →</button>
+    <button class="btn-compare" onclick="paylasSepet()" style="background:#25D366;margin-top:4px">📤 Listeyi Paylaş</button>
     <div id="compareOut"></div>`;
+}
+
+function paylasSepet() {
+  if (!sepet.length) return;
+  const satirlar = sepet.map(u => {
+    const mktF = (u.market_fiyatlari || []).filter(f => f.fiyat != null).sort((a,b) => a.fiyat - b.fiyat)[0];
+    if (mktF) {
+      const mktAd = MARKET_NAMES[mktF.market] || mktF.market || '';
+      return `• ${u.ad} — ${tl(mktF.fiyat)} (${mktAd})`;
+    }
+    return `• ${u.ad}`;
+  });
+  const toplam = sepet.reduce((s, u) => {
+    const mktF = (u.market_fiyatlari || []).filter(f => f.fiyat != null).sort((a,b) => a.fiyat - b.fiyat)[0];
+    return s + (mktF ? mktF.fiyat : 0);
+  }, 0);
+  const metin = `🛒 Pazar Listem (${sepet.length} ürün)\n\n${satirlar.join('\n')}\n\n💰 Tahmini toplam: ${tl(toplam)}\n\n📱 ${location.origin}${location.pathname}`;
+
+  if (navigator.share) {
+    navigator.share({ title: 'Pazar Listem', text: metin }).catch(() => {});
+  } else {
+    const url = 'https://wa.me/?text=' + encodeURIComponent(metin);
+    window.open(url, '_blank');
+  }
 }
 
 // ── KARŞILAŞTIRMA ─────────────────────────────────────
