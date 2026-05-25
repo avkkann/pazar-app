@@ -586,6 +586,44 @@
       min-width: 16px; text-align: center; display: inline-block; margin-left: 2px;
     }
   </style>
+  <style>
+.sablon-bar {
+  display: flex;
+  gap: 8px;
+  padding: 8px 16px 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.sablon-bar::-webkit-scrollbar { display: none; }
+.sablon-chip {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: var(--card, #f5f5f5);
+  border: 1px solid var(--border, #e0e0e0);
+  border-radius: 999px;
+  font-size: 13px;
+  color: var(--text, #222);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+.sablon-chip:hover { background: var(--hover, #ececec); }
+.sablon-chip.add { color: #0F5132; font-weight: 500; }
+.sablon-chip-del {
+  background: transparent;
+  border: none;
+  color: #999;
+  font-size: 14px;
+  padding: 0 0 0 4px;
+  cursor: pointer;
+  line-height: 1;
+}
+.sablon-chip-del:hover { color: #c00; }
+  </style>
 </head>
 <body>
 
@@ -675,6 +713,8 @@
     </button>
     <h2>Listem</h2>
   </header>
+
+  <div id="sablonBar" class="sablon-bar"></div>
 
   <div id="sepetContent">
 <div class="state-msg"><span class="icon">📋</span>Listeniz boş.<br>Ürün kartlarındaki + butonuna basın.</div>
@@ -888,6 +928,46 @@ function sablonKaydet(ad) {
 function sablonSil(id) {
   sablonlar = sablonlar.filter(s => s.id !== id);
   localStorage.setItem('pazar_sablonlar', JSON.stringify(sablonlar));
+}
+
+function renderSablonBar() {
+  const bar = document.getElementById('sablonBar');
+  if (!bar) return;
+  let html = '<button class="sablon-chip add" onclick="sablonKaydetUI()">+ Şablon kaydet</button>';
+  sablonlar.forEach(s => {
+    const sid = s.id.replace(/'/g, "\\'");
+    html += '<span class="sablon-chip" onclick="sablonYukleUI(\'' + sid + '\')">'
+         + (s.ad || 'Şablon').replace(/</g,'&lt;')
+         + ' <button class="sablon-chip-del" onclick="event.stopPropagation();sablonSilUI(\'' + sid + '\')">×</button>'
+         + '</span>';
+  });
+  bar.innerHTML = html;
+}
+
+function sablonKaydetUI() {
+  if (!sepet.length) { alert('Liste boş, kaydedilecek ürün yok.'); return; }
+  const ad = prompt('Şablon adı:', 'Haftalık');
+  if (!ad) return;
+  const yeni = sablonKaydet(ad);
+  if (yeni) renderSablonBar();
+}
+
+function sablonYukleUI(id) {
+  const s = sablonlar.find(x => x.id === id);
+  if (!s) return;
+  if (!confirm('"' + s.ad + '" şablonu yüklensin mi? Mevcut listeniz silinecek.')) return;
+  const r = sablonYukle(id);
+  renderSepet();
+  renderSablonBar();
+  if (r.atlanan > 0) alert(r.yuklenen + ' ürün yüklendi, ' + r.atlanan + ' ürün artık katalogda yok.');
+}
+
+function sablonSilUI(id) {
+  const s = sablonlar.find(x => x.id === id);
+  if (!s) return;
+  if (!confirm('"' + s.ad + '" şablonu silinsin mi?')) return;
+  sablonSil(id);
+  renderSablonBar();
 }
 
 function sablonYukle(id) {
@@ -1441,6 +1521,7 @@ function removeFromSepet(id) {
 
 function renderSepet() {
   document.getElementById('sepetCount').textContent = sepet.length;
+  renderSablonBar();
   const el = document.getElementById('sepetContent');
   if (!sepet.length) {
     el.innerHTML = `<div class="state-msg"><span class="icon">📋</span>Listeniz boş.<br>Ürün kartlarındaki + butonuna basın.</div>`;
