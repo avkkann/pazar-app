@@ -952,10 +952,39 @@ function sablonKaydetUI() {
   if (yeni) renderSablonBar();
 }
 
-function sablonYukleUI(id) {
+async function sablonYukleUI(id) {
   const s = sablonlar.find(x => x.id === id);
   if (!s) return;
   if (!confirm('"' + s.ad + '" şablonu yüklensin mi? Mevcut listeniz silinecek.')) return;
+
+  // 1) Şablondaki _id'lerden gerekli kategori slug'larını çıkar
+  const gerekliSluglar = new Set();
+  s.urunIds.forEach(uid => {
+    const parcalar = uid.split('_');
+    if (parcalar.length >= 2) {
+      const slug = parcalar.slice(0, -1).join('_');
+      gerekliSluglar.add(slug);
+    }
+  });
+
+  // 2) productMap'te HENÜZ olmayan kategorileri tespit et
+  // Bir kategori yüklenmişse productMap içinde "slug_0" anahtarı bulunur
+  const yuklenecekler = [];
+  gerekliSluglar.forEach(slug => {
+    if (!productMap[slug + '_0']) yuklenecekler.push(slug);
+  });
+
+  // 3) Eksik kategorileri paralel yükle
+  if (yuklenecekler.length) {
+    try {
+      await Promise.all(yuklenecekler.map(slug => loadCat(slug)));
+    } catch (e) {
+      alert('Ürün verileri yüklenirken hata oluştu. Lütfen internet bağlantınızı kontrol edin.');
+      return;
+    }
+  }
+
+  // 4) Şimdi şablonu uygula
   const r = sablonYukle(id);
   renderSepet();
   renderSablonBar();
