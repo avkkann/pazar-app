@@ -585,6 +585,81 @@
       font-size: .5rem; font-weight: 700; padding: 1px 5px; line-height: 1.5;
       min-width: 16px; text-align: center; display: inline-block; margin-left: 2px;
     }
+    .app-modal {
+      position: fixed; inset: 0; z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+      padding: 16px;
+    }
+    .app-modal-backdrop {
+      position: absolute; inset: 0;
+      background: rgba(26, 26, 46, 0.5);
+      backdrop-filter: blur(2px);
+      animation: modalFadeIn 0.18s ease-out;
+    }
+    .app-modal-box {
+      position: relative;
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 20px;
+      max-width: 340px;
+      width: 100%;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+      animation: modalSlideUp 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      font-family: 'Inter', sans-serif;
+    }
+    .app-modal-title {
+      font-size: 17px; font-weight: 700;
+      color: var(--text); margin-bottom: 8px;
+    }
+    .app-modal-msg {
+      font-size: 14px; color: var(--text-muted);
+      margin-bottom: 16px; line-height: 1.45;
+    }
+    .app-modal-input {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      margin-bottom: 16px;
+      outline: none;
+      transition: border-color 0.15s;
+      box-sizing: border-box;
+    }
+    .app-modal-input:focus { border-color: var(--primary-light); }
+    .app-modal-actions {
+      display: flex; gap: 8px; justify-content: flex-end;
+    }
+    .app-modal-btn {
+      padding: 9px 16px;
+      border-radius: 10px;
+      border: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .app-modal-btn:active { transform: scale(0.97); }
+    .app-modal-cancel {
+      background: var(--bg);
+      color: var(--text-muted);
+    }
+    .app-modal-cancel:hover { background: var(--border); }
+    .app-modal-ok {
+      background: var(--primary);
+      color: #fff;
+    }
+    .app-modal-ok:hover { background: var(--primary-light); }
+    .app-modal-ok.danger { background: #DC2626; }
+    .app-modal-ok.danger:hover { background: #EF4444; }
+    @keyframes modalFadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes modalSlideUp {
+      from { opacity: 0; transform: translateY(12px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
   </style>
   <style>
 .sablon-bar {
@@ -925,10 +1000,60 @@ function sablonKaydet(ad) {
   return yeni;
 }
 
+function sablonAdGuncelle(id, yeniAd) {
+  if (!yeniAd || !yeniAd.trim()) return false;
+  const s = sablonlar.find(x => x.id === id);
+  if (!s) return false;
+  s.ad = yeniAd.trim().slice(0, 40);
+  localStorage.setItem('pazar_sablonlar', JSON.stringify(sablonlar));
+  return true;
+}
+
 function sablonSil(id) {
   sablonlar = sablonlar.filter(s => s.id !== id);
   localStorage.setItem('pazar_sablonlar', JSON.stringify(sablonlar));
 }
+
+let _modalResolve = null;
+
+function modalAc(opts) {
+  return new Promise(resolve => {
+    _modalResolve = resolve;
+    document.getElementById('appModalTitle').textContent = opts.title || '';
+    document.getElementById('appModalMsg').textContent = opts.msg || '';
+    const inputEl = document.getElementById('appModalInput');
+    if (opts.input) {
+      inputEl.style.display = 'block';
+      inputEl.value = opts.defaultValue || '';
+      inputEl.placeholder = opts.placeholder || '';
+    } else {
+      inputEl.style.display = 'none';
+      inputEl.value = '';
+    }
+    const okBtn = document.getElementById('appModalOk');
+    okBtn.textContent = opts.okText || 'Tamam';
+    okBtn.classList.toggle('danger', !!opts.danger);
+    okBtn.onclick = () => {
+      const val = opts.input ? inputEl.value.trim() : true;
+      modalKapat();
+      resolve(opts.input ? (val || null) : true);
+    };
+    document.getElementById('appModal').style.display = 'flex';
+    if (opts.input) setTimeout(() => inputEl.focus(), 50);
+  });
+}
+
+function modalKapat() {
+  document.getElementById('appModal').style.display = 'none';
+  if (_modalResolve) { _modalResolve(false); _modalResolve = null; }
+}
+
+document.addEventListener('keydown', e => {
+  const m = document.getElementById('appModal');
+  if (!m || m.style.display === 'none') return;
+  if (e.key === 'Enter') { e.preventDefault(); document.getElementById('appModalOk').click(); }
+  if (e.key === 'Escape') { e.preventDefault(); modalKapat(); }
+});
 
 function renderSablonBar() {
   const bar = document.getElementById('sablonBar');
@@ -936,17 +1061,42 @@ function renderSablonBar() {
   let html = '<button class="sablon-chip add" onclick="sablonKaydetUI()">+ Şablon kaydet</button>';
   sablonlar.forEach(s => {
     const sid = s.id.replace(/'/g, "\\'");
-    html += '<span class="sablon-chip" onclick="sablonYukleUI(\'' + sid + '\')">'
-         + (s.ad || 'Şablon').replace(/</g,'&lt;')
-         + ' <button class="sablon-chip-del" onclick="event.stopPropagation();sablonSilUI(\'' + sid + '\')">×</button>'
+    const adSafe = (s.ad || 'Şablon').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+    html += '<span class="sablon-chip" '
+         + 'onclick="sablonYukleUI(\'' + sid + '\')" '
+         + 'oncontextmenu="event.preventDefault();sablonDuzenleUI(\'' + sid + '\');return false;" '
+         + 'title="Tıkla: yükle | Sağ tık / uzun bas: düzenle">'
+         + adSafe
+         + ' <button class="sablon-chip-del" onclick="event.stopPropagation();sablonSilUI(\'' + sid + '\')" title="Sil">×</button>'
          + '</span>';
   });
   bar.innerHTML = html;
+  bar.querySelectorAll('.sablon-chip:not(.add)').forEach((chip, i) => {
+    let timer = null;
+    chip.addEventListener('touchstart', () => {
+      timer = setTimeout(() => {
+        timer = null;
+        sablonDuzenleUI(sablonlar[i].id);
+      }, 500);
+    }, { passive: true });
+    chip.addEventListener('touchend', () => { if (timer) clearTimeout(timer); });
+    chip.addEventListener('touchmove', () => { if (timer) { clearTimeout(timer); timer = null; } });
+  });
 }
 
-function sablonKaydetUI() {
-  if (!sepet.length) { alert('Liste boş, kaydedilecek ürün yok.'); return; }
-  const ad = prompt('Şablon adı:', 'Haftalık');
+async function sablonKaydetUI() {
+  if (!sepet.length) {
+    await modalAc({ title: 'Liste boş', msg: 'Kaydedilecek ürün yok.', okText: 'Tamam' });
+    return;
+  }
+  const ad = await modalAc({
+    title: 'Şablon kaydet',
+    msg: 'Bu listeye bir ad verin.',
+    input: true,
+    defaultValue: 'Haftalık',
+    placeholder: 'Örn: Haftalık alışveriş',
+    okText: 'Kaydet'
+  });
   if (!ad) return;
   const yeni = sablonKaydet(ad);
   if (yeni) renderSablonBar();
@@ -955,7 +1105,12 @@ function sablonKaydetUI() {
 async function sablonYukleUI(id) {
   const s = sablonlar.find(x => x.id === id);
   if (!s) return;
-  if (!confirm('"' + s.ad + '" şablonu yüklensin mi? Mevcut listeniz silinecek.')) return;
+  const onay = await modalAc({
+    title: 'Şablonu yükle',
+    msg: '"' + s.ad + '" şablonu yüklenecek. Mevcut listeniz silinecek.',
+    okText: 'Yükle'
+  });
+  if (!onay) return;
 
   // 1) Şablondaki _id'lerden gerekli kategori slug'larını çıkar
   const gerekliSluglar = new Set();
@@ -979,7 +1134,11 @@ async function sablonYukleUI(id) {
     try {
       await Promise.all(yuklenecekler.map(slug => loadCat(slug)));
     } catch (e) {
-      alert('Ürün verileri yüklenirken hata oluştu. Lütfen internet bağlantınızı kontrol edin.');
+      await modalAc({
+        title: 'Bağlantı hatası',
+        msg: 'Ürün verileri yüklenirken hata oluştu. Lütfen internet bağlantınızı kontrol edin.',
+        okText: 'Tamam'
+      });
       return;
     }
   }
@@ -988,14 +1147,40 @@ async function sablonYukleUI(id) {
   const r = sablonYukle(id);
   renderSepet();
   renderSablonBar();
-  if (r.atlanan > 0) alert(r.yuklenen + ' ürün yüklendi, ' + r.atlanan + ' ürün artık katalogda yok.');
+  if (r.atlanan > 0) {
+    await modalAc({
+      title: 'Kısmen yüklendi',
+      msg: r.yuklenen + ' ürün yüklendi, ' + r.atlanan + ' ürün artık katalogda yok.',
+      okText: 'Tamam'
+    });
+  }
 }
 
-function sablonSilUI(id) {
+async function sablonSilUI(id) {
   const s = sablonlar.find(x => x.id === id);
   if (!s) return;
-  if (!confirm('"' + s.ad + '" şablonu silinsin mi?')) return;
+  const onay = await modalAc({
+    title: 'Şablonu sil',
+    msg: '"' + s.ad + '" şablonu silinecek. Bu işlem geri alınamaz.',
+    okText: 'Sil',
+    danger: true
+  });
+  if (!onay) return;
   sablonSil(id);
+  renderSablonBar();
+}
+
+async function sablonDuzenleUI(id) {
+  const s = sablonlar.find(x => x.id === id);
+  if (!s) return;
+  const yeniAd = await modalAc({
+    title: 'Şablon adını düzenle',
+    input: true,
+    defaultValue: s.ad,
+    okText: 'Kaydet'
+  });
+  if (!yeniAd || yeniAd === s.ad) return;
+  sablonAdGuncelle(id, yeniAd);
   renderSablonBar();
 }
 
@@ -2146,4 +2331,16 @@ if ('serviceWorker' in navigator) {
 }
 </script>
 </body>
+<div id="appModal" class="app-modal" style="display:none;">
+  <div class="app-modal-backdrop" onclick="modalKapat()"></div>
+  <div class="app-modal-box">
+    <div class="app-modal-title" id="appModalTitle">Onay</div>
+    <div class="app-modal-msg" id="appModalMsg"></div>
+    <input type="text" id="appModalInput" class="app-modal-input" style="display:none;" maxlength="40" />
+    <div class="app-modal-actions">
+      <button class="app-modal-btn app-modal-cancel" onclick="modalKapat()">İptal</button>
+      <button class="app-modal-btn app-modal-ok" id="appModalOk">Tamam</button>
+    </div>
+  </div>
+</div>
 </html>
