@@ -867,6 +867,43 @@ if (_rawSepet.length && _rawSepet[0].id !== undefined && _rawSepet[0]._id === un
 }
 let sepet = _rawSepet;
 
+// === ŞABLON SİSTEMİ (veri katmanı) ===
+let _rawSablonlar = JSON.parse(localStorage.getItem('pazar_sablonlar') || '[]');
+let sablonlar = Array.isArray(_rawSablonlar) ? _rawSablonlar : [];
+
+function sablonKaydet(ad) {
+  if (!ad || !ad.trim()) return null;
+  if (!sepet.length) return null;
+  const yeni = {
+    id: 'sbl_' + Date.now() + '_' + Math.random().toString(36).slice(2,7),
+    ad: ad.trim().slice(0, 40),
+    urunIds: sepet.map(u => u._id).filter(Boolean),
+    olusturma: Date.now()
+  };
+  sablonlar.push(yeni);
+  localStorage.setItem('pazar_sablonlar', JSON.stringify(sablonlar));
+  return yeni;
+}
+
+function sablonSil(id) {
+  sablonlar = sablonlar.filter(s => s.id !== id);
+  localStorage.setItem('pazar_sablonlar', JSON.stringify(sablonlar));
+}
+
+function sablonYukle(id) {
+  const s = sablonlar.find(x => x.id === id);
+  if (!s) return { yuklenen: 0, atlanan: 0 };
+  sepet.length = 0;
+  let yuklenen = 0, atlanan = 0;
+  s.urunIds.forEach(uid => {
+    const urun = productMap[uid];
+    if (urun) { sepet.push(urun); yuklenen++; }
+    else atlanan++;
+  });
+  localStorage.setItem('pazar_sepet', JSON.stringify(sepet));
+  return { yuklenen, atlanan };
+}
+
 // ── NAVİGASYON ────────────────────────────────────────
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.style.display = 'none');
