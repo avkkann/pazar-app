@@ -1018,7 +1018,6 @@ let _modalResolve = null;
 
 function modalAc(opts) {
   return new Promise(resolve => {
-    _modalResolve = resolve;
     document.getElementById('appModalTitle').textContent = opts.title || '';
     document.getElementById('appModalMsg').textContent = opts.msg || '';
     const inputEl = document.getElementById('appModalInput');
@@ -1033,19 +1032,45 @@ function modalAc(opts) {
     const okBtn = document.getElementById('appModalOk');
     okBtn.textContent = opts.okText || 'Tamam';
     okBtn.classList.toggle('danger', !!opts.danger);
+    const cancelBtn = document.querySelector('.app-modal-cancel');
+    const backdrop = document.querySelector('.app-modal-backdrop');
+
+    let done = false;
+    const cleanup = () => {
+      document.getElementById('appModal').style.display = 'none';
+      okBtn.onclick = null;
+      if (cancelBtn) cancelBtn.onclick = null;
+      if (backdrop) backdrop.onclick = null;
+      _modalResolve = null;
+    };
+
     okBtn.onclick = () => {
+      if (done) return;
+      done = true;
       const val = opts.input ? inputEl.value.trim() : true;
-      modalKapat();
+      cleanup();
       resolve(opts.input ? (val || null) : true);
     };
+
+    const close = () => {
+      if (done) return;
+      done = true;
+      cleanup();
+      resolve(false);
+    };
+
+    if (cancelBtn) cancelBtn.onclick = close;
+    if (backdrop) backdrop.onclick = close;
+
+    _modalResolve = close;
+
     document.getElementById('appModal').style.display = 'flex';
     if (opts.input) setTimeout(() => inputEl.focus(), 50);
   });
 }
 
 function modalKapat() {
-  document.getElementById('appModal').style.display = 'none';
-  if (_modalResolve) { _modalResolve(false); _modalResolve = null; }
+  if (_modalResolve) _modalResolve();
 }
 
 document.addEventListener('keydown', e => {
