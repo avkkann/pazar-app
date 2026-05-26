@@ -1161,8 +1161,39 @@ async function sablonKaydetUI() {
     okText: 'Kaydet'
   });
   if (!ad) return;
+
+  const gerekliSluglar = new Set();
+  sepet.forEach(u => {
+    const parc = (u._id || '').split('_');
+    if (parc.length >= 2) gerekliSluglar.add(parc.slice(0, -1).join('_'));
+  });
+  const yuklenecekler = [];
+  gerekliSluglar.forEach(slug => {
+    if (!productMap[slug + '_0']) yuklenecekler.push(slug);
+  });
+  if (yuklenecekler.length) {
+    try {
+      await Promise.all(yuklenecekler.map(slug => loadCat(slug)));
+    } catch (e) {
+      await modalAc({
+        title: 'Bağlantı hatası',
+        msg: 'Ürün verileri yüklenemedi. İnternet bağlantınızı kontrol edin.',
+        okText: 'Tamam'
+      });
+      return;
+    }
+  }
+
   const yeni = sablonKaydet(ad);
-  if (yeni) renderSablonBar();
+  if (yeni) {
+    renderSablonBar();
+  } else {
+    await modalAc({
+      title: 'Kaydedilemedi',
+      msg: 'Şablon kaydedilemedi. Ürün bilgileri eksik olabilir.',
+      okText: 'Tamam'
+    });
+  }
 }
 
 async function sablonYukleUI(id) {
