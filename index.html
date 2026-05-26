@@ -698,6 +698,36 @@
   line-height: 1;
 }
 .sablon-chip-del:hover { color: #c00; }
+.alt-kat-bar {
+  display: flex;
+  gap: 6px;
+  padding: 4px 16px 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.alt-kat-bar::-webkit-scrollbar { display: none; }
+.alt-kat-bar:empty { display: none; }
+.alt-kat-chip {
+  flex-shrink: 0;
+  padding: 6px 14px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 13px;
+  font-family: 'Inter', sans-serif;
+  color: var(--text);
+  cursor: pointer;
+  white-space: nowrap;
+  font-weight: 500;
+  transition: all 0.15s;
+}
+.alt-kat-chip:hover { border-color: var(--primary-light); }
+.alt-kat-chip.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
   </style>
 </head>
 <body>
@@ -763,6 +793,8 @@
     <button class="filter-pill"        data-market="sok"         onclick="setMarketFilter('sok')">ŞOK</button>
     <button class="filter-pill"        data-market="tarim_kredi" onclick="setMarketFilter('tarim_kredi')">Tarım Kredi</button>
   </div>
+
+  <div id="altKatBar" class="alt-kat-bar"></div>
 
   <div class="stats-row">
     <span><b id="countNum">—</b> ürün listeleniyor</span>
@@ -1541,6 +1573,7 @@ function renderCatGrid() {
 // ── KATEGORİ EKRANI ───────────────────────────────────
 async function openCategory(slug) {
   window._catAramaTermi = '';
+  window._aktifAltKat = 'tumu';
   const ci = document.getElementById('catSearch'); if (ci) ci.value = '';
   const kat = KATEGORILER.find(k => k.slug === slug);
   document.getElementById('cat-title').textContent = kat.label;
@@ -1570,6 +1603,42 @@ function renderUrunler(liste) {
 
 function setMarketFilter(market) {
   window.aktifMarket = market;
+  uygulaCatFiltre();
+}
+
+function renderAltKatBar() {
+  const bar = document.getElementById('altKatBar');
+  if (!bar) return;
+  const tum = window.yuklenenUrunler || [];
+  if (!tum.length) { bar.innerHTML = ''; return; }
+
+  const sayilar = {};
+  tum.forEach(u => {
+    const k = (u.ana_kategori || '').trim();
+    if (!k) return;
+    sayilar[k] = (sayilar[k] || 0) + 1;
+  });
+
+  const liste = Object.entries(sayilar)
+    .sort((a, b) => b[1] - a[1]);
+
+  if (liste.length <= 1) { bar.innerHTML = ''; return; }
+
+  const aktif = window._aktifAltKat || 'tumu';
+  let html = '<button class="alt-kat-chip ' + (aktif === 'tumu' ? 'active' : '')
+           + '" onclick="setAltKat(\'tumu\')">Tümü</button>';
+  liste.forEach(([ad]) => {
+    const adEscaped = ad.replace(/'/g, "\\'");
+    const adSafe = ad.replace(/</g, '&lt;');
+    html += '<button class="alt-kat-chip ' + (aktif === ad ? 'active' : '')
+         + '" onclick="setAltKat(\'' + adEscaped + '\')">' + adSafe + '</button>';
+  });
+  bar.innerHTML = html;
+}
+
+function setAltKat(ad) {
+  window._aktifAltKat = ad;
+  renderAltKatBar();
   uygulaCatFiltre();
 }
 
@@ -1612,6 +1681,11 @@ function uygulaCatFiltre() {
   const tumUrunler = window.yuklenenUrunler || [];
 
   let filtreliler = tumUrunler;
+
+  const altKat = window._aktifAltKat || 'tumu';
+  if (altKat !== 'tumu') {
+    filtreliler = filtreliler.filter(u => (u.ana_kategori || '').trim() === altKat);
+  }
 
   if (market && market !== 'all' && market !== 'tumu') {
     filtreliler = filtreliler.filter(u => {
@@ -1657,6 +1731,7 @@ async function loadKategoriSayfasi(slug, sayfa) {
   try {
     if (!catCache[slug]) await loadCat(slug);
     window.yuklenenUrunler = catCache[slug] || [];
+    if (sayfa === 1) renderAltKatBar();
     const all = window.yuklenenUrunler;
     const toplam = all.length;
     toplamSayfa = Math.max(1, Math.ceil(toplam / PAGE_SIZE));
