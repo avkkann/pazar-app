@@ -1024,9 +1024,14 @@ function sablonKaydet(ad) {
   const yeni = {
     id: 'sbl_' + Date.now() + '_' + Math.random().toString(36).slice(2,7),
     ad: ad.trim().slice(0, 40),
-    urunIds: sepet.map(u => u._id).filter(Boolean),
+    urunIds: sepet.map(u => {
+      const parcalar = (u._id || '').split('_');
+      const slug = parcalar.length >= 2 ? parcalar.slice(0, -1).join('_') : '';
+      return { sid: u._sid || null, slug: slug };
+    }).filter(o => o.sid && o.slug),
     olusturma: Date.now()
   };
+  if (!yeni.urunIds.length) return null;
   sablonlar.push(yeni);
   localStorage.setItem('pazar_sablonlar', JSON.stringify(sablonlar));
   return yeni;
@@ -1171,11 +1176,14 @@ async function sablonYukleUI(id) {
 
   // 1) Şablondaki _id'lerden gerekli kategori slug'larını çıkar
   const gerekliSluglar = new Set();
-  s.urunIds.forEach(uid => {
-    const parcalar = uid.split('_');
-    if (parcalar.length >= 2) {
-      const slug = parcalar.slice(0, -1).join('_');
-      gerekliSluglar.add(slug);
+  s.urunIds.forEach(item => {
+    if (typeof item === 'string') {
+      const parcalar = item.split('_');
+      if (parcalar.length >= 2) {
+        gerekliSluglar.add(parcalar.slice(0, -1).join('_'));
+      }
+    } else if (item && typeof item === 'object' && item.slug) {
+      gerekliSluglar.add(item.slug);
     }
   });
 
@@ -1246,11 +1254,23 @@ function sablonYukle(id) {
   if (!s) return { yuklenen: 0, atlanan: 0 };
   sepet.length = 0;
   let yuklenen = 0, atlanan = 0;
-  s.urunIds.forEach(uid => {
-    const urun = productMap[uid];
+
+  const sidMap = {};
+  Object.values(productMap).forEach(u => {
+    if (u && u._sid) sidMap[u._sid] = u;
+  });
+
+  s.urunIds.forEach(item => {
+    let urun = null;
+    if (typeof item === 'string') {
+      urun = productMap[item] || null;
+    } else if (item && typeof item === 'object' && item.sid) {
+      urun = sidMap[item.sid] || null;
+    }
     if (urun) { sepet.push(urun); yuklenen++; }
     else atlanan++;
   });
+
   localStorage.setItem('pazar_sepet', JSON.stringify(sepet));
   return { yuklenen, atlanan };
 }
