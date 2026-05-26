@@ -1025,9 +1025,10 @@ function sablonKaydet(ad) {
     id: 'sbl_' + Date.now() + '_' + Math.random().toString(36).slice(2,7),
     ad: ad.trim().slice(0, 40),
     urunIds: sepet.map(u => {
+      const sid = u._sid || (productMap[u._id] && productMap[u._id]._sid) || null;
       const parcalar = (u._id || '').split('_');
       const slug = parcalar.length >= 2 ? parcalar.slice(0, -1).join('_') : '';
-      return { sid: u._sid || null, slug: slug };
+      return { sid: sid, slug: slug };
     }).filter(o => o.sid && o.slug),
     olusturma: Date.now()
   };
