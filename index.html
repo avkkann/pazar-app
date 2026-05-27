@@ -1570,10 +1570,10 @@ function placeholderRenk(kategori) {
 }
 
 function birimFiyatHesapla(u) {
-  if (!u || !u.agirlik_hacim) return null;
+  if (!u) return null;
   const fiyat = enDusukFiyat(u);
   if (!fiyat || fiyat <= 0) return null;
-  const s = String(u.agirlik_hacim).toLowerCase().replace(/,/g, '.');
+  const s = String(u.agirlik_hacim || '').toLowerCase().replace(/,/g, '.');
   let m = s.match(/(\d+(?:\.\d+)?)\s*kg\b/);
   if (m) { const kg = parseFloat(m[1]); if (kg > 0) return { deger: fiyat / kg, birim: 'kg' }; }
   m = s.match(/(\d+(?:\.\d+)?)\s*gr?\b/);
