@@ -163,6 +163,9 @@
     .detay-paket-item:hover { border-color: var(--primary, #1D9E75); }
     .detay-paket-ad { font-size: 13px; font-weight: 500; margin-bottom: 4px; line-height: 1.3; }
     .detay-paket-meta { font-size: 11px; color: #888; }
+    .tuzak-rozet { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 6px; margin-top: 6px; line-height: 1.3; }
+    .tuzak-rozet.sari { background: rgba(217, 119, 6, 0.15); color: #D97706; border: 1px solid rgba(217, 119, 6, 0.35); }
+    .tuzak-rozet.kirmizi { background: rgba(220, 38, 38, 0.15); color: #DC2626; border: 1px solid rgba(220, 38, 38, 0.35); }
     .product-market-lbl { font-size: 10px; color: #9CA3AF; font-weight: 500; }
     .add-btn { position: absolute; bottom: 8px; right: 8px; width: 30px; height: 30px; border-radius: 50%; background: #0F5132; color: white; border: none; font-size: 20px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(15,81,50,0.3); transition: transform .15s; }
     .add-btn:active { transform: scale(.88); }
@@ -1374,6 +1377,7 @@ function openDetay(urunId) {
       ${u.agirlik_hacim ? `<div class="detay-unit">${u.agirlik_hacim}</div>` : ''}
     </div>
     ${(() => { const bf = birimFiyatHesapla(u); return bf ? `<div class="detay-birim-fiyat">${birimFiyatYazi(bf)}</div>` : ''; })()}
+    ${(() => { const rz = tuzakRozetiHesapla(u); return rz ? tuzakRozetiHTML(rz, false) : ''; })()}
     <div class="detay-section">
       <div class="detay-sec-label">Market Fiyatları</div>
       <div class="detay-mkt-list">
@@ -1388,9 +1392,11 @@ function openDetay(urunId) {
   digerler.forEach(d => {
     const bf = birimFiyatHesapla(d);
     const fy = enDusukFiyat(d);
+    const rzD = tuzakRozetiHesapla(d);
     html += `<div class="detay-paket-item" onclick="openDetay('${d._id}')">
       <div class="detay-paket-ad">${d.ad}</div>
       <div class="detay-paket-meta">${d.agirlik_hacim || ''} · ${fy ? tl(fy) : '-'}${bf ? ' · ' + birimFiyatYazi(bf) : ''}</div>
+      ${rzD ? tuzakRozetiHTML(rzD, true) : ''}
     </div>`;
   });
   html += '</div></div>';
@@ -1672,6 +1678,37 @@ function digerPaketleriBul(u) {
   return out;
 }
 
+function tuzakRozetiHesapla(u) {
+  if (!u) return null;
+  const bfu = birimFiyatHesapla(u);
+  if (!bfu) return null;
+  const digerler = digerPaketleriBul(u);
+  if (!digerler.length) return null;
+  const ayniBirim = digerler
+    .map(d => ({ u: d, bf: birimFiyatHesapla(d) }))
+    .filter(x => x.bf && x.bf.birim === bfu.birim);
+  if (!ayniBirim.length) return null;
+  let enUcuz = bfu.deger;
+  ayniBirim.forEach(x => { if (x.bf.deger < enUcuz) enUcuz = x.bf.deger; });
+  if (bfu.deger <= enUcuz) return null;
+  const fark = ((bfu.deger - enUcuz) / enUcuz) * 100;
+  if (fark < 25) return null;
+  if (fark >= 50) return { tip: 'kirmizi', yuzde: Math.round(fark) };
+  return { tip: 'sari', yuzde: Math.round(fark) };
+}
+
+function tuzakRozetiHTML(rozet, kisa) {
+  if (!rozet) return '';
+  if (rozet.tip === 'kirmizi') {
+    return kisa
+      ? `<div class="tuzak-rozet kirmizi">🔴 Tuzak · %${rozet.yuzde} pahalı</div>`
+      : `<div class="tuzak-rozet kirmizi">🔴 Küçük paket tuzağı · Birim fiyat %${rozet.yuzde} daha yüksek</div>`;
+  }
+  return kisa
+    ? `<div class="tuzak-rozet sari">🟡 %${rozet.yuzde} pahalı</div>`
+    : `<div class="tuzak-rozet sari">🟡 Birim fiyat %${rozet.yuzde} daha yüksek</div>`;
+}
+
 function rakipMarkalariBul(u) {
   if (!u || !u.agirlik_hacim || !productMap) return [];
   const ah = String(u.agirlik_hacim || '').toLowerCase().trim();
@@ -1723,6 +1760,7 @@ function cardHTML(u) {
       ${u.agirlik_hacim ? `<div class="product-unit">${u.agirlik_hacim}</div>` : ''}
       <div class="product-price">${gosterilenFiyat != null ? tl(gosterilenFiyat) : '—'}${marketLbl ? `<span class="product-market-lbl"> · ${marketLbl}</span>` : ''}</div>
       ${(() => { const bf = birimFiyatHesapla(u); return bf ? `<div class="urun-birim-fiyat">${birimFiyatYazi(bf)}</div>` : ''; })()}
+      ${(() => { const rz = tuzakRozetiHesapla(u); return rz ? tuzakRozetiHTML(rz, true) : ''; })()}
     </div>
     <button class="add-btn" data-pid="${u._id}" onclick="event.stopPropagation(); toggleSepet('${u._id}')" style="${inCart ? 'background:#059669' : ''}">${inCart ? '✓' : '+'}</button>
   </div>`;
