@@ -1340,7 +1340,7 @@ function openDetay(urunId) {
     ? `<img src="${u.resim}" alt="" loading="lazy" onerror="this.onerror=null;this.parentElement.innerHTML='<div style=\'width:100%;height:120px;background:#f8f8f8;display:flex;align-items:center;justify-content:center;font-size:3rem\'>${emoji}</div>'">`
     : emoji;
 
-  const halSection = '';
+
 
   const mktRows = mktler.map((f, i) => {
     const isFirst = i === 0, isLast = i === mktler.length - 1 && mktler.length > 1;
@@ -1364,7 +1364,6 @@ function openDetay(urunId) {
       <div class="detay-name">${u.ad}</div>
       ${u.agirlik_hacim ? `<div class="detay-unit">${u.agirlik_hacim}</div>` : ''}
     </div>
-    ${halSection}
     <div class="detay-section">
       <div class="detay-sec-label">Market Fiyatları</div>
       <div class="detay-mkt-list">
@@ -2227,22 +2226,7 @@ function _firsatOzetHesapla(tumUrunler) {
     if (yuzde >= 15) tasarrufSayi++;
   });
 
-  _firsatOzetGuncelle(ucuzSayi, '…', tasarrufSayi);
-  halVeriGetir().then(function() {
-    const meyveSebze = tumUrunler.filter(function(u){
-      const k = ustKategori(u.ana_kategori||'');
-      return k==='meyve'||k==='sebze';
-    });
-    let halSayi = 0;
-    meyveSebze.forEach(function(u) {
-      if (!u.en_dusuk_fiyat) return;
-      const hal = halEsles(u);
-      if (!hal) return;
-      const marketKg = halKgHesapla(u.ad, u.en_dusuk_fiyat);
-      if (marketKg - hal.fiyat > 0.5) halSayi++;
-    });
-    _firsatOzetGuncelle(ucuzSayi, halSayi, tasarrufSayi);
-  });
+  _firsatOzetGuncelle(ucuzSayi, tasarrufSayi);
 }
 
 function _firsatKartHtml(u, badge, badgeClass, altText) {
@@ -2267,12 +2251,11 @@ function _firsatKartHtml(u, badge, badgeClass, altText) {
     + '</div></div>';
 }
 
-function _firsatOzetGuncelle(ucuzSayi, halSayi, tasarrufSayi) {
+function _firsatOzetGuncelle(ucuzSayi, tasarrufSayi) {
   const ozet = document.getElementById('firsatOzet');
   if (!ozet) return;
   ozet.innerHTML = ''
     + '<div class="firsat-ozet-chip"><div class="firsat-ozet-sayi">'+ucuzSayi+'</div><div class="firsat-ozet-lbl">En Ucuz</div></div>'
-    + '<div class="firsat-ozet-chip"><div class="firsat-ozet-sayi">'+halSayi+'</div><div class="firsat-ozet-lbl">Hal Fırsatı</div></div>'
     + '<div class="firsat-ozet-chip"><div class="firsat-ozet-sayi">'+tasarrufSayi+'</div><div class="firsat-ozet-lbl">Fiyat Farkı</div></div>';
 }
 
