@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <title>Pazar — Haldeki fiyatı, markete gitmeden bil</title>
+  <title>Pazar — Marketteki gizli zamları gör</title>
   <link rel="manifest" href="./manifest.json">
   <link rel="icon" type="image/png" href="./static/icon-192.png">
   <meta name="theme-color" content="#0F5132">
@@ -739,7 +739,7 @@
     <div class="header-logo"><img src="./static/icon-192.png" alt="Pazar logo"></div>
     <div class="header-text">
       <h1>Pazar</h1>
-      <p>Haldeki fiyatı, markete gitmeden bil</p>
+      <p>Marketteki gizli zamları gör</p>
     </div>
   </header>
 
@@ -860,7 +860,6 @@
   </header>
   <div class="firsat-tabs">
     <button class="firsat-tab active" onclick="firsatTab('ucuz',this)">💰 En Ucuz</button>
-    <button class="firsat-tab" onclick="firsatTab('hal',this)">🏭 Hal vs Market</button>
     <button class="firsat-tab" onclick="firsatTab('tasarruf',this)">💜 En Tasarruflu</button>
   </div>
   <div class="firsat-arabar">
@@ -948,7 +947,7 @@
       <div class="profil-item-icon" style="background:#DCFCE7">🌿</div>
       <div class="profil-item-body">
         <div class="profil-item-title">Pazar Uygulaması</div>
-        <div class="profil-item-sub">v1.0 · Haldeki fiyatı, markete gitmeden bil</div>
+        <div class="profil-item-sub">v1.0 · Marketteki gizli zamları gör</div>
       </div>
     </div>
   </div>
@@ -1335,22 +1334,13 @@ function openDetay(urunId) {
   if (!u) return;
   productMap[u._id] = u;
 
-  const hal      = halEsles(u);
-  const halFiyat = hal?.fiyat ?? null;
   const mktler   = (u.market_fiyatlari || []).filter(f => f.fiyat != null).sort((a, b) => a.fiyat - b.fiyat);
   const emoji    = KAT_EMOJI[ustKategori(u.ana_kategori)] || '📦';
   const imgHtml  = u.resim
     ? `<img src="${u.resim}" alt="" loading="lazy" onerror="this.onerror=null;this.parentElement.innerHTML='<div style=\'width:100%;height:120px;background:#f8f8f8;display:flex;align-items:center;justify-content:center;font-size:3rem\'>${emoji}</div>'">`
     : emoji;
 
-  const halSection = halFiyat != null ? `
-    <div class="detay-section">
-      <div class="detay-sec-label">Hal Fiyatı</div>
-      <div class="detay-hal-box">
-        <div class="detay-hal-price">${tl(halFiyat)}</div>
-        <div class="detay-hal-desc">Toptancı hal fiyatı · ${hal.birim || 'Kg'}</div>
-      </div>
-    </div>` : '';
+  const halSection = '';
 
   const mktRows = mktler.map((f, i) => {
     const isFirst = i === 0, isLast = i === mktler.length - 1 && mktler.length > 1;
@@ -1589,9 +1579,6 @@ function cardHTML(u) {
     ? `<img class="product-card-img" src="${u.resim}" alt="" loading="lazy" onerror="this.outerHTML='<div class=\\'product-card-img-ph\\'>${ph.emoji}</div>'">`
     : `<div class="product-card-img-ph">${ph.emoji}</div>`;
 
-  const hal = halEsles(u);
-  const halFiyat = hal?.fiyat ?? null;
-  const halBadge = halFiyat != null ? `<span class="product-hal-badge">🏭 Hal: ${tl(halFiyat)}</span>` : '';
   const inCart = sepet.some(s => s._id === u._id);
   let gosterilenFiyat = cheapest ? cheapest.fiyat : null;
   let gosterilenMarket = cheapest ? cheapest.market : '';
@@ -1605,7 +1592,6 @@ function cardHTML(u) {
     <div class="product-card-body">
       <div class="product-name">${u.ad}</div>
       ${u.agirlik_hacim ? `<div class="product-unit">${u.agirlik_hacim}</div>` : ''}
-      ${halBadge}
       <div class="product-price">${gosterilenFiyat != null ? tl(gosterilenFiyat) : '—'}${marketLbl ? `<span class="product-market-lbl"> · ${marketLbl}</span>` : ''}</div>
     </div>
     <button class="add-btn" data-pid="${u._id}" onclick="event.stopPropagation(); toggleSepet('${u._id}')" style="${inCart ? 'background:#059669' : ''}">${inCart ? '✓' : '+'}</button>
@@ -2216,7 +2202,6 @@ function renderFirsatlar(tab) {
       const tumUrunler = results.flatMap(function(d){ return Array.isArray(d) ? d : (d.urunler||[]); });
       _firsatOzetHesapla(tumUrunler);
       if (tab === 'ucuz') renderFirsatUcuz(container, tumUrunler);
-      else if (tab === 'hal') renderFirsatHal(container, tumUrunler);
       else if (tab === 'tasarruf') renderFirsatTasarruf(container, tumUrunler);
     });
 }
