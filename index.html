@@ -154,6 +154,7 @@
     .product-unit { font-size: 10px; color: #9CA3AF; margin-top: 2px; font-weight: 400; }
     .product-hal-badge { font-size: 10px; color: #D97706; font-weight: 600; margin-top: 3px; display: block; }
     .product-price { font-size: 15px; font-weight: 800; color: #0F5132; margin-top: 4px; letter-spacing: -0.3px; }
+    .urun-birim-fiyat { font-size: 11px; color: #888; margin-top: 2px; line-height: 1.2; }
     .product-market-lbl { font-size: 10px; color: #9CA3AF; font-weight: 500; }
     .add-btn { position: absolute; bottom: 8px; right: 8px; width: 30px; height: 30px; border-radius: 50%; background: #0F5132; color: white; border: none; font-size: 20px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(15,81,50,0.3); transition: transform .15s; }
     .add-btn:active { transform: scale(.88); }
@@ -1568,6 +1569,39 @@ function placeholderRenk(kategori) {
   return renkler[kategori] || {bg:'#F5F5F5', emoji:'📦'};
 }
 
+function birimFiyatHesapla(u) {
+  if (!u || !u.agirlik_hacim) return null;
+  const fiyat = enDusukFiyat(u);
+  if (!fiyat || fiyat <= 0) return null;
+  const s = String(u.agirlik_hacim).toLowerCase().replace(/,/g, '.');
+  let m = s.match(/(\d+(?:\.\d+)?)\s*kg\b/);
+  if (m) { const kg = parseFloat(m[1]); if (kg > 0) return { deger: fiyat / kg, birim: 'kg' }; }
+  m = s.match(/(\d+(?:\.\d+)?)\s*gr?\b/);
+  if (m) { const gr = parseFloat(m[1]); if (gr > 0) return { deger: (fiyat / gr) * 1000, birim: 'kg' }; }
+  m = s.match(/(\d+(?:\.\d+)?)\s*l\b/);
+  if (m) { const l = parseFloat(m[1]); if (l > 0) return { deger: fiyat / l, birim: 'L' }; }
+  m = s.match(/(\d+(?:\.\d+)?)\s*ml\b/);
+  if (m) { const ml = parseFloat(m[1]); if (ml > 0) return { deger: (fiyat / ml) * 1000, birim: 'L' }; }
+  m = s.match(/x\s*(\d+)\b/) || s.match(/(\d+)\s*(?:lu|li|adet)\b/);
+  if (m) { const a = parseInt(m[1], 10); if (a > 0) return { deger: fiyat / a, birim: 'adet' }; }
+  return null;
+}
+
+function enDusukFiyat(u) {
+  if (!u || !Array.isArray(u.market_fiyatlari) || !u.market_fiyatlari.length) return null;
+  let min = Infinity;
+  u.market_fiyatlari.forEach(mf => {
+    const f = parseFloat(mf.fiyat);
+    if (!isNaN(f) && f > 0 && f < min) min = f;
+  });
+  return min === Infinity ? null : min;
+}
+
+function birimFiyatYazi(bf) {
+  if (!bf) return '';
+  return bf.birim + ' basina ' + tl(bf.deger);
+}
+
 function cardHTML(u) {
   const mktler  = (u.market_fiyatlari || []).filter(f => f.fiyat != null).sort((a,b) => a.fiyat - b.fiyat);
   const cheapest = mktler[0];
@@ -1592,6 +1626,7 @@ function cardHTML(u) {
       <div class="product-name">${u.ad}</div>
       ${u.agirlik_hacim ? `<div class="product-unit">${u.agirlik_hacim}</div>` : ''}
       <div class="product-price">${gosterilenFiyat != null ? tl(gosterilenFiyat) : '—'}${marketLbl ? `<span class="product-market-lbl"> · ${marketLbl}</span>` : ''}</div>
+      ${(() => { const bf = birimFiyatHesapla(u); return bf ? `<div class="urun-birim-fiyat">${birimFiyatYazi(bf)}</div>` : ''; })()}
     </div>
     <button class="add-btn" data-pid="${u._id}" onclick="event.stopPropagation(); toggleSepet('${u._id}')" style="${inCart ? 'background:#059669' : ''}">${inCart ? '✓' : '+'}</button>
   </div>`;
