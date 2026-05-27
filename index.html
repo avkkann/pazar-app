@@ -1641,10 +1641,17 @@ function enDusukFiyat(u) {
   return min === Infinity ? null : min;
 }
 
+function markaBul(u) {
+  if (!u || !u.ad) return '';
+  const ilk = String(u.ad).trim().split(/\s+/)[0] || '';
+  return ilk.toLowerCase().replace(/[^a-z0-9]/g, '');
+}
+
 function ayniUrunMu(u1, u2) {
   if (!u1 || !u2) return false;
   if (u1._id === u2._id) return false;
   if ((u1.ana_kategori || '') !== (u2.ana_kategori || '')) return false;
+  if (markaBul(u1) !== markaBul(u2)) return false;
   const norm = (ad, ah) => {
     let s = String(ad || '').toLowerCase();
     if (ah) s = s.replace(String(ah).toLowerCase(), '');
@@ -1673,6 +1680,7 @@ function rakipMarkalariBul(u) {
     const v = productMap[k];
     if (!v || v._id === u._id) continue;
     if ((v.ana_kategori || '') !== (u.ana_kategori || '')) continue;
+    if (markaBul(v) === markaBul(u)) continue;
     if (String(v.agirlik_hacim || '').toLowerCase().trim() !== ah) continue;
     out.push(v);
   }
