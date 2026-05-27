@@ -1584,6 +1584,11 @@ function birimFiyatHesapla(u) {
   if (m) { const ml = parseFloat(m[1]); if (ml > 0) return { deger: (fiyat / ml) * 1000, birim: 'L' }; }
   m = s.match(/x\s*(\d+)\b/) || s.match(/(\d+)\s*(?:lu|li|adet)\b/);
   if (m) { const a = parseInt(m[1], 10); if (a > 0) return { deger: fiyat / a, birim: 'adet' }; }
+  if (u.ad) {
+    const adS = String(u.ad).toLowerCase().replace(/'/g, '').replace(/,/g, '.');
+    const m2 = adS.match(/(\d+)\s*adet\b/) || adS.match(/x\s*(\d+)\b/);
+    if (m2) { const a = parseInt(m2[1], 10); if (a > 0) return { deger: fiyat / a, birim: 'adet' }; }
+  }
   return null;
 }
 
