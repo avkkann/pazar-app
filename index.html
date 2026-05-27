@@ -1617,10 +1617,10 @@ function birimFiyatHesapla(u) {
   if (m) { const kg = parseFloat(m[1]); if (kg > 0) return { deger: fiyat / kg, birim: 'kg' }; }
   m = s.match(/(\d+(?:\.\d+)?)\s*gr?\b/);
   if (m) { const gr = parseFloat(m[1]); if (gr > 0) return { deger: (fiyat / gr) * 1000, birim: 'kg' }; }
-  m = s.match(/(\d+(?:\.\d+)?)\s*l\b/);
-  if (m) { const l = parseFloat(m[1]); if (l > 0) return { deger: fiyat / l, birim: 'L' }; }
   m = s.match(/(\d+(?:\.\d+)?)\s*ml\b/);
   if (m) { const ml = parseFloat(m[1]); if (ml > 0) return { deger: (fiyat / ml) * 1000, birim: 'L' }; }
+  m = s.match(/(\d+(?:\.\d+)?)\s*(?:lt|litre|l)\b/);
+  if (m) { const l = parseFloat(m[1]); if (l > 0) return { deger: fiyat / l, birim: 'L' }; }
   m = s.match(/x\s*(\d+)\b/) || s.match(/(\d+)\s*(?:lu|li|adet)\b/);
   if (m) { const a = parseInt(m[1], 10); if (a > 0) return { deger: fiyat / a, birim: 'adet' }; }
   if (u.ad) {
