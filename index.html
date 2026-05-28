@@ -442,6 +442,8 @@
       background: var(--primary); border-color: var(--primary); color: #fff;
     }
     .filter-pill:not(.active):hover { border-color: var(--primary); color: var(--primary); }
+    .filter-pill.disabled { opacity: 0.35; pointer-events: none; cursor: not-allowed; }
+    .kart-market-yok { font-size: 12px; color: #999; font-style: italic; margin-top: 4px; }
 
     /* ── HAL BÖLÜMÜ BUTONU ── */
 .hal-section-btn {
@@ -1742,15 +1744,22 @@ function cardHTML(u) {
   const emoji   = KAT_EMOJI[anaKat] || '📦';
   const ph = placeholderRenk(anaKat);
   const img = u.resim
-    ? `<img class="product-card-img" src="${u.resim}" alt="" loading="lazy" onerror="this.outerHTML='<div class=\\'product-card-img-ph\\'>${ph.emoji}</div>'">`
+    ? `<img class="product-card-img" src="${u.resim}" alt="" loading="lazy" onerror="this.outerHTML='<div class=\'product-card-img-ph\'>${ph.emoji}</div>'">`
     : `<div class="product-card-img-ph">${ph.emoji}</div>`;
 
   const inCart = sepet.some(s => s._id === u._id);
   let gosterilenFiyat = cheapest ? cheapest.fiyat : null;
   let gosterilenMarket = cheapest ? cheapest.market : '';
-  if (window.aktifMarket && window.aktifMarket !== 'all' && window.aktifMarket !== 'tumu') {
-    const mf = (u.market_fiyatlari || []).find(f => f.market === window.aktifMarket);
-    if (mf) { gosterilenFiyat = mf.fiyat; gosterilenMarket = mf.market; }
+  const secililer = window.aktifMarketler || [];
+  if (secililer.length > 0) {
+    const uygun = mktler.filter(f => secililer.includes(f.market));
+    if (uygun.length > 0) {
+      gosterilenFiyat = uygun[0].fiyat;
+      gosterilenMarket = uygun[0].market;
+    } else {
+      gosterilenFiyat = null;
+      gosterilenMarket = '';
+    }
   }
   const marketLbl = gosterilenMarket ? MARKET_NAMES[gosterilenMarket] || gosterilenMarket : '';
   return `<div class="product-card" data-urun-id="${u._id}" data-markets="${(u.market_fiyatlari||[]).map(f=>f.market).join(',')}" onclick="openDetay('${u._id}')" style="cursor:pointer">
@@ -1758,7 +1767,9 @@ function cardHTML(u) {
     <div class="product-card-body">
       <div class="product-name">${u.ad}</div>
       ${u.agirlik_hacim ? `<div class="product-unit">${u.agirlik_hacim}</div>` : ''}
-      <div class="product-price">${gosterilenFiyat != null ? tl(gosterilenFiyat) : '—'}${marketLbl ? `<span class="product-market-lbl"> · ${marketLbl}</span>` : ''}</div>
+      ${gosterilenFiyat != null
+        ? `<div class="product-price">${tl(gosterilenFiyat)}${marketLbl ? `<span class="product-market-lbl"> · ${marketLbl}</span>` : ''}</div>`
+        : `<div class="kart-market-yok">Seçili markette yok</div>`}
       ${(() => { const bf = birimFiyatHesapla(u); return bf ? `<div class="urun-birim-fiyat">${birimFiyatYazi(bf)}</div>` : ''; })()}
       ${(() => { const rz = tuzakRozetiHesapla(u); return rz ? tuzakRozetiHTML(rz, true) : ''; })()}
     </div>
@@ -1790,9 +1801,14 @@ async function openCategory(slug) {
   toplamSayfa = 1;
   urunler = [];
   activeMarket = null;
-  document.querySelectorAll('.filter-pill').forEach(p =>
-    p.classList.toggle('active', p.dataset.market === 'all')
-  );
+  window.aktifMarketler = [];
+  document.querySelectorAll('.filter-pill').forEach(p => {
+    const m = p.dataset.market;
+    p.classList.toggle('active', m === 'all' || m === 'tumu');
+    p.classList.remove('disabled');
+    p.style.pointerEvents = '';
+    p.style.opacity = '';
+  });
   showScreen('screen-cat');
   document.getElementById('screen-cat').scrollTop = 0;
   await loadKategoriSayfasi(slug, 1);
@@ -1808,7 +1824,14 @@ function renderUrunler(liste) {
 }
 
 function setMarketFilter(market) {
-  window.aktifMarket = market;
+  if (!window.aktifMarketler) window.aktifMarketler = [];
+  if (market === 'all' || market === 'tumu') {
+    window.aktifMarketler = [];
+  } else {
+    const i = window.aktifMarketler.indexOf(market);
+    if (i >= 0) window.aktifMarketler.splice(i, 1);
+    else window.aktifMarketler.push(market);
+  }
   uygulaCatFiltre();
 }
 
@@ -1883,7 +1906,6 @@ function setSiralama(deger) {
 
 function uygulaCatFiltre() {
   const aramaTermi = window._catAramaTermi || '';
-  const market = window.aktifMarket || 'all';
   const tumUrunler = window.yuklenenUrunler || [];
 
   let filtreliler = tumUrunler;
@@ -1893,20 +1915,27 @@ function uygulaCatFiltre() {
     filtreliler = filtreliler.filter(u => (u.ana_kategori || '').trim() === altKat);
   }
 
-  if (market && market !== 'all' && market !== 'tumu') {
-    filtreliler = filtreliler.filter(u => {
-      return (u.market_fiyatlari || []).some(f => f.market === market);
-    });
-  }
-
   if (aramaTermi.length > 0) {
     filtreliler = filtreliler.filter(u => {
       return (u.ad || '').toLowerCase().includes(aramaTermi);
     });
   }
 
+  const secililer = window.aktifMarketler || [];
   document.querySelectorAll('[data-market]').forEach(pill => {
-    pill.classList.toggle('active', pill.dataset.market === market);
+    const m = pill.dataset.market;
+    if (m === 'all' || m === 'tumu') {
+      pill.classList.toggle('active', secililer.length === 0);
+      pill.classList.remove('disabled');
+      pill.style.pointerEvents = '';
+      pill.style.opacity = '';
+      return;
+    }
+    const marketVar = tumUrunler.some(u => (u.market_fiyatlari||[]).some(f => f.market === m));
+    pill.classList.toggle('disabled', !marketVar);
+    pill.style.pointerEvents = marketVar ? '' : 'none';
+    pill.style.opacity = marketVar ? '' : '0.35';
+    pill.classList.toggle('active', secililer.includes(m));
   });
 
   const sir = window._catSiralama || 'populer';
