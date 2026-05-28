@@ -1989,9 +1989,20 @@ document.getElementById('search').addEventListener('input', function() {
   _searchTimer = setTimeout(async () => {
     document.getElementById('searchList').innerHTML = skeletonHTML(3);
     await loadAllCats();
-    const qn = norm(q);
+    const qn = q.toLowerCase().trim();
     const allProducts = KATEGORILER.flatMap(k => catCache[k.slug] || []);
-    const results = allProducts.filter(u => norm(u.ad).includes(qn)).slice(0, 96);
+    const katEslesme = (u) => {
+      const ana = String(u.ana_kategori || '').toLowerCase();
+      return ana.includes(qn);
+    };
+    const kategoriVar = allProducts.some(katEslesme);
+    let results;
+    if (kategoriVar) {
+      results = allProducts.filter(katEslesme);
+    } else {
+      results = allProducts.filter(u => String(u.ad || '').toLowerCase().includes(qn));
+    }
+    results = results.slice(0, 96);
     document.getElementById('searchCount').textContent = results.length;
     document.getElementById('searchList').innerHTML = results.length
       ? results.map(cardHTML).join('')
