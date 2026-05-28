@@ -351,6 +351,10 @@
       border: 1px solid var(--border);
     }
     .cmp-grand-save { background: #ECFDF5; border-color: #D1FAE5; color: #065F46; }
+    .karsilastir-market-secim { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0; }
+    .karsilastir-pill { padding:6px 14px; border-radius:999px; border:1.5px solid var(--border); background:var(--bg); color:var(--text-muted); cursor:pointer; font-size:0.8rem; font-weight:600; }
+    .karsilastir-pill.active { background:var(--primary, #0F5132); color:#fff; border-color:var(--primary, #0F5132); }
+    .karsilastir-hesapla-btn { margin-top:8px; width:100%; padding:12px; border-radius:12px; background:var(--primary, #0F5132); color:#fff; border:none; font-weight:600; cursor:pointer; }
 
     /* ── DETAY EKRANI ── */
     .detay-img-wrap {
@@ -2178,18 +2182,49 @@ function paylasSepet() {
 }
 
 // ── KARŞILAŞTIRMA ─────────────────────────────────────
-function _combos(arr, k) {
-  if (k === 0) return [[]];
-  if (arr.length < k) return [];
-  const [h, ...t] = arr;
-  return [..._combos(t, k - 1).map(c => [h, ...c]), ..._combos(t, k)];
-}
+const MARKET_SIRALIYE = {
+  a101:'A101', bim:'BİM', carrefour:'CarrefourSA',
+  migros:'Migros', sok:'ŞOK', tarim_kredi:'Tarım Kredi'
+};
 
 function karsilastir() {
   if (!sepet.length) {
     document.getElementById('compareOut').innerHTML = `<div class="state-msg">Listeniz boş.</div>`;
     return;
   }
+  const mevcutMarketler = new Set();
+  sepet.forEach(u => (u.market_fiyatlari||[]).forEach(f => mevcutMarketler.add(f.market)));
+  const mktList = [...mevcutMarketler];
+
+  if (!mktList.length) {
+    document.getElementById('compareOut').innerHTML = `<div class="state-msg">Hiç market fiyatı yok.</div>`;
+    return;
+  }
+
+  const pillHtml = mktList.map(m => {
+    const lbl = MARKET_SIRALIYE[m] || MARKET_NAMES[m] || m;
+    return `<button class="karsilastir-pill active" data-mkt="${m}" onclick="toggleMktSecim(this)">${lbl}</button>`;
+  }).join('');
+
+  document.getElementById('compareOut').innerHTML = `
+    <div class="karsilastir-market-secim">
+      ${pillHtml}
+    </div>
+    <button class="karsilastir-hesapla-btn" onclick="hesaplaSecili()">Hesapla</button>
+    <div id="compareResult" style="margin-top:16px"></div>`;
+}
+
+function toggleMktSecim(btn) {
+  btn.classList.toggle('active');
+}
+
+function hesaplaSecili() {
+  const seciliMarketler = [...document.querySelectorAll('.karsilastir-pill.active')].map(p => p.dataset.mkt);
+  if (!seciliMarketler.length) {
+    document.getElementById('compareResult').innerHTML = `<div class="state-msg">En az bir market seçin.</div>`;
+    return;
+  }
+
   const mkts = {};
   for (const item of sepet) {
     for (const f of (item.market_fiyatlari || []).filter(f => f.fiyat != null)) {
@@ -2199,116 +2234,58 @@ function karsilastir() {
         mkts[k].items[item._id] = f.fiyat;
     }
   }
-  const allKeys = Object.keys(mkts);
 
-  function evalCombo(keys) {
-    let total = 0; const assignment = {};
-    for (const item of sepet) {
-      let best = null;
-      for (const k of keys) {
-        if (item._id in mkts[k].items) {
-          const p = mkts[k].items[item._id];
-          if (!best || p < best.price) best = { key: k, name: mkts[k].name, price: p };
-        }
-      }
-      if (!best) return null;
-      total += best.price; assignment[item._id] = best;
-    }
-    return { total, assignment };
-  }
+  const atama = {};
+  const atanamayan = [];
+  let genelToplam = 0;
 
-  function bestN(n) {
-    if (n > allKeys.length) return null;
+  for (const item of sepet) {
     let best = null;
-    for (const combo of _combos(allKeys, n)) {
-      const r = evalCombo(combo);
-      if (r && (!best || r.total < best.total)) best = r;
+    for (const k of seciliMarketler) {
+      if (mkts[k] && item._id in mkts[k].items) {
+        const p = mkts[k].items[item._id];
+        if (!best || p < best.price) best = { key: k, name: mkts[k].name, price: p };
+      }
     }
-    return best;
-  }
-
-  const opts = [bestN(1), bestN(2), bestN(3)];
-  const base = opts[0] ? opts[0].total : null;
-  window._cmpState = { opts, mkts };
-
-  // En ucuz secenegin index'ini bul (sadece tutar varsa)
-  let bestIdx = -1;
-  let bestTotal = Infinity;
-  opts.forEach((opt, i) => {
-    if (opt && opt.total < bestTotal) {
-      bestTotal = opt.total;
-      bestIdx = i;
+    if (best) {
+      if (!atama[best.key]) atama[best.key] = { items: [], total: 0 };
+      atama[best.key].items.push({ ad: item.ad + (item.agirlik_hacim ? ' ' + item.agirlik_hacim : ''), fiyat: best.price });
+      atama[best.key].total += best.price;
+      genelToplam += best.price;
+    } else {
+      atanamayan.push(item);
     }
-  });
-
-  function mktNames(opt) {
-    return [...new Set(Object.values(opt.assignment).map(a => a.name))].join(', ');
   }
-
-  const labels = ['1 marketten al', '2 marketten al', '3 marketten al'];
-  const cards = opts.map((opt, i) => {
-    if (!opt) return `<div class="cmp-opt unavail"><div>
-      <div class="cmp-opt-title">${labels[i]}</div>
-      <div class="cmp-opt-sub">Yeterli market verisi yok</div></div></div>`;
-    const save = base != null && i > 0 && opt.total < base ? base - opt.total : null;
-    const isBest = i === bestIdx;
-    const bestBadge = isBest ? '<span class="cmp-best-badge">✓ EN UCUZ</span>' : '';
-    return `<div class="cmp-opt${isBest ? ' selected' : ''}" onclick="showKombo(${i})">
-      <div>
-        <div class="cmp-opt-title">${labels[i]} ${bestBadge}</div>
-        <div class="cmp-opt-sub">${mktNames(opt)}</div>
-      </div>
-      <div class="cmp-opt-right">
-        <div class="cmp-opt-price">${tl(opt.total)}</div>
-        <div class="cmp-opt-save">${save != null ? '💰 ' + tl(save) + ' tasarruf' : ' '}</div>
-      </div>
-    </div>`;
-  }).join('');
-
-  document.getElementById('compareOut').innerHTML = `
-    <div class="compare-wrap">
-      <div class="cmp-sec-label">Kaç Markete Gitmeye Değer?</div>
-      <div class="cmp-opt-cards">${cards}</div>
-      <div id="cmpDetail" class="cmp-detail"></div>
-    </div>`;
-}
-
-function showKombo(idx) {
-  const { opts, mkts } = window._cmpState || {};
-  if (!opts) return;
-  const opt = opts[idx];
-  if (!opt) return;
 
   const MFROM = {
     a101:"A101'den", bim:"BİM'den", carrefour:"CarrefourSA'dan",
     migros:"Migros'tan", sok:"ŞOK'tan", tarim_kredi:"T.Kredi'den"
   };
-  const groups = {};
-  for (const item of sepet) {
-    const a = opt.assignment[item._id];
-    if (!a) continue;
-    if (!groups[a.key]) groups[a.key] = { from: MFROM[a.key] || a.name + "'den", items: [], total: 0 };
-    groups[a.key].items.push({ ad: item.ad + (item.agirlik_hacim ? ' ' + item.agirlik_hacim : ''), fiyat: a.price });
-    groups[a.key].total += a.price;
-  }
 
-  const base = opts[0] ? opts[0].total : null;
-  const save = base != null && idx > 0 && opt.total < base ? base - opt.total : null;
-
-  const blocks = Object.values(groups).map(g => `
-    <div class="cmp-mkt-block">
-      <div class="cmp-mkt-name">🛒 ${g.from} alacakların:</div>
+  const blocks = seciliMarketler.filter(k => atama[k]).map(k => {
+    const g = atama[k];
+    return `<div class="cmp-mkt-block">
+      <div class="cmp-mkt-name">🛒 ${MFROM[k] || g.name + "'den"} alacakların:</div>
       ${g.items.map(it => `<div class="cmp-mkt-item">
         <span class="cmp-mkt-item-name">${it.ad}</span>
         <span class="cmp-mkt-item-price">${tl(it.fiyat)}</span>
       </div>`).join('')}
       <div class="cmp-mkt-subtotal">Toplam: ${tl(g.total)}</div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
 
-  document.getElementById('cmpDetail').innerHTML =
-    blocks +
-    `<div class="cmp-grand"><span>Genel Toplam</span><span>${tl(opt.total)}</span></div>` +
-    (save != null ? `<div class="cmp-grand cmp-grand-save"><span>💰 Tasarruf</span><span>${tl(save)}</span></div>` : '');
+  const atanamayanHtml = atanamayan.length ? `
+    <div class="cmp-mkt-block" style="margin-top:12px">
+      <div class="cmp-mkt-name">⚠️ Seçili marketlerde bulunmayan ürünler:</div>
+      ${atanamayan.map(it => `<div class="cmp-mkt-item">
+        <span class="cmp-mkt-item-name">${it.ad}</span>
+        <span class="cmp-mkt-item-price" style="color:#999">—</span>
+      </div>`).join('')}
+    </div>` : '';
+
+  document.getElementById('compareResult').innerHTML =
+    blocks + atanamayanHtml +
+    `<div class="cmp-grand"><span>Genel Toplam</span><span>${tl(genelToplam)}</span></div>`;
 }
 
 // ── HAL.JSON CACHE — tek seferlik fetch ───────────────
