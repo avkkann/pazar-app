@@ -439,7 +439,10 @@
       transition: all .15s; white-space: nowrap;
     }
     .filter-pill.active {
-      background: var(--primary); border-color: var(--primary); color: #fff;
+      background: var(--primary, #0F5132);
+      color: #ffffff;
+      border-color: var(--primary, #0F5132);
+      font-weight: 600;
     }
     .filter-pill:not(.active):hover { border-color: var(--primary); color: var(--primary); }
     .filter-pill.disabled { opacity: 0.35; pointer-events: none; cursor: not-allowed; }
