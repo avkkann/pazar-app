@@ -749,6 +749,90 @@
   color: #fff;
   border-color: var(--primary);
 }
+
+    /* ── MARKET KARŞILAŞTIR BOTTOM SHEET ── */
+    .ms-sheet {
+      position: fixed; inset: 0; z-index: 1100;
+      display: none; align-items: flex-end;
+      pointer-events: none;
+    }
+    .ms-sheet.open { display: flex; pointer-events: auto; }
+    .ms-sheet-backdrop {
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,0.55);
+      opacity: 0; transition: opacity 250ms ease;
+    }
+    .ms-sheet.open .ms-sheet-backdrop { opacity: 1; }
+    .ms-sheet-box {
+      position: relative; width: 100%; max-width: 560px; margin: 0 auto;
+      background: var(--card-bg, #1a1a1a);
+      border-top-left-radius: 18px; border-top-right-radius: 18px;
+      max-height: 85vh; display: flex; flex-direction: column;
+      transform: translateY(100%);
+      transition: transform 250ms ease;
+      padding-bottom: env(safe-area-inset-bottom, 0);
+    }
+    .ms-sheet.open .ms-sheet-box { transform: translateY(0); }
+    .ms-sheet-header {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      padding: 18px 18px 8px; flex-shrink: 0;
+    }
+    .ms-sheet-title { font-size: 1.05rem; font-weight: 800; color: var(--text); }
+    .ms-sheet-sub { font-size: .78rem; color: var(--text-muted); margin-top: 2px; font-weight: 500; }
+    .ms-sheet-close {
+      background: none; border: none; cursor: pointer;
+      color: var(--text-muted); font-size: 1.4rem; line-height: 1;
+      padding: 4px 8px; border-radius: 8px; flex-shrink: 0;
+    }
+    .ms-sheet-close:hover { background: var(--bg); color: var(--text); }
+    .ms-sheet-list { flex: 1; overflow-y: auto; padding: 4px 12px 8px; }
+    .ms-market-row {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 8px; border-radius: 12px; cursor: pointer;
+      transition: background 120ms ease;
+    }
+    .ms-market-row:hover { background: var(--bg); }
+    .ms-market-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: var(--primary, #0F5132); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 1rem; flex-shrink: 0;
+    }
+    .ms-market-info { flex: 1; min-width: 0; }
+    .ms-market-name { font-size: .92rem; font-weight: 600; color: var(--text); }
+    .ms-market-sub { font-size: .75rem; color: var(--text-muted); margin-top: 2px; }
+    .ms-tick {
+      width: 22px; height: 22px; border-radius: 50%;
+      border: 1.5px solid var(--border, #555);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: all 150ms ease;
+      font-size: 14px; color: #fff; line-height: 1;
+    }
+    .ms-tick.on {
+      background: var(--primary, #0F5132);
+      border-color: var(--primary, #0F5132);
+    }
+    .ms-sheet-footer {
+      background: var(--card-bg, #1a1a1a);
+      border-top: 1px solid var(--border, #2a2a2a);
+      padding: 12px 18px calc(12px + env(safe-area-inset-bottom, 0));
+      flex-shrink: 0;
+    }
+    .ms-sheet-total {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: .85rem; font-weight: 700; color: var(--text);
+      margin-bottom: 10px;
+    }
+    .ms-sheet-total-amount { color: var(--primary, #0F5132); font-size: 1.05rem; }
+    .ms-sheet-btn {
+      width: 100%; padding: 14px; border: none; border-radius: 12px;
+      background: var(--primary, #0F5132); color: #fff;
+      font-size: .95rem; font-weight: 700; cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: opacity 150ms ease;
+    }
+    .ms-sheet-btn:disabled { opacity: 0.4; pointer-events: none; }
+    .ms-sheet-btn:hover { background: var(--primary-light, #1D9E75); }
   </style>
 </head>
 <body>
@@ -2187,6 +2271,10 @@ const MARKET_SIRALIYE = {
   migros:'Migros', sok:'ŞOK', tarim_kredi:'Tarım Kredi'
 };
 
+// Bottom sheet state
+let _msSecili = [];
+let _msMarkets = [];
+
 function karsilastir() {
   if (!sepet.length) {
     document.getElementById('compareOut').innerHTML = `<div class="state-msg">Listeniz boş.</div>`;
@@ -2195,32 +2283,93 @@ function karsilastir() {
   const mevcutMarketler = new Set();
   sepet.forEach(u => (u.market_fiyatlari||[]).forEach(f => mevcutMarketler.add(f.market)));
   const mktList = [...mevcutMarketler];
-
   if (!mktList.length) {
     document.getElementById('compareOut').innerHTML = `<div class="state-msg">Hiç market fiyatı yok.</div>`;
     return;
   }
+  msSheetAc(mktList);
+}
 
-  const pillHtml = mktList.map(m => {
-    const lbl = MARKET_SIRALIYE[m] || MARKET_NAMES[m] || m;
-    return `<button class="karsilastir-pill active" data-mkt="${m}" onclick="toggleMktSecim(this)">${lbl}</button>`;
+function msSheetAc(mktList) {
+  _msMarkets = mktList.map(m => {
+    const adet = sepet.filter(u => (u.market_fiyatlari||[]).some(f => f.market === m && f.fiyat != null)).length;
+    const minToplam = sepet.reduce((s, u) => {
+      const f = (u.market_fiyatlari||[]).filter(ff => ff.market === m && ff.fiyat != null).sort((a,b) => a.fiyat - b.fiyat)[0];
+      return s + (f ? f.fiyat : 0);
+    }, 0);
+    return { key: m, name: MARKET_SIRALIYE[m] || MARKET_NAMES[m] || m, adet, minToplam };
+  });
+  _msSecili = _msMarkets.map(x => x.key);
+
+  const listEl = document.getElementById('msList');
+  listEl.innerHTML = _msMarkets.map(m => {
+    const harf = (m.name || '?').trim().charAt(0).toUpperCase();
+    return `<div class="ms-market-row" data-mkt="${m.key}" onclick="msSheetToggle('${m.key}', this)">
+      <div class="ms-market-avatar">${harf}</div>
+      <div class="ms-market-info">
+        <div class="ms-market-name">${m.name}</div>
+        <div class="ms-market-sub">${m.adet} ürün · ${tl(m.minToplam)}</div>
+      </div>
+      <div class="ms-tick on">✓</div>
+    </div>`;
   }).join('');
 
-  document.getElementById('compareOut').innerHTML = `
-    <div class="karsilastir-market-secim">
-      ${pillHtml}
-    </div>
-    <button class="karsilastir-hesapla-btn" onclick="hesaplaSecili()">Hesapla</button>
-    <div id="compareResult" style="margin-top:16px"></div>`;
+  document.getElementById('msSheetSub').textContent = `${sepet.length} ürün için`;
+  document.getElementById('msSheet').classList.add('open');
+  document.getElementById('msSheet').setAttribute('aria-hidden', 'false');
+  msSheetGuncelle();
 }
 
-function toggleMktSecim(btn) {
-  btn.classList.toggle('active');
+function msSheetKapat() {
+  const s = document.getElementById('msSheet');
+  s.classList.remove('open');
+  s.setAttribute('aria-hidden', 'true');
 }
 
-function hesaplaSecili() {
-  const seciliMarketler = [...document.querySelectorAll('.karsilastir-pill.active')].map(p => p.dataset.mkt);
-  if (!seciliMarketler.length) {
+function msSheetToggle(m, rowEl) {
+  const i = _msSecili.indexOf(m);
+  if (i >= 0) _msSecili.splice(i, 1);
+  else _msSecili.push(m);
+  const tick = rowEl.querySelector('.ms-tick');
+  const on = _msSecili.includes(m);
+  tick.classList.toggle('on', on);
+  tick.textContent = on ? '✓' : '';
+  msSheetGuncelle();
+}
+
+function msSheetGuncelle() {
+  const n = _msSecili.length;
+  const total = _msSecili.reduce((s, k) => {
+    const m = _msMarkets.find(x => x.key === k);
+    return s + (m ? m.minToplam : 0);
+  }, 0);
+  document.getElementById('msSheetTotal').textContent = tl(total);
+  const btn = document.getElementById('msSheetBtn');
+  btn.textContent = n === 1 ? 'Hesapla (1 market)' : `Hesapla (${n} market)`;
+  btn.disabled = n === 0;
+}
+
+function msSheetHesapla() {
+  if (!_msSecili.length) return;
+  msSheetKapat();
+  if (!document.getElementById('compareOut').querySelector('#compareResult')) {
+    document.getElementById('compareOut').innerHTML = `<div id="compareResult" style="margin-top:16px"></div>`;
+  }
+  hesaplaSecili(_msSecili);
+  setTimeout(() => {
+    const r = document.getElementById('compareResult');
+    if (r) r.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 50);
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && document.getElementById('msSheet').classList.contains('open')) {
+    msSheetKapat();
+  }
+});
+
+function hesaplaSecili(seciliMarketler) {
+  if (!seciliMarketler || !seciliMarketler.length) {
     document.getElementById('compareResult').innerHTML = `<div class="state-msg">En az bir market seçin.</div>`;
     return;
   }
@@ -2684,6 +2833,28 @@ if ('serviceWorker' in navigator) {
     <div class="app-modal-actions">
       <button class="app-modal-btn app-modal-cancel" onclick="modalKapat()">İptal</button>
       <button class="app-modal-btn app-modal-ok" id="appModalOk">Tamam</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MARKET KARŞILAŞTIR BOTTOM SHEET ══ -->
+<div id="msSheet" class="ms-sheet" role="dialog" aria-hidden="true">
+  <div class="ms-sheet-backdrop" onclick="msSheetKapat()"></div>
+  <div class="ms-sheet-box" onclick="event.stopPropagation()">
+    <div class="ms-sheet-header">
+      <div>
+        <div class="ms-sheet-title">Marketleri Karşılaştır</div>
+        <div class="ms-sheet-sub" id="msSheetSub">— ürün için</div>
+      </div>
+      <button class="ms-sheet-close" onclick="msSheetKapat()" aria-label="Kapat">✕</button>
+    </div>
+    <div class="ms-sheet-list" id="msList"></div>
+    <div class="ms-sheet-footer">
+      <div class="ms-sheet-total">
+        <span>Tahmini toplam</span>
+        <span class="ms-sheet-total-amount" id="msSheetTotal">0,00 ₺</span>
+      </div>
+      <button class="ms-sheet-btn" id="msSheetBtn" onclick="msSheetHesapla()">Hesapla</button>
     </div>
   </div>
 </div>
