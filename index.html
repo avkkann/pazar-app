@@ -855,6 +855,132 @@
     .ms-sheet-hesapla.disabled {
       opacity: 0.4; pointer-events: none;
     }
+
+    /* ── MARKETFİYATI CANLI ARAMA ── */
+    #mf-ara-btn {
+      display: block; width: calc(100% - 20px); margin: 12px 10px 6px;
+      padding: 13px 16px; background: #FFF7ED; color: #9A3412;
+      border: 1.5px solid #FED7AA; border-radius: 12px;
+      font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600;
+      cursor: pointer; transition: all .15s ease; text-align: center;
+    }
+    #mf-ara-btn:hover { background: #FFEDD5; border-color: #FDBA74; }
+    #mf-ara-btn:active { transform: scale(.98); }
+    #mf-ara-btn:disabled { opacity: .55; pointer-events: none; }
+
+    #mf-results {
+      padding: 4px 10px 16px;
+    }
+    .mf-results-title {
+      font-size: .68rem; font-weight: 700; color: #9A3412;
+      text-transform: uppercase; letter-spacing: .06em;
+      padding: 10px 6px 6px; display: flex; align-items: center; gap: 6px;
+    }
+    .mf-results-empty {
+      padding: 14px 12px; font-size: 13px; color: #888; text-align: center;
+      background: #FAFAFA; border-radius: 10px; margin: 4px 0 8px;
+    }
+    .mf-card {
+      display: flex; gap: 10px; align-items: center;
+      background: #fff; border: 1px solid #F3F4F6; border-radius: 14px;
+      padding: 10px 12px; margin-bottom: 8px; cursor: pointer;
+      transition: transform .12s, box-shadow .15s;
+    }
+    .mf-card:hover { box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+    .mf-card:active { transform: scale(.99); }
+    .mf-card-img {
+      width: 56px; height: 56px; flex-shrink: 0; border-radius: 10px;
+      background: #F9FAFB; display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; overflow: hidden; border: 1px solid #F3F4F6;
+    }
+    .mf-card-img img { width: 100%; height: 100%; object-fit: contain; }
+    .mf-card-info { flex: 1; min-width: 0; }
+    .mf-card-title {
+      font-size: 13px; font-weight: 600; color: #111827; line-height: 1.3;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .mf-card-meta {
+      font-size: 11px; color: #888; margin-top: 2px; line-height: 1.3;
+      display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .mf-card-right { text-align: right; flex-shrink: 0; }
+    .mf-card-price {
+      font-size: 15px; font-weight: 800; color: #0F5132; letter-spacing: -.3px;
+    }
+    .mf-card-market {
+      font-size: 10px; color: #888; margin-top: 2px;
+    }
+    .mf-card-markets {
+      font-size: 10px; color: #9A3412; font-weight: 600; margin-top: 2px;
+    }
+    .mf-note {
+      text-align: center; font-size: 11px; color: #9CA3AF;
+      padding: 6px 0 4px;
+    }
+
+    /* ── MARKETFİYATI BOTTOM SHEET ── */
+    .mf-sheet-backdrop {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 998;
+      opacity: 0; pointer-events: none;
+      transition: opacity 200ms ease;
+    }
+    .mf-sheet-backdrop.open { opacity: 1; pointer-events: auto; }
+
+    .mf-sheet {
+      position: fixed; left: 0; right: 0; bottom: 0;
+      background: #FFFFFF;
+      border-radius: 20px 20px 0 0;
+      box-shadow: 0 -8px 32px rgba(0,0,0,0.15);
+      max-height: 85vh; overflow-y: auto;
+      z-index: 999;
+      transform: translateY(100%);
+      transition: transform 250ms ease;
+      padding: 8px 0 0;
+    }
+    .mf-sheet.open { transform: translateY(0); }
+    .mf-sheet::before {
+      content: ''; display: block;
+      width: 36px; height: 4px;
+      background: #D0D0D0; border-radius: 2px;
+      margin: 8px auto 12px;
+    }
+    .mf-sheet-header {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      padding: 0 20px 14px;
+      border-bottom: 1px solid #EAEAEA;
+    }
+    .mf-sheet-header h3 { margin: 0; font-size: 17px; font-weight: 700; color: #1a1a1a; }
+    .mf-sheet-header .mf-subtitle { font-size: 13px; color: #777; margin-top: 2px; }
+    .mf-sheet-close {
+      background: rgba(0,0,0,0.06); border: 0;
+      width: 32px; height: 32px; border-radius: 50%;
+      color: #666; font-size: 18px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .mf-depot-list { padding: 8px 20px 16px; }
+    .mf-depot-row {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 10px; border-radius: 10px;
+      border: 1px solid #F3F4F6; margin-bottom: 6px;
+      background: #FAFAFA;
+    }
+    .mf-depot-row.best {
+      background: #ECFDF5; border-color: #A7F3D0;
+    }
+    .mf-depot-info { flex: 1; min-width: 0; }
+    .mf-depot-market { font-weight: 600; font-size: 14px; color: #1a1a1a; }
+    .mf-depot-meta { font-size: 11px; color: #888; margin-top: 2px; }
+    .mf-depot-right { text-align: right; flex-shrink: 0; }
+    .mf-depot-price { font-size: 16px; font-weight: 800; color: #0F5132; }
+    .mf-depot-row.best .mf-depot-price { color: #059669; }
+    .mf-depot-unit { font-size: 11px; color: #888; margin-top: 1px; }
+    .mf-sheet-footer {
+      padding: 12px 20px 20px; border-top: 1px solid #EAEAEA;
+      text-align: center; font-size: 11px; color: #999; background: #FAFAFA;
+    }
   </style>
 </head>
 <body>
@@ -893,6 +1019,8 @@
   <div id="home-search" style="display:none">
     <div class="stats-row"><span><b id="searchCount">0</b> sonuç</span></div>
     <div class="product-list" id="searchList"></div>
+    <button id="mf-ara-btn" onclick="marketfiyatiCanliAra()" style="display:none">📡 marketfiyati.org.tr'de ara</button>
+    <div id="mf-results"></div>
   </div>
 
 </div>
@@ -2144,11 +2272,150 @@ const KART_GRUP = {
   'dondurulmus': 'dondurulmus'
 };
 
+// ── MARKETFİYATI CANLI ARAMA (POC v1) ──────────────────
+let _mfLastQuery = '';
+let _mfLastData = null;
+
+function marketfiyatiAra(keywords) {
+  return fetch('https://api.marketfiyati.org.tr/api/v2/search', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ keywords, pages: 0, size: 20 })
+  })
+  .then(r => r.ok ? r.json() : null)
+  .catch(() => null);
+}
+
+function mfGorsel(item) {
+  const firstDepot = item.productDepotInfoList && item.productDepotInfoList[0];
+  if (!firstDepot) return '';
+  const market = (firstDepot.marketAdi || '').toLowerCase().replace(/\s+/g, '');
+  const id = item.id;
+  if (!id || !market) return '';
+  return `https://cdn.marketfiyati.org.tr/${market}images/${id}.png`;
+}
+
+function mfPlaceholderEmoji(item) {
+  const firstDepot = item.productDepotInfoList && item.productDepotInfoList[0];
+  if (!firstDepot) return '📦';
+  const m = (firstDepot.marketAdi || '').toLowerCase();
+  if (m.includes('migros')) return '🟠';
+  if (m.includes('a101')) return '🔵';
+  if (m.includes('bim')) return '🟡';
+  if (m.includes('carrefour')) return '🔷';
+  if (m.includes('şok') || m.includes('sok')) return '🟣';
+  return '🏷️';
+}
+
+function mfTl(n) {
+  if (typeof n !== 'number' || !isFinite(n)) return '';
+  return n.toFixed(2).replace('.', ',') + ' ₺';
+}
+
+async function marketfiyatiCanliAra() {
+  const q = _mfLastQuery;
+  if (!q) return;
+  const btn = document.getElementById('mf-ara-btn');
+  const out = document.getElementById('mf-results');
+  btn.disabled = true;
+  btn.textContent = 'Aranıyor...';
+  out.innerHTML = `<div class="mf-results-title">📡 marketfiyati.org.tr'den canlı sonuçlar</div><div class="mf-results-empty">Aranıyor: <b>${q}</b></div>`;
+  const data = await marketfiyatiAra(q);
+  btn.disabled = false;
+  btn.textContent = '📡 marketfiyati.org.tr\'de ara';
+  if (!data) {
+    out.innerHTML = `<div class="mf-results-title">📡 marketfiyati.org.tr'den canlı sonuçlar</div><div class="mf-results-empty">❌ Şu an ulaşılamıyor. Tekrar deneyin.</div>`;
+    return;
+  }
+  const items = data.products || data.results || data.items || data || [];
+  const list = Array.isArray(items) ? items : [];
+  _mfLastData = list;
+  mfRenderResults(list);
+}
+
+function mfRenderResults(list) {
+  const out = document.getElementById('mf-results');
+  if (!list.length) {
+    out.innerHTML = `<div class="mf-results-title">📡 marketfiyati.org.tr'den canlı sonuçlar</div><div class="mf-results-empty">Canlı aramada sonuç bulunamadı.</div>`;
+    return;
+  }
+  const rows = list.map((it, idx) => {
+    const depot = it.productDepotInfoList && it.productDepotInfoList[0];
+    const marketAdi = depot ? (depot.marketAdi || '') : '';
+    const depotName = depot ? (depot.depotName || '') : '';
+    const price = depot ? Number(depot.price) : NaN;
+    const unitPrice = depot ? (depot.unitPrice || '') : '';
+    const title = it.title || it.name || '—';
+    const meta = [it.refinedVolumeOrWeight, it.brand].filter(Boolean).join(' · ');
+    const marketCount = (it.productDepotInfoList || []).length;
+    const gorsel = mfGorsel(it);
+    const emoji = mfPlaceholderEmoji(it);
+    const imgTag = gorsel
+      ? `<img src="${gorsel}" alt="" loading="lazy" onerror="this.outerHTML='<div style=\\'font-size:1.6rem\\'>${emoji}</div>'">`
+      : `<div style="font-size:1.6rem">${emoji}</div>`;
+    return `<div class="mf-card" onclick="mfSheetAc(${idx})">
+      <div class="mf-card-img">${imgTag}</div>
+      <div class="mf-card-info">
+        <div class="mf-card-title">${title}</div>
+        <div class="mf-card-meta">${meta || (depotName || '')}</div>
+      </div>
+      <div class="mf-card-right">
+        <div class="mf-card-price">${isFinite(price) ? mfTl(price) : ''}</div>
+        <div class="mf-card-market">${marketAdi}</div>
+        <div class="mf-card-markets">${marketCount} markette</div>
+      </div>
+    </div>`;
+  }).join('');
+  out.innerHTML = `<div class="mf-results-title">📡 marketfiyati.org.tr'den canlı sonuçlar</div>${rows}<div class="mf-note">Veri marketfiyati.org.tr'den · canlı, kaydedilmez</div>`;
+}
+
+function mfSheetAc(idx) {
+  const it = (_mfLastData || [])[idx];
+  if (!it) return;
+  const title = it.title || it.name || 'Ürün';
+  const depots = it.productDepotInfoList || [];
+  const prices = depots.map(d => Number(d.price)).filter(n => isFinite(n));
+  const minPrice = prices.length ? Math.min(...prices) : NaN;
+  document.getElementById('mfSheetTitle').textContent = title;
+  document.getElementById('mfSheetSub').textContent = depots.length + ' markette listelendi';
+  const html = depots.map(d => {
+    const p = Number(d.price);
+    const isBest = isFinite(p) && isFinite(minPrice) && p === minPrice;
+    const marketAdi = d.marketAdi || '';
+    const depotName = d.depotName || '';
+    const unitPrice = d.unitPrice || '';
+    return `<div class="mf-depot-row ${isBest ? 'best' : ''}">
+      <div class="mf-depot-info">
+        <div class="mf-depot-market">${marketAdi}</div>
+        <div class="mf-depot-meta">${depotName}</div>
+      </div>
+      <div class="mf-depot-right">
+        <div class="mf-depot-price">${isFinite(p) ? mfTl(p) : ''}</div>
+        <div class="mf-depot-unit">${unitPrice}</div>
+      </div>
+    </div>`;
+  }).join('');
+  document.getElementById('mfDepotList').innerHTML = html || '<div class="mf-results-empty">Fiyat bilgisi yok.</div>';
+  document.getElementById('mfSheetBackdrop').classList.add('open');
+  document.getElementById('mfSheet').classList.add('open');
+  document.getElementById('mfSheet').setAttribute('aria-hidden', 'false');
+}
+
+function mfSheetKapat() {
+  document.getElementById('mfSheetBackdrop').classList.remove('open');
+  document.getElementById('mfSheet').classList.remove('open');
+  document.getElementById('mfSheet').setAttribute('aria-hidden', 'true');
+}
+
 document.getElementById('search').addEventListener('input', function() {
   const q = this.value.trim();
   document.getElementById('home-cats').style.display   = q ? 'none' : '';
   document.getElementById('home-search').style.display = q ? 'block' : 'none';
-  if (!q) return;
+  if (!q) {
+    document.getElementById('mf-ara-btn').style.display = 'none';
+    document.getElementById('mf-results').innerHTML = '';
+    return;
+  }
   clearTimeout(_searchTimer);
   _searchTimer = setTimeout(async () => {
     document.getElementById('searchList').innerHTML = skeletonHTML(3);
@@ -2185,6 +2452,11 @@ document.getElementById('search').addEventListener('input', function() {
       ? results.map(cardHTML).join('')
       : `<div class="state-msg"><span class="icon">🔍</span>Sonuç bulunamadı.</div>`;
     results.forEach(u => { if (!urunler.find(x => x._id === u._id)) urunler.push(u); });
+    _mfLastQuery = q;
+    document.getElementById('mf-ara-btn').style.display = '';
+    document.getElementById('mf-ara-btn').disabled = false;
+    document.getElementById('mf-ara-btn').textContent = '📡 marketfiyati.org.tr\'de ara';
+    document.getElementById('mf-results').innerHTML = '';
   }, 350);
 });
 
@@ -2886,5 +3158,19 @@ if ('serviceWorker' in navigator) {
     </div>
     <button class="ms-sheet-hesapla" id="msSheetBtn" onclick="msSheetHesapla()">Hesapla</button>
   </div>
+</div>
+
+<!-- ══ MARKETFİYATI CANLI ARAMA BOTTOM SHEET ══ -->
+<div class="mf-sheet-backdrop" id="mfSheetBackdrop" onclick="mfSheetKapat()"></div>
+<div id="mfSheet" class="mf-sheet" role="dialog" aria-hidden="true">
+  <div class="mf-sheet-header">
+    <div>
+      <h3 id="mfSheetTitle">Ürün</h3>
+      <div class="mf-subtitle" id="mfSheetSub">— markette</div>
+    </div>
+    <button class="mf-sheet-close" onclick="mfSheetKapat()" aria-label="Kapat">✕</button>
+  </div>
+  <div class="mf-depot-list" id="mfDepotList"></div>
+  <div class="mf-sheet-footer">Anlık veri · marketfiyati.org.tr</div>
 </div>
 </html>
