@@ -2318,19 +2318,24 @@ async function marketfiyatiCanliAra() {
   const btn = document.getElementById('mf-ara-btn');
   const out = document.getElementById('mf-results');
   btn.disabled = true;
-  btn.textContent = 'Aranıyor...';
+  btn.innerText = 'Aranıyor...';
   out.innerHTML = `<div class="mf-results-title">📡 marketfiyati.org.tr'den canlı sonuçlar</div><div class="mf-results-empty">Aranıyor: <b>${q}</b></div>`;
-  const data = await marketfiyatiAra(q);
-  btn.disabled = false;
-  btn.textContent = '📡 marketfiyati.org.tr\'de ara';
-  if (!data) {
-    out.innerHTML = `<div class="mf-results-title">📡 marketfiyati.org.tr'den canlı sonuçlar</div><div class="mf-results-empty">❌ Şu an ulaşılamıyor. Tekrar deneyin.</div>`;
-    return;
+  try {
+    const data = await marketfiyatiAra(q);
+    if (!data) {
+      out.innerHTML = `<div class="mf-results-title">📡 marketfiyati.org.tr'den canlı sonuçlar</div><div class="mf-results-empty">❌ Şu an ulaşılamıyor. Tekrar deneyin.</div>`;
+      return;
+    }
+    if (!Array.isArray(data.content) || data.content.length === 0) {
+      out.innerHTML = `<div class="mf-results-title">📡 marketfiyati.org.tr'den canlı sonuçlar</div><div class="mf-results-empty">Canlı aramada sonuç bulunamadı.</div>`;
+      return;
+    }
+    _mfLastData = data.content;
+    mfRenderResults(data.content);
+  } finally {
+    btn.disabled = false;
+    btn.innerText = '📡 marketfiyati.org.tr\'de ara';
   }
-  const items = data.products || data.results || data.items || data || [];
-  const list = Array.isArray(items) ? items : [];
-  _mfLastData = list;
-  mfRenderResults(list);
 }
 
 function mfRenderResults(list) {
@@ -2340,14 +2345,17 @@ function mfRenderResults(list) {
     return;
   }
   const rows = list.map((it, idx) => {
-    const depot = it.productDepotInfoList && it.productDepotInfoList[0];
-    const marketAdi = depot ? (depot.marketAdi || '') : '';
-    const depotName = depot ? (depot.depotName || '') : '';
-    const price = depot ? Number(depot.price) : NaN;
-    const unitPrice = depot ? (depot.unitPrice || '') : '';
+    const depots = it.productDepotInfoList || [];
+    const marketCount = depots.length;
+    const prices = depots.map(d => Number(d.price)).filter(n => isFinite(n));
+    const minPrice = prices.length ? Math.min(...prices) : NaN;
+    const bestDepot = (isFinite(minPrice) && depots.find(d => Number(d.price) === minPrice)) || depots[0] || null;
+    const marketAdi = bestDepot ? (bestDepot.marketAdi || '') : '';
+    const depotName = bestDepot ? (bestDepot.depotName || '') : '';
+    const unitPrice = bestDepot ? (bestDepot.unitPrice || '') : '';
+    const price = bestDepot ? Number(bestDepot.price) : NaN;
     const title = it.title || it.name || '—';
     const meta = [it.refinedVolumeOrWeight, it.brand].filter(Boolean).join(' · ');
-    const marketCount = (it.productDepotInfoList || []).length;
     const gorsel = mfGorsel(it);
     const emoji = mfPlaceholderEmoji(it);
     const imgTag = gorsel
