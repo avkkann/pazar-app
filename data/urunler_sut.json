@@ -228,6 +228,20 @@
     ]
   },
   {
+    "_sid": "sut_kaanlar-gemlik-xl-siyah-zeytin-450-gr",
+    "ad": "Kaanlar Gemlik Xl Siyah Zeytin 450 Gr",
+    "ana_kategori": "Zeytin",
+    "agirlik_hacim": "450 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/16002186.png",
+    "en_dusuk_fiyat": 215.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 215.0
+      }
+    ]
+  },
+  {
     "_sid": "sut_torku-banada-kakaolu-findik-kremasi-700-gr",
     "ad": "Torku Banada Kakaolu Fındık Kreması 700 Gr",
     "ana_kategori": "Sürülebilir Ürünler ve Kahvaltılık Soslar",
@@ -352,20 +366,6 @@
     ]
   },
   {
-    "_sid": "sut_tahsindaroglu-dilimli-ezine-45-keci-40-koyun-15-i-nek-450-gr",
-    "ad": "Tahsindaroğlu Dilimli Ezine %45 Keçi %40 Koyun %15 İnek 450 Gr",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "450 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/10019239.png",
-    "en_dusuk_fiyat": 459.9,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 459.9
-      }
-    ]
-  },
-  {
     "_sid": "sut_carrefour-0-1-yagli-uht-sut-1-lt",
     "ad": "Carrefour 0.1 Yağlı UHT Süt 1 Lt",
     "ana_kategori": "Süt",
@@ -478,24 +478,6 @@
       {
         "market": "carrefour",
         "fiyat": 87.95
-      }
-    ]
-  },
-  {
-    "_sid": "sut_pinar-denge-laktozsuz-yogurt-750-gr",
-    "ad": "Pınar Denge Laktozsuz Yoğurt 750 Gr",
-    "ana_kategori": "Yoğurt",
-    "agirlik_hacim": "750 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30214607.png",
-    "en_dusuk_fiyat": 95.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 95.95
-      },
-      {
-        "market": "migros",
-        "fiyat": 99.95
       }
     ]
   },
@@ -740,6 +722,20 @@
     ]
   },
   {
+    "_sid": "sut_tahsindaroglu-dilimli-ezine-45-keci-40-koyun-15-i-nek-450-gr",
+    "ad": "Tahsindaroğlu Dilimli Ezine %45 Keçi %40 Koyun %15 İnek 450 Gr",
+    "ana_kategori": "Peynir",
+    "agirlik_hacim": "450 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/10019239.png",
+    "en_dusuk_fiyat": 459.9,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 459.9
+      }
+    ]
+  },
+  {
     "_sid": "sut_dost-kakao-aromali-sut-200-ml",
     "ad": "Dost Kakao Aromalı Süt 200 Ml",
     "ana_kategori": "Süt",
@@ -846,20 +842,6 @@
     ]
   },
   {
-    "_sid": "sut_i-cim-fit-protein-cilekli-laktozsuz-sut-400-ml",
-    "ad": "İçim Fit Protein Çilekli Laktozsuz Süt 400 Ml",
-    "ana_kategori": "Süt",
-    "agirlik_hacim": "400 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30476960.jpg",
-    "en_dusuk_fiyat": 66.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 66.95
-      }
-    ]
-  },
-  {
     "_sid": "sut_kelly-s-misir-gevregi-500-gr",
     "ad": "Kelly's Mısır Gevreği 500 Gr",
     "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
@@ -902,6 +884,24 @@
       {
         "market": "bim",
         "fiyat": 94.5
+      }
+    ]
+  },
+  {
+    "_sid": "sut_pinar-denge-laktozsuz-yogurt-750-gr",
+    "ad": "Pınar Denge Laktozsuz Yoğurt 750 Gr",
+    "ana_kategori": "Yoğurt",
+    "agirlik_hacim": "750 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30214607.png",
+    "en_dusuk_fiyat": 95.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 95.95
+      },
+      {
+        "market": "migros",
+        "fiyat": 99.95
       }
     ]
   },
@@ -1224,6 +1224,20 @@
     ]
   },
   {
+    "_sid": "sut_i-cim-fit-protein-cilekli-laktozsuz-sut-400-ml",
+    "ad": "İçim Fit Protein Çilekli Laktozsuz Süt 400 Ml",
+    "ana_kategori": "Süt",
+    "agirlik_hacim": "400 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30476960.jpg",
+    "en_dusuk_fiyat": 66.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 66.95
+      }
+    ]
+  },
+  {
     "_sid": "sut_i-nci-koy-kirma-cizik-zeytin-400-gr",
     "ad": "İnci Köy Kırma Çizik Zeytin 400 Gr",
     "ana_kategori": "Zeytin",
@@ -1318,20 +1332,6 @@
       {
         "market": "carrefour",
         "fiyat": 168.0
-      }
-    ]
-  },
-  {
-    "_sid": "sut_ulker-findik-ruyasi-kakaolu-krema-cam-sise-625-gr",
-    "ad": "Ülker Fındık Rüyası Kakaolu Krema Cam Şişe 625 Gr",
-    "ana_kategori": "Sürülebilir Ürünler ve Kahvaltılık Soslar",
-    "agirlik_hacim": "625 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 239.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 239.0
       }
     ]
   },
@@ -1592,20 +1592,6 @@
     ]
   },
   {
-    "_sid": "sut_dost-yarim-yagli-yogurt-3-kg",
-    "ad": "Dost Yarım Yağlı Yoğurt 3 Kg",
-    "ana_kategori": "Yoğurt",
-    "agirlik_hacim": "3 KG",
-    "resim": null,
-    "en_dusuk_fiyat": 125.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 125.0
-      }
-    ]
-  },
-  {
     "_sid": "sut_pinar-labne-400-gr",
     "ad": "Pınar Labne 400 Gr",
     "ana_kategori": "Peynir",
@@ -1712,6 +1698,20 @@
       {
         "market": "carrefour",
         "fiyat": 225.95
+      }
+    ]
+  },
+  {
+    "_sid": "sut_ulker-findik-ruyasi-kakaolu-krema-cam-sise-625-gr",
+    "ad": "Ülker Fındık Rüyası Kakaolu Krema Cam Şişe 625 Gr",
+    "ana_kategori": "Sürülebilir Ürünler ve Kahvaltılık Soslar",
+    "agirlik_hacim": "625 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 239.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 239.0
       }
     ]
   },
@@ -2000,6 +2000,20 @@
     ]
   },
   {
+    "_sid": "sut_dost-yarim-yagli-yogurt-3-kg",
+    "ad": "Dost Yarım Yağlı Yoğurt 3 Kg",
+    "ana_kategori": "Yoğurt",
+    "agirlik_hacim": "3 KG",
+    "resim": null,
+    "en_dusuk_fiyat": 125.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 125.0
+      }
+    ]
+  },
+  {
     "_sid": "sut_sutas-krem-peynir-300-gr",
     "ad": "Sütaş Krem Peynir 300 Gr",
     "ana_kategori": "Peynir",
@@ -2056,20 +2070,6 @@
       {
         "market": "carrefour",
         "fiyat": 150.0
-      }
-    ]
-  },
-  {
-    "_sid": "sut_fitnut-seker-i-lavesiz-cikolatali-fistik-ezmesi-360-gr",
-    "ad": "Fitnut Şeker İlavesiz Çikolatalı Fıstık Ezmesi 360 Gr",
-    "ana_kategori": "Sürülebilir Ürünler ve Kahvaltılık Soslar",
-    "agirlik_hacim": "360 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7155908.png",
-    "en_dusuk_fiyat": 169.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 169.0
       }
     ]
   },
@@ -2330,20 +2330,6 @@
     ]
   },
   {
-    "_sid": "sut_torku-suzme-yarim-yagli-beyaz-peynir-750-gr",
-    "ad": "Torku Süzme Yarım Yağlı Beyaz Peynir 750 Gr",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "750 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/12003400.png",
-    "en_dusuk_fiyat": 149.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 149.0
-      }
-    ]
-  },
-  {
     "_sid": "sut_koska-uzum-pekmezi-380-gr",
     "ad": "Koska Üzüm Pekmezi 380 Gr",
     "ana_kategori": "Helva Tahin ve Pekmez",
@@ -2358,6 +2344,20 @@
       {
         "market": "migros",
         "fiyat": 197.45
+      }
+    ]
+  },
+  {
+    "_sid": "sut_fitnut-seker-i-lavesiz-cikolatali-fistik-ezmesi-360-gr",
+    "ad": "Fitnut Şeker İlavesiz Çikolatalı Fıstık Ezmesi 360 Gr",
+    "ana_kategori": "Sürülebilir Ürünler ve Kahvaltılık Soslar",
+    "agirlik_hacim": "360 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7155908.png",
+    "en_dusuk_fiyat": 169.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 169.0
       }
     ]
   },
@@ -2778,6 +2778,20 @@
     ]
   },
   {
+    "_sid": "sut_torku-suzme-yarim-yagli-beyaz-peynir-750-gr",
+    "ad": "Torku Süzme Yarım Yağlı Beyaz Peynir 750 Gr",
+    "ana_kategori": "Peynir",
+    "agirlik_hacim": "750 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/12003400.png",
+    "en_dusuk_fiyat": 149.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 149.0
+      }
+    ]
+  },
+  {
     "_sid": "sut_muratbey-peynir-misto-200-gr",
     "ad": "Muratbey Peynir Misto 200 Gr",
     "ana_kategori": "Peynir",
@@ -2898,20 +2912,6 @@
       {
         "market": "carrefour",
         "fiyat": 349.9
-      }
-    ]
-  },
-  {
-    "_sid": "sut_sutas-tam-yagli-beyaz-peynir-1-kg",
-    "ad": "Sütaş Tam Yağlı Beyaz Peynir 1 Kg",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/10013770.jpg",
-    "en_dusuk_fiyat": 345.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 345.0
       }
     ]
   },
@@ -3088,20 +3088,6 @@
       {
         "market": "tarim_kredi",
         "fiyat": 64.9
-      }
-    ]
-  },
-  {
-    "_sid": "sut_i-cim-fit-proteinli-kahveli-sut-400-ml",
-    "ad": "İçim Fit Proteinli Kahveli Süt 400 Ml",
-    "ana_kategori": "Süt",
-    "agirlik_hacim": "400 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30476588.jpg",
-    "en_dusuk_fiyat": 67.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 67.9
       }
     ]
   },
@@ -3300,6 +3286,20 @@
     ]
   },
   {
+    "_sid": "sut_sutas-tam-yagli-beyaz-peynir-1-kg",
+    "ad": "Sütaş Tam Yağlı Beyaz Peynir 1 Kg",
+    "ana_kategori": "Peynir",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/10013770.jpg",
+    "en_dusuk_fiyat": 345.0,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 345.0
+      }
+    ]
+  },
+  {
     "_sid": "sut_tarim-kredi-tuzsuz-tereyagi-1-kg",
     "ad": "Tarım Kredi Tuzsuz Tereyağı 1 Kg",
     "ana_kategori": "Tereyağı ve Margarin",
@@ -3388,6 +3388,20 @@
       {
         "market": "carrefour",
         "fiyat": 67.25
+      }
+    ]
+  },
+  {
+    "_sid": "sut_i-cim-fit-proteinli-kahveli-sut-400-ml",
+    "ad": "İçim Fit Proteinli Kahveli Süt 400 Ml",
+    "ana_kategori": "Süt",
+    "agirlik_hacim": "400 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30476588.jpg",
+    "en_dusuk_fiyat": 67.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 67.9
       }
     ]
   },
@@ -3512,20 +3526,6 @@
       {
         "market": "a101",
         "fiyat": 159.0
-      }
-    ]
-  },
-  {
-    "_sid": "sut_koska-sade-kurek-helva-350-gr",
-    "ad": "Koska Sade Kürek Helva 350 Gr",
-    "ana_kategori": "Helva Tahin ve Pekmez",
-    "agirlik_hacim": "350 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7081987.png",
-    "en_dusuk_fiyat": 195.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 195.95
       }
     ]
   },
@@ -3770,20 +3770,6 @@
     ]
   },
   {
-    "_sid": "sut_wefood-glutensiz-granola-badem-kirmizi-meyveli-60-gr",
-    "ad": "Wefood Glutensiz Granola Badem & Kırmızı Meyveli 60 Gr",
-    "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
-    "agirlik_hacim": "60 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 69.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 69.95
-      }
-    ]
-  },
-  {
     "_sid": "sut_burch-cikolatali-findikli-musli-275-gr",
     "ad": "Burch Çikolatalı Fındıklı Müsli 275 Gr",
     "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
@@ -3946,6 +3932,20 @@
     ]
   },
   {
+    "_sid": "sut_koska-sade-kurek-helva-350-gr",
+    "ad": "Koska Sade Kürek Helva 350 Gr",
+    "ana_kategori": "Helva Tahin ve Pekmez",
+    "agirlik_hacim": "350 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7081987.png",
+    "en_dusuk_fiyat": 195.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 195.95
+      }
+    ]
+  },
+  {
     "_sid": "sut_koska-yer-fistikli-tahin-pekmez-320-gr",
     "ad": "Koska Yer Fıstıklı Tahin Pekmez 320 Gr",
     "ana_kategori": "Helva Tahin ve Pekmez",
@@ -4058,16 +4058,16 @@
     ]
   },
   {
-    "_sid": "sut_sek-hindistan-cevizli-protein-sut-330-ml",
-    "ad": "Sek Hindistan Cevizli Protein Süt 330 Ml",
-    "ana_kategori": "Süt",
-    "agirlik_hacim": "330 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30274805.png",
-    "en_dusuk_fiyat": 67.95,
+    "_sid": "sut_wefood-glutensiz-granola-badem-kirmizi-meyveli-60-gr",
+    "ad": "Wefood Glutensiz Granola Badem & Kırmızı Meyveli 60 Gr",
+    "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
+    "agirlik_hacim": "60 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 69.95,
     "market_fiyatlari": [
       {
         "market": "carrefour",
-        "fiyat": 67.95
+        "fiyat": 69.95
       }
     ]
   },
@@ -4396,6 +4396,20 @@
     ]
   },
   {
+    "_sid": "sut_altinkilic-tam-yagli-tulum-peyniri-1-kg",
+    "ad": "Altınkılıç Tam Yağlı Tulum Peyniri 1 Kg",
+    "ana_kategori": "Peynir",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/10019109.png",
+    "en_dusuk_fiyat": 995.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 995.0
+      }
+    ]
+  },
+  {
     "_sid": "sut_koculu-deri-karaman-tulum-peyniri-1-kg",
     "ad": "Koçulu Deri Karaman Tulum Peyniri 1 Kg",
     "ana_kategori": "Peynir",
@@ -4406,20 +4420,6 @@
       {
         "market": "carrefour",
         "fiyat": 1297.0
-      }
-    ]
-  },
-  {
-    "_sid": "sut_anavarza-kestane-bali-450-gr",
-    "ad": "Anavarza Kestane Balı 450 Gr",
-    "ana_kategori": "Bal ve Reçel",
-    "agirlik_hacim": "450 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30201791.png",
-    "en_dusuk_fiyat": 1449.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 1449.9
       }
     ]
   },
@@ -4480,6 +4480,20 @@
       {
         "market": "a101",
         "fiyat": 63.5
+      }
+    ]
+  },
+  {
+    "_sid": "sut_sek-hindistan-cevizli-protein-sut-330-ml",
+    "ad": "Sek Hindistan Cevizli Protein Süt 330 Ml",
+    "ana_kategori": "Süt",
+    "agirlik_hacim": "330 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30274805.png",
+    "en_dusuk_fiyat": 67.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 67.95
       }
     ]
   },
@@ -4686,20 +4700,6 @@
     ]
   },
   {
-    "_sid": "sut_i-cim-tereyagi-225-gr",
-    "ad": "İçim Tereyağı 225 Gr",
-    "ana_kategori": "Tereyağı ve Margarin",
-    "agirlik_hacim": "225 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/12016821.jpg",
-    "en_dusuk_fiyat": 216.9,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 216.9
-      }
-    ]
-  },
-  {
     "_sid": "sut_baltali-keci-labne-200-gr",
     "ad": "Baltalı Keçi Labne 200 Gr",
     "ana_kategori": "Peynir",
@@ -4784,16 +4784,16 @@
     ]
   },
   {
-    "_sid": "sut_altinkilic-tam-yagli-tulum-peyniri-1-kg",
-    "ad": "Altınkılıç Tam Yağlı Tulum Peyniri 1 Kg",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/10019109.png",
-    "en_dusuk_fiyat": 995.0,
+    "_sid": "sut_anavarza-kestane-bali-450-gr",
+    "ad": "Anavarza Kestane Balı 450 Gr",
+    "ana_kategori": "Bal ve Reçel",
+    "agirlik_hacim": "450 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30201791.png",
+    "en_dusuk_fiyat": 1449.9,
     "market_fiyatlari": [
       {
-        "market": "migros",
-        "fiyat": 995.0
+        "market": "carrefour",
+        "fiyat": 1449.9
       }
     ]
   },
@@ -5042,6 +5042,20 @@
     ]
   },
   {
+    "_sid": "sut_i-cim-tereyagi-225-gr",
+    "ad": "İçim Tereyağı 225 Gr",
+    "ana_kategori": "Tereyağı ve Margarin",
+    "agirlik_hacim": "225 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/12016821.jpg",
+    "en_dusuk_fiyat": 216.9,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 216.9
+      }
+    ]
+  },
+  {
     "_sid": "sut_cem-dogal-yagli-siyah-sele-zeytin-291-350-800-gr",
     "ad": "Cem Doğal Yağlı Siyah Sele Zeytin 291-350 800 Gr",
     "ana_kategori": "Zeytin",
@@ -5108,24 +5122,6 @@
       {
         "market": "migros",
         "fiyat": 329.9
-      }
-    ]
-  },
-  {
-    "_sid": "sut_lotus-biscoff-crunchy-spread-380-gr",
-    "ad": "Lotus Biscoff Crunchy Spread 380 Gr",
-    "ana_kategori": "Sürülebilir Ürünler ve Kahvaltılık Soslar",
-    "agirlik_hacim": "380 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30258766.png",
-    "en_dusuk_fiyat": 399.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 399.95
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 399.95
       }
     ]
   },
@@ -5492,16 +5488,20 @@
     ]
   },
   {
-    "_sid": "sut_milgo-pul-biberli-ve-kekikli-tereyag-250-ml",
-    "ad": "Milgo Pul Biberli ve Kekikli Tereyağ 250 Ml",
-    "ana_kategori": "Tereyağı ve Margarin",
-    "agirlik_hacim": "250 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30491351.jpg",
-    "en_dusuk_fiyat": 347.95,
+    "_sid": "sut_lotus-biscoff-crunchy-spread-380-gr",
+    "ad": "Lotus Biscoff Crunchy Spread 380 Gr",
+    "ana_kategori": "Sürülebilir Ürünler ve Kahvaltılık Soslar",
+    "agirlik_hacim": "380 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30258766.png",
+    "en_dusuk_fiyat": 399.95,
     "market_fiyatlari": [
       {
+        "market": "migros",
+        "fiyat": 399.95
+      },
+      {
         "market": "carrefour",
-        "fiyat": 347.95
+        "fiyat": 399.95
       }
     ]
   },
@@ -5590,20 +5590,6 @@
       {
         "market": "migros",
         "fiyat": 79.95
-      }
-    ]
-  },
-  {
-    "_sid": "sut_ulker-gurme-kaymakli-tereyagli-kase-margarin-500-gr",
-    "ad": "Ülker Gurme Kaymaklı Tereyağlı Kase Margarin 500 Gr",
-    "ana_kategori": "Tereyağı ve Margarin",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/900288.png",
-    "en_dusuk_fiyat": 99.5,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 99.5
       }
     ]
   },
@@ -5844,6 +5830,20 @@
     ]
   },
   {
+    "_sid": "sut_milgo-pul-biberli-ve-kekikli-tereyag-250-ml",
+    "ad": "Milgo Pul Biberli ve Kekikli Tereyağ 250 Ml",
+    "ana_kategori": "Tereyağı ve Margarin",
+    "agirlik_hacim": "250 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30491351.jpg",
+    "en_dusuk_fiyat": 347.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 347.95
+      }
+    ]
+  },
+  {
     "_sid": "sut_zuber-nutziila-kakaolu-findik-kremasi-315-gr",
     "ad": "Züber Nutziila Kakaolu Fındık Kreması 315 Gr",
     "ana_kategori": "Sürülebilir Ürünler ve Kahvaltılık Soslar",
@@ -5964,20 +5964,6 @@
     ]
   },
   {
-    "_sid": "sut_dost-cilek-kayisi-seftali-orman-meyveli-yogurt-500-gr",
-    "ad": "Dost Çilek Kayısı Şeftali Orman Meyveli Yoğurt 500 Gr",
-    "ana_kategori": "Yoğurt",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/201179.png",
-    "en_dusuk_fiyat": 54.5,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 54.5
-      }
-    ]
-  },
-  {
     "_sid": "sut_sekerci-mustafa-sade-cekme-helva-240-gr",
     "ad": "Şekerci Mustafa Sade Çekme Helva 240 Gr",
     "ana_kategori": "Helva Tahin ve Pekmez",
@@ -6075,6 +6061,20 @@
     "market_fiyatlari": [
       {
         "market": "a101",
+        "fiyat": 99.5
+      }
+    ]
+  },
+  {
+    "_sid": "sut_ulker-gurme-kaymakli-tereyagli-kase-margarin-500-gr",
+    "ad": "Ülker Gurme Kaymaklı Tereyağlı Kase Margarin 500 Gr",
+    "ana_kategori": "Tereyağı ve Margarin",
+    "agirlik_hacim": "500 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/900288.png",
+    "en_dusuk_fiyat": 99.5,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
         "fiyat": 99.5
       }
     ]
@@ -6324,6 +6324,20 @@
     ]
   },
   {
+    "_sid": "sut_dost-cilek-kayisi-seftali-orman-meyveli-yogurt-500-gr",
+    "ad": "Dost Çilek Kayısı Şeftali Orman Meyveli Yoğurt 500 Gr",
+    "ana_kategori": "Yoğurt",
+    "agirlik_hacim": "500 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/201179.png",
+    "en_dusuk_fiyat": 54.5,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 54.5
+      }
+    ]
+  },
+  {
     "_sid": "sut_disney-vanilya-aromali-yogurt-2x90-gr",
     "ad": "Disney Vanilya Aromalı Yoğurt 2x90 Gr",
     "ana_kategori": "Yoğurt",
@@ -6490,20 +6504,6 @@
       {
         "market": "a101",
         "fiyat": 175.0
-      }
-    ]
-  },
-  {
-    "_sid": "sut_koska-tost-kagit-helva-140-gr",
-    "ad": "Koska Tost Kağıt Helva 140 Gr",
-    "ana_kategori": "Helva Tahin ve Pekmez",
-    "agirlik_hacim": "140 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30047236.jpg",
-    "en_dusuk_fiyat": 185.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 185.95
       }
     ]
   },
@@ -6890,6 +6890,20 @@
     ]
   },
   {
+    "_sid": "sut_koska-tost-kagit-helva-140-gr",
+    "ad": "Koska Tost Kağıt Helva 140 Gr",
+    "ana_kategori": "Helva Tahin ve Pekmez",
+    "agirlik_hacim": "140 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30047236.jpg",
+    "en_dusuk_fiyat": 185.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 185.95
+      }
+    ]
+  },
+  {
     "_sid": "sut_sek-tereyagi-200-gr",
     "ad": "Sek Tereyağı 200 Gr",
     "ana_kategori": "Tereyağı ve Margarin",
@@ -7010,20 +7024,6 @@
     ]
   },
   {
-    "_sid": "sut_lezzine-gurme-koyun-peyniri-600-gr",
-    "ad": "Lezzine Gurme Koyun Peyniri 600 Gr",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "600 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30050183.png",
-    "en_dusuk_fiyat": 664.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 664.9
-      }
-    ]
-  },
-  {
     "_sid": "sut_karagol-pulbiberli-fume-cerkez-peyniri-1-kg",
     "ad": "Karagöl Pulbiberli Füme Çerkez Peyniri 1 Kg",
     "ana_kategori": "Peynir",
@@ -7098,6 +7098,20 @@
     ]
   },
   {
+    "_sid": "sut_bahcivan-laktozsuz-surulebilir-labne-peynir-200-gr",
+    "ad": "Bahçıvan Laktozsuz Sürülebilir Labne Peynir 200 Gr",
+    "ana_kategori": "Peynir",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bahimages/bahcivan_laktozsuz_labne_1.png",
+    "en_dusuk_fiyat": 49.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 49.0
+      }
+    ]
+  },
+  {
     "_sid": "sut_i-cim-fit-protein-vanilyali-laktozsuz-sut-400-ml",
     "ad": "İçim Fit Protein Vanilyalı Laktozsuz Süt 400 Ml",
     "ana_kategori": "Süt",
@@ -7108,20 +7122,6 @@
       {
         "market": "carrefour",
         "fiyat": 67.9
-      }
-    ]
-  },
-  {
-    "_sid": "sut_tarim-kredi-meyve-ve-yemisli-citir-musli-granola-300-gr",
-    "ad": "Tarım Kredi Meyve Ve Yemişli Çıtır Müsli Granola 300 Gr",
-    "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
-    "agirlik_hacim": "300 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 69.9,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 69.9
       }
     ]
   },
@@ -7356,20 +7356,6 @@
     ]
   },
   {
-    "_sid": "sut_fora-edremit-zeytin-181-230-1-kg",
-    "ad": "Fora Edremit Zeytin 181-230 1 Kg",
-    "ana_kategori": "Zeytin",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30028797.png",
-    "en_dusuk_fiyat": 490.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 490.0
-      }
-    ]
-  },
-  {
     "_sid": "sut_otat-rulo-tereyagi-1-kg",
     "ad": "Otat Rulo Tereyağı 1 Kg",
     "ana_kategori": "Tereyağı ve Margarin",
@@ -7394,6 +7380,20 @@
       {
         "market": "carrefour",
         "fiyat": 649.95
+      }
+    ]
+  },
+  {
+    "_sid": "sut_lezzine-gurme-koyun-peyniri-600-gr",
+    "ad": "Lezzine Gurme Koyun Peyniri 600 Gr",
+    "ana_kategori": "Peynir",
+    "agirlik_hacim": "600 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30050183.png",
+    "en_dusuk_fiyat": 664.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 664.9
       }
     ]
   },
@@ -7440,20 +7440,6 @@
     ]
   },
   {
-    "_sid": "sut_bahcivan-laktozsuz-surulebilir-labne-peynir-200-gr",
-    "ad": "Bahçıvan Laktozsuz Sürülebilir Labne Peynir 200 Gr",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bahimages/bahcivan_laktozsuz_labne_1.png",
-    "en_dusuk_fiyat": 49.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 49.0
-      }
-    ]
-  },
-  {
     "_sid": "sut_kiri-kekikli-surulebilir-beyaz-peynir-150-gr",
     "ad": "Kiri Kekikli Sürülebilir Beyaz Peynir 150 Gr",
     "ana_kategori": "Peynir",
@@ -7464,6 +7450,20 @@
       {
         "market": "a101",
         "fiyat": 69.5
+      }
+    ]
+  },
+  {
+    "_sid": "sut_tarim-kredi-meyve-ve-yemisli-citir-musli-granola-300-gr",
+    "ad": "Tarım Kredi Meyve Ve Yemişli Çıtır Müsli Granola 300 Gr",
+    "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
+    "agirlik_hacim": "300 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 69.9,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 69.9
       }
     ]
   },
@@ -7746,6 +7746,20 @@
     ]
   },
   {
+    "_sid": "sut_fora-edremit-zeytin-181-230-1-kg",
+    "ad": "Fora Edremit Zeytin 181-230 1 Kg",
+    "ana_kategori": "Zeytin",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30028797.png",
+    "en_dusuk_fiyat": 490.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 490.0
+      }
+    ]
+  },
+  {
     "_sid": "sut_cukurbahce-gemlik-siyah-zeytin-230-290-kalibre-1-kg",
     "ad": "Çukurbahçe Gemlik Siyah Zeytin 230-290 Kalibre 1 Kg",
     "ana_kategori": "Zeytin",
@@ -7756,20 +7770,6 @@
       {
         "market": "migros",
         "fiyat": 535.0
-      }
-    ]
-  },
-  {
-    "_sid": "sut_buklet-pirinc-patlakli-kakao-kremasi-1-kg",
-    "ad": "Buklet Pirinç Patlaklı Kakao Kreması 1 Kg",
-    "ana_kategori": "Sürülebilir Ürünler ve Kahvaltılık Soslar",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30419860.png",
-    "en_dusuk_fiyat": 650.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 650.0
       }
     ]
   },
@@ -7788,20 +7788,6 @@
       {
         "market": "migros",
         "fiyat": 24.75
-      }
-    ]
-  },
-  {
-    "_sid": "sut_evin-margarin-250-gr",
-    "ad": "Evin Margarin 250 Gr",
-    "ana_kategori": "Tereyağı ve Margarin",
-    "agirlik_hacim": "250 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/sokimages/4051959.png",
-    "en_dusuk_fiyat": 26.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 26.0
       }
     ]
   },
@@ -8130,6 +8116,20 @@
     ]
   },
   {
+    "_sid": "sut_buklet-pirinc-patlakli-kakao-kremasi-1-kg",
+    "ad": "Buklet Pirinç Patlaklı Kakao Kreması 1 Kg",
+    "ana_kategori": "Sürülebilir Ürünler ve Kahvaltılık Soslar",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30419860.png",
+    "en_dusuk_fiyat": 650.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 650.0
+      }
+    ]
+  },
+  {
     "_sid": "sut_ariste-klasik-i-nek-peyniri-1-kg",
     "ad": "Ariste Klasik İnek Peyniri 1 Kg",
     "ana_kategori": "Peynir",
@@ -8154,6 +8154,20 @@
       {
         "market": "bim",
         "fiyat": 18.5
+      }
+    ]
+  },
+  {
+    "_sid": "sut_evin-margarin-250-gr",
+    "ad": "Evin Margarin 250 Gr",
+    "ana_kategori": "Tereyağı ve Margarin",
+    "agirlik_hacim": "250 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/sokimages/4051959.png",
+    "en_dusuk_fiyat": 26.0,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 26.0
       }
     ]
   },
@@ -8432,24 +8446,6 @@
     ]
   },
   {
-    "_sid": "sut_pr-sident-cheddar-peyniri-220-gr",
-    "ad": "Président Cheddar Peyniri 220 Gr",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "220 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30263073.jpg",
-    "en_dusuk_fiyat": 274.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 274.95
-      },
-      {
-        "market": "migros",
-        "fiyat": 279.0
-      }
-    ]
-  },
-  {
     "_sid": "sut_st-dalfour-cilek-receli-284-gr",
     "ad": "St. Dalfour Çilek Reçeli 284 Gr",
     "ana_kategori": "Bal ve Reçel",
@@ -8680,20 +8676,6 @@
     ]
   },
   {
-    "_sid": "sut_bahcivan-orgu-peyniri-200-gr",
-    "ad": "Bahçıvan Örgü Peyniri 200 Gr",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30073798.jpg",
-    "en_dusuk_fiyat": 179.9,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 179.9
-      }
-    ]
-  },
-  {
     "_sid": "sut_taskale-uzum-pekmezi-800-gr",
     "ad": "Taşkale Üzüm Pekmezi 800 Gr",
     "ana_kategori": "Helva Tahin ve Pekmez",
@@ -8732,6 +8714,24 @@
       {
         "market": "a101",
         "fiyat": 235.0
+      }
+    ]
+  },
+  {
+    "_sid": "sut_pr-sident-cheddar-peyniri-220-gr",
+    "ad": "Président Cheddar Peyniri 220 Gr",
+    "ana_kategori": "Peynir",
+    "agirlik_hacim": "220 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30263073.jpg",
+    "en_dusuk_fiyat": 274.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 274.95
+      },
+      {
+        "market": "migros",
+        "fiyat": 279.0
       }
     ]
   },
@@ -9112,6 +9112,20 @@
     ]
   },
   {
+    "_sid": "sut_bahcivan-orgu-peyniri-200-gr",
+    "ad": "Bahçıvan Örgü Peyniri 200 Gr",
+    "ana_kategori": "Peynir",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30073798.jpg",
+    "en_dusuk_fiyat": 179.9,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 179.9
+      }
+    ]
+  },
+  {
     "_sid": "sut_sutas-yayik-tereyagi-225-gr",
     "ad": "Sütaş Yayık Tereyağı 225 Gr",
     "ana_kategori": "Tereyağı ve Margarin",
@@ -9140,20 +9154,6 @@
       {
         "market": "bim",
         "fiyat": 199.0
-      }
-    ]
-  },
-  {
-    "_sid": "sut_pinar-labne-540-gr",
-    "ad": "Pınar Labne 540 Gr",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "540 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30011087.png",
-    "en_dusuk_fiyat": 219.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 219.0
       }
     ]
   },
@@ -9362,20 +9362,6 @@
     ]
   },
   {
-    "_sid": "sut_obur-chef-acika-200-gr",
-    "ad": "Obur Chef Acıka 200 Gr",
-    "ana_kategori": "Sürülebilir Ürünler ve Kahvaltılık Soslar",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30427877.png",
-    "en_dusuk_fiyat": 129.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 129.9
-      }
-    ]
-  },
-  {
     "_sid": "sut_kebir-tam-yagli-beyaz-peynir-500-gr",
     "ad": "Kebir Tam Yağlı Beyaz Peynir 500 Gr",
     "ana_kategori": "Peynir",
@@ -9428,6 +9414,20 @@
       {
         "market": "migros",
         "fiyat": 215.0
+      }
+    ]
+  },
+  {
+    "_sid": "sut_pinar-labne-540-gr",
+    "ad": "Pınar Labne 540 Gr",
+    "ana_kategori": "Peynir",
+    "agirlik_hacim": "540 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30011087.png",
+    "en_dusuk_fiyat": 219.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 219.0
       }
     ]
   },
@@ -9626,20 +9626,6 @@
     ]
   },
   {
-    "_sid": "sut_milkten-milkino-cocuk-sutu-200-ml",
-    "ad": "Milkten Milkino Çocuk Sütü 200 Ml",
-    "ana_kategori": "Süt",
-    "agirlik_hacim": "200 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/12000158.png",
-    "en_dusuk_fiyat": 17.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 17.5
-      }
-    ]
-  },
-  {
     "_sid": "sut_uckosem-tam-yagli-eritme-peyniri-120-gr",
     "ad": "Üçköşem Tam Yağlı Eritme Peyniri 120 Gr",
     "ana_kategori": "Peynir",
@@ -9746,6 +9732,20 @@
     ]
   },
   {
+    "_sid": "sut_tarim-kredi-sekersiz-fistik-ezmesi-350-gr",
+    "ad": "Tarım Kredi Şekersiz Fıstık Ezmesi 350 Gr",
+    "ana_kategori": "Sürülebilir Ürünler ve Kahvaltılık Soslar",
+    "agirlik_hacim": "350 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 85.5,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 85.5
+      }
+    ]
+  },
+  {
     "_sid": "sut_lio-kirma-yesil-zeytin-141-160-400-gr",
     "ad": "Lio Kırma Yeşil Zeytin 141-160 400 Gr",
     "ana_kategori": "Zeytin",
@@ -9770,6 +9770,20 @@
       {
         "market": "sok",
         "fiyat": 129.0
+      }
+    ]
+  },
+  {
+    "_sid": "sut_obur-chef-acika-200-gr",
+    "ad": "Obur Chef Acıka 200 Gr",
+    "ana_kategori": "Sürülebilir Ürünler ve Kahvaltılık Soslar",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30427877.png",
+    "en_dusuk_fiyat": 129.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 129.9
       }
     ]
   },
@@ -9922,20 +9936,6 @@
     ]
   },
   {
-    "_sid": "sut_migros-klasik-i-nek-peyniri-600-gr",
-    "ad": "Migros Klasik İnek Peyniri 600 Gr",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "600 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/10019149.png",
-    "en_dusuk_fiyat": 275.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 275.0
-      }
-    ]
-  },
-  {
     "_sid": "sut_vtr-tereyagi-500-gr",
     "ad": "Vtr Tereyağı 500 Gr",
     "ana_kategori": "Tereyağı ve Margarin",
@@ -9978,20 +9978,6 @@
     ]
   },
   {
-    "_sid": "sut_birsah-yagli-sut-200-ml",
-    "ad": "Birşah Yağlı Süt 200 Ml",
-    "ana_kategori": "Süt",
-    "agirlik_hacim": "200 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/12002640.jpg",
-    "en_dusuk_fiyat": 14.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 14.5
-      }
-    ]
-  },
-  {
     "_sid": "sut_carrefour-tam-yagli-sut-200-ml",
     "ad": "Carrefour Tam Yağlı Süt 200 Ml",
     "ana_kategori": "Süt",
@@ -10002,6 +9988,20 @@
       {
         "market": "carrefour",
         "fiyat": 14.5
+      }
+    ]
+  },
+  {
+    "_sid": "sut_milkten-milkino-cocuk-sutu-200-ml",
+    "ad": "Milkten Milkino Çocuk Sütü 200 Ml",
+    "ana_kategori": "Süt",
+    "agirlik_hacim": "200 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/12000158.png",
+    "en_dusuk_fiyat": 17.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 17.5
       }
     ]
   },
@@ -10098,20 +10098,6 @@
       {
         "market": "migros",
         "fiyat": 114.95
-      }
-    ]
-  },
-  {
-    "_sid": "sut_tarim-kredi-sekersiz-fistik-ezmesi-350-gr",
-    "ad": "Tarım Kredi Şekersiz Fıstık Ezmesi 350 Gr",
-    "ana_kategori": "Sürülebilir Ürünler ve Kahvaltılık Soslar",
-    "agirlik_hacim": "350 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 85.5,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 85.5
       }
     ]
   },
@@ -10256,6 +10242,20 @@
     ]
   },
   {
+    "_sid": "sut_migros-klasik-i-nek-peyniri-600-gr",
+    "ad": "Migros Klasik İnek Peyniri 600 Gr",
+    "ana_kategori": "Peynir",
+    "agirlik_hacim": "600 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/10019149.png",
+    "en_dusuk_fiyat": 275.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 275.0
+      }
+    ]
+  },
+  {
     "_sid": "sut_tarabya-kasar-peyniri-700-gr",
     "ad": "Tarabya Kaşar Peyniri 700 Gr",
     "ana_kategori": "Peynir",
@@ -10340,6 +10340,20 @@
       {
         "market": "carrefour",
         "fiyat": 679.95
+      }
+    ]
+  },
+  {
+    "_sid": "sut_birsah-yagli-sut-200-ml",
+    "ad": "Birşah Yağlı Süt 200 Ml",
+    "ana_kategori": "Süt",
+    "agirlik_hacim": "200 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/12002640.jpg",
+    "en_dusuk_fiyat": 14.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 14.5
       }
     ]
   },
@@ -10455,20 +10469,6 @@
     "ana_kategori": "Zeytin",
     "agirlik_hacim": "500 GR",
     "resim": "https://cdn.marketfiyati.org.tr/a101images/16001665.png",
-    "en_dusuk_fiyat": 99.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 99.0
-      }
-    ]
-  },
-  {
-    "_sid": "sut_seyidoglu-cevizli-helva-350-gr",
-    "ad": "Seyidoğlu Cevizli Helva 350 Gr",
-    "ana_kategori": "Helva Tahin ve Pekmez",
-    "agirlik_hacim": "350 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/16001572.png",
     "en_dusuk_fiyat": 99.0,
     "market_fiyatlari": [
       {
@@ -10706,28 +10706,6 @@
     ]
   },
   {
-    "_sid": "sut_tadim-sportif-bar-30-gr",
-    "ad": "Tadım Sportif Bar 30 Gr",
-    "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
-    "agirlik_hacim": "30 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30432007.jpg",
-    "en_dusuk_fiyat": 13.5,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 13.5
-      },
-      {
-        "market": "tarim_kredi",
-        "fiyat": 20.0
-      },
-      {
-        "market": "migros",
-        "fiyat": 21.45
-      }
-    ]
-  },
-  {
     "_sid": "sut_danone-kakaolu-sut-180-ml",
     "ad": "Danone Kakaolu Süt 180 Ml",
     "ana_kategori": "Süt",
@@ -10802,6 +10780,20 @@
       {
         "market": "a101",
         "fiyat": 75.0
+      }
+    ]
+  },
+  {
+    "_sid": "sut_seyidoglu-cevizli-helva-350-gr",
+    "ad": "Seyidoğlu Cevizli Helva 350 Gr",
+    "ana_kategori": "Helva Tahin ve Pekmez",
+    "agirlik_hacim": "350 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/16001572.png",
+    "en_dusuk_fiyat": 99.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 99.0
       }
     ]
   },
@@ -11096,20 +11088,24 @@
     ]
   },
   {
-    "_sid": "sut_disney-kakaolu-sut-180-ml",
-    "ad": "Disney Kakaolu Süt 180 Ml",
-    "ana_kategori": "Süt",
-    "agirlik_hacim": "180 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30092080.png",
-    "en_dusuk_fiyat": 16.9,
+    "_sid": "sut_tadim-sportif-bar-30-gr",
+    "ad": "Tadım Sportif Bar 30 Gr",
+    "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
+    "agirlik_hacim": "30 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30432007.jpg",
+    "en_dusuk_fiyat": 13.5,
     "market_fiyatlari": [
       {
-        "market": "migros",
-        "fiyat": 16.9
+        "market": "carrefour",
+        "fiyat": 13.5
       },
       {
-        "market": "carrefour",
-        "fiyat": 18.95
+        "market": "tarim_kredi",
+        "fiyat": 20.0
+      },
+      {
+        "market": "migros",
+        "fiyat": 21.45
       }
     ]
   },
@@ -11490,6 +11486,24 @@
     ]
   },
   {
+    "_sid": "sut_disney-kakaolu-sut-180-ml",
+    "ad": "Disney Kakaolu Süt 180 Ml",
+    "ana_kategori": "Süt",
+    "agirlik_hacim": "180 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30092080.png",
+    "en_dusuk_fiyat": 16.9,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 16.9
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 18.95
+      }
+    ]
+  },
+  {
     "_sid": "sut_nesquik-kakaolu-sut-180-ml",
     "ad": "Nesquik Kakaolu Süt 180 Ml",
     "ana_kategori": "Süt",
@@ -11776,20 +11790,6 @@
     ]
   },
   {
-    "_sid": "sut_yenigun-seker-i-lavesiz-yaban-mersini-receli-290-gr",
-    "ad": "Yenigün Şeker İlavesiz Yaban Mersini Reçeli 290 Gr",
-    "ana_kategori": "Bal ve Reçel",
-    "agirlik_hacim": "290 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30466952.png",
-    "en_dusuk_fiyat": 324.5,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 324.5
-      }
-    ]
-  },
-  {
     "_sid": "sut_torku-homojenize-yogurt-5-kg",
     "ad": "Torku Homojenize Yoğurt 5 Kg",
     "ana_kategori": "Yoğurt",
@@ -12026,20 +12026,6 @@
     ]
   },
   {
-    "_sid": "sut_torku-uht-sut-1-lt",
-    "ad": "Torku Uht Süt 1 Lt",
-    "ana_kategori": "Süt",
-    "agirlik_hacim": "1 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/11019904.jpg",
-    "en_dusuk_fiyat": 75.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 75.0
-      }
-    ]
-  },
-  {
     "_sid": "sut_activia-orman-meyveli-4x100-gr",
     "ad": "Activia Orman Meyveli 4x100 Gr",
     "ana_kategori": "Yoğurt",
@@ -12092,6 +12078,20 @@
       {
         "market": "migros",
         "fiyat": 99.95
+      }
+    ]
+  },
+  {
+    "_sid": "sut_migros-seker-i-lavesiz-visne-receli-360-gr",
+    "ad": "Migros Şeker İlavesiz Vişne Reçeli 360 Gr",
+    "ana_kategori": "Bal ve Reçel",
+    "agirlik_hacim": "360 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/9024212.png",
+    "en_dusuk_fiyat": 151.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 151.95
       }
     ]
   },
@@ -12312,6 +12312,20 @@
     ]
   },
   {
+    "_sid": "sut_torku-uht-sut-1-lt",
+    "ad": "Torku Uht Süt 1 Lt",
+    "ana_kategori": "Süt",
+    "agirlik_hacim": "1 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/11019904.jpg",
+    "en_dusuk_fiyat": 75.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 75.0
+      }
+    ]
+  },
+  {
     "_sid": "sut_migros-granola-yulafli-balli-ve-keten-tohumlu-250-gr",
     "ad": "Migros Granola Yulaflı Ballı Ve Keten Tohumlu 250 Gr",
     "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
@@ -12508,6 +12522,20 @@
     ]
   },
   {
+    "_sid": "sut_nutella-630-gr",
+    "ad": "Nutella 630 Gr",
+    "ana_kategori": "Sürülebilir Ürünler ve Kahvaltılık Soslar",
+    "agirlik_hacim": "630 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/sokimages/7155053.png",
+    "en_dusuk_fiyat": 229.0,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 229.0
+      }
+    ]
+  },
+  {
     "_sid": "sut_kaanlar-az-yagli-beyaz-peynir-1-kg",
     "ad": "Kaanlar Az Yağlı Beyaz Peynir 1 Kg",
     "ana_kategori": "Peynir",
@@ -12560,34 +12588,6 @@
       {
         "market": "carrefour",
         "fiyat": 317.9
-      }
-    ]
-  },
-  {
-    "_sid": "sut_torku-beyaz-peynir-1-kg",
-    "ad": "Torku Beyaz Peynir 1 Kg",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/12001418.png",
-    "en_dusuk_fiyat": 319.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 319.0
-      }
-    ]
-  },
-  {
-    "_sid": "sut_frico-tam-yagli-taze-maasdam-peyniri-150-gr",
-    "ad": "Frico Tam Yağlı Taze Maasdam Peyniri 150 Gr",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "150 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30389273.png",
-    "en_dusuk_fiyat": 425.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 425.0
       }
     ]
   },
@@ -12662,20 +12662,6 @@
       {
         "market": "carrefour",
         "fiyat": 61.95
-      }
-    ]
-  },
-  {
-    "_sid": "sut_mis-tam-yagli-homojenize-yogurt-750-gr",
-    "ad": "Mis Tam Yağlı Homojenize Yoğurt 750 Gr",
-    "ana_kategori": "Yoğurt",
-    "agirlik_hacim": "750 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/sok/155760.jpg",
-    "en_dusuk_fiyat": 53.9,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 53.9
       }
     ]
   },
@@ -12860,20 +12846,6 @@
     ]
   },
   {
-    "_sid": "sut_nutella-630-gr",
-    "ad": "Nutella 630 Gr",
-    "ana_kategori": "Sürülebilir Ürünler ve Kahvaltılık Soslar",
-    "agirlik_hacim": "630 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/sokimages/7155053.png",
-    "en_dusuk_fiyat": 229.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 229.0
-      }
-    ]
-  },
-  {
     "_sid": "sut_tarim-kredi-olgunlastirilmis-i-nek-beyaz-peynir-600-gr",
     "ad": "Tarım Kredi Olgunlaştırılmış İnek Beyaz Peynir 600 Gr",
     "ana_kategori": "Peynir",
@@ -12902,6 +12874,20 @@
     ]
   },
   {
+    "_sid": "sut_torku-beyaz-peynir-1-kg",
+    "ad": "Torku Beyaz Peynir 1 Kg",
+    "ana_kategori": "Peynir",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/12001418.png",
+    "en_dusuk_fiyat": 319.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 319.0
+      }
+    ]
+  },
+  {
     "_sid": "sut_carrefour-visne-receli-2-kg",
     "ad": "Carrefour Vişne Reçeli 2 Kg",
     "ana_kategori": "Bal ve Reçel",
@@ -12926,6 +12912,20 @@
       {
         "market": "migros",
         "fiyat": 380.0
+      }
+    ]
+  },
+  {
+    "_sid": "sut_frico-tam-yagli-taze-maasdam-peyniri-150-gr",
+    "ad": "Frico Tam Yağlı Taze Maasdam Peyniri 150 Gr",
+    "ana_kategori": "Peynir",
+    "agirlik_hacim": "150 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30389273.png",
+    "en_dusuk_fiyat": 425.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 425.0
       }
     ]
   },
@@ -12982,6 +12982,20 @@
       {
         "market": "carrefour",
         "fiyat": 1191.9
+      }
+    ]
+  },
+  {
+    "_sid": "sut_mis-tam-yagli-homojenize-yogurt-750-gr",
+    "ad": "Mis Tam Yağlı Homojenize Yoğurt 750 Gr",
+    "ana_kategori": "Yoğurt",
+    "agirlik_hacim": "750 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/sok/155760.jpg",
+    "en_dusuk_fiyat": 53.9,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 53.9
       }
     ]
   },
@@ -13224,20 +13238,6 @@
       {
         "market": "a101",
         "fiyat": 300.0
-      }
-    ]
-  },
-  {
-    "_sid": "sut_lente-edam-peyniri-200-gr",
-    "ad": "Lente Edam Peyniri 200 Gr",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/10403327.png",
-    "en_dusuk_fiyat": 345.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 345.0
       }
     ]
   },
@@ -13500,20 +13500,6 @@
     ]
   },
   {
-    "_sid": "sut_i-nci-az-tuzlu-siyah-zeytin-261-320-kalibre-800-gr",
-    "ad": "İnci Az Tuzlu Siyah Zeytin 261-320 Kalibre 800 Gr",
-    "ana_kategori": "Zeytin",
-    "agirlik_hacim": "800 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/601344.png",
-    "en_dusuk_fiyat": 144.5,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 144.5
-      }
-    ]
-  },
-  {
     "_sid": "sut_tarim-kredi-yagli-salamura-siyah-zeytin-s-xs-1-kg",
     "ad": "Tarım Kredi Yağlı Salamura Siyah Zeytin S-XS 1 Kg",
     "ana_kategori": "Zeytin",
@@ -13682,6 +13668,20 @@
       {
         "market": "sok",
         "fiyat": 319.0
+      }
+    ]
+  },
+  {
+    "_sid": "sut_lente-edam-peyniri-200-gr",
+    "ad": "Lente Edam Peyniri 200 Gr",
+    "ana_kategori": "Peynir",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/10403327.png",
+    "en_dusuk_fiyat": 345.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 345.0
       }
     ]
   },
@@ -13946,6 +13946,20 @@
     ]
   },
   {
+    "_sid": "sut_i-nci-az-tuzlu-siyah-zeytin-261-320-kalibre-800-gr",
+    "ad": "İnci Az Tuzlu Siyah Zeytin 261-320 Kalibre 800 Gr",
+    "ana_kategori": "Zeytin",
+    "agirlik_hacim": "800 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/601344.png",
+    "en_dusuk_fiyat": 144.5,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 144.5
+      }
+    ]
+  },
+  {
     "_sid": "sut_birsah-tam-kivaminda-yogurt-3-kg",
     "ad": "Birşah Tam Kıvamında Yoğurt 3 Kg",
     "ana_kategori": "Yoğurt",
@@ -13992,6 +14006,28 @@
     ]
   },
   {
+    "_sid": "sut_zuber-peanutzilla-kakaolu-fistik-kremasi-315-gr",
+    "ad": "Züber Peanutzilla Kakaolu Fıstık Kreması 315 Gr",
+    "ana_kategori": "Sürülebilir Ürünler ve Kahvaltılık Soslar",
+    "agirlik_hacim": "315 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 225.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 225.0
+      },
+      {
+        "market": "migros",
+        "fiyat": 399.95
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 399.95
+      }
+    ]
+  },
+  {
     "_sid": "sut_ahir-beyaz-peynir-1-kg",
     "ad": "Ahir Beyaz Peynir 1 Kg",
     "ana_kategori": "Peynir",
@@ -14030,20 +14066,6 @@
       {
         "market": "migros",
         "fiyat": 277.95
-      }
-    ]
-  },
-  {
-    "_sid": "sut_tarim-kredi-jersey-sut-3-lt",
-    "ad": "Tarım Kredi Jersey Süt 3 Lt",
-    "ana_kategori": "Süt",
-    "agirlik_hacim": "3 LT",
-    "resim": null,
-    "en_dusuk_fiyat": 289.0,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 289.0
       }
     ]
   },
@@ -14090,24 +14112,6 @@
       {
         "market": "carrefour",
         "fiyat": 359.9
-      }
-    ]
-  },
-  {
-    "_sid": "sut_servet-sekerleme-tek-kavrulmus-fethiye-tahini-300-gr",
-    "ad": "Servet Şekerleme Tek Kavrulmuş Fethiye Tahini 300 Gr",
-    "ana_kategori": "Helva Tahin ve Pekmez",
-    "agirlik_hacim": "300 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 450.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 450.0
-      },
-      {
-        "market": "migros",
-        "fiyat": 543.95
       }
     ]
   },
@@ -14298,20 +14302,6 @@
     ]
   },
   {
-    "_sid": "sut_ekici-mavi-kuflu-peynir-100-gr",
-    "ad": "Ekici Mavi Küflü Peynir 100 Gr",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "100 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30306075.jpg",
-    "en_dusuk_fiyat": 194.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 194.9
-      }
-    ]
-  },
-  {
     "_sid": "sut_fora-az-tuzlu-siyah-zeytin-291-320-800-gr",
     "ad": "Fora Az Tuzlu Siyah Zeytin 291-320 800 Gr",
     "ana_kategori": "Zeytin",
@@ -14350,28 +14340,6 @@
       {
         "market": "tarim_kredi",
         "fiyat": 209.9
-      }
-    ]
-  },
-  {
-    "_sid": "sut_zuber-peanutzilla-kakaolu-fistik-kremasi-315-gr",
-    "ad": "Züber Peanutzilla Kakaolu Fıstık Kreması 315 Gr",
-    "ana_kategori": "Sürülebilir Ürünler ve Kahvaltılık Soslar",
-    "agirlik_hacim": "315 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 225.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 225.0
-      },
-      {
-        "market": "migros",
-        "fiyat": 399.95
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 399.95
       }
     ]
   },
@@ -14418,6 +14386,20 @@
     ]
   },
   {
+    "_sid": "sut_tarim-kredi-jersey-sut-3-lt",
+    "ad": "Tarım Kredi Jersey Süt 3 Lt",
+    "ana_kategori": "Süt",
+    "agirlik_hacim": "3 LT",
+    "resim": null,
+    "en_dusuk_fiyat": 289.0,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 289.0
+      }
+    ]
+  },
+  {
     "_sid": "sut_philadelphia-tam-yagli-taze-peynir-125-gr",
     "ad": "Philadelphia Tam Yağlı Taze Peynir 125 Gr",
     "ana_kategori": "Peynir",
@@ -14428,6 +14410,24 @@
       {
         "market": "carrefour",
         "fiyat": 416.9
+      }
+    ]
+  },
+  {
+    "_sid": "sut_servet-sekerleme-tek-kavrulmus-fethiye-tahini-300-gr",
+    "ad": "Servet Şekerleme Tek Kavrulmuş Fethiye Tahini 300 Gr",
+    "ana_kategori": "Helva Tahin ve Pekmez",
+    "agirlik_hacim": "300 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 450.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 450.0
+      },
+      {
+        "market": "migros",
+        "fiyat": 543.95
       }
     ]
   },
@@ -14580,20 +14580,6 @@
     ]
   },
   {
-    "_sid": "sut_fora-domat-kokteyl-zeytin-400-gr",
-    "ad": "Fora Domat Kokteyl Zeytin 400 Gr",
-    "ana_kategori": "Zeytin",
-    "agirlik_hacim": "400 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/16020236.png",
-    "en_dusuk_fiyat": 165.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 165.0
-      }
-    ]
-  },
-  {
     "_sid": "sut_sek-3-yagli-yogurt-3-kg",
     "ad": "Sek %3 Yağlı Yoğurt 3 Kg",
     "ana_kategori": "Yoğurt",
@@ -14632,6 +14618,20 @@
       {
         "market": "sok",
         "fiyat": 179.0
+      }
+    ]
+  },
+  {
+    "_sid": "sut_ekici-mavi-kuflu-peynir-100-gr",
+    "ad": "Ekici Mavi Küflü Peynir 100 Gr",
+    "ana_kategori": "Peynir",
+    "agirlik_hacim": "100 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30306075.jpg",
+    "en_dusuk_fiyat": 194.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 194.9
       }
     ]
   },
@@ -14938,20 +14938,6 @@
     ]
   },
   {
-    "_sid": "sut_mis-labne-400-gr",
-    "ad": "Mis Labne 400 Gr",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "400 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/sokimages/74245.png",
-    "en_dusuk_fiyat": 112.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 112.0
-      }
-    ]
-  },
-  {
     "_sid": "sut_kozan-kooperatif-cam-bali-460-gr",
     "ad": "Kozan Kooperatif Çam Balı 460 Gr",
     "ana_kategori": "Bal ve Reçel",
@@ -14980,20 +14966,6 @@
     ]
   },
   {
-    "_sid": "sut_melis-aci-kahvaltilik-sos-200-gr",
-    "ad": "Melis Acı Kahvaltılık Sos 200 Gr",
-    "ana_kategori": "Sürülebilir Ürünler ve Kahvaltılık Soslar",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/9024311.png",
-    "en_dusuk_fiyat": 119.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 119.95
-      }
-    ]
-  },
-  {
     "_sid": "sut_i-lkgun-cilek-receli-1-kg",
     "ad": "İlkgün Çilek Reçeli 1 Kg",
     "ana_kategori": "Bal ve Reçel",
@@ -15008,24 +14980,6 @@
     ]
   },
   {
-    "_sid": "sut_eker-efsane-yogurt-1-25-kg",
-    "ad": "Eker Efsane Yoğurt 1.25 Kg",
-    "ana_kategori": "Yoğurt",
-    "agirlik_hacim": "1.25 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30255419.jpg",
-    "en_dusuk_fiyat": 140.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 140.95
-      },
-      {
-        "market": "migros",
-        "fiyat": 141.5
-      }
-    ]
-  },
-  {
     "_sid": "sut_ulker-cokokrem-cam-350-gr",
     "ad": "Ülker Çokokrem Cam 350 Gr",
     "ana_kategori": "Sürülebilir Ürünler ve Kahvaltılık Soslar",
@@ -15036,6 +14990,20 @@
       {
         "market": "migros",
         "fiyat": 154.95
+      }
+    ]
+  },
+  {
+    "_sid": "sut_fora-domat-kokteyl-zeytin-400-gr",
+    "ad": "Fora Domat Kokteyl Zeytin 400 Gr",
+    "ana_kategori": "Zeytin",
+    "agirlik_hacim": "400 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/16020236.png",
+    "en_dusuk_fiyat": 165.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 165.0
       }
     ]
   },
@@ -15078,6 +15046,20 @@
       {
         "market": "carrefour",
         "fiyat": 194.5
+      }
+    ]
+  },
+  {
+    "_sid": "sut_sek-beyaz-peynir-800-gr",
+    "ad": "Sek Beyaz Peynir 800 Gr",
+    "ana_kategori": "Peynir",
+    "agirlik_hacim": "800 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/12003476.jpg",
+    "en_dusuk_fiyat": 199.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 199.0
       }
     ]
   },
@@ -15170,6 +15152,24 @@
       {
         "market": "bim",
         "fiyat": 395.0
+      }
+    ]
+  },
+  {
+    "_sid": "sut_i-cim-tam-yagli-taze-kasar-peyniri-700-gr",
+    "ad": "İçim Tam Yağlı Taze Kaşar Peyniri 700 Gr",
+    "ana_kategori": "Peynir",
+    "agirlik_hacim": "700 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bim/201427.jpg",
+    "en_dusuk_fiyat": 399.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 399.0
+      },
+      {
+        "market": "migros",
+        "fiyat": 401.9
       }
     ]
   },
@@ -15318,6 +15318,20 @@
     ]
   },
   {
+    "_sid": "sut_mis-labne-400-gr",
+    "ad": "Mis Labne 400 Gr",
+    "ana_kategori": "Peynir",
+    "agirlik_hacim": "400 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/sokimages/74245.png",
+    "en_dusuk_fiyat": 112.0,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 112.0
+      }
+    ]
+  },
+  {
     "_sid": "sut_muratbey-kaymakli-200-gr",
     "ad": "Muratbey Kaymaklı 200 Gr",
     "ana_kategori": "Peynir",
@@ -15328,6 +15342,20 @@
       {
         "market": "migros",
         "fiyat": 115.9
+      }
+    ]
+  },
+  {
+    "_sid": "sut_melis-aci-kahvaltilik-sos-200-gr",
+    "ad": "Melis Acı Kahvaltılık Sos 200 Gr",
+    "ana_kategori": "Sürülebilir Ürünler ve Kahvaltılık Soslar",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/9024311.png",
+    "en_dusuk_fiyat": 119.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 119.95
       }
     ]
   },
@@ -15476,20 +15504,6 @@
     ]
   },
   {
-    "_sid": "sut_seyidoglu-pekmez-1-3-kg",
-    "ad": "Seyidoğlu Pekmez 1.3 Kg",
-    "ana_kategori": "Helva Tahin ve Pekmez",
-    "agirlik_hacim": "1.3 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/16001278.png",
-    "en_dusuk_fiyat": 279.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 279.0
-      }
-    ]
-  },
-  {
     "_sid": "sut_casari-gouda-200-gr",
     "ad": "Casari Gouda 200 Gr",
     "ana_kategori": "Peynir",
@@ -15500,24 +15514,6 @@
       {
         "market": "carrefour",
         "fiyat": 369.95
-      }
-    ]
-  },
-  {
-    "_sid": "sut_i-cim-tam-yagli-taze-kasar-peyniri-700-gr",
-    "ad": "İçim Tam Yağlı Taze Kaşar Peyniri 700 Gr",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "700 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bim/201427.jpg",
-    "en_dusuk_fiyat": 399.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 399.0
-      },
-      {
-        "market": "migros",
-        "fiyat": 401.9
       }
     ]
   },
@@ -15602,20 +15598,6 @@
       {
         "market": "bim",
         "fiyat": 32.5
-      }
-    ]
-  },
-  {
-    "_sid": "sut_torku-uht-sut-500-ml",
-    "ad": "Torku Uht Süt 500 Ml",
-    "ana_kategori": "Süt",
-    "agirlik_hacim": "500 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/11010151.png",
-    "en_dusuk_fiyat": 49.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 49.95
       }
     ]
   },
@@ -15824,6 +15806,20 @@
     ]
   },
   {
+    "_sid": "sut_seyidoglu-pekmez-1-3-kg",
+    "ad": "Seyidoğlu Pekmez 1.3 Kg",
+    "ana_kategori": "Helva Tahin ve Pekmez",
+    "agirlik_hacim": "1.3 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/16001278.png",
+    "en_dusuk_fiyat": 279.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 279.0
+      }
+    ]
+  },
+  {
     "_sid": "sut_migros-i-nek-peyniri-dilimli-600-gr",
     "ad": "Migros İnek Peyniri Dilimli 600 Gr",
     "ana_kategori": "Peynir",
@@ -15984,6 +15980,20 @@
     ]
   },
   {
+    "_sid": "sut_torku-uht-sut-500-ml",
+    "ad": "Torku Uht Süt 500 Ml",
+    "ana_kategori": "Süt",
+    "agirlik_hacim": "500 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/11010151.png",
+    "en_dusuk_fiyat": 49.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 49.95
+      }
+    ]
+  },
+  {
     "_sid": "sut_sek-yarim-yagli-sut-1-lt",
     "ad": "Sek Yarım Yağlı Süt 1 Lt",
     "ana_kategori": "Süt",
@@ -16138,20 +16148,6 @@
       {
         "market": "carrefour",
         "fiyat": 119.95
-      }
-    ]
-  },
-  {
-    "_sid": "sut_koska-findik-pureli-tahin-helvasi-200-gr",
-    "ad": "Koska Fındık Püreli Tahin Helvası 200 Gr",
-    "ana_kategori": "Helva Tahin ve Pekmez",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/7081123.jpg",
-    "en_dusuk_fiyat": 126.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 126.95
       }
     ]
   },
@@ -16418,24 +16414,6 @@
     ]
   },
   {
-    "_sid": "sut_cem-dogal-cizik-yesil-zeytin-261-290-400-gr",
-    "ad": "Cem Doğal Çizik Yeşil Zeytin 261-290 400 Gr",
-    "ana_kategori": "Zeytin",
-    "agirlik_hacim": "400 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/125112.jpg",
-    "en_dusuk_fiyat": 71.99,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 71.99
-      },
-      {
-        "market": "tarim_kredi",
-        "fiyat": 129.9
-      }
-    ]
-  },
-  {
     "_sid": "sut_metin-cevizli-yaz-helvasi-500-gr",
     "ad": "Metin Cevizli Yaz Helvası 500 Gr",
     "ana_kategori": "Helva Tahin ve Pekmez",
@@ -16464,6 +16442,20 @@
       {
         "market": "carrefour",
         "fiyat": 114.5
+      }
+    ]
+  },
+  {
+    "_sid": "sut_koska-findik-pureli-tahin-helvasi-200-gr",
+    "ad": "Koska Fındık Püreli Tahin Helvası 200 Gr",
+    "ana_kategori": "Helva Tahin ve Pekmez",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/7081123.jpg",
+    "en_dusuk_fiyat": 126.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 126.95
       }
     ]
   },
@@ -16788,6 +16780,42 @@
     ]
   },
   {
+    "_sid": "sut_cem-dogal-cizik-yesil-zeytin-261-290-400-gr",
+    "ad": "Cem Doğal Çizik Yeşil Zeytin 261-290 400 Gr",
+    "ana_kategori": "Zeytin",
+    "agirlik_hacim": "400 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/125112.jpg",
+    "en_dusuk_fiyat": 71.99,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 71.99
+      },
+      {
+        "market": "tarim_kredi",
+        "fiyat": 129.9
+      }
+    ]
+  },
+  {
+    "_sid": "sut_i-cim-suzme-peynir-250-gr",
+    "ad": "İçim Süzme Peynir 250 Gr",
+    "ana_kategori": "Peynir",
+    "agirlik_hacim": "250 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30053364.png",
+    "en_dusuk_fiyat": 73.5,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 73.5
+      },
+      {
+        "market": "migros",
+        "fiyat": 89.9
+      }
+    ]
+  },
+  {
     "_sid": "sut_tarim-kredi-keciboynuzlu-tahin-helvasi-500-gr",
     "ad": "Tarım Kredi Keçiboynuzlu Tahin Helvası 500 Gr",
     "ana_kategori": "Helva Tahin ve Pekmez",
@@ -16798,24 +16826,6 @@
       {
         "market": "tarim_kredi",
         "fiyat": 79.9
-      }
-    ]
-  },
-  {
-    "_sid": "sut_zuber-lokma-limonlu-badem-ezmeli-96-gr",
-    "ad": "Züber Lokma Limonlu Badem Ezmeli 96 Gr",
-    "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
-    "agirlik_hacim": "96 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30421097.png",
-    "en_dusuk_fiyat": 99.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 99.0
-      },
-      {
-        "market": "migros",
-        "fiyat": 144.95
       }
     ]
   },
@@ -16964,24 +16974,6 @@
     ]
   },
   {
-    "_sid": "sut_eker-suzme-yogurt-900-gr",
-    "ad": "Eker Süzme Yoğurt 900 Gr",
-    "ana_kategori": "Yoğurt",
-    "agirlik_hacim": "900 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/12002401.png",
-    "en_dusuk_fiyat": 219.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 219.0
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 222.5
-      }
-    ]
-  },
-  {
     "_sid": "sut_naturiga-hazir-kahvalti-karamel-kakao-250-gr",
     "ad": "Naturiga Hazır Kahvaltı Karamel Kakao 250 Gr",
     "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
@@ -17066,24 +17058,6 @@
     ]
   },
   {
-    "_sid": "sut_i-cim-suzme-peynir-250-gr",
-    "ad": "İçim Süzme Peynir 250 Gr",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "250 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30053364.png",
-    "en_dusuk_fiyat": 73.5,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 73.5
-      },
-      {
-        "market": "migros",
-        "fiyat": 89.9
-      }
-    ]
-  },
-  {
     "_sid": "sut_sutas-laktozsuz-sut-1-lt",
     "ad": "Sütaş Laktozsuz Süt 1 Lt",
     "ana_kategori": "Süt",
@@ -17112,6 +17086,24 @@
       {
         "market": "a101",
         "fiyat": 87.5
+      }
+    ]
+  },
+  {
+    "_sid": "sut_zuber-lokma-limonlu-badem-ezmeli-96-gr",
+    "ad": "Züber Lokma Limonlu Badem Ezmeli 96 Gr",
+    "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
+    "agirlik_hacim": "96 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30421097.png",
+    "en_dusuk_fiyat": 99.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 99.0
+      },
+      {
+        "market": "migros",
+        "fiyat": 144.95
       }
     ]
   },
@@ -17270,6 +17262,24 @@
     ]
   },
   {
+    "_sid": "sut_eker-suzme-yogurt-900-gr",
+    "ad": "Eker Süzme Yoğurt 900 Gr",
+    "ana_kategori": "Yoğurt",
+    "agirlik_hacim": "900 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/12002401.png",
+    "en_dusuk_fiyat": 219.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 219.0
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 222.5
+      }
+    ]
+  },
+  {
     "_sid": "sut_bahcivan-suzme-peynir-750-gr",
     "ad": "Bahçıvan Süzme Peynir 750 Gr",
     "ana_kategori": "Peynir",
@@ -17294,20 +17304,6 @@
       {
         "market": "migros",
         "fiyat": 226.9
-      }
-    ]
-  },
-  {
-    "_sid": "sut_torku-surulebilir-labne-peyniri-3x180-gr",
-    "ad": "Torku Sürülebilir Labne Peyniri 3x180 Gr",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "540 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/12003259.png",
-    "en_dusuk_fiyat": 249.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 249.0
       }
     ]
   },
@@ -17442,20 +17438,6 @@
       {
         "market": "migros",
         "fiyat": 64.95
-      }
-    ]
-  },
-  {
-    "_sid": "sut_i-nci-2xs-siyah-zeytin-351-380-kalibre-500-gr",
-    "ad": "İnci 2XS Siyah Zeytin 351-380 Kalibre 500 Gr",
-    "ana_kategori": "Zeytin",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bimages/601698.jpg",
-    "en_dusuk_fiyat": 77.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 77.0
       }
     ]
   },
@@ -17748,6 +17730,20 @@
     ]
   },
   {
+    "_sid": "sut_torku-surulebilir-labne-peyniri-3x180-gr",
+    "ad": "Torku Sürülebilir Labne Peyniri 3x180 Gr",
+    "ana_kategori": "Peynir",
+    "agirlik_hacim": "540 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/12003259.png",
+    "en_dusuk_fiyat": 249.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 249.0
+      }
+    ]
+  },
+  {
     "_sid": "sut_marmarabirlik-kuru-sele-321-350-xs-hazir-kap-800-gr",
     "ad": "Marmarabirlik Kuru Sele 321-350 (XS) Hazır Kap 800 Gr",
     "ana_kategori": "Zeytin",
@@ -17828,6 +17824,20 @@
       {
         "market": "migros",
         "fiyat": 75.0
+      }
+    ]
+  },
+  {
+    "_sid": "sut_i-nci-2xs-siyah-zeytin-351-380-kalibre-500-gr",
+    "ad": "İnci 2XS Siyah Zeytin 351-380 Kalibre 500 Gr",
+    "ana_kategori": "Zeytin",
+    "agirlik_hacim": "500 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bimages/601698.jpg",
+    "en_dusuk_fiyat": 77.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 77.0
       }
     ]
   },
@@ -18106,20 +18116,6 @@
       {
         "market": "carrefour",
         "fiyat": 389.9
-      }
-    ]
-  },
-  {
-    "_sid": "sut_tahsildaroglu-koyun-keci-i-nek-peyniri-350-gr",
-    "ad": "Tahsildaroğlu Koyun Keçi İnek Peyniri 350 Gr",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "350 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/10012360.png",
-    "en_dusuk_fiyat": 463.9,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 463.9
       }
     ]
   },
@@ -18414,20 +18410,6 @@
     ]
   },
   {
-    "_sid": "sut_sutas-burger-peyniri-225-gr",
-    "ad": "Sütaş Burger Peyniri 225 Gr",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "225 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/sutasimages/sutas_burger_peyniri_225.jpg",
-    "en_dusuk_fiyat": 145.0,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 145.0
-      }
-    ]
-  },
-  {
     "_sid": "sut_pinar-cikolatali-sos-330-gr",
     "ad": "Pınar Çikolatalı Sos 330 Gr",
     "ana_kategori": "Sürülebilir Ürünler ve Kahvaltılık Soslar",
@@ -18492,6 +18474,20 @@
       {
         "market": "carrefour",
         "fiyat": 370.0
+      }
+    ]
+  },
+  {
+    "_sid": "sut_tahsildaroglu-koyun-keci-i-nek-peyniri-350-gr",
+    "ad": "Tahsildaroğlu Koyun Keçi İnek Peyniri 350 Gr",
+    "ana_kategori": "Peynir",
+    "agirlik_hacim": "350 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/10012360.png",
+    "en_dusuk_fiyat": 463.9,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 463.9
       }
     ]
   },
@@ -18610,20 +18606,6 @@
     ]
   },
   {
-    "_sid": "sut_yulaf-ezmesi-500-gr-i-nce-ogutulmus-350-gr",
-    "ad": "Yulaf Ezmesi 500 Gr/İnce Öğütülmüş 350 Gr",
-    "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
-    "agirlik_hacim": "850 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 48.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 48.0
-      }
-    ]
-  },
-  {
     "_sid": "sut_dost-laktozsuz-sut-1-lt",
     "ad": "Dost Laktozsuz Süt 1 Lt",
     "ana_kategori": "Süt",
@@ -18720,6 +18702,20 @@
       {
         "market": "bim",
         "fiyat": 142.5
+      }
+    ]
+  },
+  {
+    "_sid": "sut_sutas-burger-peyniri-225-gr",
+    "ad": "Sütaş Burger Peyniri 225 Gr",
+    "ana_kategori": "Peynir",
+    "agirlik_hacim": "225 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/sutasimages/sutas_burger_peyniri_225.jpg",
+    "en_dusuk_fiyat": 145.0,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 145.0
       }
     ]
   },
@@ -18938,6 +18934,20 @@
     ]
   },
   {
+    "_sid": "sut_yulaf-ezmesi-500-gr-i-nce-ogutulmus-350-gr",
+    "ad": "Yulaf Ezmesi 500 Gr/İnce Öğütülmüş 350 Gr",
+    "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
+    "agirlik_hacim": "850 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 48.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 48.0
+      }
+    ]
+  },
+  {
     "_sid": "sut_koska-kakaolu-helva-175-gr",
     "ad": "Koska Kakaolu Helva 175 Gr",
     "ana_kategori": "Helva Tahin ve Pekmez",
@@ -19008,20 +19018,20 @@
     ]
   },
   {
-    "_sid": "sut_danone-cilek-orman-meyveleri-meyveli-yogurt-400-gr",
-    "ad": "Danone Çilek Orman Meyveleri Meyveli Yoğurt 400 Gr",
-    "ana_kategori": "Yoğurt",
-    "agirlik_hacim": "400 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/12002843.jpg",
-    "en_dusuk_fiyat": 97.5,
+    "_sid": "sut_fiskobirlik-fiskokrem-sutlu-1-kg",
+    "ad": "Fiskobirlik Fiskokrem Sütlü 1 Kg",
+    "ana_kategori": "Sürülebilir Ürünler ve Kahvaltılık Soslar",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30460701.jpg",
+    "en_dusuk_fiyat": 143.99,
     "market_fiyatlari": [
       {
-        "market": "migros",
-        "fiyat": 97.5
+        "market": "carrefour",
+        "fiyat": 143.99
       },
       {
-        "market": "carrefour",
-        "fiyat": 97.5
+        "market": "tarim_kredi",
+        "fiyat": 159.9
       }
     ]
   },
@@ -19064,20 +19074,6 @@
       {
         "market": "carrefour",
         "fiyat": 149.0
-      }
-    ]
-  },
-  {
-    "_sid": "sut_ulker-findik-ruyasi-kakaolu-krema-cam-sise-350-gr",
-    "ad": "Ülker Fındık Rüyası Kakaolu Krema Cam Şişe 350 Gr",
-    "ana_kategori": "Sürülebilir Ürünler ve Kahvaltılık Soslar",
-    "agirlik_hacim": "350 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30501004.jpg",
-    "en_dusuk_fiyat": 150.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 150.0
       }
     ]
   },
@@ -19386,6 +19382,24 @@
     ]
   },
   {
+    "_sid": "sut_danone-cilek-orman-meyveleri-meyveli-yogurt-400-gr",
+    "ad": "Danone Çilek Orman Meyveleri Meyveli Yoğurt 400 Gr",
+    "ana_kategori": "Yoğurt",
+    "agirlik_hacim": "400 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/12002843.jpg",
+    "en_dusuk_fiyat": 97.5,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 97.5
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 97.5
+      }
+    ]
+  },
+  {
     "_sid": "sut_i-cim-dogal-yogurt-1-2-kg",
     "ad": "İçim Doğal Yoğurt 1.2 Kg",
     "ana_kategori": "Yoğurt",
@@ -19436,24 +19450,6 @@
     ]
   },
   {
-    "_sid": "sut_fiskobirlik-fiskokrem-sutlu-1-kg",
-    "ad": "Fiskobirlik Fiskokrem Sütlü 1 Kg",
-    "ana_kategori": "Sürülebilir Ürünler ve Kahvaltılık Soslar",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30460701.jpg",
-    "en_dusuk_fiyat": 143.99,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 143.99
-      },
-      {
-        "market": "tarim_kredi",
-        "fiyat": 159.9
-      }
-    ]
-  },
-  {
     "_sid": "sut_pinar-cheddarli-krem-peynir-270-gr",
     "ad": "Pınar Cheddarlı Krem Peynir 270 Gr",
     "ana_kategori": "Peynir",
@@ -19464,6 +19460,20 @@
       {
         "market": "carrefour",
         "fiyat": 144.9
+      }
+    ]
+  },
+  {
+    "_sid": "sut_ulker-findik-ruyasi-kakaolu-krema-cam-sise-350-gr",
+    "ad": "Ülker Fındık Rüyası Kakaolu Krema Cam Şişe 350 Gr",
+    "ana_kategori": "Sürülebilir Ürünler ve Kahvaltılık Soslar",
+    "agirlik_hacim": "350 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30501004.jpg",
+    "en_dusuk_fiyat": 150.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 150.0
       }
     ]
   },
@@ -19552,24 +19562,6 @@
     ]
   },
   {
-    "_sid": "sut_tahsildaroglu-eski-kasar-350-gr",
-    "ad": "Tahsildaroğlu Eski Kaşar 350 Gr",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "350 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/10103651.jpg",
-    "en_dusuk_fiyat": 345.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 345.0
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 419.9
-      }
-    ]
-  },
-  {
     "_sid": "sut_teksut-taze-kasar-peyniri-1-kg",
     "ad": "Teksüt Taze Kaşar Peyniri 1 Kg",
     "ana_kategori": "Peynir",
@@ -19650,24 +19642,6 @@
       {
         "market": "carrefour",
         "fiyat": 1250.0
-      }
-    ]
-  },
-  {
-    "_sid": "sut_eti-lifalif-bitter-cikolatali-yulaf-bar-35-gr",
-    "ad": "Eti Lifalif Bitter Çikolatalı Yulaf Bar 35 Gr",
-    "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
-    "agirlik_hacim": "35 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/7160237.jpg",
-    "en_dusuk_fiyat": 37.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 37.95
-      },
-      {
-        "market": "sok",
-        "fiyat": 39.95
       }
     ]
   },
@@ -20002,6 +19976,24 @@
     ]
   },
   {
+    "_sid": "sut_tahsildaroglu-eski-kasar-350-gr",
+    "ad": "Tahsildaroğlu Eski Kaşar 350 Gr",
+    "ana_kategori": "Peynir",
+    "agirlik_hacim": "350 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/10103651.jpg",
+    "en_dusuk_fiyat": 345.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 345.0
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 419.9
+      }
+    ]
+  },
+  {
     "_sid": "sut_marmarabirlik-kuru-sele-zeytin-381-410-adet-1-kg",
     "ad": "Marmarabirlik Kuru Sele Zeytin 381-410 Adet 1 Kg",
     "ana_kategori": "Zeytin",
@@ -20034,6 +20026,24 @@
       {
         "market": "carrefour",
         "fiyat": 35.0
+      }
+    ]
+  },
+  {
+    "_sid": "sut_eti-lifalif-bitter-cikolatali-yulaf-bar-35-gr",
+    "ad": "Eti Lifalif Bitter Çikolatalı Yulaf Bar 35 Gr",
+    "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
+    "agirlik_hacim": "35 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/7160237.jpg",
+    "en_dusuk_fiyat": 37.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 37.95
+      },
+      {
+        "market": "sok",
+        "fiyat": 39.95
       }
     ]
   },
@@ -20366,20 +20376,6 @@
       {
         "market": "migros",
         "fiyat": 475.0
-      }
-    ]
-  },
-  {
-    "_sid": "sut_ariste-dilimli-trakya-eski-kasar-200-gr",
-    "ad": "Ariste Dilimli Trakya Eski Kaşar 200 Gr",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/10108907.png",
-    "en_dusuk_fiyat": 499.9,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 499.9
       }
     ]
   },
@@ -20736,20 +20732,6 @@
     ]
   },
   {
-    "_sid": "sut_otat-yarim-yagli-tost-peyniri-1-5-kg",
-    "ad": "Otat Yarım Yağlı Tost Peyniri 1.5 Kg",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "1.5 KG",
-    "resim": null,
-    "en_dusuk_fiyat": 359.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 359.0
-      }
-    ]
-  },
-  {
     "_sid": "sut_peysan-tam-yagli-olgunlastirilmis-eski-kasar-peyniri-250-gr",
     "ad": "Peysan Tam Yağlı Olgunlaştırılmış Eski Kaşar Peyniri 250 Gr",
     "ana_kategori": "Peynir",
@@ -20760,6 +20742,20 @@
       {
         "market": "migros",
         "fiyat": 476.5
+      }
+    ]
+  },
+  {
+    "_sid": "sut_ariste-dilimli-trakya-eski-kasar-200-gr",
+    "ad": "Ariste Dilimli Trakya Eski Kaşar 200 Gr",
+    "ana_kategori": "Peynir",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/10108907.png",
+    "en_dusuk_fiyat": 499.9,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 499.9
       }
     ]
   },
@@ -20796,28 +20792,6 @@
       {
         "market": "carrefour",
         "fiyat": 64.9
-      }
-    ]
-  },
-  {
-    "_sid": "sut_anavarza-kral-sakir-lisansli-tup-bal-40-gr",
-    "ad": "Anavarza Kral Şakir Lisanslı Tüp Bal 40 Gr",
-    "ana_kategori": "Bal ve Reçel",
-    "agirlik_hacim": "40 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/16002121.png",
-    "en_dusuk_fiyat": 54.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 54.5
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 54.9
-      },
-      {
-        "market": "migros",
-        "fiyat": 58.5
       }
     ]
   },
@@ -21072,6 +21046,20 @@
     ]
   },
   {
+    "_sid": "sut_otat-yarim-yagli-tost-peyniri-1-5-kg",
+    "ad": "Otat Yarım Yağlı Tost Peyniri 1.5 Kg",
+    "ana_kategori": "Peynir",
+    "agirlik_hacim": "1.5 KG",
+    "resim": null,
+    "en_dusuk_fiyat": 359.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 359.0
+      }
+    ]
+  },
+  {
     "_sid": "sut_marmarabirlik-kuru-sele-zeytin-xs-321-350-800-gr",
     "ad": "Marmarabirlik Kuru Sele Zeytin XS 321-350 800 Gr",
     "ana_kategori": "Zeytin",
@@ -21234,6 +21222,28 @@
     ]
   },
   {
+    "_sid": "sut_anavarza-kral-sakir-lisansli-tup-bal-40-gr",
+    "ad": "Anavarza Kral Şakir Lisanslı Tüp Bal 40 Gr",
+    "ana_kategori": "Bal ve Reçel",
+    "agirlik_hacim": "40 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/16002121.png",
+    "en_dusuk_fiyat": 54.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 54.5
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 54.9
+      },
+      {
+        "market": "migros",
+        "fiyat": 58.5
+      }
+    ]
+  },
+  {
     "_sid": "sut_i-nci-siyah-zeytin-321-380-kalibre-250-gr",
     "ad": "İnci Siyah Zeytin 321-380 Kalibre 250 Gr",
     "ana_kategori": "Zeytin",
@@ -21286,24 +21296,6 @@
       {
         "market": "carrefour",
         "fiyat": 69.95
-      }
-    ]
-  },
-  {
-    "_sid": "sut_city-farm-organik-yulaf-ezmesi-500-gr",
-    "ad": "City Farm Organik Yulaf Ezmesi 500 Gr",
-    "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30012797.png",
-    "en_dusuk_fiyat": 83.25,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 83.25
-      },
-      {
-        "market": "migros",
-        "fiyat": 117.95
       }
     ]
   },
@@ -21590,6 +21582,24 @@
     ]
   },
   {
+    "_sid": "sut_city-farm-organik-yulaf-ezmesi-500-gr",
+    "ad": "City Farm Organik Yulaf Ezmesi 500 Gr",
+    "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
+    "agirlik_hacim": "500 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30012797.png",
+    "en_dusuk_fiyat": 83.25,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 83.25
+      },
+      {
+        "market": "migros",
+        "fiyat": 117.95
+      }
+    ]
+  },
+  {
     "_sid": "sut_disney-muz-aromali-sut-1-08-lt",
     "ad": "Disney Muz Aromalı Süt 1.08 Lt",
     "ana_kategori": "Süt",
@@ -21677,20 +21687,6 @@
     "market_fiyatlari": [
       {
         "market": "migros",
-        "fiyat": 169.0
-      }
-    ]
-  },
-  {
-    "_sid": "sut_nuga-kakaolu-findik-kremasi-650-gr",
-    "ad": "Nuga Kakaolu Fındık Kreması 650 Gr",
-    "ana_kategori": "Sürülebilir Ürünler ve Kahvaltılık Soslar",
-    "agirlik_hacim": "650 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 169.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
         "fiyat": 169.0
       }
     ]
@@ -22066,6 +22062,20 @@
     ]
   },
   {
+    "_sid": "sut_nuga-kakaolu-findik-kremasi-650-gr",
+    "ad": "Nuga Kakaolu Fındık Kreması 650 Gr",
+    "ana_kategori": "Sürülebilir Ürünler ve Kahvaltılık Soslar",
+    "agirlik_hacim": "650 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 169.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 169.0
+      }
+    ]
+  },
+  {
     "_sid": "sut_koska-fistikli-helva-200-gr",
     "ad": "Koska Fıstıklı Helva 200 Gr",
     "ana_kategori": "Helva Tahin ve Pekmez",
@@ -22200,20 +22210,6 @@
       {
         "market": "carrefour",
         "fiyat": 386.5
-      }
-    ]
-  },
-  {
-    "_sid": "sut_bizim-margarin-1-5-kg",
-    "ad": "Bizim Margarin 1.5 Kg",
-    "ana_kategori": "Tereyağı ve Margarin",
-    "agirlik_hacim": "1.5 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30090118.png",
-    "en_dusuk_fiyat": 313.5,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 313.5
       }
     ]
   },
@@ -22454,20 +22450,6 @@
     ]
   },
   {
-    "_sid": "sut_findux-cam-kakaolu-findik-kremasi-400-gr",
-    "ad": "Findux Cam Kakaolu Fındık Kreması 400 Gr",
-    "ana_kategori": "Sürülebilir Ürünler ve Kahvaltılık Soslar",
-    "agirlik_hacim": "400 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/16001690.png",
-    "en_dusuk_fiyat": 109.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 109.0
-      }
-    ]
-  },
-  {
     "_sid": "sut_richland-kakaolu-granola-330-gr",
     "ad": "Richland Kakaolu Granola 330 Gr",
     "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
@@ -22608,6 +22590,20 @@
       {
         "market": "a101",
         "fiyat": 299.0
+      }
+    ]
+  },
+  {
+    "_sid": "sut_bizim-margarin-1-5-kg",
+    "ad": "Bizim Margarin 1.5 Kg",
+    "ana_kategori": "Tereyağı ve Margarin",
+    "agirlik_hacim": "1.5 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30090118.png",
+    "en_dusuk_fiyat": 313.5,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 313.5
       }
     ]
   },
@@ -22806,6 +22802,20 @@
     ]
   },
   {
+    "_sid": "sut_findux-cam-kakaolu-findik-kremasi-400-gr",
+    "ad": "Findux Cam Kakaolu Fındık Kreması 400 Gr",
+    "ana_kategori": "Sürülebilir Ürünler ve Kahvaltılık Soslar",
+    "agirlik_hacim": "400 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/16001690.png",
+    "en_dusuk_fiyat": 109.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 109.0
+      }
+    ]
+  },
+  {
     "_sid": "sut_master-nut-leblebi-ezmesi-300-gr",
     "ad": "Master Nut Leblebi Ezmesi 300 Gr",
     "ana_kategori": "Sürülebilir Ürünler ve Kahvaltılık Soslar",
@@ -22872,20 +22882,6 @@
       {
         "market": "migros",
         "fiyat": 169.9
-      }
-    ]
-  },
-  {
-    "_sid": "sut_carrefour-cicek-bali-460-gr",
-    "ad": "Carrefour Çiçek Balı 460 Gr",
-    "ana_kategori": "Bal ve Reçel",
-    "agirlik_hacim": "460 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30215264.png",
-    "en_dusuk_fiyat": 179.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 179.0
       }
     ]
   },
@@ -23000,20 +22996,6 @@
     ]
   },
   {
-    "_sid": "sut_anavarza-cicek-bali-32-gr",
-    "ad": "Anavarza Çiçek Balı 32 Gr",
-    "ana_kategori": "Bal ve Reçel",
-    "agirlik_hacim": "32 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30481971.jpg",
-    "en_dusuk_fiyat": 33.5,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 33.5
-      }
-    ]
-  },
-  {
     "_sid": "sut_nestl-nesfit-kakaolu-protein-bar-20-gr",
     "ad": "Nestlé Nesfit Kakaolu Protein Bar 20 Gr",
     "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
@@ -23056,6 +23038,20 @@
       {
         "market": "migros",
         "fiyat": 56.95
+      }
+    ]
+  },
+  {
+    "_sid": "sut_i-cim-i-cimino-buyume-kupu-muzlu-240-gr",
+    "ad": "İçim İçimino Büyüme Küpü Muzlu 240 Gr",
+    "ana_kategori": "Yoğurt",
+    "agirlik_hacim": "240 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30096498.jpg",
+    "en_dusuk_fiyat": 59.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 59.95
       }
     ]
   },
@@ -23230,6 +23226,20 @@
     ]
   },
   {
+    "_sid": "sut_carrefour-cicek-bali-460-gr",
+    "ad": "Carrefour Çiçek Balı 460 Gr",
+    "ana_kategori": "Bal ve Reçel",
+    "agirlik_hacim": "460 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30215264.png",
+    "en_dusuk_fiyat": 179.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 179.0
+      }
+    ]
+  },
+  {
     "_sid": "sut_guzel-ada-organik-yerli-tahin-220-gr",
     "ad": "Güzel Ada Organik Yerli Tahin 220 Gr",
     "ana_kategori": "Helva Tahin ve Pekmez",
@@ -23268,20 +23278,6 @@
       {
         "market": "migros",
         "fiyat": 259.95
-      }
-    ]
-  },
-  {
-    "_sid": "sut_ekici-tam-yagli-beyaz-peynir-800-gr",
-    "ad": "Ekici Tam Yağlı Beyaz Peynir 800 Gr",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "800 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30483648.png",
-    "en_dusuk_fiyat": 290.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 290.0
       }
     ]
   },
@@ -23416,6 +23412,20 @@
     ]
   },
   {
+    "_sid": "sut_anavarza-cicek-bali-32-gr",
+    "ad": "Anavarza Çiçek Balı 32 Gr",
+    "ana_kategori": "Bal ve Reçel",
+    "agirlik_hacim": "32 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30481971.jpg",
+    "en_dusuk_fiyat": 33.5,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 33.5
+      }
+    ]
+  },
+  {
     "_sid": "sut_burch-yulaf-ezmesi-500-gr",
     "ad": "Burch Yulaf Ezmesi 500 Gr",
     "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
@@ -23454,20 +23464,6 @@
       {
         "market": "sok",
         "fiyat": 59.9
-      }
-    ]
-  },
-  {
-    "_sid": "sut_i-cim-i-cimino-buyume-kupu-muzlu-240-gr",
-    "ad": "İçim İçimino Büyüme Küpü Muzlu 240 Gr",
-    "ana_kategori": "Yoğurt",
-    "agirlik_hacim": "240 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30096498.jpg",
-    "en_dusuk_fiyat": 59.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 59.95
       }
     ]
   },
@@ -23680,16 +23676,16 @@
     ]
   },
   {
-    "_sid": "sut_ariste-dilimli-beyaz-peynir-250-gr",
-    "ad": "Ariste Dilimli Beyaz Peynir 250 Gr",
+    "_sid": "sut_ekici-tam-yagli-beyaz-peynir-800-gr",
+    "ad": "Ekici Tam Yağlı Beyaz Peynir 800 Gr",
     "ana_kategori": "Peynir",
-    "agirlik_hacim": "250 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/10019064.png",
-    "en_dusuk_fiyat": 274.9,
+    "agirlik_hacim": "800 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30483648.png",
+    "en_dusuk_fiyat": 290.0,
     "market_fiyatlari": [
       {
-        "market": "migros",
-        "fiyat": 274.9
+        "market": "carrefour",
+        "fiyat": 290.0
       }
     ]
   },
@@ -23972,16 +23968,16 @@
     ]
   },
   {
-    "_sid": "sut_naturiga-keto-granola-coconut-blueberry-250-gr",
-    "ad": "Naturiga Keto Granola Coconut Blueberry 250 Gr",
-    "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
+    "_sid": "sut_ariste-dilimli-beyaz-peynir-250-gr",
+    "ad": "Ariste Dilimli Beyaz Peynir 250 Gr",
+    "ana_kategori": "Peynir",
     "agirlik_hacim": "250 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30498008.jpg",
-    "en_dusuk_fiyat": 265.5,
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/10019064.png",
+    "en_dusuk_fiyat": 274.9,
     "market_fiyatlari": [
       {
-        "market": "carrefour",
-        "fiyat": 265.5
+        "market": "migros",
+        "fiyat": 274.9
       }
     ]
   },
@@ -24304,20 +24300,6 @@
     ]
   },
   {
-    "_sid": "sut_nesquik-choconutty-350-gr",
-    "ad": "Nesquik Choconutty 350 Gr",
-    "ana_kategori": "Sürülebilir Ürünler ve Kahvaltılık Soslar",
-    "agirlik_hacim": "350 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30489402.jpg",
-    "en_dusuk_fiyat": 190.99,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 190.99
-      }
-    ]
-  },
-  {
     "_sid": "sut_pervin-kozalak-tereyagi-350-gr",
     "ad": "Pervin Kozalak Tereyağı 350 Gr",
     "ana_kategori": "Tereyağı ve Margarin",
@@ -24356,6 +24338,20 @@
       {
         "market": "bim",
         "fiyat": 249.0
+      }
+    ]
+  },
+  {
+    "_sid": "sut_naturiga-keto-granola-coconut-blueberry-250-gr",
+    "ad": "Naturiga Keto Granola Coconut Blueberry 250 Gr",
+    "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
+    "agirlik_hacim": "250 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30498008.jpg",
+    "en_dusuk_fiyat": 265.5,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 265.5
       }
     ]
   },
@@ -24730,6 +24726,20 @@
     ]
   },
   {
+    "_sid": "sut_nesquik-choconutty-350-gr",
+    "ad": "Nesquik Choconutty 350 Gr",
+    "ana_kategori": "Sürülebilir Ürünler ve Kahvaltılık Soslar",
+    "agirlik_hacim": "350 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30489402.jpg",
+    "en_dusuk_fiyat": 190.99,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 190.99
+      }
+    ]
+  },
+  {
     "_sid": "sut_migros-koyun-keci-i-nek-peyniri-350-gr",
     "ad": "Migros Koyun Keçi İnek Peyniri 350 Gr",
     "ana_kategori": "Peynir",
@@ -24754,20 +24764,6 @@
       {
         "market": "bim",
         "fiyat": 199.0
-      }
-    ]
-  },
-  {
-    "_sid": "sut_sade-organik-zeytin-ezmesi-190-gr",
-    "ad": "Sade Organik Zeytin Ezmesi 190 Gr",
-    "ana_kategori": "Zeytin",
-    "agirlik_hacim": "190 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30467508.png",
-    "en_dusuk_fiyat": 203.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 203.9
       }
     ]
   },
@@ -24920,20 +24916,6 @@
     ]
   },
   {
-    "_sid": "sut_fellas-dort-tohumlu-kuruyemis-bar-30-gr",
-    "ad": "Fellas Dört Tohumlu Kuruyemiş Bar 30 Gr",
-    "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
-    "agirlik_hacim": "30 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/7190013.jpg",
-    "en_dusuk_fiyat": 59.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 59.95
-      }
-    ]
-  },
-  {
     "_sid": "sut_serel-sade-helva-500-gr",
     "ad": "Serel Sade Helva 500 Gr",
     "ana_kategori": "Helva Tahin ve Pekmez",
@@ -24958,20 +24940,6 @@
       {
         "market": "a101",
         "fiyat": 69.5
-      }
-    ]
-  },
-  {
-    "_sid": "sut_tarim-kredi-cikolata-dolgulu-kakaolu-tahil-gevregi-310-gr",
-    "ad": "Tarım Kredi Çikolata Dolgulu Kakaolu Tahıl Gevreği 310 Gr",
-    "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
-    "agirlik_hacim": "310 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/104631.jpg",
-    "en_dusuk_fiyat": 76.9,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 76.9
       }
     ]
   },
@@ -25064,6 +25032,20 @@
       {
         "market": "carrefour",
         "fiyat": 117.95
+      }
+    ]
+  },
+  {
+    "_sid": "sut_carrefour-az-yagli-yogurt-3-kg",
+    "ad": "Carrefour Az Yağlı Yoğurt 3 Kg",
+    "ana_kategori": "Yoğurt",
+    "agirlik_hacim": "3 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30489082.jpg",
+    "en_dusuk_fiyat": 139.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 139.9
       }
     ]
   },
@@ -25164,6 +25146,20 @@
     ]
   },
   {
+    "_sid": "sut_sade-organik-zeytin-ezmesi-190-gr",
+    "ad": "Sade Organik Zeytin Ezmesi 190 Gr",
+    "ana_kategori": "Zeytin",
+    "agirlik_hacim": "190 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30467508.png",
+    "en_dusuk_fiyat": 203.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 203.9
+      }
+    ]
+  },
+  {
     "_sid": "sut_carrefour-eski-kasar-350-gr",
     "ad": "Carrefour Eski Kaşar 350 Gr",
     "ana_kategori": "Peynir",
@@ -25234,16 +25230,16 @@
     ]
   },
   {
-    "_sid": "sut_torku-ucgen-peynir-100-gr",
-    "ad": "Torku Üçgen Peynir 100 Gr",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "100 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/10250743.png",
-    "en_dusuk_fiyat": 52.9,
+    "_sid": "sut_fellas-dort-tohumlu-kuruyemis-bar-30-gr",
+    "ad": "Fellas Dört Tohumlu Kuruyemiş Bar 30 Gr",
+    "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
+    "agirlik_hacim": "30 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/7190013.jpg",
+    "en_dusuk_fiyat": 59.95,
     "market_fiyatlari": [
       {
-        "market": "tarim_kredi",
-        "fiyat": 52.9
+        "market": "carrefour",
+        "fiyat": 59.95
       }
     ]
   },
@@ -25272,6 +25268,20 @@
       {
         "market": "carrefour",
         "fiyat": 69.9
+      }
+    ]
+  },
+  {
+    "_sid": "sut_tarim-kredi-cikolata-dolgulu-kakaolu-tahil-gevregi-310-gr",
+    "ad": "Tarım Kredi Çikolata Dolgulu Kakaolu Tahıl Gevreği 310 Gr",
+    "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
+    "agirlik_hacim": "310 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/104631.jpg",
+    "en_dusuk_fiyat": 76.9,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 76.9
       }
     ]
   },
@@ -25342,20 +25352,6 @@
       {
         "market": "bim",
         "fiyat": 134.0
-      }
-    ]
-  },
-  {
-    "_sid": "sut_carrefour-az-yagli-yogurt-3-kg",
-    "ad": "Carrefour Az Yağlı Yoğurt 3 Kg",
-    "ana_kategori": "Yoğurt",
-    "agirlik_hacim": "3 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30489082.jpg",
-    "en_dusuk_fiyat": 139.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 139.9
       }
     ]
   },
@@ -25644,6 +25640,20 @@
     ]
   },
   {
+    "_sid": "sut_torku-ucgen-peynir-100-gr",
+    "ad": "Torku Üçgen Peynir 100 Gr",
+    "ana_kategori": "Peynir",
+    "agirlik_hacim": "100 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/10250743.png",
+    "en_dusuk_fiyat": 52.9,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 52.9
+      }
+    ]
+  },
+  {
     "_sid": "sut_sana-tereyagi-lezzeti-paket-margarin-250-gr",
     "ad": "Sana Tereyağı Lezzeti Paket Margarin 250 Gr",
     "ana_kategori": "Tereyağı ve Margarin",
@@ -25834,20 +25844,6 @@
     ]
   },
   {
-    "_sid": "sut_aknaz-koy-beyaz-peyniri-650-gr",
-    "ad": "Aknaz Köy Beyaz Peyniri 650 Gr",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "650 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bim/201073.jpg",
-    "en_dusuk_fiyat": 195.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 195.0
-      }
-    ]
-  },
-  {
     "_sid": "sut_marmarabirlik-gurme-siyah-zeytin-261-290-kalibre-400-gr",
     "ad": "Marmarabirlik Gurme Siyah Zeytin 261-290 Kalibre 400 Gr",
     "ana_kategori": "Zeytin",
@@ -26002,20 +25998,6 @@
       {
         "market": "tarim_kredi",
         "fiyat": 49.5
-      }
-    ]
-  },
-  {
-    "_sid": "sut_migros-3-yagli-uht-i-cme-sutu-1-lt",
-    "ad": "Migros %3 Yağlı UHT İçme Sütü 1 Lt",
-    "ana_kategori": "Süt",
-    "agirlik_hacim": "1 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/11011523.png",
-    "en_dusuk_fiyat": 49.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 49.95
       }
     ]
   },
@@ -26210,6 +26192,20 @@
     ]
   },
   {
+    "_sid": "sut_aknaz-koy-beyaz-peyniri-650-gr",
+    "ad": "Aknaz Köy Beyaz Peyniri 650 Gr",
+    "ana_kategori": "Peynir",
+    "agirlik_hacim": "650 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bim/201073.jpg",
+    "en_dusuk_fiyat": 195.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 195.0
+      }
+    ]
+  },
+  {
     "_sid": "sut_mis-tam-yagli-kasar-peyniri-500-gr",
     "ad": "Mis Tam Yağlı Kaşar Peyniri 500 Gr",
     "ana_kategori": "Peynir",
@@ -26294,6 +26290,20 @@
       {
         "market": "migros",
         "fiyat": 379.9
+      }
+    ]
+  },
+  {
+    "_sid": "sut_migros-3-yagli-uht-i-cme-sutu-1-lt",
+    "ad": "Migros %3 Yağlı UHT İçme Sütü 1 Lt",
+    "ana_kategori": "Süt",
+    "agirlik_hacim": "1 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/11011523.png",
+    "en_dusuk_fiyat": 49.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 49.95
       }
     ]
   },
@@ -26568,20 +26578,6 @@
       {
         "market": "carrefour",
         "fiyat": 249.9
-      }
-    ]
-  },
-  {
-    "_sid": "sut_ulus-klasik-tam-yagli-olgunlastirilmis-beyaz-peynir-350-gr",
-    "ad": "Ulus Klasik Tam Yağlı Olgunlaştırılmış Beyaz Peynir 350 Gr",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "350 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30500720.jpg",
-    "en_dusuk_fiyat": 254.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 254.9
       }
     ]
   },
@@ -26900,24 +26896,6 @@
     ]
   },
   {
-    "_sid": "sut_bahcivan-laktozsuz-yarim-yagli-suzme-500-gr",
-    "ad": "Bahçıvan Laktozsuz Yarım Yağlı Süzme 500 Gr",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30345656.png",
-    "en_dusuk_fiyat": 149.9,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 149.9
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 239.9
-      }
-    ]
-  },
-  {
     "_sid": "sut_koska-tup-super-i-kili-3x40-gr",
     "ad": "Koska Tüp Süper İkili 3x40 Gr",
     "ana_kategori": "Helva Tahin ve Pekmez",
@@ -26996,16 +26974,30 @@
     ]
   },
   {
-    "_sid": "sut_aknaz-beyaz-peynir-kutu-750-gr",
-    "ad": "Aknaz Beyaz Peynir Kutu 750 Gr",
+    "_sid": "sut_i-anatolia-ezine-beyaz-peynir-200-gr",
+    "ad": "I-anatolia Ezine Beyaz Peynir 200 Gr",
     "ana_kategori": "Peynir",
-    "agirlik_hacim": "750 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/200942.png",
-    "en_dusuk_fiyat": 205.0,
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30422676.png",
+    "en_dusuk_fiyat": 249.9,
     "market_fiyatlari": [
       {
-        "market": "bim",
-        "fiyat": 205.0
+        "market": "carrefour",
+        "fiyat": 249.9
+      }
+    ]
+  },
+  {
+    "_sid": "sut_ulus-klasik-tam-yagli-olgunlastirilmis-beyaz-peynir-350-gr",
+    "ad": "Ulus Klasik Tam Yağlı Olgunlaştırılmış Beyaz Peynir 350 Gr",
+    "ana_kategori": "Peynir",
+    "agirlik_hacim": "350 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30500720.jpg",
+    "en_dusuk_fiyat": 254.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 254.9
       }
     ]
   },
@@ -27172,6 +27164,24 @@
     ]
   },
   {
+    "_sid": "sut_bahcivan-laktozsuz-yarim-yagli-suzme-500-gr",
+    "ad": "Bahçıvan Laktozsuz Yarım Yağlı Süzme 500 Gr",
+    "ana_kategori": "Peynir",
+    "agirlik_hacim": "500 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30345656.png",
+    "en_dusuk_fiyat": 149.9,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 149.9
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 239.9
+      }
+    ]
+  },
+  {
     "_sid": "sut_nustil-glutensiz-ve-organik-yulaf-ezmesi-250-gr",
     "ad": "Nustil Glutensiz Ve Organik Yulaf Ezmesi 250 Gr",
     "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
@@ -27256,6 +27266,20 @@
     ]
   },
   {
+    "_sid": "sut_aknaz-beyaz-peynir-kutu-750-gr",
+    "ad": "Aknaz Beyaz Peynir Kutu 750 Gr",
+    "ana_kategori": "Peynir",
+    "agirlik_hacim": "750 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/200942.png",
+    "en_dusuk_fiyat": 205.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 205.0
+      }
+    ]
+  },
+  {
     "_sid": "sut_torku-tahin-1-4-kg",
     "ad": "Torku Tahin 1.4 Kg",
     "ana_kategori": "Helva Tahin ve Pekmez",
@@ -27280,20 +27304,6 @@
       {
         "market": "bim",
         "fiyat": 249.0
-      }
-    ]
-  },
-  {
-    "_sid": "sut_i-anatolia-ezine-beyaz-peynir-200-gr",
-    "ad": "I-anatolia Ezine Beyaz Peynir 200 Gr",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30422676.png",
-    "en_dusuk_fiyat": 249.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 249.9
       }
     ]
   },
@@ -27372,20 +27382,6 @@
     ]
   },
   {
-    "_sid": "sut_frico-tam-yagli-taze-sade-fume-eritme-peyniri-150-gr",
-    "ad": "Frico Tam Yağlı Taze Sade Füme Eritme Peyniri 150 Gr",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "150 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30389252.png",
-    "en_dusuk_fiyat": 430.2,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 430.2
-      }
-    ]
-  },
-  {
     "_sid": "sut_marmarabirlik-trilye-zeytin-291-320-1-kg",
     "ad": "Marmarabirlik Trilye Zeytin 291-320 1 Kg",
     "ana_kategori": "Zeytin",
@@ -27438,20 +27434,6 @@
       {
         "market": "bim",
         "fiyat": 42.5
-      }
-    ]
-  },
-  {
-    "_sid": "sut_pinar-sut-500-ml",
-    "ad": "Pınar Süt 500 Ml",
-    "ana_kategori": "Süt",
-    "agirlik_hacim": "500 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30009407.png",
-    "en_dusuk_fiyat": 53.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 53.95
       }
     ]
   },
@@ -27754,6 +27736,20 @@
     ]
   },
   {
+    "_sid": "sut_frico-tam-yagli-taze-sade-fume-eritme-peyniri-150-gr",
+    "ad": "Frico Tam Yağlı Taze Sade Füme Eritme Peyniri 150 Gr",
+    "ana_kategori": "Peynir",
+    "agirlik_hacim": "150 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30389252.png",
+    "en_dusuk_fiyat": 430.2,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 430.2
+      }
+    ]
+  },
+  {
     "_sid": "sut_polonezkoy-tereyagi-400-gr",
     "ad": "Polonezköy Tereyağı 400 Gr",
     "ana_kategori": "Tereyağı ve Margarin",
@@ -27782,34 +27778,6 @@
     ]
   },
   {
-    "_sid": "sut_yorukoglu-cilekli-sut-180-ml",
-    "ad": "Yörükoğlu Çilekli Süt 180 Ml",
-    "ana_kategori": "Süt",
-    "agirlik_hacim": "180 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1708401.png",
-    "en_dusuk_fiyat": 12.5,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 12.5
-      }
-    ]
-  },
-  {
-    "_sid": "sut_tarim-kredi-cilek-aromali-sut-200-ml",
-    "ad": "Tarım Kredi Çilek Aromalı Süt 200 Ml",
-    "ana_kategori": "Süt",
-    "agirlik_hacim": "200 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/103184.jpg",
-    "en_dusuk_fiyat": 15.5,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 15.5
-      }
-    ]
-  },
-  {
     "_sid": "sut_sutas-huptrik-cilek-kremali-120-gr",
     "ad": "Sütaş Hüptrik Çilek Kremalı 120 Gr",
     "ana_kategori": "Yoğurt",
@@ -27820,6 +27788,20 @@
       {
         "market": "tarim_kredi",
         "fiyat": 18.5
+      }
+    ]
+  },
+  {
+    "_sid": "sut_pinar-sut-500-ml",
+    "ad": "Pınar Süt 500 Ml",
+    "ana_kategori": "Süt",
+    "agirlik_hacim": "500 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30009407.png",
+    "en_dusuk_fiyat": 53.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 53.95
       }
     ]
   },
@@ -27970,6 +27952,20 @@
     "ad": "Protein Ocean %100 Fıstık Ezmesi 330 Gr",
     "ana_kategori": "Sürülebilir Ürünler ve Kahvaltılık Soslar",
     "agirlik_hacim": "330 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 129.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 129.0
+      }
+    ]
+  },
+  {
+    "_sid": "sut_segmen-bogurtlen-ve-ahududu-receli-800-gr",
+    "ad": "Seğmen Böğürtlen Ve Ahududu Reçeli 800 Gr",
+    "ana_kategori": "Bal ve Reçel",
+    "agirlik_hacim": "800 GR",
     "resim": null,
     "en_dusuk_fiyat": 129.0,
     "market_fiyatlari": [
@@ -28152,6 +28148,34 @@
     ]
   },
   {
+    "_sid": "sut_yorukoglu-cilekli-sut-180-ml",
+    "ad": "Yörükoğlu Çilekli Süt 180 Ml",
+    "ana_kategori": "Süt",
+    "agirlik_hacim": "180 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1708401.png",
+    "en_dusuk_fiyat": 12.5,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 12.5
+      }
+    ]
+  },
+  {
+    "_sid": "sut_tarim-kredi-cilek-aromali-sut-200-ml",
+    "ad": "Tarım Kredi Çilek Aromalı Süt 200 Ml",
+    "ana_kategori": "Süt",
+    "agirlik_hacim": "200 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/103184.jpg",
+    "en_dusuk_fiyat": 15.5,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 15.5
+      }
+    ]
+  },
+  {
     "_sid": "sut_koska-kagit-helva-45-gr",
     "ad": "Koska Kağıt Helva 45 Gr",
     "ana_kategori": "Helva Tahin ve Pekmez",
@@ -28258,20 +28282,6 @@
     ]
   },
   {
-    "_sid": "sut_segmen-bogurtlen-ve-ahududu-receli-800-gr",
-    "ad": "Seğmen Böğürtlen Ve Ahududu Reçeli 800 Gr",
-    "ana_kategori": "Bal ve Reçel",
-    "agirlik_hacim": "800 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 129.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 129.0
-      }
-    ]
-  },
-  {
     "_sid": "sut_i-cim-sut-6x200-ml",
     "ad": "İçim Süt 6x200 Ml",
     "ana_kategori": "Süt",
@@ -28328,20 +28338,6 @@
       {
         "market": "migros",
         "fiyat": 149.95
-      }
-    ]
-  },
-  {
-    "_sid": "sut_gulsan-kakaolu-tahin-helvasi-dilimli-1-kg",
-    "ad": "Gülsan Kakaolu Tahin Helvası Dilimli 1 Kg",
-    "ana_kategori": "Helva Tahin ve Pekmez",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30477324.jpg",
-    "en_dusuk_fiyat": 187.43,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 187.43
       }
     ]
   },
@@ -28614,24 +28610,6 @@
     ]
   },
   {
-    "_sid": "sut_nesquik-harfler-misir-gevregi-310-gr",
-    "ad": "Nesquik Harfler Mısır Gevreği 310 Gr",
-    "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
-    "agirlik_hacim": "310 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 89.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 89.5
-      },
-      {
-        "market": "migros",
-        "fiyat": 175.95
-      }
-    ]
-  },
-  {
     "_sid": "sut_aybar-tatli-acuka-290-gr",
     "ad": "Aybar Tatlı Acuka 290 Gr",
     "ana_kategori": "Sürülebilir Ürünler ve Kahvaltılık Soslar",
@@ -28724,6 +28702,20 @@
       {
         "market": "carrefour",
         "fiyat": 180.9
+      }
+    ]
+  },
+  {
+    "_sid": "sut_gulsan-kakaolu-tahin-helvasi-dilimli-1-kg",
+    "ad": "Gülsan Kakaolu Tahin Helvası Dilimli 1 Kg",
+    "ana_kategori": "Helva Tahin ve Pekmez",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30477324.jpg",
+    "en_dusuk_fiyat": 187.43,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 187.43
       }
     ]
   },
@@ -29046,6 +29038,24 @@
     ]
   },
   {
+    "_sid": "sut_nesquik-harfler-misir-gevregi-310-gr",
+    "ad": "Nesquik Harfler Mısır Gevreği 310 Gr",
+    "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
+    "agirlik_hacim": "310 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 89.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 89.5
+      },
+      {
+        "market": "migros",
+        "fiyat": 175.95
+      }
+    ]
+  },
+  {
     "_sid": "sut_la-vache-qui-rit-krem-peynir-400-gr",
     "ad": "La Vache Qui Rit Krem Peynir 400 Gr",
     "ana_kategori": "Peynir",
@@ -29112,20 +29122,6 @@
       {
         "market": "tarim_kredi",
         "fiyat": 199.9
-      }
-    ]
-  },
-  {
-    "_sid": "sut_kaanlar-gemlik-xl-siyah-zeytin-450-gr",
-    "ad": "Kaanlar Gemlik Xl Siyah Zeytin 450 Gr",
-    "ana_kategori": "Zeytin",
-    "agirlik_hacim": "450 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/16002186.png",
-    "en_dusuk_fiyat": 215.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 215.0
       }
     ]
   },

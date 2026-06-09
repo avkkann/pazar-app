@@ -578,20 +578,6 @@
     ]
   },
   {
-    "_sid": "et_dana-sarimsakli-kofte-320-gr",
-    "ad": "Dana Sarımsaklı Köfte 320 Gr",
-    "ana_kategori": "Kırmızı Et",
-    "agirlik_hacim": "320 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 255.0,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 255.0
-      }
-    ]
-  },
-  {
     "_sid": "et_fide-ton-soguk-sikim-sizma-zeytinyagli-2x160-gr",
     "ad": "Fide Ton Soğuk Sıkım Sızma Zeytinyağlı 2x160 Gr",
     "ana_kategori": "Deniz Ürünleri",
@@ -870,6 +856,20 @@
       {
         "market": "migros",
         "fiyat": 230.0
+      }
+    ]
+  },
+  {
+    "_sid": "et_dana-sarimsakli-kofte-320-gr",
+    "ad": "Dana Sarımsaklı Köfte 320 Gr",
+    "ana_kategori": "Kırmızı Et",
+    "agirlik_hacim": "320 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 255.0,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 255.0
       }
     ]
   },
@@ -1456,20 +1456,6 @@
     ]
   },
   {
-    "_sid": "et_akseker-dana-kangal-sucuk-450-gr",
-    "ad": "Akşeker Dana Kangal Sucuk 450 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "450 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 239.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 239.0
-      }
-    ]
-  },
-  {
     "_sid": "et_namet-dilimli-dana-jambon-110-gr",
     "ad": "Namet Dilimli Dana Jambon 110 Gr",
     "ana_kategori": "Şarküteri",
@@ -1522,6 +1508,20 @@
       {
         "market": "carrefour",
         "fiyat": 285.9
+      }
+    ]
+  },
+  {
+    "_sid": "et_besler-dana-izgara-kofte-400-gr",
+    "ad": "Beşler Dana Izgara Köfte 400 Gr",
+    "ana_kategori": "Kırmızı Et",
+    "agirlik_hacim": "400 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/11002979.png",
+    "en_dusuk_fiyat": 315.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 315.0
       }
     ]
   },
@@ -4964,20 +4964,6 @@
     ]
   },
   {
-    "_sid": "et_uzman-kasap-pilic-kanat-1-kg",
-    "ad": "Uzman Kasap Piliç Kanat 1 Kg",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/13000273.jpg",
-    "en_dusuk_fiyat": 334.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 334.95
-      }
-    ]
-  },
-  {
     "_sid": "et_emin-dana-sote-400-gr",
     "ad": "Emin Dana Sote 400 Gr",
     "ana_kategori": "Kırmızı Et",
@@ -5030,6 +5016,20 @@
       {
         "market": "carrefour",
         "fiyat": 436.9
+      }
+    ]
+  },
+  {
+    "_sid": "et_pinar-ekonomik-10-lu-sosis-430-gr",
+    "ad": "Pınar Ekonomik 10'lu Sosis 430 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "430 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/14019061.png",
+    "en_dusuk_fiyat": 489.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 489.0
       }
     ]
   },

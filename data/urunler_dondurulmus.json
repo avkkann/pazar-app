@@ -782,21 +782,6 @@
     "_original_kategori": "Deniz Ürünleri"
   },
   {
-    "_sid": "dondurulmus_tarim-kredi-dondurulmus-dana-kavurma-1-kg",
-    "ad": "Tarım Kredi Dondurulmuş Dana Kavurma 1 Kg",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "1 KG",
-    "resim": null,
-    "en_dusuk_fiyat": 1500.0,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 1500.0
-      }
-    ],
-    "_original_kategori": "Şarküteri"
-  },
-  {
     "_sid": "dondurulmus_lezita-dondurulmus-pilic-izgara-kofte-1-kg",
     "ad": "Lezita Dondurulmuş Piliç Izgara Köfte 1 Kg",
     "ana_kategori": "Dondurulmuş Ürünler",
@@ -810,6 +795,21 @@
       }
     ],
     "_original_kategori": "Beyaz Et"
+  },
+  {
+    "_sid": "dondurulmus_tarim-kredi-dondurulmus-dana-kavurma-1-kg",
+    "ad": "Tarım Kredi Dondurulmuş Dana Kavurma 1 Kg",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "1 KG",
+    "resim": null,
+    "en_dusuk_fiyat": 1500.0,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 1500.0
+      }
+    ],
+    "_original_kategori": "Şarküteri"
   },
   {
     "_sid": "dondurulmus_lezita-dondurulmus-pilic-bonfile-tabak-1-kg",
@@ -2747,21 +2747,6 @@
     "_original_kategori": "Konserve"
   },
   {
-    "_sid": "dondurulmus_nimet-dondurulmus-ispanakli-peynirli-mini-borek-500-gr",
-    "ad": "Nimet Dondurulmuş Ispanaklı Peynirli Mini Börek 500 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/21000939.png",
-    "en_dusuk_fiyat": 79.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 79.5
-      }
-    ],
-    "_original_kategori": "Ekmek ve Unlu Mamüller"
-  },
-  {
     "_sid": "dondurulmus_ponti-dondurulmus-kupmix-rulo-borek-500-gr",
     "ad": "Ponti Dondurulmuş Küpmix Rulo Börek 500 Gr",
     "ana_kategori": "Dondurulmuş Ürünler",
@@ -2772,6 +2757,21 @@
       {
         "market": "a101",
         "fiyat": 81.5
+      }
+    ],
+    "_original_kategori": "Ekmek ve Unlu Mamüller"
+  },
+  {
+    "_sid": "dondurulmus_nimet-dondurulmus-ispanakli-peynirli-mini-borek-500-gr",
+    "ad": "Nimet Dondurulmuş Ispanaklı Peynirli Mini Börek 500 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "500 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/21000939.png",
+    "en_dusuk_fiyat": 79.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 79.5
       }
     ],
     "_original_kategori": "Ekmek ve Unlu Mamüller"
