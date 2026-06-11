@@ -977,21 +977,6 @@
     "_original_kategori": "Beyaz Et"
   },
   {
-    "_sid": "dondurulmus_donuk-pilic-nugget-1-kg",
-    "ad": "Donuk Piliç Nugget 1 Kg",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "1 KG",
-    "resim": null,
-    "en_dusuk_fiyat": 169.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 169.0
-      }
-    ],
-    "_original_kategori": "Beyaz Et"
-  },
-  {
     "_sid": "dondurulmus_lezita-dondurulmus-pilic-citir-kitir-fileto-1-kg",
     "ad": "Lezita Dondurulmuş Piliç Çıtır Kıtır Fileto 1 Kg",
     "ana_kategori": "Dondurulmuş Ürünler",
@@ -1062,6 +1047,21 @@
       {
         "market": "bim",
         "fiyat": 89.0
+      }
+    ],
+    "_original_kategori": "Beyaz Et"
+  },
+  {
+    "_sid": "dondurulmus_donuk-pilic-nugget-1-kg",
+    "ad": "Donuk Piliç Nugget 1 Kg",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "1 KG",
+    "resim": null,
+    "en_dusuk_fiyat": 169.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 169.0
       }
     ],
     "_original_kategori": "Beyaz Et"
@@ -1904,21 +1904,6 @@
     "_original_kategori": "Beyaz Et"
   },
   {
-    "_sid": "dondurulmus_donersah-dondurulmus-pilic-doner-500-gr",
-    "ad": "Dönerşah Dondurulmuş Piliç Döner 500 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/11002476.png",
-    "en_dusuk_fiyat": 229.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 229.0
-      }
-    ],
-    "_original_kategori": "Beyaz Et"
-  },
-  {
     "_sid": "dondurulmus_lezita-dondurulmus-tabak-pilic-kanat-1-kg",
     "ad": "Lezita Dondurulmuş Tabak Piliç Kanat 1 Kg",
     "ana_kategori": "Dondurulmuş Ürünler",
@@ -1932,6 +1917,21 @@
       }
     ],
     "_original_kategori": "Beyaz Et"
+  },
+  {
+    "_sid": "dondurulmus_dondurulmus-dana-kofte-500-gr",
+    "ad": "Dondurulmuş Dana Köfte 500 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "500 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 399.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 399.0
+      }
+    ],
+    "_original_kategori": "Kırmızı Et"
   },
   {
     "_sid": "dondurulmus_erba-sea-food-50-glaze-dondurulmus-karides-500-gr",
@@ -1964,19 +1964,19 @@
     "_original_kategori": "Deniz Ürünleri"
   },
   {
-    "_sid": "dondurulmus_dondurulmus-dana-kofte-500-gr",
-    "ad": "Dondurulmuş Dana Köfte 500 Gr",
+    "_sid": "dondurulmus_donersah-dondurulmus-pilic-doner-500-gr",
+    "ad": "Dönerşah Dondurulmuş Piliç Döner 500 Gr",
     "ana_kategori": "Dondurulmuş Ürünler",
     "agirlik_hacim": "500 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 399.0,
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/11002476.png",
+    "en_dusuk_fiyat": 229.0,
     "market_fiyatlari": [
       {
-        "market": "bim",
-        "fiyat": 399.0
+        "market": "a101",
+        "fiyat": 229.0
       }
     ],
-    "_original_kategori": "Kırmızı Et"
+    "_original_kategori": "Beyaz Et"
   },
   {
     "_sid": "dondurulmus_kuzey-balik-dondurulmus-temizlenmis-alabalik-320-gr",
@@ -2461,21 +2461,6 @@
     "_original_kategori": "Ekmek ve Unlu Mamüller"
   },
   {
-    "_sid": "dondurulmus_superfresh-sade-pogaca-420-gr",
-    "ad": "Superfresh Sade Poğaça 420 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "420 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30284546.png",
-    "en_dusuk_fiyat": 199.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 199.9
-      }
-    ],
-    "_original_kategori": "Ekmek ve Unlu Mamüller"
-  },
-  {
     "_sid": "dondurulmus_superfresh-tereyagli-milfoy-1-kg",
     "ad": "Superfresh Tereyağlı Milföy 1 Kg",
     "ana_kategori": "Dondurulmuş Ürünler",
@@ -2501,6 +2486,21 @@
       {
         "market": "a101",
         "fiyat": 81.5
+      }
+    ],
+    "_original_kategori": "Ekmek ve Unlu Mamüller"
+  },
+  {
+    "_sid": "dondurulmus_superfresh-sade-pogaca-420-gr",
+    "ad": "Superfresh Sade Poğaça 420 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "420 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30284546.png",
+    "en_dusuk_fiyat": 199.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 199.9
       }
     ],
     "_original_kategori": "Ekmek ve Unlu Mamüller"
@@ -3006,21 +3006,6 @@
     "_original_kategori": "Tatlılar"
   },
   {
-    "_sid": "dondurulmus_osmanoglu-damak-tadi-dondurulmus-soguk-baklava-400-gr",
-    "ad": "Osmanoğlu Damak Tadı Dondurulmuş Soğuk Baklava 400 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "400 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 229.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 229.0
-      }
-    ],
-    "_original_kategori": "Tatlılar"
-  },
-  {
     "_sid": "dondurulmus_superfresh-7-24-firindan-tereyagli-kruvasan-360-gr",
     "ad": "Superfresh 7/24 Fırından Tereyağlı Kruvasan 360 Gr",
     "ana_kategori": "Dondurulmuş Ürünler",
@@ -3038,6 +3023,21 @@
       }
     ],
     "_original_kategori": "Kek"
+  },
+  {
+    "_sid": "dondurulmus_osmanoglu-damak-tadi-dondurulmus-soguk-baklava-400-gr",
+    "ad": "Osmanoğlu Damak Tadı Dondurulmuş Soğuk Baklava 400 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "400 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 229.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 229.0
+      }
+    ],
+    "_original_kategori": "Tatlılar"
   },
   {
     "_sid": "dondurulmus_sam-dondurulmus-kakaolu-muska-katmer-200-gr",
