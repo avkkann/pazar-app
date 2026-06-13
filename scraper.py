@@ -45,8 +45,8 @@ if not SEARLO_API_KEY:
             pass
 
 
-def _make_sid(slug_kisa, ad):
-    """Stable ID üretir: slug_kisa + '_' + normalize(ad)"""
+def _make_sid(slug_kisa, ad, gramaj=""):
+    """Stable ID üretir: slug_kisa + '_' + normalize(ad)[ + '__' + normalize(gramaj)]"""
     import re
     if not ad:
         return slug_kisa + "_unknown"
@@ -55,6 +55,12 @@ def _make_sid(slug_kisa, ad):
     for k, v in replacements.items():
         n = n.replace(k, v)
     n = re.sub(r'[^a-z0-9]+', '-', n).strip('-')
+    if gramaj:
+        g = gramaj.lower()
+        for k, v in replacements.items():
+            g = g.replace(k, v)
+        g = re.sub(r'[^a-z0-9]+', '-', g).strip('-')
+        return f"{slug_kisa}_{n}__{g}"
     return f"{slug_kisa}_{n}"
 
 
