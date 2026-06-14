@@ -1135,6 +1135,21 @@
     "_original_kategori": "Deniz Ürünleri"
   },
   {
+    "_sid": "dondurulmus_emin-dondurulmus-hamburger-koftesi-225-gr",
+    "ad": "Emin Dondurulmuş Hamburger Köftesi 225 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "225 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 175.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 175.0
+      }
+    ],
+    "_original_kategori": "Kırmızı Et"
+  },
+  {
     "_sid": "dondurulmus_dondurulmus-pilic-izgara-kanat-1-kg",
     "ad": "Dondurulmuş Piliç Izgara Kanat 1 Kg",
     "ana_kategori": "Dondurulmuş Ürünler",
@@ -1178,21 +1193,6 @@
       }
     ],
     "_original_kategori": "Beyaz Et"
-  },
-  {
-    "_sid": "dondurulmus_emin-dondurulmus-hamburger-koftesi-225-gr",
-    "ad": "Emin Dondurulmuş Hamburger Köftesi 225 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "225 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 175.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 175.0
-      }
-    ],
-    "_original_kategori": "Kırmızı Et"
   },
   {
     "_sid": "dondurulmus_fish-fish-donuk-temizlenmis-hamsi-500-gr",
@@ -1285,6 +1285,21 @@
     "_original_kategori": "Kırmızı Et"
   },
   {
+    "_sid": "dondurulmus_balik-dunyasi-dondurulmus-kabuklu-jumbo-karides-8-12-1-kg",
+    "ad": "Balık Dünyası Dondurulmuş Kabuklu Jumbo Karides 8/12 1 Kg",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/18010387.jpg",
+    "en_dusuk_fiyat": 849.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 849.0
+      }
+    ],
+    "_original_kategori": "Deniz Ürünleri"
+  },
+  {
     "_sid": "dondurulmus_balik-dunyasi-dondurulmus-temizlenmis-hamsi-500-gr",
     "ad": "Balık Dünyası Dondurulmuş Temizlenmiş Hamsi 500 Gr",
     "ana_kategori": "Dondurulmuş Ürünler",
@@ -1343,21 +1358,6 @@
       }
     ],
     "_original_kategori": "Beyaz Et"
-  },
-  {
-    "_sid": "dondurulmus_balik-dunyasi-dondurulmus-kabuklu-jumbo-karides-8-12-1-kg",
-    "ad": "Balık Dünyası Dondurulmuş Kabuklu Jumbo Karides 8/12 1 Kg",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/18010387.jpg",
-    "en_dusuk_fiyat": 849.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 849.0
-      }
-    ],
-    "_original_kategori": "Deniz Ürünleri"
   },
   {
     "_sid": "dondurulmus_lezita-dondurulmus-pilic-sinitzel-1-08-kg",
@@ -2178,11 +2178,11 @@
     "_original_kategori": "Beyaz Et"
   },
   {
-    "_sid": "dondurulmus_keskinoglu-dondurulmus-pilic-citir-burger-1-kg",
-    "ad": "Keskinoğlu Dondurulmuş Piliç Çıtır Burger 1 Kg",
+    "_sid": "dondurulmus_banvit-dondurulmus-pilic-citir-burger-1-kg",
+    "ad": "Banvit Dondurulmuş Piliç Çıtır Burger 1 Kg",
     "ana_kategori": "Dondurulmuş Ürünler",
     "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/11002710.png",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/11002470.png",
     "en_dusuk_fiyat": 205.0,
     "market_fiyatlari": [
       {
@@ -2193,11 +2193,11 @@
     "_original_kategori": "Beyaz Et"
   },
   {
-    "_sid": "dondurulmus_banvit-dondurulmus-pilic-citir-burger-1-kg",
-    "ad": "Banvit Dondurulmuş Piliç Çıtır Burger 1 Kg",
+    "_sid": "dondurulmus_keskinoglu-dondurulmus-pilic-citir-burger-1-kg",
+    "ad": "Keskinoğlu Dondurulmuş Piliç Çıtır Burger 1 Kg",
     "ana_kategori": "Dondurulmuş Ürünler",
     "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/11002470.png",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/11002710.png",
     "en_dusuk_fiyat": 205.0,
     "market_fiyatlari": [
       {
@@ -2490,21 +2490,6 @@
     "_original_kategori": "Bakliyat"
   },
   {
-    "_sid": "dondurulmus_superfresh-tereyagli-milfoy-1-kg",
-    "ad": "Superfresh Tereyağlı Milföy 1 Kg",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30066504.jpg",
-    "en_dusuk_fiyat": 179.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 179.9
-      }
-    ],
-    "_original_kategori": "Ekmek ve Unlu Mamüller"
-  },
-  {
     "_sid": "dondurulmus_nimet-dondurulmus-milfoy-1-kg",
     "ad": "Nimet Dondurulmuş Milföy 1 Kg",
     "ana_kategori": "Dondurulmuş Ürünler",
@@ -2515,6 +2500,21 @@
       {
         "market": "a101",
         "fiyat": 82.5
+      }
+    ],
+    "_original_kategori": "Ekmek ve Unlu Mamüller"
+  },
+  {
+    "_sid": "dondurulmus_superfresh-tereyagli-milfoy-1-kg",
+    "ad": "Superfresh Tereyağlı Milföy 1 Kg",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30066504.jpg",
+    "en_dusuk_fiyat": 179.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 179.9
       }
     ],
     "_original_kategori": "Ekmek ve Unlu Mamüller"
@@ -2535,21 +2535,6 @@
     "_original_kategori": "Ekmek ve Unlu Mamüller"
   },
   {
-    "_sid": "dondurulmus_ponti-dondurulmus-kupmix-rulo-borek-500-gr",
-    "ad": "Ponti Dondurulmuş Küpmix Rulo Börek 500 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "500 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 81.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 81.5
-      }
-    ],
-    "_original_kategori": "Ekmek ve Unlu Mamüller"
-  },
-  {
     "_sid": "dondurulmus_nimet-dondurulmus-ispanakli-tepsi-boregi-650-gr",
     "ad": "Nimet Dondurulmuş Ispanaklı Tepsi Böreği 650 Gr",
     "ana_kategori": "Dondurulmuş Ürünler",
@@ -2560,6 +2545,21 @@
       {
         "market": "a101",
         "fiyat": 99.0
+      }
+    ],
+    "_original_kategori": "Ekmek ve Unlu Mamüller"
+  },
+  {
+    "_sid": "dondurulmus_ponti-dondurulmus-kupmix-rulo-borek-500-gr",
+    "ad": "Ponti Dondurulmuş Küpmix Rulo Börek 500 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "500 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 81.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 81.5
       }
     ],
     "_original_kategori": "Ekmek ve Unlu Mamüller"
