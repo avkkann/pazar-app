@@ -1986,6 +1986,25 @@ function tuzakRozetiHTML(rozet, kisa) {
     : `<div class="tuzak-rozet sari">🟡 Birim fiyat %${rozet.yuzde} daha yüksek</div>`;
 }
 
+function adOzu(ad) {
+  if (!ad) return new Set();
+  let s = String(ad).toLowerCase();
+  const tr = {'ş':'s','ğ':'g','ü':'u','ı':'i','ö':'o','ç':'c'};
+  s = s.replace(/[şğüıöç]/g, c => tr[c] || c);
+  s = s.replace(/\d+[\s.,]*(kg|gr|gram|ml|lt|cl|adet|paket|li|lu|lik|luk)\b/gi, '');
+  s = s.replace(/\d+/g, ' ');
+  const stop = new Set(['mini','buyuk','kucuk','orta','ithal','yerli','organik','taze','premium','ozel','extra','jumbo','select','ekonomik','ekstra','klasik','seckin','dilim','dilimli','tane','adet','paket','ambalaj','soguk','sicak','sade','tatli','aci','tuzlu']);
+  const tokens = s.split(/[^a-z]+/).filter(t => t.length > 2 && !stop.has(t));
+  return new Set(tokens);
+}
+
+function adKesisimVar(u1, u2) {
+  const a = adOzu(u1 && u1.ad), b = adOzu(u2 && u2.ad);
+  if (!a.size || !b.size) return false;
+  for (const w of a) if (b.has(w)) return true;
+  return false;
+}
+
 function rakipMarkalariBul(u) {
   if (!u || !u.agirlik_hacim || !productMap) return [];
   const ah = String(u.agirlik_hacim || '').toLowerCase().trim();
@@ -1996,6 +2015,7 @@ function rakipMarkalariBul(u) {
     if ((v.ana_kategori || '') !== (u.ana_kategori || '')) continue;
     if (markaBul(v) === markaBul(u)) continue;
     if (String(v.agirlik_hacim || '').toLowerCase().trim() !== ah) continue;
+    if (!adKesisimVar(v, u)) continue;
     out.push(v);
   }
   out.sort((a,b) => {
