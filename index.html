@@ -3030,11 +3030,33 @@ function renderFirsatUcuz(container, tumUrunler) {
   let html = '', toplamKart = 0;
   Object.entries(katGruplari).forEach(function(entry) {
     const kat = entry[0], urunler = entry[1];
-    const sirali = urunler.slice().sort(function(a,b){return a.en_dusuk_fiyat-b.en_dusuk_fiyat;}).slice(0,5);
+    const tumSirali = urunler.slice().sort(function(a,b){return a.en_dusuk_fiyat-b.en_dusuk_fiyat;});
+    const dedupe = new Map();
+    tumSirali.forEach(function(u) {
+      const key = (u.ad||'') + '||' + (u.agirlik_hacim||'') + '||' + u.en_dusuk_fiyat;
+      if (!dedupe.has(key)) {
+        const kopya = Object.assign({}, u);
+        kopya._enUcuzMarketler = [];
+        dedupe.set(key, kopya);
+      }
+      const grup = dedupe.get(key);
+      (u.market_fiyatlari||[]).forEach(function(m) {
+        if (m.fiyat === u.en_dusuk_fiyat && grup._enUcuzMarketler.indexOf(m.market) === -1) {
+          grup._enUcuzMarketler.push(m.market);
+        }
+      });
+    });
+    const sirali = [...dedupe.values()].slice(0,5);
     html += '<div class="firsat-section"><div class="firsat-section-title">'+(katLabel[kat]||kat)+'</div>';
     sirali.forEach(function(u) {
-      const mkt = (u.market_fiyatlari||[]).slice().sort(function(a,b){return a.fiyat-b.fiyat;})[0];
-      const altText = mkt ? (MARKET_NAMES[mkt.market]||mkt.market)+' · en ucuz' : '';
+      let marketStr;
+      if (u._enUcuzMarketler && u._enUcuzMarketler.length) {
+        marketStr = u._enUcuzMarketler.map(function(m){return MARKET_NAMES[m]||m;}).join(', ');
+      } else {
+        const mkt = (u.market_fiyatlari||[]).slice().sort(function(a,b){return a.fiyat-b.fiyat;})[0];
+        marketStr = mkt ? (MARKET_NAMES[mkt.market]||mkt.market) : '';
+      }
+      const altText = marketStr ? marketStr + ' · en ucuz' : '';
       html += _firsatKartHtml(u, 'EN UCUZ', 'firsat-badge-ucuz', altText);
       toplamKart++;
     });
