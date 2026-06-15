@@ -1034,6 +1034,16 @@
     .nav-btn img.pulsing {
       animation: navPulse 300ms cubic-bezier(0.22, 1, 0.36, 1);
     }
+    @keyframes animSlideInRight {
+      from { transform: translateX(100%); opacity: 0.6; }
+      to   { transform: translateX(0);    opacity: 1; }
+    }
+    @keyframes animSlideInLeft {
+      from { transform: translateX(-100%); opacity: 0.6; }
+      to   { transform: translateX(0);     opacity: 1; }
+    }
+    .screen.anim-slide-in   { animation: animSlideInRight 260ms cubic-bezier(0.22, 1, 0.36, 1); }
+    .screen.anim-slide-back { animation: animSlideInLeft  260ms cubic-bezier(0.22, 1, 0.36, 1); }
   </style>
 </head>
 <body>
@@ -1630,8 +1640,13 @@ function sablonYukle(id) {
 
 // ── NAVİGASYON ────────────────────────────────────────
 function showScreen(id, direction) {
+  direction = direction || 'forward';
   document.querySelectorAll('.screen').forEach(s => s.style.display = 'none');
-  document.getElementById(id).style.display = 'block';
+  var hedef = document.getElementById(id);
+  hedef.style.display = 'block';
+  hedef.classList.remove('anim-slide-in', 'anim-slide-back');
+  void hedef.offsetWidth;
+  hedef.classList.add(direction === 'back' ? 'anim-slide-back' : 'anim-slide-in');
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   if (id === 'screen-home')  document.getElementById('navHome').classList.add('active');
   if (id === 'screen-sepet') document.getElementById('navSepet').classList.add('active');
