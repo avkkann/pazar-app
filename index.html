@@ -1630,61 +1630,12 @@ function sablonYukle(id) {
 
 // ── NAVİGASYON ────────────────────────────────────────
 function showScreen(id, direction) {
-  direction = direction || 'forward';
-  var aktif = document.querySelector('.screen.active');
-  var hedef = document.getElementById(id);
-  if (!hedef) return;
-  if (aktif === hedef) return;
-
-  // Tab geçişlerinde animasyon yok (ana ekranlar arası)
-  var tabEkranlar = ['screen-home','screen-firsatlar','screen-profil','screen-sepet','screen-hal'];
-  var tabGecisi = aktif && tabEkranlar.indexOf(aktif.id) >= 0 && tabEkranlar.indexOf(id) >= 0;
-
-  if (tabGecisi) {
-    if (aktif) aktif.classList.remove('active');
-    hedef.classList.add('active');
-    document.querySelectorAll('.nav-btn').forEach(function(b){ b.classList.remove('active'); });
-    if (id === 'screen-home')  { var nh = document.getElementById('navHome'); if (nh) nh.classList.add('active'); }
-    if (id === 'screen-sepet') { var ns = document.getElementById('navSepet'); if (ns) ns.classList.add('active'); }
-    if (id === 'screen-hal') { renderHalScreen(); }
-    if (typeof _screenChanged === 'function') _screenChanged(id);
-    return;
-  }
-
-  hedef.style.willChange = 'transform, opacity';
-  if (aktif) aktif.style.willChange = 'transform, opacity';
-
-  if (direction === 'back') {
-    hedef.classList.add('slide-from-left');
-  } else {
-    hedef.classList.add('slide-from-right');
-  }
-  hedef.classList.add('active');
-  // bir tick bekle, sonra hedef class'ları kaldır + aktif çıkış sınıfı ekle
-  requestAnimationFrame(function(){
-    requestAnimationFrame(function(){
-      hedef.classList.remove('slide-from-right');
-      hedef.classList.remove('slide-from-left');
-      if (aktif) {
-        aktif.classList.add(direction === 'back' ? 'slide-exit-right' : 'slide-exit-left');
-      }
-    });
-  });
-
-  setTimeout(function(){
-    if (aktif) {
-      aktif.classList.remove('active');
-      aktif.classList.remove('slide-exit-left');
-      aktif.classList.remove('slide-exit-right');
-      aktif.style.willChange = '';
-    }
-    hedef.style.willChange = '';
-    document.querySelectorAll('.nav-btn').forEach(function(b){ b.classList.remove('active'); });
-    if (id === 'screen-home')  { var nh = document.getElementById('navHome'); if (nh) nh.classList.add('active'); }
-    if (id === 'screen-sepet') { var ns = document.getElementById('navSepet'); if (ns) ns.classList.add('active'); }
-    if (id === 'screen-hal') { renderHalScreen(); }
-    if (typeof _screenChanged === 'function') _screenChanged(id);
-  }, 290);
+  document.querySelectorAll('.screen').forEach(s => s.style.display = 'none');
+  document.getElementById(id).style.display = 'block';
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  if (id === 'screen-home')  document.getElementById('navHome').classList.add('active');
+  if (id === 'screen-sepet') document.getElementById('navSepet').classList.add('active');
+  if (id === 'screen-hal') { renderHalScreen(); }
 }
 
 function goSepet() { renderSepet(); showScreen('screen-sepet'); }
