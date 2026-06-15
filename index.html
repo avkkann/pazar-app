@@ -3098,9 +3098,11 @@ function profilGuncelle() {
     el('profilHalTarih').textContent = 'Hal Fiyatları · ' + (window.halVerisi.bulten_tarihi || '');
   }
   if (el('profilToplamUrun')) {
-    Promise.all(KATEGORILER.map(k =>
-      fetch('./data/' + k.file + '.json').then(r => r.json()).catch(() => null)
-    )).then(results => {
+    const fetchListesi = [
+      ...KATEGORILER.map(k => fetch('./data/' + k.file + '.json').then(r => r.json()).catch(() => null)),
+      fetch('./data/marketfiyati.json').then(r => r.json()).catch(() => null)
+    ];
+    Promise.all(fetchListesi).then(results => {
       const toplam = results.reduce((s, d) => {
         if (!d) return s;
         const arr = Array.isArray(d) ? d : (d.urunler || []);
