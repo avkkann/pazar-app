@@ -1017,6 +1017,13 @@
         transition-duration: 0.01ms !important;
       }
     }
+    .screen {
+      transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1), opacity 280ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .screen.slide-from-right { transform: translateX(100%); opacity: 0; }
+    .screen.slide-from-left  { transform: translateX(-30%); opacity: 0.5; }
+    .screen.slide-exit-left  { transform: translateX(-30%); opacity: 0.5; }
+    .screen.slide-exit-right { transform: translateX(100%); opacity: 0; }
   </style>
 </head>
 <body>
@@ -1077,7 +1084,7 @@
 <div id="screen-cat" class="screen">
 
   <header class="header-sub">
-    <button class="back-btn" onclick="showScreen('screen-home')">
+    <button class="back-btn" onclick="showScreen('screen-home', 'back')">
       <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
     </button>
     <h2 id="cat-title">Kategori</h2>
@@ -1118,7 +1125,7 @@
 <div id="screen-sepet" class="screen">
 
   <header class="header-sub">
-    <button class="back-btn" onclick="showScreen('screen-home')">
+    <button class="back-btn" onclick="showScreen('screen-home', 'back')">
       <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
     </button>
     <h2>Listem</h2>
@@ -1146,7 +1153,7 @@
 <!-- ══ EKRAN 5: HAL FİYATLARI ══ -->
 <div id="screen-hal" class="screen">
   <header class="header-hal">
-    <button class="back-btn" onclick="showScreen('screen-home')">
+    <button class="back-btn" onclick="showScreen('screen-home', 'back')">
       <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
     </button>
     <h2>Hal Fiyatları</h2>
@@ -1156,7 +1163,7 @@
 
 <div id="screen-firsatlar" class="screen">
   <header class="screen-firsatlar-header">
-    <button class="back-btn" onclick="showScreen('screen-home')">
+    <button class="back-btn" onclick="showScreen('screen-home', 'back')">
       <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
     </button>
     <h2>⚡ Fırsatlar</h2>
@@ -1612,13 +1619,62 @@ function sablonYukle(id) {
 }
 
 // ── NAVİGASYON ────────────────────────────────────────
-function showScreen(id) {
-  document.querySelectorAll('.screen').forEach(s => s.style.display = 'none');
-  document.getElementById(id).style.display = 'block';
-  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-  if (id === 'screen-home')  document.getElementById('navHome').classList.add('active');
-  if (id === 'screen-sepet') document.getElementById('navSepet').classList.add('active');
-  if (id === 'screen-hal') { renderHalScreen(); }
+function showScreen(id, direction) {
+  direction = direction || 'forward';
+  var aktif = document.querySelector('.screen.active');
+  var hedef = document.getElementById(id);
+  if (!hedef) return;
+  if (aktif === hedef) return;
+
+  // Tab geçişlerinde animasyon yok (ana ekranlar arası)
+  var tabEkranlar = ['screen-home','screen-firsatlar','screen-profil','screen-sepet','screen-hal'];
+  var tabGecisi = aktif && tabEkranlar.indexOf(aktif.id) >= 0 && tabEkranlar.indexOf(id) >= 0;
+
+  if (tabGecisi) {
+    if (aktif) aktif.classList.remove('active');
+    hedef.classList.add('active');
+    document.querySelectorAll('.nav-btn').forEach(function(b){ b.classList.remove('active'); });
+    if (id === 'screen-home')  { var nh = document.getElementById('navHome'); if (nh) nh.classList.add('active'); }
+    if (id === 'screen-sepet') { var ns = document.getElementById('navSepet'); if (ns) ns.classList.add('active'); }
+    if (id === 'screen-hal') { renderHalScreen(); }
+    if (typeof _screenChanged === 'function') _screenChanged(id);
+    return;
+  }
+
+  hedef.style.willChange = 'transform, opacity';
+  if (aktif) aktif.style.willChange = 'transform, opacity';
+
+  if (direction === 'back') {
+    hedef.classList.add('slide-from-left');
+  } else {
+    hedef.classList.add('slide-from-right');
+  }
+  hedef.classList.add('active');
+  // bir tick bekle, sonra hedef class'ları kaldır + aktif çıkış sınıfı ekle
+  requestAnimationFrame(function(){
+    requestAnimationFrame(function(){
+      hedef.classList.remove('slide-from-right');
+      hedef.classList.remove('slide-from-left');
+      if (aktif) {
+        aktif.classList.add(direction === 'back' ? 'slide-exit-right' : 'slide-exit-left');
+      }
+    });
+  });
+
+  setTimeout(function(){
+    if (aktif) {
+      aktif.classList.remove('active');
+      aktif.classList.remove('slide-exit-left');
+      aktif.classList.remove('slide-exit-right');
+      aktif.style.willChange = '';
+    }
+    hedef.style.willChange = '';
+    document.querySelectorAll('.nav-btn').forEach(function(b){ b.classList.remove('active'); });
+    if (id === 'screen-home')  { var nh = document.getElementById('navHome'); if (nh) nh.classList.add('active'); }
+    if (id === 'screen-sepet') { var ns = document.getElementById('navSepet'); if (ns) ns.classList.add('active'); }
+    if (id === 'screen-hal') { renderHalScreen(); }
+    if (typeof _screenChanged === 'function') _screenChanged(id);
+  }, 290);
 }
 
 function goSepet() { renderSepet(); showScreen('screen-sepet'); }
