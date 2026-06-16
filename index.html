@@ -695,6 +695,11 @@
 .strip-card-rozet { font-size:10px; font-weight:600; padding:3px 6px; border-radius:6px; align-self:flex-start; }
 .strip-card-rozet.sari { background:#fef3c7; color:#92400e; }
 .strip-card-rozet.kirmizi { background:#fee2e2; color:#991b1b; }
+.hal-mini-wrap { padding: 8px 14px 16px; }
+.hal-mini-btn { display:flex; align-items:center; gap:10px; background:#fb923c; color:#fff; border-radius:10px; padding:10px 14px; cursor:pointer; font-weight:600; }
+.hal-mini-icon { font-size:18px; }
+.hal-mini-title { flex:1; font-size:14px; }
+.hal-mini-arrow { width:16px; height:16px; opacity:0.85; }
   </style>
   <style>
 .sablon-bar {
@@ -1107,6 +1112,21 @@
     <div class="home-strip-scroll" id="home-mevsim-list"></div>
   </div>
 
+  <div id="home-hal" class="hal-mini-wrap">
+    <div class="hal-mini-btn" onclick="openHalScreen()">
+      <span class="hal-mini-icon">🏭</span>
+      <div class="hal-mini-title">Hal Fiyatları</div>
+      <svg class="hal-mini-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+    </div>
+  </div>
+
+  <div id="home-search" style="display:none">
+    <div class="stats-row"><span><b id="searchCount">0</b> sonuç</span></div>
+    <div class="product-list" id="searchList"></div>
+    <button id="mf-ara-btn" onclick="marketfiyatiCanliAra()" style="display:none">📡 marketfiyati.org.tr'de ara</button>
+    <div id="mf-results"></div>
+  </div>
+
   <div id="home-hal" style="padding:16px 14px 0">
     <div class="hal-section-btn" onclick="openHalScreen()">
       <span class="hal-section-icon">🏭</span>
@@ -1116,13 +1136,6 @@
       </div>
       <svg class="hal-section-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
     </div>
-  </div>
-
-  <div id="home-search" style="display:none">
-    <div class="stats-row"><span><b id="searchCount">0</b> sonuç</span></div>
-    <div class="product-list" id="searchList"></div>
-    <button id="mf-ara-btn" onclick="marketfiyatiCanliAra()" style="display:none">📡 marketfiyati.org.tr'de ara</button>
-    <div id="mf-results"></div>
   </div>
 
 </div>
