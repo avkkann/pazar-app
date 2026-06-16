@@ -2013,6 +2013,20 @@ function birimFiyatHesapla(u) {
   return null;
 }
 
+function _agirlikRef(u) {
+  if (!u) return null;
+  const s = String(u.agirlik_hacim || '').toLowerCase().replace(/,/g, '.');
+  let m = s.match(/(\d+(?:\.\d+)?)\s*kg\b/);
+  if (m) { const v = parseFloat(m[1]); if (v > 0) return v * 1000; }
+  m = s.match(/(\d+(?:\.\d+)?)\s*gr?\b/);
+  if (m) { const v = parseFloat(m[1]); if (v > 0) return v; }
+  m = s.match(/(\d+(?:\.\d+)?)\s*(?:lt|litre|l)\b/);
+  if (m) { const v = parseFloat(m[1]); if (v > 0) return v * 1000; }
+  m = s.match(/(\d+(?:\.\d+)?)\s*ml\b/);
+  if (m) { const v = parseFloat(m[1]); if (v > 0) return v; }
+  return null;
+}
+
 function enDusukFiyat(u) {
   if (!u || !Array.isArray(u.market_fiyatlari) || !u.market_fiyatlari.length) return null;
   let min = Infinity;
@@ -2084,6 +2098,15 @@ function tuzakRozetiHesapla(u) {
     .map(d => ({ u: d, bf: birimFiyatHesapla(d) }))
     .filter(x => x.bf && x.bf.birim === bfu.birim);
   if (!ayniBirim.length) return null;
+  const adayRef = _agirlikRef(u);
+  if (adayRef != null) {
+    let minDiger = Infinity;
+    ayniBirim.forEach(x => {
+      const r = _agirlikRef(x.u);
+      if (r != null && r < minDiger) minDiger = r;
+    });
+    if (minDiger !== Infinity && adayRef < minDiger * 0.3) return null;
+  }
   let enUcuz = bfu.deger;
   ayniBirim.forEach(x => { if (x.bf.deger < enUcuz) enUcuz = x.bf.deger; });
   if (bfu.deger <= enUcuz) return null;
@@ -2208,7 +2231,7 @@ function cardHTML(u) {
   </div>`;
 }
 
-const TUZAK_CACHE_KEY = 'pazar_tuzaklar_v1';
+const TUZAK_CACHE_KEY = 'pazar_tuzaklar_v2';
 const TUZAK_CACHE_TTL_MS = 1000 * 60 * 60 * 6;
 
 function _stripKartHTML(u, rozet) {
