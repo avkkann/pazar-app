@@ -1100,6 +1100,13 @@
 
   <div id="home-cats" class="cat-grid"></div>
 
+  <div id="home-mevsim" class="home-strip" style="display:none">
+    <div class="home-strip-head">
+      <span class="home-strip-title">🌱 Bu hafta mevsiminde</span>
+    </div>
+    <div class="home-strip-scroll" id="home-mevsim-list"></div>
+  </div>
+
   <div id="home-hal" style="padding:16px 14px 0">
     <div class="hal-section-btn" onclick="openHalScreen()">
       <span class="hal-section-icon">🏭</span>
@@ -2236,6 +2243,53 @@ async function renderTuzaklarSeridi() {
   } catch(e){}
 }
 
+const MEVSIM = {
+  0:  ['portakal','mandalina','greyfurt','elma','lahana','kereviz','pırasa'],
+  1:  ['portakal','mandalina','greyfurt','elma','lahana','pırasa','ıspanak'],
+  2:  ['ıspanak','marul','dereotu','maydanoz','enginar','bakla'],
+  3:  ['çilek','marul','enginar','bakla','taze soğan','dereotu'],
+  4:  ['çilek','kiraz','erik','marul','salatalık','taze fasulye'],
+  5:  ['kayısı','kiraz','çilek','karpuz','domates','salatalık','biber'],
+  6:  ['karpuz','kavun','şeftali','üzüm','domates','biber','patlıcan'],
+  7:  ['üzüm','şeftali','incir','karpuz','kavun','domates','biber'],
+  8:  ['üzüm','incir','elma','armut','nar','ayva'],
+  9:  ['nar','ayva','elma','armut','kestane','lahana','karnabahar'],
+  10: ['nar','mandalina','elma','lahana','karnabahar','pırasa','ıspanak'],
+  11: ['mandalina','portakal','elma','lahana','karnabahar','pırasa']
+};
+
+async function renderMevsimSeridi() {
+  const wrap = document.getElementById('home-mevsim');
+  const list = document.getElementById('home-mevsim-list');
+  if (!wrap || !list) return;
+  const ay = new Date().getMonth();
+  const aranan = MEVSIM[ay] || [];
+  if (!aranan.length) { wrap.style.display = 'none'; return; }
+
+  await loadCat('meyve-sebze');
+  const urunler = catCache['meyve-sebze'] || [];
+  if (!urunler.length) { wrap.style.display = 'none'; return; }
+
+  const norm = s => trNormalize(s || '');
+  const bulundu = [];
+  const eklenmis = new Set();
+  for (const kelime of aranan) {
+    const k = norm(kelime);
+    for (const u of urunler) {
+      if (eklenmis.has(u._id)) continue;
+      if (norm(u.ad).includes(k)) {
+        bulundu.push(u);
+        eklenmis.add(u._id);
+        break;
+      }
+    }
+  }
+
+  if (!bulundu.length) { wrap.style.display = 'none'; return; }
+  list.innerHTML = bulundu.slice(0, 8).map(u => _stripKartHTML(u, null)).join('');
+  wrap.style.display = '';
+}
+
 // ── KATEGORİ GRİD ─────────────────────────────────────
 function renderCatGrid() {
   document.getElementById('home-cats').innerHTML = KATEGORILER.map(k =>
@@ -3017,11 +3071,11 @@ function loadData() {
     renderCatGrid();
     saveSepet();
     if ('requestIdleCallback' in window) {
-      requestIdleCallback(() => renderTuzaklarSeridi(), { timeout: 3000 });
+      requestIdleCallback(() => { renderTuzaklarSeridi(); renderMevsimSeridi(); }, { timeout: 3000 });
     } else {
-      setTimeout(() => renderTuzaklarSeridi(), 1500);
+      setTimeout(() => { renderTuzaklarSeridi(); renderMevsimSeridi(); }, 1500);
     }
-  }).catch(() => { renderCatGrid(); saveSepet(); if ('requestIdleCallback' in window) { requestIdleCallback(() => renderTuzaklarSeridi(), { timeout: 3000 }); } else { setTimeout(() => renderTuzaklarSeridi(), 1500); } });
+  }).catch(() => { renderCatGrid(); saveSepet(); if ('requestIdleCallback' in window) { requestIdleCallback(() => { renderTuzaklarSeridi(); renderMevsimSeridi(); }, { timeout: 3000 }); } else { setTimeout(() => { renderTuzaklarSeridi(); renderMevsimSeridi(); }, 1500); } });
 }
 
 function openHalScreen() {
