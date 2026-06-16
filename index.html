@@ -391,7 +391,8 @@
     .detay-mkt-store { flex: 1; font-size: .72rem; color: var(--text-muted); }
     .detay-mkt-price { font-size: .88rem; font-weight: 700; color: var(--text); flex-shrink: 0; }
     .detay-mkt-row.best .detay-mkt-price { color: #059669; font-size: .95rem; }
-    .detay-mkt-row.worst .detay-mkt-price { text-decoration: line-through; color: var(--text-muted); font-weight: 500; }
+    .detay-mkt-row.worst .detay-mkt-price { color: #DC2626; font-weight: 600; }
+.detay-mkt-row.worst .detay-mkt-badge { background:#FEE2E2; color:#991B1B; font-size:10px; font-weight:600; padding:2px 6px; border-radius:6px; margin-left:6px; }
     .detay-btn-ekle {
       display: flex; align-items: center; justify-content: center; gap: 8px;
       margin: 20px 16px 24px; padding: 15px; border: none; border-radius: 14px;
@@ -1712,7 +1713,7 @@ function openDetay(urunId) {
     const isFirst = i === 0, isLast = i === mktler.length - 1 && mktler.length > 1;
     return `<div class="detay-mkt-row${isFirst ? ' best' : isLast ? ' worst' : ''}">
       <span class="m-tag m-${f.market || 'default'}">${MARKET_NAMES[f.market] || f.market || '?'}</span>
-      <span class="detay-mkt-price">${tl(f.fiyat)}</span>
+      <span class="detay-mkt-price">${tl(f.fiyat)}${isLast ? '<span class="detay-mkt-badge">en pahalı</span>' : ''}</span>
     </div>`;
   }).join('');
 
@@ -2188,7 +2189,7 @@ function rakipMarkalariBul(u) {
 
 function birimFiyatYazi(bf) {
   if (!bf) return '';
-  return bf.birim + ' basina ' + tl(bf.deger);
+  return bf.birim + ' başına ' + tl(bf.deger);
 }
 
 function cardHTML(u) {
@@ -2231,7 +2232,7 @@ function cardHTML(u) {
   </div>`;
 }
 
-const TUZAK_CACHE_KEY = 'pazar_tuzaklar_v2';
+const TUZAK_CACHE_KEY = 'pazar_tuzaklar_v3';
 const TUZAK_CACHE_TTL_MS = 1000 * 60 * 60 * 6;
 
 function _stripKartHTML(u, rozet) {
@@ -2283,6 +2284,9 @@ async function renderTuzaklarSeridi() {
     for (let j = i; j < son; j++) {
       const u = productMap[ids[j]];
       if (!u || !u._id) continue;
+      if (!u.resim) continue;
+      const adL = String(u.ad || '').toLowerCase();
+      if (/\b(bebelac|aptamil|hipp|nestle baby|organik|bio|gluten|konserve|hazır|superfresh|hellmann|heinz|bebek)\b/.test(adL)) continue;
       const r = tuzakRozetiHesapla(u);
       if (!r) continue;
       if (r.tip === 'kirmizi') kirmizi.push({u, r}); else sari.push({u, r});
@@ -2346,6 +2350,8 @@ async function renderMevsimSeridi() {
     const k = norm(kelime);
     for (const u of urunler) {
       if (eklenmis.has(u._id)) continue;
+      const ag = String(u.agirlik_hacim || '').toLowerCase();
+      if (!/\bkg\b|\badet\b|\bli\b|\blu\b|\bx\s*\d+\b/.test(ag)) continue;
       if (norm(u.ad).includes(k)) {
         bulundu.push(u);
         eklenmis.add(u._id);
