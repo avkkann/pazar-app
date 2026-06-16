@@ -2044,11 +2044,31 @@ function ayniUrunMu(u1, u2) {
   return norm(u1.ad, u1.agirlik_hacim) === norm(u2.ad, u2.agirlik_hacim);
 }
 
+let _ahIndex = null;
+let _ahIndexSize = 0;
+
+function _ahIndexRebuildIfNeeded() {
+  const size = Object.keys(productMap).length;
+  if (_ahIndex && size === _ahIndexSize) return;
+  _ahIndex = {};
+  for (const k in productMap) {
+    const u = productMap[k];
+    if (!u) continue;
+    const key = (u.ana_kategori || '') + '|' + (markaBul(u) || '');
+    if (!_ahIndex[key]) _ahIndex[key] = [];
+    _ahIndex[key].push(u);
+  }
+  _ahIndexSize = size;
+}
+
 function digerPaketleriBul(u) {
   if (!u || !productMap) return [];
+  _ahIndexRebuildIfNeeded();
+  const key = (u.ana_kategori || '') + '|' + (markaBul(u) || '');
+  const aday = _ahIndex[key] || [];
   const out = [];
-  for (const k in productMap) {
-    const v = productMap[k];
+  for (const v of aday) {
+    if (!v || v._id === u._id) continue;
     if (ayniUrunMu(u, v)) out.push(v);
   }
   return out;
@@ -2104,14 +2124,31 @@ function adKesisimVar(u1, u2) {
   return false;
 }
 
+let _akIndex = null;
+let _akIndexSize = 0;
+
+function _akIndexRebuildIfNeeded() {
+  const size = Object.keys(productMap).length;
+  if (_akIndex && size === _akIndexSize) return;
+  _akIndex = {};
+  for (const k in productMap) {
+    const u = productMap[k];
+    if (!u) continue;
+    const key = (u.ana_kategori || '');
+    if (!_akIndex[key]) _akIndex[key] = [];
+    _akIndex[key].push(u);
+  }
+  _akIndexSize = size;
+}
+
 function rakipMarkalariBul(u) {
   if (!u || !u.agirlik_hacim || !productMap) return [];
+  _akIndexRebuildIfNeeded();
+  const aday = _akIndex[u.ana_kategori || ''] || [];
   const ah = String(u.agirlik_hacim || '').toLowerCase().trim();
   const out = [];
-  for (const k in productMap) {
-    const v = productMap[k];
+  for (const v of aday) {
     if (!v || v._id === u._id) continue;
-    if ((v.ana_kategori || '') !== (u.ana_kategori || '')) continue;
     if (markaBul(v) === markaBul(u)) continue;
     if (String(v.agirlik_hacim || '').toLowerCase().trim() !== ah) continue;
     if (!adKesisimVar(v, u)) continue;
@@ -2216,12 +2253,19 @@ async function renderTuzaklarSeridi() {
 
   const kirmizi = [];
   const sari = [];
-  for (const id in productMap) {
-    const u = productMap[id];
-    if (!u || !u._id) continue;
-    const r = tuzakRozetiHesapla(u);
-    if (!r) continue;
-    if (r.tip === 'kirmizi') kirmizi.push({u, r}); else sari.push({u, r});
+  const ids = Object.keys(productMap);
+  const CHUNK = 300;
+  for (let i = 0; i < ids.length; i += CHUNK) {
+    const son = Math.min(i + CHUNK, ids.length);
+    for (let j = i; j < son; j++) {
+      const u = productMap[ids[j]];
+      if (!u || !u._id) continue;
+      const r = tuzakRozetiHesapla(u);
+      if (!r) continue;
+      if (r.tip === 'kirmizi') kirmizi.push({u, r}); else sari.push({u, r});
+    }
+    if (kirmizi.length >= 30) break;
+    await new Promise(res => setTimeout(res, 0));
   }
 
   let havuz = kirmizi.slice();
