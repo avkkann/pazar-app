@@ -14,7 +14,6 @@
   <meta name="apple-mobile-web-app-title" content="Pazar">
   <link rel="apple-touch-icon" href="./static/icon-192.png">
   <link rel="apple-touch-icon" sizes="512x512" href="./static/icon-512.png">
-  <meta name="color-scheme" content="dark">
   <meta name="darkreader-lock">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1079,6 +1078,22 @@
     .theme-opt.aktif { background:var(--primary); color:#fff; border-color:var(--primary); }
     [data-theme="dark"] .theme-opt.aktif { color:#000; }
 
+#install-banner {
+  position: fixed; left: 12px; right: 12px; bottom: 80px; z-index: 9999;
+  background: var(--card-bg); color: var(--text);
+  border: 1px solid var(--border); border-radius: 14px;
+  padding: 12px 14px; display: none; align-items: center; gap: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+#install-banner.show { display: flex; }
+.install-banner-icon { width: 36px; height: 36px; flex-shrink: 0; border-radius: 8px; }
+.install-banner-text { flex: 1; }
+.install-banner-title { font-size: 13px; font-weight: 600; }
+.install-banner-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+.install-banner-btn { background: var(--primary); color: #fff; border: none; padding: 8px 14px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; }
+.install-banner-close { background: none; border: none; color: var(--text-muted); font-size: 20px; padding: 4px 8px; cursor: pointer; }
+[data-theme="dark"] .install-banner-btn { color: #000; }
+
 /* ═══ DARK TEMA ═══ */
 [data-theme="dark"] {
   --primary: #34D399;
@@ -1427,6 +1442,16 @@
     </div>
   </div>
   <div style="height:24px"></div>
+</div>
+
+<div id="install-banner">
+  <img class="install-banner-icon" src="./static/icon-192.png" alt="">
+  <div class="install-banner-text">
+    <div class="install-banner-title">Pazar'ı yükle</div>
+    <div class="install-banner-sub" id="install-banner-sub">Ana ekranına ekle, daha hızlı aç</div>
+  </div>
+  <button class="install-banner-btn" id="install-banner-btn" onclick="installPWA()">Yükle</button>
+  <button class="install-banner-close" onclick="dismissInstall()">×</button>
 </div>
 
 <!-- ALT NAV -->
@@ -3685,6 +3710,65 @@ if ('serviceWorker' in navigator) {
 if (window.matchMedia) {
   matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(){ applyTheme(); });
 }
+
+(function() {
+  var deferredPrompt = null;
+  var DISMISS_KEY = 'pazar_install_dismissed_v1';
+
+  function isStandalone() {
+    return window.matchMedia('(display-mode: standalone)').matches ||
+           window.navigator.standalone === true;
+  }
+  function isIOSSafari() {
+    var ua = navigator.userAgent;
+    return /iPad|iPhone|iPod/.test(ua) && !window.MSStream && /Safari/.test(ua) && !/CriOS|FxiOS/.test(ua);
+  }
+  function dismissed() {
+    try { return localStorage.getItem(DISMISS_KEY) === '1'; } catch(e) { return false; }
+  }
+
+  window.installPWA = function() {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then(function(){ deferredPrompt = null; hideInstallBanner(); });
+    } else if (isIOSSafari()) {
+      document.getElementById('install-banner-sub').textContent = 'Paylaş düğmesine bas → "Ana Ekrana Ekle"';
+      document.getElementById('install-banner-btn').textContent = 'Tamam';
+      document.getElementById('install-banner-btn').onclick = hideInstallBanner;
+    }
+  };
+  window.dismissInstall = function() {
+    try { localStorage.setItem(DISMISS_KEY, '1'); } catch(e){}
+    hideInstallBanner();
+  };
+  function showInstallBanner() {
+    document.getElementById('install-banner').classList.add('show');
+  }
+  function hideInstallBanner() {
+    document.getElementById('install-banner').classList.remove('show');
+  }
+
+  window.addEventListener('beforeinstallprompt', function(e) {
+    e.preventDefault();
+    deferredPrompt = e;
+    if (!dismissed() && !isStandalone()) {
+      setTimeout(showInstallBanner, 3000);
+    }
+  });
+
+  window.addEventListener('load', function() {
+    setTimeout(function(){
+      if (isIOSSafari() && !isStandalone() && !dismissed()) {
+        showInstallBanner();
+      }
+    }, 3000);
+  });
+
+  window.addEventListener('appinstalled', function() {
+    hideInstallBanner();
+    try { localStorage.setItem(DISMISS_KEY, '1'); } catch(e){}
+  });
+})();
 </script>
 <script>
   (function(){
