@@ -140,6 +140,7 @@
     .cat-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,.13); transform: translateY(-2px); }
     .cat-card:active { transform: scale(.96); box-shadow: 0 2px 8px rgba(0,0,0,.08); }
     .cat-card-emoji { font-size: 3rem; line-height: 1; }
+    .cat-card-img { width: 64px; height: 64px; object-fit: contain; margin: 0 auto; display: block; }
     .cat-card-name { font-size: .84rem; font-weight: 700; color: var(--text); text-align: center; line-height: 1.35; }
     .cat-card-count { font-size: .68rem; color: var(--text-muted); font-weight: 500; }
 
@@ -1459,14 +1460,14 @@ const KAT_EMOJI = {
   gida:'🥫', icecek:'🥤', temizlik:'🧴', atistirmalik:'🍫', dondurulmus:'🧊', diger:'📦'
 };
 const KATEGORILER = [
-  { slug:'meyve-sebze', label:'Meyve & Sebze', emoji:'🍎', file:'urunler_meyve' },
-  { slug:'et',          label:'Et & Tavuk',    emoji:'🥩', file:'urunler_et'    },
-  { slug:'sut',         label:'Süt & Kahvaltı',emoji:'🧀', file:'urunler_sut'   },
-  { slug:'gida',        label:'Temel Gıda',    emoji:'🥫', file:'urunler_gida'  },
-  { slug:'icecek',      label:'İçecek',        emoji:'🥤', file:'urunler_icecek'},
-  { slug:'temizlik',    label:'Temizlik',       emoji:'🧴', file:'urunler_temizlik'},
-  { slug:'atistirmalik',label:'Atıştırmalık',   emoji:'🍫', file:'urunler_atistirmalik'},
-  { slug:'dondurulmus', label:'Dondurulmuş',    emoji:'🧊', file:'urunler_dondurulmus'},
+  { slug:'meyve-sebze', label:'Meyve & Sebze', emoji:'🍎', img:'static/cat/meyve-sebze.png', file:'urunler_meyve' },
+  { slug:'et',          label:'Et & Tavuk',    emoji:'🥩', img:'static/cat/et.png',          file:'urunler_et'    },
+  { slug:'sut',         label:'Süt & Kahvaltı',emoji:'🧀', img:'static/cat/sut.png',         file:'urunler_sut'   },
+  { slug:'gida',        label:'Temel Gıda',    emoji:'🥫', img:'static/cat/gida.png',        file:'urunler_gida'  },
+  { slug:'icecek',      label:'İçecek',        emoji:'🥤', img:'static/cat/icecek.png',      file:'urunler_icecek'},
+  { slug:'temizlik',    label:'Temizlik',       emoji:'🧴', img:'static/cat/temizlik.png',    file:'urunler_temizlik'},
+  { slug:'atistirmalik',label:'Atıştırmalık',   emoji:'🍫', img:'static/cat/atistirmalik.png',file:'urunler_atistirmalik'},
+  { slug:'dondurulmus', label:'Dondurulmuş',    emoji:'🧊', img:'static/cat/dondurulmus.png', file:'urunler_dondurulmus'},
 ];
 const PAGE_SIZE = 48;
 
@@ -2502,7 +2503,8 @@ async function renderMevsimSeridi() {
 function renderCatGrid() {
   document.getElementById('home-cats').innerHTML = KATEGORILER.map(k =>
     `<div class="cat-card" onclick="openCategory('${k.slug}')">
-      <div class="cat-card-emoji">${k.emoji}</div>
+      <img class="cat-card-img" src="${k.img}" alt="" loading="lazy"
+           onerror="this.outerHTML='<div class=&quot;cat-card-emoji&quot;>${k.emoji}</div>'">
       <div class="cat-card-name">${k.label}</div>
     </div>`
   ).join('');
