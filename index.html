@@ -1784,16 +1784,33 @@ function sablonYukle(id) {
 
 // ── NAVİGASYON ────────────────────────────────────────
 function showScreen(id, direction) {
-  direction = direction || 'forward';
-  document.querySelectorAll('.screen').forEach(s => s.style.display = 'none');
+  var aktif = null;
+  document.querySelectorAll('.screen').forEach(function(s){ if (s.style.display !== 'none') aktif = s; });
+  if (aktif && aktif.id === id) return;
+
+  if (!direction) {
+    var navOrder = {'screen-home':0, 'screen-sepet':1, 'screen-firsatlar':2, 'screen-profil':3};
+    var fromIdx = aktif ? navOrder[aktif.id] : null;
+    var toIdx = navOrder[id];
+    if (fromIdx != null && toIdx != null) {
+      direction = toIdx > fromIdx ? 'forward' : 'back';
+    } else {
+      direction = 'forward';
+    }
+  }
+
+  document.querySelectorAll('.screen').forEach(function(s){ s.style.display = 'none'; });
   var hedef = document.getElementById(id);
   hedef.style.display = 'block';
   hedef.classList.remove('anim-slide-in', 'anim-slide-back');
   void hedef.offsetWidth;
   hedef.classList.add(direction === 'back' ? 'anim-slide-back' : 'anim-slide-in');
-  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-  if (id === 'screen-home')  document.getElementById('navHome').classList.add('active');
-  if (id === 'screen-sepet') document.getElementById('navSepet').classList.add('active');
+
+  document.querySelectorAll('.nav-btn').forEach(function(b){ b.classList.remove('active'); });
+  if (id === 'screen-home')      document.getElementById('navHome').classList.add('active');
+  if (id === 'screen-sepet')     document.getElementById('navSepet').classList.add('active');
+  if (id === 'screen-firsatlar') { var el=document.getElementById('navFirsat'); if(el) el.classList.add('active'); }
+  if (id === 'screen-profil')    { var el=document.getElementById('navProfil'); if(el) el.classList.add('active'); }
   if (id === 'screen-hal') { renderHalScreen(); }
 }
 
@@ -1801,7 +1818,7 @@ function goSepet() { renderSepet(); showScreen('screen-sepet'); }
 
 function goBack() {
   if (_prevScreen === 'screen-sepet') renderSepet();
-  showScreen(_prevScreen);
+  showScreen(_prevScreen, 'back');
 }
 
 function openDetay(urunId) {
