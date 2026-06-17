@@ -1783,14 +1783,14 @@ function sablonYukle(id) {
 }
 
 // ── NAVİGASYON ────────────────────────────────────────
+window._currentScreen = window._currentScreen || 'screen-home';
+
 function showScreen(id, direction) {
-  var aktif = null;
-  document.querySelectorAll('.screen').forEach(function(s){ if (s.style.display !== 'none') aktif = s; });
-  if (aktif && aktif.id === id) return;
+  if (window._currentScreen === id) return;
 
   if (!direction) {
     var navOrder = {'screen-home':0, 'screen-sepet':1, 'screen-firsatlar':2, 'screen-profil':3};
-    var fromIdx = aktif ? navOrder[aktif.id] : null;
+    var fromIdx = window._currentScreen ? navOrder[window._currentScreen] : null;
     var toIdx = navOrder[id];
     if (fromIdx != null && toIdx != null) {
       direction = toIdx > fromIdx ? 'forward' : 'back';
@@ -1812,6 +1812,8 @@ function showScreen(id, direction) {
   if (id === 'screen-firsatlar') { var el=document.getElementById('navFirsat'); if(el) el.classList.add('active'); }
   if (id === 'screen-profil')    { var el=document.getElementById('navProfil'); if(el) el.classList.add('active'); }
   if (id === 'screen-hal') { renderHalScreen(); }
+
+  window._currentScreen = id;
 }
 
 function goSepet() { renderSepet(); showScreen('screen-sepet'); }
