@@ -1391,7 +1391,7 @@
       <div class="profil-item-icon" style="background:#FEF3C7">🏭</div>
       <div class="profil-item-body">
         <div class="profil-item-title">Hal Fiyatları</div>
-        <div class="profil-item-sub" id="profilHalTarih">Hal Fiyatları</div>
+        <div class="profil-item-sub">Türkiye geneli toptan hal fiyatları</div>
       </div>
       <div class="profil-item-chevron">›</div>
     </div>
@@ -3609,9 +3609,6 @@ function profilGuncelle() {
   const el = function(id){ return document.getElementById(id); };
   if (el('profilSepetSayi')) el('profilSepetSayi').textContent = sepetSayi;
   if (el('profilSepetOzet')) el('profilSepetOzet').textContent = sepetSayi > 0 ? sepetSayi + ' ürün listemde' : 'Liste boş';
-  if (el('profilHalTarih') && window.halVerisi) {
-    el('profilHalTarih').textContent = 'Hal Fiyatları · ' + (window.halVerisi.bulten_tarihi || '');
-  }
   if (el('profilToplamUrun')) {
     const fetchListesi = [
       ...KATEGORILER.map(k => fetch('./data/' + k.file + '.json').then(r => r.json()).catch(() => null)),
