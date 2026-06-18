@@ -139,6 +139,7 @@
     .cat-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,.13); transform: translateY(-2px); }
     .cat-card:active { transform: scale(.96); box-shadow: 0 2px 8px rgba(0,0,0,.08); }
     .cat-card-emoji { font-size: 3rem; line-height: 1; }
+    .cat-emoji { font-size: 56px; line-height: 1; display: block; text-align: center; margin: 0 auto; font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif; }
     .cat-card-img { width: 64px; height: 64px; object-fit: contain; margin: 0 auto; display: block; }
     .cat-card-name { font-size: .84rem; font-weight: 700; color: var(--text); text-align: center; line-height: 1.35; }
     .cat-card-count { font-size: .68rem; color: var(--text-muted); font-weight: 500; }
@@ -2553,8 +2554,7 @@ async function renderMevsimSeridi() {
 function renderCatGrid() {
   document.getElementById('home-cats').innerHTML = KATEGORILER.map(k =>
     `<div class="cat-card" onclick="openCategory('${k.slug}')">
-      <img class="cat-card-img" src="${k.img}" alt="" loading="lazy"
-           onerror="this.outerHTML='<div class=&quot;cat-card-emoji&quot;>${k.emoji}</div>'">
+      <span class="cat-emoji">${k.emoji}</span>
       <div class="cat-card-name">${k.label}</div>
     </div>`
   ).join('');
