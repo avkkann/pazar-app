@@ -509,7 +509,7 @@
 .firsat-tabs { display: flex; gap: 0; background: var(--card-bg); border-bottom: 1px solid var(--border); padding: 0 14px; overflow-x: auto; scrollbar-width: none; position: sticky; top: 53px; z-index: 40; }
 .firsat-tabs::-webkit-scrollbar { display: none; }
 .firsat-tab { flex-shrink: 0; padding: 12px 14px; font-size: .78rem; font-weight: 600; color: var(--text-muted); border-bottom: 2.5px solid transparent; cursor: pointer; white-space: nowrap; background: none; border-top: none; border-left: none; border-right: none; font-family: inherit; }
-.firsat-tab.active { color: #7C3AED; border-bottom-color: #7C3AED; }
+.firsat-tab.active { color: #7C3AED; border-bottom-color: #7C3AED; font-weight: 600; }
 .firsat-section { padding: 12px 14px 0; }
 .firsat-section-title { font-size: .78rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
 .firsat-card { background: var(--card-bg); border-radius: 16px; border: 1px solid var(--border); padding: 12px 14px; display: flex; align-items: center; gap: 12px; margin-bottom: 8px; cursor: pointer; transition: box-shadow .15s; }
@@ -1186,7 +1186,7 @@
 
 [data-theme="dark"] .alt-kat-bar button.aktif,
 [data-theme="dark"] .filter-wrap button.aktif,
-[data-theme="dark"] .firsat-tab.active { background: var(--primary); color: #000; border-color: var(--primary); }
+[data-theme="dark"] .firsat-tab.active { background: var(--primary); color: #FFFFFF; border-color: var(--primary); font-weight: 600; }
 
 /* Stats row, count text, vb */
 [data-theme="dark"] .stats-row,
