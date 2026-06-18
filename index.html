@@ -1097,23 +1097,17 @@
 
 /* ═══ DARK TEMA ═══ */
 [data-theme="dark"] {
-  --primary: #34D399;
-  --primary-light: #6EE7B7;
-  --bg: #000000;
-  --card-bg: #141414;
-  --text: #F5F5F5;
-  --text-muted: #A1A1AA;
-  --border: #262626;
+  --primary: #10B981;
+  --primary-light: #34D399;
+  --bg: #0F1A14;
+  --card-bg: #1A2620;
+  --text: #E5E7EB;
+  --text-muted: #94A3B8;
+  --border: #1F2D26;
 }
 
 /* Surface override'ları — light'ta hard-coded olan her #fff/#FAFAFA/#F5F5F5/#F9FAFB */
 [data-theme="dark"] body { background: var(--bg); color: var(--text); }
-
-[data-theme="dark"] .product-card-img,
-[data-theme="dark"] .product-card-img-ph,
-[data-theme="dark"] .firsat-card-img,
-[data-theme="dark"] .firsat-card-img-ph,
-[data-theme="dark"] .strip-card-img-ph { background: #1F1F1F; }
 
 [data-theme="dark"] .strip-card { background: var(--card-bg); box-shadow: 0 1px 3px rgba(0,0,0,0.4); }
 
@@ -1127,16 +1121,16 @@
 
 [data-theme="dark"] .ms-market-row,
 [data-theme="dark"] .mf-depot-card,
-[data-theme="dark"] .mf-info-card { background: #1A1A1A; border-color: var(--border); }
+[data-theme="dark"] .mf-info-card { background: var(--card-bg); border-color: var(--border); }
 
 [data-theme="dark"] .ms-market-row-img,
 [data-theme="dark"] .mf-depot-img { background: #1F1F1F; }
 
-[data-theme="dark"] .mf-no-results { background: #1A1A1A; color: var(--text-muted); }
+[data-theme="dark"] .mf-no-results { background: var(--card-bg); color: var(--text-muted); }
 
 /* Search input, filter chip'leri vb genel input alanları */
 [data-theme="dark"] input, [data-theme="dark"] select, [data-theme="dark"] textarea {
-  background: #1A1A1A; color: var(--text); border-color: var(--border);
+  background: var(--card-bg); color: var(--text); border-color: var(--border);
 }
 [data-theme="dark"] input::placeholder { color: var(--text-muted); }
 
@@ -1172,7 +1166,7 @@
 
 /* Detay paket satırları (background #FAFAFA) */
 [data-theme="dark"] .detay-paket-row,
-[data-theme="dark"] .detay-rakip-row { background: #1A1A1A; border-color: var(--border); }
+[data-theme="dark"] .detay-rakip-row { background: var(--card-bg); border-color: var(--border); }
 
 /* Kategori kartları, product card border'ları */
 [data-theme="dark"] .cat-tile,
@@ -1188,7 +1182,7 @@
 [data-theme="dark"] .firsat-tab,
 [data-theme="dark"] .cat-search-wrap input,
 [data-theme="dark"] .home-search-wrap input,
-[data-theme="dark"] select { background: #1A1A1A; color: var(--text); border-color: var(--border); }
+[data-theme="dark"] select { background: var(--card-bg); color: var(--text); border-color: var(--border); }
 
 [data-theme="dark"] .alt-kat-bar button.aktif,
 [data-theme="dark"] .filter-wrap button.aktif,
