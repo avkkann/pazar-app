@@ -2248,8 +2248,33 @@ function digerPaketleriBul(u) {
   return out;
 }
 
+const TUZAK_WHITELIST = new Set([
+  "Süt", "S├╝t",
+  "Yoğurt", "Yo─şurt",
+  "Peynir",
+  "Tereyağı ve Margarin", "Tereya─ş─▒ ve Margarin",
+  "Ayran ve Kefir",
+  "Su",
+  "Maden Suyu",
+  "Gazlı İçecekler", "Gazl─▒ ─░├ğecekler",
+  "Meyve Suyu",
+  "Bulaşık Temizlik Ürünleri", "Bula┼ş─▒k Temizlik ├£r├╝nleri",
+  "Çamaşır Temizlik Ürünleri", "├çama┼ş─▒r Temizlik ├£r├╝nleri",
+  "Genel Temizlik Ürünleri", "Genel Temizlik ├£r├╝nleri",
+  "Duş Banyo ve Sabun", "Du┼ş Banyo ve Sabun",
+  "Bakliyat",
+  "Mantı Makarna ve Erişte",
+  "Un ve İrmik", "Un ve ─░rmik",
+  "Şeker ve Tatlandırıcılar", "┼Şeker ve Tatland─▒r─▒c─▒lar",
+  "Sıvı Yağlar", "S─▒v─▒ Ya─şlar",
+  "Bisküvi ve Kraker", "Bisk├╝vi ve Kraker",
+  "Çikolata", "├çikolata",
+  "Kuruyemiş ve Kuru Meyve", "Kuruyemi┼ş ve Kuru Meyve"
+]);
+
 function tuzakRozetiHesapla(u) {
   if (!u) return null;
+  if (!TUZAK_WHITELIST.has(u.ana_kategori)) return null;
   const bfu = birimFiyatHesapla(u);
   if (!bfu) return null;
   const digerler = digerPaketleriBul(u);
@@ -2391,7 +2416,7 @@ function cardHTML(u) {
   </div>`;
 }
 
-const TUZAK_CACHE_KEY = 'pazar_tuzaklar_v3';
+const TUZAK_CACHE_KEY = 'pazar_tuzaklar_v4';
 const TUZAK_CACHE_TTL_MS = 1000 * 60 * 60 * 6;
 
 function _stripKartHTML(u, rozet) {
