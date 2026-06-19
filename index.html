@@ -616,14 +616,29 @@
       font-size: .58rem; font-weight: 600; color: var(--text-muted); letter-spacing: .02em;
       font-family: 'Inter', sans-serif;
       transition: all 0.2s ease;
+      position: relative;
     }
     .nav-btn svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 2; }
     .nav-btn.active { color: var(--primary); }
     .cart-badge {
-      background: var(--primary); color: #fff; border-radius: 999px;
-      font-size: .5rem; font-weight: 700; padding: 1px 5px; line-height: 1.5;
-      min-width: 16px; text-align: center; display: inline-block; margin-left: 2px;
+      position: absolute;
+      top: -2px;
+      right: 14px;
+      background: #DC2626;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      min-width: 18px;
+      height: 18px;
+      border-radius: 9px;
+      padding: 0 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--bg);
+      line-height: 1;
     }
+    .cart-badge.hidden { display: none; }
     .app-modal {
       position: fixed; inset: 0; z-index: 9999;
       display: flex; align-items: center; justify-content: center;
@@ -3030,7 +3045,11 @@ document.getElementById('search').addEventListener('input', function() {
 function saveSepet() {
   localStorage.setItem('pazar_sepet', JSON.stringify(sepet));
   const badge = document.getElementById('sepetCount');
-  if (badge) badge.textContent = sepet.length;
+  if (badge) {
+    const n = sepet.length;
+    badge.textContent = n > 99 ? '99+' : n;
+    badge.classList.toggle('hidden', n === 0);
+  }
 }
 
 function toggleSepet(id) {
