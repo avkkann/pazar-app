@@ -2305,6 +2305,61 @@ const TUZAK_WHITELIST = new Set([
   "Kuruyemiş ve Kuru Meyve", "Kuruyemi┼ş ve Kuru Meyve"
 ]);
 
+let _gecmisCache = null;
+let _gecmisYukleniyor = null;
+async function gecmisVeriGetir() {
+  if (_gecmisCache) return _gecmisCache;
+  if (_gecmisYukleniyor) return _gecmisYukleniyor;
+  _gecmisYukleniyor = (async () => {
+    try {
+      const r = await fetch('./data/gecmis_fiyatlar.json');
+      if (!r.ok) throw new Error('fetch failed');
+      _gecmisCache = await r.json();
+    } catch(e) {
+      _gecmisCache = {};
+    }
+    return _gecmisCache;
+  })();
+  return _gecmisYukleniyor;
+}
+
+gecmisVeriGetir();
+
+function indirimRozetiHesapla(urun) {
+  if (!urun || !urun._sid) return null;
+  if (!_gecmisCache) return null;
+  const kayitlar = _gecmisCache[urun._sid];
+  if (!kayitlar || !Array.isArray(kayitlar) || kayitlar.length < 2) return null;
+
+  const bugun = new Date();
+  const otuzGunOnce = new Date(bugun);
+  otuzGunOnce.setDate(otuzGunOnce.getDate() - 30);
+  const limit = otuzGunOnce.toISOString().slice(0, 10);
+  const sonAy = kayitlar.filter(k => k && k.t && k.t >= limit);
+  if (sonAy.length < 2) return null;
+
+  const zirve = Math.max(...sonAy.map(k => k.f));
+  const simdi = urun.en_dusuk_fiyat;
+  if (zirve == null || simdi == null || zirve <= simdi) return null;
+
+  const dusus = ((zirve - simdi) / zirve) * 100;
+  if (dusus >= 25) return { tip: 'buyuk', yuzde: Math.round(dusus) };
+  if (dusus >= 10) return { tip: 'normal', yuzde: Math.round(dusus) };
+  return null;
+}
+
+function indirimRozetiHTML(rozet, kisa) {
+  if (!rozet) return '';
+  if (rozet.tip === 'buyuk') {
+    return kisa
+      ? `<span class="indirim-rozet buyuk-kisa">🔥 -%${rozet.yuzde}</span>`
+      : `<span class="indirim-rozet buyuk">🔥 Büyük indirim · Son ayın zirvesinden %${rozet.yuzde} ucuz</span>`;
+  }
+  return kisa
+    ? `<span class="indirim-rozet normal-kisa">🔻 -%${rozet.yuzde}</span>`
+    : `<span class="indirim-rozet normal">🔻 Fiyat düştü · Son ayın zirvesinden %${rozet.yuzde} ucuz</span>`;
+}
+
 function tuzakRozetiHesapla(u) {
   if (!u) return null;
   if (!TUZAK_WHITELIST.has(u.ana_kategori)) return null;
@@ -2346,34 +2401,7 @@ function tuzakRozetiHTML(rozet, kisa) {
     : `<div class="tuzak-rozet sari">🟡 Birim fiyat %${rozet.yuzde} daha yüksek</div>`;
 }
 
-function indirimRozetiHesapla(urun) {
-  if (!urun || !urun.fiyat_gecmisi || urun.fiyat_gecmisi.length < 2) return null;
-  const bugun = new Date();
-  const otuzGunOnce = new Date(bugun);
-  otuzGunOnce.setDate(otuzGunOnce.getDate() - 30);
-  const limit = otuzGunOnce.toISOString().slice(0, 10);
-  const sonAy = urun.fiyat_gecmisi.filter(g => g[0] >= limit);
-  if (sonAy.length < 2) return null;
-  const zirve = Math.max(...sonAy.map(g => g[1]));
-  const simdi = urun.en_dusuk_fiyat;
-  if (zirve == null || simdi == null || zirve <= simdi) return null;
-  const dususYuzde = ((zirve - simdi) / zirve) * 100;
-  if (dususYuzde >= 25) return { tip: 'buyuk', yuzde: Math.round(dususYuzde) };
-  if (dususYuzde >= 10) return { tip: 'normal', yuzde: Math.round(dususYuzde) };
-  return null;
-}
 
-function indirimRozetiHTML(rozet, kisa) {
-  if (!rozet) return '';
-  if (rozet.tip === 'buyuk') {
-    return kisa
-      ? `<span class="indirim-rozet buyuk-kisa">🔥 -%${rozet.yuzde}</span>`
-      : `<span class="indirim-rozet buyuk">🔥 Büyük indirim · Son ayın zirvesinden %${rozet.yuzde} ucuz</span>`;
-  }
-  return kisa
-    ? `<span class="indirim-rozet normal-kisa">🔻 -%${rozet.yuzde}</span>`
-    : `<span class="indirim-rozet normal">🔻 Fiyat düştü · Son ayın zirvesinden %${rozet.yuzde} ucuz</span>`;
-}
 
 function adOzu(ad) {
   if (!ad) return new Set();
@@ -2571,6 +2599,8 @@ async function renderDusenlerSeridi() {
   const list = document.getElementById('home-dusenler-list');
   if (!wrap || !list) return;
 
+  await gecmisVeriGetir();
+
   try {
     const raw = sessionStorage.getItem(DUSUS_CACHE_KEY);
     if (raw) {
@@ -2578,12 +2608,12 @@ async function renderDusenlerSeridi() {
       if (obj && Date.now() - obj.t < DUSUS_CACHE_TTL_MS && Array.isArray(obj.ids) && obj.ids.length) {
         const urunler = obj.ids.map(id => productMap[id]).filter(Boolean);
         if (urunler.length) {
-          list.innerHTML = urunler.map(u => {
-            const r = indirimRozetiHesapla(u);
-            return _stripKartHTML(u, null).replace('</div>', (r ? indirimRozetiHTML(r, true) : '') + '</div>');
-          }).join('');
-          wrap.style.display = '';
-          return;
+          const items = urunler.map(u => ({ u, r: indirimRozetiHesapla(u) })).filter(x => x.r);
+          if (items.length) {
+            list.innerHTML = items.map(x => _stripKartHTML(x.u, null).replace('</div>', indirimRozetiHTML(x.r, true) + '</div>')).join('');
+            wrap.style.display = '';
+            return;
+          }
         }
       }
     }
@@ -2611,9 +2641,7 @@ async function renderDusenlerSeridi() {
   adaylar.sort((a, b) => b.r.yuzde - a.r.yuzde);
   const secililer = adaylar.slice(0, 6);
 
-  list.innerHTML = secililer.map(x => {
-    return _stripKartHTML(x.u, null).replace('</div>', indirimRozetiHTML(x.r, true) + '</div>');
-  }).join('');
+  list.innerHTML = secililer.map(x => _stripKartHTML(x.u, null).replace('</div>', indirimRozetiHTML(x.r, true) + '</div>')).join('');
   wrap.style.display = '';
 
   try {
