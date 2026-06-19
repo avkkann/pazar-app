@@ -540,6 +540,8 @@
 .profil-header { background: linear-gradient(135deg,#0F5132 0%,#065F46 100%); padding: 36px 20px 28px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
 .profil-avatar { width: 76px; height: 76px; border-radius: 50%; background: rgba(255,255,255,.15); display: flex; align-items: center; justify-content: center; font-size: 2.2rem; border: 3px solid rgba(255,255,255,.35); }
 .profil-isim { font-size: 1.1rem; font-weight: 700; color: #fff; }
+.profil-isim { cursor: pointer; }
+.profil-isim-edit { font-size: 0.7em; opacity: 0.4; margin-left: 4px; vertical-align: middle; }
 .profil-alt { font-size: .78rem; color: rgba(255,255,255,.7); }
 .profil-istat { display: grid; grid-template-columns: 1fr 1fr 1fr; background: var(--card-bg); border-bottom: 1px solid var(--border); }
 .profil-istat-item { padding: 16px 8px; text-align: center; border-right: 1px solid var(--border); }
@@ -1377,7 +1379,7 @@
 <div id="screen-profil" class="screen">
   <div class="profil-header">
     <div class="profil-avatar" id="profilAvatar">🛒</div>
-    <div class="profil-isim">Pazar Kullanıcısı</div>
+    <div class="profil-isim" id="profilIsim" onclick="duzenleKullaniciAdi()">Pazar Kullanıcısı <span class="profil-isim-edit">✏️</span></div>
     <div class="profil-alt" id="profilAlt">Fiyatları takip ediyorsun</div>
   </div>
   <div class="profil-istat">
@@ -3643,6 +3645,23 @@ function goProfil() {
   profilGuncelle();
 }
 
+function duzenleKullaniciAdi() {
+  const mevcut = (function(){ try { return localStorage.getItem('kullaniciAdi') || ''; } catch(e){ return ''; } })();
+  const yeni = prompt('İsmini gir:', mevcut);
+  if (yeni === null) return;
+  const ad = yeni.trim();
+  if (!ad) return;
+  if (ad.length > 30) { alert('En fazla 30 karakter.'); return; }
+  try { localStorage.setItem('kullaniciAdi', ad); } catch(e){}
+  uygulaKullaniciAdi();
+}
+function uygulaKullaniciAdi() {
+  let ad = 'Pazar Kullanıcısı';
+  try { ad = localStorage.getItem('kullaniciAdi') || ad; } catch(e){}
+  const el = document.getElementById('profilIsim');
+  if (el) el.innerHTML = ad + ' <span class="profil-isim-edit">✏️</span>';
+}
+
 function profilGuncelle() {
   const sepetSayi = sepet.length;
   const el = function(id){ return document.getElementById(id); };
@@ -3837,7 +3856,8 @@ if (window.matchMedia) {
       icon.classList.add('pulsing');
       setTimeout(function(){ icon.classList.remove('pulsing'); }, 320);
     }, true);
-  })();
+    })();
+  document.addEventListener('DOMContentLoaded', uygulaKullaniciAdi);
 </script>
 </body>
 <div id="appModal" class="app-modal" style="display:none;">
