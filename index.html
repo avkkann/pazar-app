@@ -2594,6 +2594,13 @@ async function renderTuzaklarSeridi() {
 const DUSUS_CACHE_KEY = 'pazar_dususler_v1';
 const DUSUS_CACHE_TTL_MS = 1000 * 60 * 60 * 6;
 
+function _kartaRozetEkle(html, rozetHTML) {
+  if (!rozetHTML) return html;
+  const idx = html.lastIndexOf('</div>');
+  if (idx === -1) return html + rozetHTML;
+  return html.slice(0, idx) + rozetHTML + html.slice(idx);
+}
+
 async function renderDusenlerSeridi() {
   const wrap = document.getElementById('home-dusenler');
   const list = document.getElementById('home-dusenler-list');
@@ -2610,7 +2617,7 @@ async function renderDusenlerSeridi() {
         if (urunler.length) {
           const items = urunler.map(u => ({ u, r: indirimRozetiHesapla(u) })).filter(x => x.r);
           if (items.length) {
-            list.innerHTML = items.map(x => _stripKartHTML(x.u, null).replace('</div>', indirimRozetiHTML(x.r, true) + '</div>')).join('');
+            list.innerHTML = items.map(x => _kartaRozetEkle(_stripKartHTML(x.u, null), indirimRozetiHTML(x.r, true))).join('');
             wrap.style.display = '';
             return;
           }
@@ -2641,7 +2648,7 @@ async function renderDusenlerSeridi() {
   adaylar.sort((a, b) => b.r.yuzde - a.r.yuzde);
   const secililer = adaylar.slice(0, 6);
 
-  list.innerHTML = secililer.map(x => _stripKartHTML(x.u, null).replace('</div>', indirimRozetiHTML(x.r, true) + '</div>')).join('');
+  list.innerHTML = secililer.map(x => _kartaRozetEkle(_stripKartHTML(x.u, null), indirimRozetiHTML(x.r, true))).join('');
   wrap.style.display = '';
 
   try {
