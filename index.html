@@ -590,6 +590,11 @@
     .btn-ekle:active { transform: scale(.9); }
 
     /* ── BOŞLUK / MESAJ ── */
+    .empty-state { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 48px 24px; gap: 12px; }
+    .empty-state-icon { font-size: 60px; line-height: 1; opacity: 0.6; }
+    .empty-state-title { font-size: 18px; font-weight: 700; color: var(--text); margin-top: 8px; }
+    .empty-state-desc { font-size: 14px; color: var(--text-muted); max-width: 260px; line-height: 1.4; }
+    .empty-state-btn { margin-top: 12px; background: var(--primary); color: #FFFFFF; border: none; padding: 10px 20px; border-radius: 10px; font-size: 14px; font-weight: 600; cursor: pointer; }
     .state-msg {
       text-align: center; padding: 60px 24px;
       color: var(--text-muted); font-size: .88rem; line-height: 1.6; font-weight: 500;
@@ -2586,7 +2591,12 @@ function renderUrunler(liste) {
   const list = document.getElementById('productList');
   list.innerHTML = urunler.length
     ? urunler.map(cardHTML).join('')
-    : `<div class="state-msg"><span class="icon">🔍</span>Bu markette ürün bulunamadı.</div>`;
+    : `<div class="empty-state">
+      <div class="empty-state-icon">🔍</div>
+      <div class="empty-state-title">Sonuç bulunamadı</div>
+      <div class="empty-state-desc">Farklı bir filtre veya arama denemeyi deneyin.</div>
+      <button class="empty-state-btn" onclick="resetCatFilters()">Filtreyi temizle</button>
+    </div>`;
   document.getElementById('countNum').textContent = liste.length;
 }
 
@@ -2668,6 +2678,14 @@ function popScore(ad, slug) {
 }
 function setSiralama(deger) {
   window._catSiralama = deger;
+  uygulaCatFiltre();
+}
+
+function resetCatFilters() {
+  if (typeof setMarketFilter === 'function') setMarketFilter('all');
+  if (typeof setAltKat === 'function') setAltKat('tumu');
+  const searchInput = document.querySelector('#screen-cat .cat-search-wrap input');
+  if (searchInput) { searchInput.value = ''; if (typeof catAra === 'function') catAra(''); }
   uygulaCatFiltre();
 }
 
@@ -3052,7 +3070,12 @@ function renderSepet() {
   renderSablonBar();
   const el = document.getElementById('sepetContent');
   if (!sepet.length) {
-    el.innerHTML = `<div class="state-msg"><span class="icon">📋</span>Listeniz boş.<br>Ürün kartlarındaki + butonuna basın.</div>`;
+    el.innerHTML = `<div class="empty-state">
+  <div class="empty-state-icon">🛒</div>
+  <div class="empty-state-title">Listen boş</div>
+  <div class="empty-state-desc">Kategorilerden ürün ekleyerek başla.</div>
+  <button class="empty-state-btn" onclick="showScreen('screen-home')">Kategorilere git</button>
+</div>`;
     return;
   }
   const items = sepet.map(u => {
