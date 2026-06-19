@@ -178,6 +178,17 @@
     .tuzak-rozet { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 6px; margin-top: 6px; line-height: 1.3; }
     .tuzak-rozet.sari { background: rgba(217, 119, 6, 0.15); color: #D97706; border: 1px solid rgba(217, 119, 6, 0.35); }
     .tuzak-rozet.kirmizi { background: rgba(220, 38, 38, 0.15); color: #DC2626; border: 1px solid rgba(220, 38, 38, 0.35); }
+    .indirim-rozet { display:inline-flex; align-items:center; gap:4px; padding:3px 8px; border-radius:6px; font-size:11px; font-weight:600; white-space:nowrap; }
+    .indirim-rozet.normal,
+    .indirim-rozet.normal-kisa { background:#DCFCE7; color:#065F46; }
+    .indirim-rozet.buyuk,
+    .indirim-rozet.buyuk-kisa { background:#FFEDD5; color:#9A3412; }
+    .indirim-rozet.buyuk,
+    .indirim-rozet.normal { font-size:13px; padding:6px 10px; }
+    [data-theme="dark"] .indirim-rozet.normal,
+    [data-theme="dark"] .indirim-rozet.normal-kisa { background:rgba(34,197,94,0.15); color:#86EFAC; }
+    [data-theme="dark"] .indirim-rozet.buyuk,
+    [data-theme="dark"] .indirim-rozet.buyuk-kisa { background:rgba(249,115,22,0.15); color:#FDBA74; }
     .product-market-lbl { font-size: 10px; color: #9CA3AF; font-weight: 500; }
     .add-btn { position: absolute; bottom: 8px; right: 8px; width: 30px; height: 30px; border-radius: 50%; background: #0F5132; color: white; border: none; font-size: 20px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(15,81,50,0.3); transition: transform .15s; }
     .add-btn:active { transform: scale(.88); }
@@ -1906,6 +1917,7 @@ function openDetay(urunId) {
     </div>
     ${(() => { const bf = birimFiyatHesapla(u); return bf ? `<div class="detay-birim-fiyat">${birimFiyatYazi(bf)}</div>` : ''; })()}
     ${(() => { const rz = tuzakRozetiHesapla(u); return rz ? tuzakRozetiHTML(rz, false) : ''; })()}
+    ${(() => { const ir = indirimRozetiHesapla(u); return ir ? indirimRozetiHTML(ir, false) : ''; })()}
     <div class="detay-section">
       <div class="detay-sec-label">Market Fiyatları</div>
       <div class="detay-mkt-list">
@@ -2327,6 +2339,35 @@ function tuzakRozetiHTML(rozet, kisa) {
     : `<div class="tuzak-rozet sari">🟡 Birim fiyat %${rozet.yuzde} daha yüksek</div>`;
 }
 
+function indirimRozetiHesapla(urun) {
+  if (!urun || !urun.fiyat_gecmisi || urun.fiyat_gecmisi.length < 2) return null;
+  const bugun = new Date();
+  const otuzGunOnce = new Date(bugun);
+  otuzGunOnce.setDate(otuzGunOnce.getDate() - 30);
+  const limit = otuzGunOnce.toISOString().slice(0, 10);
+  const sonAy = urun.fiyat_gecmisi.filter(g => g[0] >= limit);
+  if (sonAy.length < 2) return null;
+  const zirve = Math.max(...sonAy.map(g => g[1]));
+  const simdi = urun.en_dusuk_fiyat;
+  if (zirve == null || simdi == null || zirve <= simdi) return null;
+  const dususYuzde = ((zirve - simdi) / zirve) * 100;
+  if (dususYuzde >= 25) return { tip: 'buyuk', yuzde: Math.round(dususYuzde) };
+  if (dususYuzde >= 10) return { tip: 'normal', yuzde: Math.round(dususYuzde) };
+  return null;
+}
+
+function indirimRozetiHTML(rozet, kisa) {
+  if (!rozet) return '';
+  if (rozet.tip === 'buyuk') {
+    return kisa
+      ? `<span class="indirim-rozet buyuk-kisa">🔥 -%${rozet.yuzde}</span>`
+      : `<span class="indirim-rozet buyuk">🔥 Büyük indirim · Son ayın zirvesinden %${rozet.yuzde} ucuz</span>`;
+  }
+  return kisa
+    ? `<span class="indirim-rozet normal-kisa">🔻 -%${rozet.yuzde}</span>`
+    : `<span class="indirim-rozet normal">🔻 Fiyat düştü · Son ayın zirvesinden %${rozet.yuzde} ucuz</span>`;
+}
+
 function adOzu(ad) {
   if (!ad) return new Set();
   let s = String(ad).toLowerCase();
@@ -2425,6 +2466,7 @@ function cardHTML(u) {
         : `<div class="kart-market-yok">Seçili markette yok</div>`}
       ${(() => { const bf = birimFiyatHesapla(u); return bf ? `<div class="urun-birim-fiyat">${birimFiyatYazi(bf)}</div>` : ''; })()}
       ${(() => { const rz = tuzakRozetiHesapla(u); return rz ? tuzakRozetiHTML(rz, true) : ''; })()}
+      ${(() => { const ir = indirimRozetiHesapla(u); return ir ? indirimRozetiHTML(ir, true) : ''; })()}
     </div>
     <button class="add-btn" data-pid="${u._id}" onclick="event.stopPropagation(); toggleSepet('${u._id}')" style="${inCart ? 'background:#059669' : ''}">${inCart ? '✓' : '+'}</button>
   </div>`;
