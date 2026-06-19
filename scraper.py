@@ -357,6 +357,40 @@ def parse_product(item, kategori_adi, slug_kisa="urun"):
     }
 
 
+def _apply_fiyat_gecmisi(yeni_urunler, cat_file):
+    """Her ürüne fiyat_gecmisi listesi ekler.
+    Mevcut JSON varsa _sid bazlı eşleştirir, bugünkü fiyatı merge eder, 90 günden eski kayıtları siler.
+    Format: fiyat_gecmisi = [[tarih_yyyymmdd, fiyat_float], ...]"""
+    eski_index = {}
+    if os.path.exists(cat_file):
+        try:
+            with open(cat_file, "r", encoding="utf-8") as f:
+                for u in json.load(f):
+                    sid = u.get("_sid")
+                    if sid:
+                        eski_index[sid] = u
+        except Exception as e:
+            print(f"  [uyari] eski JSON okunamadi: {e}")
+
+    bugun = datetime.now().strftime("%Y-%m-%d")
+    limit_tarih = (datetime.now() - timedelta(days=90)).strftime("%Y-%m-%d")
+
+    for u in yeni_urunler:
+        gecmis = []
+        sid = u.get("_sid")
+        if sid and sid in eski_index:
+            gecmis = list(eski_index[sid].get("fiyat_gecmisi") or [])
+
+        yeni_fiyat = u.get("en_dusuk_fiyat")
+        if yeni_fiyat is not None:
+            if gecmis and gecmis[-1][0] == bugun:
+                gecmis[-1] = [bugun, float(yeni_fiyat)]
+            elif not gecmis or abs(float(gecmis[-1][1]) - float(yeni_fiyat)) > 0.01:
+                gecmis.append([bugun, float(yeni_fiyat)])
+
+        gecmis = [g for g in gecmis if g[0] >= limit_tarih]
+        u["fiyat_gecmisi"] = gecmis
+
 def scrape_category(cookies, slug, keyword, dosya_adi):
     session = make_session(cookies)
     print(f"\n--- Kategori: {keyword} ---")
@@ -398,6 +432,7 @@ def scrape_category(cookies, slug, keyword, dosya_adi):
 
     # Kategori için ayrı JSON kaydet
     cat_file = os.path.join(DATA_DIR, f"{dosya_adi}.json")
+    _apply_fiyat_gecmisi(products, cat_file)
     with open(cat_file, "w", encoding="utf-8") as f:
         json.dump(products, f, ensure_ascii=False, indent=2)
     print(f"  Tamamlandi: {len(products)} urun -> {cat_file}")
@@ -464,7 +499,7 @@ def scrape():
 def gecmis_kaydet():
     """Her ürün × market için fiyat değiştiyse geçmiş_fiyatlar.json'a kayıt ekler."""
     print("\n--- Gecmis fiyat kaydi ---")
-    from datetime import datetime
+from datetime import datetime, timedelta
     bugun = datetime.now().strftime("%Y-%m-%d")
     gecmis_dosya = os.path.join(DATA_DIR, "gecmis_fiyatlar.json")
 
