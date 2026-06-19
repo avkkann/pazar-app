@@ -1262,6 +1262,13 @@
     <div class="home-strip-scroll" id="home-tuzaklar-list"></div>
   </div>
 
+  <div id="home-dusenler" class="home-strip" style="display:none">
+    <div class="home-strip-head">
+      <span class="home-strip-title">🔻 Bu hafta düşenler</span>
+    </div>
+    <div class="home-strip-scroll" id="home-dusenler-list"></div>
+  </div>
+
   <div id="home-cats" class="cat-grid"></div>
 
   <div id="home-mevsim" class="home-strip" style="display:none">
@@ -2556,6 +2563,67 @@ async function renderTuzaklarSeridi() {
   } catch(e){}
 }
 
+const DUSUS_CACHE_KEY = 'pazar_dususler_v1';
+const DUSUS_CACHE_TTL_MS = 1000 * 60 * 60 * 6;
+
+async function renderDusenlerSeridi() {
+  const wrap = document.getElementById('home-dusenler');
+  const list = document.getElementById('home-dusenler-list');
+  if (!wrap || !list) return;
+
+  try {
+    const raw = sessionStorage.getItem(DUSUS_CACHE_KEY);
+    if (raw) {
+      const obj = JSON.parse(raw);
+      if (obj && Date.now() - obj.t < DUSUS_CACHE_TTL_MS && Array.isArray(obj.ids) && obj.ids.length) {
+        const urunler = obj.ids.map(id => productMap[id]).filter(Boolean);
+        if (urunler.length) {
+          list.innerHTML = urunler.map(u => {
+            const r = indirimRozetiHesapla(u);
+            return _stripKartHTML(u, null).replace('</div>', (r ? indirimRozetiHTML(r, true) : '') + '</div>');
+          }).join('');
+          wrap.style.display = '';
+          return;
+        }
+      }
+    }
+  } catch(e){}
+
+  await loadAllCats();
+
+  const adaylar = [];
+  const ids = Object.keys(productMap);
+  const CHUNK = 300;
+  for (let i = 0; i < ids.length; i += CHUNK) {
+    const son = Math.min(i + CHUNK, ids.length);
+    for (let j = i; j < son; j++) {
+      const u = productMap[ids[j]];
+      if (!u || !u._id || !u.resim) continue;
+      const r = indirimRozetiHesapla(u);
+      if (!r) continue;
+      adaylar.push({u, r});
+    }
+    await new Promise(res => setTimeout(res, 0));
+  }
+
+  if (!adaylar.length) { wrap.style.display = 'none'; return; }
+
+  adaylar.sort((a, b) => b.r.yuzde - a.r.yuzde);
+  const secililer = adaylar.slice(0, 6);
+
+  list.innerHTML = secililer.map(x => {
+    return _stripKartHTML(x.u, null).replace('</div>', indirimRozetiHTML(x.r, true) + '</div>');
+  }).join('');
+  wrap.style.display = '';
+
+  try {
+    sessionStorage.setItem(DUSUS_CACHE_KEY, JSON.stringify({
+      t: Date.now(),
+      ids: secililer.map(x => x.u._id)
+    }));
+  } catch(e){}
+}
+
 const MEVSIM = {
   0:  ['portakal','mandalina','greyfurt','elma','lahana','kereviz','pırasa'],
   1:  ['portakal','mandalina','greyfurt','elma','lahana','pırasa','ıspanak'],
@@ -3408,11 +3476,11 @@ function loadData() {
     renderCatGrid();
     saveSepet();
     if ('requestIdleCallback' in window) {
-      requestIdleCallback(() => { renderTuzaklarSeridi(); renderMevsimSeridi(); }, { timeout: 3000 });
+requestIdleCallback(() => { renderTuzaklarSeridi(); renderMevsimSeridi(); renderDusenlerSeridi(); }, { timeout: 3000 });
     } else {
-      setTimeout(() => { renderTuzaklarSeridi(); renderMevsimSeridi(); }, 1500);
+setTimeout(() => { renderTuzaklarSeridi(); renderMevsimSeridi(); renderDusenlerSeridi(); }, 1500);
     }
-  }).catch(() => { renderCatGrid(); saveSepet(); if ('requestIdleCallback' in window) { requestIdleCallback(() => { renderTuzaklarSeridi(); renderMevsimSeridi(); }, { timeout: 3000 }); } else { setTimeout(() => { renderTuzaklarSeridi(); renderMevsimSeridi(); }, 1500); } });
+  }).catch(() => { renderCatGrid(); saveSepet(); if ('requestIdleCallback' in window) { requestIdleCallback(() => { renderTuzaklarSeridi(); renderMevsimSeridi(); renderDusenlerSeridi(); }, { timeout: 3000 }); } else { setTimeout(() => { renderTuzaklarSeridi(); renderMevsimSeridi(); renderDusenlerSeridi(); }, 1500); } });
 }
 
 function openHalScreen() {
