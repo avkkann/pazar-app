@@ -1046,13 +1046,6 @@
         transition-duration: 0.01ms !important;
       }
     }
-    .screen {
-      transition: transform 280ms cubic-bezier(0.22, 1, 0.36, 1), opacity 280ms cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .screen.slide-from-right { transform: translateX(100%); opacity: 0; }
-    .screen.slide-from-left  { transform: translateX(-30%); opacity: 0.5; }
-    .screen.slide-exit-left  { transform: translateX(-30%); opacity: 0.5; }
-    .screen.slide-exit-right { transform: translateX(100%); opacity: 0; }
     @keyframes navPulse {
       0%   { transform: scale(1); }
       50%  { transform: scale(1.2); }
