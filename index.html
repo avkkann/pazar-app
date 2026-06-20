@@ -68,6 +68,22 @@
     .product-price { font-weight: 700 !important; }
     .profil-istat-sayi { font-weight: 800 !important; }
 
+    /* ═══ Parçalı fiyat (lira/kuruş/₺) ═══ */
+    .fp {
+      font-family: 'Cabinet Grotesk', 'Inter', sans-serif !important;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.02em !important;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: baseline;
+    }
+    .fp .fp-l { font-weight: 800; }
+    .fp .fp-k { font-weight: 700; font-size: 0.62em; }
+    .fp .fp-tl { font-weight: 600; font-size: 0.55em; opacity: 0.75; margin-left: 3px; }
+
+    /* Profil istatistik rakamları — tabular-nums */
+    .profil-istat-sayi { font-variant-numeric: tabular-nums; }
+
     /* ── EKRANLAR ── */
     .screen {
       display: none;
@@ -186,7 +202,7 @@
     .product-name { font-size: 12px; font-weight: 600; color: #111827; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 34px; }
     .product-unit { font-size: 10px; color: #9CA3AF; margin-top: 2px; font-weight: 400; }
     .product-hal-badge { font-size: 10px; color: #D97706; font-weight: 600; margin-top: 3px; display: block; }
-    .product-price { font-size: 15px; font-weight: 800; color: var(--price-color); margin-top: 4px; letter-spacing: -0.3px; }
+     .product-price { font-size: 22px; font-weight: 800; color: var(--price-color); margin-top: 4px; line-height: 1.1; }
     .urun-birim-fiyat { font-size: 11px; color: #888; margin-top: 2px; line-height: 1.2; }
     .detay-birim-fiyat { font-size: 15px; color: #888; margin-top: 4px; margin-bottom: 12px; }
     .detay-bolum { margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border, #2a2a2a); }
@@ -440,7 +456,7 @@
     .detay-mkt-row:last-child { border-bottom: none; }
     .detay-mkt-row.best { background: #F0FDF4; }
     .detay-mkt-store { flex: 1; font-size: .72rem; color: var(--text-muted); }
-    .detay-mkt-price { font-size: .88rem; font-weight: 700; color: var(--text); flex-shrink: 0; }
+     .detay-mkt-price { font-size: 30px; font-weight: 700; color: var(--text); flex-shrink: 0; }
     .detay-mkt-row.best .detay-mkt-price { color: #059669; font-size: .95rem; }
     .detay-mkt-row.worst .detay-mkt-price { color: #DC2626; font-weight: 600; }
 .detay-mkt-row.worst .detay-mkt-badge { background:#FEE2E2; color:#991B1B; font-size:10px; font-weight:600; padding:2px 6px; border-radius:6px; margin-left:6px; }
@@ -1934,7 +1950,7 @@ function openDetay(urunId) {
     const isFirst = i === 0, isLast = i === mktler.length - 1 && mktler.length > 1;
     return `<div class="detay-mkt-row${isFirst ? ' best' : isLast ? ' worst' : ''}">
       <span class="m-tag m-${f.market || 'default'}">${MARKET_NAMES[f.market] || f.market || '?'}</span>
-      <span class="detay-mkt-price">${tl(f.fiyat)}${isLast ? '<span class="detay-mkt-badge">en pahalı</span>' : ''}</span>
+      <span class="detay-mkt-price">${tlHTML(f.fiyat)}${isLast ? '<span class="detay-mkt-badge">en pahalı</span>' : ''}</span>
     </div>`;
   }).join('');
 
@@ -2020,6 +2036,15 @@ function norm(s) {
 function tl(v) {
   return v == null ? '—' :
     v.toLocaleString('tr-TR',{minimumFractionDigits:2,maximumFractionDigits:2}) + ' ₺';
+}
+
+function tlHTML(v) {
+  if (v == null) return '<span class="fp"><span class="fp-l">—</span></span>';
+  const formatted = v.toLocaleString('tr-TR', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+  const parcalar = formatted.split(',');
+  const lira = parcalar[0] || '0';
+  const kurus = parcalar[1] || '00';
+  return `<span class="fp"><span class="fp-l">${lira}</span><span class="fp-k">,${kurus}</span><span class="fp-tl">₺</span></span>`;
 }
 
 function ustKategori(k) {
@@ -2542,7 +2567,7 @@ function cardHTML(u) {
       <div class="product-name">${u.ad}</div>
       ${u.agirlik_hacim ? `<div class="product-unit">${u.agirlik_hacim}</div>` : ''}
       ${gosterilenFiyat != null
-        ? `<div class="product-price">${tl(gosterilenFiyat)}${marketLbl ? `<span class="product-market-lbl"> · ${marketLbl}</span>` : ''}</div>`
+        ? `<div class="product-price">${tlHTML(gosterilenFiyat)}${marketLbl ? `<span class="product-market-lbl"> · ${marketLbl}</span>` : ''}</div>`
         : `<div class="kart-market-yok">Seçili markette yok</div>`}
       ${(() => { const bf = birimFiyatHesapla(u); return bf ? `<div class="urun-birim-fiyat">${birimFiyatYazi(bf)}</div>` : ''; })()}
       ${(() => { const rz = tuzakRozetiHesapla(u); return rz ? tuzakRozetiHTML(rz, true) : ''; })()}
@@ -3297,7 +3322,7 @@ function renderSepet() {
     const mktF = (u.market_fiyatlari || []).filter(f => f.fiyat != null).sort((a,b) => a.fiyat - b.fiyat)[0];
     const fiyatStr = mktF
       ? `<div style="text-align:right;color:var(--primary);font-size:.82rem;font-weight:700;flex-shrink:0;margin-right:6px;line-height:1.4">
-           ${tl(mktF.fiyat)}<br><span style="font-size:.65rem;font-weight:500">${MARKET_NAMES[mktF.market]||mktF.market||'?'}</span>
+           ${tlHTML(mktF.fiyat)}<br><span style="font-size:.65rem;font-weight:500">${MARKET_NAMES[mktF.market]||mktF.market||'?'}</span>
          </div>` : '';
     return `<div class="cart-item" onclick="openDetay('${u._id}')" style="cursor:pointer">
       <div class="cart-item-img">${img}</div>
@@ -3696,7 +3721,7 @@ function _firsatKartHtml(u, badge, badgeClass, altText) {
   if (!u._id) u._id = u.ad + '_' + (u.agirlik_hacim||'');
   productMap[u._id] = u;
   const emoji = KAT_EMOJI[ustKategori(u.ana_kategori||'')] || '📦';
-  const fiyat = u.en_dusuk_fiyat != null ? tl(u.en_dusuk_fiyat) : '—';
+  const fiyat = u.en_dusuk_fiyat != null ? tlHTML(u.en_dusuk_fiyat) : '<span class="fp"><span class="fp-l">—</span></span>';
   const imgHtml = u.resim
     ? '<img class="firsat-card-img" src="'+u.resim+'" alt="" loading="lazy" onerror="this.className=\'firsat-card-img-ph\';this.outerHTML=\'<div class=&quot;firsat-card-img-ph&quot;>'+emoji+'</div>\'">'
     : '<div class="firsat-card-img-ph">'+emoji+'</div>';
