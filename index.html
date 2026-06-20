@@ -38,6 +38,15 @@
       --text: #1A1A2E;
       --text-muted: #6B7280;
       --border: #E5E7EB;
+      /* Spacing scale (4px tabanlı) */
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-8: 32px;
+      --space-10: 40px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -165,7 +174,7 @@
     /* ── KATEGORİ GRİD ── */
     .cat-grid {
       display: grid; grid-template-columns: 1fr 1fr;
-      gap: 12px; padding: 16px 14px 0;
+      gap: 12px; padding: var(--space-4) var(--space-4) 0;
     }
     .cat-card {
       background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px;
@@ -194,7 +203,7 @@
     }
 
     /* ── ÜRÜN LİSTESİ ── */
-    .product-list { padding: 8px 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .product-list { padding: var(--space-3) var(--space-4); display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
     .product-card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04); position: relative; display: flex; flex-direction: column; border: 1px solid rgba(0,0,0,0.06); transition: box-shadow .18s ease, transform .18s ease; }
     @media (hover: hover) {
       .product-card:hover { box-shadow: 0 2px 4px rgba(0,0,0,0.06), 0 8px 20px rgba(0,0,0,0.08); transform: translateY(-1px); }
@@ -500,7 +509,7 @@
 
     /* ── MARKET FİLTRE ── */
     .filter-wrap {
-      display: flex; gap: 6px; overflow-x: auto; padding: 8px 14px;
+      display: flex; gap: var(--space-2); overflow-x: auto; padding: var(--space-2) var(--space-4);
       background: var(--card-bg); border-bottom: 1px solid var(--border);
       scrollbar-width: none;
     }
@@ -782,10 +791,10 @@
       from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
     }
-.home-strip { padding: 8px 0 4px; }
-.home-strip-head { display:flex; align-items:center; justify-content:space-between; padding:0 14px 8px; }
+.home-strip { padding: 8px 0 4px; margin-bottom: var(--space-6); }
+.home-strip-head { display:flex; align-items:center; justify-content:space-between; padding:0 var(--space-4); margin-bottom:var(--space-3); }
 .home-strip-title { display: inline-flex; align-items: center; gap: 6px; font-size:15px; font-weight:600; color:#111; }
-.home-strip-scroll { display:flex; gap:10px; overflow-x:auto; padding:0 14px 8px; scrollbar-width:none; -webkit-overflow-scrolling:touch; }
+.home-strip-scroll { display:flex; gap:var(--space-3); overflow-x:auto; padding:0 var(--space-4) var(--space-2); scrollbar-width:none; -webkit-overflow-scrolling:touch; }
 .home-strip-scroll::-webkit-scrollbar { display:none; }
 .strip-card { flex:0 0 150px; background:#fff; border-radius:14px; padding:10px; box-shadow:0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04); cursor:pointer; display:flex; flex-direction:column; gap:6px; border: 1px solid rgba(0,0,0,0.06); transition: box-shadow .18s ease, transform .18s ease; }
 @media (hover: hover) {
@@ -845,8 +854,8 @@
 .sablon-chip-del:hover { color: #c00; }
 .alt-kat-bar {
   display: flex;
-  gap: 6px;
-  padding: 4px 16px 8px;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
   overflow-x: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
