@@ -196,7 +196,7 @@
     .detay-paket-item:hover { border-color: var(--primary, #1D9E75); }
     .detay-paket-ad { font-size: 13px; font-weight: 500; margin-bottom: 4px; line-height: 1.3; }
     .detay-paket-meta { font-size: 11px; color: #888; }
-    .tuzak-rozet { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 6px; margin-top: 6px; line-height: 1.3; }
+    .tuzak-rozet { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 6px; margin-top: 6px; line-height: 1.3; }
     .tuzak-rozet.sari { background: rgba(217, 119, 6, 0.15); color: #D97706; border: 1px solid rgba(217, 119, 6, 0.35); }
     .tuzak-rozet.kirmizi { background: rgba(220, 38, 38, 0.15); color: #DC2626; border: 1px solid rgba(220, 38, 38, 0.35); }
     .indirim-rozet { display:inline-flex; align-items:center; gap:4px; padding:3px 8px; border-radius:6px; font-size:11px; font-weight:600; white-space:nowrap; }
@@ -208,9 +208,17 @@
     .indirim-rozet.normal { font-size:13px; padding:6px 10px; }
     [data-theme="dark"] .indirim-rozet.normal,
     [data-theme="dark"] .indirim-rozet.normal-kisa { background:rgba(34,197,94,0.15); color:#86EFAC; }
-    [data-theme="dark"] .indirim-rozet.buyuk,
-    [data-theme="dark"] .indirim-rozet.buyuk-kisa { background:rgba(249,115,22,0.15); color:#FDBA74; }
-    .product-market-lbl { font-size: 10px; color: #9CA3AF; font-weight: 500; }
+     [data-theme="dark"] .indirim-rozet.buyuk,
+     [data-theme="dark"] .indirim-rozet.buyuk-kisa { background:rgba(249,115,22,0.15); color:#FDBA74; }
+
+    /* ═══ Lucide ikon stil ═══ */
+    .lc-icon { width: 14px; height: 14px; flex-shrink: 0; vertical-align: -2px; display: inline-block; }
+    .lc-icon-lg { width: 18px; height: 18px; }
+    .lc-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 4px; vertical-align: middle; flex-shrink: 0; }
+    .lc-dot.kirmizi { background: #DC2626; }
+    .lc-dot.sari { background: #F59E0B; }
+
+     .product-market-lbl { font-size: 10px; color: #9CA3AF; font-weight: 500; }
     .add-btn { position: absolute; bottom: 8px; right: 8px; width: 30px; height: 30px; border-radius: 50%; background: #0E4938; color: white; border: none; font-size: 20px; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(15,81,50,0.3); transition: transform .15s; }
     .add-btn:active { transform: scale(.88); }
 
@@ -541,7 +549,7 @@
 .screen-firsatlar-header h2 { font-size: 1rem; font-weight: 700; color: #fff; }
 .firsat-tabs { display: flex; gap: 0; background: var(--card-bg); border-bottom: 1px solid var(--border); padding: 0 14px; overflow-x: auto; scrollbar-width: none; position: sticky; top: 53px; z-index: 40; }
 .firsat-tabs::-webkit-scrollbar { display: none; }
-.firsat-tab { flex-shrink: 0; padding: 12px 14px; font-size: .78rem; font-weight: 600; color: var(--text-muted); border-bottom: 2.5px solid transparent; cursor: pointer; white-space: nowrap; background: none; border-top: none; border-left: none; border-right: none; font-family: inherit; }
+.firsat-tab { display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0; padding: 12px 14px; font-size: .78rem; font-weight: 600; color: var(--text-muted); border-bottom: 2.5px solid transparent; cursor: pointer; white-space: nowrap; background: none; border-top: none; border-left: none; border-right: none; font-family: inherit; }
 .firsat-tab.active { color: #0E4938; border-bottom-color: #0E4938; font-weight: 600; }
 .firsat-section { padding: 12px 14px 0; }
 .firsat-section-title { font-size: .78rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
@@ -750,7 +758,7 @@
     }
 .home-strip { padding: 8px 0 4px; }
 .home-strip-head { display:flex; align-items:center; justify-content:space-between; padding:0 14px 8px; }
-.home-strip-title { font-size:15px; font-weight:600; color:#111; }
+.home-strip-title { display: inline-flex; align-items: center; gap: 6px; font-size:15px; font-weight:600; color:#111; }
 .home-strip-scroll { display:flex; gap:10px; overflow-x:auto; padding:0 14px 8px; scrollbar-width:none; -webkit-overflow-scrolling:touch; }
 .home-strip-scroll::-webkit-scrollbar { display:none; }
 .strip-card { flex:0 0 150px; background:#fff; border-radius:12px; padding:8px; box-shadow:0 1px 3px rgba(0,0,0,0.06); cursor:pointer; display:flex; flex-direction:column; gap:6px; }
@@ -758,7 +766,7 @@
 .strip-card-img-ph { width:100%; height:90px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:32px; background:#FFFFFF; padding: 6px; }
 .strip-card-name { font-size:12px; font-weight:500; color:#111; line-height:1.3; overflow:hidden; text-overflow:ellipsis; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; min-height:32px; }
 .strip-card-sub { font-size:11px; color:#666; }
-.strip-card-rozet { font-size:10px; font-weight:600; padding:3px 6px; border-radius:6px; align-self:flex-start; }
+.strip-card-rozet { display: inline-flex; align-items: center; gap: 4px; font-size:10px; font-weight:600; padding:3px 6px; border-radius:6px; align-self:flex-start; }
 .strip-card-rozet.sari { background:#fef3c7; color:#92400e; }
 .strip-card-rozet.kirmizi { background:#fee2e2; color:#991b1b; }
 .hal-mini-wrap { padding: 8px 14px 16px; }
@@ -2370,16 +2378,31 @@ function indirimRozetiHesapla(urun) {
   return null;
 }
 
+// Lucide SVG icon helpers — inline (kütüphane yüklemeden)
+const _LUCIDE_PATHS = {
+  'alert-triangle': '<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/>',
+  'trending-down': '<polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/>',
+  'flame': '<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>',
+  'leaf': '<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19.2 2.96a1 1 0 0 1 1.8.66c0 4.49-1.05 8.74-6.41 11.59a7 7 0 0 1-3.59.79z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/>',
+  'coins': '<circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/>'
+};
+function lcIcon(name, klass) {
+  const path = _LUCIDE_PATHS[name];
+  if (!path) return '';
+  const c = klass || 'lc-icon';
+  return `<svg class="${c}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${path}</svg>`;
+}
+
 function indirimRozetiHTML(rozet, kisa) {
   if (!rozet) return '';
   if (rozet.tip === 'buyuk') {
     return kisa
-      ? `<span class="indirim-rozet buyuk-kisa">🔥 -%${rozet.yuzde}</span>`
-      : `<span class="indirim-rozet buyuk">🔥 Büyük indirim · Son ayın zirvesinden %${rozet.yuzde} ucuz</span>`;
+      ? `<span class="indirim-rozet buyuk-kisa">${lcIcon('flame')} -%${rozet.yuzde}</span>`
+      : `<span class="indirim-rozet buyuk">${lcIcon('flame')} Büyük indirim · Son ayın zirvesinden %${rozet.yuzde} ucuz</span>`;
   }
   return kisa
-    ? `<span class="indirim-rozet normal-kisa">🔻 -%${rozet.yuzde}</span>`
-    : `<span class="indirim-rozet normal">🔻 Fiyat düştü · Son ayın zirvesinden %${rozet.yuzde} ucuz</span>`;
+    ? `<span class="indirim-rozet normal-kisa">${lcIcon('trending-down')} -%${rozet.yuzde}</span>`
+    : `<span class="indirim-rozet normal">${lcIcon('trending-down')} Fiyat düştü · Son ayın zirvesinden %${rozet.yuzde} ucuz</span>`;
 }
 
 function tuzakRozetiHesapla(u) {
@@ -2415,12 +2438,12 @@ function tuzakRozetiHTML(rozet, kisa) {
   if (!rozet) return '';
   if (rozet.tip === 'kirmizi') {
     return kisa
-      ? `<div class="tuzak-rozet kirmizi">🔴 Tuzak · %${rozet.yuzde} pahalı</div>`
-      : `<div class="tuzak-rozet kirmizi">🔴 Küçük paket tuzağı · Birim fiyat %${rozet.yuzde} daha yüksek</div>`;
+      ? `<div class="tuzak-rozet kirmizi"><span class="lc-dot kirmizi"></span>Tuzak · %${rozet.yuzde} pahalı</div>`
+      : `<div class="tuzak-rozet kirmizi"><span class="lc-dot kirmizi"></span>Küçük paket tuzağı · Birim fiyat %${rozet.yuzde} daha yüksek</div>`;
   }
   return kisa
-    ? `<div class="tuzak-rozet sari">🟡 %${rozet.yuzde} pahalı</div>`
-    : `<div class="tuzak-rozet sari">🟡 Birim fiyat %${rozet.yuzde} daha yüksek</div>`;
+    ? `<div class="tuzak-rozet sari"><span class="lc-dot sari"></span>%${rozet.yuzde} pahalı</div>`
+    : `<div class="tuzak-rozet sari"><span class="lc-dot sari"></span>Birim fiyat %${rozet.yuzde} daha yüksek</div>`;
 }
 
 
@@ -2540,7 +2563,7 @@ function _stripKartHTML(u, rozet) {
   const bf = birimFiyatHesapla(u);
   const bfYazi = bf ? birimFiyatYazi(bf) : (u.en_dusuk_fiyat != null ? tl(u.en_dusuk_fiyat) : '');
   const rozetHTML = rozet
-    ? `<div class="strip-card-rozet ${rozet.tip}">${rozet.tip==='kirmizi'?'🔴':'🟡'} %${rozet.yuzde} pahalı</div>`
+    ? `<div class="strip-card-rozet ${rozet.tip}"><span class="lc-dot ${rozet.tip}"></span>%${rozet.yuzde} pahalı</div>`
     : '';
   return `<div class="strip-card" onclick="openDetay('${u._id}')">
     ${img}
@@ -4025,6 +4048,18 @@ if (window.matchMedia) {
     }, true);
     })();
   document.addEventListener('DOMContentLoaded', uygulaKullaniciAdi);
+
+function _injectStripIkonlari() {
+  const t1 = document.querySelector('#home-tuzaklar .home-strip-title');
+  if (t1 && t1.textContent.includes('Bugün yakaladığımız')) t1.innerHTML = lcIcon('alert-triangle','lc-icon lc-icon-lg') + ' Bugün yakaladığımız tuzaklar';
+  const t2 = document.querySelector('#home-dusenler .home-strip-title');
+  if (t2 && t2.textContent.includes('Bu hafta düşenler')) t2.innerHTML = lcIcon('trending-down','lc-icon lc-icon-lg') + ' Bu hafta düşenler';
+  const t3 = document.querySelector('#home-mevsim .home-strip-title');
+  if (t3 && t3.textContent.includes('Bu hafta mevsiminde')) t3.innerHTML = lcIcon('leaf','lc-icon lc-icon-lg') + ' Bu hafta mevsiminde';
+  const ft = document.querySelector('.firsat-tab[onclick*="ucuz"]');
+  if (ft && ft.textContent.includes('En Ucuz')) ft.innerHTML = lcIcon('coins') + ' En Ucuz';
+}
+document.addEventListener('DOMContentLoaded', _injectStripIkonlari);
 </script>
 </body>
 <div id="appModal" class="app-modal" style="display:none;">
