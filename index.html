@@ -195,11 +195,15 @@
 
     /* ── ÜRÜN LİSTESİ ── */
     .product-list { padding: 8px 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .product-card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.07); position: relative; display: flex; flex-direction: column; border: 1px solid #F3F4F6; }
+    .product-card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04); position: relative; display: flex; flex-direction: column; border: 1px solid rgba(0,0,0,0.06); transition: box-shadow .18s ease, transform .18s ease; }
+    @media (hover: hover) {
+      .product-card:hover { box-shadow: 0 2px 4px rgba(0,0,0,0.06), 0 8px 20px rgba(0,0,0,0.08); transform: translateY(-1px); }
+    }
+    .product-card:active { transform: scale(0.98); }
     .product-card-img { width: 100%; height: 130px; object-fit: contain; background: #FFFFFF; padding: 10px; display: block; border-radius: 12px; }
     .product-card-img-ph { width: 100%; height: 130px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; border-radius: 12px; }
     .product-card-body { padding: 8px 10px 36px 10px; flex: 1; }
-    .product-name { font-size: 12px; font-weight: 600; color: #111827; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 34px; }
+    .product-name { font-size: 14px; font-weight: 600; color: #111827; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 34px; }
     .product-unit { font-size: 10px; color: #9CA3AF; margin-top: 2px; font-weight: 400; }
     .product-hal-badge { font-size: 10px; color: #D97706; font-weight: 600; margin-top: 3px; display: block; }
      .product-price { font-size: 22px; font-weight: 800; color: var(--price-color); margin-top: 4px; line-height: 1.1; }
@@ -433,7 +437,7 @@
       max-width: 180px; max-height: 180px; object-fit: contain; border-radius: 12px; background: #FFFFFF;
     }
     .detay-info { padding: 16px 16px 4px; }
-    .detay-name { font-size: 1.15rem; font-weight: 800; color: var(--text); line-height: 1.3; }
+    .detay-name { font-size: 1.4rem; font-weight: 700; color: var(--text); line-height: 1.3; }
     .detay-unit { font-size: .82rem; color: var(--text-muted); margin-top: 4px; font-weight: 500; }
     .detay-marka { font-size: .78rem; color: var(--text-muted); margin-top: 2px; }
     .detay-section { padding: 14px 16px 0; }
@@ -569,8 +573,11 @@
 .firsat-tab.active { color: #0E4938; border-bottom-color: #0E4938; font-weight: 600; }
 .firsat-section { padding: 12px 14px 0; }
 .firsat-section-title { font-size: .78rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
-.firsat-card { background: var(--card-bg); border-radius: 16px; border: 1px solid var(--border); padding: 12px 14px; display: flex; align-items: center; gap: 12px; margin-bottom: 8px; cursor: pointer; transition: box-shadow .15s; }
-.firsat-card:active { box-shadow: 0 4px 16px rgba(0,0,0,.12); }
+.firsat-card { background: var(--card-bg); border-radius: 16px; border: 1px solid var(--border); padding: 12px 14px; display: flex; align-items: center; gap: 12px; margin-bottom: 8px; cursor: pointer; transition: box-shadow .18s ease, transform .18s ease; box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04); }
+@media (hover: hover) {
+  .firsat-card:hover { box-shadow: 0 2px 4px rgba(0,0,0,0.06), 0 8px 20px rgba(0,0,0,0.08); transform: translateY(-1px); }
+}
+.firsat-card:active { transform: scale(0.98); box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04); }
 .firsat-card-img { width: 52px; height: 52px; border-radius: 10px; object-fit: contain; background: #F9FAFB; padding: 4px; flex-shrink: 0; }
 .firsat-card-img-ph { width: 52px; height: 52px; border-radius: 10px; background: #F9FAFB; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; flex-shrink: 0; }
 .firsat-card-body { flex: 1; min-width: 0; }
@@ -606,8 +613,11 @@
 .profil-istat-lbl { font-size: .68rem; color: var(--text-muted); margin-top: 2px; }
 .profil-section { padding: 16px 14px 0; }
 .profil-section-title { font-size: .7rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px; padding: 0 2px; }
-.profil-item { background: var(--card-bg); border-radius: 14px; padding: 14px 16px; display: flex; align-items: center; gap: 14px; margin-bottom: 8px; border: 1px solid var(--border); cursor: pointer; transition: opacity .15s; }
-.profil-item:active { opacity: .7; }
+.profil-item { background: var(--card-bg); border-radius: 14px; padding: 14px 16px; display: flex; align-items: center; gap: 14px; margin-bottom: 8px; border: 1px solid var(--border); cursor: pointer; transition: box-shadow .18s ease, transform .18s ease, opacity .15s; box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04); }
+@media (hover: hover) {
+  .profil-item:hover { box-shadow: 0 2px 4px rgba(0,0,0,0.06), 0 8px 20px rgba(0,0,0,0.08); transform: translateY(-1px); }
+}
+.profil-item:active { opacity: .7; transform: scale(0.98); }
 .profil-item-icon { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.15rem; flex-shrink: 0; }
 .profil-item-body { flex: 1; }
 .profil-item-title { font-size: .9rem; font-weight: 600; color: var(--text); }
@@ -777,10 +787,14 @@
 .home-strip-title { display: inline-flex; align-items: center; gap: 6px; font-size:15px; font-weight:600; color:#111; }
 .home-strip-scroll { display:flex; gap:10px; overflow-x:auto; padding:0 14px 8px; scrollbar-width:none; -webkit-overflow-scrolling:touch; }
 .home-strip-scroll::-webkit-scrollbar { display:none; }
-.strip-card { flex:0 0 150px; background:#fff; border-radius:12px; padding:8px; box-shadow:0 1px 3px rgba(0,0,0,0.06); cursor:pointer; display:flex; flex-direction:column; gap:6px; }
+.strip-card { flex:0 0 150px; background:#fff; border-radius:12px; padding:8px; box-shadow:0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04); cursor:pointer; display:flex; flex-direction:column; gap:6px; border: 1px solid rgba(0,0,0,0.06); transition: box-shadow .18s ease, transform .18s ease; }
+    @media (hover: hover) {
+      .strip-card:hover { box-shadow: 0 2px 4px rgba(0,0,0,0.06), 0 8px 20px rgba(0,0,0,0.08); transform: translateY(-1px); }
+    }
+    .strip-card:active { transform: scale(0.98); }
 .strip-card-img { width:100%; height:90px; border-radius:8px; object-fit:cover; background:#FFFFFF; padding: 6px; }
 .strip-card-img-ph { width:100%; height:90px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:32px; background:#FFFFFF; padding: 6px; }
-.strip-card-name { font-size:12px; font-weight:500; color:#111; line-height:1.3; overflow:hidden; text-overflow:ellipsis; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; min-height:32px; }
+.strip-card-name { font-size:13px; font-weight:500; color:#111; line-height:1.3; overflow:hidden; text-overflow:ellipsis; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; min-height:32px; }
 .strip-card-sub { font-size:11px; color:#666; }
 .strip-card-rozet { display: inline-flex; align-items: center; gap: 4px; font-size:10px; font-weight:600; padding:3px 6px; border-radius:6px; align-self:flex-start; }
 .strip-card-rozet.sari { background:#fef3c7; color:#92400e; }
@@ -1183,7 +1197,10 @@
 /* Surface override'ları — light'ta hard-coded olan her #fff/#FAFAFA/#F5F5F5/#F9FAFB */
 [data-theme="dark"] body { background: var(--bg); color: var(--text); }
 
-[data-theme="dark"] .strip-card { background: var(--card-bg); box-shadow: 0 1px 3px rgba(0,0,0,0.4); }
+[data-theme="dark"] .strip-card { background: var(--card-bg); box-shadow: 0 1px 2px rgba(0,0,0,0.3), 0 4px 12px rgba(0,0,0,0.2); }
+[data-theme="dark"] .product-card { box-shadow: 0 1px 2px rgba(0,0,0,0.3), 0 4px 12px rgba(0,0,0,0.2); }
+[data-theme="dark"] .firsat-card { box-shadow: 0 1px 2px rgba(0,0,0,0.3), 0 4px 12px rgba(0,0,0,0.2); }
+[data-theme="dark"] .profil-item { box-shadow: 0 1px 2px rgba(0,0,0,0.3), 0 4px 12px rgba(0,0,0,0.2); }
 
 /* Bottom sheet'ler ve modal'lar (ms-sheet, mf-sheet, container'lar) */
 [data-theme="dark"] .ms-sheet,
