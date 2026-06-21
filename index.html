@@ -197,6 +197,45 @@
       display: flex; justify-content: space-between; align-items: center;
     }
     .stats-row b { color: var(--text); font-weight: 600; }
+
+    /* ── SIRALAMA DROPDOWN ── */
+    .siralama-wrap { position: relative; }
+    .siralama-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: var(--space-2) var(--space-3);
+      border: 1px solid var(--border); border-radius: 12px;
+      background: var(--card-bg); color: var(--text);
+      font-size: .72rem; cursor: pointer; font-family: inherit;
+      transition: box-shadow .15s ease;
+    }
+    .siralama-btn:hover { box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+    .siralama-label { white-space: nowrap; }
+    .siralama-label strong { font-weight: 600; color: var(--text); }
+    .siralama-panel {
+      position: absolute; top: calc(100% + 6px); right: 0; z-index: 200;
+      min-width: 200px; background: var(--card-bg);
+      border: 1px solid var(--border); border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.1), 0 1px 4px rgba(0,0,0,.06);
+      padding: var(--space-1); overflow: hidden;
+      opacity: 0; transform: translateY(-4px);
+      transition: opacity .15s ease-out, transform .15s ease-out;
+      pointer-events: none;
+    }
+    .siralama-panel.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .siralama-panel.panel-hidden { display: none; }
+    .siralama-option {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: var(--space-2) var(--space-3); border-radius: 8px;
+      font-size: .8rem; color: var(--text-muted); cursor: pointer;
+      transition: background .1s ease, color .1s ease;
+    }
+    .siralama-option:hover { background: rgba(0,0,0,.05); color: var(--text); }
+    .siralama-option.active { color: var(--primary); font-weight: 600; }
+    .siralama-option .lc-check { opacity: 0; }
+    .siralama-option.active .lc-check { opacity: 1; }
+    [data-theme="dark"] .siralama-panel { box-shadow: 0 4px 16px rgba(0,0,0,.4), 0 1px 4px rgba(0,0,0,.3); }
+    [data-theme="dark"] .siralama-option:hover { background: rgba(255,255,255,.06); }
+
     .hal-badge {
       font-size: .66rem; font-weight: 600; color: var(--primary);
       background: #ECFDF5; border: 1px solid #D1FAE5; border-radius: 6px; padding: 3px 8px;
@@ -1395,12 +1434,20 @@
 
   <div class="stats-row">
     <span><b id="countNum">—</b> ürün listeleniyor</span>
-    <select id="catSiralama" onchange="setSiralama(this.value)" style="margin-left:auto;font-size:.75rem;padding:4px 8px;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text)">
-      <option value="populer">Popüler</option>
-      <option value="az">A-Z</option>
-      <option value="ucuz">En ucuz</option>
-      <option value="pahali">En pahalı</option>
-    </select>
+    <div id="catSiralamaWrap" class="siralama-wrap">
+      <button id="catSiralamaBtn" class="siralama-btn" aria-haspopup="listbox" aria-expanded="false">
+        <span class="siralama-label">Sıralama: <strong>Popüler</strong></span>
+        <svg class="lc-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </button>
+      <div id="catSiralamaPanel" class="siralama-panel panel-hidden" role="listbox">
+        <div class="siralama-option active" data-value="populer" role="option"><span>Popüler</span><svg class="lc-icon lc-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+        <div class="siralama-option" data-value="birimfiyat" role="option"><span>Birim Fiyat (En Ucuz)</span><svg class="lc-icon lc-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+        <div class="siralama-option" data-value="fiyatasc" role="option"><span>Fiyat (Düşük → Yüksek)</span><svg class="lc-icon lc-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+        <div class="siralama-option" data-value="fiyatdesc" role="option"><span>Fiyat (Yüksek → Düşük)</span><svg class="lc-icon lc-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+        <div class="siralama-option" data-value="az" role="option"><span>A-Z</span><svg class="lc-icon lc-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+        <div class="siralama-option" data-value="za" role="option"><span>Z-A</span><svg class="lc-icon lc-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+      </div>
+    </div>
   </div>
 
   <div class="product-list" id="productList"></div>
@@ -2936,8 +2983,79 @@ function popScore(ad, slug) {
 }
 function setSiralama(deger) {
   window._catSiralama = deger;
+  // Dropdown UI guncelle
+  var btn = document.getElementById('catSiralamaBtn');
+  var panel = document.getElementById('catSiralamaPanel');
+  if (btn && panel) {
+    var labelMap = {
+      'populer': 'Popüler',
+      'birimfiyat': 'Birim Fiyat (En Ucuz)',
+      'fiyatasc': 'Fiyat (Düşük → Yüksek)',
+      'fiyatdesc': 'Fiyat (Yüksek → Düşük)',
+      'az': 'A-Z',
+      'za': 'Z-A'
+    };
+    btn.querySelector('.siralama-label').innerHTML = 'Sıralama: <strong>' + (labelMap[deger] || deger) + '</strong>';
+    panel.querySelectorAll('.siralama-option').forEach(function(o) {
+      o.classList.toggle('active', o.dataset.value === deger);
+    });
+    panel.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+  }
   uygulaCatFiltre();
 }
+
+function _acSiralamaPanel() {
+  var panel = document.getElementById('catSiralamaPanel');
+  var btn = document.getElementById('catSiralamaBtn');
+  if (!panel || !btn) return;
+  panel.classList.remove('panel-hidden');
+  requestAnimationFrame(function() {
+    requestAnimationFrame(function() {
+      panel.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    });
+  });
+}
+
+function _kapatSiralamaPanel() {
+  var panel = document.getElementById('catSiralamaPanel');
+  var btn = document.getElementById('catSiralamaBtn');
+  if (!panel || !btn) return;
+  panel.classList.remove('open');
+  btn.setAttribute('aria-expanded', 'false');
+  setTimeout(function() { panel.classList.add('panel-hidden'); }, 160);
+}
+
+function _siralamaDisariTikla(e) {
+  var wrap = document.getElementById('catSiralamaWrap');
+  if (!wrap || !wrap.contains(e.target)) _kapatSiralamaPanel();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  var btn = document.getElementById('catSiralamaBtn');
+  if (btn) btn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    var panel = document.getElementById('catSiralamaPanel');
+    if (panel.classList.contains('open')) _kapatSiralamaPanel();
+    else _acSiralamaPanel();
+  });
+
+  document.addEventListener('click', _siralamaDisariTikla);
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') _kapatSiralamaPanel();
+  });
+
+  var panel = document.getElementById('catSiralamaPanel');
+  if (panel) {
+    panel.querySelectorAll('.siralama-option').forEach(function(opt) {
+      opt.addEventListener('click', function(e) {
+        e.stopPropagation();
+        setSiralama(this.dataset.value);
+      });
+    });
+  }
+});
 
 function resetCatFilters() {
   if (typeof setMarketFilter === 'function') setMarketFilter('all');
@@ -2982,19 +3100,32 @@ function uygulaCatFiltre() {
   });
 
   const sir = window._catSiralama || 'populer';
-  if (sir === 'ucuz') {
-    filtreliler = filtreliler.slice().sort((a,b) => (a.en_dusuk_fiyat ?? Infinity) - (b.en_dusuk_fiyat ?? Infinity));
-  } else if (sir === 'pahali') {
-    filtreliler = filtreliler.slice().sort((a,b) => (b.en_dusuk_fiyat ?? -Infinity) - (a.en_dusuk_fiyat ?? -Infinity));
+  if (sir === 'birimfiyat') {
+    filtreliler = filtreliler.slice().sort(function(a,b) {
+      var ba = birimFiyatHesapla(a);
+      var bb = birimFiyatHesapla(b);
+      var va = ba ? ba.deger : Infinity;
+      var vb = bb ? bb.deger : Infinity;
+      if (va === Infinity && vb === Infinity) return 0;
+      if (va === Infinity) return 1;
+      if (vb === Infinity) return -1;
+      return va - vb;
+    });
+  } else if (sir === 'fiyatasc') {
+    filtreliler = filtreliler.slice().sort(function(a,b) { return (a.en_dusuk_fiyat ?? Infinity) - (b.en_dusuk_fiyat ?? Infinity); });
+  } else if (sir === 'fiyatdesc') {
+    filtreliler = filtreliler.slice().sort(function(a,b) { return (b.en_dusuk_fiyat ?? -Infinity) - (a.en_dusuk_fiyat ?? -Infinity); });
   } else if (sir === 'az') {
-    filtreliler = filtreliler.slice().sort((a,b) => (a.ad||'').localeCompare(b.ad||'', 'tr'));
+    filtreliler = filtreliler.slice().sort(function(a,b) { return (a.ad||'').localeCompare(b.ad||'','tr'); });
+  } else if (sir === 'za') {
+    filtreliler = filtreliler.slice().sort(function(a,b) { return (b.ad||'').localeCompare(a.ad||'','tr'); });
   } else {
-    filtreliler = filtreliler.slice().sort((a,b) => {
-      const sa = popScore(a.ad, currentKategori);
-      const sb = popScore(b.ad, currentKategori);
+    filtreliler = filtreliler.slice().sort(function(a,b) {
+      var sa = popScore(a.ad, currentKategori);
+      var sb = popScore(b.ad, currentKategori);
       if (sa !== sb) return sa - sb;
-      const ma = (a.market_fiyatlari || []).length;
-      const mb = (b.market_fiyatlari || []).length;
+      var ma = (a.market_fiyatlari || []).length;
+      var mb = (b.market_fiyatlari || []).length;
       if (ma !== mb) return mb - ma;
       return (a.en_dusuk_fiyat ?? 99999) - (b.en_dusuk_fiyat ?? 99999);
     });
