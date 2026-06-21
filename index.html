@@ -3052,6 +3052,7 @@ document.addEventListener('DOMContentLoaded', function() {
       opt.addEventListener('click', function(e) {
         e.stopPropagation();
         setSiralama(this.dataset.value);
+        _kapatSiralamaPanel();
       });
     });
   }
