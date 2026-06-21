@@ -434,7 +434,7 @@
       transition: all 0.2s ease;
     }
     .btn-compare:hover { background: var(--primary-light); }
-
+    .lc-share { width: 16px; height: 16px; stroke: #fff; }
     /* ── KARŞILAŞTIRMA ── */
     .compare-wrap { padding: 12px 14px 20px; }
     .cmp-sec-label {
@@ -1392,7 +1392,7 @@
   <div class="search-wrap">
     <div class="search-box">
       <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <input id="search" type="text" placeholder="Tüm kategorilerde ara… örn. domates" autocomplete="off">
+       <input id="search" type="text" placeholder="Ürün ara..." autocomplete="off">
     </div>
   </div>
 
@@ -1800,13 +1800,28 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') { e.preventDefault(); modalKapat(); }
 });
 
+function _sablonDisplayAd(ad) {
+  const SISTEM_ADLAR = {
+    'TEKRAR_HAFTALIK': 'Haftalık Temel',
+    'KAHVALTI_SETI': 'Kahvaltı Seti',
+    'OGRUNCULER_İCİN': 'Öğrenciler İçin',
+    'DIYET': 'Diyet Listesi',
+    'RAMAZAN': 'Ramazan Koruması'
+  };
+  if (SISTEM_ADLAR[ad]) return SISTEM_ADLAR[ad];
+  if (ad && ad.includes('_') && ad === ad.toUpperCase() && ad.length > 3) {
+    return ad.replace(/_/g, ' ').replace(/\b\w/g, function(c){return c.toUpperCase();});
+  }
+  return ad;
+}
+
 function renderSablonBar() {
   const bar = document.getElementById('sablonBar');
   if (!bar) return;
   let html = '<button class="sablon-chip add" onclick="sablonKaydetUI()">+ Şablon kaydet</button>';
   sablonlar.forEach(s => {
     const sid = s.id.replace(/'/g, "\\'");
-    const adSafe = (s.ad || 'Şablon').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+    const adSafe = (_sablonDisplayAd(s.ad) || 'Şablon').replace(/</g,'&lt;').replace(/"/g,'&quot;');
     html += '<span class="sablon-chip" '
          + 'onclick="sablonYukleUI(\'' + sid + '\')" '
          + 'oncontextmenu="event.preventDefault();sablonDuzenleUI(\'' + sid + '\');return false;" '
@@ -2516,7 +2531,8 @@ const _LUCIDE_PATHS = {
   'shopping-cart': '<circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>',
   'search-x': '<path d="m13.5 8-4 4"/><path d="m17.5 8-4 4"/><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>',
   'filter-x': '<path d="M13.5 8H11V6.5L4.5 13l6.5 6.5V18h2.5l5-5-5-5Z"/><path d="m18 12 4 4"/><path d="m22 12-4 4"/>',
-  'zap': '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>'
+  'zap': '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>',
+  'share-2': '<path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/>'
 };
 function lcIcon(name, klass) {
   const path = _LUCIDE_PATHS[name];
@@ -3559,7 +3575,7 @@ function renderSepet() {
   }).join('');
   el.innerHTML = `<div class="cart-list">${items}</div>
     <button class="btn-compare" onclick="karsilastir()">Marketleri Karşılaştır →</button>
-    <button class="btn-compare" onclick="paylasSepet()" style="background:#25D366;margin-top:4px">📤 Listeyi Paylaş</button>
+    <button class="btn-compare" onclick="paylasSepet()" style="background:#25D366;margin-top:4px;display:flex;align-items:center;justify-content:center;gap:6px"><svg class="lc-share" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg> Listeyi Paylaş</button>
     <div id="compareOut"></div>`;
 }
 
