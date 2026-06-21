@@ -1576,7 +1576,7 @@
   <div class="profil-section">
     <div class="profil-section-title">Hızlı Erişim</div>
     <div class="profil-item" onclick="goSepet()">
-      <div class="profil-item-icon" style="background:#DCFCE7">${lcIcon('shopping-cart')}</div>
+      <div class="profil-item-icon" style="background:#DCFCE7" data-lc="shopping-cart">🛒</div>
       <div class="profil-item-body">
         <div class="profil-item-title">Listem</div>
         <div class="profil-item-sub" id="profilSepetOzet">Liste boş</div>
@@ -1584,7 +1584,7 @@
       <div class="profil-item-chevron">›</div>
     </div>
     <div class="profil-item" onclick="openHalScreen()">
-      <div class="profil-item-icon" style="background:#FEF3C7">${lcIcon('building-2')}</div>
+      <div class="profil-item-icon" style="background:#FEF3C7" data-lc="building-2">🏭</div>
       <div class="profil-item-body">
         <div class="profil-item-title">Hal Fiyatları</div>
         <div class="profil-item-sub">Türkiye geneli toptan hal fiyatları</div>
@@ -1592,7 +1592,7 @@
       <div class="profil-item-chevron">›</div>
     </div>
     <div class="profil-item" onclick="goFirsatlar()">
-      <div class="profil-item-icon" style="background:#EDE9FE">${lcIcon('zap')}</div>
+      <div class="profil-item-icon" style="background:#EDE9FE" data-lc="zap">⚡</div>
       <div class="profil-item-body">
         <div class="profil-item-title">Fırsatlar</div>
         <div class="profil-item-sub">En ucuz ürünler ve tasarruf fırsatları</div>
@@ -1611,21 +1611,21 @@
   <div class="profil-section">
     <div class="profil-section-title">Uygulama Hakkında</div>
     <div class="profil-item">
-      <div class="profil-item-icon" style="background:#DBEAFE">${lcIcon('database')}</div>
+      <div class="profil-item-icon" style="background:#DBEAFE" data-lc="database">📊</div>
       <div class="profil-item-body">
         <div class="profil-item-title">Veri Kaynakları</div>
         <div class="profil-item-sub">marketfiyati.org.tr · hal.gov.tr</div>
       </div>
     </div>
     <div class="profil-item">
-      <div class="profil-item-icon" style="background:#FEE2E2">${lcIcon('refresh-cw')}</div>
+      <div class="profil-item-icon" style="background:#FEE2E2" data-lc="refresh-cw">🔄</div>
       <div class="profil-item-body">
         <div class="profil-item-title">Otomatik Güncelleme</div>
         <div class="profil-item-sub" id="profilSonGuncelleme">Her gece 03:00'da</div>
       </div>
     </div>
     <div class="profil-item">
-      <div class="profil-item-icon" style="background:#DCFCE7">${lcIcon('info')}</div>
+      <div class="profil-item-icon" style="background:#DCFCE7" data-lc="info">🌿</div>
       <div class="profil-item-body">
         <div class="profil-item-title">Pazar Uygulaması</div>
         <div class="profil-item-sub">v1.0 · Marketteki gizli zamları gör</div>
@@ -4345,6 +4345,14 @@ if (window.matchMedia) {
     }, true);
     })();
   document.addEventListener('DOMContentLoaded', uygulaKullaniciAdi);
+
+function _injectProfilIkonlari() {
+  document.querySelectorAll('.profil-item-icon[data-lc]').forEach(function(el) {
+    var name = el.getAttribute('data-lc');
+    if (name) el.innerHTML = lcIcon(name);
+  });
+}
+document.addEventListener('DOMContentLoaded', _injectProfilIkonlari);
 
 function _injectStripIkonlari() {
   const t1 = document.querySelector('#home-tuzaklar .home-strip-title');
