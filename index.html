@@ -3010,10 +3010,10 @@ function _acSiralamaPanel() {
   var btn = document.getElementById('catSiralamaBtn');
   if (!panel || !btn) return;
   panel.classList.remove('panel-hidden');
+  btn.setAttribute('aria-expanded', 'true');
   requestAnimationFrame(function() {
     requestAnimationFrame(function() {
       panel.classList.add('open');
-      btn.setAttribute('aria-expanded', 'true');
     });
   });
 }
@@ -3104,6 +3104,10 @@ function uygulaCatFiltre() {
     filtreliler = filtreliler.slice().sort(function(a,b) {
       var ba = birimFiyatHesapla(a);
       var bb = birimFiyatHesapla(b);
+      var birimOncelik = {kg:1, L:1, adet:2};
+      var ga = ba ? (birimOncelik[ba.birim] || 3) : 4;
+      var gb = bb ? (birimOncelik[bb.birim] || 3) : 4;
+      if (ga !== gb) return ga - gb;
       var va = ba ? ba.deger : Infinity;
       var vb = bb ? bb.deger : Infinity;
       if (va === Infinity && vb === Infinity) return 0;
