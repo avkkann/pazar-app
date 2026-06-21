@@ -646,7 +646,7 @@
 .hal-card-price { font-size: .95rem; font-weight: 800; color: #D97706; }
 
 /* ── FIRSATLAR ── */
-.screen-firsatlar-header { background: linear-gradient(135deg,#0E4938 0%,#1D9E75 100%); padding: 14px 16px; display: flex; align-items: center; gap: 12px; position: sticky; top: 0; z-index: 50; box-shadow: 0 2px 12px rgba(124,58,237,.25); }
+.screen-firsatlar-header { background: linear-gradient(135deg,#0E4938 0%,#1D9E75 100%); padding: 14px 16px; display: flex; align-items: center; gap: 12px; position: sticky; top: 0; z-index: 50;     box-shadow: 0 2px 12px rgba(14,73,56,.25); }
 .screen-firsatlar-header h2 { font-size: 1rem; font-weight: 700; color: #fff; }
 .firsat-tabs { display: flex; gap: 0; background: var(--card-bg); border-bottom: 1px solid var(--border); padding: 0 14px; overflow-x: auto; scrollbar-width: none; position: sticky; top: 53px; z-index: 40; }
 .firsat-tabs::-webkit-scrollbar { display: none; }
@@ -752,6 +752,7 @@
       color: var(--text-muted); font-size: .88rem; line-height: 1.6; font-weight: 500;
     }
     .state-msg .icon { font-size: 2.8rem; display: block; margin-bottom: 12px; }
+    .state-msg .icon svg { width: 44px; height: 44px; }
 
     /* ── ALT NAV ── */
     .bottom-nav {
@@ -3337,15 +3338,15 @@ async function marketfiyatiCanliAra() {
   const out = document.getElementById('mf-results');
   btn.disabled = true;
   btn.innerText = 'Aranıyor...';
-  out.innerHTML = `<div class="mf-results-title">📡 marketfiyati.org.tr'den canlı sonuçlar</div><div class="mf-results-empty">Aranıyor: <b>${q}</b></div>`;
+  out.innerHTML = `<div class="mf-results-title">marketfiyati.org.tr'den canlı sonuçlar</div><div class="mf-results-empty">Aranıyor: <b>${q}</b></div>`;
   try {
     const data = await marketfiyatiAra(q);
     if (!data) {
-      out.innerHTML = `<div class="mf-results-title">📡 marketfiyati.org.tr'den canlı sonuçlar</div><div class="mf-results-empty">❌ Şu an ulaşılamıyor. Tekrar deneyin.</div>`;
+      out.innerHTML = `<div class="mf-results-title">marketfiyati.org.tr'den canlı sonuçlar</div><div class="mf-results-empty">❌ Şu an ulaşılamıyor. Tekrar deneyin.</div>`;
       return;
     }
     if (!Array.isArray(data.content) || data.content.length === 0) {
-      out.innerHTML = `<div class="mf-results-title">📡 marketfiyati.org.tr'den canlı sonuçlar</div><div class="mf-results-empty">Canlı aramada sonuç bulunamadı.</div>`;
+      out.innerHTML = `<div class="mf-results-title">marketfiyati.org.tr'den canlı sonuçlar</div><div class="mf-results-empty">Canlı aramada sonuç bulunamadı.</div>`;
       return;
     }
     _mfLastData = data.content;
@@ -3359,7 +3360,7 @@ async function marketfiyatiCanliAra() {
 function mfRenderResults(list) {
   const out = document.getElementById('mf-results');
   if (!list.length) {
-    out.innerHTML = `<div class="mf-results-title">📡 marketfiyati.org.tr'den canlı sonuçlar</div><div class="mf-results-empty">Canlı aramada sonuç bulunamadı.</div>`;
+    out.innerHTML = `<div class="mf-results-title">marketfiyati.org.tr'den canlı sonuçlar</div><div class="mf-results-empty">Canlı aramada sonuç bulunamadı.</div>`;
     return;
   }
   const rows = list.map((it, idx) => {
@@ -3388,7 +3389,7 @@ function mfRenderResults(list) {
       </div>
     </div>`;
   }).join('');
-  out.innerHTML = `<div class="mf-results-title">📡 marketfiyati.org.tr'den canlı sonuçlar</div>${rows}<div class="mf-note">Veri marketfiyati.org.tr'den · canlı, kaydedilmez</div>`;
+  out.innerHTML = `<div class="mf-results-title">marketfiyati.org.tr'den canlı sonuçlar</div>${rows}<div class="mf-note">Veri marketfiyati.org.tr'den · canlı, kaydedilmez</div>`;
 }
 
 function mfSheetAc(idx) {
@@ -3866,7 +3867,7 @@ function openHalScreen() {
 function renderHalScreen() {
   const container = document.getElementById('halContent');
   if (!window.halVerisi) {
-    container.innerHTML = '<div class="state-msg"><span class="icon">🏭</span>Hal verisi yükleniyor...</div>';
+    container.innerHTML = '<div class="state-msg"><span class="icon">' + lcIcon('building-2') + '</span>Hal verisi yükleniyor...</div>';
     return;
   }
   const data = window.halVerisi;
@@ -3885,7 +3886,7 @@ function renderHalScreen() {
   const halRenkler = { sebze: '#E8F5E9', meyve: '#FFF3E0' };
   const products = (data.urunler || []).slice().sort((a, b) => a.ad.localeCompare(b.ad, 'tr'));
   if (!products.length) {
-    container.innerHTML = tarihDisplay + '<div class="state-msg"><span class="icon">🏭</span>Hal verisi bulunamadı.</div>';
+    container.innerHTML = tarihDisplay + '<div class="state-msg"><span class="icon">' + lcIcon('building-2') + '</span>Hal verisi bulunamadı.</div>';
     return;
   }
   const filtersHtml = `<div style="padding:8px 14px;display:flex;gap:8px">
@@ -4081,10 +4082,10 @@ function renderFirsatHal(container, tumUrunler) {
     });
     karsilastirmalar.sort(function(a,b){return b.tasarruf-a.tasarruf;});
     if (!karsilastirmalar.length) {
-      container.innerHTML = '<div class="firsat-loading">🏭 Şu an hal daha ucuz olan ürün bulunamadı.</div>';
+      container.innerHTML = '<div class="firsat-loading">Şu an hal daha ucuz olan ürün bulunamadı.</div>';
       return;
     }
-    let html = '<div class="firsat-section"><div class="firsat-section-title">🏭 Marketten Değil Halden Al — Tasarruf Et</div>';
+    let html = '<div class="firsat-section"><div class="firsat-section-title">' + lcIcon('building-2') + ' Marketten Değil Halden Al — Tasarruf Et</div>';
     karsilastirmalar.slice(0,20).forEach(function(item) {
       const altText = 'Hal: '+tl(item.hal.fiyat)+'/kg · Market: '+tl(item.marketKg)+'/kg';
       html += _firsatKartHtml(item.u, tl(item.tasarruf)+' ucuz', 'firsat-badge-hal', altText);
@@ -4114,7 +4115,7 @@ function renderFirsatTasarruf(container, tumUrunler) {
     </div>`;
     return;
   }
-  let html = '<div class="firsat-section"><div class="firsat-section-title">💜 Markete Göre Fiyat Değişiyor — Ucuzunu Bul</div>';
+    let html = '<div class="firsat-section"><div class="firsat-section-title">' + lcIcon('heart') + ' Markete Göre Fiyat Değişiyor — Ucuzunu Bul</div>';
   firsatlar.slice(0,30).forEach(function(item) {
     const enUcuz = (item.u.market_fiyatlari||[]).slice().sort(function(a,b){return a.fiyat-b.fiyat;})[0];
     const enPahali = (item.u.market_fiyatlari||[]).slice().sort(function(a,b){return b.fiyat-a.fiyat;})[0];
