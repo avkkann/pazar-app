@@ -115,6 +115,8 @@
       position: sticky; top: 0; z-index: 50;
       box-shadow: 0 2px 12px rgba(15,81,50,.25);
     }
+    /* .header-logo — PA/ZAR placeholder icin circular stil, gercek logo ile kullanilmayacak */
+    /*
     .header-logo {
       width: 44px; height: 44px; border-radius: 50%;
       background: transparent;
@@ -122,8 +124,16 @@
       flex-shrink: 0; overflow: hidden;
       box-shadow: 0 2px 8px rgba(0,0,0,.15);
     }
+    */
+    .header-logo {
+      width: 44px; height: 44px;
+      border-radius: 11px;
+      background: transparent;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; overflow: hidden;
+    }
     .header-logo img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
+      width: 100%; height: 100%; object-fit: contain; display: block;
     }
     .header-text h1 {
       font-family: 'Inter', sans-serif; font-size: 1.4rem; font-weight: 800;
@@ -1393,7 +1403,7 @@
 <div id="screen-home" class="screen">
 
   <header class="header">
-    <div class="header-logo"><img src="./static/icon-192.png" alt="Pazar logo"></div>
+    <div class="header-logo"><img src="./static/icon-192.png" alt="Pazar" width="44" height="44" loading="eager" decoding="async"></div>
     <div class="header-text">
       <h1>Pazar</h1>
       <p>Marketteki gizli zamları gör</p>
