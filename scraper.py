@@ -10,7 +10,7 @@ import requests
 import urllib3
 import concurrent.futures
 import re
-from datetime import datetime
+from datetime import datetime, timedelta
 from urllib.parse import quote
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -499,7 +499,6 @@ def scrape():
 def gecmis_kaydet():
     """Her ürün × market için fiyat değiştiyse geçmiş_fiyatlar.json'a kayıt ekler."""
     print("\n--- Gecmis fiyat kaydi ---")
-from datetime import datetime, timedelta
     bugun = datetime.now().strftime("%Y-%m-%d")
     gecmis_dosya = os.path.join(DATA_DIR, "gecmis_fiyatlar.json")
 
