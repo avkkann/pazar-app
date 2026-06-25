@@ -62,7 +62,8 @@
 
     /* ═══ Cabinet Grotesk display font ═══ */
     .header-text h1,
-    .header-sub h2,
+    .app-header--sub .hdr-left h1,
+    /* .header-sub h2, */
     .home-strip-title,
     .detay-name,
     .detay-mkt-price,
@@ -73,7 +74,8 @@
     }
 
     .header-text h1 { font-weight: 800 !important; }
-    .header-sub h2,
+    .app-header--sub .hdr-left h1,
+    /* .header-sub h2, */
     .home-strip-title,
     .detay-name,
     .detay-mkt-price,
@@ -132,6 +134,7 @@
     }
     .header-text p { font-size: .68rem; color: rgba(255,255,255,.75); margin-top: 3px; font-weight: 500; }
 
+    /*
     .header-sub {
       background: linear-gradient(135deg, #0E4938 0%, #1D9E75 100%);
       padding: 14px 16px;
@@ -141,6 +144,33 @@
     }
     .header-sub h2 {
       font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; color: #fff;
+    }
+    */
+    .app-header--sub {
+      background: linear-gradient(135deg, #0E4938 0%, #1D9E75 100%);
+      padding: 14px 16px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 50;
+      box-shadow: 0 2px 12px rgba(15,81,50,.25);
+    }
+    .hdr-left { display: flex; align-items: center; gap: 12px; }
+    .hdr-left h1 {
+      font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; color: #fff;
+    }
+    .hdr-right { display: flex; align-items: center; }
+    .hdr-logo-mini {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      overflow: hidden;
+      object-fit: contain;
+    }
+    .hdr-tag {
+      background: #E8DCC4;
+      color: #0F4F3E;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 2px 8px;
+      border-radius: 999px;
     }
     .back-btn {
       width: 36px; height: 36px; flex-shrink: 0;
@@ -623,6 +653,7 @@
 .hal-section-arrow { width: 20px; height: 20px; stroke: rgba(255,255,255,.7); fill: none; stroke-width: 2.5; }
 
 /* ── HAL HEADER ── */
+/*
 .header-hal {
   background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
   padding: 14px 16px; display: flex; align-items: center; gap: 12px;
@@ -630,6 +661,7 @@
   box-shadow: 0 2px 12px rgba(245,158,11,.25);
 }
 .header-hal h2 { font-size: 1rem; font-weight: 700; color: #fff; }
+*/
 
 /* ── HAL GRID ── */
 .hal-grid { padding: 8px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
@@ -647,8 +679,10 @@
 .hal-card-price { font-size: .95rem; font-weight: 800; color: #D97706; }
 
 /* ── FIRSATLAR ── */
+/*
 .screen-firsatlar-header { background: linear-gradient(135deg,#0E4938 0%,#1D9E75 100%); padding: 14px 16px; display: flex; align-items: center; gap: 12px; position: sticky; top: 0; z-index: 50;     box-shadow: 0 2px 12px rgba(14,73,56,.25); }
 .screen-firsatlar-header h2 { font-size: 1rem; font-weight: 700; color: #fff; }
+*/
 .firsat-tabs { display: flex; gap: 0; background: var(--card-bg); border-bottom: 1px solid var(--border); padding: 0 14px; overflow-x: auto; scrollbar-width: none; position: sticky; top: 53px; z-index: 40; }
 .firsat-tabs::-webkit-scrollbar { display: none; }
 .firsat-tab { display: inline-flex; align-items: center; gap: 6px; flex-shrink: 0; padding: 12px 14px; font-size: .78rem; font-weight: 600; color: var(--text-muted); border-bottom: 2.5px solid transparent; cursor: pointer; white-space: nowrap; background: none; border-top: none; border-left: none; border-right: none; font-family: inherit; }
@@ -682,7 +716,10 @@
 .firsat-ozet-lbl { font-size: .65rem; color: var(--text-muted); margin-top: 1px; }
 
 /* ── PROFİL ── */
+/*
 .profil-header { background: linear-gradient(135deg,#0E4938 0%,#065F46 100%); padding: 36px 20px 28px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+*/
+.profil-hero { background: linear-gradient(135deg,#0E4938 0%,#1D9E75 100%); padding: 24px 20px 28px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
 .profil-avatar { width: 76px; height: 76px; border-radius: 50%; background: rgba(255,255,255,.15); display: flex; align-items: center; justify-content: center; font-size: 2.2rem; border: 3px solid rgba(255,255,255,.35); }
 .profil-isim { font-size: 1.1rem; font-weight: 700; color: #fff; }
 .profil-isim { cursor: pointer; }
@@ -1451,11 +1488,16 @@
 <!-- ══ EKRAN 2: KATEGORİ ══ -->
 <div id="screen-cat" class="screen">
 
-  <header class="header-sub">
-    <button class="back-btn" onclick="showScreen('screen-home', 'back')">
-      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-    </button>
-    <h2 id="cat-title">Kategori</h2>
+  <header class="app-header app-header--sub">
+    <div class="hdr-left">
+      <button class="back-btn" onclick="showScreen('screen-home', 'back')">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <h1 id="cat-title">Kategori</h1>
+    </div>
+    <div class="hdr-right">
+      <img src="./static/icon-192.png" alt="Pazar" class="hdr-logo-mini">
+    </div>
   </header>
 
   <div class="cat-search-wrap">
@@ -1500,11 +1542,16 @@
 <!-- ══ EKRAN 3: SEPET ══ -->
 <div id="screen-sepet" class="screen">
 
-  <header class="header-sub">
-    <button class="back-btn" onclick="showScreen('screen-home', 'back')">
-      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-    </button>
-    <h2>Listem</h2>
+  <header class="app-header app-header--sub">
+    <div class="hdr-left">
+      <button class="back-btn" onclick="showScreen('screen-home', 'back')">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <h1>Listem</h1>
+    </div>
+    <div class="hdr-right">
+      <img src="./static/icon-192.png" alt="Pazar" class="hdr-logo-mini">
+    </div>
   </header>
 
   <div id="sablonBar" class="sablon-bar"></div>
@@ -1517,32 +1564,48 @@
 
 <!-- ══ EKRAN 4: DETAY ══ -->
 <div id="screen-detay" class="screen">
-  <header class="header-sub">
-    <button class="back-btn" onclick="goBack()">
-      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-    </button>
-    <h2>Ürün Detayı</h2>
+  <header class="app-header app-header--sub">
+    <div class="hdr-left">
+      <button class="back-btn" onclick="goBack()">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <h1>Ürün Detayı</h1>
+    </div>
+    <div class="hdr-right">
+      <img src="./static/icon-192.png" alt="Pazar" class="hdr-logo-mini">
+    </div>
   </header>
   <div id="detayContent"></div>
 </div>
 
 <!-- ══ EKRAN 5: HAL FİYATLARI ══ -->
 <div id="screen-hal" class="screen">
-  <header class="header-hal">
-    <button class="back-btn" onclick="showScreen('screen-home', 'back')">
-      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-    </button>
-    <h2>Hal Fiyatları</h2>
+  <header class="app-header app-header--sub">
+    <div class="hdr-left">
+      <button class="back-btn" onclick="showScreen('screen-home', 'back')">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <h1>Hal Fiyatları</h1>
+      <span class="hdr-tag">Toptan</span>
+    </div>
+    <div class="hdr-right">
+      <img src="./static/icon-192.png" alt="Pazar" class="hdr-logo-mini">
+    </div>
   </header>
   <div id="halContent"></div>
 </div>
 
 <div id="screen-firsatlar" class="screen">
-  <header class="screen-firsatlar-header">
-    <button class="back-btn" onclick="showScreen('screen-home', 'back')">
-      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
-    </button>
-    <h2>Fırsatlar</h2>
+  <header class="app-header app-header--sub">
+    <div class="hdr-left">
+      <button class="back-btn" onclick="showScreen('screen-home', 'back')">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <h1>Fırsatlar</h1>
+    </div>
+    <div class="hdr-right">
+      <img src="./static/icon-192.png" alt="Pazar" class="hdr-logo-mini">
+    </div>
   </header>
   <div class="firsat-tabs">
     <button class="firsat-tab active" onclick="firsatTab('ucuz',this)">💰 En Ucuz</button>
@@ -1556,7 +1619,15 @@
 </div>
 
 <div id="screen-profil" class="screen">
-  <div class="profil-header">
+  <header class="app-header app-header--sub">
+    <div class="hdr-left">
+      <h1>Profil</h1>
+    </div>
+    <div class="hdr-right">
+      <img src="./static/icon-192.png" alt="Pazar" class="hdr-logo-mini">
+    </div>
+  </header>
+  <div class="profil-hero">
     <div class="profil-avatar" id="profilAvatar">🛒</div>
     <div class="profil-isim" id="profilIsim" onclick="duzenleKullaniciAdi()">Pazar Kullanıcısı <span class="profil-isim-edit">✏️</span></div>
     <div class="profil-alt" id="profilAlt">Fiyatları takip ediyorsun</div>
