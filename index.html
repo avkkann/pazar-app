@@ -569,6 +569,19 @@
     .detay-mkt-row.best { background: #F0FDF4; }
     .detay-mkt-store { flex: 1; font-size: .72rem; color: var(--text-muted); }
      .detay-mkt-price { font-size: 30px; font-weight: 700; color: var(--text); flex-shrink: 0; }
+    /* ═══ Fiyat Geçmişi (fg-*) ═══ */
+    .fg-wrap { padding: 8px 0 4px; }
+    .fg-svg { width: 100%; height: auto; display: block; }
+    .fg-svg text { font-family: 'Inter', sans-serif; fill: var(--text-muted); }
+    .fg-svg .fg-axis-label { font-size: 9px; }
+    .fg-svg .fg-line { fill: none; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+    .fg-svg .fg-point { stroke-width: 0; }
+    .fg-legend { display: flex; flex-wrap: wrap; gap: 10px 14px; padding: 6px 14px 0; }
+    .fg-leg-item { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text-muted); font-weight: 500; }
+    .fg-leg-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .fg-ozet { padding: 10px 14px 4px; font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+    .fg-ozet b { color: var(--text); font-weight: 700; }
+    .fg-empty { padding: 18px 14px; font-size: 12px; color: var(--text-muted); font-style: italic; text-align: center; }
     .detay-mkt-row.best .detay-mkt-price { color: #059669; }
     .detay-mkt-row.worst .detay-mkt-price { color: #DC2626; font-weight: 600; }
 .detay-mkt-row.worst .detay-mkt-badge { background:#FEE2E2; color:#991B1B; font-size:10px; font-weight:600; padding:2px 6px; border-radius:6px; margin-left:6px; }
@@ -2178,6 +2191,7 @@ function openDetay(urunId) {
         ${mktRows || '<div style="padding:12px 14px;font-size:.82rem;color:var(--text-muted)">Market verisi yok</div>'}
       </div>
     </div>
+    ${fiyatGecmisiBlogu(u)}
     ${btnHtml}
     ${(() => {
   const digerler = digerPaketleriBul(u);
@@ -2602,6 +2616,148 @@ function indirimRozetiHesapla(urun) {
   if (dusus >= 25) return { tip: 'buyuk', yuzde: Math.round(dusus) };
   if (dusus >= 10) return { tip: 'normal', yuzde: Math.round(dusus) };
   return null;
+}
+
+// ═══ Fiyat Geçmişi: ürün detayında 30 günlük line chart bölümü ═══
+const _FG_MKT_RENK = {
+  a101: '#DC2626',
+  bim: '#7F1D1D',
+  carrefour: '#1D4ED8',
+  migros: '#E53E3E',
+  sok: '#F59E0B',
+  tarim_kredi: '#16A34A',
+};
+const _FG_MKT_AD = {
+  a101: 'A101',
+  bim: 'BİM',
+  carrefour: 'Carrefour',
+  migros: 'Migros',
+  sok: 'ŞOK',
+  tarim_kredi: 'Tarım Kredi',
+};
+const _FG_AYLAR = ['Oca','Şub','Mar','Nis','May','Haz','Tem','Ağu','Eyl','Eki','Kas','Ara'];
+
+function _fgTarihFormatla(iso) {
+  const [y, m, d] = iso.split('-');
+  return parseInt(d, 10) + ' ' + _FG_AYLAR[parseInt(m, 10) - 1];
+}
+
+function _fgGunFarki(isoA, isoB) {
+  const a = new Date(isoA + 'T00:00:00Z');
+  const b = new Date(isoB + 'T00:00:00Z');
+  return Math.round((b - a) / 86400000);
+}
+
+function fiyatGecmisiBlogu(urun) {
+  if (!urun || !urun._sid) return '';
+  if (!_gecmisCache) return '';
+  const tumKayitlar = _gecmisCache[urun._sid];
+  if (!tumKayitlar || !Array.isArray(tumKayitlar) || tumKayitlar.length === 0) {
+    return '<div class="detay-section"><div class="detay-sec-label">Fiyat Geçmişi</div><div class="fg-empty">Bu ürün için fiyat geçmişi henüz yok</div></div>';
+  }
+
+  const bugun = new Date();
+  const otuzGunOnce = new Date(bugun); otuzGunOnce.setDate(otuzGunOnce.getDate() - 30);
+  const limitIso = otuzGunOnce.toISOString().slice(0, 10);
+  const son30 = tumKayitlar.filter(k => k && k.t && k.f != null && k.m && k.t >= limitIso);
+
+  const farkliTarihler = new Set(son30.map(k => k.t));
+  if (farkliTarihler.size < 7) {
+    return '<div class="detay-section"><div class="detay-sec-label">Fiyat Geçmişi</div><div class="fg-empty">Fiyat geçmişi henüz yeterli değil · Birkaç hafta sonra görünür</div></div>';
+  }
+
+  const marketVeri = {};
+  son30.forEach(k => {
+    if (!marketVeri[k.m]) marketVeri[k.m] = {};
+    marketVeri[k.m][k.t] = k.f;
+  });
+
+  const tumFiyatlar = son30.map(k => k.f);
+  const minF = Math.min(...tumFiyatlar);
+  const maxF = Math.max(...tumFiyatlar);
+  const fPad = (maxF - minF) * 0.05 || 1;
+  const fAlt = Math.max(0, minF - fPad);
+  const fUst = maxF + fPad;
+  const tarihler = [...farkliTarihler].sort();
+  const minT = tarihler[0];
+  const maxT = tarihler[tarihler.length - 1];
+  const gunAraligi = Math.max(1, _fgGunFarki(minT, maxT));
+
+  const W = 320, H = 180;
+  const padL = 36, padR = 12, padT = 12, padB = 30;
+  const chartW = W - padL - padR;
+  const chartH = H - padT - padB;
+  const xFor = iso => padL + (_fgGunFarki(minT, iso) / gunAraligi) * chartW;
+  const yFor = f => padT + chartH - ((f - fAlt) / (fUst - fAlt)) * chartH;
+
+  const yTicks = [fAlt, (fAlt + fUst) / 2, fUst];
+  let ekseny = '';
+  yTicks.forEach(v => {
+    const y = yFor(v);
+    ekseny += `<text x="${padL - 4}" y="${y + 3}" text-anchor="end" class="fg-axis-label">${v.toFixed(1)}</text>`;
+    ekseny += `<line x1="${padL}" y1="${y}" x2="${W - padR}" y2="${y}" stroke="var(--border)" stroke-width="0.5" opacity="0.4"/>`;
+  });
+
+  const ortaTarih = tarihler[Math.floor(tarihler.length / 2)];
+  const xLabels = [
+    { t: minT, anchor: 'start' },
+    { t: ortaTarih, anchor: 'middle' },
+    { t: maxT, anchor: 'end' },
+  ];
+  let eksenX = '';
+  xLabels.forEach(xl => {
+    const x = xFor(xl.t);
+    eksenX += `<text x="${x}" y="${H - 10}" text-anchor="${xl.anchor}" class="fg-axis-label">${_fgTarihFormatla(xl.t)}</text>`;
+  });
+
+  let lineler = '';
+  let legendHTML = '';
+  Object.keys(marketVeri).forEach(m => {
+    const noktalar = Object.entries(marketVeri[m])
+      .map(([t, f]) => ({ t, f }))
+      .sort((a, b) => a.t.localeCompare(b.t));
+    if (noktalar.length === 0) return;
+    const renk = _FG_MKT_RENK[m] || '#888';
+    const ad = _FG_MKT_AD[m] || m;
+    if (noktalar.length === 1) {
+      const n = noktalar[0];
+      lineler += `<circle cx="${xFor(n.t)}" cy="${yFor(n.f)}" r="3" fill="${renk}" class="fg-point"/>`;
+    } else {
+      const d = noktalar.map((n, i) => (i === 0 ? 'M' : 'L') + xFor(n.t).toFixed(1) + ' ' + yFor(n.f).toFixed(1)).join(' ');
+      lineler += `<path d="${d}" stroke="${renk}" class="fg-line"/>`;
+      noktalar.forEach(n => {
+        lineler += `<circle cx="${xFor(n.t).toFixed(1)}" cy="${yFor(n.f).toFixed(1)}" r="2" fill="${renk}" class="fg-point"/>`;
+      });
+    }
+    legendHTML += `<span class="fg-leg-item"><span class="fg-leg-dot" style="background:${renk}"></span>${ad}</span>`;
+  });
+
+  const sirali = [...son30].sort((a, b) => a.t.localeCompare(b.t));
+  const ilkYari = sirali.slice(0, Math.ceil(sirali.length / 2));
+  const sonYari = sirali.slice(Math.floor(sirali.length / 2));
+  const ilkOrt = ilkYari.reduce((s, k) => s + k.f, 0) / ilkYari.length;
+  const sonOrt = sonYari.reduce((s, k) => s + k.f, 0) / sonYari.length;
+  const degisim = ((sonOrt - ilkOrt) / ilkOrt) * 100;
+  const yon = degisim > 1 ? 'yükseldi' : (degisim < -1 ? 'düştü' : 'sabit');
+  const enUcuz = son30.reduce((a, b) => a.f < b.f ? a : b);
+  const enPahali = son30.reduce((a, b) => a.f > b.f ? a : b);
+  const degisimText = yon === 'sabit'
+    ? `Son 30 günde fiyat <b>sabit</b>`
+    : `Son 30 günde <b>%${Math.abs(degisim).toFixed(0)} ${yon}</b>`;
+  const ozetText = `${degisimText} · En ucuz: <b>${enUcuz.f.toFixed(2).replace('.', ',')} ₺</b> (${_fgTarihFormatla(enUcuz.t)}, ${_FG_MKT_AD[enUcuz.m] || enUcuz.m}) · En pahalı: <b>${enPahali.f.toFixed(2).replace('.', ',')} ₺</b> (${_fgTarihFormatla(enPahali.t)}, ${_FG_MKT_AD[enPahali.m] || enPahali.m})`;
+
+  return `<div class="detay-section">
+    <div class="detay-sec-label">Fiyat Geçmişi</div>
+    <div class="fg-wrap">
+      <svg class="fg-svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet">
+        ${ekseny}
+        ${lineler}
+        ${eksenX}
+      </svg>
+    </div>
+    <div class="fg-legend">${legendHTML}</div>
+    <div class="fg-ozet">${ozetText}</div>
+  </div>`;
 }
 
 // Lucide SVG icon helpers — inline (kütüphane yüklemeden)
