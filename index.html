@@ -2678,15 +2678,12 @@ function fiyatGecmisiBlogu(urun) {
     return { t, m, f };
   });
 
-  // IQR-bazlı outlier tespiti
+  // Median-bazlı outlier tespiti (üst kenar): median * 1.8 üstü = outlier
+  // Alt kenar outlier'ı yok — gerçek fiyat düşüşleri her zaman bilgi
   const sortedF = temiz.map(k => k.f).sort((a, b) => a - b);
-  const qIdx = p => sortedF[Math.min(sortedF.length - 1, Math.floor(sortedF.length * p))];
-  const q1 = qIdx(0.25);
-  const q3 = qIdx(0.75);
-  const iqr = q3 - q1;
-  const lowerBound = q1 - 1.5 * iqr;
-  const upperBound = q3 + 1.5 * iqr;
-  const isOutlier = f => f < lowerBound || f > upperBound;
+  const median = sortedF[Math.floor(sortedF.length / 2)];
+  const outlierEsik = median * 1.8;
+  const isOutlier = f => f > outlierEsik;
   const outlierKayitlar = temiz.filter(k => isOutlier(k.f));
   const filtreli = temiz.filter(k => !isOutlier(k.f));
 
