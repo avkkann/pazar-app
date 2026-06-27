@@ -576,6 +576,7 @@
     .fg-svg .fg-axis-label { font-size: 9px; }
     .fg-svg .fg-band { fill: rgba(15, 81, 50, 0.12); stroke: none; }
     .fg-svg .fg-avg-line { fill: none; stroke: #0E4938; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+    .fg-svg .fg-outlier { fill: #DC2626; }
     /* Eski çoklu-çizgi stilleri — artık kullanılmıyor, fg-band + fg-avg-line ile değiştirildi
     .fg-svg .fg-line { fill: none; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
     .fg-svg .fg-point { stroke-width: 0; }
@@ -2623,7 +2624,7 @@ function indirimRozetiHesapla(urun) {
   return null;
 }
 
-// ═══ Fiyat Geçmişi: ürün detayında 30 günlük min-max bandı + ortalama çizgi ═══
+// ═══ Fiyat Geçmişi: 30 günlük min-max band + ortalama çizgi + outlier cap ═══
 const _FG_MKT_AD = {
   a101: 'A101',
   bim: 'BİM',
@@ -2635,7 +2636,6 @@ const _FG_MKT_AD = {
 const _FG_AYLAR = ['Oca','Şub','Mar','Nis','May','Haz','Tem','Ağu','Eyl','Eki','Kas','Ara'];
 
 function _fgTarihFormatla(iso) {
-  // "2026-06-12" → "12 Haz"
   const [y, m, d] = iso.split('-');
   return parseInt(d, 10) + ' ' + _FG_AYLAR[parseInt(m, 10) - 1];
 }
@@ -2658,7 +2658,7 @@ function fiyatGecmisiBlogu(urun) {
     return _fgEmptyBlock('Bu ürün için fiyat geçmişi henüz yok');
   }
 
-  // Son 30 günü filtrele
+  // Son 30 gün
   const bugun = new Date();
   const otuzGunOnce = new Date(bugun); otuzGunOnce.setDate(otuzGunOnce.getDate() - 30);
   const limitIso = otuzGunOnce.toISOString().slice(0, 10);
@@ -2670,7 +2670,7 @@ function fiyatGecmisiBlogu(urun) {
     return _fgEmptyBlock('Fiyat geçmişi henüz yeterli değil · Birkaç hafta sonra görünür');
   }
 
-  // Aynı tarih + market varsa en son kaydı al (iteration order = array order = son indeks)
+  // Aynı tarih + market varsa en son kaydı al
   const dedupe = {};
   son30.forEach(k => { dedupe[k.t + '|' + k.m] = k.f; });
   const temiz = Object.entries(dedupe).map(([key, f]) => {
@@ -2678,9 +2678,25 @@ function fiyatGecmisiBlogu(urun) {
     return { t, m, f };
   });
 
-  // Tarihe göre grupla — her gün için min, max, avg
+  // IQR-bazlı outlier tespiti
+  const sortedF = temiz.map(k => k.f).sort((a, b) => a - b);
+  const qIdx = p => sortedF[Math.min(sortedF.length - 1, Math.floor(sortedF.length * p))];
+  const q1 = qIdx(0.25);
+  const q3 = qIdx(0.75);
+  const iqr = q3 - q1;
+  const lowerBound = q1 - 1.5 * iqr;
+  const upperBound = q3 + 1.5 * iqr;
+  const isOutlier = f => f < lowerBound || f > upperBound;
+  const outlierKayitlar = temiz.filter(k => isOutlier(k.f));
+  const filtreli = temiz.filter(k => !isOutlier(k.f));
+
+  // Eğer filtreli veri çok azaldıysa (örn. tamamı outlier) fallback olarak ham veri
+  const gunlukKaynak = filtreli.length >= 5 ? filtreli : temiz;
+  const outlierAktif = filtreli.length >= 5 && outlierKayitlar.length > 0;
+
+  // Tarihe göre grupla
   const tariheGore = {};
-  temiz.forEach(k => {
+  gunlukKaynak.forEach(k => {
     if (!tariheGore[k.t]) tariheGore[k.t] = [];
     tariheGore[k.t].push(k.f);
   });
@@ -2694,26 +2710,28 @@ function fiyatGecmisiBlogu(urun) {
     };
   });
 
-  // Y ekseni sınırları (tüm fiyatlar üzerinden, padding ile)
-  const tumF = temiz.map(k => k.f);
-  const fMin = Math.min(...tumF);
-  const fMax = Math.max(...tumF);
+  // Y eksen sınırları — gunlukKaynak'tan (outlier hariç)
+  const kaynakF = gunlukKaynak.map(k => k.f);
+  const fMin = Math.min(...kaynakF);
+  const fMax = Math.max(...kaynakF);
   const fPad = (fMax - fMin) * 0.08 || 1;
   const fAlt = Math.max(0, Math.floor(fMin - fPad));
   const fUst = Math.ceil(fMax + fPad);
 
   // SVG koordinatları
   const W = 320, H = 180;
-  const padL = 38, padR = 12, padT = 12, padB = 28;
+  const padL = 38, padR = 12, padT = 14, padB = 28;
   const chartW = W - padL - padR;
   const chartH = H - padT - padB;
-  const minT = gunler[0].t;
-  const maxT = gunler[gunler.length - 1].t;
+  // X aralığı tüm tarihleri kapsar (outlier dahil), grafik horizontal scope korunsun
+  const tumTarihler = [...new Set(temiz.map(k => k.t))].sort();
+  const minT = tumTarihler[0];
+  const maxT = tumTarihler[tumTarihler.length - 1];
   const gunAraligi = Math.max(1, _fgGunFarki(minT, maxT));
   const xFor = iso => padL + (_fgGunFarki(minT, iso) / gunAraligi) * chartW;
   const yFor = f => padT + chartH - ((f - fAlt) / (fUst - fAlt)) * chartH;
 
-  // Band path: kapalı şekil — soldan sağa min, sağdan sola max, kapat
+  // Band path
   const minNok = gunler.map(g => xFor(g.t).toFixed(1) + ' ' + yFor(g.min).toFixed(1));
   const maxNok = gunler.map(g => xFor(g.t).toFixed(1) + ' ' + yFor(g.max).toFixed(1)).reverse();
   const bandPath = 'M ' + minNok.join(' L ') + ' L ' + maxNok.join(' L ') + ' Z';
@@ -2721,7 +2739,14 @@ function fiyatGecmisiBlogu(urun) {
   // Ortalama line path
   const avgPath = gunler.map((g, i) => (i === 0 ? 'M' : 'L') + ' ' + xFor(g.t).toFixed(1) + ' ' + yFor(g.avg).toFixed(1)).join(' ');
 
-  // Y ekseni 3 değer (tam sayı, yuvarlanmış)
+  // Outlier işaretleri — üst kenarda küçük kırmızı dot (X tarihte, Y=padT-3)
+  let outlierMarkers = '';
+  outlierKayitlar.forEach(k => {
+    const x = xFor(k.t);
+    outlierMarkers += '<circle cx="' + x.toFixed(1) + '" cy="' + (padT - 3) + '" r="2.5" class="fg-outlier"/>';
+  });
+
+  // Y ekseni 3 değer
   const yTicks = [fAlt, Math.round((fAlt + fUst) / 2), fUst];
   let ekseny = '';
   yTicks.forEach(v => {
@@ -2731,7 +2756,7 @@ function fiyatGecmisiBlogu(urun) {
   });
 
   // X ekseni 3 tarih
-  const ortaTarih = gunler[Math.floor(gunler.length / 2)].t;
+  const ortaTarih = tumTarihler[Math.floor(tumTarihler.length / 2)];
   const xLabels = [
     { t: minT, anchor: 'start' },
     { t: ortaTarih, anchor: 'middle' },
@@ -2743,7 +2768,7 @@ function fiyatGecmisiBlogu(urun) {
     eksenX += '<text x="' + x + '" y="' + (H - 10) + '" text-anchor="' + xl.anchor + '" class="fg-axis-label">' + _fgTarihFormatla(xl.t) + '</text>';
   });
 
-  // Özet metin: değişim + en ucuz + en pahalı
+  // Özet: %değişim filtreli üzerinden, en ucuz/pahalı TÜM veriden
   const ilkYari = gunler.slice(0, Math.ceil(gunler.length / 2));
   const sonYari = gunler.slice(Math.floor(gunler.length / 2));
   const ilkAvg = ilkYari.reduce((s, g) => s + g.avg, 0) / ilkYari.length;
@@ -2759,6 +2784,11 @@ function fiyatGecmisiBlogu(urun) {
     + ' · En ucuz: <b>' + enUcuz.f.toFixed(2).replace('.', ',') + ' ₺</b> (' + _fgTarihFormatla(enUcuz.t) + ', ' + (_FG_MKT_AD[enUcuz.m] || enUcuz.m) + ')'
     + ' · En pahalı: <b>' + enPahali.f.toFixed(2).replace('.', ',') + ' ₺</b> (' + _fgTarihFormatla(enPahali.t) + ', ' + (_FG_MKT_AD[enPahali.m] || enPahali.m) + ')';
 
+  // Altyazı: outlier varsa not düş
+  const altyaziText = outlierAktif
+    ? 'Bant: günün fiyat aralığı · Çizgi: ortalama · <span style="color:#DC2626">●</span> Olağandışı kayıt (' + outlierKayitlar.length + ')'
+    : 'Bant: günün fiyat aralığı · Çizgi: ortalama';
+
   return '<div class="detay-section">'
     + '<div class="detay-sec-label">Fiyat Geçmişi</div>'
     + '<div class="fg-wrap">'
@@ -2766,10 +2796,11 @@ function fiyatGecmisiBlogu(urun) {
     +     ekseny
     +     '<path d="' + bandPath + '" class="fg-band"/>'
     +     '<path d="' + avgPath + '" class="fg-avg-line"/>'
+    +     outlierMarkers
     +     eksenX
     +   '</svg>'
     + '</div>'
-    + '<div class="fg-altyazi">Bant: günün fiyat aralığı · Çizgi: ortalama</div>'
+    + '<div class="fg-altyazi">' + altyaziText + '</div>'
     + '<div class="fg-ozet">' + ozetText + '</div>'
     + '</div>';
 }
