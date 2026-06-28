@@ -2678,6 +2678,15 @@ function fiyatGecmisiBlogu(urun) {
     return { t, m, f };
   });
 
+  // Veri kalitesi kontrolü: P75/P25 oranı çok yüksekse (>2.5) dağılım iki cluster demek
+  // = aynı _sid'e farklı ürünler kaydedilmiş, scraper sorunu — grafik gösterme
+  const tutarlilikF = temiz.map(k => k.f).sort((a, b) => a - b);
+  const p25t = tutarlilikF[Math.floor(tutarlilikF.length * 0.25)];
+  const p75t = tutarlilikF[Math.floor(tutarlilikF.length * 0.75)];
+  if (p25t > 0 && (p75t / p25t) > 2.5) {
+    return _fgEmptyBlock('Bu üründe fiyat geçmişi henüz güvenilir değil');
+  }
+
   // Median-bazlı outlier tespiti (üst kenar): median * 1.8 üstü = outlier
   // Alt kenar outlier'ı yok — gerçek fiyat düşüşleri her zaman bilgi
   const sortedF = temiz.map(k => k.f).sort((a, b) => a - b);
