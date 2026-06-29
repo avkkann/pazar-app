@@ -2678,12 +2678,21 @@ function fiyatGecmisiBlogu(urun) {
     return { t, m, f };
   });
 
-  // Veri kalitesi kontrolü: P75/P25 oranı çok yüksekse (>2.5) dağılım iki cluster demek
-  // = aynı _sid'e farklı ürünler kaydedilmiş, scraper sorunu — grafik gösterme
+  // Veri kalitesi kontrolü: üç metrik birden — herhangi biri tetiklerse veri tutarsız
+  // P75/P25 > 2.5  → geniş bimodal dağılım (kruvasan gibi)
+  // median/P25 > 1.5 → alt cluster (küçük paket karışmış, Erikli gibi)
+  // max/median > 3.0 → extreme üst outlier (yedek savunma)
   const tutarlilikF = temiz.map(k => k.f).sort((a, b) => a - b);
   const p25t = tutarlilikF[Math.floor(tutarlilikF.length * 0.25)];
   const p75t = tutarlilikF[Math.floor(tutarlilikF.length * 0.75)];
-  if (p25t > 0 && (p75t / p25t) > 2.5) {
+  const medianT = tutarlilikF[Math.floor(tutarlilikF.length / 2)];
+  const maxT = tutarlilikF[tutarlilikF.length - 1];
+  const veriTutarsiz = p25t > 0 && medianT > 0 && (
+    (p75t / p25t) > 2.5 ||
+    (medianT / p25t) > 1.5 ||
+    (maxT / medianT) > 3.0
+  );
+  if (veriTutarsiz) {
     return _fgEmptyBlock('Bu üründe fiyat geçmişi henüz güvenilir değil');
   }
 
