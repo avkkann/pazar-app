@@ -16,3 +16,7 @@ firsat_kod.txt
 test_export.xlsx
 test_*.py
 *.test.py
+supabasepas.txt
+*.secret
+*.env
+.env*
