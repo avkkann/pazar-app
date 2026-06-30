@@ -1450,6 +1450,19 @@
 .auth-divider::before, .auth-divider::after { content: ''; flex: 1; height: 1px; background: #e5e7eb; }
 .auth-google { width: 100%; padding: 13px; background: #fff; color: #374151; border: 1.5px solid #e5e7eb; border-radius: 12px; font-family: 'Cabinet Grotesk', sans-serif !important; font-weight: 600; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
 /* === /AUTH SHEET === */
+/* === PROFIL AUTH CTA === */
+.profil-auth-cta { display: flex; gap: 10px; padding: 0 16px 16px; }
+.profil-auth-btn { flex: 1; padding: 12px 16px; border-radius: 12px; font-family: 'Cabinet Grotesk', sans-serif !important; font-weight: 700; font-size: 14px; cursor: pointer; border: 0; transition: opacity .15s; }
+.profil-auth-btn:active { opacity: 0.7; }
+.profil-auth-btn--primary { background: linear-gradient(135deg, #0F5132 0%, #0E4938 100%); color: #fff; }
+.profil-auth-btn--ghost { background: #fff; color: #0F5132; border: 1.5px solid #0F5132; }
+.profil-auth-logout { padding: 12px 16px 16px; }
+.profil-logout-btn { width: 100%; padding: 12px; background: #fff; color: #b91c1c; border: 1.5px solid #fecaca; border-radius: 12px; font-family: 'Cabinet Grotesk', sans-serif !important; font-weight: 600; font-size: 14px; cursor: pointer; }
+.profil-logout-btn:active { background: #fef2f2; }
+.profil-avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+.profil-avatar.profil-avatar--letter { background: linear-gradient(135deg, #0F5132 0%, #0E4938 100%); color: #fff; font-family: 'Cabinet Grotesk', sans-serif !important; font-weight: 700; font-size: 28px; display: flex; align-items: center; justify-content: center; }
+/* === /PROFIL AUTH CTA === */
+
 
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -1613,6 +1626,91 @@
     await window.supabaseClient.auth.signOut();
   };
   // ===== /AUTH UI =====
+</script>
+
+<script>
+  // ===== PROFIL AUTH RENDER =====
+  let pazarProfile = null;
+
+  async function loadPazarProfile() {
+    if (!window.pazarAuth?.user) { pazarProfile = null; return; }
+    try {
+      const { data, error } = await window.supabaseClient
+        .from('profiles')
+        .select('id, email, ad, avatar_url')
+        .eq('id', window.pazarAuth.user.id)
+        .single();
+      if (!error) pazarProfile = data;
+    } catch (e) { /* sessiz */ }
+  }
+
+  window.renderProfilAuth = function() {
+    const user = window.pazarAuth?.user;
+    const avatar = document.getElementById('profilAvatar');
+    const isim = document.getElementById('profilIsim');
+    const alt = document.getElementById('profilAlt');
+    const ctaEl = document.getElementById('profil-auth-cta');
+    const logoutEl = document.getElementById('profil-auth-logout');
+    if (!avatar || !isim || !alt || !ctaEl || !logoutEl) return;
+
+    if (user) {
+      // Login durumu
+      const ad = pazarProfile?.ad || user.user_metadata?.full_name || user.user_metadata?.name || (user.email ? user.email.split('@')[0] : 'Kullanıcı');
+      const avatarUrl = pazarProfile?.avatar_url || user.user_metadata?.avatar_url || user.user_metadata?.picture;
+      if (avatarUrl) {
+        avatar.classList.remove('profil-avatar--letter');
+        avatar.innerHTML = '<img src="' + avatarUrl + '" alt="" referrerpolicy="no-referrer">';
+      } else {
+        avatar.classList.add('profil-avatar--letter');
+        avatar.innerHTML = '';
+        avatar.textContent = (ad[0] || '?').toUpperCase();
+      }
+      isim.innerHTML = ad.replace(/</g, '&lt;');
+      isim.style.cursor = 'default';
+      isim.onclick = null;
+      alt.textContent = user.email || '';
+      ctaEl.style.display = 'none';
+      logoutEl.style.display = 'block';
+    } else {
+      // Misafir
+      avatar.classList.remove('profil-avatar--letter');
+      avatar.innerHTML = '';
+      avatar.textContent = '🛒';
+      isim.innerHTML = 'Pazar Kullanıcısı';
+      isim.style.cursor = 'default';
+      isim.onclick = null;
+      alt.textContent = 'Üye ol, favorilerini ve fiyat alarmlarını eşitle';
+      ctaEl.style.display = 'flex';
+      logoutEl.style.display = 'none';
+    }
+  };
+
+  window.confirmLogout = async function() {
+    if (!confirm('Çıkış yapmak istediğine emin misin?')) return;
+    await window.handleLogout();
+  };
+
+  // Auth event listeners
+  document.addEventListener('pazarAuthReady', async () => {
+    await loadPazarProfile();
+    window.renderProfilAuth();
+  });
+  document.addEventListener('pazarAuthChange', async () => {
+    await loadPazarProfile();
+    window.renderProfilAuth();
+  });
+
+  // DOM hazır olduğunda da bir kez çalıştır (pazarAuthReady ondan önce gelmiş olabilir)
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', async () => {
+      if (window.pazarAuth?.ready) { await loadPazarProfile(); window.renderProfilAuth(); }
+    });
+  } else {
+    (async () => {
+      if (window.pazarAuth?.ready) { await loadPazarProfile(); window.renderProfilAuth(); }
+    })();
+  }
+  // ===== /PROFIL AUTH RENDER =====
 </script>
 <!-- ══ EKRAN 1: ANA SAYFA ══ -->
 <div id="screen-home" class="screen">
@@ -1819,6 +1917,16 @@
     <div class="profil-isim" id="profilIsim" onclick="duzenleKullaniciAdi()">Pazar Kullanıcısı <span class="profil-isim-edit">✏️</span></div>
     <div class="profil-alt" id="profilAlt">Fiyatları takip ediyorsun</div>
   </div>
+<!-- AUTH CTA START -->
+<div id="profil-auth-cta" class="profil-auth-cta" style="display:none;">
+  <button type="button" class="profil-auth-btn profil-auth-btn--primary" onclick="openAuthSheet('login')">Giriş Yap</button>
+  <button type="button" class="profil-auth-btn profil-auth-btn--ghost" onclick="openAuthSheet('signup')">Üye Ol</button>
+</div>
+<div id="profil-auth-logout" class="profil-auth-logout" style="display:none;">
+  <button type="button" class="profil-logout-btn" onclick="confirmLogout()">Çıkış Yap</button>
+</div>
+<!-- AUTH CTA END -->
+
   <div class="profil-istat">
     <div class="profil-istat-item">
       <div class="profil-istat-sayi" id="profilToplamUrun">…</div>
