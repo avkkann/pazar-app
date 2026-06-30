@@ -1354,7 +1354,9 @@
 [data-theme="dark"] .ms-sheet-header,
 [data-theme="dark"] .mf-sheet-header,
 [data-theme="dark"] .ms-sheet-bottom,
-[data-theme="dark"] .mf-sheet-bottom { background: var(--card-bg); color: var(--text); border-color: var(--border); }
+[data-theme="dark"] .mf-sheet-bottom,
+[data-theme="dark"] .ms-sheet-footer,
+[data-theme="dark"] .mf-sheet-footer { background: var(--card-bg); color: var(--text); border-color: var(--border); }
 
 [data-theme="dark"] .ms-market-row,
 [data-theme="dark"] .mf-depot-card,
@@ -1451,16 +1453,19 @@
 .auth-google { width: 100%; padding: 13px; background: #fff; color: #374151; border: 1.5px solid #e5e7eb; border-radius: 12px; font-family: 'Cabinet Grotesk', sans-serif !important; font-weight: 600; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
 /* === /AUTH SHEET === */
 /* === PROFIL AUTH CTA === */
-.profil-auth-cta { display: flex; gap: 10px; padding: 0 16px 16px; }
-.profil-auth-btn { flex: 1; padding: 12px 16px; border-radius: 12px; font-family: 'Cabinet Grotesk', sans-serif !important; font-weight: 700; font-size: 14px; cursor: pointer; border: 0; transition: opacity .15s; }
-.profil-auth-btn:active { opacity: 0.7; }
-.profil-auth-btn--primary { background: linear-gradient(135deg, #0F5132 0%, #0E4938 100%); color: #fff; }
-.profil-auth-btn--ghost { background: #fff; color: #0F5132; border: 1.5px solid #0F5132; }
+.profil-hero .profil-auth-cta { display: flex; gap: 10px; padding: 8px 0 0; width: 100%; max-width: 340px; }
+.profil-hero .profil-auth-btn { flex: 1; padding: 11px 14px; border-radius: 12px; font-family: 'Cabinet Grotesk', sans-serif !important; font-weight: 700; font-size: 14px; cursor: pointer; border: 0; transition: opacity .15s, background .15s; }
+.profil-hero .profil-auth-btn:active { opacity: 0.85; }
+.profil-hero .profil-auth-btn--primary { background: #fff; color: #0E4938; }
+.profil-hero .profil-auth-btn--ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.55); }
+.profil-hero .profil-auth-btn--ghost:active { background: rgba(255,255,255,0.12); }
 .profil-auth-logout { padding: 12px 16px 16px; }
-.profil-logout-btn { width: 100%; padding: 12px; background: #fff; color: #b91c1c; border: 1.5px solid #fecaca; border-radius: 12px; font-family: 'Cabinet Grotesk', sans-serif !important; font-weight: 600; font-size: 14px; cursor: pointer; }
+.profil-logout-btn { width: 100%; padding: 12px; background: var(--card-bg, #fff); color: #b91c1c; border: 1.5px solid #fecaca; border-radius: 12px; font-family: 'Cabinet Grotesk', sans-serif !important; font-weight: 600; font-size: 14px; cursor: pointer; }
 .profil-logout-btn:active { background: #fef2f2; }
 .profil-avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
-.profil-avatar.profil-avatar--letter { background: linear-gradient(135deg, #0F5132 0%, #0E4938 100%); color: #fff; font-family: 'Cabinet Grotesk', sans-serif !important; font-weight: 700; font-size: 28px; display: flex; align-items: center; justify-content: center; }
+.profil-avatar.profil-avatar--letter { background: rgba(255,255,255,0.15); color: #fff; font-family: 'Cabinet Grotesk', sans-serif !important; font-weight: 700; font-size: 28px; display: flex; align-items: center; justify-content: center; border: 3px solid rgba(255,255,255,.35); }
+[data-theme="dark"] .profil-logout-btn { background: var(--card-bg); border-color: #5b1a1a; color: #fca5a5; }
+[data-theme="dark"] .profil-logout-btn:active { background: rgba(220,38,38,0.12); }
 /* === /PROFIL AUTH CTA === */
 
 
@@ -1918,16 +1923,16 @@
     <div class="profil-avatar" id="profilAvatar">🛒</div>
     <div class="profil-isim" id="profilIsim" onclick="duzenleKullaniciAdi()">Pazar Kullanıcısı <span class="profil-isim-edit">✏️</span></div>
     <div class="profil-alt" id="profilAlt">Fiyatları takip ediyorsun</div>
+    <!-- AUTH CTA START -->
+    <div id="profil-auth-cta" class="profil-auth-cta" style="display:none;">
+      <button type="button" class="profil-auth-btn profil-auth-btn--primary" onclick="openAuthSheet('login')">Giriş Yap</button>
+      <button type="button" class="profil-auth-btn profil-auth-btn--ghost" onclick="openAuthSheet('signup')">Üye Ol</button>
+    </div>
+    <!-- AUTH CTA END -->
   </div>
-<!-- AUTH CTA START -->
-<div id="profil-auth-cta" class="profil-auth-cta" style="display:none;">
-  <button type="button" class="profil-auth-btn profil-auth-btn--primary" onclick="openAuthSheet('login')">Giriş Yap</button>
-  <button type="button" class="profil-auth-btn profil-auth-btn--ghost" onclick="openAuthSheet('signup')">Üye Ol</button>
-</div>
 <div id="profil-auth-logout" class="profil-auth-logout" style="display:none;">
   <button type="button" class="profil-logout-btn" onclick="confirmLogout()">Çıkış Yap</button>
 </div>
-<!-- AUTH CTA END -->
 
   <div class="profil-istat">
     <div class="profil-istat-item">
