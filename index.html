@@ -1431,10 +1431,38 @@
 [data-theme="dark"] .stats-row,
 [data-theme="dark"] .state-msg { color: var(--text-muted); }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 <div id="splash"><img src="./static/icon-192.png" alt=""></div>
 <script>
+  // ===== SUPABASE CLIENT =====
+  const SUPABASE_URL = 'https://gbgxxahhbfnulmyecxia.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdiZ3h4YWhoYmZudWxteWVjeGlhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI4MjY4MDgsImV4cCI6MjA5ODQwMjgwOH0.VqJ1MAPKBbvEfS1c781iFbHisEJ9GmHvCLmwz1c6pWM';
+  const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  window.supabaseClient = supabaseClient;
+
+  // Auth state listener — global pazarAuth objesi
+  window.pazarAuth = {
+    user: null,
+    session: null,
+    ready: false
+  };
+
+  supabaseClient.auth.getSession().then(({ data: { session } }) => {
+    window.pazarAuth.session = session;
+    window.pazarAuth.user = session?.user || null;
+    window.pazarAuth.ready = true;
+    document.dispatchEvent(new CustomEvent('pazarAuthReady', { detail: window.pazarAuth }));
+  });
+
+  supabaseClient.auth.onAuthStateChange((event, session) => {
+    window.pazarAuth.session = session;
+    window.pazarAuth.user = session?.user || null;
+    document.dispatchEvent(new CustomEvent('pazarAuthChange', { detail: { event, session, user: session?.user || null } }));
+  });
+  // ===== /SUPABASE CLIENT =====
+
   (function(){
     setTimeout(function(){
       var s = document.getElementById('splash');
