@@ -1430,6 +1430,27 @@
 /* Stats row, count text, vb */
 [data-theme="dark"] .stats-row,
 [data-theme="dark"] .state-msg { color: var(--text-muted); }
+/* === AUTH SHEET === */
+.auth-sheet { position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0; transition: opacity .2s; }
+.auth-sheet[aria-hidden="false"] { pointer-events: auto; opacity: 1; }
+.auth-sheet__backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+.auth-sheet__panel { position: absolute; left: 0; right: 0; bottom: 0; background: #fff; border-radius: 20px 20px 0 0; padding: 8px 20px calc(32px + env(safe-area-inset-bottom)) 20px; transform: translateY(100%); transition: transform .25s ease-out; max-width: 480px; margin: 0 auto; box-shadow: 0 -8px 32px rgba(0,0,0,0.12); }
+.auth-sheet[aria-hidden="false"] .auth-sheet__panel { transform: translateY(0); }
+.auth-sheet__handle { width: 36px; height: 4px; background: #ddd; border-radius: 2px; margin: 0 auto 16px; }
+.auth-sheet__title { font-family: 'Cabinet Grotesk', sans-serif !important; font-size: 22px; font-weight: 700; margin: 0 0 16px; color: #0F5132; }
+.auth-sheet__tabs { display: flex; gap: 0; background: #f3f4f6; border-radius: 10px; padding: 4px; margin-bottom: 20px; }
+.auth-tab { flex: 1; padding: 10px; border: 0; background: transparent; font-family: 'Cabinet Grotesk', sans-serif !important; font-weight: 600; font-size: 14px; border-radius: 8px; cursor: pointer; color: #6b7280; transition: all .15s; }
+.auth-tab--active { background: #fff; color: #0F5132; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.auth-form input { width: 100%; padding: 14px 16px; border: 1.5px solid #e5e7eb; border-radius: 12px; font-size: 16px; font-family: inherit; margin-bottom: 10px; box-sizing: border-box; background: #fff; }
+.auth-form input:focus { outline: none; border-color: #0F5132; }
+.auth-error { background: #fef2f2; color: #b91c1c; padding: 10px 14px; border-radius: 10px; font-size: 13px; margin-bottom: 12px; line-height: 1.4; }
+.auth-submit { width: 100%; padding: 14px; background: linear-gradient(135deg, #0F5132 0%, #0E4938 100%); color: #fff; border: 0; border-radius: 12px; font-family: 'Cabinet Grotesk', sans-serif !important; font-weight: 700; font-size: 16px; cursor: pointer; margin-top: 4px; }
+.auth-submit:disabled { opacity: 0.6; cursor: wait; }
+.auth-divider { display: flex; align-items: center; gap: 12px; margin: 18px 0; color: #9ca3af; font-size: 13px; }
+.auth-divider::before, .auth-divider::after { content: ''; flex: 1; height: 1px; background: #e5e7eb; }
+.auth-google { width: 100%; padding: 13px; background: #fff; color: #374151; border: 1.5px solid #e5e7eb; border-radius: 12px; font-family: 'Cabinet Grotesk', sans-serif !important; font-weight: 600; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
+/* === /AUTH SHEET === */
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -1474,6 +1495,125 @@
   })();
 </script>
 
+<script>
+  // ===== AUTH UI =====
+  let authTabMode = 'login';
+
+  window.openAuthSheet = function(mode) {
+    if (mode) authTabMode = mode;
+    switchAuthTab(authTabMode);
+    document.getElementById('auth-email').value = '';
+    document.getElementById('auth-password').value = '';
+    document.getElementById('auth-password-confirm').value = '';
+    const errEl = document.getElementById('auth-error');
+    errEl.style.display = 'none';
+    errEl.style.background = '';
+    errEl.style.color = '';
+    document.getElementById('auth-sheet').setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.closeAuthSheet = function() {
+    document.getElementById('auth-sheet').setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+
+  window.switchAuthTab = function(mode) {
+    authTabMode = mode;
+    document.querySelectorAll('.auth-tab').forEach(function(t) {
+      t.classList.toggle('auth-tab--active', t.dataset.tab === mode);
+    });
+    document.getElementById('auth-sheet-title').textContent = mode === 'login' ? 'Giriş Yap' : 'Üye Ol';
+    document.getElementById('auth-submit').textContent = mode === 'login' ? 'Giriş Yap' : 'Üye Ol';
+    document.getElementById('auth-password-confirm').style.display = mode === 'signup' ? 'block' : 'none';
+    const errEl = document.getElementById('auth-error');
+    errEl.style.display = 'none';
+    errEl.style.background = '';
+    errEl.style.color = '';
+  };
+
+  window.handleAuthSubmit = async function() {
+    const email = document.getElementById('auth-email').value.trim();
+    const password = document.getElementById('auth-password').value;
+    const passwordConfirm = document.getElementById('auth-password-confirm').value;
+    const errEl = document.getElementById('auth-error');
+    const btn = document.getElementById('auth-submit');
+    errEl.style.display = 'none';
+    errEl.style.background = '';
+    errEl.style.color = '';
+
+    if (!email || !password) {
+      errEl.textContent = 'E-posta ve şifre gerekli.';
+      errEl.style.display = 'block';
+      return;
+    }
+    if (password.length < 6) {
+      errEl.textContent = 'Şifre en az 6 karakter olmalı.';
+      errEl.style.display = 'block';
+      return;
+    }
+    if (authTabMode === 'signup' && password !== passwordConfirm) {
+      errEl.textContent = 'Şifreler eşleşmiyor.';
+      errEl.style.display = 'block';
+      return;
+    }
+
+    btn.disabled = true;
+    const originalText = btn.textContent;
+    btn.textContent = 'Lütfen bekle...';
+
+    try {
+      let result;
+      if (authTabMode === 'signup') {
+        result = await window.supabaseClient.auth.signUp({ email: email, password: password });
+      } else {
+        result = await window.supabaseClient.auth.signInWithPassword({ email: email, password: password });
+      }
+
+      if (result.error) {
+        let msg = result.error.message;
+        if (msg.indexOf('Invalid login credentials') !== -1) msg = 'E-posta veya şifre hatalı.';
+        else if (msg.indexOf('already registered') !== -1 || msg.indexOf('User already') !== -1) msg = 'Bu e-posta zaten kayıtlı.';
+        else if (msg.indexOf('Email not confirmed') !== -1) msg = 'E-postanı onaylaman gerekiyor.';
+        else if (msg.indexOf('Password should be') !== -1) msg = 'Şifre çok zayıf — daha güçlü bir şifre dene.';
+        errEl.textContent = msg;
+        errEl.style.display = 'block';
+      } else {
+        if (authTabMode === 'signup' && result.data && result.data.user && !result.data.session) {
+          errEl.style.background = '#ecfdf5';
+          errEl.style.color = '#065f46';
+          errEl.textContent = 'E-postanı kontrol et — onay linki gönderdik.';
+          errEl.style.display = 'block';
+        } else {
+          closeAuthSheet();
+        }
+      }
+    } catch (err) {
+      errEl.textContent = 'Beklenmeyen bir hata: ' + err.message;
+      errEl.style.display = 'block';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = originalText;
+    }
+  };
+
+  window.handleGoogleLogin = async function() {
+    const result = await window.supabaseClient.auth.signInWithOAuth({
+      provider: 'google',
+      options: { redirectTo: window.location.origin + window.location.pathname }
+    });
+    if (result.error) {
+      const errEl = document.getElementById('auth-error');
+      errEl.textContent = 'Google ile giriş başarısız: ' + result.error.message;
+      errEl.style.display = 'block';
+    }
+  };
+
+  window.handleLogout = async function() {
+    await window.supabaseClient.auth.signOut();
+  };
+  // ===== /AUTH UI =====
+</script>
 <!-- ══ EKRAN 1: ANA SAYFA ══ -->
 <div id="screen-home" class="screen">
 
@@ -4695,6 +4835,31 @@ function _injectStripIkonlari() {
 }
 document.addEventListener('DOMContentLoaded', _injectStripIkonlari);
 </script>
+<!-- AUTH SHEET START -->
+<div id="auth-sheet" class="auth-sheet" aria-hidden="true">
+  <div class="auth-sheet__backdrop" onclick="closeAuthSheet()"></div>
+  <div class="auth-sheet__panel" role="dialog" aria-labelledby="auth-sheet-title">
+    <div class="auth-sheet__handle"></div>
+    <h2 id="auth-sheet-title" class="auth-sheet__title">Giriş Yap</h2>
+    <div class="auth-sheet__tabs">
+      <button class="auth-tab auth-tab--active" data-tab="login" onclick="switchAuthTab('login')">Giriş Yap</button>
+      <button class="auth-tab" data-tab="signup" onclick="switchAuthTab('signup')">Üye Ol</button>
+    </div>
+    <div class="auth-form">
+      <input type="email" id="auth-email" placeholder="E-posta" autocomplete="email" inputmode="email">
+      <input type="password" id="auth-password" placeholder="Şifre (en az 6 karakter)" autocomplete="current-password">
+      <input type="password" id="auth-password-confirm" placeholder="Şifre Tekrar" autocomplete="new-password" style="display:none;">
+      <div id="auth-error" class="auth-error" style="display:none;"></div>
+      <button type="button" id="auth-submit" class="auth-submit" onclick="handleAuthSubmit()">Giriş Yap</button>
+    </div>
+    <div class="auth-divider"><span>veya</span></div>
+    <button type="button" class="auth-google" onclick="handleGoogleLogin()">
+      <svg width="20" height="20" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/><path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/><path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0124 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/><path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 01-4.087 5.571l.003-.002 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/></svg>
+      <span>Google ile devam et</span>
+    </button>
+  </div>
+</div>
+<!-- AUTH SHEET END -->
 </body>
 <div id="appModal" class="app-modal" style="display:none;">
   <div class="app-modal-backdrop" onclick="modalKapat()"></div>
