@@ -1666,8 +1666,9 @@
         avatar.textContent = (ad[0] || '?').toUpperCase();
       }
       isim.innerHTML = ad.replace(/</g, '&lt;');
-      isim.style.cursor = 'default';
-      isim.onclick = null;
+      isim.style.cursor = 'pointer';
+      isim.onclick = duzenleKullaniciAdi;
+      isim.removeAttribute('onclick');
       alt.textContent = user.email || '';
       ctaEl.style.display = 'none';
       logoutEl.style.display = 'block';
@@ -1679,6 +1680,7 @@
       isim.innerHTML = 'Pazar Kullanıcısı';
       isim.style.cursor = 'default';
       isim.onclick = null;
+      isim.removeAttribute('onclick');
       alt.textContent = 'Üye ol, favorilerini ve fiyat alarmlarını eşitle';
       ctaEl.style.display = 'flex';
       logoutEl.style.display = 'none';
@@ -4699,21 +4701,33 @@ function goProfil() {
   profilGuncelle();
 }
 
-function duzenleKullaniciAdi() {
-  const mevcut = (function(){ try { return localStorage.getItem('kullaniciAdi') || ''; } catch(e){ return ''; } })();
+async function duzenleKullaniciAdi() {
+  const user = window.pazarAuth?.user;
+  if (!user) {
+    if (typeof window.openAuthSheet === 'function') window.openAuthSheet('login');
+    return;
+  }
+  const mevcut = pazarProfile?.ad || (user.user_metadata?.full_name) || (user.email ? user.email.split('@')[0] : '');
   const yeni = prompt('İsmini gir:', mevcut);
   if (yeni === null) return;
   const ad = yeni.trim();
   if (!ad) return;
   if (ad.length > 30) { alert('En fazla 30 karakter.'); return; }
-  try { localStorage.setItem('kullaniciAdi', ad); } catch(e){}
-  uygulaKullaniciAdi();
+  try {
+    const { error } = await window.supabaseClient
+      .from('profiles')
+      .update({ ad: ad, updated_at: new Date().toISOString() })
+      .eq('id', user.id);
+    if (error) { alert('Kaydedilemedi: ' + error.message); return; }
+    if (typeof pazarProfile === 'object' && pazarProfile) pazarProfile.ad = ad;
+    if (typeof window.renderProfilAuth === 'function') window.renderProfilAuth();
+  } catch (e) {
+    alert('Bir hata oluştu: ' + e.message);
+  }
 }
 function uygulaKullaniciAdi() {
-  let ad = 'Pazar Kullanıcısı';
-  try { ad = localStorage.getItem('kullaniciAdi') || ad; } catch(e){}
-  const el = document.getElementById('profilIsim');
-  if (el) el.innerHTML = ad + ' <span class="profil-isim-edit">✏️</span>';
+  // Auth-aware: renderProfilAuth tek doğru kaynak. Eski localStorage 'kullaniciAdi' artık kullanılmıyor.
+  if (typeof window.renderProfilAuth === 'function') window.renderProfilAuth();
 }
 
 function profilGuncelle() {
