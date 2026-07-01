@@ -1867,7 +1867,10 @@
       try { await marketfiyatiYukle(); } catch(e) {}
     }
 
-    const urunler = favSids.map(sid => productMap[sid]).filter(Boolean);
+    // productMap key formatı tutarlı değil — Object.values'tan sidMap oluştur
+    const sidMap = {};
+    Object.values(productMap).forEach(u => { if (u && u._sid) sidMap[u._sid] = u; });
+    const urunler = favSids.map(sid => sidMap[sid] || productMap[sid]).filter(Boolean);
     const bulunamayan = favSids.length - urunler.length;
 
     if (urunler.length === 0) {
