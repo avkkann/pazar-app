@@ -1490,6 +1490,35 @@
 [data-theme="dark"] .fav-btn.is-fav svg { color: #f87171; fill: #f87171; }
 /* === /FAV BUTTON === */
 
+/* === FİYAT ALARMI === */
+.alarm-box {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px;
+  padding: 12px 14px;
+}
+.alarm-input {
+  flex: 1; min-width: 0; border: 1px solid var(--border); border-radius: 10px;
+  padding: 10px 12px; font-size: .9rem; font-family: 'Inter', sans-serif;
+  background: var(--bg); color: var(--text);
+}
+.alarm-input:focus { outline: none; border-color: var(--primary); }
+.alarm-kur-btn {
+  border: none; border-radius: 10px; padding: 10px 16px;
+  background: var(--primary); color: #fff; font-size: .85rem; font-weight: 700;
+  cursor: pointer; font-family: 'Inter', sans-serif; white-space: nowrap;
+}
+.alarm-kur-btn:active { opacity: .85; }
+.alarm-box.alarm-active { background: #ECFDF5; border-color: #D1FAE5; justify-content: space-between; }
+.alarm-active-text { font-size: .85rem; color: #065F46; font-weight: 600; }
+.alarm-kaldir-btn {
+  border: none; background: transparent; color: #DC2626; font-size: .8rem; font-weight: 700;
+  cursor: pointer; font-family: 'Inter', sans-serif; padding: 6px 8px; white-space: nowrap;
+}
+[data-theme="dark"] .alarm-box.alarm-active { background: rgba(16,185,129,0.12); border-color: rgba(16,185,129,0.3); }
+[data-theme="dark"] .alarm-active-text { color: #6ee7b7; }
+[data-theme="dark"] .alarm-kaldir-btn { color: #f87171; }
+/* === /FİYAT ALARMI === */
+
 /* === FAVORİLER EKRANI === */
 .fav-empty { padding: 60px 32px 40px; text-align: center; }
 .fav-empty-icon { font-size: 48px; margin-bottom: 12px; }
@@ -1891,6 +1920,96 @@
   };
 
   // ===== /FAVORİLER =====
+</script>
+
+<script>
+  // ===== FİYAT ALARMI =====
+  window.pazarAlarmMap = new Map();
+
+  async function loadPazarAlarmlar() {
+    if (!window.pazarAuth?.user) { window.pazarAlarmMap = new Map(); return; }
+    try {
+      const { data, error } = await window.supabaseClient
+        .from('fiyat_alarmlari')
+        .select('urun_sid, hedef_fiyat')
+        .eq('user_id', window.pazarAuth.user.id)
+        .eq('aktif_mi', true);
+      if (error) { console.warn('Alarmlar yüklenemedi:', error.message); return; }
+      window.pazarAlarmMap = new Map((data || []).map(r => [r.urun_sid, r.hedef_fiyat]));
+    } catch (e) { console.warn('Alarm yükleme hatası:', e); }
+  }
+
+  window.refreshDetayAlarm = function(sid) {
+    const box = document.getElementById('alarmBlogu-' + sid);
+    if (!box) return;
+    const u = Object.values(productMap).find(p => p && p._sid === sid);
+    if (u) box.outerHTML = fiyatAlarmiBlogu(u);
+  };
+
+  window.fiyatAlarmKur = async function(sid) {
+    if (!sid) return;
+    const user = window.pazarAuth?.user;
+    if (!user) {
+      if (typeof window.openAuthSheet === 'function') window.openAuthSheet('login');
+      return;
+    }
+    const input = document.getElementById('alarmInput-' + sid);
+    const hedef = parseFloat(input?.value);
+    if (!hedef || hedef <= 0) { input?.focus(); return; }
+    const eski = window.pazarAlarmMap.get(sid);
+    window.pazarAlarmMap.set(sid, hedef);
+    window.refreshDetayAlarm(sid);
+    try {
+      const { error } = await window.supabaseClient
+        .from('fiyat_alarmlari')
+        .upsert({ user_id: user.id, urun_sid: sid, hedef_fiyat: hedef, aktif_mi: true }, { onConflict: 'user_id,urun_sid' });
+      if (error) {
+        if (eski == null) window.pazarAlarmMap.delete(sid); else window.pazarAlarmMap.set(sid, eski);
+        window.refreshDetayAlarm(sid);
+        console.warn('Alarm kurulamadı:', error.message);
+      }
+    } catch (e) {
+      if (eski == null) window.pazarAlarmMap.delete(sid); else window.pazarAlarmMap.set(sid, eski);
+      window.refreshDetayAlarm(sid);
+      console.warn('Alarm kurma hatası:', e);
+    }
+  };
+
+  window.fiyatAlarmKaldir = async function(sid) {
+    if (!sid) return;
+    const user = window.pazarAuth?.user;
+    if (!user) return;
+    const eski = window.pazarAlarmMap.get(sid);
+    window.pazarAlarmMap.delete(sid);
+    window.refreshDetayAlarm(sid);
+    try {
+      const { error } = await window.supabaseClient
+        .from('fiyat_alarmlari')
+        .update({ aktif_mi: false })
+        .match({ user_id: user.id, urun_sid: sid });
+      if (error) {
+        window.pazarAlarmMap.set(sid, eski);
+        window.refreshDetayAlarm(sid);
+        console.warn('Alarm kaldırılamadı:', error.message);
+      }
+    } catch (e) {
+      window.pazarAlarmMap.set(sid, eski);
+      window.refreshDetayAlarm(sid);
+      console.warn('Alarm kaldırma hatası:', e);
+    }
+  };
+
+  document.addEventListener('pazarAuthReady', loadPazarAlarmlar);
+  document.addEventListener('pazarAuthChange', loadPazarAlarmlar);
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.pazarAuth?.ready) loadPazarAlarmlar();
+    });
+  } else {
+    if (window.pazarAuth?.ready) loadPazarAlarmlar();
+  }
+  // ===== /FİYAT ALARMI =====
 </script>
 <!-- ══ EKRAN 1: ANA SAYFA ══ -->
 <div id="screen-home" class="screen">
@@ -2678,6 +2797,7 @@ function openDetay(urunId) {
       </div>
     </div>
     ${fiyatGecmisiBlogu(u)}
+    ${fiyatAlarmiBlogu(u)}
     ${btnHtml}
     ${(() => {
   const digerler = digerPaketleriBul(u);
@@ -2984,6 +3104,30 @@ function enDusukFiyat(u) {
     if (!isNaN(f) && f > 0 && f < min) min = f;
   });
   return min === Infinity ? null : min;
+}
+
+function fiyatAlarmiBlogu(u) {
+  const sid = u && u._sid;
+  if (!sid) return '';
+  const aktifHedef = window.pazarAlarmMap ? window.pazarAlarmMap.get(sid) : null;
+  if (aktifHedef != null) {
+    return `<div class="detay-section" id="alarmBlogu-${sid}">
+      <div class="detay-sec-label">Fiyat Alarmı</div>
+      <div class="alarm-box alarm-active">
+        <div class="alarm-active-text">${tl(aktifHedef)}'nin altına düşünce haber vereceğiz</div>
+        <button class="alarm-kaldir-btn" onclick="fiyatAlarmKaldir('${sid}')">Kaldır</button>
+      </div>
+    </div>`;
+  }
+  const enDusuk = enDusukFiyat(u);
+  const oneri = enDusuk ? (enDusuk * 0.95).toFixed(2) : '';
+  return `<div class="detay-section" id="alarmBlogu-${sid}">
+    <div class="detay-sec-label">Fiyat Alarmı</div>
+    <div class="alarm-box">
+      <input type="number" inputmode="decimal" step="0.01" min="0.01" class="alarm-input" id="alarmInput-${sid}" placeholder="Hedef fiyat (₺)" value="${oneri}">
+      <button class="alarm-kur-btn" onclick="fiyatAlarmKur('${sid}')">Alarm Kur</button>
+    </div>
+  </div>`;
 }
 
 function markaBul(u) {
