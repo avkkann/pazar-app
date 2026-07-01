@@ -1812,6 +1812,15 @@
 
   document.addEventListener('pazarAuthReady', loadPazarFavoriler);
   document.addEventListener('pazarAuthChange', loadPazarFavoriler);
+
+  // Fallback: pazarAuthReady event bu script parse olmadan önce fire olmuş olabilir
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.pazarAuth?.ready) loadPazarFavoriler();
+    });
+  } else {
+    if (window.pazarAuth?.ready) loadPazarFavoriler();
+  }
   // ===== /FAVORİLER =====
 </script>
 <!-- ══ EKRAN 1: ANA SAYFA ══ -->
