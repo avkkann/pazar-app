@@ -1467,6 +1467,29 @@
 [data-theme="dark"] .profil-logout-btn { background: var(--card-bg); border-color: #5b1a1a; color: #fca5a5; }
 [data-theme="dark"] .profil-logout-btn:active { background: rgba(220,38,38,0.12); }
 /* === /PROFIL AUTH CTA === */
+/* === FAV BUTTON === */
+.fav-btn {
+  position: absolute; top: 8px; right: 8px;
+  width: 32px; height: 32px; border-radius: 50%;
+  background: rgba(255,255,255,0.92);
+  border: 0; padding: 0;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.10);
+  z-index: 3;
+  transition: transform .15s ease, background .15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.fav-btn:active { transform: scale(0.88); }
+.fav-btn svg { width: 18px; height: 18px; color: #6b7280; }
+.fav-btn.is-fav { background: #fff; }
+.fav-btn.is-fav svg { color: #dc2626; fill: #dc2626; }
+[data-theme="dark"] .fav-btn { background: rgba(30,30,30,0.88); box-shadow: 0 2px 6px rgba(0,0,0,0.4); }
+[data-theme="dark"] .fav-btn svg { color: #9ca3af; }
+[data-theme="dark"] .fav-btn.is-fav { background: rgba(30,30,30,0.95); }
+[data-theme="dark"] .fav-btn.is-fav svg { color: #f87171; fill: #f87171; }
+/* === /FAV BUTTON === */
+
 
 
 </style>
@@ -1718,6 +1741,78 @@
     })();
   }
   // ===== /PROFIL AUTH RENDER =====
+</script>
+
+<script>
+  // ===== FAVORİLER =====
+  window.pazarFavSet = new Set();
+
+  async function loadPazarFavoriler() {
+    if (!window.pazarAuth?.user) { window.pazarFavSet = new Set(); refreshFavButtons(); return; }
+    try {
+      const { data, error } = await window.supabaseClient
+        .from('favoriler')
+        .select('urun_sid')
+        .eq('user_id', window.pazarAuth.user.id);
+      if (error) { console.warn('Favoriler yüklenemedi:', error.message); return; }
+      window.pazarFavSet = new Set((data || []).map(r => r.urun_sid));
+      refreshFavButtons();
+    } catch (e) { console.warn('Favori yükleme hatası:', e); }
+  }
+
+  window.refreshFavButtons = function() {
+    document.querySelectorAll('.fav-btn[data-sid]').forEach(btn => {
+      const sid = btn.getAttribute('data-sid');
+      btn.classList.toggle('is-fav', window.pazarFavSet.has(sid));
+      btn.setAttribute('aria-pressed', window.pazarFavSet.has(sid) ? 'true' : 'false');
+    });
+  };
+
+  window.favToggle = async function(sid, btnEl) {
+    if (!sid) return;
+    const user = window.pazarAuth?.user;
+    if (!user) {
+      if (typeof window.openAuthSheet === 'function') window.openAuthSheet('login');
+      return;
+    }
+    const isFav = window.pazarFavSet.has(sid);
+    // Optimistic UI
+    if (isFav) window.pazarFavSet.delete(sid); else window.pazarFavSet.add(sid);
+    refreshFavButtons();
+    try {
+      let error;
+      if (isFav) {
+        const res = await window.supabaseClient.from('favoriler')
+          .delete()
+          .match({ user_id: user.id, urun_sid: sid });
+        error = res.error;
+      } else {
+        const res = await window.supabaseClient.from('favoriler')
+          .insert({ user_id: user.id, urun_sid: sid });
+        error = res.error;
+      }
+      if (error) {
+        // Rollback
+        if (isFav) window.pazarFavSet.add(sid); else window.pazarFavSet.delete(sid);
+        refreshFavButtons();
+        console.warn('Favori güncellenemedi:', error.message);
+      }
+    } catch (e) {
+      if (isFav) window.pazarFavSet.add(sid); else window.pazarFavSet.delete(sid);
+      refreshFavButtons();
+      console.warn('Favori toggle hatası:', e);
+    }
+  };
+
+  window.favBtnHTML = function(sid) {
+    if (!sid) return '';
+    const isFav = window.pazarFavSet.has(sid);
+    return `<button class="fav-btn${isFav ? ' is-fav' : ''}" data-sid="${sid}" aria-pressed="${isFav ? 'true' : 'false'}" aria-label="Favoriye ekle" onclick="event.stopPropagation(); favToggle('${sid}', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>`;
+  };
+
+  document.addEventListener('pazarAuthReady', loadPazarFavoriler);
+  document.addEventListener('pazarAuthChange', loadPazarFavoriler);
+  // ===== /FAVORİLER =====
 </script>
 <!-- ══ EKRAN 1: ANA SAYFA ══ -->
 <div id="screen-home" class="screen">
@@ -3272,7 +3367,8 @@ function cardHTML(u) {
     }
   }
   const marketLbl = gosterilenMarket ? MARKET_NAMES[gosterilenMarket] || gosterilenMarket : '';
-  return `<div class="product-card" data-urun-id="${u._id}" data-markets="${(u.market_fiyatlari||[]).map(f=>f.market).join(',')}" onclick="openDetay('${u._id}')" style="cursor:pointer">
+  return `<div class="product-card" data-urun-id="${u._id}" data-sid="${u._sid || ''}" data-markets="${(u.market_fiyatlari||[]).map(f=>f.market).join(',')}" onclick="openDetay('${u._id}')" style="cursor:pointer">
+    ${favBtnHTML(u._sid)}
     ${img}
     <div class="product-card-body">
       <div class="product-name">${u.ad}</div>
