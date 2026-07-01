@@ -1490,6 +1490,15 @@
 [data-theme="dark"] .fav-btn.is-fav svg { color: #f87171; fill: #f87171; }
 /* === /FAV BUTTON === */
 
+/* === FAVORİLER EKRANI === */
+.fav-empty { padding: 60px 32px 40px; text-align: center; }
+.fav-empty-icon { font-size: 48px; margin-bottom: 12px; }
+.fav-empty-title { font-family: 'Cabinet Grotesk', sans-serif !important; font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.fav-empty-sub { font-size: 13px; color: var(--text-muted); line-height: 1.5; max-width: 300px; margin: 0 auto; }
+.fav-loading { padding: 40px 20px; text-align: center; color: var(--text-muted); font-size: 14px; }
+.fav-footer-note { padding: 16px 20px 24px; text-align: center; font-size: 12px; color: var(--text-muted); }
+/* === /FAVORİLER EKRANI === */
+
 
 
 </style>
@@ -1821,6 +1830,63 @@
   } else {
     if (window.pazarAuth?.ready) loadPazarFavoriler();
   }
+  window.openFavoriler = async function() {
+    if (!window.pazarAuth?.user) {
+      if (typeof window.openAuthSheet === 'function') window.openAuthSheet('login');
+      return;
+    }
+    showScreen('screen-favoriler');
+    document.getElementById('screen-favoriler').scrollTop = 0;
+    await renderFavorilerScreen();
+  };
+
+  window.renderFavorilerScreen = async function() {
+    const container = document.getElementById('favorilerContent');
+    if (!container) return;
+    const favSids = [...(window.pazarFavSet || [])];
+    if (favSids.length === 0) {
+      container.innerHTML = `
+        <div class="fav-empty">
+          <div class="fav-empty-icon">💔</div>
+          <div class="fav-empty-title">Henüz favorin yok</div>
+          <div class="fav-empty-sub">Ürün kartlarındaki kalp ikonuna basarak favori ekleyebilirsin</div>
+        </div>`;
+      return;
+    }
+    container.innerHTML = `<div class="fav-loading">Favoriler yükleniyor...</div>`;
+
+    // Eksik kategorileri yükle (sid formatı: kategori_slug)
+    const kategoriler = [...new Set(favSids.map(sid => sid.split('_')[0]))];
+    await Promise.all(kategoriler.map(async kat => {
+      try {
+        if (typeof loadCat === 'function' && !productMap[kat + '_0']) await loadCat(kat);
+      } catch(e) {}
+    }));
+    // marketfiyati pool'unu da yükle (sid indexli)
+    if (typeof marketfiyatiYukle === 'function') {
+      try { await marketfiyatiYukle(); } catch(e) {}
+    }
+
+    const urunler = favSids.map(sid => productMap[sid]).filter(Boolean);
+    const bulunamayan = favSids.length - urunler.length;
+
+    if (urunler.length === 0) {
+      container.innerHTML = `
+        <div class="fav-empty">
+          <div class="fav-empty-icon">🔍</div>
+          <div class="fav-empty-title">Favorilerin bulunamadı</div>
+          <div class="fav-empty-sub">Ürün verileri güncelleniyor olabilir, biraz sonra tekrar dene</div>
+        </div>`;
+      return;
+    }
+
+    const grid = urunler.map(u => cardHTML(u)).join('');
+    const footer = bulunamayan > 0
+      ? `<div class="fav-footer-note">${bulunamayan} favori ürün gösterilemiyor (veri güncellenmiş olabilir)</div>`
+      : '';
+    container.innerHTML = `<div class="product-list">${grid}</div>${footer}`;
+  };
+
   // ===== /FAVORİLER =====
 </script>
 <!-- ══ EKRAN 1: ANA SAYFA ══ -->
@@ -2014,6 +2080,22 @@
   <div id="firsatContent"></div>
 </div>
 
+<!-- ══ EKRAN: FAVORİLERİM ══ -->
+<div id="screen-favoriler" class="screen">
+  <header class="app-header app-header--sub">
+    <div class="hdr-left">
+      <button class="back-btn" onclick="showScreen('screen-profil', 'back')">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <h1>Favorilerim</h1>
+    </div>
+    <div class="hdr-right">
+      <img src="./static/icon-192.png" alt="Pazar" class="hdr-logo-mini">
+    </div>
+  </header>
+  <div id="favorilerContent"></div>
+</div>
+
 <div id="screen-profil" class="screen">
   <header class="app-header app-header--sub">
     <div class="hdr-left">
@@ -2059,6 +2141,14 @@
       <div class="profil-item-body">
         <div class="profil-item-title">Listem</div>
         <div class="profil-item-sub" id="profilSepetOzet">Liste boş</div>
+      </div>
+      <div class="profil-item-chevron">›</div>
+    </div>
+    <div class="profil-item" onclick="openFavoriler()">
+      <div class="profil-item-icon" style="background:#FEE2E2" data-lc="heart">❤️</div>
+      <div class="profil-item-body">
+        <div class="profil-item-title">Favorilerim</div>
+        <div class="profil-item-sub" id="profilFavoriOzet">Sık kullandığın ürünler burada</div>
       </div>
       <div class="profil-item-chevron">›</div>
     </div>
