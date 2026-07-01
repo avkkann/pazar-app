@@ -32,3 +32,8 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
             });
+      - name: Fiyat Alarmi Taramasi
+        run: |
+          curl -sf -X POST "https://gbgxxahhbfnulmyecxia.supabase.co/functions/v1/fiyat-alarm-scan" \
+            -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}" \
+            -H "Content-Type: application/json"
