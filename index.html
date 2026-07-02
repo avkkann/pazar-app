@@ -4963,38 +4963,40 @@ function renderFirsatlar(tab) {
   const container = document.getElementById('firsatContent');
   if (!container) return;
   container.innerHTML = '<div class="firsat-loading">⏳ Yükleniyor...</div>';
-  const catFiles = ['urunler_meyve','urunler_et','urunler_sut','urunler_gida','urunler_icecek','urunler_temizlik','urunler_atistirmalik','urunler_dondurulmus'];
-  Promise.all(catFiles.map(f => fetch('./data/'+f+'.json').then(r=>r.json()).catch(()=>[])))
-    .then(function(results) {
-      const tumUrunler = results.flatMap(function(d){ return Array.isArray(d) ? d : (d.urunler||[]); });
-      _firsatOzetHesapla(tumUrunler);
-      if (tab === 'ucuz') renderFirsatUcuz(container, tumUrunler);
-      else if (tab === 'tasarruf') renderFirsatTasarruf(container, tumUrunler);
-    });
-}
+  const ustKategoriler = ['meyve','sebze','et','sut','gida','icecek','temizlik','atistirmalik','dondurulmus','diger'];
+  const ucuzQuery = Promise.all(ustKategoriler.map(function(kat) {
+    return window.supabaseClient.from('urunler')
+      .select('*')
+      .eq('ust_kategori', kat)
+      .not('en_dusuk_fiyat', 'is', null)
+      .order('en_dusuk_fiyat', { ascending: true })
+      .limit(10)
+      .then(function(res) { return { kat: kat, urunler: res.data || [] }; });
+  }));
+  const tasarrufSayiQuery = window.supabaseClient.from('urunler')
+    .select('*', { count: 'exact', head: true })
+    .gte('fiyat_farki_yuzde', 15);
 
-function _firsatOzetHesapla(tumUrunler) {
-  const katGruplari = {};
-  tumUrunler.forEach(function(u) {
-    if (!u.en_dusuk_fiyat) return;
-    const kat = ustKategori(u.ana_kategori||'');
-    if (!katGruplari[kat]) katGruplari[kat] = [];
-    katGruplari[kat].push(u);
+  Promise.all([ucuzQuery, tasarrufSayiQuery]).then(function(sonuclar) {
+    const ucuzGruplari = sonuclar[0];
+    const tasarrufSayi = sonuclar[1].count || 0;
+    let ucuzSayi = 0;
+    ucuzGruplari.forEach(function(g){ ucuzSayi += Math.min(5, g.urunler.length); });
+    _firsatOzetGuncelle(ucuzSayi, tasarrufSayi);
+
+    if (tab === 'ucuz') {
+      renderFirsatUcuz(container, ucuzGruplari);
+    } else if (tab === 'tasarruf') {
+      window.supabaseClient.from('urunler')
+        .select('*')
+        .gte('fiyat_farki_yuzde', 15)
+        .order('fiyat_farki_tl', { ascending: false })
+        .limit(30)
+        .then(function(res) {
+          renderFirsatTasarruf(container, res.data || []);
+        });
+    }
   });
-  let ucuzSayi = 0;
-  Object.values(katGruplari).forEach(function(arr){ ucuzSayi += Math.min(5, arr.length); });
-
-  let tasarrufSayi = 0;
-  tumUrunler.forEach(function(u) {
-    const fiyatlar = (u.market_fiyatlari||[]).map(function(f){return f.fiyat;}).filter(Boolean);
-    if (fiyatlar.length < 2) return;
-    const min = Math.min.apply(null, fiyatlar);
-    const max = Math.max.apply(null, fiyatlar);
-    const yuzde = Math.round(((max-min)/max)*100);
-    if (yuzde >= 15) tasarrufSayi++;
-  });
-
-  _firsatOzetGuncelle(ucuzSayi, tasarrufSayi);
 }
 
 function _firsatKartHtml(u, badge, badgeClass, altText) {
@@ -5027,35 +5029,29 @@ function _firsatOzetGuncelle(ucuzSayi, tasarrufSayi) {
     + '<div class="firsat-ozet-chip"><div class="firsat-ozet-sayi">'+tasarrufSayi+'</div><div class="firsat-ozet-lbl">Fiyat Farkı</div></div>';
 }
 
-function renderFirsatUcuz(container, tumUrunler) {
-  const katGruplari = {};
-  tumUrunler.forEach(function(u) {
-    if (!u.en_dusuk_fiyat) return;
-    const kat = ustKategori(u.ana_kategori||'');
-    if (!katGruplari[kat]) katGruplari[kat] = [];
-    katGruplari[kat].push(u);
-  });
-  const katLabel = {'meyve':'🍎 Meyve & Sebze','sebze':'🥦 Sebze','et':'🥩 Et & Tavuk','sut':'🧀 Süt & Kahvaltı','gida':'🥫 Temel Gıda','icecek':'🥤 İçecek','temizlik':'🧴 Temizlik'};
-  let html = '', toplamKart = 0;
-  Object.entries(katGruplari).forEach(function(entry) {
-    const kat = entry[0], urunler = entry[1];
-    const tumSirali = urunler.slice().sort(function(a,b){return a.en_dusuk_fiyat-b.en_dusuk_fiyat;});
+function renderFirsatUcuz(container, ucuzGruplari) {
+  const katLabel = {'meyve':'🍎 Meyve & Sebze','sebze':'🥦 Sebze','et':'🥩 Et & Tavuk','sut':'🧀 Süt & Kahvaltı','gida':'🥫 Temel Gıda','icecek':'🥤 İçecek','temizlik':'🧴 Temizlik','atistirmalik':'🍫 Atıştırmalık','dondurulmus':'🧊 Dondurulmuş','diger':'📦 Diğer'};
+  let html = '';
+  ucuzGruplari.forEach(function(grup) {
+    const kat = grup.kat, urunler = grup.urunler;
+    if (!urunler.length) return;
     const dedupe = new Map();
-    tumSirali.forEach(function(u) {
+    urunler.forEach(function(u) {
       const key = (u.ad||'') + '||' + (u.agirlik_hacim||'') + '||' + u.en_dusuk_fiyat;
       if (!dedupe.has(key)) {
         const kopya = Object.assign({}, u);
         kopya._enUcuzMarketler = [];
         dedupe.set(key, kopya);
       }
-      const grup = dedupe.get(key);
+      const grupUrun = dedupe.get(key);
       (u.market_fiyatlari||[]).forEach(function(m) {
-        if (m.fiyat === u.en_dusuk_fiyat && grup._enUcuzMarketler.indexOf(m.market) === -1) {
-          grup._enUcuzMarketler.push(m.market);
+        if (m.fiyat === u.en_dusuk_fiyat && grupUrun._enUcuzMarketler.indexOf(m.market) === -1) {
+          grupUrun._enUcuzMarketler.push(m.market);
         }
       });
     });
     const sirali = [...dedupe.values()].slice(0,5);
+    if (!sirali.length) return;
     html += '<div class="firsat-section"><div class="firsat-section-title">'+(katLabel[kat]||kat)+'</div>';
     sirali.forEach(function(u) {
       let marketStr;
@@ -5067,7 +5063,6 @@ function renderFirsatUcuz(container, tumUrunler) {
       }
       const altText = marketStr ? marketStr + ' · en ucuz' : '';
       html += _firsatKartHtml(u, 'EN UCUZ', 'firsat-badge-ucuz', altText);
-      toplamKart++;
     });
     html += '</div>';
   });
