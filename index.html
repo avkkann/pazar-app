@@ -5174,18 +5174,11 @@ function profilGuncelle() {
   if (el('profilSepetSayi')) el('profilSepetSayi').textContent = sepetSayi;
   if (el('profilSepetOzet')) el('profilSepetOzet').textContent = sepetSayi > 0 ? sepetSayi + ' ürün listemde' : 'Liste boş';
   if (el('profilToplamUrun')) {
-    const fetchListesi = [
-      ...KATEGORILER.map(k => fetch('./data/' + k.file + '.json').then(r => r.json()).catch(() => null)),
-      fetch('./data/marketfiyati.json').then(r => r.json()).catch(() => null)
-    ];
-    Promise.all(fetchListesi).then(results => {
-      const toplam = results.reduce((s, d) => {
-        if (!d) return s;
-        const arr = Array.isArray(d) ? d : (d.urunler || []);
-        return s + arr.length;
-      }, 0);
-      if (el('profilToplamUrun')) el('profilToplamUrun').textContent = toplam.toLocaleString('tr-TR');
-    });
+    window.supabaseClient.from('urunler')
+      .select('*', { count: 'exact', head: true })
+      .then(function(res) {
+        if (el('profilToplamUrun')) el('profilToplamUrun').textContent = (res.count || 0).toLocaleString('tr-TR');
+      });
   }
   if (el('profilHalSayi') && window.halVerisi && window.halVerisi.urunler) {
     el('profilHalSayi').textContent = window.halVerisi.urunler.length;
