@@ -1,6 +1,6 @@
 """
 marketfiyati.org.tr - Coklu Kategori Scraper
-Sonuclari urunler.json dosyasina kaydeder.
+Sonuclari kategori bazli JSON dosyalarina kaydeder (urunler_meyve.json ... urunler_dondurulmus.json).
 """
 
 import json
@@ -20,7 +20,6 @@ BASE_URL    = "https://marketfiyati.org.tr/kategori/"
 _BASE_DIR   = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR    = os.path.join(_BASE_DIR, "data")
 os.makedirs(DATA_DIR, exist_ok=True)
-OUTPUT_FILE = os.path.join(DATA_DIR, "urunler.json")
 PAGE_SIZE   = 48
 MAX_RETRIES = 5
 MAX_WORKERS = 1
@@ -445,11 +444,6 @@ def scrape():
     print(f"Baslangic: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 60)
 
-    # Eski birlesik dosyayi sil
-    if os.path.exists(OUTPUT_FILE):
-        os.remove(OUTPUT_FILE)
-        print(f"Silindi: {OUTPUT_FILE}")
-
     # Cookie olmadan dene; başarısız olursa tarayıcı ile al
     print("\nCookie olmadan API deneniyor...")
     test_session = make_session()
@@ -479,21 +473,11 @@ def scrape():
                 print(f"[HATA] {keyword}: {e}")
             time.sleep(1)
 
-    output = {
-        "kaynak":       "marketfiyati.org.tr",
-        "kategoriler":  [kw for _, kw, _ in CATEGORIES],
-        "cekme_tarihi": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "toplam_urun":  len(all_products),
-        "urunler":      all_products,
-    }
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-        json.dump(output, f, ensure_ascii=False, indent=2)
-
-    print(f"\nTamamlandi: {len(all_products)} urun -> {OUTPUT_FILE}")
+    print(f"\nTamamlandi: {len(all_products)} urun (8 kategori dosyasina yazildi)")
     resimleri_doldur()
     dondurulmus_ayir()
     gecmis_kaydet()
-    return output
+    return all_products
 
 
 def gecmis_kaydet():
