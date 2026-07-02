@@ -24,6 +24,10 @@ jobs:
           git commit -m "Veri guncellendi" || exit 0
           git pull --rebase origin main
           git push
+      - name: DB Senkronizasyonu
+        run: python sync_db.py
+        env:
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
       - name: Trigger Pages Deploy
         uses: actions/github-script@v6
         with:
