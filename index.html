@@ -3810,9 +3810,6 @@ async function renderTuzaklarSeridi() {
   } catch(e){}
 }
 
-const DUSUS_CACHE_KEY = 'pazar_dususler_v1';
-const DUSUS_CACHE_TTL_MS = 1000 * 60 * 60 * 6;
-
 function _kartaRozetEkle(html, rozetHTML) {
   if (!rozetHTML) return html;
   const idx = html.lastIndexOf('</div>');
@@ -3825,57 +3822,19 @@ async function renderDusenlerSeridi() {
   const list = document.getElementById('home-dusenler-list');
   if (!wrap || !list) return;
 
-  await gecmisVeriGetir();
-
   try {
-    const raw = sessionStorage.getItem(DUSUS_CACHE_KEY);
-    if (raw) {
-      const obj = JSON.parse(raw);
-      if (obj && Date.now() - obj.t < DUSUS_CACHE_TTL_MS && Array.isArray(obj.ids) && obj.ids.length) {
-        const urunler = obj.ids.map(id => productMap[id]).filter(Boolean);
-        if (urunler.length) {
-          const items = urunler.map(u => ({ u, r: indirimRozetiHesapla(u) })).filter(x => x.r);
-          if (items.length) {
-            list.innerHTML = items.map(x => _kartaRozetEkle(_stripKartHTML(x.u, null), indirimRozetiHTML(x.r, true))).join('');
-            wrap.style.display = '';
-            return;
-          }
-        }
-      }
-    }
-  } catch(e){}
-
-  await loadAllCats();
-
-  const adaylar = [];
-  const ids = Object.keys(productMap);
-  const CHUNK = 300;
-  for (let i = 0; i < ids.length; i += CHUNK) {
-    const son = Math.min(i + CHUNK, ids.length);
-    for (let j = i; j < son; j++) {
-      const u = productMap[ids[j]];
-      if (!u || !u._id || !u.resim) continue;
-      const r = indirimRozetiHesapla(u);
-      if (!r) continue;
-      adaylar.push({u, r});
-    }
-    await new Promise(res => setTimeout(res, 0));
+    const { data, error } = await window.supabaseClient.rpc('get_fiyat_dusenler', { p_limit: 6 });
+    if (error || !data || !data.length) { wrap.style.display = 'none'; return; }
+    data.forEach(u => {
+      if (!u._id) u._id = u.ad + '_' + (u.agirlik_hacim||'');
+      productMap[u._id] = u;
+    });
+    const items = data.map(u => ({ u, r: { tip: u.dusus_yuzde >= 25 ? 'buyuk' : 'normal', yuzde: u.dusus_yuzde } }));
+    list.innerHTML = items.map(x => _kartaRozetEkle(_stripKartHTML(x.u, null), indirimRozetiHTML(x.r, true))).join('');
+    wrap.style.display = '';
+  } catch (e) {
+    wrap.style.display = 'none';
   }
-
-  if (!adaylar.length) { wrap.style.display = 'none'; return; }
-
-  adaylar.sort((a, b) => b.r.yuzde - a.r.yuzde);
-  const secililer = adaylar.slice(0, 6);
-
-  list.innerHTML = secililer.map(x => _kartaRozetEkle(_stripKartHTML(x.u, null), indirimRozetiHTML(x.r, true))).join('');
-  wrap.style.display = '';
-
-  try {
-    sessionStorage.setItem(DUSUS_CACHE_KEY, JSON.stringify({
-      t: Date.now(),
-      ids: secililer.map(x => x.u._id)
-    }));
-  } catch(e){}
 }
 
 const MEVSIM = {
@@ -4860,12 +4819,14 @@ function loadData() {
     }
     renderCatGrid();
     saveSepet();
+    renderMevsimSeridi();
+    renderDusenlerSeridi();
     if ('requestIdleCallback' in window) {
-requestIdleCallback(() => { renderTuzaklarSeridi(); renderMevsimSeridi(); renderDusenlerSeridi(); }, { timeout: 3000 });
+requestIdleCallback(() => { renderTuzaklarSeridi(); }, { timeout: 3000 });
     } else {
-setTimeout(() => { renderTuzaklarSeridi(); renderMevsimSeridi(); renderDusenlerSeridi(); }, 1500);
+setTimeout(() => { renderTuzaklarSeridi(); }, 1500);
     }
-  }).catch(() => { renderCatGrid(); saveSepet(); if ('requestIdleCallback' in window) { requestIdleCallback(() => { renderTuzaklarSeridi(); renderMevsimSeridi(); renderDusenlerSeridi(); }, { timeout: 3000 }); } else { setTimeout(() => { renderTuzaklarSeridi(); renderMevsimSeridi(); renderDusenlerSeridi(); }, 1500); } });
+  }).catch(() => { renderCatGrid(); saveSepet(); renderMevsimSeridi(); renderDusenlerSeridi(); if ('requestIdleCallback' in window) { requestIdleCallback(() => { renderTuzaklarSeridi(); }, { timeout: 3000 }); } else { setTimeout(() => { renderTuzaklarSeridi(); }, 1500); } });
 }
 
 function openHalScreen() {
