@@ -28,6 +28,11 @@ jobs:
         run: python sync_db.py
         env:
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      - name: Sahte Indirim Analizi
+        continue-on-error: true
+        run: python indirim_analiz.py
+        env:
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
       - name: Trigger Pages Deploy
         uses: actions/github-script@v6
         with:
