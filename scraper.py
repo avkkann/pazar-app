@@ -390,6 +390,39 @@ def _apply_fiyat_gecmisi(yeni_urunler, cat_file):
         gecmis = [g for g in gecmis if g[0] >= limit_tarih]
         u["fiyat_gecmisi"] = gecmis
 
+def _apply_agirlik_gecmisi(yeni_urunler, cat_file):
+    """Her urune agirlik_hacim_gecmisi listesi ekler (sessiz altyapi, shrinkflation icin).
+    Sadece deger degistiginde (veya ilk kez goruldugunde) yeni kayit eklenir.
+    Suresiz saklanir (fiyat_gecmisi gibi 90 gunle SINIRLI DEGIL) cunku amac uzun vadeli karsilastirma.
+    Format: agirlik_hacim_gecmisi = [[tarih_yyyymmdd, agirlik_hacim_str], ...]"""
+    eski_index = {}
+    if os.path.exists(cat_file):
+        try:
+            with open(cat_file, "r", encoding="utf-8") as f:
+                for u in json.load(f):
+                    sid = u.get("_sid")
+                    if sid:
+                        eski_index[sid] = u
+        except Exception as e:
+            print(f"  [uyari] eski JSON okunamadi (agirlik): {e}")
+
+    bugun = datetime.now().strftime("%Y-%m-%d")
+
+    for u in yeni_urunler:
+        gecmis = []
+        sid = u.get("_sid")
+        if sid and sid in eski_index:
+            gecmis = list(eski_index[sid].get("agirlik_hacim_gecmisi") or [])
+
+        yeni_deger = u.get("agirlik_hacim")
+        if yeni_deger:
+            yeni_norm = str(yeni_deger).strip().lower()
+            son_norm = str(gecmis[-1][1]).strip().lower() if gecmis else None
+            if son_norm != yeni_norm:
+                gecmis.append([bugun, yeni_deger])
+
+        u["agirlik_hacim_gecmisi"] = gecmis
+
 def scrape_category(cookies, slug, keyword, dosya_adi):
     session = make_session(cookies)
     print(f"\n--- Kategori: {keyword} ---")
@@ -432,6 +465,7 @@ def scrape_category(cookies, slug, keyword, dosya_adi):
     # Kategori için ayrı JSON kaydet
     cat_file = os.path.join(DATA_DIR, f"{dosya_adi}.json")
     _apply_fiyat_gecmisi(products, cat_file)
+    _apply_agirlik_gecmisi(products, cat_file)
     with open(cat_file, "w", encoding="utf-8") as f:
         json.dump(products, f, ensure_ascii=False, indent=2)
     print(f"  Tamamlandi: {len(products)} urun -> {cat_file}")
