@@ -23,8 +23,6 @@ HEADERS = {
     "Authorization": f"Bearer {SERVICE_ROLE_KEY}",
     "Content-Type": "application/json",
 }
-UPSERT_HEADERS = {**HEADERS, "Prefer": "resolution=merge-duplicates,return=minimal"}
-
 BATCH_SIZE = 500
 GUN_LIMIT = 90
 VOLATILITE_ESIK = 0.12
@@ -158,14 +156,14 @@ def db_urunleri_getir():
 
 
 def sonuclari_yaz(satirlar):
-    url = f"{SUPABASE_URL}/rest/v1/urunler?on_conflict=_sid"
+    url = f"{SUPABASE_URL}/rest/v1/rpc/indirim_puan_toplu_guncelle"
     basarili = 0
     hata = 0
     for i in range(0, len(satirlar), BATCH_SIZE):
         batch = satirlar[i:i + BATCH_SIZE]
-        r = requests.post(url, headers=UPSERT_HEADERS, json=batch, timeout=30)
+        r = requests.post(url, headers=HEADERS, json={"guncellemeler": batch}, timeout=30)
         if r.status_code not in (200, 201, 204):
-            print(f"UPSERT HATA batch {i}: {r.status_code} {r.text[:300]}")
+            print(f"RPC HATA batch {i}: {r.status_code} {r.text[:300]}")
             hata += 1
         else:
             basarili += len(batch)
