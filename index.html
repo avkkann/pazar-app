@@ -1766,7 +1766,8 @@
   };
 
   window.confirmLogout = async function() {
-    if (!confirm('Çıkış yapmak istediğine emin misin?')) return;
+    const onay = await modalAc({ title: 'Çıkış yap', msg: 'Çıkış yapmak istediğine emin misin?', okText: 'Çıkış yap', danger: true });
+    if (!onay) return;
     await window.handleLogout();
   };
 
@@ -5119,21 +5120,21 @@ async function duzenleKullaniciAdi() {
     return;
   }
   const mevcut = pazarProfile?.ad || (user.user_metadata?.full_name) || (user.email ? user.email.split('@')[0] : '');
-  const yeni = prompt('İsmini gir:', mevcut);
-  if (yeni === null) return;
+  const yeni = await modalAc({ title: 'İsmini gir', input: true, defaultValue: mevcut, okText: 'Kaydet' });
+  if (!yeni) return;
   const ad = yeni.trim();
   if (!ad) return;
-  if (ad.length > 30) { alert('En fazla 30 karakter.'); return; }
+  if (ad.length > 30) { await modalAc({ title: 'Çok uzun', msg: 'En fazla 30 karakter.', okText: 'Tamam' }); return; }
   try {
     const { error } = await window.supabaseClient
       .from('profiles')
       .update({ ad: ad, updated_at: new Date().toISOString() })
       .eq('id', user.id);
-    if (error) { alert('Kaydedilemedi: ' + error.message); return; }
+    if (error) { await modalAc({ title: 'Kaydedilemedi', msg: error.message, okText: 'Tamam' }); return; }
     if (typeof pazarProfile === 'object' && pazarProfile) pazarProfile.ad = ad;
     if (typeof window.renderProfilAuth === 'function') window.renderProfilAuth();
   } catch (e) {
-    alert('Bir hata oluştu: ' + e.message);
+    await modalAc({ title: 'Hata', msg: e.message, okText: 'Tamam' });
   }
 }
 function uygulaKullaniciAdi() {
