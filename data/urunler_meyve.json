@@ -30,8 +30,38 @@
     ]
   },
   {
-    "_sid": "meyve_tagem-yamula-patlicani-1-adet",
-    "ad": "Tagem Yamula Patlıcanı 1 Adet",
+    "_sid": "meyve_olips-orman-meyveleri-aromali-28-gr",
+    "ad": "Olips Orman Meyveleri Aromalı 28 Gr",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "28 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/27000629.jpg",
+    "en_dusuk_fiyat": 19.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 19.95
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 33.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        19.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "28 GR"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_tagem-kocas-patlicani-1-adet",
+    "ad": "Tagem Koçaş Patlıcanı 1 Adet",
     "ana_kategori": "Sebze",
     "agirlik_hacim": null,
     "resim": null,
@@ -49,99 +79,6 @@
       ]
     ],
     "agirlik_hacim_gecmisi": []
-  },
-  {
-    "_sid": "meyve_havuc-paket-350-gr",
-    "ad": "Havuç Paket 350 Gr",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "350 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/20000766.jpg",
-    "en_dusuk_fiyat": 32.9,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 32.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        32.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "350 GR"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_kivircik-1-adet",
-    "ad": "Kıvırcık 1 Adet",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": null,
-    "resim": "https://cdn.marketfiyati.org.tr/hakmar/1000847.jpg",
-    "en_dusuk_fiyat": 33.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 33.5
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        49.5
-      ],
-      [
-        "2026-06-23",
-        42.0
-      ],
-      [
-        "2026-06-24",
-        39.5
-      ],
-      [
-        "2026-06-27",
-        33.5
-      ],
-      [
-        "2026-06-29",
-        39.5
-      ],
-      [
-        "2026-07-04",
-        33.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": []
-  },
-  {
-    "_sid": "meyve_mandalina-1-kg",
-    "ad": "Mandalina 1 Kg",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000820.png",
-    "en_dusuk_fiyat": 35.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 35.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        35.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
   },
   {
     "_sid": "meyve_avokado-1-adet",
@@ -189,6 +126,1057 @@
     "agirlik_hacim_gecmisi": []
   },
   {
+    "_sid": "meyve_kivircik-salata-1-adet",
+    "ad": "Kıvırcık Salata 1 Adet",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/migros/28360212.jpg",
+    "en_dusuk_fiyat": 44.9,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 44.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        49.9
+      ],
+      [
+        "2026-07-01",
+        44.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": []
+  },
+  {
+    "_sid": "meyve_patlican-1-kg",
+    "ad": "Patlıcan 1 Kg",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000772.png",
+    "en_dusuk_fiyat": 59.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 59.0
+      },
+      {
+        "market": "a101",
+        "fiyat": 59.5
+      },
+      {
+        "market": "tarim_kredi",
+        "fiyat": 59.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        49.0
+      ],
+      [
+        "2026-06-30",
+        49.5
+      ],
+      [
+        "2026-07-01",
+        59.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_kizartmalik-patates-file-1-kg",
+    "ad": "Kızartmalık Patates File 1 Kg",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/20001013.jpg",
+    "en_dusuk_fiyat": 59.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 59.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        59.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_granny-smith-elma-1-kg",
+    "ad": "Granny Smith Elma 1 Kg",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30134097.jpg",
+    "en_dusuk_fiyat": 79.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 79.0
+      },
+      {
+        "market": "a101",
+        "fiyat": 109.5
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 119.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        79.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_granny-elma-1-kg",
+    "ad": "Granny Elma 1 Kg",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/sokimages/27133000.png",
+    "en_dusuk_fiyat": 84.9,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 84.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        29.9
+      ],
+      [
+        "2026-07-01",
+        84.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_gerber-organik-muz-yaban-mersini-elma-pure-90-gr",
+    "ad": "Gerber Organik Muz Yaban Mersini Elma Püre 90 Gr",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "90 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/5041030.jpg",
+    "en_dusuk_fiyat": 84.99,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 84.99
+      },
+      {
+        "market": "migros",
+        "fiyat": 139.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        84.99
+      ],
+      [
+        "2026-06-25",
+        139.9
+      ],
+      [
+        "2026-06-29",
+        84.99
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "90 GR"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_limon-lamas-1-kg",
+    "ad": "Limon Lamas 1 Kg",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30088937.png",
+    "en_dusuk_fiyat": 99.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 99.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        139.9
+      ],
+      [
+        "2026-06-30",
+        99.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_dalin-kopuk-sabun-orman-meyveleri-200-ml",
+    "ad": "Dalin Köpük Sabun Orman Meyveleri 200 Ml",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "200 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30238639.jpg",
+    "en_dusuk_fiyat": 99.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 99.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        90.99
+      ],
+      [
+        "2026-07-03",
+        99.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "200 ML"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_lavi-soyulmus-enginar-400-gr",
+    "ad": "Lavi Soyulmuş Enginar 400 Gr",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "400 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/17010061.jpg",
+    "en_dusuk_fiyat": 199.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 199.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        199.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "400 GR"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_beyaz-uzum-1-kg",
+    "ad": "Beyaz Üzüm 1 Kg",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30090858.png",
+    "en_dusuk_fiyat": 219.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 219.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-26",
+        189.9
+      ],
+      [
+        "2026-07-03",
+        219.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_aci-kirmizi-biber-1-kg",
+    "ad": "Acı Kırmızı Biber 1 Kg",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "1 KG",
+    "resim": null,
+    "en_dusuk_fiyat": 579.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 579.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        489.9
+      ],
+      [
+        "2026-06-23",
+        579.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_karpuz-1-kg",
+    "ad": "Karpuz 1 Kg",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "1 KG",
+    "resim": null,
+    "en_dusuk_fiyat": 16.5,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 16.5
+      },
+      {
+        "market": "tarim_kredi",
+        "fiyat": 16.5
+      },
+      {
+        "market": "sok",
+        "fiyat": 17.5
+      },
+      {
+        "market": "a101",
+        "fiyat": 19.5
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        17.9
+      ],
+      [
+        "2026-06-24",
+        18.9
+      ],
+      [
+        "2026-06-25",
+        19.0
+      ],
+      [
+        "2026-06-26",
+        16.9
+      ],
+      [
+        "2026-06-29",
+        17.5
+      ],
+      [
+        "2026-07-03",
+        16.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_havuc-paket-350-gr",
+    "ad": "Havuç Paket 350 Gr",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "350 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/20000766.jpg",
+    "en_dusuk_fiyat": 32.9,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 32.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        32.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "350 GR"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_portakal-1-kg",
+    "ad": "Portakal 1 Kg",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000816.png",
+    "en_dusuk_fiyat": 35.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 35.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        35.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_file-sarimsak-200-gr",
+    "ad": "File Sarımsak 200 Gr",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "200 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 49.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 49.5
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        49.5
+      ],
+      [
+        "2026-06-27",
+        39.5
+      ],
+      [
+        "2026-06-29",
+        49.5
+      ],
+      [
+        "2026-07-04",
+        43.9
+      ],
+      [
+        "2026-07-06",
+        49.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "200 GR"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_file-sogan-1-kg",
+    "ad": "File Soğan 1 Kg",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30105395.png",
+    "en_dusuk_fiyat": 59.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 59.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        59.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_i-thal-avokado-1-kg",
+    "ad": "İthal Avokado 1 Kg",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30281297.png",
+    "en_dusuk_fiyat": 59.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 59.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-07-04",
+        59.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-04",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_siri-yaban-mersini-aromali-bubble-tea-350-ml",
+    "ad": "Siri Yaban Mersini Aromalı Bubble Tea 350 Ml",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "350 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30478457.jpg",
+    "en_dusuk_fiyat": 59.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 59.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-27",
+        75.9
+      ],
+      [
+        "2026-07-03",
+        59.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "350 ML"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_mantar-300-gr",
+    "ad": "Mantar 300 Gr",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "300 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30033731.png",
+    "en_dusuk_fiyat": 64.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 64.9
+      },
+      {
+        "market": "sok",
+        "fiyat": 69.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        59.9
+      ],
+      [
+        "2026-06-23",
+        64.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "300 GR"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_aynali-erik-1-kg",
+    "ad": "Aynalı Erik 1 Kg",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30097857.png",
+    "en_dusuk_fiyat": 79.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 79.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        134.9
+      ],
+      [
+        "2026-06-26",
+        109.9
+      ],
+      [
+        "2026-07-02",
+        79.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_file-limon-1-kg",
+    "ad": "File Limon 1 Kg",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "1 KG",
+    "resim": null,
+    "en_dusuk_fiyat": 94.9,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 94.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        94.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_cilek-1-kg",
+    "ad": "Çilek 1 Kg",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30043447.png",
+    "en_dusuk_fiyat": 99.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 99.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        99.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_seftali-1-kg",
+    "ad": "Şeftali 1 Kg",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30042838.jpg",
+    "en_dusuk_fiyat": 99.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 99.5
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 109.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        99.5
+      ],
+      [
+        "2026-07-02",
+        79.5
+      ],
+      [
+        "2026-07-06",
+        99.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_arpacik-sogan-1-kg",
+    "ad": "Arpacık Soğan 1 Kg",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/28423316.jpg",
+    "en_dusuk_fiyat": 119.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 119.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        109.9
+      ],
+      [
+        "2026-07-03",
+        119.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_erik-angelica-1-kg",
+    "ad": "Erik Angelica 1 Kg",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30091736.png",
+    "en_dusuk_fiyat": 134.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 134.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        134.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_seftali-yassi-1-kg",
+    "ad": "Şeftali Yassı 1 Kg",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/20001384.png",
+    "en_dusuk_fiyat": 149.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 149.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-07-02",
+        149.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_bahribey-alyanak-armut-1-kg",
+    "ad": "Bahribey Alyanak Armut 1 Kg",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30036237.png",
+    "en_dusuk_fiyat": 159.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 159.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        169.9
+      ],
+      [
+        "2026-06-26",
+        159.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_lavi-yaban-mersini-400-gr",
+    "ad": "Lavi Yaban Mersini 400 Gr",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "400 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/17300023.jpg",
+    "en_dusuk_fiyat": 326.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 326.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        319.95
+      ],
+      [
+        "2026-06-23",
+        326.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "400 GR"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_mini-karpuz-1-kg",
+    "ad": "Mini Karpuz 1 Kg",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1001016.png",
+    "en_dusuk_fiyat": 19.5,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 19.5
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        22.5
+      ],
+      [
+        "2026-06-26",
+        17.5
+      ],
+      [
+        "2026-06-30",
+        19.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_galya-kavun-1-kg",
+    "ad": "Galya Kavun 1 Kg",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30085347.jpg",
+    "en_dusuk_fiyat": 29.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 29.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        59.0
+      ],
+      [
+        "2026-06-24",
+        59.9
+      ],
+      [
+        "2026-06-28",
+        29.0
+      ],
+      [
+        "2026-06-30",
+        59.9
+      ],
+      [
+        "2026-07-01",
+        29.0
+      ],
+      [
+        "2026-07-03",
+        59.9
+      ],
+      [
+        "2026-07-05",
+        29.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_salatalik-1-kg",
+    "ad": "Salatalık 1 Kg",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000764.png",
+    "en_dusuk_fiyat": 39.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 39.0
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 39.9
+      },
+      {
+        "market": "a101",
+        "fiyat": 49.5
+      },
+      {
+        "market": "tarim_kredi",
+        "fiyat": 49.5
+      },
+      {
+        "market": "sok",
+        "fiyat": 49.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        49.0
+      ],
+      [
+        "2026-06-25",
+        42.9
+      ],
+      [
+        "2026-06-26",
+        39.0
+      ],
+      [
+        "2026-06-30",
+        39.9
+      ],
+      [
+        "2026-07-02",
+        39.5
+      ],
+      [
+        "2026-07-03",
+        39.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_yesil-biber-1-kg",
+    "ad": "Yeşil Biber 1 Kg",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/116465.jpg",
+    "en_dusuk_fiyat": 49.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 49.0
+      },
+      {
+        "market": "tarim_kredi",
+        "fiyat": 69.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        49.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
     "_sid": "meyve_kokteyl-domates-500-gr",
     "ad": "Kokteyl Domates 500 Gr",
     "ana_kategori": "Sebze",
@@ -223,6 +1211,1261 @@
     ]
   },
   {
+    "_sid": "meyve_sarimsak-file-250-gr",
+    "ad": "Sarımsak File 250 Gr",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "250 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 49.9,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 49.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        49.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "250 GR"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_sakiz-kabak-1-kg",
+    "ad": "Sakız Kabak 1 Kg",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "1 KG",
+    "resim": null,
+    "en_dusuk_fiyat": 69.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 69.9
+      },
+      {
+        "market": "migros",
+        "fiyat": 69.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        69.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_bostan-patlican-1-kg",
+    "ad": "Bostan Patlıcan 1 Kg",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/28309026.jpg",
+    "en_dusuk_fiyat": 69.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 69.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        64.9
+      ],
+      [
+        "2026-07-02",
+        69.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_bezelye-1-kg",
+    "ad": "Bezelye 1 Kg",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "1 KG",
+    "resim": null,
+    "en_dusuk_fiyat": 89.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 89.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        89.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_kapya-biber-1-kg",
+    "ad": "Kapya Biber 1 Kg",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1000417.png",
+    "en_dusuk_fiyat": 99.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 99.0
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 99.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        79.9
+      ],
+      [
+        "2026-07-03",
+        99.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_limon-1-kg",
+    "ad": "Limon 1 Kg",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000800.png",
+    "en_dusuk_fiyat": 99.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 99.0
+      },
+      {
+        "market": "sok",
+        "fiyat": 109.0
+      },
+      {
+        "market": "a101",
+        "fiyat": 109.5
+      },
+      {
+        "market": "tarim_kredi",
+        "fiyat": 109.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        109.0
+      ],
+      [
+        "2026-06-23",
+        109.9
+      ],
+      [
+        "2026-06-25",
+        109.5
+      ],
+      [
+        "2026-06-26",
+        99.0
+      ],
+      [
+        "2026-07-02",
+        89.5
+      ],
+      [
+        "2026-07-06",
+        99.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_i-thal-muz-1-kg",
+    "ad": "İthal Muz 1 Kg",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/hakmar/1000813.jpg",
+    "en_dusuk_fiyat": 99.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 99.0
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 99.0
+      },
+      {
+        "market": "a101",
+        "fiyat": 109.5
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        99.0
+      ],
+      [
+        "2026-06-28",
+        93.0
+      ],
+      [
+        "2026-06-29",
+        89.0
+      ],
+      [
+        "2026-07-02",
+        79.0
+      ],
+      [
+        "2026-07-04",
+        89.0
+      ],
+      [
+        "2026-07-06",
+        99.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_burcu-sumakli-kuru-patlican-dolma-200-gr",
+    "ad": "Burcu Sumaklı Kuru Patlıcan Dolma 200 Gr",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/18002980.jpg",
+    "en_dusuk_fiyat": 99.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 99.5
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        99.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "200 GR"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_enginar-baby-8-adet",
+    "ad": "Enginar Baby 8 Adet",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30303523.jpg",
+    "en_dusuk_fiyat": 149.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 149.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        99.95
+      ],
+      [
+        "2026-06-23",
+        149.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": []
+  },
+  {
+    "_sid": "meyve_tada-vegan-zeytinyagli-taze-fasulye-250-gr",
+    "ad": "Tada Vegan Zeytinyağlı Taze Fasulye 250 Gr",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "250 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30465922.png",
+    "en_dusuk_fiyat": 149.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 149.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        149.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "250 GR"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_akca-armut-1-kg",
+    "ad": "Akça Armut 1 Kg",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/20001133.png",
+    "en_dusuk_fiyat": 199.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 199.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        199.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_kayisi-igdir-1-kg",
+    "ad": "Kayısı Iğdır 1 Kg",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30097104.png",
+    "en_dusuk_fiyat": 199.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 199.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-07-01",
+        199.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_de-cecco-patatesli-gnocchi-500-gr",
+    "ad": "De Cecco Patatesli Gnocchi 500 Gr",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "500 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30090202.png",
+    "en_dusuk_fiyat": 219.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 219.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        175.92
+      ],
+      [
+        "2026-06-23",
+        219.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "500 GR"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_lavi-karisik-orman-meyveleri-3-lu-400-gr",
+    "ad": "Lavi Karışık Orman Meyveleri 3'lü 400 Gr",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "400 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/17300003.jpg",
+    "en_dusuk_fiyat": 295.75,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 295.75
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        295.75
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "400 GR"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_peynir-dolgulu-biber-cesitleri-1-kg",
+    "ad": "Peynir Dolgulu Biber Çeşitleri 1 Kg",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30135048.png",
+    "en_dusuk_fiyat": 875.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 875.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        875.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_tagem-yamula-patlicani-1-adet",
+    "ad": "Tagem Yamula Patlıcanı 1 Adet",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": null,
+    "resim": null,
+    "en_dusuk_fiyat": 24.9,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 24.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        24.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": []
+  },
+  {
+    "_sid": "meyve_kirkagac-kavun-1-kg",
+    "ad": "Kırkağaç Kavun 1 Kg",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "1 KG",
+    "resim": null,
+    "en_dusuk_fiyat": 26.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 26.0
+      },
+      {
+        "market": "sok",
+        "fiyat": 34.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        35.0
+      ],
+      [
+        "2026-06-23",
+        39.9
+      ],
+      [
+        "2026-06-26",
+        29.0
+      ],
+      [
+        "2026-07-03",
+        26.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_siyah-kavun-1-kg",
+    "ad": "Siyah Kavun 1 Kg",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1001070.png",
+    "en_dusuk_fiyat": 29.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 29.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        35.0
+      ],
+      [
+        "2026-06-26",
+        29.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_kuru-sogan-1-kg",
+    "ad": "Kuru Soğan 1 Kg",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/28420000.jpg",
+    "en_dusuk_fiyat": 37.5,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 37.5
+      },
+      {
+        "market": "sok",
+        "fiyat": 39.5
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 49.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        32.5
+      ],
+      [
+        "2026-06-23",
+        33.9
+      ],
+      [
+        "2026-06-27",
+        34.5
+      ],
+      [
+        "2026-06-30",
+        35.5
+      ],
+      [
+        "2026-07-03",
+        37.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_patates-1-kg",
+    "ad": "Patates 1 Kg",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000794.png",
+    "en_dusuk_fiyat": 38.5,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 38.5
+      },
+      {
+        "market": "bim",
+        "fiyat": 39.5
+      },
+      {
+        "market": "sok",
+        "fiyat": 39.5
+      },
+      {
+        "market": "a101",
+        "fiyat": 42.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        29.9
+      ],
+      [
+        "2026-06-24",
+        32.5
+      ],
+      [
+        "2026-06-27",
+        34.5
+      ],
+      [
+        "2026-07-03",
+        38.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_activia-shot-kara-murver-ve-yaban-mersini-80-ml",
+    "ad": "Activia Shot Kara Mürver Ve Yaban Mersini 80 Ml",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "80 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/12508506.jpg",
+    "en_dusuk_fiyat": 39.5,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 39.5
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 39.5
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        39.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "80 ML"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_ekonomik-elma-1-kg",
+    "ad": "Ekonomik Elma 1 Kg",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1000860.png",
+    "en_dusuk_fiyat": 55.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 55.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        55.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_golden-elma-1-kg",
+    "ad": "Golden Elma 1 Kg",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "1 KG",
+    "resim": null,
+    "en_dusuk_fiyat": 59.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 59.0
+      },
+      {
+        "market": "tarim_kredi",
+        "fiyat": 69.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        29.9
+      ],
+      [
+        "2026-07-01",
+        59.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_kayisi-1-kg",
+    "ad": "Kayısı 1 Kg",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000897.png",
+    "en_dusuk_fiyat": 65.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 65.0
+      },
+      {
+        "market": "a101",
+        "fiyat": 79.5
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 84.9
+      },
+      {
+        "market": "sok",
+        "fiyat": 89.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        59.9
+      ],
+      [
+        "2026-06-30",
+        79.0
+      ],
+      [
+        "2026-07-02",
+        65.9
+      ],
+      [
+        "2026-07-03",
+        65.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_mantar-400-gr",
+    "ad": "Mantar 400 Gr",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "400 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/sok/126156.jpg",
+    "en_dusuk_fiyat": 69.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 69.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        59.0
+      ],
+      [
+        "2026-06-23",
+        79.0
+      ],
+      [
+        "2026-06-26",
+        69.0
+      ],
+      [
+        "2026-06-30",
+        79.0
+      ],
+      [
+        "2026-07-03",
+        69.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "400 GR"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_kultur-mantari-400-gr",
+    "ad": "Kültür Mantarı 400 Gr",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "400 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1000435.png",
+    "en_dusuk_fiyat": 69.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 69.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        59.0
+      ],
+      [
+        "2026-06-23",
+        79.0
+      ],
+      [
+        "2026-06-26",
+        69.0
+      ],
+      [
+        "2026-06-30",
+        79.0
+      ],
+      [
+        "2026-07-03",
+        69.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "400 GR"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_kirmizi-lahana-1-kg",
+    "ad": "Kırmızı Lahana 1 Kg",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000775.png",
+    "en_dusuk_fiyat": 69.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 69.5
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        84.9
+      ],
+      [
+        "2026-06-24",
+        79.5
+      ],
+      [
+        "2026-07-01",
+        69.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_i-thal-yaban-mersini-blueberry-125-gr",
+    "ad": "İthal Yaban Mersini Blueberry 125 Gr",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "125 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000012.png",
+    "en_dusuk_fiyat": 69.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 69.5
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-07-01",
+        69.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "125 GR"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_santa-maria-armut-1-kg",
+    "ad": "Santa Maria Armut 1 Kg",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/20000813.jpg",
+    "en_dusuk_fiyat": 79.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 79.0
+      },
+      {
+        "market": "sok",
+        "fiyat": 109.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        79.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_tazeyim-detox-orman-meyveleri-suyu-150-ml",
+    "ad": "Tazeyim Detox Orman Meyveleri Suyu 150 Ml",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "150 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30470609.png",
+    "en_dusuk_fiyat": 95.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 95.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        95.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "150 ML"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_kirmizi-biber-1-kg",
+    "ad": "Kırmızı Biber 1 Kg",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "1 KG",
+    "resim": null,
+    "en_dusuk_fiyat": 99.0,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 99.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        99.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_yesil-erik-1-kg",
+    "ad": "Yeşil Erik 1 Kg",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/hakmarimages/1010565.png",
+    "en_dusuk_fiyat": 125.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 125.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        125.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_tat-kozlenmis-biber-670-gr",
+    "ad": "Tat Közlenmiş Biber 670 Gr",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "670 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30089886.png",
+    "en_dusuk_fiyat": 125.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 125.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        169.9
+      ],
+      [
+        "2026-06-25",
+        125.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "670 GR"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_bamya-1-kg",
+    "ad": "Bamya 1 Kg",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/28033021.jpg",
+    "en_dusuk_fiyat": 299.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 299.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-07-03",
+        299.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_lavi-frambuaz-400-gr",
+    "ad": "Lavi Frambuaz 400 Gr",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "400 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/17300002.png",
+    "en_dusuk_fiyat": 392.65,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 392.65
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        392.65
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "400 GR"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_algida-twister-yaban-mersini-65-ml",
+    "ad": "Algida Twister Yaban Mersini 65 Ml",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "65 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/11578525.png",
+    "en_dusuk_fiyat": 15.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 15.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        15.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "65 ML"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_sogan-1-kg",
+    "ad": "Soğan 1 Kg",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "1 KG",
+    "resim": null,
+    "en_dusuk_fiyat": 37.9,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 37.9
+      },
+      {
+        "market": "bim",
+        "fiyat": 39.5
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        37.75
+      ],
+      [
+        "2026-06-30",
+        37.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_mango-1-adet",
+    "ad": "Mango 1 Adet",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000858.png",
+    "en_dusuk_fiyat": 39.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 39.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        39.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": []
+  },
+  {
+    "_sid": "meyve_activia-bowl-yaban-mersini-yulaf-chia-150-gr",
+    "ad": "Activia Bowl Yaban Mersini Yulaf Chia 150 Gr",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "150 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 49.5,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 49.5
+      },
+      {
+        "market": "migros",
+        "fiyat": 65.5
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        64.0
+      ],
+      [
+        "2026-06-25",
+        65.5
+      ],
+      [
+        "2026-06-26",
+        49.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "150 GR"
+      ]
+    ]
+  },
+  {
     "_sid": "meyve_kuru-sarimsak-1-paket",
     "ad": "Kuru Sarımsak 1 Paket",
     "ana_kategori": "Sebze",
@@ -249,22 +2492,38 @@
     ]
   },
   {
-    "_sid": "meyve_kizartmalik-patates-file-1-kg",
-    "ad": "Kızartmalık Patates File 1 Kg",
+    "_sid": "meyve_kemer-patlican-1-kg",
+    "ad": "Kemer Patlıcan 1 Kg",
     "ana_kategori": "Sebze",
     "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/20001013.jpg",
-    "en_dusuk_fiyat": 59.9,
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30013949.jpg",
+    "en_dusuk_fiyat": 59.0,
     "market_fiyatlari": [
       {
+        "market": "sok",
+        "fiyat": 59.0
+      },
+      {
         "market": "carrefour",
-        "fiyat": 59.9
+        "fiyat": 64.9
+      },
+      {
+        "market": "migros",
+        "fiyat": 69.95
       }
     ],
     "fiyat_gecmisi": [
       [
         "2026-06-22",
-        59.9
+        49.9
+      ],
+      [
+        "2026-06-24",
+        54.9
+      ],
+      [
+        "2026-07-01",
+        59.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
@@ -275,42 +2534,92 @@
     ]
   },
   {
-    "_sid": "meyve_starking-elma-1-kg",
-    "ad": "Starking Elma 1 Kg",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000805.png",
-    "en_dusuk_fiyat": 62.9,
+    "_sid": "meyve_mantar-tabak-300-gr",
+    "ad": "Mantar Tabak 300 Gr",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "300 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/20001051.png",
+    "en_dusuk_fiyat": 64.9,
     "market_fiyatlari": [
       {
-        "market": "tarim_kredi",
-        "fiyat": 62.9
-      },
-      {
         "market": "a101",
-        "fiyat": 69.5
-      },
-      {
-        "market": "bim",
-        "fiyat": 89.0
-      },
-      {
-        "market": "sok",
-        "fiyat": 89.9
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 89.9
+        "fiyat": 64.9
       }
     ],
     "fiyat_gecmisi": [
       [
         "2026-06-22",
-        29.9
+        64.9
+      ],
+      [
+        "2026-06-26",
+        54.9
+      ],
+      [
+        "2026-06-27",
+        51.9
+      ],
+      [
+        "2026-06-29",
+        64.9
+      ],
+      [
+        "2026-07-02",
+        54.9
+      ],
+      [
+        "2026-07-06",
+        64.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "300 GR"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_sivri-biber-1-kg",
+    "ad": "Sivri Biber 1 Kg",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "1 KG",
+    "resim": null,
+    "en_dusuk_fiyat": 69.0,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 69.0
+      },
+      {
+        "market": "a101",
+        "fiyat": 89.5
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 119.9
+      },
+      {
+        "market": "migros",
+        "fiyat": 119.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        49.0
+      ],
+      [
+        "2026-06-23",
+        54.9
+      ],
+      [
+        "2026-06-24",
+        64.9
       ],
       [
         "2026-07-01",
-        62.9
+        69.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
@@ -393,212 +2702,69 @@
     ]
   },
   {
-    "_sid": "meyve_limon-1-kg",
-    "ad": "Limon 1 Kg",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000800.png",
-    "en_dusuk_fiyat": 89.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 89.5
-      },
-      {
-        "market": "bim",
-        "fiyat": 99.0
-      },
-      {
-        "market": "sok",
-        "fiyat": 109.0
-      },
-      {
-        "market": "tarim_kredi",
-        "fiyat": 109.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        109.0
-      ],
-      [
-        "2026-06-23",
-        109.9
-      ],
-      [
-        "2026-06-25",
-        109.5
-      ],
-      [
-        "2026-06-26",
-        99.0
-      ],
-      [
-        "2026-07-02",
-        89.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_hero-goodies-yaban-mersini-muz-yulaf-pouch-100-gr",
-    "ad": "Hero Goodies Yaban Mersini Muz Yulaf Pouch 100 Gr",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "100 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30488114.jpg",
+    "_sid": "meyve_kanlica-mantari-kuru-35-gr",
+    "ad": "Kanlıca Mantarı Kuru 35 Gr",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "35 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30173927.png",
     "en_dusuk_fiyat": 89.9,
     "market_fiyatlari": [
       {
         "market": "carrefour",
         "fiyat": 89.9
-      },
-      {
-        "market": "migros",
-        "fiyat": 89.95
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-06-22",
-        89.95
-      ],
-      [
-        "2026-06-24",
-        55.6
-      ],
-      [
-        "2026-06-26",
+        "2026-07-03",
         89.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-03",
-        "100 GR"
+        "35 GR"
       ]
     ]
   },
   {
-    "_sid": "meyve_carrefour-bio-organik-cilek-40-gr",
-    "ad": "Carrefour Bio Organik Çilek 40 Gr",
+    "_sid": "meyve_kurutulmus-dolmalik-biber-18-adet",
+    "ad": "Kurutulmuş Dolmalık Biber 18 Adet",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": null,
+    "resim": null,
+    "en_dusuk_fiyat": 119.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 119.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        119.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": []
+  },
+  {
+    "_sid": "meyve_nektarin-beyaz-1-kg",
+    "ad": "Nektarin Beyaz 1 Kg",
     "ana_kategori": "Meyve",
-    "agirlik_hacim": "40 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/images/Carrefour-Bio-Organik-Çilek-40-Gr.png",
-    "en_dusuk_fiyat": 99.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 99.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        99.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "40 GR"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_arpacik-sogan-1-kg",
-    "ad": "Arpacık Soğan 1 Kg",
-    "ana_kategori": "Sebze",
     "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/28423316.jpg",
-    "en_dusuk_fiyat": 119.9,
+    "resim": "https://cdn.marketfiyati.org.tr/hakmar/1013611.jpg",
+    "en_dusuk_fiyat": 199.9,
     "market_fiyatlari": [
       {
         "market": "carrefour",
-        "fiyat": 119.9
+        "fiyat": 199.9
       }
     ],
     "fiyat_gecmisi": [
       [
         "2026-06-22",
-        109.9
-      ],
-      [
-        "2026-07-03",
-        119.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_koy-biberi-1-kg",
-    "ad": "Köy Biberi 1 Kg",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30095161.jpg",
-    "en_dusuk_fiyat": 119.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 119.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        79.9
-      ],
-      [
-        "2026-06-26",
-        109.9
-      ],
-      [
-        "2026-07-03",
-        119.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_pek-jumbo-patates-1-kg",
-    "ad": "Pek Jumbo Patates 1 Kg",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30307508.png",
-    "en_dusuk_fiyat": 199.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 199.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        199.95
-      ],
-      [
-        "2026-06-26",
-        201.9
-      ],
-      [
-        "2026-07-03",
-        199.95
+        199.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
@@ -635,1139 +2801,6 @@
     ]
   },
   {
-    "_sid": "meyve_bamya-1-kg",
-    "ad": "Bamya 1 Kg",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/28033021.jpg",
-    "en_dusuk_fiyat": 299.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 299.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-07-03",
-        299.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_portakal-1-kg",
-    "ad": "Portakal 1 Kg",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000816.png",
-    "en_dusuk_fiyat": 35.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 35.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        35.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_gobek-marul-1-adet",
-    "ad": "Göbek Marul 1 Adet",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": null,
-    "resim": "https://cdn.marketfiyati.org.tr/a101/20000776.jpg",
-    "en_dusuk_fiyat": 42.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 42.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        49.5
-      ],
-      [
-        "2026-06-23",
-        42.0
-      ],
-      [
-        "2026-06-25",
-        49.5
-      ],
-      [
-        "2026-06-27",
-        42.0
-      ],
-      [
-        "2026-06-29",
-        49.5
-      ],
-      [
-        "2026-06-30",
-        42.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": []
-  },
-  {
-    "_sid": "meyve_i-nci-bezelye-450-gr",
-    "ad": "İnci Bezelye 450 Gr",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "450 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/sokimages/67404.png",
-    "en_dusuk_fiyat": 44.5,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 44.5
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        44.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "450 GR"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_yesil-biber-1-kg",
-    "ad": "Yeşil Biber 1 Kg",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/116465.jpg",
-    "en_dusuk_fiyat": 49.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 49.0
-      },
-      {
-        "market": "tarim_kredi",
-        "fiyat": 69.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        49.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_golden-elma-1-kg",
-    "ad": "Golden Elma 1 Kg",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "1 KG",
-    "resim": null,
-    "en_dusuk_fiyat": 59.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 59.0
-      },
-      {
-        "market": "tarim_kredi",
-        "fiyat": 69.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        29.9
-      ],
-      [
-        "2026-07-01",
-        59.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_sakiz-kabak-1-kg",
-    "ad": "Sakız Kabak 1 Kg",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "1 KG",
-    "resim": null,
-    "en_dusuk_fiyat": 69.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 69.9
-      },
-      {
-        "market": "migros",
-        "fiyat": 69.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        69.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_bostan-patlican-1-kg",
-    "ad": "Bostan Patlıcan 1 Kg",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/28309026.jpg",
-    "en_dusuk_fiyat": 69.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 69.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        64.9
-      ],
-      [
-        "2026-07-02",
-        69.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_i-thal-muz-1-kg",
-    "ad": "İthal Muz 1 Kg",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/hakmar/1000813.jpg",
-    "en_dusuk_fiyat": 89.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 89.0
-      },
-      {
-        "market": "bim",
-        "fiyat": 99.0
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 99.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        99.0
-      ],
-      [
-        "2026-06-28",
-        93.0
-      ],
-      [
-        "2026-06-29",
-        89.0
-      ],
-      [
-        "2026-07-02",
-        79.0
-      ],
-      [
-        "2026-07-04",
-        89.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_kirmizi-biber-1-kg",
-    "ad": "Kırmızı Biber 1 Kg",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "1 KG",
-    "resim": null,
-    "en_dusuk_fiyat": 99.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 99.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        99.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_erik-angelica-1-kg",
-    "ad": "Erik Angelica 1 Kg",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30091736.png",
-    "en_dusuk_fiyat": 134.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 134.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        134.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_kivi-1-kg",
-    "ad": "Kivi 1 Kg",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000834.png",
-    "en_dusuk_fiyat": 149.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 149.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        139.9
-      ],
-      [
-        "2026-06-26",
-        149.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_tada-vegan-zeytinyagli-taze-fasulye-250-gr",
-    "ad": "Tada Vegan Zeytinyağlı Taze Fasulye 250 Gr",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "250 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30465922.png",
-    "en_dusuk_fiyat": 149.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 149.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        149.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "250 GR"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_beyaz-uzum-1-kg",
-    "ad": "Beyaz Üzüm 1 Kg",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30090858.png",
-    "en_dusuk_fiyat": 219.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 219.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-26",
-        189.9
-      ],
-      [
-        "2026-07-03",
-        219.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_lavi-frambuaz-400-gr",
-    "ad": "Lavi Frambuaz 400 Gr",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "400 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/17300002.png",
-    "en_dusuk_fiyat": 392.65,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 392.65
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        392.65
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "400 GR"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_algida-twister-yaban-mersini-65-ml",
-    "ad": "Algida Twister Yaban Mersini 65 Ml",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "65 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/11578525.png",
-    "en_dusuk_fiyat": 15.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 15.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        15.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "65 ML"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_mini-karpuz-1-kg",
-    "ad": "Mini Karpuz 1 Kg",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1001016.png",
-    "en_dusuk_fiyat": 19.5,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 19.5
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        22.5
-      ],
-      [
-        "2026-06-26",
-        17.5
-      ],
-      [
-        "2026-06-30",
-        19.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_kizartmalik-patates-1-kg",
-    "ad": "Kızartmalık Patates 1 Kg",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1001135.png",
-    "en_dusuk_fiyat": 27.5,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 27.5
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        27.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_hiyar-1-kg",
-    "ad": "Hıyar 1 Kg",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/28130001.jpg",
-    "en_dusuk_fiyat": 39.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 39.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        44.95
-      ],
-      [
-        "2026-06-27",
-        42.95
-      ],
-      [
-        "2026-07-01",
-        39.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_k-akdeniz-salata-1-adet",
-    "ad": "K.Akdeniz Salata 1 Adet",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": null,
-    "resim": null,
-    "en_dusuk_fiyat": 49.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 49.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        49.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": []
-  },
-  {
-    "_sid": "meyve_atom-salata-1-adet",
-    "ad": "Atom Salata 1 Adet",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": null,
-    "resim": "https://cdn.marketfiyati.org.tr/migros/28370017.jpg",
-    "en_dusuk_fiyat": 49.5,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 49.5
-      },
-      {
-        "market": "sok",
-        "fiyat": 59.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        54.95
-      ],
-      [
-        "2026-06-26",
-        39.95
-      ],
-      [
-        "2026-06-30",
-        59.9
-      ],
-      [
-        "2026-07-01",
-        49.95
-      ],
-      [
-        "2026-07-03",
-        49.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": []
-  },
-  {
-    "_sid": "meyve_zen-bubble-tea-yaban-mersini-aromali-i-cecek-300-ml",
-    "ad": "Zen Bubble Tea Yaban Mersini Aromalı İçecek 300 Ml",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "300 ML",
-    "resim": null,
-    "en_dusuk_fiyat": 49.9,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 49.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        44.5
-      ],
-      [
-        "2026-07-01",
-        49.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "300 ML"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_file-sogan-1-kg",
-    "ad": "File Soğan 1 Kg",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30105395.png",
-    "en_dusuk_fiyat": 59.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 59.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        59.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_mantar-300-gr",
-    "ad": "Mantar 300 Gr",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "300 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30033731.png",
-    "en_dusuk_fiyat": 64.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 64.9
-      },
-      {
-        "market": "sok",
-        "fiyat": 69.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        59.9
-      ],
-      [
-        "2026-06-23",
-        64.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "300 GR"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_i-thal-yaban-mersini-blueberry-125-gr",
-    "ad": "İthal Yaban Mersini Blueberry 125 Gr",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "125 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000012.png",
-    "en_dusuk_fiyat": 69.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 69.5
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-07-01",
-        69.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "125 GR"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_kirmizi-lahana-1-kg",
-    "ad": "Kırmızı Lahana 1 Kg",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000775.png",
-    "en_dusuk_fiyat": 69.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 69.5
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        84.9
-      ],
-      [
-        "2026-06-24",
-        79.5
-      ],
-      [
-        "2026-07-01",
-        69.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_i-thal-muz-1-kg",
-    "ad": "İthal Muz 1 Kg",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/hakmar/1000813.jpg",
-    "en_dusuk_fiyat": 89.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 89.0
-      },
-      {
-        "market": "bim",
-        "fiyat": 99.0
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 99.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        99.0
-      ],
-      [
-        "2026-06-28",
-        93.0
-      ],
-      [
-        "2026-06-29",
-        89.0
-      ],
-      [
-        "2026-07-02",
-        79.0
-      ],
-      [
-        "2026-07-04",
-        89.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_nektarin-1-kg",
-    "ad": "Nektarin 1 Kg",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30055557.png",
-    "en_dusuk_fiyat": 89.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 89.5
-      },
-      {
-        "market": "sok",
-        "fiyat": 99.0
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 109.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        89.9
-      ],
-      [
-        "2026-06-25",
-        74.9
-      ],
-      [
-        "2026-06-27",
-        89.9
-      ],
-      [
-        "2026-07-01",
-        99.0
-      ],
-      [
-        "2026-07-02",
-        89.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_gurvita-baby-kuzu-i-lik-kemik-sulu-tatli-patates-165-gr",
-    "ad": "Gurvita Baby Kuzu İlik Kemik Sulu Tatlı Patates 165 Gr",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "165 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 139.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 139.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        139.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "165 GR"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_elma-granny-smith-gurme-1-kg",
-    "ad": "Elma Granny Smith Gurme 1 Kg",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30041853.png",
-    "en_dusuk_fiyat": 149.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 149.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-07-03",
-        149.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_cali-fasulye-1-kg",
-    "ad": "Çalı Fasulye 1 Kg",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "1 KG",
-    "resim": null,
-    "en_dusuk_fiyat": 169.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 169.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-07-03",
-        169.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_lavi-kuskonmaz-350-gr",
-    "ad": "Lavi Kuşkonmaz 350 Gr",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "350 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/17010067.jpg",
-    "en_dusuk_fiyat": 169.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 169.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        169.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "350 GR"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_gerber-organik-yulafli-elma-ve-yaban-mersini-pure-110-gr",
-    "ad": "Gerber Organik Yulaflı Elma ve Yaban Mersini Püre 110 Gr",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "110 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/5040761.jpg",
-    "en_dusuk_fiyat": 171.5,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 171.5
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        171.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "110 GR"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_kuru-patlican-dolma-1-kg",
-    "ad": "Kuru Patlıcan Dolma 1 Kg",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30003658.png",
-    "en_dusuk_fiyat": 1150.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 1150.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-07-03",
-        1150.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_karpuz-1-kg",
-    "ad": "Karpuz 1 Kg",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "1 KG",
-    "resim": null,
-    "en_dusuk_fiyat": 16.5,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 16.5
-      },
-      {
-        "market": "tarim_kredi",
-        "fiyat": 16.5
-      },
-      {
-        "market": "a101",
-        "fiyat": 16.9
-      },
-      {
-        "market": "sok",
-        "fiyat": 17.5
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        17.9
-      ],
-      [
-        "2026-06-24",
-        18.9
-      ],
-      [
-        "2026-06-25",
-        19.0
-      ],
-      [
-        "2026-06-26",
-        16.9
-      ],
-      [
-        "2026-06-29",
-        17.5
-      ],
-      [
-        "2026-07-03",
-        16.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_olips-orman-meyveleri-aromali-28-gr",
-    "ad": "Olips Orman Meyveleri Aromalı 28 Gr",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "28 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/27000629.jpg",
-    "en_dusuk_fiyat": 19.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 19.95
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 33.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        19.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "28 GR"
-      ]
-    ]
-  },
-  {
     "_sid": "meyve_tagem-topak-patlican-1-kg",
     "ad": "Tagem Topak Patlıcan 1 Kg",
     "ana_kategori": "Sebze",
@@ -1794,52 +2827,56 @@
     ]
   },
   {
-    "_sid": "meyve_seker-domates-250-gr",
-    "ad": "Şeker Domates 250 Gr",
+    "_sid": "meyve_havuc-1-kg",
+    "ad": "Havuç 1 Kg",
     "ana_kategori": "Sebze",
-    "agirlik_hacim": "250 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/20001227.png",
-    "en_dusuk_fiyat": 34.9,
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/sokimages/28120001.png",
+    "en_dusuk_fiyat": 35.0,
     "market_fiyatlari": [
       {
-        "market": "a101",
-        "fiyat": 34.9
+        "market": "bim",
+        "fiyat": 35.0
+      },
+      {
+        "market": "sok",
+        "fiyat": 69.9
       }
     ],
     "fiyat_gecmisi": [
       [
         "2026-06-22",
-        45.9
-      ],
-      [
-        "2026-06-24",
-        34.9
+        35.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-03",
-        "250 GR"
+        "1 KG"
       ]
     ]
   },
   {
-    "_sid": "meyve_atistirmalik-domates-1-kg",
-    "ad": "Atıştırmalık Domates 1 Kg",
-    "ana_kategori": "Sebze",
+    "_sid": "meyve_portakal-sikmalik-1-kg",
+    "ad": "Portakal Sıkmalık 1 Kg",
+    "ana_kategori": "Meyve",
     "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1000596.png",
-    "en_dusuk_fiyat": 39.0,
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1000829.png",
+    "en_dusuk_fiyat": 37.5,
     "market_fiyatlari": [
       {
         "market": "bim",
-        "fiyat": 39.0
+        "fiyat": 37.5
+      },
+      {
+        "market": "sok",
+        "fiyat": 49.9
       }
     ],
     "fiyat_gecmisi": [
       [
         "2026-06-22",
-        39.0
+        37.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
@@ -1862,12 +2899,12 @@
         "fiyat": 39.0
       },
       {
-        "market": "a101",
-        "fiyat": 39.5
-      },
-      {
         "market": "migros",
         "fiyat": 39.95
+      },
+      {
+        "market": "a101",
+        "fiyat": 49.5
       },
       {
         "market": "carrefour",
@@ -1908,6 +2945,70 @@
     ]
   },
   {
+    "_sid": "meyve_kirmizi-biber-paket-300-gr",
+    "ad": "Kırmızı Biber Paket 300 Gr",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "300 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000026.png",
+    "en_dusuk_fiyat": 39.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 39.5
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        45.9
+      ],
+      [
+        "2026-06-24",
+        39.5
+      ],
+      [
+        "2026-07-02",
+        34.9
+      ],
+      [
+        "2026-07-06",
+        39.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "300 GR"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_portakal-valencia-1-kg",
+    "ad": "Portakal Valencia 1 Kg",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30026054.png",
+    "en_dusuk_fiyat": 49.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 49.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        49.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
     "_sid": "meyve_eko-domates-1-kg",
     "ad": "Eko Domates 1 Kg",
     "ana_kategori": "Sebze",
@@ -1934,6 +3035,36 @@
       [
         "2026-07-03",
         "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_zen-bubble-tea-yaban-mersini-aromali-i-cecek-300-ml",
+    "ad": "Zen Bubble Tea Yaban Mersini Aromalı İçecek 300 Ml",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "300 ML",
+    "resim": null,
+    "en_dusuk_fiyat": 49.9,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 49.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        44.5
+      ],
+      [
+        "2026-07-01",
+        49.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "300 ML"
       ]
     ]
   },
@@ -1984,46 +3115,83 @@
     ]
   },
   {
-    "_sid": "meyve_i-thal-avokado-1-kg",
-    "ad": "İthal Avokado 1 Kg",
+    "_sid": "meyve_starking-elma-1-kg",
+    "ad": "Starking Elma 1 Kg",
     "ana_kategori": "Meyve",
     "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30281297.png",
-    "en_dusuk_fiyat": 59.9,
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000805.png",
+    "en_dusuk_fiyat": 62.9,
     "market_fiyatlari": [
       {
+        "market": "tarim_kredi",
+        "fiyat": 62.9
+      },
+      {
+        "market": "bim",
+        "fiyat": 89.0
+      },
+      {
+        "market": "a101",
+        "fiyat": 89.5
+      },
+      {
+        "market": "sok",
+        "fiyat": 89.9
+      },
+      {
         "market": "carrefour",
-        "fiyat": 59.9
+        "fiyat": 89.9
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-07-04",
-        59.9
+        "2026-06-22",
+        29.9
+      ],
+      [
+        "2026-07-01",
+        62.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-07-04",
+        "2026-07-03",
         "1 KG"
       ]
     ]
   },
   {
-    "_sid": "meyve_santa-maria-armut-1-kg",
-    "ad": "Santa Maria Armut 1 Kg",
+    "_sid": "meyve_yaban-mersini-paket-1-adet",
+    "ad": "Yaban Mersini Paket 1 Adet",
     "ana_kategori": "Meyve",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/20000813.jpg",
+    "agirlik_hacim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/sokimages/68044.png",
+    "en_dusuk_fiyat": 69.9,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 69.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        69.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": []
+  },
+  {
+    "_sid": "meyve_kestane-mantari-350-gr",
+    "ad": "Kestane Mantarı 350 Gr",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "350 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1001400.png",
     "en_dusuk_fiyat": 79.0,
     "market_fiyatlari": [
       {
         "market": "bim",
         "fiyat": 79.0
-      },
-      {
-        "market": "sok",
-        "fiyat": 109.0
       }
     ],
     "fiyat_gecmisi": [
@@ -2035,92 +3203,16 @@
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-03",
-        "1 KG"
+        "350 GR"
       ]
     ]
   },
   {
-    "_sid": "meyve_carliston-biber-1-kg",
-    "ad": "Çarliston Biber 1 Kg",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30012953.png",
-    "en_dusuk_fiyat": 89.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 89.5
-      },
-      {
-        "market": "sok",
-        "fiyat": 99.0
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 119.9
-      },
-      {
-        "market": "migros",
-        "fiyat": 119.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        49.0
-      ],
-      [
-        "2026-06-24",
-        64.9
-      ],
-      [
-        "2026-06-27",
-        59.95
-      ],
-      [
-        "2026-07-01",
-        89.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_kanlica-mantari-kuru-35-gr",
-    "ad": "Kanlıca Mantarı Kuru 35 Gr",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "35 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30173927.png",
-    "en_dusuk_fiyat": 89.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 89.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-07-03",
-        89.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "35 GR"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_kirmizi-erik-1-kg",
-    "ad": "Kırmızı Erik 1 Kg",
+    "_sid": "meyve_ananas-1-adet",
+    "ad": "Ananas 1 Adet",
     "ana_kategori": "Meyve",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/20001134.png",
+    "agirlik_hacim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000835.png",
     "en_dusuk_fiyat": 99.0,
     "market_fiyatlari": [
       {
@@ -2134,70 +3226,110 @@
     ],
     "fiyat_gecmisi": [
       [
+        "2026-06-22",
+        109.0
+      ],
+      [
         "2026-06-23",
+        119.0
+      ],
+      [
+        "2026-06-26",
+        99.0
+      ],
+      [
+        "2026-06-30",
+        119.0
+      ],
+      [
+        "2026-07-02",
+        99.5
+      ],
+      [
+        "2026-07-03",
         99.0
       ]
     ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
+    "agirlik_hacim_gecmisi": []
   },
   {
-    "_sid": "meyve_kiraz-1-kg",
-    "ad": "Kiraz 1 Kg",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30097032.png",
-    "en_dusuk_fiyat": 99.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 99.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-07-01",
-        99.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_tat-kozlenmis-biber-670-gr",
-    "ad": "Tat Közlenmiş Biber 670 Gr",
+    "_sid": "meyve_fasulye-taze-1-kg",
+    "ad": "Fasulye Taze 1 Kg",
     "ana_kategori": "Sebze",
-    "agirlik_hacim": "670 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30089886.png",
-    "en_dusuk_fiyat": 125.9,
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30014928.png",
+    "en_dusuk_fiyat": 109.9,
     "market_fiyatlari": [
       {
         "market": "carrefour",
-        "fiyat": 125.9
+        "fiyat": 109.9
       }
     ],
     "fiyat_gecmisi": [
       [
         "2026-06-22",
-        169.9
+        179.9
       ],
       [
-        "2026-06-25",
-        125.9
+        "2026-06-26",
+        139.9
+      ],
+      [
+        "2026-07-03",
+        109.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-03",
-        "670 GR"
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_kurutulmus-dolmalik-patlican-18-adet",
+    "ad": "Kurutulmuş Dolmalık Patlıcan 18 Adet",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": null,
+    "resim": null,
+    "en_dusuk_fiyat": 119.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 119.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        119.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": []
+  },
+  {
+    "_sid": "meyve_elma-granny-smith-gurme-1-kg",
+    "ad": "Elma Granny Smith Gurme 1 Kg",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30041853.png",
+    "en_dusuk_fiyat": 149.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 149.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-07-03",
+        149.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
       ]
     ]
   },
@@ -2244,22 +3376,48 @@
     ]
   },
   {
-    "_sid": "meyve_akca-armut-1-kg",
-    "ad": "Akça Armut 1 Kg",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/20001133.png",
-    "en_dusuk_fiyat": 199.9,
+    "_sid": "meyve_sera-deniz-borulcesi-340-gr",
+    "ad": "Sera Deniz Börülcesi 340 Gr",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "340 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/9030127.jpg",
+    "en_dusuk_fiyat": 454.95,
     "market_fiyatlari": [
       {
-        "market": "carrefour",
-        "fiyat": 199.9
+        "market": "migros",
+        "fiyat": 454.95
       }
     ],
     "fiyat_gecmisi": [
       [
         "2026-06-22",
-        199.9
+        454.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "340 GR"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_kuru-patlican-dolma-1-kg",
+    "ad": "Kuru Patlıcan Dolma 1 Kg",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30003658.png",
+    "en_dusuk_fiyat": 1150.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 1150.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-07-03",
+        1150.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
@@ -2270,28 +3428,60 @@
     ]
   },
   {
-    "_sid": "meyve_harvest-more-beyaz-kuskonmaz-konservesi-330-gr",
-    "ad": "Harvest & More Beyaz Kuşkonmaz Konservesi 330 Gr",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "330 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 208.0,
+    "_sid": "meyve_karpuz-cekirdeksiz-1-kg",
+    "ad": "Karpuz Çekirdeksiz 1 Kg",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1000810.png",
+    "en_dusuk_fiyat": 17.5,
     "market_fiyatlari": [
       {
-        "market": "carrefour",
-        "fiyat": 208.0
+        "market": "bim",
+        "fiyat": 17.5
+      },
+      {
+        "market": "a101",
+        "fiyat": 17.9
+      },
+      {
+        "market": "sok",
+        "fiyat": 19.0
       }
     ],
     "fiyat_gecmisi": [
       [
         "2026-06-22",
-        208.0
+        25.0
+      ],
+      [
+        "2026-06-23",
+        22.9
+      ],
+      [
+        "2026-06-26",
+        17.5
+      ],
+      [
+        "2026-06-30",
+        19.5
+      ],
+      [
+        "2026-07-01",
+        19.0
+      ],
+      [
+        "2026-07-02",
+        16.9
+      ],
+      [
+        "2026-07-03",
+        17.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-03",
-        "330 GR"
+        "1 KG"
       ]
     ]
   },
@@ -2301,11 +3491,11 @@
     "ana_kategori": "Sebze",
     "agirlik_hacim": null,
     "resim": "https://cdn.marketfiyati.org.tr/migros/28265010.jpg",
-    "en_dusuk_fiyat": 18.5,
+    "en_dusuk_fiyat": 21.9,
     "market_fiyatlari": [
       {
         "market": "a101",
-        "fiyat": 18.5
+        "fiyat": 21.9
       }
     ],
     "fiyat_gecmisi": [
@@ -2332,111 +3522,187 @@
       [
         "2026-07-03",
         18.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": []
-  },
-  {
-    "_sid": "meyve_tagem-kocas-patlicani-1-adet",
-    "ad": "Tagem Koçaş Patlıcanı 1 Adet",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": null,
-    "resim": null,
-    "en_dusuk_fiyat": 24.9,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 24.9
-      }
-    ],
-    "fiyat_gecmisi": [
+      ],
       [
-        "2026-06-22",
-        24.9
+        "2026-07-06",
+        21.9
       ]
     ],
     "agirlik_hacim_gecmisi": []
   },
   {
-    "_sid": "meyve_file-sarimsak-200-gr",
-    "ad": "File Sarımsak 200 Gr",
+    "_sid": "meyve_salkim-domates-1-kg",
+    "ad": "Salkım Domates 1 Kg",
     "ana_kategori": "Sebze",
-    "agirlik_hacim": "200 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 43.9,
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000762.png",
+    "en_dusuk_fiyat": 34.9,
     "market_fiyatlari": [
       {
         "market": "a101",
-        "fiyat": 43.9
+        "fiyat": 34.9
+      },
+      {
+        "market": "bim",
+        "fiyat": 45.0
+      },
+      {
+        "market": "sok",
+        "fiyat": 45.0
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 49.9
       }
     ],
     "fiyat_gecmisi": [
       [
         "2026-06-22",
-        49.5
+        29.9
       ],
       [
-        "2026-06-27",
-        39.5
+        "2026-06-23",
+        19.9
       ],
       [
-        "2026-06-29",
-        49.5
-      ],
-      [
-        "2026-07-04",
-        43.9
+        "2026-07-02",
+        34.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-03",
-        "200 GR"
+        "1 KG"
       ]
     ]
   },
   {
-    "_sid": "meyve_kivircik-salata-1-adet",
-    "ad": "Kıvırcık Salata 1 Adet",
+    "_sid": "meyve_kirmizi-dolma-biber-1-kg",
+    "ad": "Kırmızı Dolma Biber 1 Kg",
     "ana_kategori": "Sebze",
-    "agirlik_hacim": null,
-    "resim": "https://cdn.marketfiyati.org.tr/migros/28360212.jpg",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30091602.png",
+    "en_dusuk_fiyat": 39.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 39.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        59.9
+      ],
+      [
+        "2026-06-30",
+        39.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_hiyar-1-kg",
+    "ad": "Hıyar 1 Kg",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/28130001.jpg",
+    "en_dusuk_fiyat": 39.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 39.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        44.95
+      ],
+      [
+        "2026-06-27",
+        42.95
+      ],
+      [
+        "2026-07-01",
+        39.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_cengelkoy-salatalik-500-gr",
+    "ad": "Çengelköy Salatalık 500 Gr",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "500 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/20001129.png",
     "en_dusuk_fiyat": 44.9,
     "market_fiyatlari": [
       {
-        "market": "sok",
+        "market": "a101",
         "fiyat": 44.9
       }
     ],
     "fiyat_gecmisi": [
       [
         "2026-06-22",
-        49.9
+        48.9
       ],
       [
-        "2026-07-01",
+        "2026-06-24",
+        44.9
+      ],
+      [
+        "2026-07-02",
+        34.9
+      ],
+      [
+        "2026-07-06",
         44.9
       ]
     ],
-    "agirlik_hacim_gecmisi": []
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "500 GR"
+      ]
+    ]
   },
   {
-    "_sid": "meyve_dolmalik-top-kabak-1-kg",
-    "ad": "Dolmalık Top Kabak 1 Kg",
-    "ana_kategori": "Sebze",
+    "_sid": "meyve_yerli-muz-1-kg",
+    "ad": "Yerli Muz 1 Kg",
+    "ana_kategori": "Meyve",
     "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30091713.jpg",
-    "en_dusuk_fiyat": 65.9,
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000804.png",
+    "en_dusuk_fiyat": 79.0,
     "market_fiyatlari": [
       {
-        "market": "carrefour",
-        "fiyat": 65.9
+        "market": "bim",
+        "fiyat": 79.0
+      },
+      {
+        "market": "sok",
+        "fiyat": 89.9
+      },
+      {
+        "market": "tarim_kredi",
+        "fiyat": 89.9
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-06-29",
-        65.9
+        "2026-06-22",
+        79.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
@@ -2447,131 +3713,87 @@
     ]
   },
   {
-    "_sid": "meyve_mantar-400-gr",
-    "ad": "Mantar 400 Gr",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "400 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/sok/126156.jpg",
-    "en_dusuk_fiyat": 69.0,
+    "_sid": "meyve_hero-goodies-yaban-mersini-muz-yulaf-pouch-100-gr",
+    "ad": "Hero Goodies Yaban Mersini Muz Yulaf Pouch 100 Gr",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "100 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30488114.jpg",
+    "en_dusuk_fiyat": 89.9,
     "market_fiyatlari": [
       {
-        "market": "bim",
-        "fiyat": 69.0
+        "market": "carrefour",
+        "fiyat": 89.9
+      },
+      {
+        "market": "migros",
+        "fiyat": 89.95
       }
     ],
     "fiyat_gecmisi": [
       [
         "2026-06-22",
-        59.0
+        89.95
       ],
       [
-        "2026-06-23",
-        79.0
+        "2026-06-24",
+        55.6
       ],
       [
         "2026-06-26",
-        69.0
-      ],
-      [
-        "2026-06-30",
-        79.0
-      ],
-      [
-        "2026-07-03",
-        69.0
+        89.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-03",
-        "400 GR"
+        "100 GR"
       ]
     ]
   },
   {
-    "_sid": "meyve_kestane-mantari-350-gr",
-    "ad": "Kestane Mantarı 350 Gr",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "350 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1001400.png",
-    "en_dusuk_fiyat": 79.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 79.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        79.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "350 GR"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_granny-smith-elma-1-kg",
-    "ad": "Granny Smith Elma 1 Kg",
+    "_sid": "meyve_nektarin-1-kg",
+    "ad": "Nektarin 1 Kg",
     "ana_kategori": "Meyve",
     "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30134097.jpg",
-    "en_dusuk_fiyat": 79.0,
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30055557.png",
+    "en_dusuk_fiyat": 99.0,
     "market_fiyatlari": [
       {
-        "market": "bim",
-        "fiyat": 79.0
+        "market": "sok",
+        "fiyat": 99.0
       },
       {
         "market": "a101",
-        "fiyat": 94.9
+        "fiyat": 99.5
       },
       {
         "market": "carrefour",
-        "fiyat": 119.9
+        "fiyat": 109.9
       }
     ],
     "fiyat_gecmisi": [
       [
         "2026-06-22",
-        79.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_kapya-biber-1-kg",
-    "ad": "Kapya Biber 1 Kg",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1000417.png",
-    "en_dusuk_fiyat": 99.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 99.0
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 99.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        79.9
+        89.9
       ],
       [
-        "2026-07-03",
+        "2026-06-25",
+        74.9
+      ],
+      [
+        "2026-06-27",
+        89.9
+      ],
+      [
+        "2026-07-01",
+        99.0
+      ],
+      [
+        "2026-07-02",
+        89.5
+      ],
+      [
+        "2026-07-06",
         99.0
       ]
     ],
@@ -2583,11 +3805,11 @@
     ]
   },
   {
-    "_sid": "meyve_limon-lamas-1-kg",
-    "ad": "Limon Lamas 1 Kg",
+    "_sid": "meyve_kiraz-1-kg",
+    "ad": "Kiraz 1 Kg",
     "ana_kategori": "Meyve",
     "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30088937.png",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30097032.png",
     "en_dusuk_fiyat": 99.0,
     "market_fiyatlari": [
       {
@@ -2597,11 +3819,7 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-06-22",
-        139.9
-      ],
-      [
-        "2026-06-30",
+        "2026-07-01",
         99.0
       ]
     ],
@@ -2613,79 +3831,28 @@
     ]
   },
   {
-    "_sid": "meyve_dalin-kopuk-sabun-orman-meyveleri-200-ml",
-    "ad": "Dalin Köpük Sabun Orman Meyveleri 200 Ml",
+    "_sid": "meyve_teekanne-yaban-mersini-cayi-40-gr",
+    "ad": "Teekanne Yaban Mersini Çayı 40 Gr",
     "ana_kategori": "Meyve",
-    "agirlik_hacim": "200 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30238639.jpg",
-    "en_dusuk_fiyat": 99.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 99.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        90.99
-      ],
-      [
-        "2026-07-03",
-        99.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "200 ML"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_kurutulmus-dolmalik-biber-18-adet",
-    "ad": "Kurutulmuş Dolmalık Biber 18 Adet",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": null,
+    "agirlik_hacim": "40 GR",
     "resim": null,
-    "en_dusuk_fiyat": 119.9,
+    "en_dusuk_fiyat": 114.95,
     "market_fiyatlari": [
       {
         "market": "carrefour",
-        "fiyat": 119.9
+        "fiyat": 114.95
       }
     ],
     "fiyat_gecmisi": [
       [
         "2026-06-22",
-        119.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": []
-  },
-  {
-    "_sid": "meyve_yesil-erik-1-kg",
-    "ad": "Yeşil Erik 1 Kg",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/hakmarimages/1010565.png",
-    "en_dusuk_fiyat": 125.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 125.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        125.0
+        114.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-03",
-        "1 KG"
+        "40 GR"
       ]
     ]
   },
@@ -2716,105 +3883,28 @@
     ]
   },
   {
-    "_sid": "meyve_enginar-baby-8-adet",
-    "ad": "Enginar Baby 8 Adet",
+    "_sid": "meyve_lavi-kuskonmaz-350-gr",
+    "ad": "Lavi Kuşkonmaz 350 Gr",
     "ana_kategori": "Sebze",
-    "agirlik_hacim": null,
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30303523.jpg",
-    "en_dusuk_fiyat": 149.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 149.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        99.95
-      ],
-      [
-        "2026-06-23",
-        149.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": []
-  },
-  {
-    "_sid": "meyve_seftali-yassi-1-kg",
-    "ad": "Şeftali Yassı 1 Kg",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/20001384.png",
-    "en_dusuk_fiyat": 149.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 149.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-07-02",
-        149.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_lavi-karisik-orman-meyveleri-3-lu-400-gr",
-    "ad": "Lavi Karışık Orman Meyveleri 3'lü 400 Gr",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "400 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/17300003.jpg",
-    "en_dusuk_fiyat": 295.75,
+    "agirlik_hacim": "350 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/17010067.jpg",
+    "en_dusuk_fiyat": 169.95,
     "market_fiyatlari": [
       {
         "market": "migros",
-        "fiyat": 295.75
+        "fiyat": 169.95
       }
     ],
     "fiyat_gecmisi": [
       [
         "2026-06-22",
-        295.75
+        169.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-03",
-        "400 GR"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_sera-deniz-borulcesi-340-gr",
-    "ad": "Sera Deniz Börülcesi 340 Gr",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "340 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/9030127.jpg",
-    "en_dusuk_fiyat": 454.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 454.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        454.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "340 GR"
+        "350 GR"
       ]
     ]
   },
@@ -2886,126 +3976,46 @@
     ]
   },
   {
-    "_sid": "meyve_siyah-kavun-1-kg",
-    "ad": "Siyah Kavun 1 Kg",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1001070.png",
-    "en_dusuk_fiyat": 29.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 29.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        35.0
-      ],
-      [
-        "2026-06-26",
-        29.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_salkim-domates-1-kg",
-    "ad": "Salkım Domates 1 Kg",
+    "_sid": "meyve_seker-domates-250-gr",
+    "ad": "Şeker Domates 250 Gr",
     "ana_kategori": "Sebze",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000762.png",
+    "agirlik_hacim": "250 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/20001227.png",
     "en_dusuk_fiyat": 34.9,
     "market_fiyatlari": [
       {
         "market": "a101",
         "fiyat": 34.9
-      },
-      {
-        "market": "bim",
-        "fiyat": 45.0
-      },
-      {
-        "market": "sok",
-        "fiyat": 45.0
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 49.9
       }
     ],
     "fiyat_gecmisi": [
       [
         "2026-06-22",
-        29.9
+        45.9
       ],
       [
-        "2026-06-23",
-        19.9
-      ],
-      [
-        "2026-07-02",
+        "2026-06-24",
         34.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-03",
-        "1 KG"
+        "250 GR"
       ]
     ]
   },
   {
-    "_sid": "meyve_portakal-sikmalik-1-kg",
-    "ad": "Portakal Sıkmalık 1 Kg",
-    "ana_kategori": "Meyve",
+    "_sid": "meyve_atistirmalik-domates-1-kg",
+    "ad": "Atıştırmalık Domates 1 Kg",
+    "ana_kategori": "Sebze",
     "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1000829.png",
-    "en_dusuk_fiyat": 37.5,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 37.5
-      },
-      {
-        "market": "sok",
-        "fiyat": 49.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        37.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_mango-1-adet",
-    "ad": "Mango 1 Adet",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": null,
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000858.png",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1000596.png",
     "en_dusuk_fiyat": 39.0,
     "market_fiyatlari": [
       {
         "market": "bim",
         "fiyat": 39.0
-      },
-      {
-        "market": "a101",
-        "fiyat": 84.9
       }
     ],
     "fiyat_gecmisi": [
@@ -3014,65 +4024,6 @@
         39.0
       ]
     ],
-    "agirlik_hacim_gecmisi": []
-  },
-  {
-    "_sid": "meyve_activia-bowl-yaban-mersini-yulaf-chia-150-gr",
-    "ad": "Activia Bowl Yaban Mersini Yulaf Chia 150 Gr",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "150 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 49.5,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 49.5
-      },
-      {
-        "market": "migros",
-        "fiyat": 65.5
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        64.0
-      ],
-      [
-        "2026-06-25",
-        65.5
-      ],
-      [
-        "2026-06-26",
-        49.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "150 GR"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_portakal-valencia-1-kg",
-    "ad": "Portakal Valencia 1 Kg",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30026054.png",
-    "en_dusuk_fiyat": 49.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 49.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        49.9
-      ]
-    ],
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-03",
@@ -3081,475 +4032,137 @@
     ]
   },
   {
-    "_sid": "meyve_patlican-1-kg",
-    "ad": "Patlıcan 1 Kg",
+    "_sid": "meyve_kivircik-1-adet",
+    "ad": "Kıvırcık 1 Adet",
     "ana_kategori": "Sebze",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000772.png",
-    "en_dusuk_fiyat": 59.0,
+    "agirlik_hacim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/hakmar/1000847.jpg",
+    "en_dusuk_fiyat": 39.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 39.5
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        49.5
+      ],
+      [
+        "2026-06-23",
+        42.0
+      ],
+      [
+        "2026-06-24",
+        39.5
+      ],
+      [
+        "2026-06-27",
+        33.5
+      ],
+      [
+        "2026-06-29",
+        39.5
+      ],
+      [
+        "2026-07-04",
+        33.5
+      ],
+      [
+        "2026-07-06",
+        39.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": []
+  },
+  {
+    "_sid": "meyve_i-nci-bezelye-450-gr",
+    "ad": "İnci Bezelye 450 Gr",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "450 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/sokimages/67404.png",
+    "en_dusuk_fiyat": 44.5,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 44.5
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        44.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "450 GR"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_k-akdeniz-salata-1-adet",
+    "ad": "K.Akdeniz Salata 1 Adet",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": null,
+    "resim": null,
+    "en_dusuk_fiyat": 49.0,
     "market_fiyatlari": [
       {
         "market": "bim",
-        "fiyat": 59.0
+        "fiyat": 49.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        49.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": []
+  },
+  {
+    "_sid": "meyve_atom-salata-1-adet",
+    "ad": "Atom Salata 1 Adet",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/migros/28370017.jpg",
+    "en_dusuk_fiyat": 49.5,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 49.5
       },
       {
-        "market": "a101",
-        "fiyat": 59.5
-      },
-      {
-        "market": "tarim_kredi",
+        "market": "sok",
         "fiyat": 59.9
       }
     ],
     "fiyat_gecmisi": [
       [
         "2026-06-22",
-        49.0
-      ],
-      [
-        "2026-06-30",
-        49.5
-      ],
-      [
-        "2026-07-01",
-        59.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_siri-yaban-mersini-aromali-bubble-tea-350-ml",
-    "ad": "Siri Yaban Mersini Aromalı Bubble Tea 350 Ml",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "350 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30478457.jpg",
-    "en_dusuk_fiyat": 59.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 59.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-27",
-        75.9
-      ],
-      [
-        "2026-07-03",
-        59.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "350 ML"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_sivri-biber-1-kg",
-    "ad": "Sivri Biber 1 Kg",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "1 KG",
-    "resim": null,
-    "en_dusuk_fiyat": 69.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 69.0
-      },
-      {
-        "market": "a101",
-        "fiyat": 89.5
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 119.9
-      },
-      {
-        "market": "migros",
-        "fiyat": 119.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        49.0
-      ],
-      [
-        "2026-06-23",
-        54.9
-      ],
-      [
-        "2026-06-24",
-        64.9
-      ],
-      [
-        "2026-07-01",
-        69.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_yaban-mersini-paket-1-adet",
-    "ad": "Yaban Mersini Paket 1 Adet",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": null,
-    "resim": "https://cdn.marketfiyati.org.tr/sokimages/68044.png",
-    "en_dusuk_fiyat": 69.9,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 69.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        69.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": []
-  },
-  {
-    "_sid": "meyve_deveci-armut-1-kg",
-    "ad": "Deveci Armut 1 Kg",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/101114.jpg",
-    "en_dusuk_fiyat": 79.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 79.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        79.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_yerli-muz-1-kg",
-    "ad": "Yerli Muz 1 Kg",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000804.png",
-    "en_dusuk_fiyat": 79.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 79.0
-      },
-      {
-        "market": "sok",
-        "fiyat": 89.9
-      },
-      {
-        "market": "tarim_kredi",
-        "fiyat": 89.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        79.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_bezelye-1-kg",
-    "ad": "Bezelye 1 Kg",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "1 KG",
-    "resim": null,
-    "en_dusuk_fiyat": 89.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 89.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        89.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_tazeyim-detox-orman-meyveleri-suyu-150-ml",
-    "ad": "Tazeyim Detox Orman Meyveleri Suyu 150 Ml",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "150 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30470609.png",
-    "en_dusuk_fiyat": 95.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 95.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        95.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "150 ML"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_kayisi-igdir-1-kg",
-    "ad": "Kayısı Iğdır 1 Kg",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30097104.png",
-    "en_dusuk_fiyat": 199.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 199.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-07-01",
-        199.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_aci-kirmizi-biber-1-kg",
-    "ad": "Acı Kırmızı Biber 1 Kg",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "1 KG",
-    "resim": null,
-    "en_dusuk_fiyat": 579.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 579.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        489.9
-      ],
-      [
-        "2026-06-23",
-        579.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_karpuz-cekirdeksiz-1-kg",
-    "ad": "Karpuz Çekirdeksiz 1 Kg",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1000810.png",
-    "en_dusuk_fiyat": 17.5,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 17.5
-      },
-      {
-        "market": "a101",
-        "fiyat": 17.9
-      },
-      {
-        "market": "sok",
-        "fiyat": 19.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        25.0
-      ],
-      [
-        "2026-06-23",
-        22.9
+        54.95
       ],
       [
         "2026-06-26",
-        17.5
+        39.95
       ],
       [
         "2026-06-30",
-        19.5
-      ],
-      [
-        "2026-07-01",
-        19.0
-      ],
-      [
-        "2026-07-02",
-        16.9
-      ],
-      [
-        "2026-07-03",
-        17.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_kirkagac-kavun-1-kg",
-    "ad": "Kırkağaç Kavun 1 Kg",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "1 KG",
-    "resim": null,
-    "en_dusuk_fiyat": 26.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 26.0
-      },
-      {
-        "market": "sok",
-        "fiyat": 34.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        35.0
-      ],
-      [
-        "2026-06-23",
-        39.9
-      ],
-      [
-        "2026-06-26",
-        29.0
-      ],
-      [
-        "2026-07-03",
-        26.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_activia-shot-kara-murver-ve-yaban-mersini-80-ml",
-    "ad": "Activia Shot Kara Mürver Ve Yaban Mersini 80 Ml",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "80 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/12508506.jpg",
-    "en_dusuk_fiyat": 39.5,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 39.5
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 39.5
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        39.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "80 ML"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_kirmizi-dolma-biber-1-kg",
-    "ad": "Kırmızı Dolma Biber 1 Kg",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30091602.png",
-    "en_dusuk_fiyat": 39.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 39.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
         59.9
       ],
       [
-        "2026-06-30",
-        39.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
+        "2026-07-01",
+        49.95
+      ],
       [
         "2026-07-03",
-        "1 KG"
+        49.5
       ]
-    ]
+    ],
+    "agirlik_hacim_gecmisi": []
   },
   {
     "_sid": "meyve_cengelkoy-salatalik-1-kg",
@@ -3590,182 +4203,50 @@
     ]
   },
   {
-    "_sid": "meyve_sarimsak-file-250-gr",
-    "ad": "Sarımsak File 250 Gr",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "250 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 49.9,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 49.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        49.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "250 GR"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_mantar-tabak-300-gr",
-    "ad": "Mantar Tabak 300 Gr",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "300 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/20001051.png",
-    "en_dusuk_fiyat": 54.9,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 54.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        64.9
-      ],
-      [
-        "2026-06-26",
-        54.9
-      ],
-      [
-        "2026-06-27",
-        51.9
-      ],
-      [
-        "2026-06-29",
-        64.9
-      ],
-      [
-        "2026-07-02",
-        54.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "300 GR"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_ekonomik-elma-1-kg",
-    "ad": "Ekonomik Elma 1 Kg",
+    "_sid": "meyve_galya-kavun-1-kg",
+    "ad": "Galya Kavun 1 Kg",
     "ana_kategori": "Meyve",
     "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1000860.png",
-    "en_dusuk_fiyat": 55.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 55.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        55.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_kemer-patlican-1-kg",
-    "ad": "Kemer Patlıcan 1 Kg",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30013949.jpg",
-    "en_dusuk_fiyat": 59.0,
+    "resim": "https://cdn.marketfiyati.org.tr/sokimages/68042.png",
+    "en_dusuk_fiyat": 59.9,
     "market_fiyatlari": [
       {
         "market": "sok",
-        "fiyat": 59.0
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 64.9
-      },
-      {
-        "market": "migros",
-        "fiyat": 69.95
+        "fiyat": 59.9
       }
     ],
     "fiyat_gecmisi": [
       [
         "2026-06-22",
-        49.9
+        59.0
       ],
       [
         "2026-06-24",
-        54.9
-      ],
-      [
-        "2026-07-01",
-        59.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_kayisi-1-kg",
-    "ad": "Kayısı 1 Kg",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000897.png",
-    "en_dusuk_fiyat": 65.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 65.0
-      },
-      {
-        "market": "a101",
-        "fiyat": 65.9
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 84.9
-      },
-      {
-        "market": "sok",
-        "fiyat": 89.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
         59.9
       ],
       [
-        "2026-06-30",
-        79.0
+        "2026-06-28",
+        29.0
       ],
       [
-        "2026-07-02",
-        65.9
+        "2026-06-30",
+        59.9
+      ],
+      [
+        "2026-07-01",
+        29.0
       ],
       [
         "2026-07-03",
-        65.0
+        59.9
+      ],
+      [
+        "2026-07-05",
+        29.0
+      ],
+      [
+        "2026-07-06",
+        59.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
@@ -3776,564 +4257,80 @@
     ]
   },
   {
-    "_sid": "meyve_kultur-mantari-400-gr",
-    "ad": "Kültür Mantarı 400 Gr",
+    "_sid": "meyve_dolmalik-top-kabak-1-kg",
+    "ad": "Dolmalık Top Kabak 1 Kg",
     "ana_kategori": "Sebze",
-    "agirlik_hacim": "400 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1000435.png",
-    "en_dusuk_fiyat": 69.0,
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30091713.jpg",
+    "en_dusuk_fiyat": 65.9,
     "market_fiyatlari": [
       {
-        "market": "bim",
-        "fiyat": 69.0
+        "market": "carrefour",
+        "fiyat": 65.9
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-06-22",
-        59.0
-      ],
-      [
-        "2026-06-23",
-        79.0
-      ],
-      [
-        "2026-06-26",
-        69.0
-      ],
-      [
-        "2026-06-30",
-        79.0
-      ],
-      [
-        "2026-07-03",
-        69.0
+        "2026-06-29",
+        65.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-03",
-        "400 GR"
+        "1 KG"
       ]
     ]
   },
   {
-    "_sid": "meyve_seftali-1-kg",
-    "ad": "Şeftali 1 Kg",
+    "_sid": "meyve_deveci-armut-1-kg",
+    "ad": "Deveci Armut 1 Kg",
     "ana_kategori": "Meyve",
     "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30042838.jpg",
-    "en_dusuk_fiyat": 79.5,
+    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/101114.jpg",
+    "en_dusuk_fiyat": 79.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 79.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        79.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_carliston-biber-1-kg",
+    "ad": "Çarliston Biber 1 Kg",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30012953.png",
+    "en_dusuk_fiyat": 89.5,
     "market_fiyatlari": [
       {
         "market": "a101",
-        "fiyat": 79.5
+        "fiyat": 89.5
+      },
+      {
+        "market": "sok",
+        "fiyat": 99.0
       },
       {
         "market": "carrefour",
-        "fiyat": 109.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        99.5
-      ],
-      [
-        "2026-07-02",
-        79.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_aynali-erik-1-kg",
-    "ad": "Aynalı Erik 1 Kg",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30097857.png",
-    "en_dusuk_fiyat": 79.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 79.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        134.9
-      ],
-      [
-        "2026-06-26",
-        109.9
-      ],
-      [
-        "2026-07-02",
-        79.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_cilek-1-kg",
-    "ad": "Çilek 1 Kg",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30043447.png",
-    "en_dusuk_fiyat": 99.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 99.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        99.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_burcu-sumakli-kuru-patlican-dolma-200-gr",
-    "ad": "Burcu Sumaklı Kuru Patlıcan Dolma 200 Gr",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/18002980.jpg",
-    "en_dusuk_fiyat": 99.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 99.5
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        99.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "200 GR"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_teekanne-yaban-mersini-cayi-40-gr",
-    "ad": "Teekanne Yaban Mersini Çayı 40 Gr",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "40 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 114.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 114.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        114.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "40 GR"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_kil-sivri-biber-1-kg",
-    "ad": "Kıl Sivri Biber 1 Kg",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/20000873.jpg",
-    "en_dusuk_fiyat": 149.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 149.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-23",
-        149.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_de-cecco-patatesli-gnocchi-500-gr",
-    "ad": "De Cecco Patatesli Gnocchi 500 Gr",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30090202.png",
-    "en_dusuk_fiyat": 219.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 219.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        175.92
-      ],
-      [
-        "2026-06-23",
-        219.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "500 GR"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_lavi-yaban-mersini-400-gr",
-    "ad": "Lavi Yaban Mersini 400 Gr",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "400 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/17300023.jpg",
-    "en_dusuk_fiyat": 326.95,
-    "market_fiyatlari": [
+        "fiyat": 119.9
+      },
       {
         "market": "migros",
-        "fiyat": 326.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        319.95
-      ],
-      [
-        "2026-06-23",
-        326.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "400 GR"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_peynir-dolgulu-biber-cesitleri-1-kg",
-    "ad": "Peynir Dolgulu Biber Çeşitleri 1 Kg",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30135048.png",
-    "en_dusuk_fiyat": 875.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 875.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        875.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_cengelkoy-salatalik-500-gr",
-    "ad": "Çengelköy Salatalık 500 Gr",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/20001129.png",
-    "en_dusuk_fiyat": 34.9,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 34.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        48.9
-      ],
-      [
-        "2026-06-24",
-        44.9
-      ],
-      [
-        "2026-07-02",
-        34.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "500 GR"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_kirmizi-biber-paket-300-gr",
-    "ad": "Kırmızı Biber Paket 300 Gr",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "300 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000026.png",
-    "en_dusuk_fiyat": 34.9,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 34.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        45.9
-      ],
-      [
-        "2026-06-24",
-        39.5
-      ],
-      [
-        "2026-07-02",
-        34.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "300 GR"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_havuc-1-kg",
-    "ad": "Havuç 1 Kg",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/sokimages/28120001.png",
-    "en_dusuk_fiyat": 35.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 35.0
-      },
-      {
-        "market": "sok",
-        "fiyat": 69.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        35.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_kuru-sogan-1-kg",
-    "ad": "Kuru Soğan 1 Kg",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/28420000.jpg",
-    "en_dusuk_fiyat": 37.5,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 37.5
-      },
-      {
-        "market": "sok",
-        "fiyat": 39.5
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 49.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        32.5
-      ],
-      [
-        "2026-06-23",
-        33.9
-      ],
-      [
-        "2026-06-27",
-        34.5
-      ],
-      [
-        "2026-06-30",
-        35.5
-      ],
-      [
-        "2026-07-03",
-        37.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_sogan-1-kg",
-    "ad": "Soğan 1 Kg",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "1 KG",
-    "resim": null,
-    "en_dusuk_fiyat": 37.9,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 37.9
-      },
-      {
-        "market": "bim",
-        "fiyat": 39.5
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        37.75
-      ],
-      [
-        "2026-06-30",
-        37.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_patates-1-kg",
-    "ad": "Patates 1 Kg",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000794.png",
-    "en_dusuk_fiyat": 38.5,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 38.5
-      },
-      {
-        "market": "a101",
-        "fiyat": 39.5
-      },
-      {
-        "market": "bim",
-        "fiyat": 39.5
-      },
-      {
-        "market": "sok",
-        "fiyat": 39.5
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        29.9
-      ],
-      [
-        "2026-06-24",
-        32.5
-      ],
-      [
-        "2026-06-27",
-        34.5
-      ],
-      [
-        "2026-07-03",
-        38.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_salatalik-1-kg",
-    "ad": "Salatalık 1 Kg",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000764.png",
-    "en_dusuk_fiyat": 39.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 39.0
-      },
-      {
-        "market": "a101",
-        "fiyat": 39.5
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 39.9
-      },
-      {
-        "market": "tarim_kredi",
-        "fiyat": 49.5
-      },
-      {
-        "market": "sok",
-        "fiyat": 49.9
+        "fiyat": 119.95
       }
     ],
     "fiyat_gecmisi": [
@@ -4342,80 +4339,16 @@
         49.0
       ],
       [
-        "2026-06-25",
-        42.9
+        "2026-06-24",
+        64.9
       ],
       [
-        "2026-06-26",
-        39.0
-      ],
-      [
-        "2026-06-30",
-        39.9
-      ],
-      [
-        "2026-07-02",
-        39.5
-      ],
-      [
-        "2026-07-03",
-        39.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_bogurtlen-125-gr",
-    "ad": "Böğürtlen 125 Gr",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "125 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30149587.png",
-    "en_dusuk_fiyat": 79.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 79.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-07-03",
-        79.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "125 GR"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_granny-elma-1-kg",
-    "ad": "Granny Elma 1 Kg",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/sokimages/27133000.png",
-    "en_dusuk_fiyat": 84.9,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 84.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        29.9
+        "2026-06-27",
+        59.95
       ],
       [
         "2026-07-01",
-        84.9
+        89.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
@@ -4426,75 +4359,11 @@
     ]
   },
   {
-    "_sid": "meyve_gerber-organik-muz-yaban-mersini-elma-pure-90-gr",
-    "ad": "Gerber Organik Muz Yaban Mersini Elma Püre 90 Gr",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "90 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/5041030.jpg",
-    "en_dusuk_fiyat": 84.99,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 84.99
-      },
-      {
-        "market": "migros",
-        "fiyat": 139.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        84.99
-      ],
-      [
-        "2026-06-25",
-        139.9
-      ],
-      [
-        "2026-06-29",
-        84.99
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "90 GR"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_file-limon-1-kg",
-    "ad": "File Limon 1 Kg",
+    "_sid": "meyve_kirmizi-erik-1-kg",
+    "ad": "Kırmızı Erik 1 Kg",
     "ana_kategori": "Meyve",
     "agirlik_hacim": "1 KG",
-    "resim": null,
-    "en_dusuk_fiyat": 94.9,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 94.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        94.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_ananas-1-adet",
-    "ad": "Ananas 1 Adet",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": null,
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000835.png",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/20001134.png",
     "en_dusuk_fiyat": 99.0,
     "market_fiyatlari": [
       {
@@ -4503,62 +4372,13 @@
       },
       {
         "market": "a101",
-        "fiyat": 99.5
+        "fiyat": 119.5
       }
     ],
     "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        109.0
-      ],
       [
         "2026-06-23",
-        119.0
-      ],
-      [
-        "2026-06-26",
         99.0
-      ],
-      [
-        "2026-06-30",
-        119.0
-      ],
-      [
-        "2026-07-02",
-        99.5
-      ],
-      [
-        "2026-07-03",
-        99.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": []
-  },
-  {
-    "_sid": "meyve_fasulye-taze-1-kg",
-    "ad": "Fasulye Taze 1 Kg",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30014928.png",
-    "en_dusuk_fiyat": 109.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 109.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        179.9
-      ],
-      [
-        "2026-06-26",
-        139.9
-      ],
-      [
-        "2026-07-03",
-        109.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
@@ -4595,143 +4415,11 @@
     ]
   },
   {
-    "_sid": "meyve_bahribey-alyanak-armut-1-kg",
-    "ad": "Bahribey Alyanak Armut 1 Kg",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30036237.png",
-    "en_dusuk_fiyat": 159.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 159.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        169.9
-      ],
-      [
-        "2026-06-26",
-        159.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_nektarin-beyaz-1-kg",
-    "ad": "Nektarin Beyaz 1 Kg",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/hakmar/1013611.jpg",
-    "en_dusuk_fiyat": 199.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 199.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        199.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_lavi-soyulmus-enginar-400-gr",
-    "ad": "Lavi Soyulmuş Enginar 400 Gr",
+    "_sid": "meyve_koy-biberi-1-kg",
+    "ad": "Köy Biberi 1 Kg",
     "ana_kategori": "Sebze",
-    "agirlik_hacim": "400 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/17010061.jpg",
-    "en_dusuk_fiyat": 199.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 199.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        199.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "400 GR"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_galya-kavun-1-kg",
-    "ad": "Galya Kavun 1 Kg",
-    "ana_kategori": "Meyve",
     "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30085347.jpg",
-    "en_dusuk_fiyat": 29.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 29.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        59.0
-      ],
-      [
-        "2026-06-24",
-        59.9
-      ],
-      [
-        "2026-06-28",
-        29.0
-      ],
-      [
-        "2026-06-30",
-        59.9
-      ],
-      [
-        "2026-07-01",
-        29.0
-      ],
-      [
-        "2026-07-03",
-        59.9
-      ],
-      [
-        "2026-07-05",
-        29.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_kurutulmus-dolmalik-patlican-18-adet",
-    "ad": "Kurutulmuş Dolmalık Patlıcan 18 Adet",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": null,
-    "resim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30095161.jpg",
     "en_dusuk_fiyat": 119.9,
     "market_fiyatlari": [
       {
@@ -4742,9 +4430,339 @@
     "fiyat_gecmisi": [
       [
         "2026-06-22",
+        79.9
+      ],
+      [
+        "2026-06-26",
+        109.9
+      ],
+      [
+        "2026-07-03",
         119.9
       ]
     ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_kil-sivri-biber-1-kg",
+    "ad": "Kıl Sivri Biber 1 Kg",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/20000873.jpg",
+    "en_dusuk_fiyat": 149.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 149.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-23",
+        149.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_kivi-1-kg",
+    "ad": "Kivi 1 Kg",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000834.png",
+    "en_dusuk_fiyat": 149.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 149.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        139.9
+      ],
+      [
+        "2026-06-26",
+        149.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_cali-fasulye-1-kg",
+    "ad": "Çalı Fasulye 1 Kg",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "1 KG",
+    "resim": null,
+    "en_dusuk_fiyat": 169.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 169.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-07-03",
+        169.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_gerber-organik-yulafli-elma-ve-yaban-mersini-pure-110-gr",
+    "ad": "Gerber Organik Yulaflı Elma ve Yaban Mersini Püre 110 Gr",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "110 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/5040761.jpg",
+    "en_dusuk_fiyat": 171.5,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 171.5
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        171.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "110 GR"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_pek-jumbo-patates-1-kg",
+    "ad": "Pek Jumbo Patates 1 Kg",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30307508.png",
+    "en_dusuk_fiyat": 199.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 199.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        199.95
+      ],
+      [
+        "2026-06-26",
+        201.9
+      ],
+      [
+        "2026-07-03",
+        199.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_harvest-more-beyaz-kuskonmaz-konservesi-330-gr",
+    "ad": "Harvest & More Beyaz Kuşkonmaz Konservesi 330 Gr",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "330 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 208.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 208.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        208.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "330 GR"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_kizartmalik-patates-1-kg",
+    "ad": "Kızartmalık Patates 1 Kg",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1001135.png",
+    "en_dusuk_fiyat": 27.5,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 27.5
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        27.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_mandalina-1-kg",
+    "ad": "Mandalina 1 Kg",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000820.png",
+    "en_dusuk_fiyat": 35.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 35.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        35.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_gobek-marul-1-adet",
+    "ad": "Göbek Marul 1 Adet",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/a101/20000776.jpg",
+    "en_dusuk_fiyat": 49.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 49.5
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        49.5
+      ],
+      [
+        "2026-06-23",
+        42.0
+      ],
+      [
+        "2026-06-25",
+        49.5
+      ],
+      [
+        "2026-06-27",
+        42.0
+      ],
+      [
+        "2026-06-29",
+        49.5
+      ],
+      [
+        "2026-06-30",
+        42.0
+      ],
+      [
+        "2026-07-06",
+        49.5
+      ]
+    ],
     "agirlik_hacim_gecmisi": []
+  },
+  {
+    "_sid": "meyve_carrefour-bio-organik-cilek-40-gr",
+    "ad": "Carrefour Bio Organik Çilek 40 Gr",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "40 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/images/Carrefour-Bio-Organik-Çilek-40-Gr.png",
+    "en_dusuk_fiyat": 99.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 99.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        99.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "40 GR"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_gurvita-baby-kuzu-i-lik-kemik-sulu-tatli-patates-165-gr",
+    "ad": "Gurvita Baby Kuzu İlik Kemik Sulu Tatlı Patates 165 Gr",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "165 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 139.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 139.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        139.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "165 GR"
+      ]
+    ]
   }
 ]
