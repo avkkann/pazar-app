@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pazar-cache-v137';
+const CACHE_NAME = 'pazar-cache-v138';
 const DATA_URLS = [
   new URL('./data/hal.json', self.location).href,
   new URL('./data/marketfiyati.json', self.location).href,

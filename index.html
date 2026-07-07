@@ -1642,6 +1642,13 @@
   });
   // ===== /SUPABASE CLIENT =====
 
+  var onboardingIdx = 0;
+
+  function onboardingUIGuncelle() {
+    document.querySelectorAll('.onboarding-dot').forEach(function(d, i) { d.classList.toggle('active', i === onboardingIdx); });
+    document.getElementById('onboardingNextBtn').textContent = onboardingIdx === 2 ? 'Başla' : 'İleri';
+  }
+
   function onboardingBaslat() {
     if (localStorage.getItem('pazar_onboarded') === '1') return;
     var overlay = document.getElementById('onboarding-overlay');
@@ -1650,19 +1657,21 @@
     var slides = document.getElementById('onboardingSlides');
     slides.addEventListener('scroll', function() {
       var idx = Math.round(slides.scrollLeft / slides.clientWidth);
-      document.querySelectorAll('.onboarding-dot').forEach(function(d, i) { d.classList.toggle('active', i === idx); });
-      document.getElementById('onboardingNextBtn').textContent = idx === 2 ? 'Başla' : 'İleri';
+      if (idx === onboardingIdx) return;
+      onboardingIdx = idx;
+      onboardingUIGuncelle();
     });
   }
 
   function onboardingIleri() {
-    var slides = document.getElementById('onboardingSlides');
-    var idx = Math.round(slides.scrollLeft / slides.clientWidth);
-    if (idx >= 2) {
+    if (onboardingIdx >= 2) {
       onboardingBitir();
-    } else {
-      slides.scrollTo({ left: slides.clientWidth * (idx + 1), behavior: 'smooth' });
+      return;
     }
+    onboardingIdx++;
+    var slides = document.getElementById('onboardingSlides');
+    slides.scrollTo({ left: slides.clientWidth * onboardingIdx, behavior: 'smooth' });
+    onboardingUIGuncelle();
   }
 
   function onboardingBitir() {
