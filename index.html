@@ -1300,6 +1300,33 @@
       0% { transform: scale(0.85); opacity: 0; }
       100% { transform: scale(1); opacity: 1; }
     }
+    .onboarding-overlay {
+      position: fixed; inset: 0; z-index: 9998; background: var(--primary);
+      display: none; flex-direction: column; color: #fff;
+    }
+    .onboarding-skip {
+      position: absolute; top: 16px; right: 16px; background: none; border: none;
+      color: rgba(255,255,255,0.8); font-size: 14px; font-weight: 600; padding: 8px 12px; z-index: 2;
+    }
+    .onboarding-slides {
+      flex: 1; display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    .onboarding-slide {
+      flex: 0 0 100%; scroll-snap-align: start; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center; padding: 40px 32px; box-sizing: border-box;
+    }
+    .onboarding-icon { font-size: 64px; margin-bottom: 24px; }
+    .onboarding-slide h2 { font-size: 24px; font-weight: 700; margin-bottom: 12px; }
+    .onboarding-slide p { font-size: 15px; line-height: 1.5; opacity: 0.9; max-width: 320px; }
+    .onboarding-dots { display: flex; justify-content: center; gap: 8px; padding: 16px; }
+    .onboarding-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.35); transition: background 0.2s; }
+    .onboarding-dot.active { background: #fff; }
+    .onboarding-actions { padding: 0 24px 32px; }
+    .onboarding-next {
+      width: 100%; padding: 16px; border-radius: 14px; border: none;
+      background: #fff; color: var(--primary); font-weight: 700; font-size: 16px;
+    }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -1559,6 +1586,34 @@
 </head>
 <body>
 <div id="splash"><img src="./static/icon-192.png" alt=""></div>
+<div id="onboarding-overlay" class="onboarding-overlay">
+  <button class="onboarding-skip" onclick="onboardingBitir()">Geç</button>
+  <div class="onboarding-slides" id="onboardingSlides">
+    <div class="onboarding-slide">
+      <div class="onboarding-icon">🔍</div>
+      <h2>Marketteki gizli zamları gör</h2>
+      <p>A101, BİM, Migros, CarrefourSA, ŞOK ve Tarım Kredi'nin fiyatlarını tek ekranda karşılaştır.</p>
+    </div>
+    <div class="onboarding-slide">
+      <div class="onboarding-icon">🏷️</div>
+      <h2>7 marketi aynı anda karşılaştır</h2>
+      <p>Aynı ürün için hangi markette ne kadar ödeyeceğini gör, en ucuzunu bul.</p>
+    </div>
+    <div class="onboarding-slide">
+      <div class="onboarding-icon">📈</div>
+      <h2>Hal fiyatı ve fiyat geçmişi</h2>
+      <p>Toptancı fiyatını öğren, ürünün geçmiş fiyatlarını takip et — gerçek zam mı, gerçek indirim mi anla.</p>
+    </div>
+  </div>
+  <div class="onboarding-dots" id="onboardingDots">
+    <span class="onboarding-dot active"></span>
+    <span class="onboarding-dot"></span>
+    <span class="onboarding-dot"></span>
+  </div>
+  <div class="onboarding-actions">
+    <button class="onboarding-next" id="onboardingNextBtn" onclick="onboardingIleri()">İleri</button>
+  </div>
+</div>
 <script>
   // ===== SUPABASE CLIENT =====
   const SUPABASE_URL = 'https://gbgxxahhbfnulmyecxia.supabase.co';
@@ -1587,6 +1642,35 @@
   });
   // ===== /SUPABASE CLIENT =====
 
+  function onboardingBaslat() {
+    if (localStorage.getItem('pazar_onboarded') === '1') return;
+    var overlay = document.getElementById('onboarding-overlay');
+    if (!overlay) return;
+    overlay.style.display = 'flex';
+    var slides = document.getElementById('onboardingSlides');
+    slides.addEventListener('scroll', function() {
+      var idx = Math.round(slides.scrollLeft / slides.clientWidth);
+      document.querySelectorAll('.onboarding-dot').forEach(function(d, i) { d.classList.toggle('active', i === idx); });
+      document.getElementById('onboardingNextBtn').textContent = idx === 2 ? 'Başla' : 'İleri';
+    });
+  }
+
+  function onboardingIleri() {
+    var slides = document.getElementById('onboardingSlides');
+    var idx = Math.round(slides.scrollLeft / slides.clientWidth);
+    if (idx >= 2) {
+      onboardingBitir();
+    } else {
+      slides.scrollTo({ left: slides.clientWidth * (idx + 1), behavior: 'smooth' });
+    }
+  }
+
+  function onboardingBitir() {
+    localStorage.setItem('pazar_onboarded', '1');
+    var overlay = document.getElementById('onboarding-overlay');
+    if (overlay) overlay.style.display = 'none';
+  }
+
   (function(){
     setTimeout(function(){
       var s = document.getElementById('splash');
@@ -1594,6 +1678,7 @@
         s.classList.add('gizle');
         setTimeout(function(){ if (s) s.style.display = 'none'; }, 250);
       }
+      setTimeout(onboardingBaslat, 250);
     }, 600);
   })();
 </script>
