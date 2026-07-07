@@ -11,6 +11,11 @@
   "lang": "tr",
   "id": "/pazar-app/",
   "categories": ["shopping", "finance", "lifestyle"],
+  "screenshots": [
+    { "src": "static/screenshot-list.jpg", "sizes": "788x1600", "type": "image/jpeg", "form_factor": "narrow" },
+    { "src": "static/screenshot-firsat.jpg", "sizes": "788x1600", "type": "image/jpeg", "form_factor": "narrow" },
+    { "src": "static/screenshot-compare.jpg", "sizes": "788x1600", "type": "image/jpeg", "form_factor": "narrow" }
+  ],
   "icons": [
     {
       "src": "static/icon-192.png",
