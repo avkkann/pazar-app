@@ -346,6 +346,14 @@
       box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.18);
       transition: box-shadow 300ms ease;
     }
+    .toast-mesaj {
+      position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%);
+      background: var(--primary); color: #fff; padding: 10px 20px;
+      border-radius: 24px; font-size: 14px; font-weight: 600;
+      opacity: 0; transition: opacity 0.3s, transform 0.3s;
+      z-index: 999; box-shadow: 0 4px 12px rgba(0,0,0,0.2); pointer-events: none;
+    }
+    .toast-mesaj.toast-show { opacity: 1; transform: translateX(-50%) translateY(-4px); }
     @media (prefers-reduced-motion: reduce) {
       .pressing { animation: none !important; }
     }
@@ -4497,6 +4505,19 @@ function saveSepet() {
   }
 }
 
+function toastGoster(mesaj) {
+  const t = document.createElement('div');
+  t.className = 'toast-mesaj';
+  t.textContent = mesaj;
+  document.body.appendChild(t);
+  setTimeout(() => t.classList.add('toast-show'), 10);
+  setTimeout(() => {
+    t.classList.remove('toast-show');
+    setTimeout(() => t.remove(), 300);
+  }, 1200);
+  if (navigator.vibrate) navigator.vibrate(20);
+}
+
 function toggleSepet(id) {
   if (sepet.find(s => s._id === id)) {
     sepet = sepet.filter(s => s._id !== id);
@@ -4511,6 +4532,7 @@ function toggleSepet(id) {
       market_fiyatlari: u.market_fiyatlari
     });
     saveSepet();
+    toastGoster('Listene eklendi');
     document.querySelectorAll(`.add-btn[data-pid="${id}"]`).forEach(function(btn) {
       btn.classList.add('pressing');
       btn.textContent = '✓';
