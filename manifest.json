@@ -8,6 +8,9 @@
   "background_color": "#0E4938",
   "theme_color": "#0E4938",
   "orientation": "portrait",
+  "lang": "tr",
+  "id": "/pazar-app/",
+  "categories": ["shopping", "finance", "lifestyle"],
   "icons": [
     {
       "src": "static/icon-192.png",
@@ -21,5 +24,10 @@
       "type": "image/png",
       "purpose": "any maskable"
     }
+  ],
+  "shortcuts": [
+    { "name": "Listem", "short_name": "Listem", "url": "/pazar-app/?screen=list", "icons": [{ "src": "static/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Fırsatlar", "short_name": "Fırsatlar", "url": "/pazar-app/?screen=firsat", "icons": [{ "src": "static/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Hal Fiyatları", "short_name": "Hal", "url": "/pazar-app/?screen=hal", "icons": [{ "src": "static/icon-192.png", "sizes": "192x192" }] }
   ]
 }

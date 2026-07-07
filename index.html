@@ -5241,6 +5241,13 @@ function halArama() {
 
 loadData();
 
+(function() {
+  var params = new URLSearchParams(location.search);
+  var ekran = params.get('screen');
+  var hedefEkran = { list: 'screen-sepet', firsat: 'screen-firsatlar', hal: 'screen-hal' }[ekran];
+  if (hedefEkran) showScreen(hedefEkran);
+})();
+
 // ── BADGE INIT ────────────────────────────────────────
 window.addEventListener('load', function() {
   sepet = JSON.parse(localStorage.getItem('pazar_sepet') || '[]');
