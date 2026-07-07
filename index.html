@@ -1301,31 +1301,62 @@
       100% { transform: scale(1); opacity: 1; }
     }
     .onboarding-overlay {
-      position: fixed; inset: 0; z-index: 9998; background: var(--primary);
+      position: fixed; inset: 0; z-index: 9998; overflow: hidden;
+      background: linear-gradient(160deg, var(--primary) 0%, var(--primary) 55%, var(--primary-light) 145%);
       display: none; flex-direction: column; color: #fff;
     }
+    .onboarding-overlay::before, .onboarding-overlay::after {
+      content: ''; position: absolute; border-radius: 50%;
+      background: rgba(255,255,255,0.07); pointer-events: none; filter: blur(1px);
+    }
+    .onboarding-overlay::before { width: 280px; height: 280px; top: -110px; right: -90px; }
+    .onboarding-overlay::after { width: 220px; height: 220px; bottom: -70px; left: -70px; }
     .onboarding-skip {
       position: absolute; top: 16px; right: 16px; background: none; border: none;
       color: rgba(255,255,255,0.8); font-size: 14px; font-weight: 600; padding: 8px 12px; z-index: 2;
     }
     .onboarding-slides {
       flex: 1; display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
+      -webkit-overflow-scrolling: touch; position: relative; z-index: 1;
     }
     .onboarding-slide {
       flex: 0 0 100%; scroll-snap-align: start; display: flex; flex-direction: column;
       align-items: center; justify-content: center; text-align: center; padding: 40px 32px; box-sizing: border-box;
     }
-    .onboarding-icon { font-size: 64px; margin-bottom: 24px; }
-    .onboarding-slide h2 { font-size: 24px; font-weight: 700; margin-bottom: 12px; }
-    .onboarding-slide p { font-size: 15px; line-height: 1.5; opacity: 0.9; max-width: 320px; }
-    .onboarding-dots { display: flex; justify-content: center; gap: 8px; padding: 16px; }
-    .onboarding-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.35); transition: background 0.2s; }
-    .onboarding-dot.active { background: #fff; }
-    .onboarding-actions { padding: 0 24px 32px; }
+    .onboarding-icon-wrap {
+      position: relative; width: 140px; height: 140px; margin-bottom: 32px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .onboarding-icon-blob {
+      position: absolute; inset: 0; border-radius: 42% 58% 54% 46% / 46% 42% 58% 54%;
+      background: rgba(255,255,255,0.12);
+      border: 1.5px solid rgba(255,255,255,0.2);
+    }
+    .onboarding-icon { font-size: 56px; position: relative; z-index: 1; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.15)); }
+    .onboarding-slide h2 { font-size: 25px; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.01em; }
+    .onboarding-slide p { font-size: 15px; line-height: 1.55; opacity: 0.88; max-width: 300px; }
+    @keyframes onboardingFadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .onboarding-slide .onboarding-icon-wrap,
+    .onboarding-slide h2,
+    .onboarding-slide p { opacity: 0; }
+    .onboarding-slide.enter .onboarding-icon-wrap { opacity: 1; animation: onboardingFadeUp 550ms cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+    .onboarding-slide.enter h2 { opacity: 1; animation: onboardingFadeUp 550ms cubic-bezier(0.22, 1, 0.36, 1) 90ms forwards; }
+    .onboarding-slide.enter p { opacity: 1; animation: onboardingFadeUp 550ms cubic-bezier(0.22, 1, 0.36, 1) 170ms forwards; }
+    .onboarding-dots { display: flex; justify-content: center; gap: 7px; padding: 16px; position: relative; z-index: 1; }
+    .onboarding-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.35); transition: all 0.3s ease; }
+    .onboarding-dot.active { width: 22px; border-radius: 4px; background: #fff; }
+    .onboarding-actions { padding: 0 24px 32px; position: relative; z-index: 1; }
     .onboarding-next {
-      width: 100%; padding: 16px; border-radius: 14px; border: none;
+      width: 100%; padding: 17px; border-radius: 16px; border: none;
       background: #fff; color: var(--primary); font-weight: 700; font-size: 16px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.18); transition: transform 0.15s ease;
+    }
+    .onboarding-next:active { transform: scale(0.97); }
+    @media (prefers-reduced-motion: reduce) {
+      .onboarding-slide .onboarding-icon-wrap, .onboarding-slide h2, .onboarding-slide p { opacity: 1; animation: none !important; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
@@ -1590,17 +1621,17 @@
   <button class="onboarding-skip" onclick="onboardingBitir()">Geç</button>
   <div class="onboarding-slides" id="onboardingSlides">
     <div class="onboarding-slide">
-      <div class="onboarding-icon">🔍</div>
+      <div class="onboarding-icon-wrap"><div class="onboarding-icon-blob"></div><div class="onboarding-icon">🔍</div></div>
       <h2>Marketteki gizli zamları gör</h2>
       <p>A101, BİM, Migros, CarrefourSA, ŞOK ve Tarım Kredi'nin fiyatlarını tek ekranda karşılaştır.</p>
     </div>
     <div class="onboarding-slide">
-      <div class="onboarding-icon">🏷️</div>
+      <div class="onboarding-icon-wrap"><div class="onboarding-icon-blob"></div><div class="onboarding-icon">🏷️</div></div>
       <h2>7 marketi aynı anda karşılaştır</h2>
       <p>Aynı ürün için hangi markette ne kadar ödeyeceğini gör, en ucuzunu bul.</p>
     </div>
     <div class="onboarding-slide">
-      <div class="onboarding-icon">📈</div>
+      <div class="onboarding-icon-wrap"><div class="onboarding-icon-blob"></div><div class="onboarding-icon">📈</div></div>
       <h2>Hal fiyatı ve fiyat geçmişi</h2>
       <p>Toptancı fiyatını öğren, ürünün geçmiş fiyatlarını takip et — gerçek zam mı, gerçek indirim mi anla.</p>
     </div>
@@ -1647,6 +1678,7 @@
   function onboardingUIGuncelle() {
     document.querySelectorAll('.onboarding-dot').forEach(function(d, i) { d.classList.toggle('active', i === onboardingIdx); });
     document.getElementById('onboardingNextBtn').textContent = onboardingIdx === 2 ? 'Başla' : 'İleri';
+    document.querySelectorAll('.onboarding-slide').forEach(function(s, i) { s.classList.toggle('enter', i === onboardingIdx); });
   }
 
   function onboardingBaslat() {
@@ -1654,6 +1686,7 @@
     var overlay = document.getElementById('onboarding-overlay');
     if (!overlay) return;
     overlay.style.display = 'flex';
+    onboardingUIGuncelle();
     var slides = document.getElementById('onboardingSlides');
     slides.addEventListener('scroll', function() {
       var idx = Math.round(slides.scrollLeft / slides.clientWidth);
