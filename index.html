@@ -4606,7 +4606,7 @@ function paylasSepet() {
     const mktF = (u.market_fiyatlari || []).filter(f => f.fiyat != null).sort((a,b) => a.fiyat - b.fiyat)[0];
     if (mktF) {
       const mktAd = MARKET_NAMES[mktF.market] || mktF.market || '';
-      return `• ${u.ad} — ${tl(mktF.fiyat)} (${mktAd})`;
+      return `• ${u.ad} — ${tl(mktF.fiyat)} · ${mktAd}`;
     }
     return `• ${u.ad}`;
   });
@@ -4614,7 +4614,20 @@ function paylasSepet() {
     const mktF = (u.market_fiyatlari || []).filter(f => f.fiyat != null).sort((a,b) => a.fiyat - b.fiyat)[0];
     return s + (mktF ? mktF.fiyat : 0);
   }, 0);
-  const metin = `🛒 Pazar Listem (${sepet.length} ürün)\n\n${satirlar.join('\n')}\n\n💰 Tahmini toplam: ${tl(toplam)}\n\n📱 ${location.origin}${location.pathname}`;
+  const enPahaliToplam = sepet.reduce((s, u) => {
+    const fiyatlar = (u.market_fiyatlari || []).filter(f => f.fiyat != null).map(f => f.fiyat);
+    return s + (fiyatlar.length ? Math.max.apply(null, fiyatlar) : 0);
+  }, 0);
+  const tasarruf = enPahaliToplam - toplam;
+
+  let ozet;
+  if (tasarruf > 1) {
+    ozet = `~En pahalısıyla: ${tl(enPahaliToplam)}~\n*Pazar'la: ${tl(toplam)}* → ${tl(tasarruf)} tasarruf 💰`;
+  } else {
+    ozet = `*Toplam: ${tl(toplam)}*`;
+  }
+
+  const metin = `🛒 *Pazar Listem* — ${sepet.length} ürün\n\n${satirlar.join('\n')}\n\n${ozet}\n\n📲 Sen de dene → ${location.origin}${location.pathname}`;
 
   if (navigator.share) {
     navigator.share({ title: 'Pazar Listem', text: metin }).catch(() => {});
