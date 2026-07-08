@@ -20,3 +20,11 @@ supabasepas.txt
 *.secret
 *.env
 .env*
+
+# 2026-07 — keşif / pilot / migrate (CLAUDE.md kuralı: repo'ya gitmemeli)
+supabasepw.txt
+kesif_*.py
+kesif_a101_ham.html
+a101_pilot_*.py
+migrate_*.py
+data/a101_*.json
