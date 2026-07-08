@@ -1392,7 +1392,7 @@
     [data-theme="dark"] .theme-opt.aktif { color:#000; }
 
 #install-banner {
-  position: fixed; left: 12px; right: 12px; bottom: 80px; z-index: 9999;
+  position: fixed; left: 12px; right: 12px; bottom: calc(76px + env(safe-area-inset-bottom)); z-index: 9999;
   background: var(--card-bg); color: var(--text);
   border: 1px solid var(--border); border-radius: 14px;
   padding: 12px 14px; display: none; align-items: center; gap: 12px;
@@ -4660,6 +4660,7 @@ function toggleSepet(id) {
     });
     saveSepet();
     toastGoster('Listene eklendi');
+    if (sepet.length === 1 && typeof window.installBannerGosterDene === 'function') window.installBannerGosterDene();
     document.querySelectorAll(`.add-btn[data-pid="${id}"]`).forEach(function(btn) {
       btn.classList.add('pressing');
       btn.textContent = '✓';
@@ -5436,6 +5437,7 @@ if (window.matchMedia) {
 (function() {
   var deferredPrompt = null;
   var DISMISS_KEY = 'pazar_install_dismissed_v1';
+  var _installBannerGosterildiMi = false;
 
   function isStandalone() {
     return window.matchMedia('(display-mode: standalone)').matches ||
@@ -5446,7 +5448,12 @@ if (window.matchMedia) {
     return /iPad|iPhone|iPod/.test(ua) && !window.MSStream && /Safari/.test(ua) && !/CriOS|FxiOS/.test(ua);
   }
   function dismissed() {
-    try { return localStorage.getItem(DISMISS_KEY) === '1'; } catch(e) { return false; }
+    try {
+      var t = localStorage.getItem(DISMISS_KEY);
+      if (!t) return false;
+      var gecenGun = (Date.now() - parseInt(t, 10)) / (1000 * 60 * 60 * 24);
+      return gecenGun < 14;
+    } catch(e) { return false; }
   }
 
   window.installPWA = function() {
@@ -5460,7 +5467,7 @@ if (window.matchMedia) {
     }
   };
   window.dismissInstall = function() {
-    try { localStorage.setItem(DISMISS_KEY, '1'); } catch(e){}
+    try { localStorage.setItem(DISMISS_KEY, String(Date.now())); } catch(e){}
     hideInstallBanner();
   };
   function showInstallBanner() {
@@ -5470,25 +5477,27 @@ if (window.matchMedia) {
     document.getElementById('install-banner').classList.remove('show');
   }
 
+  window.installBannerGosterDene = function() {
+    if (_installBannerGosterildiMi || dismissed() || isStandalone()) return;
+    if (deferredPrompt || isIOSSafari()) {
+      _installBannerGosterildiMi = true;
+      showInstallBanner();
+    }
+  };
+
   window.addEventListener('beforeinstallprompt', function(e) {
     e.preventDefault();
     deferredPrompt = e;
-    if (!dismissed() && !isStandalone()) {
-      setTimeout(showInstallBanner, 3000);
-    }
+    setTimeout(window.installBannerGosterDene, 30000);
   });
 
   window.addEventListener('load', function() {
-    setTimeout(function(){
-      if (isIOSSafari() && !isStandalone() && !dismissed()) {
-        showInstallBanner();
-      }
-    }, 3000);
+    setTimeout(window.installBannerGosterDene, 30000);
   });
 
   window.addEventListener('appinstalled', function() {
     hideInstallBanner();
-    try { localStorage.setItem(DISMISS_KEY, '1'); } catch(e){}
+    try { localStorage.setItem(DISMISS_KEY, String(Date.now())); } catch(e){}
   });
 })();
 </script>
