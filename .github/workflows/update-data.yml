@@ -33,14 +33,6 @@ jobs:
         run: python indirim_analiz.py
         env:
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-      - name: Trigger Pages Deploy
-        uses: actions/github-script@v6
-        with:
-          script: |
-            await github.rest.repos.requestPagesBuild({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-            });
       - name: Fiyat Alarmi Taramasi
         run: |
           curl -sf -X POST "https://gbgxxahhbfnulmyecxia.supabase.co/functions/v1/fiyat-alarm-scan" \

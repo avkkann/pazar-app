@@ -28,3 +28,8 @@ kesif_a101_ham.html
 a101_pilot_*.py
 migrate_*.py
 data/a101_*.json
+
+# 2026-07 - Vite build pipeline
+node_modules/
+dist/
+/public/

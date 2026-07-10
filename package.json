@@ -1,0 +1,11 @@
+{
+  "name": "pazar-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/prepare-public.mjs && vite build"
+  },
+  "devDependencies": {
+    "vite": "^7"
+  }
+}
