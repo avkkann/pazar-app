@@ -1,334 +1,110 @@
-# Pazar Uygulaması — Claude Proje Dosyası
+# Pazar App — Proje Handoff (Claude için)
 
-## Proje Nedir
-Türkiye'de hal toptancı fiyatları + zincir market fiyatlarını karşılaştıran PWA uygulaması.
-
-> **2026-05-24:** Dondurulmuş canlıya çıktı (217 ürün). Searlo eşik 0.55'e düşürüldü. CI'a git pull --rebase eklendi (race fix).
-
-- **Canlı URL:** https://avkkann.github.io/pazar-app
-- **GitHub:** https://github.com/avkkann/pazar-app
-- **Kullanıcı:** Mustafa Karabıyık (avkkann)
-- **Masaüstü:** C:\Users\MUSTAFA KARABIYIK\Desktop\pazar-app
-- **Araç:** OpenCode (CMD veya PowerShell) — cd Desktop\pazar-app → opencode
-- **Test ortamı:** Web (masaüstü Chrome) + iOS (Android KULLANILMIYOR)
-- **Python:** `py` komutu ile çalışır (`python` PATH'te yok)
+**Son güncelleme:** 2026-07-08 oturumu sonunda. Bu dosya her oturum başında okunur, sohbete asla ham metin olarak yapıştırılmaz.
 
 ---
 
-## Teknik Yapı
-- Frontend: Tek index.html (~1840+ satır), backend yok
-- Hosting: GitHub Pages
-- PWA: sw.js — telefona kurulabiliyor, **cache şu an v32**
-- Otomatik güncelleme: GitHub Actions her gece 03:00 (`.github/workflows/update-data.yml`)
-- **Toplam ürün: ~14.269** (8 kategori — dondurulmuş ürünler 8. kategori olarak ayrıldı 2026-05)
+## Amaç & bağlam
+
+Mustafa (GitHub: avkkann), **Pazar App**'in tek geliştiricisi — Türk market fiyat karşılaştırma PWA'sı, `avkkann.github.io/pazar-app` (repo: `avkkann/pazar-app`, yerel yol: `C:\Users\MUSTAFA KARABIYIK\Desktop\pazar-app`). Misyon: gizli zamları, sahte indirimleri, gramaj hilelerini ortaya çıkarmak — A101, BİM, Migros, CarrefourSA, ŞOK, Tarım Kredi. Slogan: **"Marketteki gizli zamları gör."**
+
+**İş akışı:** İki-Claude modeli — bu Claude strateji/araştırma/OpenCode prompt yazımı yapar; OpenCode (Windows CMD/PowerShell) dosya düzenlemelerini uygular. Mustafa ham terminal çıktısını yapıştırır, Claude doğrular (kod + canlı tarayıcı ile). SQL şema değişiklikleri Supabase SQL Editor'a doğrudan verilir (OpenCode'a değil, Mustafa çalıştırır).
+
+**İletişim tarzı:** Türkçe, kısa, doğrudan. Uzun terimlerden kaçın. Claude kısa gerekçeyle karar verir, seçenek listesi sunmaz — büyük ürün/mimari kararları hariç (onlarda sorar). Mustafa terminal çıktısını olduğu gibi yapıştırır, Claude özetlemeden okur.
+
+**Supabase:** URL `https://gbgxxahhbfnulmyecxia.supabase.co`, region eu-central-1, project ID `gbgxxahhbfnulmyecxia`.
+
+**Test:** iOS + web (masaüstü Chrome). Android kullanılmıyor, test/deploy talimatlarında Android'e referans verilmez.
 
 ---
 
-## Ekranlar
-- screen-home — Ana sayfa
-- screen-cat — Kategori (2 kolonlu grid, Getir tarzı)
-- screen-sepet — Listem + market karşılaştırma + optimal alışveriş
-- screen-detay — Ürün detay
-- screen-hal — Hal fiyatları (whitelist sistemi)
-- screen-firsatlar — Fırsatlar (En Ucuz / Hal vs Market / En Tasarruflu)
-- screen-profil — Profil (istatistikler dinamik, tema toggle)
+## Mevcut durum (2026-07-08 itibarıyla)
 
-## Nav
-- navHome → showScreen('screen-home')
-- navSepet → goSepet()  (JS adı eski, kullanıcıya görünen metin "Listem")
-- navFirsat → goFirsatlar()
-- navProfil → goProfil()
+### Backend / DB — bu oturumda tamamlanan büyük geçiş
+Frontend'in ağır noktaları (8 kategori JSON dosyasını client'ta indirip tarama) tek tek DB sorgusuna taşındı:
+- **Fırsatlar sekmesi** → doğrudan Supabase sorgusu (`ust_kategori`/`fiyat_farki_yuzde`/`fiyat_farki_tl` generated column'ları üzerinden, 7 paralel sorgu + 1 count sorgusu)
+- **Profil "toplam ürün" sayacı** → tek `count` sorgusu (eskiden 9 dosya indiriyordu — 8 kategori + bayat `marketfiyati.json`; o dosya artık sayıma dahil değil, gerçek sayıyı bozuyordu)
+- **Ana sayfa "Bu hafta düşenler"** → `get_fiyat_dusenler()` RPC fonksiyonu (`fiyat_gecmisi` üzerinden son 30 gün zirve/düşüş hesabı)
+- **"Bugün yakaladığımız tuzaklar"** → hâlâ client'ta 8 dosya indirip tarıyor (bilinçli, aşağıda "Tuzak kararı" bölümüne bak), ama artık düşenler/mevsimle aynı anda çakışıp iki kere indirmiyor
 
-**ÖNEMLİ DİL NOTU:** Kullanıcıya görünen tüm metinler **"Liste/Listem/Listeme/Listemde"** kullanır.
-JS değişken/fonksiyon/id adları (sepet, productMap, toggleSepet, navSepet, goSepet, sepetCount, vs) **eski "sepet" terimini koruyor** — bunlara DOKUNMA, kod kırılır. Sadece UI metinleri değişti.
+**`data/urunler.json` tamamen kaldırıldı** — kalıcı olarak bayattı (scraper `dondurulmus_ayir()` sonrası bu dosyayı güncellemiyordu, ~211 donuk ürün eski kategoride görünüyordu). scraper.py'den üretimi, sw.js'den precache'i, repodan dosyanın kendisi silindi. Kaynak artık sadece 8 kategori dosyası (`urunler_meyve.json` ... `urunler_dondurulmus.json`).
 
----
+### Yeni DB kolonları (bu oturumda eklendi)
+`urunler` tablosuna eklenenler:
+- `ust_kategori` (generated, `ana_kategori`'den CASE ile türetilir — meyve/sebze/et/sut/gida/icecek/temizlik/atistirmalik/dondurulmus/diger)
+- `fiyat_farki_tl`, `fiyat_farki_yuzde` (generated, `market_fiyatlari` JSONB'den min/max — `jsonb_fiyat_max()` yardımcı fonksiyonu kullanır)
+- `agirlik_hacim_gecmisi` JSONB (plain, sessiz toplama — aşağıya bak)
+- `indirim_supheli_puan`, `indirim_supheli_sebepler`, `indirim_supheli_dusus_yuzde` (plain, `indirim_analiz.py` tarafından her gece yazılır)
 
-## Kategoriler (8 adet — slug → file → emoji)
-```js
-KATEGORILER = [
-  { slug:'meyve-sebze',  file:'urunler_meyve',        emoji:'🍎' },
-  { slug:'et',           file:'urunler_et',           emoji:'🥩' },
-  { slug:'sut',          file:'urunler_sut',          emoji:'🧀' },
-  { slug:'gida',         file:'urunler_gida',         emoji:'🥫' },
-  { slug:'icecek',       file:'urunler_icecek',       emoji:'🥤' },
-  { slug:'temizlik',     file:'urunler_temizlik',     emoji:'🧴' },
-  { slug:'atistirmalik', file:'urunler_atistirmalik', emoji:'🍫' },
-  { slug:'dondurulmus',  file:'urunler_dondurulmus',  emoji:'🧊' }, // ← 2026-05 eklendi (scraper post-process)
-];
-```
+RPC fonksiyonları: `get_fiyat_dusenler(p_limit)`, `indirim_puan_toplu_guncelle(guncellemeler jsonb)` (bkz. "Kritik öğrenme: PostgREST upsert").
 
-**KAT_EMOJI** (kart üst köşesindeki emoji):
-```js
-{ meyve:'🍎', sebze:'🥦', et:'🥩', sut:'🧀', gida:'🥫', icecek:'🥤',
-  temizlik:'🧴', atistirmalik:'🍫', dondurulmus:'🧊', diger:'📦' }
-```
+### Tuzak kararı (2026-07-03/08 oturumu)
+- **Bulgu:** `tuzakRozetiHesapla()` (index.html) sadece aynı ürünün farklı paket boyutları arasındaki birim fiyat farkını gösteriyor — tüketici markette kendi hesaplayabilir, gerçek farklılaşma değil.
+- **Karar:** Kaldırılmıyor ama geliştirilmiyor de — **olduğu gibi bırakıldı**, sadece performans/çakışma düzeltmesi yapıldı (düşenler artık aynı anda `loadAllCats()` çağırmıyor, tuzaklar tek başına kaldı).
+- **Yerine kurulan gerçek özellik: Sahte indirim tespiti.** `indirim_analiz.py` (yeni dosya, GitHub Actions'ta `sync_db.py`'dan hemen sonra çalışır, `continue-on-error: true`) her ürünün `fiyat_gecmisi`'ni 4 sinyalle puanlıyor: kısa zirve süresi (1-2 gün şüpheli), yüksek oynaklık, tekrarlı pompa-indirim döngüsü, aşırı yüksek indirim oranı (≥%50). Toplam puan ≥4 şüpheli, 2-3 dikkat. **Sessiz altyapı — henüz UI'da gösterilmiyor.** Canlı testte 14.418 üründen 30'u şüpheli, 532'si dikkat çıktı.
+- **Shrinkflation (gramaj hilesi):** Şu an **yapılamaz** — `_sid` ürün adından üretiliyor (`meyve_patlican-1-kg`), gramaj değişince yeni `_sid` doğar, eski/yeni gramaj eşleştirmesi yok. `agirlik_hacim` hiç geçmişe kaydedilmiyordu. **Bu oturumda sessiz toplama başlatıldı**: `agirlik_hacim_gecmisi` JSONB kolonu + scraper'da `_apply_agirlik_gecmisi()` (fiyat geçmişi gibi ama süresiz saklanır, sadece değer değiştiğinde kayıt eklenir). UI'da hiçbir şey gösterilmiyor. **3-6 ay veri birikmeden gerçek shrinkflation analizi başlamaz.**
 
-**ustKategori()** — alt kategori → ust slug eşlemesi. Atıştırmalık branch'ı:
-```js
-['Bisküvi ve Kraker','Cips','Dondurmalar','Gofret','Kek',
- 'Kuruyemiş ve Kuru Meyve','Sakız ve Şekerleme','Tatlılar','Çikolata']
-→ 'atistirmalik'
-```
+### MiniMax audit (uploaded doküman, 2026-07-01 tarihli — bu oturumda P0 tamamen bitti)
+Doğrulama disiplini: her madde önce koda bakılarak gerçek olup olmadığı kontrol edildi, doküman bazen eskiydi.
+- **Stale/dismissed:** P0-T1 (duplicate fetch — kod zaten `marketfiyatiYuklendi` bayrağıyla korunuyordu, canlıda network sekmesiyle doğrulandı, sorun yok), P0-T2 (8 dosyayı precache'e ekleme önerisi — bizim DB-migration yönümüzle çelişiyor, atlandı), P1-T3 (IndexedDB — localStorage'da zaten sadece küçük şeyler var), P1-İ1 (shrinkflation MVP — daha gerçekçi "sessiz toplama" planıyla değiştirildi).
+- **Tamamlanan:** SEO meta paketi (description/robots/canonical/OG/twitter, OG image hariç — gerçek görsel yok), robots.txt+sitemap.xml, theme_color tutarlılığı (`#0E4938` her yerde), manifest shortcuts+lang+id+categories+screenshots (3 gerçek ekran görüntüsü eklendi), `?screen=` query routing (yoktu, eklendi), auth formu `<form>`+gizli `<label>`+Enter-submit, 5 native alert/confirm/prompt → mevcut `modalAc()` modal sistemine taşındı, veri kaynağı attribution footer (Ana Sayfa + Fırsatlar), GoatCounter analytics (Plausible yerine — kartsız/ücretsiz alternatif), WhatsApp paylaşım mesajı yeniden tasarlandı (gerçek tasarruf hesabı + WhatsApp formatlaması), sepete-ekleme toast+haptik, **3 sayfalık onboarding** (ilk profesyonel görünümü çok basitti, sonradan gradient arka plan + blob ikon rozetleri + giriş animasyonu + pill-şekilli nokta göstergesiyle yeniden tasarlandı), PWA kurulum banner'ı (konum düzeltildi — bottom-nav'la çakışmıyor artık, 3sn yerine 30sn/ilk-ürün-eklendiğinde tetikleniyor, kapatma artık kalıcı değil 14 gün TTL).
+- **Bilinçli atlandı:** P0-G1 (KVKK) — Mustafa "uygulama bitince ekleriz" dedi. P0-U2 (5. nav sekmesi/Favoriler) — Mustafa hayır dedi, Profil'den erişim yeterli. P0-U3 (çift + giriş noktası) — kontrol edildi, zaten doğru çalışıyor (detay sayfası butonu "✓ Listemde"ye dönüşüyor, tekrar basınca çıkarıyor), dokunulmadı.
+- **Büyük karar bekliyor (koda dökülmedi):** P1-T1 (Vite/build pipeline — BUL/DEĞİŞTİR iş akışının tamamını değiştirir), P1-T2 (CSP header — GitHub Pages'ten Cloudflare/Netlify'a taşınmayı gerektirir), P1-B1 (tuzak public landing sayfası — tuzak'ın geleceği belirsizken erken).
+- **Henüz bakılmadı:** P1-U1 (erişilebilirlik taraması), P1-U2 (offline banner), P1-B2 (push izni zamanlaması), P2 maddeleri.
 
-**Dondurulmuş branch:** ana_kategori "Dondurulmuş Ürünler" → 'dondurulmus' (scraper post-process bu değeri yazıyor)
-
-**placeholderRenk()** — resim YOK fallback'i: kategori adına göre `{bg, emoji}` döner.
-Atıştırmalık: `{bg:'#FFF4E0', emoji:'🍫'}`.
-Dondurulmuş: `{bg:'#E0F2FE', emoji:'🧊'}`.
-**ÖNEMLİ:** Yeni kategori eklerken placeholderRenk'i de güncelle, yoksa kart 📦 gösterir (detay sayfası KAT_EMOJI'yi okuyor, kart placeholderRenk'i okuyor — farklı kaynaklar).
+### Repo hijyeni
+`.gitignore` düzeltildi — eski haliyle `supabasepas.txt` diye YANLIŞ yazılmıştı (gerçek dosya `supabasepw.txt`), hiç eşleşmiyordu. Düzeltildi + `kesif_*.py`, `kesif_a101_ham.html`, `a101_pilot_*.py`, `migrate_*.py`, `data/a101_*.json` eklendi. Bu dosyalar hâlâ diskte duruyor (silinmedi, sadece artık git tarafından görmezden geliniyor) — silme/taşıma kararı ayrı, henüz verilmedi.
 
 ---
 
-## Kritik Teknik Notlar
+## Bekleyen / ertelenen işler
 
-### hal.json Cache
-let _halCache, _halPromise → halVeriGetir() kullan, direkt fetch yapma
-
-### halEsles
-- Sadece meyve/sebze eşleşir
-- **HAL_UYUMSUZ listesi** (2026-05 genişletildi, 60+ madde): donuk, dondurulmus, dondurulmuş, dondurma, konserve, hazir, islenmis, salca, tursu, kurutulmus, fileto, salam, sucuk, sosis, pastirma, corba, pure, püre, cipsi, cips, nugget, kroket, burger, superfresh, pack, paket, kutu, sis, rulo, dilim, mince, frozen, recel, reçel, marmelat, meyve suyu, suyu, nektar, smoothie, sirup, şurup, surup, komposto, kompoto, suzme, sikma, sıkma, dondurmasi, dondurmali, dondurmalı, tatlandirici, aromali, aromalı, feast, tukas, tukaş, garden, migrosone, tat, penguen, lapestos, yagi, yağı
-- **"adet" birimi filtresi**: ürün adında `\d+\s*adet` regex'i eşleşirse hal eşleştirme iptal (ananas, karpuz gibi büyük meyveler için yanlış birim varsayımını önler)
-- Birim normalize: "300 Gr" → kg'a çevrilir
-- Skor 0.6+ ve oran 0.1x-5x arası gerekli
-
-### SW Cache
-Şu an: pazar-cache-v32
-Her büyük JS/HTML değişikliğinde sw.js CACHE_NAME versiyonunu artır!
-
-### Fiyat
-tl() fonksiyonu zaten ₺ ekliyor — ekstra ₺ ekleme!
-
-### Fırsatlar Sepete Ekle
-firsatSepetEkle(btn, id) kullan — toggleSepet değil!
-_id yoksa: u._id = u.ad + '_' + u.agirlik_hacim ile oluşturuluyor
-**id BASE64 ile encode ediliyor**:
-- Render: `btoa(unescape(encodeURIComponent(u._id)))`
-- Decode (fonksiyon başında): `try { id = decodeURIComponent(escape(atob(id))); } catch(e) {}`
-
-### Fırsatlar catFiles HARDCODED
-`renderFirsatlar()` içinde `catFiles` dizisi statik tanımlı.
-**Yeni kategori eklerken buraya da eklemek ZORUNLU**, yoksa fırsatlarda görünmez:
-```js
-const catFiles = ['urunler_meyve','urunler_et','urunler_sut','urunler_gida',
-                  'urunler_icecek','urunler_temizlik','urunler_atistirmalik','urunler_dondurulmus'];
-```
-
-### Fırsatlar İstatistik Kartları (2026-05)
-- `_firsatOzetHesapla(tumUrunler)` — Fırsatlar açıldığında üç sayıyı paralel hesaplar (En Ucuz / Hal Fırsatı / Fiyat Farkı)
-- Tab değişimde sayılar bozulmaz, daima tüm sekmeler için dolu görünür
-- Hal Fırsatı async hesaplanır (halVeriGetir bekler), önce '…' sonra gerçek sayı yazar
-- renderFirsatUcuz / renderFirsatHal / renderFirsatTasarruf fonksiyonları artık _firsatOzetGuncelle ÇAĞIRMAZ
-
-### Kategori countNum (2026-05 fix)
-- `loadKategoriSayfasi` sonunda `document.getElementById('countNum').textContent = all.length` zorunlu
-- Önceden sadece filtre tetiklenince güncellenirdi → ilk açılışta '…' kalırdı
-
-### loadCat 404 dayanıklılığı (2026-05 fix)
-- Kategori JSON dosyası 404 veya parse hatası verirse boş array döner (try/catch + resp.ok kontrol)
-- Yeni kategori eklendiğinde scraper henüz çalışmadıysa "Ürün bulunamadı" gösterir, hata vermez
-
-### Dondurulmuş Kategori (2026-05 eklendi)
-- scraper.py post-process: 7 ana kategori normal scrape edildikten sonra `dondurulmus_ayir()` çalışır
-- DONDURULMUS_ANAHTAR: ['dondurul', 'donuk', 'superfresh', 'feast', 'lapestos']
-- DONDURULMUS_ATLA_KAT: ['dondurmalar'] (ice cream — bunlar atıştırmalıkta kalmalı)
-- DONDURULMUS_ATLA_DOSYA: ['urunler_temizlik'] (Koroplast yanlış pozitifini önler)
-- Eşleşen ürünler ana_kategori'si "Dondurulmuş Ürünler" olarak değiştirilip urunler_dondurulmus.json'a taşınır
-- Orijinal kategori `_original_kategori` alanında saklanır
-- Yaklaşık 218 ürün
-
-### Ürün Kartı
-- product-card-img: 130px yükseklik, object-fit: contain
-- Hal badge: product-hal-badge class, turuncu
-- **Kategori kartı buton class'ı: `.add-btn`** (NOT `.btn-ekle`)
-- setEkleBtns selector: `.add-btn[data-pid="..."]` (textContent + style.background ile günceller)
-
-### ⚠️ SEPET SCOPE KURALI (KRİTİK)
-- `let sepet = ...` **module-scope** — global window'a yazılmaz
-- `let productMap = ...` **module-scope** — global window'a yazılmaz
-- saveSepet() **module-scope sepet**'i localStorage'a yazar
-- **HER YERDE `sepet` ve `productMap` kullan**, `window.` KULLANMA
-- Bunlar uyumsuzluk yaratırsa: rozet doğru gösterir ama sepet ekranı boş kalır, profil 0 gösterir, kategori butonu görsel güncellenmez
-- **openDetay productMap'i KOŞULSUZ doldurmalı** (`productMap[u._id] = u`). Yoksa toggleSepet `productMap[id] || urunler.find(...)` fallback'ine düşer ve `urunler` çoğu zaman boş olduğu için sessizce fail eder. Hata Console'a düşmez, sadece sepete ekleme çalışmaz. (2026-05 fix)
-
-### _firsatKartHtml
-- u._id eksikse oluşturur
-- productMap[u._id] = u ile **koşulsuz** map'e yazar
-
-### Karşılaştırma Ekranı (Listem → Marketleri Karşılaştır)
-- `karsilastir()` fonksiyonu 3 senaryo üretir: bestN(1), bestN(2), bestN(3) — kombinasyon optimizasyonu
-- `bestIdx` ile en düşük tutarlı kart belirlenir, otomatik `.selected` class'ı alır + "✓ EN UCUZ" badge görünür
-- `showKombo(idx)` tıklama sadece detayı günceller — selected class'ı en ucuzda **sabit kalır** (2026-05 fix: önceden toggling vardı, kafa karıştırıyordu)
-- `.cmp-best-badge` CSS class'ı: yeşil rozet (#059669 bg, beyaz yazı)
-
-### Profil Sayıları
-**Dinamik** — hardcoded sayı YOK:
-- "Ürün" → KATEGORILER üzerinden Promise.all ile toplam hesaplanır
-- "Hal Ürünü" → halVerisi.urunler.length
-- "Listemde" → sepet.length (label "Listemde", içerik dinamik)
+- **P1-U1, P1-U2, P1-B2, P2 maddeleri** — MiniMax dokümanında var, henüz bakılmadı.
+- **KVKK aydınlatma metni** — uygulama bitince eklenecek (Mustafa kararı).
+- **OG image (og:image/twitter:image)** — gerçek tasarlanmış görsel yok, meta tag'leri şimdilik görselsiz.
+- **A101 Kapıda entegrasyonu** — pilot scraper hazır (`a101_pilot_scraper.py`, artık gitignore'da), DB'ye nasıl/ayrı etiketli mi ekleneceği kararı bekliyor.
+- **Sahte indirim rozetinin UI'da gösterilmesi** — puanlama çalışıyor ve DB'de birikiyor, ama henüz hiçbir ekranda kullanıcıya gösterilmiyor. Birkaç gün/hafta veri biriktikten sonra (false-positive oranını gözlemlemek için) rozet tasarımına geçilebilir.
+- **Shrinkflation analizi** — 3-6 ay `agirlik_hacim_gecmisi` verisi birikmeden başlamaz.
+- **kesif_*/migrate_*/a101_pilot_* dosyaları** — artık gitignore'da ama diskte duruyor, silme kararı Mustafa'da.
+- **Vite/build pipeline, CSP/hosting migration, tuzak public landing** — büyük kararlar, tartışılmadı.
 
 ---
 
-## Ürün JSON Şeması (KORUMA ŞART)
-```json
-{
-  "ad": "...",
-  "ana_kategori": "Bisküvi ve Kraker",  // ← alt kategori adı
-  "agirlik_hacim": "40 GR",
-  "resim": "https://...",                // null/boş olabilir → placeholder
-  "en_dusuk_fiyat": 7.5,
-  "market_fiyatlari": [{"market": "...", "fiyat": 0}]
-}
-```
-**ana_kategori değerleri** ustKategori()'de eşleştirilir. Bu şema bozulursa index.html komple patlar.
+## Kritik öğrenmeler
+
+- **PostgREST upsert, kısmi kolon seti ile NOT NULL ihlali verir.** `POST /rest/v1/table?on_conflict=col` ile upsert, sadece birkaç kolon gönderirsen bile arka planda `INSERT ... ON CONFLICT DO UPDATE` çalıştırır — INSERT tarafı tablo şemasındaki NOT NULL kolonlar için değer ister, UPDATE'e düşecek olsa bile. Sadece var olan satırları güncelleyecek toplu yazma işlerinde bunun yerine özel bir SQL fonksiyonu yaz: `UPDATE ... FROM jsonb_to_recordset($1) AS x(...) WHERE tablo._sid = x._sid` — asla INSERT denemez. (`indirim_analiz.py` bunu yaşayıp düzeltti: 0/14418 yazma → RPC'ye geçince tam başarı.)
+- **Windows PowerShell `&&` desteklemiyor** — `;` kullan veya komutları ayrı sat gönder. Birden fazla escape'li tırnaklı `findstr` komutunu `;` ile birleştirmek parser'ı bozabilir (tırnak/parantez çakışması) — her `findstr`'ı kendi satırında/ayrı çağrıda çalıştır.
+- **Scraper tam koşusu ~2 saat sürüyor** (20-25 dakika değil — bu yanlış tahmin edilmişti). Manuel workflow tetikleme kararı verirken bunu hesaba kat.
+- **GitHub Actions log UI, uzun/ağır job'larda** ("Run python scraper.py" gibi 2 saatlik adımlar) tüm job'un loglarını "truncated due to large size" gösterir, normal step-tıkla-genişlet çalışmaz. "View raw logs" linkinin verdiği signed blob URL'ine git, DOM'dan hedef metni ara (`document.body.textContent.indexOf(...)` gibi dar/hedefli aramalarla — geniş dump'lar "cookie/query string" güvenlik filtresine takılabilir).
+- **Smooth scroll (`scrollTo({behavior:'smooth'})` ve CSS `scroll-behavior:smooth`) otomatik tarayıcı testinde (Claude in Chrome/CDP) hiç animasyonlanmıyor** — `behavior:'auto'` (anlık) çalışıyor ama smooth hiç scrollLeft değiştirmiyor. Muhtemelen otomasyon ortamına özgü, gerçek kullanıcıda sorun olmaz — ama bu, "scroll pozisyonunu okuyup state çıkarma" pattern'inin KIRILGAN olduğunu da gösterdi (onboarding'de "İleri" butonu bu yüzden takılıyordu). Ders: sayfa/adım takibini scroll pozisyonundan DEĞİL, kendi tuttuğun bir sayaçtan yap; scroll sadece görsel yan etki olsun.
+- **`marketfiyati.json` (ayrı, üst düzey dosya) bayat/farklı bir kaynak** — sadece 888 kayıttan 15'i güncel kategori dosyalarıyla aynı `_sid`'e sahip. Hâlâ `marketfiyatiYukle()`/productMap fallback için kullanılıyor, dokunulmadı ama biliniyor (urunler.json gibi bir sonraki temizlik adayı).
+- **Stash cycle, prompt yarıda kesilirse asılı kalabilir.** Bir prompt çalışması stash push yapıp pop'a ulaşmadan durursa, BİR SONRAKİ prompt'un stash push'ı "boş" der (çünkü zaten stash'te) ve pop'u o eski/asılı stash'i açar — çelişkili görünür ama zararsızdır. Bu oturumda CLAUDE.md/sync_db.py'nin kalıcı leftover'ı `git checkout --` ile temizlenip bu döngü sonlandırıldı; artık stash cycle'a gerek yok (dosyalar temiz).
+- **`urunler.json` gibi "artık kimsenin okumadığı ama hâlâ üretilen" dosyalar bir tuzak** — iki kere (DB migration, edge function) yanlışlıkla kaynak alınmış. Kural: yeni bir özellik yazarken önce `grep` ile gerçekten kim okuyor/yazıyor diye bak, dokümantasyona/hafızaya güvenme.
 
 ---
 
-## Veri Kaynağı
-- **API:** marketfiyati.org.tr — searchByCategories (liste) + searchByIdentity (detay)
-- **Detay endpoint'i:** `https://api.marketfiyati.org.tr/api/v2/searchByIdentity` (POST, payload: identity/identityType/keywords/depots/distance/latitude/longitude/pages/size)
-- **NOT:** Detay endpoint'i resim TUTMUYOR — `imageUrl` alanı dönmüyor. Eksik resimler için harici kaynak gerekli.
+## Yaklaşım & desenler
+
+- **SW cache version** her anlamlı index.html/sw.js değişikliğinde artırılır (şu an v140). Git stash cycle artık gerekmiyor (CLAUDE.md/sync_db.py temiz) — sadece `git add` → `git commit` → `git pull --rebase` → `git push`.
+- **Commit doğrulama:** Her push sonrası `raw.githubusercontent.com` üzerinden commit-SHA-pinned URL ile içerik doğrulanır, sonra canlıda (Browser MCP) gerçek fonksiyonel test yapılır — sadece "dosyada var mı" değil, "gerçekten çalışıyor mu" (ör. modalAc() DOM'da doğru render oluyor mu, RPC gerçekten veri döndürüyor mu, onboarding baştan sona ilerliyor mu).
+- **Kapsam disiplini:** İstenmeyen ekleme/çıkarma yapılmadan önce not düşülür, sessizce yapılmaz. Doküman/analiz önerileri körü körüne uygulanmaz — önce kodda gerçekten geçerli mi diye bakılır (bu oturumda birçok "bulgu" eskiydi/yanlıştı).
+- **Büyük ürün/mimari kararları** (build pipeline, hosting migration, nav yapısı, onboarding var/yok, tuzak'ın geleceği) Mustafa'nın onayı olmadan koda dökülmez — sadece küçük/orta teknik düzeltmeler doğrudan yapılır.
+- **OpenCode prompt yapısı:** Tam BUL/DEĞİŞTİR blokları + SW version bump + doğrulama komutları (tek tek, `;` ile birleştirilmeden) + ham terminal çıktısı istenir, özetlenmez.
 
 ---
 
-## Searlo Resim Doldurma (2026-05 AKTİF — ÇALIŞIYOR)
-- **API:** `https://api.searlo.tech/api/v1/search/images`
-- **Header:** `x-api-key: sk_...`
-- **Param:** `q=ürün adı`
-- **Response:** `{images: [{imageUrl, title, source, ...}]}`
-- **Key:** `.env` dosyasında `SEARLO_API_KEY=sk_...`
-- **GitHub Secret:** `SEARLO_API_KEY` (Settings → Secrets → Actions)
-- **Workflow:** `update-data.yml` içinde `python scraper.py` adımında env değişkeni geçilir
-- **Eşleşme eşiği:** 0.65 (SEARLO_MATCH_THRESHOLD)
-- **Ücretsiz plan limitleri:** 5 istek/saniye · 10 istek/dakika · 200 istek/saat · 1000 istek/gün
-- **Yeni mantık (2026-05):**
-  - `time.sleep(6.5)` her istek arasında (dakikada ~9 istek, marjlı)
-  - `GUNLUK_LIMIT = 950` sayacı → güvenli marj, limit aşılmaz
-  - `resimleri_doldur()` aktif (yorum kaldırıldı)
-- **Doğrulama (2026-05):** 1361 istek yapılmış, ~%85.8 kapsama (12.242/14.269 ürün resimli). Çalışıyor.
+## Araçlar & kaynaklar
+
+- **OpenCode** — dosya düzenlemeleri (Windows CMD/PowerShell)
+- **Supabase** — auth, DB, Edge Functions, RPC (`get_fiyat_dusenler`, `indirim_puan_toplu_guncelle`, `jsonb_fiyat_max` yardımcı fonksiyonu)
+- **GitHub Actions** (`update-data.yml`) — sıra: checkout → scraper.py (~2 saat) → hal_scraper.py → veri commit'i → **DB Senkronizasyonu** (sync_db.py) → **Sahte Indirim Analizi** (indirim_analiz.py, yeni) → Pages Deploy → Fiyat Alarmı Taraması
+- **GoatCounter** (`pazar-app.goatcounter.com`, hesap adı `pazar-app`) — analytics, kartsız/ücretsiz, çerezsiz
+- **Claude in Chrome (Browser MCP)** — canlı doğrulama; smooth-scroll'un bu ortamda çalışmadığını unutma, state takibini scroll'a değil sayaca dayandır
+- **raw.githubusercontent.com** — commit-SHA-pinned URL ile içerik doğrulama
 
 ---
 
-## Önemli Fonksiyonlar
-- halVeriGetir() — tek fetch cache
-- halEsles(u) — hal eşleştirme (HAL_UYUMSUZ filtresi + adet birimi filtresi + ana_kategori meyve/sebze)
-- halKgHesapla(ad, f) — birim normalize
-- loadCat(slug) — kategori JSON yükle (catCache, 404'te boş array)
-- loadKategoriSayfasi(slug, sayfa) — sayfa render (countNum güncelleme sonda)
-- uygulaCatFiltre() — market + arama filtresi
-- cardHTML(u) — ürün kartı HTML (placeholderRenk kullanır)
-- openDetay(urunId) — ürün detay (KAT_EMOJI kullanır, **productMap[u._id] = u zorunlu**)
-- toggleSepet(id) — kategori/detay sepete ekle (module-scope sepet)
-- setEkleBtns(id, inCart) — `.add-btn[data-pid]` görsel güncelle
-- firsatSepetEkle(btn, id) — fırsatlar sepete ekle (base64 decode + module-scope sepet)
-- _firsatKartHtml(u, badge, cls, alt) — fırsat kartı HTML
-- renderFirsatlar(tab) — fırsatlar render (catFiles HARDCODED!) + _firsatOzetHesapla çağrısı
-- _firsatOzetHesapla(tumUrunler) — 3 istatistik sayısını paralel hesaplar (2026-05)
-- renderFirsatHal(container, tumUrunler) — Hal vs Market sekmesi (sadece meyve+sebze, HAL_UYUMSUZ filtresi)
-- karsilastir() — Listem market karşılaştırma + optimal alışveriş (bestN(1/2/3) + bestIdx vurgu)
-- showKombo(idx) — karşılaştırma detayı (selected toggling YOK, sadece detay güncellenir)
-- profilGuncelle() — profil istatistikleri (Promise.all dinamik)
-- temaToggle() — tema değiştir (data-theme attribute)
-- placeholderRenk(anaKat) — resim YOK için {bg, emoji}
-- (scraper.py) dondurulmus_ayir() — post-process: dondurulmuş ürünleri ayrı dosyaya taşır (2026-05)
+## Diğer talimatlar
 
----
-
-## OpenCode Kuralları
-1. Bul-değiştir formatı kullan
-2. Tek seferde tek değişiklik
-3. "Başka hiçbir şeye dokunma" ibaresi
-4. SW versiyonunu değişiklikle birlikte artır
-5. **Komutu çalıştırmadan önce kendi yorumunu/özetini değil, terminalin HAM çıktısını yapıştırmasını iste** — OpenCode özetlerken yanlış bilgi verebiliyor
-6. Sorun: git log --oneline -5 → git reset --hard <hash> → git push --force
-7. Commit/push'u OpenCode yapsın diye prompt'a ekle:
-   ```
-   git add <dosyalar>
-   git commit -m "..."
-   git pull --rebase  ← her gece 03:00 GitHub Actions push'ladığı için ŞART
-   git push
-   ```
-8. scraper.py ve diğer dosyalara dokunmaması için "kesinlikle dokunma" yaz
-9. git diff sonucunda beklenmeyen dosya varsa: `git checkout <dosya>` ile geri al, sonra commit
-10. **OpenCode kendi karar vermesin** — sadece verilen değişikliği uygulasın (geçmişte 0.70 yerine 0.60 yazmıştı; ayrıca 3b talimatı vermedim deyip 3b'yi atlama denemiştir)
-11. **CLAUDE.md unstaged ise stash döngüsü kullan:** `git stash push` → `git pull --rebase` → `git push` → `git stash pop`. Aksi halde pull rebase patlar.
-
----
-
-## Tamamlanan
-- 2 kolonlu grid kart (Getir tarzı)
-- Market filtresi + kategori içi arama
-- Sepet + market karşılaştırma
-- Hal fiyatları (whitelist)
-- halEsles akıllı eşleştirme
-- hal.json tek fetch cache
-- Fırsatlar ekranı (3 tab, arama, resim, sepete ekle)
-- Profil ekranı (dinamik sayılar)
-- PWA iOS + web
-- Profesyonel logo
-- Scraper 3 katmanlı resim sistemi (eski not, scraper sadeleşti)
-- Fırsat sepete ekle "?" sorunu (productMap scope + base64 encode)
-- Sepet ekranı ürünleri kaybetme (window.sepet → module-scope sepet)
-- Profil ekranında sepet sayısı 0 (window.sepet → sepet)
-- Kategori + butonu görsel güncellenmeme (.btn-ekle → .add-btn)
-- **2026-05: Atıştırmalık kategorisi (3831 ürün, 7. kategori olarak eklendi)**
-- **2026-05: Searlo API entegrasyonu (kod hazır)**
-- **2026-05: Profil ürün sayısı dinamik hesaplanıyor**
-- **2026-05: placeholderRenk atıştırmalık branch'ı**
-- **2026-05: manifest.json path düzeltildi (./manifest.json), favicon eklendi, apple-touch-icon göreli path, mobile-web-app-capable meta eklendi, SW cache v19**
-- **2026-05: Header logosu icon-192.png ile değiştirildi (P placeholder kaldırıldı, cache v20)**
-- **2026-05: Searlo resim doldurma aktif edildi: sleep 6.5s + günlük 950 istek limiti (rate limit teşhis edildi: 10 istek/dk ücretsiz plan)**
-- **2026-05: Sepet → Liste dil değişikliği (Sepetim/Sepete Ekle → Listem/Listeme Ekle, cache v21)**
-- **2026-05: Karşılaştırma ekranında en ucuz seçenek otomatik vurgulu + "✓ EN UCUZ" badge eklendi (cache v22-v23)**
-- **2026-05: Kalan "Sepette/sepette" referansları "Listemde/listemde" olarak düzeltildi (detay buton state + profil label, cache v24)**
-- **2026-05: openDetay bug fix: productMap[u._id] = u eklendi (kategori detayından "Listeme Ekle" sessizce fail ediyordu, cache v25)**
-- **2026-05: HAL_UYUMSUZ listesi genişletildi (dondurulmuş/reçel/meyve suyu/smoothie/kompoto/sıkma/marmelat vs hal ile eşleşmeyecek), profil "Sepet boş" → "Liste boş" (cache v26)**
-- **2026-05: countNum fix — kategori ekranında "..." yerine ürün sayısı gösteriliyor (cache v27)**
-- **2026-05: HAL_UYUMSUZ market markaları + "adet" birimi filtresi (Feast Çilek, Ananas 1 Adet vs hal ile eşleşmiyor, cache v28)**
-- **2026-05: HAL_UYUMSUZ lapestos + yağı (Dnk Lapestos donuk meyve serisi + Avokado Yağı elendi, cache v29)**
-- **2026-05: Fırsatlar istatistik kartları her tab'da dolu görünüyor (_firsatOzetHesapla paralel hesaplama, cache v30)**
-- **2026-05: 8. kategori — Dondurulmuş Ürünler (scraper post-process, ~218 ürün, cache v31)**
-- **2026-05: loadCat 404 dayanıklılığı (yeni kategori scrape edilmemişken zarif boş ekran, cache v32)**
-- **2026-05: Bug 10 yan etki — Atıştırmalık tek kart sorunu (Dondurulmuş eklenince grid 2x4 tam doldu)**
-- **2026-05: Searlo doğrulandı — 1361 istek yapılmış, ~%85.8 kapsama (12.242/14.269 ürün resimli). Çalışıyor.**
-
-## Bekleyen
-- Sıralama seçeneği (En ucuz / A-Z)
-- Fiyat geçmişi grafiği
-- Sepet paylaşma (WhatsApp)
-
-- Ürün resimleri (eksik ~2267/14430 = %15.7 — Searlo eşik 0.55, takip)
-- Landing page (OpenDesign'da yapılıyor — v1 ve v2 hazır ama v2 mobilde bozuk; v3 bekleniyor)
-
-## Son notlar
-- **2026-05-24:** hal.gov.tr verisi TR geneli olduğu netleşti — 'Antalya Hali' etiketleri 'Hal Fiyatları' olarak düzeltildi. Şehir seçimi özelliği iptal edildi (kaynak il bazlı veri vermiyor).
-
----
-
-## Landing Page Notları (yan proje)
-- Renk paleti: #0F5132 (primary), #1D9E75 (light), #D97606 (hal accent), #F8F9FA (bg)
-- Font: Fraunces (display serif) + Inter (body)
-- Tarz: editorial, sessiz, zamansız (Stripe/Linear/Are.na vibe)
-- Telefon mockup için gerçek ekran görüntüleri gerekli: app-screen-1.webp, -2.webp, -3.webp
-- v2'nin bilinen sorunu: mobilde hero sonrası tüm section'lar görünmüyor (büyük olasılıkla bir JS hatası IntersectionObserver setup'ından önce ölüyor, .reveal opacity:0 kalıyor)
-- v3 için: progressive enhancement (JS olmadan içerik görünsün), custom cursor / drift orbs / sticky timeline KALDIRILSIN, try/catch ile robust
-
----
-
-## .gitignore İçeriği (önemli)
-```
-.env
-test_*.py
-*.test.py
-firsat_kod.txt
-test_export.xlsx
-scraper.py.bak
-```
-**.env içinde API key var, asla repo'ya gitmemeli!**
-
----
-
-## Dikkat — API Key Güvenliği
-- Searlo API key `.env`'de, repo'ya GİTMİYOR
-- GitHub Actions için **Settings → Secrets → SEARLO_API_KEY** olarak eklendi
-- **API key'ler ekran görüntüsünde gösterilmemeli** (bu projede 2 key yandı, revoke edildi — yeni keylerde dikkat)
+- Mustafa Android kullanmıyor — iOS ve web (masaüstü Chrome) üzerinden test ediyor.
+- CLAUDE.md sohbete asla ham metin olarak yapıştırılmaz, sadece dosya olarak paylaşılır.
