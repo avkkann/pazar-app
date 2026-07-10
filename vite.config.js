@@ -24,6 +24,7 @@ function hashClassicScript() {
 }
 
 export default {
+  base: '/pazar-app/',
   publicDir: 'public',
   plugins: [hashClassicScript()],
   build: {
