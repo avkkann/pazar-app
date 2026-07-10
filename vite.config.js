@@ -24,7 +24,7 @@ function hashClassicScript() {
 }
 
 export default {
-  base: '/pazar-app/',
+  base: process.env.DEPLOY_TARGET === 'cloudflare' ? '/' : '/pazar-app/',
   publicDir: 'public',
   plugins: [hashClassicScript()],
   build: {
