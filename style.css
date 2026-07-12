@@ -1588,3 +1588,101 @@
 
 
 
+
+
+/* ══════════════════════════════════════════════
+   DESKTOP LAYOUT — sadece 1024px ve üzeri ekranlarda çalışır
+   Mobil kurallara HİÇ dokunmaz, ayrı katman olarak eklenir.
+   ══════════════════════════════════════════════ */
+@media (min-width: 1024px) {
+
+  /* Sol sabit sidebar — bottom-nav'ı dönüştürüyoruz */
+  .bottom-nav {
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    width: 240px; max-width: 240px;
+    height: 100vh;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 4px;
+    padding: 24px 12px;
+    border-top: none;
+    border-right: 1px solid var(--border);
+    box-shadow: none;
+    transform: none;
+    z-index: 200;
+  }
+  .nav-btn {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    font-size: .82rem;
+    text-align: left;
+  }
+  .nav-btn svg { width: 20px; height: 20px; }
+  .nav-btn:hover { background: var(--bg); }
+  .nav-btn.active { background: #ECFDF5; }
+  [data-theme="dark"] .nav-btn.active { background: rgba(29,158,117,.15); }
+  .cart-badge { position: static; margin-left: auto; }
+
+  /* İçerik alanını sidebar'ın sağına kaydır */
+  .screen {
+    max-width: none;
+    margin: 0 0 0 240px;
+    padding-bottom: 32px;
+  }
+
+  /* Ana sayfa, kategori, sepet, fırsatlar, favoriler, profil — geniş içerik sütunu */
+  #screen-home, #screen-cat, #screen-sepet, #screen-firsatlar, #screen-favoriler, #screen-profil, #screen-hal {
+    max-width: 1200px;
+  }
+
+  /* Ürün detay ekranı dar kalsın — tek ürün odaklı, tam genişlik almasın */
+  #screen-detay { max-width: 640px; }
+
+  /* Sticky header'lar artık sidebar'dan sonraki alanda tam genişlik kaplasın */
+  .header, .app-header--sub {
+    border-radius: 0;
+  }
+
+  /* Ürün grid'i — 2 sütun yerine 4 sütun */
+  .product-list {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-6);
+  }
+
+  /* Kategori grid'i — 2 sütun yerine 5 sütun */
+  .cat-grid {
+    grid-template-columns: repeat(5, 1fr);
+    padding: var(--space-6) var(--space-6) 0;
+  }
+
+  /* Yatay şeritler (tuzaklar, düşenler, mevsim) — kart genişliği aynı kalsın, sadece kenar boşluğu büyüsün */
+  .home-strip-head, .home-strip-scroll {
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+  }
+
+  /* Fırsatlar ekranı — dikey liste yerine 2 sütun grid */
+  #firsatContent {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+    padding: 0 var(--space-6);
+  }
+  #firsatContent .firsat-card { margin-bottom: 0; }
+
+  /* Arama kutusu ve stats-row genişleyen alana uysun */
+  .search-wrap, .cat-search-wrap, .stats-row, .filter-wrap, .firsat-arabar, .firsat-tabs, .firsat-ozet, .data-attribution {
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+  }
+
+  /* Install banner sidebar'ın altında kalmasın */
+  #install-banner { left: 240px; }
+}
