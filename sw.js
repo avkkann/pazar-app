@@ -1,7 +1,6 @@
-const CACHE_NAME = 'pazar-cache-v142';
+const CACHE_NAME = 'pazar-cache-v143';
 const DATA_URLS = [
   new URL('./data/hal.json', self.location).href,
-  new URL('./data/marketfiyati.json', self.location).href,
 ];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(DATA_URLS)));

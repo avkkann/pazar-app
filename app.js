@@ -386,10 +386,6 @@
         if (typeof loadCat === 'function' && !productMap[kat + '_0']) await loadCat(kat);
       } catch(e) {}
     }));
-    // marketfiyati pool'unu da yükle (sid indexli)
-    if (typeof marketfiyatiYukle === 'function') {
-      try { await marketfiyatiYukle(); } catch(e) {}
-    }
 
     // productMap key formatı tutarlı değil — Object.values'tan sidMap oluştur
     const sidMap = {};
@@ -614,8 +610,6 @@ const PAGE_SIZE = 48;
 let halMap = {};
 let catCache = {};    // slug → [products with _id]
 let productMap = {};  // _id → product
-let marketfiyatiYuklendi = false;
-let marketfiyatiPool = [];   // 505 ek urun (kategori slug'ina gore dagitilacak)
 let urunler = [];     // görünen ürünler (toggleSepet için)
 let currentKategori = null, currentSayfa = 1, toplamSayfa = 1, yukleniyor = false;
 let activeMarket = null;
@@ -1237,23 +1231,6 @@ function assignIds(slug, products) {
   return products;
 }
 
-async function marketfiyatiYukle() {
-  if (marketfiyatiYuklendi) return;
-  try {
-    const resp = await fetch('./data/marketfiyati.json');
-    if (resp.ok) {
-      const data = await resp.json();
-      marketfiyatiPool = Array.isArray(data) ? data : (data.urunler || []);
-      marketfiyatiPool.forEach(u => {
-        if (u._sid) productMap[u._sid] = u;
-      });
-    }
-  } catch (e) {
-    console.warn('marketfiyati yuklenemedi:', e);
-  }
-  marketfiyatiYuklendi = true;
-}
-
 async function loadCat(slug) {
   if (catCache[slug]) return catCache[slug];
   const kat = KATEGORILER.find(k => k.slug === slug);
@@ -1267,9 +1244,6 @@ async function loadCat(slug) {
   } catch (e) {
     console.warn('Kategori yuklenemedi:', kat.file, e);
   }
-  await marketfiyatiYukle();
-  const eklenenler = marketfiyatiPool.filter(u => u.kategori === slug);
-  products = products.concat(eklenenler);
   assignIds(slug, products);
   catCache[slug] = products;
   return products;
