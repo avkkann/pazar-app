@@ -1717,3 +1717,20 @@
   #install-banner { left: 264px; }
 }
 /* PART3-TAMAM-BLOK-KAPANDI */
+
+/* nav-brand: varsayılan olarak gizli (mobilde bottom-nav içinde yer almamalı) */
+.nav-brand { display: none; }
+
+@media (min-width: 1024px) {
+  /* Desktop'ta nav-brand görünür olsun */
+  .nav-brand { display: flex; }
+
+  /* İçerik ortalamasını sidebar'ı hesaba katarak düzelt */
+  .screen {
+    position: relative;
+    left: 264px;
+    width: calc(100% - 264px);
+    margin-left: 0;
+  }
+}
+/* FIX-PART-TAMAM */
