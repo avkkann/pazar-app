@@ -3536,3 +3536,35 @@ window.addEventListener('online', _offlineBannerGuncelle);
 window.addEventListener('offline', _offlineBannerGuncelle);
 document.addEventListener('DOMContentLoaded', _offlineBannerGuncelle);
 if (document.readyState !== 'loading') _offlineBannerGuncelle();
+
+async function bultenDurumGuncelle() {
+  const el = document.getElementById('bultenDurumYazi');
+  if (!el) return;
+  const user = window.pazarAuth?.user;
+  if (!user) { el.textContent = 'Düşen fiyatlar ve şüpheli indirimler, e-posta ile'; return; }
+  try {
+    const { data, error } = await window.supabaseClient.from('bulten_abonelik').select('aktif_mi').eq('user_id', user.id).maybeSingle();
+    if (error) { el.textContent = 'Düşen fiyatlar ve şüpheli indirimler, e-posta ile'; return; }
+    el.textContent = (data && data.aktif_mi) ? 'Açık ✓' : 'Düşen fiyatlar ve şüpheli indirimler, e-posta ile';
+  } catch (e) { el.textContent = 'Düşen fiyatlar ve şüpheli indirimler, e-posta ile'; }
+}
+
+window.bultenAbonelikToggle = async function() {
+  const user = window.pazarAuth?.user;
+  if (!user) {
+    if (typeof window.openAuthSheet === 'function') window.openAuthSheet('login');
+    return;
+  }
+  const el = document.getElementById('bultenDurumYazi');
+  try {
+    const { data: mevcut } = await window.supabaseClient.from('bulten_abonelik').select('aktif_mi').eq('user_id', user.id).maybeSingle();
+    const yeniDurum = !(mevcut && mevcut.aktif_mi);
+    const { error } = await window.supabaseClient.from('bulten_abonelik').upsert({ user_id: user.id, aktif_mi: yeniDurum }, { onConflict: 'user_id' });
+    if (error) { console.warn('Bulten abonelik hatasi:', error.message); return; }
+    if (el) el.textContent = yeniDurum ? 'Açık ✓' : 'Düşen fiyatlar ve şüpheli indirimler, e-posta ile';
+    if (typeof toastGoster === 'function') toastGoster(yeniDurum ? 'Bülten açıldı' : 'Bülten kapatıldı');
+  } catch (e) { console.warn('Bulten abonelik hatasi:', e); }
+};
+
+document.addEventListener('pazarAuthReady', bultenDurumGuncelle);
+document.addEventListener('pazarAuthChange', bultenDurumGuncelle);
