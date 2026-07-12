@@ -2906,7 +2906,7 @@ function hesaplaSecili(seciliMarketler) {
     }
     if (best) {
       if (!atama[best.key]) atama[best.key] = { items: [], total: 0 };
-      atama[best.key].items.push({ ad: item.ad + (item.agirlik_hacim ? ' ' + item.agirlik_hacim : ''), fiyat: best.price });
+      atama[best.key].items.push({ ad: item.ad, resim: item.resim, ana_kategori: item.ana_kategori, fiyat: best.price });
       atama[best.key].total += best.price;
       genelToplam += best.price;
     } else {
@@ -2919,14 +2919,23 @@ function hesaplaSecili(seciliMarketler) {
     migros:"Migros'tan", sok:"ŞOK'tan", tarim_kredi:"T.Kredi'den"
   };
 
+  const _cmpItemHTML = (it) => {
+    const ph = placeholderRenk(ustKategori(it.ana_kategori));
+    const img = it.resim
+      ? `<img class="cmp-mkt-item-img" src="${it.resim}" alt="" loading="lazy" onerror="this.outerHTML='<div class=\\'cmp-mkt-item-img-ph\\'>${ph.emoji}</div>'">`
+      : `<div class="cmp-mkt-item-img-ph">${ph.emoji}</div>`;
+    return `<div class="cmp-mkt-item">
+      ${img}
+      <span class="cmp-mkt-item-name">${it.ad}</span>
+      <span class="cmp-mkt-item-price">${it.fiyat != null ? tl(it.fiyat) : '<span style=\"color:var(--text-muted)\">—</span>'}</span>
+    </div>`;
+  };
+
   const blocks = seciliMarketler.filter(k => atama[k]).map(k => {
     const g = atama[k];
     return `<div class="cmp-mkt-block">
-      <div class="cmp-mkt-name">🛒 ${MFROM[k] || g.name + "'den"} alacakların:</div>
-      ${g.items.map(it => `<div class="cmp-mkt-item">
-        <span class="cmp-mkt-item-name">${it.ad}</span>
-        <span class="cmp-mkt-item-price">${tl(it.fiyat)}</span>
-      </div>`).join('')}
+      <div class="cmp-mkt-name"><span class="cmp-mkt-dot m-${k}"></span>${MFROM[k] || g.name + "'den"} alacakların:</div>
+      ${g.items.map(_cmpItemHTML).join('')}
       <div class="cmp-mkt-subtotal">Toplam: ${tl(g.total)}</div>
     </div>`;
   }).join('');
@@ -2934,10 +2943,7 @@ function hesaplaSecili(seciliMarketler) {
   const atanamayanHtml = atanamayan.length ? `
     <div class="cmp-mkt-block" style="margin-top:12px">
       <div class="cmp-mkt-name">⚠️ Seçili marketlerde bulunmayan ürünler:</div>
-      ${atanamayan.map(it => `<div class="cmp-mkt-item">
-        <span class="cmp-mkt-item-name">${it.ad}</span>
-        <span class="cmp-mkt-item-price" style="color:var(--text-muted)">—</span>
-      </div>`).join('')}
+      ${atanamayan.map(it => _cmpItemHTML({ ad: it.ad, resim: it.resim, ana_kategori: it.ana_kategori, fiyat: null })).join('')}
     </div>` : '';
 
   document.getElementById('compareResult').innerHTML =
