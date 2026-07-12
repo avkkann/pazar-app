@@ -1028,16 +1028,10 @@ function openDetay(urunId) {
     ${(() => {
   const digerler = digerPaketleriBul(u);
   if (!digerler.length) return '';
-  let html = '<div class="detay-bolum"><div class="detay-bolum-baslik">Bu ürünün diğer paketleri</div><div class="detay-bolum-liste">';
+  let html = '<div class="detay-bolum"><div class="detay-bolum-baslik">Bu ürünün diğer paketleri</div><div class="detay-bolum-liste detay-bolum-liste-strip">';
   digerler.forEach(d => {
-    const bf = birimFiyatHesapla(d);
-    const fy = enDusukFiyat(d);
     const rzD = tuzakRozetiHesapla(d);
-    html += `<div class="detay-paket-item" onclick="openDetay('${d._id}')">
-      <div class="detay-paket-ad">${d.ad}</div>
-      <div class="detay-paket-meta">${d.agirlik_hacim || ''} · ${fy ? tl(fy) : '-'}${bf ? ' · ' + birimFiyatYazi(bf) : ''}</div>
-      ${rzD ? tuzakRozetiHTML(rzD, true) : ''}
-    </div>`;
+    html += _stripKartHTML(d, rzD);
   });
   html += '</div></div>';
   return html;
@@ -1045,14 +1039,9 @@ function openDetay(urunId) {
     ${(() => {
   const rakipler = rakipMarkalariBul(u);
   if (!rakipler.length) return '';
-  let html = '<div class="detay-bolum"><div class="detay-bolum-baslik">Aynı boyda rakip markalar</div><div class="detay-bolum-liste">';
+  let html = '<div class="detay-bolum"><div class="detay-bolum-baslik">Aynı boyda rakip markalar</div><div class="detay-bolum-liste detay-bolum-liste-strip">';
   rakipler.forEach(d => {
-    const bf = birimFiyatHesapla(d);
-    const fy = enDusukFiyat(d);
-    html += `<div class="detay-paket-item" onclick="openDetay('${d._id}')">
-      <div class="detay-paket-ad">${d.ad}</div>
-      <div class="detay-paket-meta">${d.agirlik_hacim || ''} · ${fy ? tl(fy) : '-'}${bf ? ' · ' + birimFiyatYazi(bf) : ''}</div>
-    </div>`;
+    html += _stripKartHTML(d, null);
   });
   html += '</div></div>';
   return html;
