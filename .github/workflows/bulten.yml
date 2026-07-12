@@ -1,0 +1,17 @@
+name: Haftalik Bulten
+
+on:
+  schedule:
+    - cron: '0 15 * * 5'
+  workflow_dispatch:
+
+jobs:
+  bulten:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Haftalik Bulten Gonder
+        run: |
+          curl -sf -X POST "https://gbgxxahhbfnulmyecxia.supabase.co/functions/v1/haftalik-bulten" \
+            -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}" \
+            -H "Content-Type: application/json"
