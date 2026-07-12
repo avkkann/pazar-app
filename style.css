@@ -1588,101 +1588,132 @@
 
 
 
-
-
 /* ══════════════════════════════════════════════
    DESKTOP LAYOUT — sadece 1024px ve üzeri ekranlarda çalışır
    Mobil kurallara HİÇ dokunmaz, ayrı katman olarak eklenir.
    ══════════════════════════════════════════════ */
 @media (min-width: 1024px) {
 
-  /* Sol sabit sidebar — bottom-nav'ı dönüştürüyoruz */
+  html, body { background: #EEF1F0; }
+
   .bottom-nav {
     position: fixed;
     top: 0; left: 0; bottom: 0;
-    width: 240px; max-width: 240px;
+    width: 264px; max-width: 264px;
     height: 100vh;
     flex-direction: column;
     align-items: stretch;
     justify-content: flex-start;
-    gap: 4px;
-    padding: 24px 12px;
+    gap: 2px;
+    padding: 20px 14px;
     border-top: none;
     border-right: 1px solid var(--border);
     box-shadow: none;
     transform: none;
     z-index: 200;
+    background: var(--card-bg);
   }
+  .nav-brand {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 12px 22px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-brand-logo { width: 34px; height: 34px; border-radius: 9px; object-fit: contain; flex-shrink: 0; }
+  .nav-brand-text { font-family: 'Cabinet Grotesk', 'Inter', sans-serif; font-weight: 800; font-size: 1.15rem; color: var(--text); letter-spacing: -0.02em; }
   .nav-btn {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    gap: 12px;
+    gap: 13px
+
+
+
+
+
+
+;
     padding: 12px 14px;
-    border-radius: 12px;
-    font-size: .82rem;
+    border-radius: 11px;
+    font-size: .87rem;
+    font-weight: 600;
     text-align: left;
+    color: var(--text-muted);
   }
   .nav-btn svg { width: 20px; height: 20px; }
-  .nav-btn:hover { background: var(--bg); }
-  .nav-btn.active { background: #ECFDF5; }
-  [data-theme="dark"] .nav-btn.active { background: rgba(29,158,117,.15); }
+  .nav-btn:hover { background: var(--bg); color: var(--text); }
+  .nav-btn.active { background: var(--primary); color: #fff; }
+  .nav-btn.active svg { stroke: #fff; }
   .cart-badge { position: static; margin-left: auto; }
+/* PART1-TAMAM */
 
-  /* İçerik alanını sidebar'ın sağına kaydır */
   .screen {
     max-width: none;
-    margin: 0 0 0 240px;
-    padding-bottom: 32px;
+    margin: 0 0 0 264px;
+    padding: 0 0 48px;
+    box-sizing: border-box;
   }
 
-  /* Ana sayfa, kategori, sepet, fırsatlar, favoriler, profil — geniş içerik sütunu */
   #screen-home, #screen-cat, #screen-sepet, #screen-firsatlar, #screen-favoriler, #screen-profil, #screen-hal {
-    max-width: 1200px;
+    max-width: 1360px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
-  /* Ürün detay ekranı dar kalsın — tek ürün odaklı, tam genişlik almasın */
-  #screen-detay { max-width: 640px; }
+  #screen-detay { max-width: 720px; margin-left: auto; margin-right: auto; }
 
-  /* Sticky header'lar artık sidebar'dan sonraki alanda tam genişlik kaplasın */
-  .header, .app-header--sub {
-    border-radius: 0;
+  #screen-home .header {
+    margin: 28px 40px 0;
+    border-radius: 20px;
+    padding: 28px 32px;
+  }
+  .app-header--sub {
+    margin: 28px 40px 0;
+    border-radius: 20px;
+    padding: 20px 28px;
   }
 
-  /* Ürün grid'i — 2 sütun yerine 4 sütun */
+  .search-wrap, .cat-search-wrap, .stats-row, .filter-wrap, .firsat-arabar, .firsat-tabs, .firsat-ozet, .data-attribution {
+    padding-left: 40px;
+    padding-right: 40px;
+    background: transparent;
+    border-bottom: none;
+  }
+  .search-wrap { margin-top: 20px; }
+  .search-box { max-width: 480px; background: var(--card-bg); border-color: var(--border); }
+
+  .home-strip-head, .home-strip-scroll { padding-left: 40px; padding-right: 40px; }
+  .home-strip { margin-bottom: 32px; }
+/* PART2-TAMAM */
+
   .product-list {
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--space-4);
-    padding: var(--space-4) var(--space-6);
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 18px;
+    padding: 8px 40px 24px;
   }
+  .product-card { border-radius: 18px; }
 
-  /* Kategori grid'i — 2 sütun yerine 5 sütun */
   .cat-grid {
-    grid-template-columns: repeat(5, 1fr);
-    padding: var(--space-6) var(--space-6) 0;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 16px;
+    padding: 28px 40px 0;
   }
+  .cat-card { border-radius: 18px; padding: 26px 14px 20px; }
 
-  /* Yatay şeritler (tuzaklar, düşenler, mevsim) — kart genişliği aynı kalsın, sadece kenar boşluğu büyüsün */
-  .home-strip-head, .home-strip-scroll {
-    padding-left: var(--space-6);
-    padding-right: var(--space-6);
-  }
-
-  /* Fırsatlar ekranı — dikey liste yerine 2 sütun grid */
   #firsatContent {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-3);
-    padding: 0 var(--space-6);
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 14px;
+    padding: 8px 40px 24px;
   }
   #firsatContent .firsat-card { margin-bottom: 0; }
 
-  /* Arama kutusu ve stats-row genişleyen alana uysun */
-  .search-wrap, .cat-search-wrap, .stats-row, .filter-wrap, .firsat-arabar, .firsat-tabs, .firsat-ozet, .data-attribution {
-    padding-left: var(--space-6);
-    padding-right: var(--space-6);
+  #sepetContent, #favorilerContent, .profil-hero, .profil-istat, .profil-section {
+    max-width: 720px;
+    margin-left: 40px;
+    margin-right: auto;
   }
 
-  /* Install banner sidebar'ın altında kalmasın */
-  #install-banner { left: 240px; }
+  #install-banner { left: 264px; }
 }
+/* PART3-TAMAM-BLOK-KAPANDI */
