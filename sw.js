@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pazar-cache-v143';
+const CACHE_NAME = 'pazar-cache-v144';
 const DATA_URLS = [
   new URL('./data/hal.json', self.location).href,
 ];

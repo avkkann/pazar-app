@@ -551,9 +551,15 @@
     .fg-svg { width: 100%; height: auto; display: block; }
     .fg-svg text { font-family: 'Inter', sans-serif; fill: var(--text-muted); }
     .fg-svg .fg-axis-label { font-size: 9px; }
-    .fg-svg .fg-band { fill: rgba(15, 81, 50, 0.12); stroke: none; }
-    .fg-svg .fg-avg-line { fill: none; stroke: #0E4938; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+    .fg-svg .fg-band { fill: rgba(15, 81, 50, 0.08); stroke: none; }
+    .fg-svg .fg-avg-line { fill: none; stroke: #0E4938; stroke-width: 2.25; stroke-linejoin: round; stroke-linecap: round; }
     .fg-svg .fg-outlier { fill: #DC2626; }
+    .fg-svg .fg-point { fill: var(--card-bg); stroke: #0E4938; stroke-width: 1.5; }
+    .fg-svg .fg-point-vurgu { fill: #0E4938; stroke: var(--card-bg); stroke-width: 1.5; }
+    .fg-svg .fg-fiyat-etiket { font-size: 9.5px; font-weight: 700; fill: #0E4938; }
+    [data-theme="dark"] .fg-svg .fg-fiyat-etiket { fill: #4ADE80; }
+    [data-theme="dark"] .fg-svg .fg-point-vurgu { fill: #4ADE80; stroke: var(--card-bg); }
+    [data-theme="dark"] .fg-svg .fg-point { stroke: #4ADE80; }
     /* Eski çoklu-çizgi stilleri — artık kullanılmıyor, fg-band + fg-avg-line ile değiştirildi
     .fg-svg .fg-line { fill: none; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
     .fg-svg .fg-point { stroke-width: 0; }

@@ -1591,6 +1591,35 @@ function fiyatGecmisiBlogu(urun) {
     outlierMarkers += '<circle cx="' + x.toFixed(1) + '" cy="' + (padT - 3) + '" r="2.5" class="fg-outlier"/>';
   });
 
+  // Net fiyat noktaları: ilk gün, son gün, en düşük ortalama, en yüksek ortalama
+  const fgFiyatYaz = f => f.toFixed(2).replace('.', ',');
+  const ilkGun = gunler[0];
+  const sonGun = gunler[gunler.length - 1];
+  const enDusukGun = gunler.reduce((a, b) => a.avg < b.avg ? a : b);
+  const enYuksekGun = gunler.reduce((a, b) => a.avg > b.avg ? a : b);
+
+  const etiketliGunlerSet = new Set([ilkGun.t, sonGun.t, enDusukGun.t, enYuksekGun.t]);
+  const etiketliGunler = gunler.filter(g => etiketliGunlerSet.has(g.t));
+
+  let fgNoktalar = '';
+  let fgEtiketler = '';
+  gunler.forEach(g => {
+    const x = xFor(g.t);
+    const y = yFor(g.avg);
+    const oneCikan = etiketliGunlerSet.has(g.t);
+    fgNoktalar += '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="' + (oneCikan ? 3.5 : 2) + '" class="fg-point' + (oneCikan ? ' fg-point-vurgu' : '') + '"/>';
+  });
+  etiketliGunler.forEach(g => {
+    const x = xFor(g.t);
+    const y = yFor(g.avg);
+    const ustte = g.t === enDusukGun.t ? false : true;
+    const etiketY = ustte ? (y - 8) : (y + 14);
+    let anchor = 'middle';
+    if (g.t === ilkGun.t) anchor = 'start';
+    if (g.t === sonGun.t) anchor = 'end';
+    fgEtiketler += '<text x="' + x.toFixed(1) + '" y="' + etiketY.toFixed(1) + '" text-anchor="' + anchor + '" class="fg-fiyat-etiket">' + fgFiyatYaz(g.avg) + ' ₺</text>';
+  });
+
   // Y ekseni 3 değer
   const yTicks = [fAlt, Math.round((fAlt + fUst) / 2), fUst];
   let ekseny = '';
@@ -1641,6 +1670,8 @@ function fiyatGecmisiBlogu(urun) {
     +     ekseny
     +     '<path d="' + bandPath + '" class="fg-band"/>'
     +     '<path d="' + avgPath + '" class="fg-avg-line"/>'
+    +     fgNoktalar
+    +     fgEtiketler
     +     outlierMarkers
     +     eksenX
     +   '</svg>'
