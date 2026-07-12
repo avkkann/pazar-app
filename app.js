@@ -459,6 +459,11 @@
         if (eski == null) window.pazarAlarmMap.delete(sid); else window.pazarAlarmMap.set(sid, eski);
         window.refreshDetayAlarm(sid);
         console.warn('Alarm kurulamadı:', error.message);
+        return;
+      }
+      if (typeof Notification !== 'undefined' && Notification.permission === 'default' && !sessionStorage.getItem('_alarmBildirimOnerisiGosterildi')) {
+        sessionStorage.setItem('_alarmBildirimOnerisiGosterildi', '1');
+        setTimeout(() => { if (typeof toastGoster === 'function') toastGoster('Fiyat düşünce haber almak için Profil > Bildirimler\'i aç'); }, 600);
       }
     } catch (e) {
       if (eski == null) window.pazarAlarmMap.delete(sid); else window.pazarAlarmMap.set(sid, eski);
@@ -3521,3 +3526,13 @@ function _injectStripIkonlari() {
   if (mfBtn && !mfBtn.querySelector('svg')) mfBtn.innerHTML = lcIcon('search') + ' marketfiyati.org.tr\'de ara';
 }
 document.addEventListener('DOMContentLoaded', _injectStripIkonlari);
+
+function _offlineBannerGuncelle() {
+  const el = document.getElementById('offline-banner');
+  if (!el) return;
+  el.classList.toggle('show', !navigator.onLine);
+}
+window.addEventListener('online', _offlineBannerGuncelle);
+window.addEventListener('offline', _offlineBannerGuncelle);
+document.addEventListener('DOMContentLoaded', _offlineBannerGuncelle);
+if (document.readyState !== 'loading') _offlineBannerGuncelle();

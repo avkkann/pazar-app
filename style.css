@@ -1355,6 +1355,15 @@
   box-shadow: 0 4px 16px rgba(0,0,0,0.15);
 }
 #install-banner.show { display: flex; }
+#offline-banner {
+  position: fixed; left: 12px; right: 12px; bottom: calc(76px + env(safe-area-inset-bottom)); z-index: 9998;
+  background: #B45309; color: #fff;
+  border-radius: 14px;
+  padding: 10px 14px; display: none; align-items: center; justify-content: center; text-align: center;
+  font-size: 12px; font-weight: 600;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+#offline-banner.show { display: flex; }
 .install-banner-icon { width: 36px; height: 36px; flex-shrink: 0; border-radius: 8px; }
 .install-banner-text { flex: 1; }
 .install-banner-title { font-size: 13px; font-weight: 600; }
