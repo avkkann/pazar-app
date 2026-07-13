@@ -1789,3 +1789,8 @@
   #screen-detay > * { max-width: 720px; }
 }
 /* FLEX-FINAL-FIX */
+
+@media (min-width: 1024px) {
+  .bottom-nav { order: -1; }
+}
+/* ORDER-FIX-TAMAM */
