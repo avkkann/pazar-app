@@ -1625,20 +1625,16 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    gap: 13px
-
-
-
-
-
-
-;
-    padding: 12px 14px;
-    border-radius: 11px;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 10px;
     font-size: .87rem;
     font-weight: 600;
     text-align: left;
     color: var(--text-muted);
+    flex: 0 0 auto;
+    height: auto;
+    width: auto;
   }
   .nav-btn svg { width: 20px; height: 20px; }
   .nav-btn:hover { background: var(--bg); color: var(--text); }
