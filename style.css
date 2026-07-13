@@ -1766,3 +1766,26 @@
   }
 }
 /* CENTER-FIX-TAMAM */
+
+@media (min-width: 1024px) {
+  body { display: flex; min-height: 100vh; }
+  .bottom-nav { position: sticky; top: 0; flex-shrink: 0; }
+  .screen {
+    flex: 1 1 auto;
+    position: static;
+    left: auto;
+    top: auto;
+    margin: 0;
+    width: auto;
+    max-width: none;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+  .screen > * {
+    max-width: 1360px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #screen-detay > * { max-width: 720px; }
+}
+/* FLEX-FINAL-FIX */
