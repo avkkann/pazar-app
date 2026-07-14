@@ -1,745 +1,865 @@
 {
   "kaynak": "hal.gov.tr",
   "sehir": "TR",
-  "bulten_tarihi": "13.07.2026",
-  "cekme_tarihi": "2026-07-13 08:28:36",
-  "toplam_urun": 123,
+  "bulten_tarihi": "14.07.2026",
+  "cekme_tarihi": "2026-07-14 07:40:14",
+  "toplam_urun": 143,
   "urunler": [
     {
       "ad": "Acur",
-      "fiyat": 22.3,
+      "fiyat": 58.33,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Adaçayi (yaş-taze)",
-      "fiyat": 133.47,
-      "birim": "Kg",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Ahududu(frambuaz)",
-      "fiyat": 455.79,
+      "fiyat": 91.62,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Alabaş(kohlrabi̇)",
-      "fiyat": 48.04,
+      "fiyat": 36.71,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Ananas",
-      "fiyat": 74.31,
+      "fiyat": 73.12,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Andi̇va",
+      "fiyat": 30.8,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Armut",
-      "fiyat": 46.72,
+      "fiyat": 65.65,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Asma Yapraği",
-      "fiyat": 59.29,
+      "fiyat": 65.06,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Avokado",
-      "fiyat": 118.8,
+      "fiyat": 73.73,
       "birim": "Adet",
       "sehir": "TR"
     },
     {
       "ad": "Ayva",
-      "fiyat": 18.39,
+      "fiyat": 61.36,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Bakla taze",
-      "fiyat": 27.43,
+      "fiyat": 27.85,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Balkabaği",
-      "fiyat": 59.49,
+      "fiyat": 40.13,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Bamya taze",
-      "fiyat": 80.39,
+      "fiyat": 93.79,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Barbunya taze",
-      "fiyat": 48.47,
+      "fiyat": 58.03,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Beyaz Lahana",
-      "fiyat": 35.77,
+      "fiyat": 20.64,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Bezelye taze",
-      "fiyat": 13.84,
+      "fiyat": 16.27,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Bi̇ber Çarli̇ston",
-      "fiyat": 75.01,
+      "fiyat": 62.33,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Bi̇ber Dolmalik",
-      "fiyat": 44.28,
+      "fiyat": 77.57,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Bi̇ber Salçalik (kapya)",
-      "fiyat": 57.8,
+      "fiyat": 41.12,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Bi̇ber Si̇vri̇",
-      "fiyat": 59.58,
+      "fiyat": 83.52,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Bi̇beri̇ye",
-      "fiyat": 66.56,
+      "fiyat": 52.98,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Böğürtlen",
-      "fiyat": 350.52,
+      "fiyat": 333.32,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Börülce taze",
-      "fiyat": 55.39,
+      "fiyat": 90.89,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Brokoli̇",
-      "fiyat": 124.34,
+      "fiyat": 142.99,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Brüksel Lahanasi",
+      "fiyat": 50.8,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Ci̇bes",
-      "fiyat": 343.26,
+      "fiyat": 262.03,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Çağla",
+      "fiyat": 55.27,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Çi̇lek",
-      "fiyat": 74.98,
+      "fiyat": 201.31,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Deni̇z Börülcesi̇(deni̇z Otu Ege Otu)",
-      "fiyat": 25.61,
+      "fiyat": 21.36,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Dereotu (yaş-taze)",
-      "fiyat": 12.28,
+      "fiyat": 12.58,
       "birim": "Bağ",
       "sehir": "TR"
     },
     {
       "ad": "Domates",
-      "fiyat": 44.72,
+      "fiyat": 50.87,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Domates Salçalik",
-      "fiyat": 6.38,
+      "fiyat": 7.71,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Dut",
-      "fiyat": 61.11,
+      "fiyat": 113.44,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Ebegümeci̇",
-      "fiyat": 118.84,
+      "fiyat": 129.14,
       "birim": "Bağ",
       "sehir": "TR"
     },
     {
       "ad": "Elma",
-      "fiyat": 54.66,
+      "fiyat": 51.3,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Elma Golden",
-      "fiyat": 50.64,
-      "birim": "Kg",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Elma Granny Smith",
-      "fiyat": 73.25,
-      "birim": "Kg",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Elma Starking",
-      "fiyat": 44.07,
-      "birim": "Kg",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Engi̇nar",
-      "fiyat": 13.03,
-      "birim": "Adet",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Eri̇k",
-      "fiyat": 48.15,
-      "birim": "Kg",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Fasulye taze",
-      "fiyat": 65.73,
-      "birim": "Kg",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Fesleğen(reyhan)",
-      "fiyat": 77.47,
-      "birim": "Bağ",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Greyfurt",
-      "fiyat": 28.04,
-      "birim": "Kg",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Hardal Otu (yaş-taze)",
-      "fiyat": 154.98,
-      "birim": "Bağ",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Havuç",
-      "fiyat": 34.01,
-      "birim": "Kg",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Hi̇ndi̇ba (çi̇kori̇)",
-      "fiyat": 332.18,
-      "birim": "Bağ",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Hi̇ndi̇ba Endi̇vyen",
-      "fiyat": 118.36,
-      "birim": "Bağ",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Hi̇ndi̇ba Radi̇ka",
-      "fiyat": 13.0,
-      "birim": "Bağ",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Hi̇ndi̇stan Cevi̇zi̇",
-      "fiyat": 83.28,
-      "birim": "Adet",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Isirgan (yaş-taze)",
-      "fiyat": 500.0,
-      "birim": "Kg",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Ispanak",
-      "fiyat": 187.83,
-      "birim": "Kg",
-      "sehir": "TR"
-    },
-    {
-      "ad": "İnci̇r",
-      "fiyat": 77.67,
-      "birim": "Kg",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Kabak",
-      "fiyat": 41.34,
-      "birim": "Kg",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Kabak Çi̇çeği̇",
-      "fiyat": 276.38,
-      "birim": "Kg",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Kamkat",
-      "fiyat": 350.0,
-      "birim": "Kg",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Karalahana",
-      "fiyat": 19.46,
-      "birim": "Kg",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Karnabahar",
-      "fiyat": 52.5,
-      "birim": "Kg",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Karpuz",
-      "fiyat": 14.82,
-      "birim": "Kg",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Kavun",
-      "fiyat": 32.21,
-      "birim": "Kg",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Kayisi",
-      "fiyat": 69.54,
-      "birim": "Kg",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Keki̇k (yaş-taze)",
-      "fiyat": 20.62,
-      "birim": "Kg",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Kerevi̇z",
-      "fiyat": 81.5,
-      "birim": "Kg",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Kerevi̇z Sap",
-      "fiyat": 81.08,
-      "birim": "Kg",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Kirmizi Lahana",
-      "fiyat": 18.52,
-      "birim": "Kg",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Ki̇raz",
-      "fiyat": 62.29,
-      "birim": "Kg",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Ki̇ri̇ş (çi̇ri̇ş)",
-      "fiyat": 30.0,
-      "birim": "Kg",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Ki̇şni̇ş",
-      "fiyat": 22.34,
-      "birim": "Kg",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Ki̇vano",
-      "fiyat": 15.92,
-      "birim": "Kg",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Ki̇vi̇",
-      "fiyat": 82.23,
-      "birim": "Kg",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Kuzukulaği",
-      "fiyat": 74.83,
-      "birim": "Kg",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Li̇mon",
-      "fiyat": 93.49,
-      "birim": "Kg",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Li̇mon Otu (li̇mon Grass)",
-      "fiyat": 215.27,
-      "birim": "Kg",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Mandali̇na",
-      "fiyat": 18.59,
-      "birim": "Kg",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Mandali̇na King",
-      "fiyat": 13.0,
-      "birim": "Kg",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Mango",
-      "fiyat": 39.95,
-      "birim": "Adet",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Mantar",
-      "fiyat": 155.43,
-      "birim": "Kg",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Marul Göbekli̇",
-      "fiyat": 23.59,
-      "birim": "Adet",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Marul Iceberg",
-      "fiyat": 16.9,
-      "birim": "Adet",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Marul Kivircik",
-      "fiyat": 38.03,
-      "birim": "Adet",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Maydanoz",
-      "fiyat": 15.15,
-      "birim": "Bağ",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Mersi̇n(yaban Mersi̇ni̇)",
-      "fiyat": 362.15,
-      "birim": "Kg",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Misir taze",
-      "fiyat": 25.72,
-      "birim": "Adet",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Mi̇zuna Otu",
-      "fiyat": 246.52,
-      "birim": "Adet",
-      "sehir": "TR"
-    },
-    {
-      "ad": "Muz",
       "fiyat": 62.42,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
+      "ad": "Elma Granny Smith",
+      "fiyat": 72.33,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Elma Starking",
+      "fiyat": 52.65,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Engi̇nar",
+      "fiyat": 14.53,
+      "birim": "Adet",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Eri̇k",
+      "fiyat": 59.75,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Fasulye taze",
+      "fiyat": 91.93,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Fesleğen(reyhan)",
+      "fiyat": 41.53,
+      "birim": "Bağ",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Greyfurt",
+      "fiyat": 24.19,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Hardal Otu (yaş-taze)",
+      "fiyat": 87.56,
+      "birim": "Bağ",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Havuç",
+      "fiyat": 39.07,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Hi̇ndi̇ba (çi̇kori̇)",
+      "fiyat": 274.12,
+      "birim": "Bağ",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Hi̇ndi̇ba Endi̇vyen",
+      "fiyat": 32.3,
+      "birim": "Bağ",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Hi̇ndi̇ba Radi̇ka",
+      "fiyat": 76.17,
+      "birim": "Bağ",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Hi̇ndi̇stan Cevi̇zi̇",
+      "fiyat": 58.36,
+      "birim": "Adet",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Hünnap",
+      "fiyat": 50.0,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Isirgan (yaş-taze)",
+      "fiyat": 302.56,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Ispanak",
+      "fiyat": 176.82,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "İnci̇r",
+      "fiyat": 122.75,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Kabak",
+      "fiyat": 47.43,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Kabak Çi̇çeği̇",
+      "fiyat": 191.58,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Kamkat",
+      "fiyat": 400.16,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Karalahana",
+      "fiyat": 23.48,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Karnabahar",
+      "fiyat": 34.74,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Karpuz",
+      "fiyat": 10.41,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Kavun",
+      "fiyat": 28.58,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Kaya Koruğu",
+      "fiyat": 255.0,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Kayisi",
+      "fiyat": 117.66,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Keki̇k (yaş-taze)",
+      "fiyat": 40.18,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Kerevi̇z",
+      "fiyat": 84.83,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Kerevi̇z Sap",
+      "fiyat": 90.25,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Kestane",
+      "fiyat": 89.79,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Kirmizi Lahana",
+      "fiyat": 26.93,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Kizilcik",
+      "fiyat": 50.3,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Ki̇raz",
+      "fiyat": 99.76,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Ki̇ri̇ş (çi̇ri̇ş)",
+      "fiyat": 62.66,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Ki̇şni̇ş",
+      "fiyat": 21.49,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Ki̇vano",
+      "fiyat": 54.93,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Ki̇vi̇",
+      "fiyat": 95.69,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Kudret Nari",
+      "fiyat": 126.0,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Kuzukulaği",
+      "fiyat": 51.07,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Labada",
+      "fiyat": 36.25,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Li̇mon",
+      "fiyat": 86.84,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Li̇mon Otu (li̇mon Grass)",
+      "fiyat": 177.82,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Mandali̇na",
+      "fiyat": 25.92,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Mandali̇na King",
+      "fiyat": 4.57,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Mandali̇na Klemantin",
+      "fiyat": 23.0,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Mandali̇na Satsuma",
+      "fiyat": 21.05,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Mango",
+      "fiyat": 50.31,
+      "birim": "Adet",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Mantar",
+      "fiyat": 140.89,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Marul Göbekli̇",
+      "fiyat": 42.75,
+      "birim": "Adet",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Marul Iceberg",
+      "fiyat": 15.96,
+      "birim": "Adet",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Marul Kivircik",
+      "fiyat": 37.42,
+      "birim": "Adet",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Maydanoz",
+      "fiyat": 10.71,
+      "birim": "Bağ",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Meli̇sa (oğul Otu Yaş-taze)",
+      "fiyat": 140.0,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Mercan Köşk",
+      "fiyat": 160.0,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Mersi̇n(yaban Mersi̇ni̇)",
+      "fiyat": 356.89,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Misir taze",
+      "fiyat": 23.29,
+      "birim": "Adet",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Mi̇zuna Otu",
+      "fiyat": 175.95,
+      "birim": "Adet",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Muşmula",
+      "fiyat": 27.62,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Muz",
+      "fiyat": 68.01,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
       "ad": "Nane",
-      "fiyat": 23.27,
+      "fiyat": 12.52,
       "birim": "Bağ",
       "sehir": "TR"
     },
     {
       "ad": "Nar",
-      "fiyat": 78.12,
+      "fiyat": 197.53,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Nektari̇n",
-      "fiyat": 50.58,
+      "fiyat": 75.62,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Nohut taze",
-      "fiyat": 20.0,
+      "fiyat": 22.14,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Pakchoi̇",
-      "fiyat": 93.07,
+      "fiyat": 149.47,
       "birim": "Adet",
       "sehir": "TR"
     },
     {
       "ad": "Pancar",
-      "fiyat": 136.0,
+      "fiyat": 97.48,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
+      "ad": "Papaya",
+      "fiyat": 227.42,
+      "birim": "Adet",
+      "sehir": "TR"
+    },
+    {
       "ad": "Patates",
-      "fiyat": 28.48,
+      "fiyat": 29.13,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Patlican",
-      "fiyat": 83.65,
+      "fiyat": 35.15,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Pazi",
-      "fiyat": 24.3,
+      "fiyat": 35.94,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Pepi̇no",
-      "fiyat": 57.89,
+      "fiyat": 75.87,
       "birim": "Adet",
       "sehir": "TR"
     },
     {
       "ad": "Pirasa",
-      "fiyat": 20.33,
+      "fiyat": 61.07,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Pi̇tahaya",
-      "fiyat": 79.56,
+      "fiyat": 205.95,
       "birim": "Adet",
       "sehir": "TR"
     },
     {
       "ad": "Pomelo",
-      "fiyat": 225.0,
+      "fiyat": 227.27,
       "birim": "Adet",
       "sehir": "TR"
     },
     {
       "ad": "Portakal",
-      "fiyat": 28.33,
+      "fiyat": 34.42,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Portakal Sikmalik",
-      "fiyat": 19.68,
+      "fiyat": 26.45,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Portakal Washi̇ngton",
-      "fiyat": 48.0,
+      "fiyat": 40.89,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Portakal Yafa",
+      "fiyat": 15.0,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Pshali̇s(güvey Feneri̇)",
+      "fiyat": 491.95,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Rakula",
-      "fiyat": 333.37,
+      "fiyat": 229.55,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Rezene (yaş-taze)",
-      "fiyat": 106.89,
+      "fiyat": 128.24,
       "birim": "Bağ",
       "sehir": "TR"
     },
     {
       "ad": "Roka",
-      "fiyat": 29.04,
+      "fiyat": 14.35,
       "birim": "Bağ",
       "sehir": "TR"
     },
     {
       "ad": "Salatalik",
-      "fiyat": 40.15,
+      "fiyat": 42.08,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Salatalik Turşuluk",
-      "fiyat": 33.36,
+      "fiyat": 32.6,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Sarimsak kuru",
-      "fiyat": 178.8,
+      "fiyat": 130.05,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Sarimsak taze",
-      "fiyat": 21.32,
+      "fiyat": 30.98,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Semi̇zotu",
-      "fiyat": 126.73,
+      "fiyat": 63.36,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Soğan kuru",
-      "fiyat": 37.33,
+      "fiyat": 65.64,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Soya Fi̇li̇zi̇",
-      "fiyat": 178.62,
+      "fiyat": 200.62,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Şalgam",
-      "fiyat": 35.0,
+      "fiyat": 25.36,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Şeftali̇",
-      "fiyat": 41.18,
+      "fiyat": 138.86,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Şevketi̇ Bostan",
+      "fiyat": 275.0,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Tamari̇llo",
-      "fiyat": 25.0,
+      "fiyat": 30.0,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Tarhun",
-      "fiyat": 123.38,
+      "fiyat": 178.64,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Tatli Patates",
-      "fiyat": 108.35,
+      "fiyat": 102.68,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Tere",
-      "fiyat": 31.75,
+      "fiyat": 37.79,
       "birim": "Bağ",
       "sehir": "TR"
     },
     {
       "ad": "Trabzon Hurmasi(cennet Elmasi)",
-      "fiyat": 67.2,
+      "fiyat": 34.1,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Turp",
-      "fiyat": 33.06,
+      "fiyat": 56.89,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Turp beyaz",
+      "fiyat": 39.64,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Turp Otu",
+      "fiyat": 84.71,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Üzüm beyaz",
-      "fiyat": 52.57,
+      "fiyat": 62.22,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Üzüm Çeki̇rdeksi̇z",
-      "fiyat": 47.78,
+      "fiyat": 54.59,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Vi̇şne",
-      "fiyat": 75.14,
+      "fiyat": 135.6,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Yeni̇ Dünya(malta Eri̇ği̇)",
-      "fiyat": 19.38,
+      "fiyat": 27.56,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Yer Elmasi",
+      "fiyat": 70.0,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Yeşi̇l Kabuklu Findik",
-      "fiyat": 35.0,
+      "fiyat": 51.98,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Yeşi̇l Soğan",
-      "fiyat": 47.62,
+      "fiyat": 43.75,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Yildiz Meyvesi̇",
-      "fiyat": 62.73,
+      "fiyat": 265.88,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Zencefi̇l",
-      "fiyat": 194.59,
+      "fiyat": 157.83,
       "birim": "Kg",
       "sehir": "TR"
     }
