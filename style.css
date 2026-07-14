@@ -1708,9 +1708,14 @@
     margin-bottom: 0;
   }
 
-  #sepetContent, #favorilerContent, .profil-hero, .profil-istat, .profil-section {
+  #favorilerContent {
     max-width: 720px;
     margin-left: 40px;
+    margin-right: auto;
+  }
+  #sepetContent, .profil-hero, .profil-istat, .profil-section {
+    max-width: 720px;
+    margin-left: auto;
     margin-right: auto;
   }
 
