@@ -3031,8 +3031,11 @@ function renderHalScreen() {
   </div>`;
   const cards = products.map(u => {
     const kat = getHalKat(u.ad);
+    const gorselHtml = u.gorsel
+      ? `<img src="${u.gorsel}" alt="${u.ad}" loading="lazy" style="width:100%;height:80px;object-fit:cover;border-radius:12px 12px 0 0" onerror="this.outerHTML='<div style=&quot;height:80px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;background:${halRenkler[kat]};border-radius:12px 12px 0 0&quot;>${halEmojiler[kat]}</div>'">`
+      : `<div style="height:80px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;background:${halRenkler[kat]};border-radius:12px 12px 0 0">${halEmojiler[kat]}</div>`;
     return `<div class="hal-grid-card" data-kat="${kat}">
-      <div style="height:80px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;background:${halRenkler[kat]};border-radius:12px 12px 0 0">${halEmojiler[kat]}</div>
+      ${gorselHtml}
       <div style="padding:8px">
         <div style="font-size:11px;font-weight:500;color:var(--text);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:26px">${u.ad}</div>
         <div style="font-size:13px;font-weight:700;color:var(--primary);margin-top:4px">${tl(u.fiyat)} <span style="font-size:10px;font-weight:400">₺/kg</span></div>
