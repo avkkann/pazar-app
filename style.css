@@ -1650,11 +1650,7 @@
     box-sizing: border-box;
   }
 
-  #screen-home, #screen-cat, #screen-sepet, #screen-firsatlar, #screen-favoriler, #screen-profil, #screen-hal {
-    max-width: 1360px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+
 
   #screen-detay { max-width: 720px; margin-left: auto; margin-right: auto; }
 
@@ -1777,12 +1773,7 @@
     min-width: 0;
     box-sizing: border-box;
   }
-  .screen > * {
-    max-width: 1360px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  #screen-detay > * { max-width: 720px; }
+  #screen-detay > * { max-width: 720px; margin-left: auto; margin-right: auto; }
 }
 /* FLEX-FINAL-FIX */
 
