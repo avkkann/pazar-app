@@ -226,6 +226,27 @@ def scrape():
         "urunler": products,
     }
 
+    # Mevcut hal.json'daki gorsel alanlarini koru (dosya sistemine gore, isim slug'i ile)
+    import re as _re
+    import unicodedata as _unicodedata
+
+    def _slugify(ad):
+        n = _unicodedata.normalize("NFKD", ad)
+        n = n.encode("ascii", "ignore").decode("ascii")
+        n = _re.sub(r"[^a-zA-Z0-9]+", "-", n).strip("-").lower()
+        return n or "urun"
+
+    IMAGES_DIR = os.path.join(DATA_DIR, "hal-images")
+    gorsel_eklenen = 0
+    for p in output["urunler"]:
+        slug = _slugify(p["ad"])
+        dosya_adi = slug + ".jpg"
+        dosya_yolu = os.path.join(IMAGES_DIR, dosya_adi)
+        if os.path.isfile(dosya_yolu):
+            p["gorsel"] = "data/hal-images/" + dosya_adi
+            gorsel_eklenen += 1
+    print(f"  Gorsel korundu/eslendi: {gorsel_eklenen}/{len(output['urunler'])} urun")
+
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
 
