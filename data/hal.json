@@ -1,985 +1,849 @@
 {
   "kaynak": "hal.gov.tr",
   "sehir": "TR",
-  "bulten_tarihi": "14.07.2026",
-  "cekme_tarihi": "2026-07-14 07:40:14",
-  "toplam_urun": 143,
+  "bulten_tarihi": "15.07.2026",
+  "cekme_tarihi": "2026-07-15 07:38:52",
+  "toplam_urun": 140,
   "urunler": [
     {
       "ad": "Acur",
-      "fiyat": 58.33,
+      "fiyat": 25.94,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/acur.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Adaçayi (yaş-taze)",
-      "fiyat": 91.62,
+      "fiyat": 116.0,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/adacayi-yas-taze.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Alabaş(kohlrabi̇)",
-      "fiyat": 36.71,
+      "fiyat": 36.84,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Ananas",
-      "fiyat": 73.12,
+      "fiyat": 68.48,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/ananas.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Andi̇va",
-      "fiyat": 30.8,
+      "fiyat": 40.0,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Armut",
-      "fiyat": 65.65,
+      "fiyat": 58.3,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/armut.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Asma Yapraği",
-      "fiyat": 65.06,
+      "fiyat": 70.59,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/asma-yapragi.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Avokado",
-      "fiyat": 73.73,
+      "fiyat": 76.53,
       "birim": "Adet",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/avokado.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Ayva",
-      "fiyat": 61.36,
+      "fiyat": 36.36,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/ayva.jpg"
+      "sehir": "TR"
+    },
+    {
+      "ad": "Badem (yaş-taze)",
+      "fiyat": 20.0,
+      "birim": "Kg",
+      "sehir": "TR"
     },
     {
       "ad": "Bakla taze",
-      "fiyat": 27.85,
+      "fiyat": 29.62,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/bakla-taze.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Balkabaği",
-      "fiyat": 40.13,
+      "fiyat": 57.81,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/balkabagi.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Bamya taze",
-      "fiyat": 93.79,
+      "fiyat": 87.33,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/bamya-taze.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Barbunya taze",
-      "fiyat": 58.03,
+      "fiyat": 54.6,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Beyaz Lahana",
-      "fiyat": 20.64,
+      "fiyat": 19.93,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/beyaz-lahana.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Bezelye taze",
-      "fiyat": 16.27,
+      "fiyat": 17.09,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/bezelye-taze.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Bi̇ber Çarli̇ston",
-      "fiyat": 62.33,
+      "fiyat": 81.47,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/biber-carliston.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Bi̇ber Dolmalik",
-      "fiyat": 77.57,
+      "fiyat": 74.81,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/biber-dolmalik.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Bi̇ber Salçalik (kapya)",
-      "fiyat": 41.12,
+      "fiyat": 61.38,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Bi̇ber Si̇vri̇",
-      "fiyat": 83.52,
+      "fiyat": 63.81,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/biber-sivri.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Bi̇beri̇ye",
-      "fiyat": 52.98,
+      "fiyat": 76.86,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/biberiye.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Böğürtlen",
-      "fiyat": 333.32,
+      "fiyat": 357.68,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/bogurtlen.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Börülce taze",
-      "fiyat": 90.89,
+      "fiyat": 85.22,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/borulce-taze.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Brokoli̇",
-      "fiyat": 142.99,
+      "fiyat": 85.65,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/brokoli.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Brüksel Lahanasi",
-      "fiyat": 50.8,
+      "fiyat": 21.47,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Ci̇bes",
-      "fiyat": 262.03,
+      "fiyat": 318.28,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/cibes.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Çağla",
-      "fiyat": 55.27,
+      "fiyat": 20.66,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Çi̇lek",
-      "fiyat": 201.31,
+      "fiyat": 94.28,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/cilek.jpg"
+      "sehir": "TR"
+    },
+    {
+      "ad": "Defne Yapraği (yaş-taze)",
+      "fiyat": 33.93,
+      "birim": "Kg",
+      "sehir": "TR"
     },
     {
       "ad": "Deni̇z Börülcesi̇(deni̇z Otu Ege Otu)",
-      "fiyat": 21.36,
+      "fiyat": 23.74,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/deniz-borulcesi-deniz-otu-ege-otu.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Dereotu (yaş-taze)",
-      "fiyat": 12.58,
+      "fiyat": 20.9,
       "birim": "Bağ",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/dereotu-yas-taze.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Domates",
-      "fiyat": 50.87,
+      "fiyat": 53.31,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/domates.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Domates Salçalik",
-      "fiyat": 7.71,
+      "fiyat": 8.06,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/domates-salcalik.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Dut",
-      "fiyat": 113.44,
+      "fiyat": 99.38,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/dut.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Ebegümeci̇",
-      "fiyat": 129.14,
+      "fiyat": 333.78,
       "birim": "Bağ",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/ebegumeci.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Elma",
-      "fiyat": 51.3,
+      "fiyat": 63.25,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/elma.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Elma Golden",
-      "fiyat": 62.42,
+      "fiyat": 28.91,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/elma-golden.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Elma Granny Smith",
-      "fiyat": 72.33,
+      "fiyat": 85.93,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/elma-granny-smith.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Elma Starking",
-      "fiyat": 52.65,
+      "fiyat": 31.02,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/elma-starking.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Engi̇nar",
-      "fiyat": 14.53,
+      "fiyat": 22.67,
       "birim": "Adet",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/enginar.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Eri̇k",
-      "fiyat": 59.75,
+      "fiyat": 70.22,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/erik.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Fasulye taze",
-      "fiyat": 91.93,
+      "fiyat": 68.84,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/fasulye-taze.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Fesleğen(reyhan)",
-      "fiyat": 41.53,
+      "fiyat": 46.31,
       "birim": "Bağ",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/feslegen-reyhan.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Greyfurt",
-      "fiyat": 24.19,
+      "fiyat": 30.11,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/greyfurt.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Hardal Otu (yaş-taze)",
-      "fiyat": 87.56,
+      "fiyat": 213.49,
       "birim": "Bağ",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/hardal-otu-yas-taze.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Havuç",
-      "fiyat": 39.07,
+      "fiyat": 36.72,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/havuc.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Hi̇ndi̇ba (çi̇kori̇)",
-      "fiyat": 274.12,
+      "fiyat": 118.98,
       "birim": "Bağ",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/hindiba-cikori.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Hi̇ndi̇ba Endi̇vyen",
-      "fiyat": 32.3,
+      "fiyat": 33.92,
       "birim": "Bağ",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/hindiba-endivyen.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Hi̇ndi̇ba Radi̇ka",
-      "fiyat": 76.17,
+      "fiyat": 106.38,
       "birim": "Bağ",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/hindiba-radika.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Hi̇ndi̇stan Cevi̇zi̇",
-      "fiyat": 58.36,
+      "fiyat": 54.78,
       "birim": "Adet",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/hindistan-cevizi.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Hünnap",
-      "fiyat": 50.0,
+      "fiyat": 90.0,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Isirgan (yaş-taze)",
-      "fiyat": 302.56,
+      "fiyat": 100.63,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/isirgan-yas-taze.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Ispanak",
-      "fiyat": 176.82,
+      "fiyat": 40.79,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/ispanak.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "İnci̇r",
-      "fiyat": 122.75,
+      "fiyat": 160.87,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/incir.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Kabak",
-      "fiyat": 47.43,
+      "fiyat": 38.08,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/kabak.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Kabak Çi̇çeği̇",
-      "fiyat": 191.58,
+      "fiyat": 226.5,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/kabak-cicegi.jpg"
-    },
-    {
-      "ad": "Kamkat",
-      "fiyat": 400.16,
-      "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/kamkat.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Karalahana",
-      "fiyat": 23.48,
+      "fiyat": 81.46,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/karalahana.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Karnabahar",
-      "fiyat": 34.74,
+      "fiyat": 30.74,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/karnabahar.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Karpuz",
-      "fiyat": 10.41,
+      "fiyat": 17.78,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/karpuz.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Kavun",
-      "fiyat": 28.58,
+      "fiyat": 41.56,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/kavun.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Kaya Koruğu",
-      "fiyat": 255.0,
+      "fiyat": 210.0,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Kayisi",
-      "fiyat": 117.66,
+      "fiyat": 88.15,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/kayisi.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Keki̇k (yaş-taze)",
-      "fiyat": 40.18,
+      "fiyat": 34.54,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/kekik-yas-taze.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Kerevi̇z",
-      "fiyat": 84.83,
+      "fiyat": 79.87,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/kereviz.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Kerevi̇z Sap",
-      "fiyat": 90.25,
+      "fiyat": 83.97,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/kereviz-sap.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Kestane",
-      "fiyat": 89.79,
+      "fiyat": 31.14,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Kirmizi Lahana",
-      "fiyat": 26.93,
-      "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/kirmizi-lahana.jpg"
-    },
-    {
-      "ad": "Kizilcik",
-      "fiyat": 50.3,
+      "fiyat": 26.75,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Ki̇raz",
-      "fiyat": 99.76,
+      "fiyat": 53.39,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/kiraz.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Ki̇ri̇ş (çi̇ri̇ş)",
-      "fiyat": 62.66,
+      "fiyat": 54.73,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/kiris-ciris.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Ki̇şni̇ş",
-      "fiyat": 21.49,
+      "fiyat": 23.89,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/kisnis.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Ki̇vano",
-      "fiyat": 54.93,
+      "fiyat": 56.23,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/kivano.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Ki̇vi̇",
-      "fiyat": 95.69,
+      "fiyat": 156.78,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/kivi.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Kudret Nari",
-      "fiyat": 126.0,
+      "fiyat": 159.09,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Kuzukulaği",
-      "fiyat": 51.07,
+      "fiyat": 67.7,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/kuzukulagi.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Labada",
-      "fiyat": 36.25,
+      "fiyat": 41.82,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Li̇mon",
-      "fiyat": 86.84,
-      "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/limon.jpg"
-    },
-    {
-      "ad": "Li̇mon Otu (li̇mon Grass)",
-      "fiyat": 177.82,
-      "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/limon-otu-limon-grass.jpg"
-    },
-    {
-      "ad": "Mandali̇na",
-      "fiyat": 25.92,
-      "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/mandalina.jpg"
-    },
-    {
-      "ad": "Mandali̇na King",
-      "fiyat": 4.57,
-      "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/mandalina-king.jpg"
-    },
-    {
-      "ad": "Mandali̇na Klemantin",
-      "fiyat": 23.0,
+      "fiyat": 68.42,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
-      "ad": "Mandali̇na Satsuma",
-      "fiyat": 21.05,
+      "ad": "Li̇mon Otu (li̇mon Grass)",
+      "fiyat": 212.25,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Mandali̇na",
+      "fiyat": 17.51,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Mandali̇na King",
+      "fiyat": 3.25,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Mango",
-      "fiyat": 50.31,
+      "fiyat": 52.79,
       "birim": "Adet",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/mango.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Mantar",
-      "fiyat": 140.89,
-      "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/mantar.jpg"
-    },
-    {
-      "ad": "Marul Göbekli̇",
-      "fiyat": 42.75,
-      "birim": "Adet",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/marul-gobekli.jpg"
-    },
-    {
-      "ad": "Marul Iceberg",
-      "fiyat": 15.96,
-      "birim": "Adet",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/marul-iceberg.jpg"
-    },
-    {
-      "ad": "Marul Kivircik",
-      "fiyat": 37.42,
-      "birim": "Adet",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/marul-kivircik.jpg"
-    },
-    {
-      "ad": "Maydanoz",
-      "fiyat": 10.71,
-      "birim": "Bağ",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/maydanoz.jpg"
-    },
-    {
-      "ad": "Meli̇sa (oğul Otu Yaş-taze)",
-      "fiyat": 140.0,
+      "fiyat": 152.35,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
+      "ad": "Marul Göbekli̇",
+      "fiyat": 37.28,
+      "birim": "Adet",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Marul Iceberg",
+      "fiyat": 15.54,
+      "birim": "Adet",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Marul Kivircik",
+      "fiyat": 35.52,
+      "birim": "Adet",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Maydanoz",
+      "fiyat": 22.62,
+      "birim": "Bağ",
+      "sehir": "TR"
+    },
+    {
       "ad": "Mercan Köşk",
-      "fiyat": 160.0,
+      "fiyat": 159.02,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Mersi̇n(yaban Mersi̇ni̇)",
-      "fiyat": 356.89,
+      "fiyat": 305.17,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/mersin-yaban-mersini.jpg"
+      "sehir": "TR"
+    },
+    {
+      "ad": "Misir İnci̇ri̇",
+      "fiyat": 100.0,
+      "birim": "Kg",
+      "sehir": "TR"
     },
     {
       "ad": "Misir taze",
-      "fiyat": 23.29,
+      "fiyat": 16.19,
       "birim": "Adet",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/misir-taze.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Mi̇zuna Otu",
-      "fiyat": 175.95,
+      "fiyat": 126.64,
       "birim": "Adet",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/mizuna-otu.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Muşmula",
-      "fiyat": 27.62,
+      "fiyat": 130.44,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Muz",
-      "fiyat": 68.01,
+      "fiyat": 85.12,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/muz.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Nane",
-      "fiyat": 12.52,
+      "fiyat": 11.2,
       "birim": "Bağ",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/nane.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Nar",
-      "fiyat": 197.53,
+      "fiyat": 75.31,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/nar.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Nektari̇n",
-      "fiyat": 75.62,
+      "fiyat": 72.18,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/nektarin.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Nohut taze",
-      "fiyat": 22.14,
+      "fiyat": 28.71,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/nohut-taze.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Pakchoi̇",
-      "fiyat": 149.47,
+      "fiyat": 167.47,
       "birim": "Adet",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/pakchoi.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Pancar",
-      "fiyat": 97.48,
+      "fiyat": 46.99,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/pancar.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Papaya",
-      "fiyat": 227.42,
+      "fiyat": 163.19,
       "birim": "Adet",
       "sehir": "TR"
     },
     {
       "ad": "Patates",
-      "fiyat": 29.13,
+      "fiyat": 33.79,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/patates.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Patlican",
-      "fiyat": 35.15,
+      "fiyat": 38.23,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/patlican.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Pazi",
-      "fiyat": 35.94,
+      "fiyat": 62.87,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/pazi.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Pepi̇no",
-      "fiyat": 75.87,
+      "fiyat": 26.54,
       "birim": "Adet",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/pepino.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Pirasa",
-      "fiyat": 61.07,
+      "fiyat": 41.78,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/pirasa.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Pi̇tahaya",
-      "fiyat": 205.95,
+      "fiyat": 132.71,
       "birim": "Adet",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/pitahaya.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Pomelo",
-      "fiyat": 227.27,
+      "fiyat": 234.09,
       "birim": "Adet",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/pomelo.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Portakal",
-      "fiyat": 34.42,
+      "fiyat": 25.21,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/portakal.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Portakal Sikmalik",
-      "fiyat": 26.45,
+      "fiyat": 20.87,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/portakal-sikmalik.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Portakal Washi̇ngton",
-      "fiyat": 40.89,
+      "fiyat": 29.94,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/portakal-washington.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Portakal Yafa",
-      "fiyat": 15.0,
+      "fiyat": 10.0,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Pshali̇s(güvey Feneri̇)",
-      "fiyat": 491.95,
+      "fiyat": 438.72,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Rakula",
-      "fiyat": 229.55,
-      "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/rakula.jpg"
-    },
-    {
-      "ad": "Rezene (yaş-taze)",
-      "fiyat": 128.24,
-      "birim": "Bağ",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/rezene-yas-taze.jpg"
-    },
-    {
-      "ad": "Roka",
-      "fiyat": 14.35,
-      "birim": "Bağ",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/roka.jpg"
-    },
-    {
-      "ad": "Salatalik",
-      "fiyat": 42.08,
-      "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/salatalik.jpg"
-    },
-    {
-      "ad": "Salatalik Turşuluk",
-      "fiyat": 32.6,
-      "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/salatalik-tursuluk.jpg"
-    },
-    {
-      "ad": "Sarimsak kuru",
-      "fiyat": 130.05,
-      "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/sarimsak-kuru.jpg"
-    },
-    {
-      "ad": "Sarimsak taze",
-      "fiyat": 30.98,
-      "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/sarimsak-taze.jpg"
-    },
-    {
-      "ad": "Semi̇zotu",
-      "fiyat": 63.36,
-      "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/semizotu.jpg"
-    },
-    {
-      "ad": "Soğan kuru",
-      "fiyat": 65.64,
-      "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/sogan-kuru.jpg"
-    },
-    {
-      "ad": "Soya Fi̇li̇zi̇",
-      "fiyat": 200.62,
-      "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/soya-filizi.jpg"
-    },
-    {
-      "ad": "Şalgam",
-      "fiyat": 25.36,
-      "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/salgam.jpg"
-    },
-    {
-      "ad": "Şeftali̇",
-      "fiyat": 138.86,
-      "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/seftali.jpg"
-    },
-    {
-      "ad": "Şevketi̇ Bostan",
-      "fiyat": 275.0,
+      "fiyat": 236.8,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
-      "ad": "Tamari̇llo",
-      "fiyat": 30.0,
+      "ad": "Rezene (yaş-taze)",
+      "fiyat": 107.81,
+      "birim": "Bağ",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Roka",
+      "fiyat": 16.71,
+      "birim": "Bağ",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Salatalik",
+      "fiyat": 59.01,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/tamarillo.jpg"
+      "sehir": "TR"
+    },
+    {
+      "ad": "Salatalik Turşuluk",
+      "fiyat": 32.55,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Sarimsak kuru",
+      "fiyat": 100.44,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Sarimsak taze",
+      "fiyat": 33.18,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Semi̇zotu",
+      "fiyat": 75.44,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Soğan kuru",
+      "fiyat": 72.64,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Soya Fi̇li̇zi̇",
+      "fiyat": 200.69,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Şalgam",
+      "fiyat": 27.44,
+      "birim": "Kg",
+      "sehir": "TR"
+    },
+    {
+      "ad": "Şeftali̇",
+      "fiyat": 42.17,
+      "birim": "Kg",
+      "sehir": "TR"
     },
     {
       "ad": "Tarhun",
-      "fiyat": 178.64,
+      "fiyat": 43.54,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/tarhun.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Tatli Patates",
-      "fiyat": 102.68,
+      "fiyat": 61.34,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/tatli-patates.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Tere",
-      "fiyat": 37.79,
+      "fiyat": 22.96,
       "birim": "Bağ",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/tere.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Trabzon Hurmasi(cennet Elmasi)",
-      "fiyat": 34.1,
+      "fiyat": 19.98,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/trabzon-hurmasi-cennet-elmasi.jpg"
+      "sehir": "TR"
+    },
+    {
+      "ad": "Turmeri̇c(zerdeçal)",
+      "fiyat": 493.55,
+      "birim": "Kg",
+      "sehir": "TR"
     },
     {
       "ad": "Turp",
-      "fiyat": 56.89,
+      "fiyat": 44.56,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/turp.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Turp beyaz",
-      "fiyat": 39.64,
+      "fiyat": 29.92,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Turp Otu",
-      "fiyat": 84.71,
+      "fiyat": 107.19,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Üzüm beyaz",
-      "fiyat": 62.22,
+      "fiyat": 55.13,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/uzum-beyaz.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Üzüm Çeki̇rdeksi̇z",
-      "fiyat": 54.59,
+      "fiyat": 62.79,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Vi̇şne",
-      "fiyat": 135.6,
+      "fiyat": 79.55,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/visne.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Yeni̇ Dünya(malta Eri̇ği̇)",
-      "fiyat": 27.56,
-      "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/yeni-dunya-malta-erigi.jpg"
-    },
-    {
-      "ad": "Yer Elmasi",
-      "fiyat": 70.0,
+      "fiyat": 31.33,
       "birim": "Kg",
       "sehir": "TR"
     },
     {
       "ad": "Yeşi̇l Kabuklu Findik",
-      "fiyat": 51.98,
+      "fiyat": 87.11,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/yesil-kabuklu-findik.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Yeşi̇l Soğan",
-      "fiyat": 43.75,
+      "fiyat": 46.91,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/yesil-sogan.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Yildiz Meyvesi̇",
-      "fiyat": 265.88,
+      "fiyat": 134.93,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/yildiz-meyvesi.jpg"
+      "sehir": "TR"
     },
     {
       "ad": "Zencefi̇l",
-      "fiyat": 157.83,
+      "fiyat": 115.36,
       "birim": "Kg",
-      "sehir": "TR",
-      "gorsel": "data/hal-images/zencefil.jpg"
+      "sehir": "TR"
+    },
+    {
+      "ad": "Zerdali̇",
+      "fiyat": 50.0,
+      "birim": "Kg",
+      "sehir": "TR"
     }
   ]
 }
