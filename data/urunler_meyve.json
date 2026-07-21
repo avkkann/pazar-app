@@ -1166,7 +1166,7 @@
         29.0
       ],
       [
-        "2026-07-20",
+        "2026-07-21",
         59.9
       ]
     ],
@@ -1224,44 +1224,6 @@
       [
         "2026-07-03",
         "400 GR"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_mantar-300-gr",
-    "ad": "Mantar 300 Gr",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "300 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30033731.png",
-    "en_dusuk_fiyat": 69.9,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 69.9
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 69.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        59.9
-      ],
-      [
-        "2026-06-23",
-        64.9
-      ],
-      [
-        "2026-07-18",
-        69.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "300 GR"
       ]
     ]
   },
@@ -1644,6 +1606,36 @@
       [
         "2026-07-03",
         "500 GR"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_lavi-karisik-orman-meyveleri-3-lu-400-gr",
+    "ad": "Lavi Karışık Orman Meyveleri 3'lü 400 Gr",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "400 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/17300003.jpg",
+    "en_dusuk_fiyat": 239.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 239.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        295.75
+      ],
+      [
+        "2026-07-09",
+        239.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "400 GR"
       ]
     ]
   },
@@ -2177,6 +2169,44 @@
     ]
   },
   {
+    "_sid": "meyve_mantar-300-gr",
+    "ad": "Mantar 300 Gr",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "300 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30033731.png",
+    "en_dusuk_fiyat": 69.9,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 69.9
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 69.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        59.9
+      ],
+      [
+        "2026-06-23",
+        64.9
+      ],
+      [
+        "2026-07-18",
+        69.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "300 GR"
+      ]
+    ]
+  },
+  {
     "_sid": "meyve_yerli-muz-1-kg",
     "ad": "Yerli Muz 1 Kg",
     "ana_kategori": "Meyve",
@@ -2515,36 +2545,6 @@
       [
         "2026-07-08",
         "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_lavi-karisik-orman-meyveleri-3-lu-400-gr",
-    "ad": "Lavi Karışık Orman Meyveleri 3'lü 400 Gr",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "400 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/17300003.jpg",
-    "en_dusuk_fiyat": 239.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 239.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        295.75
-      ],
-      [
-        "2026-07-09",
-        239.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "400 GR"
       ]
     ]
   },
