@@ -1747,32 +1747,6 @@
     ]
   },
   {
-    "_sid": "meyve_kirmizi-nektarin-1-kg",
-    "ad": "Kırmızı Nektarin 1 Kg",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "1 KG",
-    "resim": null,
-    "en_dusuk_fiyat": 79.95,
-    "market_fiyatlari": [
-      {
-        "market": "hakmar",
-        "fiyat": 79.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-07-26",
-        79.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-26",
-        "1 KG"
-      ]
-    ]
-  },
-  {
     "_sid": "meyve_limon-taze-1-kg",
     "ad": "Limon Taze 1 Kg",
     "ana_kategori": "Meyve",
@@ -1798,6 +1772,32 @@
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-25",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_kirmizi-nektarin-1-kg",
+    "ad": "Kırmızı Nektarin 1 Kg",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "1 KG",
+    "resim": null,
+    "en_dusuk_fiyat": 79.95,
+    "market_fiyatlari": [
+      {
+        "market": "hakmar",
+        "fiyat": 79.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-07-26",
+        79.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-26",
         "1 KG"
       ]
     ]
@@ -2640,60 +2640,6 @@
     ]
   },
   {
-    "_sid": "meyve_kayisi-1-kg",
-    "ad": "Kayısı 1 Kg",
-    "ana_kategori": "Meyve",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000897.png",
-    "en_dusuk_fiyat": 79.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 79.0
-      },
-      {
-        "market": "hakmar",
-        "fiyat": 149.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        59.9
-      ],
-      [
-        "2026-06-30",
-        79.0
-      ],
-      [
-        "2026-07-02",
-        65.9
-      ],
-      [
-        "2026-07-03",
-        65.0
-      ],
-      [
-        "2026-07-07",
-        79.0
-      ],
-      [
-        "2026-07-16",
-        74.9
-      ],
-      [
-        "2026-07-20",
-        79.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
     "_sid": "meyve_fasulye-taze-1-kg",
     "ad": "Fasulye Taze 1 Kg",
     "ana_kategori": "Sebze",
@@ -2924,6 +2870,32 @@
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "meyve_taskopru-sarimsak-1-kg",
+    "ad": "Taşköprü Sarımsak 1 Kg",
+    "ana_kategori": "Sebze",
+    "agirlik_hacim": "1 KG",
+    "resim": null,
+    "en_dusuk_fiyat": 129.95,
+    "market_fiyatlari": [
+      {
+        "market": "hakmar",
+        "fiyat": 129.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-07-25",
+        129.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-25",
         "1 KG"
       ]
     ]
@@ -3645,6 +3617,60 @@
     ]
   },
   {
+    "_sid": "meyve_kayisi-1-kg",
+    "ad": "Kayısı 1 Kg",
+    "ana_kategori": "Meyve",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/20000897.png",
+    "en_dusuk_fiyat": 79.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 79.0
+      },
+      {
+        "market": "hakmar",
+        "fiyat": 149.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        59.9
+      ],
+      [
+        "2026-06-30",
+        79.0
+      ],
+      [
+        "2026-07-02",
+        65.9
+      ],
+      [
+        "2026-07-03",
+        65.0
+      ],
+      [
+        "2026-07-07",
+        79.0
+      ],
+      [
+        "2026-07-16",
+        74.9
+      ],
+      [
+        "2026-07-20",
+        79.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ]
+  },
+  {
     "_sid": "meyve_ananas-1-adet",
     "ad": "Ananas 1 Adet",
     "ana_kategori": "Meyve",
@@ -3933,32 +3959,6 @@
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-03",
-        "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "meyve_taskopru-sarimsak-1-kg",
-    "ad": "Taşköprü Sarımsak 1 Kg",
-    "ana_kategori": "Sebze",
-    "agirlik_hacim": "1 KG",
-    "resim": null,
-    "en_dusuk_fiyat": 129.95,
-    "market_fiyatlari": [
-      {
-        "market": "hakmar",
-        "fiyat": 129.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-07-25",
-        129.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-25",
         "1 KG"
       ]
     ]
