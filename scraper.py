@@ -204,6 +204,14 @@ CATEGORIES = [
     ("atistirmalik-ve-tatli",       "Atıştırmalık ve Tatlı",         "urunler_atistirmalik"),
 ]
 
+# marketfiyati.org.tr kategori adlarini degistirebiliyor: 2026-07-25'te
+# "Temizlik ve Kişisel Bakım" ikiye bolundu. API'ye gonderilecek isim(ler) burada
+# tutulur; CATEGORIES'teki ad ana_kategori fallback'i olarak SABIT kalir, boylece
+# _sid onekleri ve ana_kategori degerleri degismez.
+API_KEYWORDS = {
+    "urunler_temizlik": ["Temizlik Ürünleri", "Kişisel Bakım"],
+}
+
 DONDURULMUS_ANAHTAR = ['dondurul', 'donuk', 'superfresh', 'feast', 'lapestos']
 DONDURULMUS_ATLA_KAT = ['dondurmalar']
 DONDURULMUS_ATLA_DOSYA = ['urunler_temizlik']
@@ -423,6 +431,43 @@ def _apply_agirlik_gecmisi(yeni_urunler, cat_file):
 
         u["agirlik_hacim_gecmisi"] = gecmis
 
+def _kategori_sayfalarini_cek(session, api_keyword, kategori_adi, slug_kisa):
+    """Tek bir API kategori adi icin butun sayfalari ceker.
+
+    Donus: (urunler, durum). durum degerleri:
+      "ok"        - veri geldi
+      "ag_hatasi" - MAX_RETRIES denemenin hepsi basarisiz (data is None)
+      "bos"       - istek basarili (HTTP 200) ama content bos; kategori adi
+                    degismis olabilir. Ag hatasiyla ayni sey DEGILDIR.
+    """
+    data = fetch_page(session, api_keyword, 0)
+    if data is None:
+        return [], "ag_hatasi"
+    if not data.get("content"):
+        return [], "bos"
+
+    total = data.get("numberOfFound", 0)
+    items = data.get("content") or []
+    print(f"  Toplam: {total} | Sayfa 1: {len(items)} urun")
+
+    urunler = [parse_product(item, kategori_adi, slug_kisa) for item in items]
+
+    page = 1
+    while len(urunler) < total:
+        print(f"  Sayfa {page + 1} ... ({len(urunler)}/{total})")
+        data = fetch_page(session, api_keyword, page)
+        if not data:
+            break
+        page_items = data.get("content") or []
+        if not page_items:
+            break
+        urunler.extend(parse_product(item, kategori_adi, slug_kisa) for item in page_items)
+        page += 1
+        time.sleep(0.5)
+
+    return urunler, "ok"
+
+
 def scrape_category(cookies, slug, keyword, dosya_adi):
     session = make_session(cookies)
     print(f"\n--- Kategori: {keyword} ---")
@@ -438,29 +483,31 @@ def scrape_category(cookies, slug, keyword, dosya_adi):
     }
     slug_kisa = SLUG_KISA_MAP.get(slug, "urun")
 
-    data = fetch_page(session, keyword, 0)
-    if not data or not data.get("content"):
-        print(f"  [ATLA] Veri alinamadi: {keyword}")
+    # Bir kategori API'de birden fazla isme bolunmus olabilir (bkz. API_KEYWORDS).
+    api_keywords = API_KEYWORDS.get(dosya_adi, [keyword])
+
+    products = []
+    gorulen_sid = set()
+    for api_keyword in api_keywords:
+        if len(api_keywords) > 1:
+            print(f"  [API kategorisi] {api_keyword}")
+        bulunan, durum = _kategori_sayfalarini_cek(session, api_keyword, keyword, slug_kisa)
+        if durum == "ag_hatasi":
+            print(f"  [HATA] Ag hatasi, {MAX_RETRIES} denemenin hepsi basarisiz: {api_keyword}")
+        elif durum == "bos":
+            print(f"  [KRITIK] Kategori bos dondu (HTTP 200, numberOfFound=0): {api_keyword}"
+                  f" - kategori adi degismis olabilir")
+        for u in bulunan:
+            sid = u.get("_sid")
+            if sid:
+                if sid in gorulen_sid:
+                    continue
+                gorulen_sid.add(sid)
+            products.append(u)
+
+    if not products:
+        print(f"  [ATLA] Hic urun alinamadi, {dosya_adi}.json onceki haliyle korundu: {keyword}")
         return []
-
-    total = data.get("numberOfFound", 0)
-    items = data.get("content") or []
-    print(f"  Toplam: {total} | Sayfa 1: {len(items)} urun")
-
-    products = [parse_product(item, keyword, slug_kisa) for item in items]
-
-    page = 1
-    while len(products) < total:
-        print(f"  Sayfa {page + 1} ... ({len(products)}/{total})")
-        data = fetch_page(session, keyword, page)
-        if not data:
-            break
-        page_items = data.get("content") or []
-        if not page_items:
-            break
-        products.extend(parse_product(item, keyword, slug_kisa) for item in page_items)
-        page += 1
-        time.sleep(0.5)
 
     # Kategori için ayrı JSON kaydet
     cat_file = os.path.join(DATA_DIR, f"{dosya_adi}.json")

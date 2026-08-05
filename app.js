@@ -1101,7 +1101,10 @@ function ustKategori(k) {
        'Genel Temizlik Ürünleri','Hijyenik Ped','Çamaşır Temizlik Ürünleri',
        'Saç Bakım','Cilt Bakımı','Parfüm Deodorant Kolonya ve Kokular',
        'Mutfak Sarf Malzemeleri','Duş Banyo ve Sabun','Ağız Bakım',
-       'Bebek ve Hasta Bezi','Temizlik ve Kişisel Bakım'].includes(k)) return 'temizlik';
+       'Bebek ve Hasta Bezi','Temizlik ve Kişisel Bakım',
+       // 2026-07-25: kaynak sitede kategori ikiye bolununce gelen yeni main_category degerleri
+       'Ağda ve Epilasyon','Diğer Temizlik','Islak Mendiller','Kağıt Peçete ve Mendiller',
+       'Parfüm ve Deodorant','Sağlık ve Medikal','Tuvalet Kağıtları','Tıraş Ürünleri'].includes(k)) return 'temizlik';
   if (['Bisküvi ve Kraker','Cips','Dondurmalar','Gofret','Kek','Kuruyemiş ve Kuru Meyve','Sakız ve Şekerleme','Tatlılar','Çikolata'].includes(k)) return 'atistirmalik';
   if (k === 'Dondurulmuş Ürünler') return 'dondurulmus';
   return 'diger';

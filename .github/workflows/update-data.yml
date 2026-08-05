@@ -9,6 +9,10 @@ jobs:
     timeout-minutes: 300
     steps:
       - uses: actions/checkout@v3
+        with:
+          # Veri Tazelik Kontrolu adimi dosya basina 'git log' okuyor; shallow
+          # clone'da HEAD'de degismeyen dosyalarin gecmisi gorunmez.
+          fetch-depth: 0
       - uses: actions/setup-python@v4
         with:
           python-version: '3.11'
@@ -38,3 +42,9 @@ jobs:
           curl -sf -X POST "https://gbgxxahhbfnulmyecxia.supabase.co/functions/v1/fiyat-alarm-scan" \
             -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}" \
             -H "Content-Type: application/json"
+
+      # Bilerek EN SONA konuldu: bayat bir dosya bulunsa bile taze kategorilerin
+      # DB'ye akmasi engellenmesin, ama is yine de kirmizi olsun (hata maili).
+      # continue-on-error YOK - amaci tam olarak isi kirmizi yapmak.
+      - name: Veri Tazelik Kontrolu
+        run: python scripts/veri_tazelik_kontrol.py

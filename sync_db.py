@@ -8,6 +8,8 @@ import json
 import os
 import sys
 import time
+from datetime import datetime, timezone
+
 import requests
 
 SUPABASE_URL = "https://gbgxxahhbfnulmyecxia.supabase.co"
@@ -25,6 +27,11 @@ HEADERS = {
 UPSERT_HEADERS = {**HEADERS, "Prefer": "resolution=merge-duplicates,return=minimal"}
 
 BATCH_SIZE = 500
+
+# Her kosuda bir kez uretilir; tum satirlar ayni damgayi tasir. DB'de bu deger
+# "bu urun en son ne zaman senkronlandi" sorusunu cevaplar - hattin 3 hafta
+# sessiz kalabilmesinin sebebi boyle bir damganin hic olmamasiydi.
+SENKRON_ZAMANI = datetime.now(timezone.utc).isoformat()
 
 KATEGORI_DOSYALARI = [
     "urunler_meyve", "urunler_et", "urunler_sut", "urunler_gida",
@@ -61,6 +68,7 @@ def satirlara_donustur(urunler):
             "market_fiyatlari": u.get("market_fiyatlari") or [],
             "fiyat_gecmisi": u.get("fiyat_gecmisi") or [],
             "agirlik_hacim_gecmisi": u.get("agirlik_hacim_gecmisi") or [],
+            "son_senkron": SENKRON_ZAMANI,
         }
     return list(satirlar.values())
 
