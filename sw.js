@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pazar-cache-v160';
+const CACHE_NAME = 'pazar-cache-v161';
 const DATA_URLS = [
   new URL('./data/hal.json', self.location).href,
 ];
@@ -13,8 +13,7 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
   if (DATA_URLS.includes(url.href)) {
-    if (url.href.includes('hal.json')) event.respondWith(cacheFirst(event.request));
-    else event.respondWith(staleWhileRevalidate(event.request));
+    event.respondWith(staleWhileRevalidate(event.request));
   }
 });
 async function cacheFirst(r) { const c = await caches.open(CACHE_NAME); const h = await c.match(r); if (h) return h; const n = await fetch(r); if (n.ok) await c.put(r, n.clone()); return n; }
