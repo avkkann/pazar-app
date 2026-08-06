@@ -588,7 +588,8 @@
 // ── SABİTLER ──────────────────────────────────────────
 const MARKET_NAMES = {
   a101:'A101', bim:'BİM', carrefour:'CarrefourSA',
-  migros:'Migros', sok:'ŞOK', tarim_kredi:'T.Kredi'
+  migros:'Migros', sok:'ŞOK', tarim_kredi:'T.Kredi',
+  hakmar:'Hakmar'
 };
 const KAT_EMOJI = {
   meyve:'🍎', sebze:'🥦', et:'🥩', sut:'🧀',
@@ -1015,7 +1016,10 @@ function openDetay(urunId) {
       : `<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Listeme Ekle`}
   </button>`;
 
+  // detay-sol / detay-sag: mobilde stilsiz düz blok (akış birebir aynı),
+  // masaüstünde iki sütunlu düzenin taşıyıcısı.
   document.getElementById('detayContent').innerHTML = `
+    <div class="detay-sol">
     <div class="detay-img-wrap">${imgHtml}</div>
     <div class="detay-info">
       <div class="detay-name">${u.ad}</div>
@@ -1025,17 +1029,20 @@ function openDetay(urunId) {
     ${(() => { const bf = birimFiyatHesapla(u); return bf ? `<div class="detay-birim-fiyat">${birimFiyatYazi(bf)}</div>` : ''; })()}
     ${(() => { const rz = tuzakRozetiHesapla(u); return rz ? tuzakRozetiHTML(rz, false) : ''; })()}
     ${(() => { const ir = indirimRozetiHesapla(u); return ir ? indirimRozetiHTML(ir, false) : ''; })()}
-    <div class="detay-section">
+    <div class="detay-section detay-section--market">
       <div class="detay-sec-label">Market Fiyatları</div>
       <div class="detay-mkt-list">
         ${mktRows || '<div style="padding:12px 14px;font-size:.82rem;color:var(--text-muted)">Market verisi yok</div>'}
       </div>
       ${_gizlenenFiyatHTML(temiz)}
     </div>
+    </div>
+    <div class="detay-sag">
     ${fiyatGecmisiBlogu(u)}
     ${fiyatAlarmiBlogu(u)}
     ${btnHtml}
     ${_bildirimYetkiVar ? `<button type="button" class="fiyat-bildir-btn" onclick="fiyatBildirAc('${u._id}')"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>Bu fiyat tutmadı</button>` : ''}
+    </div>
     ${(() => {
   const digerler = digerPaketleriBul(u);
   if (!digerler.length) return '';
@@ -1243,6 +1250,17 @@ async function loadCat(slug) {
     if (resp.ok) {
       const data = await resp.json();
       products = Array.isArray(data) ? data : (data.urunler || []);
+      // Kategori JSON'larında zaman alanı yok (15 bin ürünü şişirmemek için).
+      // Tazelik damgasını dosyanın Last-Modified başlığından besle.
+      // Başlık yoksa son_senkron atanmaz -> chip hiç görünmez.
+      const lm = resp.headers.get('Last-Modified');
+      if (lm) {
+        const t = new Date(lm);
+        if (!isNaN(t.getTime())) {
+          const iso = t.toISOString();
+          products.forEach(u => { if (!u.son_senkron) u.son_senkron = iso; });
+        }
+      }
     }
   } catch (e) {
     console.warn('Kategori yuklenemedi:', kat.file, e);
@@ -1320,7 +1338,7 @@ function fiyatAlarmiBlogu(u) {
   if (!sid) return '';
   const aktifHedef = window.pazarAlarmMap ? window.pazarAlarmMap.get(sid) : null;
   if (aktifHedef != null) {
-    return `<div class="detay-section" id="alarmBlogu-${sid}">
+    return `<div class="detay-section detay-section--alarm" id="alarmBlogu-${sid}">
       <div class="detay-sec-label">Fiyat Alarmı</div>
       <div class="alarm-box alarm-active">
         <div class="alarm-active-text">${tl(aktifHedef)}'nin altına düşünce haber vereceğiz</div>
@@ -1330,7 +1348,7 @@ function fiyatAlarmiBlogu(u) {
   }
   const enDusuk = enDusukFiyat(u);
   const oneri = enDusuk ? (enDusuk * 0.95).toFixed(2) : '';
-  return `<div class="detay-section" id="alarmBlogu-${sid}">
+  return `<div class="detay-section detay-section--alarm" id="alarmBlogu-${sid}">
     <div class="detay-sec-label">Fiyat Alarmı</div>
     <div class="alarm-box">
       <input type="number" inputmode="decimal" step="0.01" min="0.01" class="alarm-input" id="alarmInput-${sid}" placeholder="Hedef fiyat (₺)" value="${oneri}">
@@ -1480,7 +1498,7 @@ function _fgGunFarki(isoA, isoB) {
 }
 
 function _fgEmptyBlock(mesaj) {
-  return '<div class="detay-section"><div class="detay-sec-label">Fiyat Geçmişi</div><div class="fg-empty">' + mesaj + '</div></div>';
+  return '<div class="detay-section detay-section--gecmis"><div class="detay-sec-label">Fiyat Geçmişi</div><div class="fg-empty">' + mesaj + '</div></div>';
 }
 
 function fiyatGecmisiBlogu(urun) {
@@ -1666,7 +1684,7 @@ function fiyatGecmisiBlogu(urun) {
     ? 'Bant: günün fiyat aralığı · Çizgi: ortalama · <span style="color:#DC2626">●</span> Olağandışı kayıt (' + outlierKayitlar.length + ')'
     : 'Bant: günün fiyat aralığı · Çizgi: ortalama';
 
-  return '<div class="detay-section">'
+  return '<div class="detay-section detay-section--gecmis">'
     + '<div class="detay-sec-label">Fiyat Geçmişi</div>'
     + '<div class="fg-wrap">'
     +   '<svg class="fg-svg" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="xMidYMid meet">'
@@ -2913,7 +2931,10 @@ function renderSepet() {
   });
   const marketSayisi = seciliMarketler.size;
 
+  // listem-ozet: mobilde stilsiz düz blok (akış birebir aynı),
+  // masaüstünde sağdaki yapışkan özet sütununun taşıyıcısı.
   el.innerHTML = `<div class="cart-list">${items}</div>
+    <div class="listem-ozet">
     <div class="listem-toplam">
       <div class="listem-toplam-ust">
         <span class="listem-toplam-etiket">Toplam (en ucuz fiyatlar)</span>
@@ -2923,7 +2944,8 @@ function renderSepet() {
     </div>
     <button class="btn-compare" onclick="karsilastir()">Marketleri Karşılaştır →</button>
     <button class="btn-compare" onclick="paylasSepet()" style="background:#25D366;margin-top:4px;display:flex;align-items:center;justify-content:center;gap:6px"><svg class="lc-share" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg> Listeyi Paylaş</button>
-    <div id="compareOut"></div>`;
+    <div id="compareOut"></div>
+    </div>`;
 }
 
 function paylasSepet() {

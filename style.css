@@ -454,6 +454,9 @@
     .m-carrefour { background: #1D4ED8; } .m-migros { background: #E53E3E; }
     .m-sok { background: #D97706; } .m-tarim_kredi { background: var(--primary); }
     .m-default { background: var(--text-muted); }
+    /* Hakmar veride 1345 fiyat kaydıyla var ama eşlemede yoktu: arka planı
+       olmayınca .m-tag'in beyaz yazısı beyaz zeminde kayboluyordu. */
+    .m-hakmar { background: #6D28D9; }
     .m-store {
       font-size: .72rem; color: var(--text-muted); flex: 1; min-width: 0;
       white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 400;
@@ -1874,3 +1877,117 @@
   .bottom-nav { order: -1; }
 }
 /* ORDER-FIX-TAMAM */
+
+/* ══════════════════════════════════════════════════════════════════════
+   MASAÜSTÜ DÜZEN — yalnızca ≥1024px
+   Bu bloktaki hiçbir kural mobili etkilemez. Mevcut kuralların değerleri
+   değiştirilmedi; gerekli yerlerde bu blok kaynak sırasıyla üstüne yazar.
+   ══════════════════════════════════════════════════════════════════════ */
+@media (min-width: 1024px) {
+
+  /* Üç ekranda da başlık aynı 1180px kolonuna hizalanır */
+  #screen-sepet > .app-header--sub,
+  #screen-profil > .app-header--sub,
+  #screen-detay > .app-header--sub {
+    max-width: 1180px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ── 1. LİSTEM ───────────────────────────────────────────────────── */
+  #sablonBar {
+    max-width: 1180px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 40px;
+    padding-right: 40px;
+    box-sizing: border-box;
+  }
+  #sepetContent {
+    max-width: 1180px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 40px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    column-gap: 28px;
+    align-items: start;
+  }
+  #sepetContent > .cart-list {
+    grid-column: 1;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  #sepetContent > .listem-ozet {
+    grid-column: 2;
+    position: sticky;
+    top: 24px;
+  }
+  #sepetContent > .listem-ozet .listem-toplam,
+  #sepetContent > .listem-ozet .btn-compare {
+    margin-left: 0;
+    margin-right: 0;
+    width: auto;
+  }
+  /* Ürün satırları geniş ekranda nefes alsın */
+  #sepetContent .cart-item { padding: 14px 16px; gap: 14px; }
+  #sepetContent .cart-item-name { font-size: .95rem; }
+  /* Boş liste tek sütun kalsın */
+  #sepetContent > .empty-state { grid-column: 1 / -1; }
+
+  /* ── 2. PROFİL ───────────────────────────────────────────────────── */
+  #screen-profil {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 24px;
+    align-content: start;
+    max-width: 1180px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 40px;
+    box-sizing: border-box;
+  }
+  /* Kimlik kartı, istatistik ve çıkış tam genişlik; section'lar iki sütun */
+  #screen-profil > *:not(.profil-section) { grid-column: 1 / -1; }
+  #screen-profil > .app-header--sub { margin-left: 0; margin-right: 0; }
+  #screen-profil > .profil-hero,
+  #screen-profil > .profil-istat,
+  #screen-profil > .profil-auth-logout,
+  #screen-profil > .profil-section {
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  #screen-profil > .profil-hero { border-radius: 20px; margin-top: 20px; }
+  #screen-profil > .profil-istat { border-radius: 16px; border: 1px solid var(--border); margin-top: 16px; }
+
+  /* ── 3. ÜRÜN DETAYI ──────────────────────────────────────────────── */
+  #screen-detay { max-width: none; }
+  #screen-detay > * {
+    max-width: 1180px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #detayContent {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    column-gap: 32px;
+    align-items: start;
+    padding: 0 40px;
+    box-sizing: border-box;
+  }
+  #detayContent > .detay-sol { grid-column: 1; min-width: 0; }
+  #detayContent > .detay-sag { grid-column: 2; min-width: 0; }
+  #detayContent > .detay-bolum { grid-column: 1 / -1; }
+  /* Görsel biraz büyür ama sayfayı ele geçirmez */
+  #detayContent .detay-img-wrap { min-height: 260px; border-radius: 16px; }
+  #detayContent .detay-img-wrap img { max-width: 260px; max-height: 260px; }
+  /* Grafik geniş alanı kullansın */
+  #detayContent .fg-wrap { width: 100%; }
+  #detayContent .fg-svg { width: 100%; height: auto; }
+
+  /* Yatay kaydırma koruması */
+  #sepetContent, #screen-profil, #detayContent { overflow-x: clip; }
+}
+/* MASAUSTU-DUZEN-TAMAM */
