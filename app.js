@@ -667,6 +667,12 @@ function modalAc(opts) {
   return new Promise(resolve => {
     document.getElementById('appModalTitle').textContent = opts.title || '';
     document.getElementById('appModalMsg').textContent = opts.msg || '';
+    // İsteğe bağlı zengin içerik alanı (ör. market seçim pill'leri).
+    const bodyEl = document.getElementById('appModalBody');
+    if (bodyEl) {
+      if (opts.bodyHtml) { bodyEl.innerHTML = opts.bodyHtml; bodyEl.style.display = 'block'; }
+      else { bodyEl.innerHTML = ''; bodyEl.style.display = 'none'; }
+    }
     const inputEl = document.getElementById('appModalInput');
     if (opts.input) {
       inputEl.style.display = 'block';
@@ -685,6 +691,7 @@ function modalAc(opts) {
     let done = false;
     const cleanup = () => {
       document.getElementById('appModal').style.display = 'none';
+      if (bodyEl) { bodyEl.innerHTML = ''; bodyEl.style.display = 'none'; }
       okBtn.onclick = null;
       if (cancelBtn) cancelBtn.onclick = null;
       if (backdrop) backdrop.onclick = null;
@@ -983,7 +990,8 @@ function openDetay(urunId) {
   if (!u) return;
   productMap[u._id] = u;
 
-  const mktler   = (u.market_fiyatlari || []).filter(f => f.fiyat != null).sort((a, b) => a.fiyat - b.fiyat);
+  const temiz    = fiyatlariTemizle(u.market_fiyatlari);
+  const mktler   = temiz.gecerli.slice().sort((a, b) => a.fiyat - b.fiyat);
   const emoji    = KAT_EMOJI[ustKategori(u.ana_kategori)] || '📦';
   const imgHtml  = u.resim
     ? `<img src="${u.resim}" alt="" loading="lazy" onerror="this.onerror=null;this.parentElement.innerHTML='<div style=\'width:100%;height:120px;background:#f8f8f8;display:flex;align-items:center;justify-content:center;font-size:3rem\'>${emoji}</div>'">`
@@ -996,7 +1004,7 @@ function openDetay(urunId) {
     return `<div class="detay-mkt-row${isFirst ? ' best' : isLast ? ' worst' : ''}">
       <span class="m-tag m-${f.market || 'default'}">${MARKET_NAMES[f.market] || f.market || '?'}</span>
       <span class="detay-mkt-price">${tlHTML(f.fiyat)}${isLast ? '<span class="detay-mkt-badge">en pahalı</span>' : ''}</span>
-    </div>`;
+    </div>${bildirimUyariHTML(u._sid, f.market)}`;
   }).join('');
 
   const inCart = sepet.some(s => s._id === urunId);
@@ -1012,6 +1020,7 @@ function openDetay(urunId) {
     <div class="detay-info">
       <div class="detay-name">${u.ad}</div>
       ${u.agirlik_hacim ? `<div class="detay-unit">${u.agirlik_hacim}</div>` : ''}
+      ${tazelikChipHTML(u)}
     </div>
     ${(() => { const bf = birimFiyatHesapla(u); return bf ? `<div class="detay-birim-fiyat">${birimFiyatYazi(bf)}</div>` : ''; })()}
     ${(() => { const rz = tuzakRozetiHesapla(u); return rz ? tuzakRozetiHTML(rz, false) : ''; })()}
@@ -1021,10 +1030,12 @@ function openDetay(urunId) {
       <div class="detay-mkt-list">
         ${mktRows || '<div style="padding:12px 14px;font-size:.82rem;color:var(--text-muted)">Market verisi yok</div>'}
       </div>
+      ${_gizlenenFiyatHTML(temiz)}
     </div>
     ${fiyatGecmisiBlogu(u)}
     ${fiyatAlarmiBlogu(u)}
     ${btnHtml}
+    ${_bildirimYetkiVar ? `<button type="button" class="fiyat-bildir-btn" onclick="fiyatBildirAc('${u._id}')"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>Bu fiyat tutmadı</button>` : ''}
     ${(() => {
   const digerler = digerPaketleriBul(u);
   if (!digerler.length) return '';
@@ -1818,8 +1829,193 @@ function birimFiyatYazi(bf) {
   return bf.birim + ' başına ' + tl(bf.deger);
 }
 
+// ── AYKIRI FİYAT FİLTRESİ ─────────────────────────────────────────
+// Bir markette sehven girilmiş uçuk fiyat, "en pahalı" satırını ve tasarruf
+// hesabını bozuyordu. Dönüş: { gecerli: [{market,fiyat}], gizlenen: [{market,fiyat}] }
+// Her ikisi de girdi sırasını korur.
+function fiyatlariTemizle(market_fiyatlari) {
+  const liste = (market_fiyatlari || []).filter(f => f && f.fiyat != null);
+  if (liste.length < 2) return { gecerli: liste.slice(), gizlenen: [] };
+
+  const gecerli = [], gizlenen = [];
+
+  // 2 market: biri diğerinin 5 katından fazlaysa yüksek olanı gizle
+  if (liste.length === 2) {
+    const dusuk  = liste[0].fiyat <= liste[1].fiyat ? liste[0] : liste[1];
+    const yuksek = dusuk === liste[0] ? liste[1] : liste[0];
+    if (dusuk.fiyat > 0 && yuksek.fiyat > dusuk.fiyat * 5) {
+      liste.forEach(f => (f === yuksek ? gizlenen : gecerli).push(f));
+    } else {
+      liste.forEach(f => gecerli.push(f));
+    }
+    return { gecerli, gizlenen };
+  }
+
+  // 3+ market: kendisi hariç diğerlerinin medyanının 3 katından yüksekse gizle
+  const medyan = sayilar => {
+    const s = sayilar.slice().sort((a, b) => a - b);
+    const o = Math.floor(s.length / 2);
+    return s.length % 2 ? s[o] : (s[o - 1] + s[o]) / 2;
+  };
+  liste.forEach((f, i) => {
+    const m = medyan(liste.filter((_, j) => j !== i).map(x => x.fiyat));
+    if (m > 0 && f.fiyat > m * 3) gizlenen.push(f);
+    else gecerli.push(f);
+  });
+  return { gecerli, gizlenen };
+}
+
+// ── TAZELİK DAMGASI ───────────────────────────────────────────────
+// son_senkron yoksa/bozuksa sessizce düşer, hata basmaz.
+function tazelikChipHTML(u) {
+  const ham = u && u.son_senkron;
+  if (!ham) return '';
+  const d = new Date(ham);
+  if (isNaN(d.getTime())) return '';
+  const simdi = new Date();
+  // Takvim günü farkı (yerel saat) — toISOString kullanma, gün kaydırır
+  const g1 = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  const g0 = new Date(simdi.getFullYear(), simdi.getMonth(), simdi.getDate());
+  const gun = Math.round((g0 - g1) / 86400000);
+  if (gun < 0) return '';
+
+  let sinif, metin;
+  if (gun === 0) {
+    const ss = String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
+    sinif = 'taze'; metin = `Bugün ${ss}'te güncellendi`;
+  } else if (gun === 1) {
+    sinif = 'taze'; metin = 'Dün güncellendi';
+  } else if (gun <= 4) {
+    sinif = 'orta'; metin = `${gun} gün önce güncellendi`;
+  } else {
+    sinif = 'eski'; metin = `${gun} gün önce güncellendi · Bu fiyat eski olabilir`;
+  }
+  return `<div class="tazelik-chip ${sinif}"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>${metin}</div>`;
+}
+
+// ── GİZLENEN FİYAT SATIRI ─────────────────────────────────────────
+function _gizlenenFiyatHTML(temiz) {
+  const g = temiz.gizlenen;
+  if (!g.length) return '';
+  const f = temiz.gecerli.map(x => x.fiyat).sort((a, b) => a - b);
+  const o = Math.floor(f.length / 2);
+  const med = f.length ? (f.length % 2 ? f[o] : (f[o - 1] + f[o]) / 2) : 0;
+  const kat = med > 0 ? Math.round(g[0].fiyat / med) : 0;
+  const satirlar = g.map(x => `<div class="detay-mkt-row gizli">
+      <span class="m-tag m-${x.market || 'default'}">${MARKET_NAMES[x.market] || x.market || '?'}</span>
+      <span class="detay-mkt-price">${tlHTML(x.fiyat)}</span>
+    </div>`).join('');
+  return `<button type="button" class="gizli-fiyat-ozet" aria-expanded="false" onclick="gizlenenFiyatToggle(this)">
+      <span>${g.length} fiyat gizlendi${kat ? ` — diğerlerinden ${kat} kat yüksek` : ''}</span>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="gizli-fiyat-liste" hidden>${satirlar}</div>`;
+}
+
+function gizlenenFiyatToggle(btn) {
+  const liste = btn.nextElementSibling;
+  if (!liste) return;
+  const kapali = liste.hasAttribute('hidden');
+  if (kapali) liste.removeAttribute('hidden'); else liste.setAttribute('hidden', '');
+  btn.setAttribute('aria-expanded', String(kapali));
+  btn.classList.toggle('acik', kapali);
+}
+
+// ── BİLDİRİM UYARILARI ────────────────────────────────────────────
+// Açılışta TEK sefer çekilir. RPC yetki hatası verirse (_bildirimYetkiVar
+// false kalır) "Bu fiyat tutmadı" butonu hiç gösterilmez — kırık buton yok.
+let _fiyatBildirimMap = new Map();
+let _bildirimYetkiVar = false;
+
+async function fiyatBildirimleriYukle() {
+  try {
+    const { data, error } = await window.supabaseClient.rpc('get_fiyat_bildirimleri');
+    if (error) return;
+    (data || []).forEach(r => {
+      const sid = r._sid || r.sid;
+      const adet = r.adet != null ? r.adet : (r.sayi != null ? r.sayi : r.count);
+      if (sid && r.market) _fiyatBildirimMap.set(sid + '|' + r.market, Number(adet) || 0);
+    });
+    _bildirimYetkiVar = true;
+  } catch (e) { /* sessiz düş */ }
+}
+document.addEventListener('DOMContentLoaded', fiyatBildirimleriYukle);
+
+function bildirimUyariHTML(sid, market) {
+  if (!sid || !market) return '';
+  const n = _fiyatBildirimMap.get(sid + '|' + market);
+  if (!n) return '';
+  return `<div class="fiyat-uyari">${n} kişi bu fiyatın markette tutmadığını bildirdi</div>`;
+}
+
+// ── "BU FİYAT TUTMADI" BİLDİRİMİ ──────────────────────────────────
+let _bildirimSecilenMarket = null;
+
+function _bildirimMarketSec(el, market) {
+  _bildirimSecilenMarket = market;
+  Array.from(el.parentElement.querySelectorAll('.bildirim-pill')).forEach(p => {
+    const secili = p === el;
+    p.classList.toggle('secili', secili);
+    p.setAttribute('aria-pressed', String(secili));
+  });
+}
+
+async function fiyatBildirAc(urunId) {
+  const u = productMap[urunId];
+  if (!u) return;
+  const mktler = fiyatlariTemizle(u.market_fiyatlari).gecerli;
+  if (!mktler.length) return;
+
+  _bildirimSecilenMarket = mktler[0].market;
+  const pills = mktler.map((f, i) => `<button type="button" class="bildirim-pill${i === 0 ? ' secili' : ''}" aria-pressed="${i === 0}" onclick="_bildirimMarketSec(this, '${f.market}')">${MARKET_NAMES[f.market] || f.market}</button>`).join('');
+
+  const sonuc = await modalAc({
+    title: 'Bu fiyat tutmadı',
+    msg: 'Hangi markette tutmadı?',
+    bodyHtml: `<div class="bildirim-pill-wrap">${pills}</div>`,
+    input: true,
+    placeholder: 'Rafta gördüğün fiyat (₺) — isteğe bağlı',
+    okText: 'Gönder'
+  });
+  if (sonuc === false) return;
+
+  const market = _bildirimSecilenMarket;
+  const anahtar = 'fb_' + (u._sid || '') + '_' + market;
+  const onceki = Number(localStorage.getItem(anahtar) || 0);
+  if (onceki && Date.now() - onceki < 86400000) {
+    toastGoster('Bu ürün için bildirimin zaten alındı');
+    return;
+  }
+
+  const eslesen = mktler.find(f => f.market === market);
+  let bildirilen = null;
+  if (typeof sonuc === 'string' && sonuc) {
+    const n = parseFloat(sonuc.replace(',', '.').replace(/[^\d.]/g, ''));
+    if (!isNaN(n)) bildirilen = n;
+  }
+
+  try {
+    const { error } = await window.supabaseClient.from('fiyat_bildirim').insert({
+      _sid: u._sid || null,
+      market: market,
+      gosterilen_fiyat: eslesen ? eslesen.fiyat : null,
+      bildirilen_fiyat: bildirilen,
+      kullanici_id: (window.pazarAuth && window.pazarAuth.user) ? window.pazarAuth.user.id : null
+    });
+    if (error) { toastGoster('Bildirim gönderilemedi'); return; }
+  } catch (e) {
+    toastGoster('Bildirim gönderilemedi');
+    return;
+  }
+
+  localStorage.setItem(anahtar, String(Date.now()));
+  const k = (u._sid || '') + '|' + market;
+  _fiyatBildirimMap.set(k, (_fiyatBildirimMap.get(k) || 0) + 1);
+  toastGoster('Bildirimin alındı, teşekkürler');
+}
+
 function cardHTML(u) {
-  const mktler  = (u.market_fiyatlari || []).filter(f => f.fiyat != null).sort((a,b) => a.fiyat - b.fiyat);
+  const mktler  = fiyatlariTemizle(u.market_fiyatlari).gecerli.slice().sort((a,b) => a.fiyat - b.fiyat);
   const cheapest = mktler[0];
   const anaKat = ustKategori(u.ana_kategori);
   const emoji   = KAT_EMOJI[anaKat] || '📦';
@@ -2741,11 +2937,11 @@ function paylasSepet() {
     return `• ${u.ad}`;
   });
   const toplam = sepet.reduce((s, u) => {
-    const mktF = (u.market_fiyatlari || []).filter(f => f.fiyat != null).sort((a,b) => a.fiyat - b.fiyat)[0];
+    const mktF = fiyatlariTemizle(u.market_fiyatlari).gecerli.slice().sort((a,b) => a.fiyat - b.fiyat)[0];
     return s + (mktF ? mktF.fiyat : 0);
   }, 0);
   const enPahaliToplam = sepet.reduce((s, u) => {
-    const fiyatlar = (u.market_fiyatlari || []).filter(f => f.fiyat != null).map(f => f.fiyat);
+    const fiyatlar = fiyatlariTemizle(u.market_fiyatlari).gecerli.map(f => f.fiyat);
     return s + (fiyatlar.length ? Math.max.apply(null, fiyatlar) : 0);
   }, 0);
   const tasarruf = enPahaliToplam - toplam;
@@ -3105,9 +3301,13 @@ function renderFirsatlar(tab) {
       .limit(10)
       .then(function(res) { return { kat: kat, urunler: res.data || [] }; });
   }));
+  // Üst sınır: fiyat_farki_yuzde 70+ = en pahalı, en ucuzun ~3.3 katı. Client'taki
+  // fiyatlariTemizle "medyanın 3 katı" kuralıyla hizalı; aykırı veriler fırsat
+  // diye listenin başına çıkmasın. (Ölçüm: 1224 üründen 7'si eleniyor.)
   const tasarrufSayiQuery = window.supabaseClient.from('urunler')
     .select('*', { count: 'exact', head: true })
-    .gte('fiyat_farki_yuzde', 15);
+    .gte('fiyat_farki_yuzde', 15)
+    .lt('fiyat_farki_yuzde', 70);
 
   Promise.all([ucuzQuery, tasarrufSayiQuery]).then(function(sonuclar) {
     const ucuzGruplari = sonuclar[0];
@@ -3122,6 +3322,7 @@ function renderFirsatlar(tab) {
       window.supabaseClient.from('urunler')
         .select('*')
         .gte('fiyat_farki_yuzde', 15)
+        .lt('fiyat_farki_yuzde', 70)
         .order('fiyat_farki_tl', { ascending: false })
         .limit(30)
         .then(function(res) {
@@ -3253,8 +3454,9 @@ function renderFirsatTasarruf(container, tumUrunler) {
   }
     let html = '<div class="firsat-section"><div class="firsat-section-title">' + lcIcon('heart') + ' Markete Göre Fiyat Değişiyor — Ucuzunu Bul</div>';
   firsatlar.slice(0,30).forEach(function(item) {
-    const enUcuz = (item.u.market_fiyatlari||[]).slice().sort(function(a,b){return a.fiyat-b.fiyat;})[0];
-    const enPahali = (item.u.market_fiyatlari||[]).slice().sort(function(a,b){return b.fiyat-a.fiyat;})[0];
+    const _tmz = fiyatlariTemizle(item.u.market_fiyatlari).gecerli;
+    const enUcuz = _tmz.slice().sort(function(a,b){return a.fiyat-b.fiyat;})[0];
+    const enPahali = _tmz.slice().sort(function(a,b){return b.fiyat-a.fiyat;})[0];
     const altText = (MARKET_NAMES[enUcuz&&enUcuz.market]||'')+' '+tl(item.min)+' · '+(MARKET_NAMES[enPahali&&enPahali.market]||'')+' '+tl(item.max);
     html += _firsatKartHtml(item.u, '%'+item.yuzde+' fark', 'firsat-badge-tasarruf', altText);
   });
