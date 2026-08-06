@@ -2323,30 +2323,37 @@
     ]
   },
   {
-    "_sid": "temizlik_ace-klasik-camasir-suyu-1-1-kg",
-    "ad": "Ace Klasik Çamaşır Suyu 1.1 Kg",
-    "ana_kategori": "Genel Temizlik Ürünleri",
-    "agirlik_hacim": "1.1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30094740.png",
-    "en_dusuk_fiyat": 84.9,
+    "_sid": "temizlik_cook-eko-buyuk-boy-cop-torbasi-20-adet",
+    "ad": "Cook Eko Büyük Boy Çöp Torbası 20 Adet",
+    "ana_kategori": "Mutfak Sarf Malzemeleri",
+    "agirlik_hacim": null,
+    "resim": null,
+    "en_dusuk_fiyat": 89.95,
     "market_fiyatlari": [
       {
-        "market": "carrefour",
-        "fiyat": 84.9
+        "market": "migros",
+        "fiyat": 89.95
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-07-19",
-        84.9
+        "2026-06-22",
+        65.97
+      ],
+      [
+        "2026-06-23",
+        109.95
+      ],
+      [
+        "2026-06-30",
+        129.95
+      ],
+      [
+        "2026-07-23",
+        89.95
       ]
     ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-19",
-        "1.1 KG"
-      ]
-    ]
+    "agirlik_hacim_gecmisi": []
   },
   {
     "_sid": "temizlik_confort-kagit-havlu-6-adet",
@@ -3047,37 +3054,30 @@
     "agirlik_hacim_gecmisi": []
   },
   {
-    "_sid": "temizlik_cook-eko-buyuk-boy-cop-torbasi-20-adet",
-    "ad": "Cook Eko Büyük Boy Çöp Torbası 20 Adet",
-    "ana_kategori": "Mutfak Sarf Malzemeleri",
-    "agirlik_hacim": null,
-    "resim": null,
-    "en_dusuk_fiyat": 89.95,
+    "_sid": "temizlik_ace-klasik-camasir-suyu-1-1-kg",
+    "ad": "Ace Klasik Çamaşır Suyu 1.1 Kg",
+    "ana_kategori": "Genel Temizlik Ürünleri",
+    "agirlik_hacim": "1.1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30094740.png",
+    "en_dusuk_fiyat": 84.9,
     "market_fiyatlari": [
       {
-        "market": "migros",
-        "fiyat": 89.95
+        "market": "carrefour",
+        "fiyat": 84.9
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-06-22",
-        65.97
-      ],
-      [
-        "2026-06-23",
-        109.95
-      ],
-      [
-        "2026-06-30",
-        129.95
-      ],
-      [
-        "2026-07-23",
-        89.95
+        "2026-07-19",
+        84.9
       ]
     ],
-    "agirlik_hacim_gecmisi": []
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-19",
+        "1.1 KG"
+      ]
+    ]
   },
   {
     "_sid": "temizlik_finish-bulasik-makinesi-temizleyicisi-250-ml",
@@ -14153,6 +14153,27 @@
     ]
   },
   {
+    "_sid": "temizlik_roll-up-pudrasiz-vinil-muayene-eldiveni-50-adet",
+    "ad": "Roll Up Pudrasız Vinil Muayene Eldiveni 50 Adet",
+    "ana_kategori": "Diğer Temizlik",
+    "agirlik_hacim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/migros/31180248.jpg",
+    "en_dusuk_fiyat": 129.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 129.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-08-06",
+        129.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": []
+  },
+  {
     "_sid": "temizlik_bulut-soft-camasir-yumusatici-bahar-tazeligi-3-lt",
     "ad": "Bulut Soft Çamaşır Yumuşatıcı Bahar Tazeliği 3 Lt",
     "ana_kategori": "Çamaşır Temizlik Ürünleri",
@@ -18327,6 +18348,27 @@
     ]
   },
   {
+    "_sid": "temizlik_cansin-bez-yarabandi-10-adet",
+    "ad": "Cansın Bez Yarabandı 10 Adet",
+    "ana_kategori": "Sağlık ve Medikal",
+    "agirlik_hacim": null,
+    "resim": null,
+    "en_dusuk_fiyat": 8.9,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 8.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-08-05",
+        8.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": []
+  },
+  {
     "_sid": "temizlik_poliner-sihirli-temizlik-sungeri-1-adet",
     "ad": "Poliner Sihirli Temizlik Süngeri 1 Adet",
     "ana_kategori": "Diğer Temizlik",
@@ -18894,35 +18936,6 @@
     "agirlik_hacim_gecmisi": []
   },
   {
-    "_sid": "temizlik_bingo-akilli-bulasik-kapsulu-pro-80-adet",
-    "ad": "Bingo Akıllı Bulaşık Kapsülü Pro 80 Adet",
-    "ana_kategori": "Bulaşık Temizlik Ürünleri",
-    "agirlik_hacim": null,
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30483653.jpg",
-    "en_dusuk_fiyat": 519.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 519.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-26",
-        379.9
-      ],
-      [
-        "2026-07-01",
-        399.9
-      ],
-      [
-        "2026-07-23",
-        519.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": []
-  },
-  {
     "_sid": "temizlik_omo-act-fresh-beyazlar-toz-deterjan-5-5-kg",
     "ad": "Omo Act Fresh Beyazlar Toz Deterjan 5.5 Kg",
     "ana_kategori": "Çamaşır Temizlik Ürünleri",
@@ -18989,27 +19002,6 @@
       [
         "2026-08-05",
         784.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": []
-  },
-  {
-    "_sid": "temizlik_cansin-bez-yarabandi-10-adet",
-    "ad": "Cansın Bez Yarabandı 10 Adet",
-    "ana_kategori": "Sağlık ve Medikal",
-    "agirlik_hacim": null,
-    "resim": null,
-    "en_dusuk_fiyat": 8.9,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 8.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-08-05",
-        8.9
       ]
     ],
     "agirlik_hacim_gecmisi": []
@@ -19721,6 +19713,35 @@
         "2.97 LT"
       ]
     ]
+  },
+  {
+    "_sid": "temizlik_bingo-akilli-bulasik-kapsulu-pro-80-adet",
+    "ad": "Bingo Akıllı Bulaşık Kapsülü Pro 80 Adet",
+    "ana_kategori": "Bulaşık Temizlik Ürünleri",
+    "agirlik_hacim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30483653.jpg",
+    "en_dusuk_fiyat": 519.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 519.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-26",
+        379.9
+      ],
+      [
+        "2026-07-01",
+        399.9
+      ],
+      [
+        "2026-07-23",
+        519.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": []
   },
   {
     "_sid": "temizlik_tuttaze-buzdolabi-poseti-orta-boy-100-adet",
@@ -24277,6 +24298,32 @@
     "agirlik_hacim_gecmisi": []
   },
   {
+    "_sid": "temizlik_finish-parlatici-250-ml",
+    "ad": "Finish Parlatıcı 250 Ml",
+    "ana_kategori": "Bulaşık Temizlik Ürünleri",
+    "agirlik_hacim": "250 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30116982.png",
+    "en_dusuk_fiyat": 99.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 99.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-07-24",
+        99.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-24",
+        "250 ML"
+      ]
+    ]
+  },
+  {
     "_sid": "temizlik_domestos-wc-blok-lux-ejder-meyvesi-2-adet",
     "ad": "Domestos Wc Blok Lux Ejder Meyvesi 2 Adet",
     "ana_kategori": "Genel Temizlik Ürünleri",
@@ -24623,31 +24670,6 @@
     "agirlik_hacim_gecmisi": []
   },
   {
-    "_sid": "temizlik_omo-ultra-power-kapsul-deterjan-18-adet",
-    "ad": "Omo Ultra Power Kapsül Deterjan 18 Adet",
-    "ana_kategori": "Çamaşır Temizlik Ürünleri",
-    "agirlik_hacim": null,
-    "resim": null,
-    "en_dusuk_fiyat": 319.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 319.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        199.95
-      ],
-      [
-        "2026-07-08",
-        319.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": []
-  },
-  {
     "_sid": "temizlik_persil-sik-yikananlar-toz-deterjan-9-kg",
     "ad": "Persil Sık Yıkananlar Toz Deterjan 9 Kg",
     "ana_kategori": "Çamaşır Temizlik Ürünleri",
@@ -24981,32 +25003,6 @@
       [
         "2026-07-03",
         "750 ML"
-      ]
-    ]
-  },
-  {
-    "_sid": "temizlik_finish-parlatici-250-ml",
-    "ad": "Finish Parlatıcı 250 Ml",
-    "ana_kategori": "Bulaşık Temizlik Ürünleri",
-    "agirlik_hacim": "250 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30116982.png",
-    "en_dusuk_fiyat": 99.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 99.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-07-24",
-        99.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-24",
-        "250 ML"
       ]
     ]
   },
@@ -25456,6 +25452,31 @@
         "1.5 LT"
       ]
     ]
+  },
+  {
+    "_sid": "temizlik_omo-ultra-power-kapsul-deterjan-18-adet",
+    "ad": "Omo Ultra Power Kapsül Deterjan 18 Adet",
+    "ana_kategori": "Çamaşır Temizlik Ürünleri",
+    "agirlik_hacim": null,
+    "resim": null,
+    "en_dusuk_fiyat": 319.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 319.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        199.95
+      ],
+      [
+        "2026-07-08",
+        319.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": []
   },
   {
     "_sid": "temizlik_macromax-kesme-bicagi-hediyeli-strec-film-100-metre-1-adet",
@@ -30504,27 +30525,6 @@
     ]
   },
   {
-    "_sid": "temizlik_tuttaze-aluminyum-folyo-8-metre-1-adet",
-    "ad": "Tuttaze Alüminyum Folyo 8 Metre 1 Adet",
-    "ana_kategori": "Mutfak Sarf Malzemeleri",
-    "agirlik_hacim": null,
-    "resim": "https://cdn.marketfiyati.org.tr/sokimages/107729.png",
-    "en_dusuk_fiyat": 69.9,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 69.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-07-22",
-        69.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": []
-  },
-  {
     "_sid": "temizlik_mr-oxy-maxima-sari-limon-bulasik-deterjani-650-ml",
     "ad": "Mr. Oxy Maxima Sarı Limon Bulaşık Deterjanı 650 Ml",
     "ana_kategori": "Bulaşık Temizlik Ürünleri",
@@ -30833,6 +30833,27 @@
         "1.69 LT"
       ]
     ]
+  },
+  {
+    "_sid": "temizlik_selis-parfumlu-3-katli-tuvalet-kagidi-12-li-12-adet",
+    "ad": "Selis Parfümlü 3 Katlı Tuvalet Kağıdı 12'li 12 Adet",
+    "ana_kategori": "Tuvalet Kağıtları",
+    "agirlik_hacim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/hakmarimages/1014720.png",
+    "en_dusuk_fiyat": 143.0,
+    "market_fiyatlari": [
+      {
+        "market": "hakmar",
+        "fiyat": 143.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-08-05",
+        143.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": []
   },
   {
     "_sid": "temizlik_minies-bebek-camasir-yumusatici-1-5-lt",
@@ -31339,6 +31360,27 @@
     ]
   },
   {
+    "_sid": "temizlik_tuttaze-aluminyum-folyo-8-metre-1-adet",
+    "ad": "Tuttaze Alüminyum Folyo 8 Metre 1 Adet",
+    "ana_kategori": "Mutfak Sarf Malzemeleri",
+    "agirlik_hacim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/sokimages/107729.png",
+    "en_dusuk_fiyat": 69.9,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 69.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-07-22",
+        69.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": []
+  },
+  {
     "_sid": "temizlik_mintax-soda-matik-500-gr",
     "ad": "Mintax Soda Matik 500 Gr",
     "ana_kategori": "Çamaşır Temizlik Ürünleri",
@@ -31582,27 +31624,6 @@
         "500 ML"
       ]
     ]
-  },
-  {
-    "_sid": "temizlik_selis-parfumlu-3-katli-tuvalet-kagidi-12-li-12-adet",
-    "ad": "Selis Parfümlü 3 Katlı Tuvalet Kağıdı 12'li 12 Adet",
-    "ana_kategori": "Tuvalet Kağıtları",
-    "agirlik_hacim": null,
-    "resim": "https://cdn.marketfiyati.org.tr/hakmarimages/1014720.png",
-    "en_dusuk_fiyat": 143.0,
-    "market_fiyatlari": [
-      {
-        "market": "hakmar",
-        "fiyat": 143.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-08-05",
-        143.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": []
   },
   {
     "_sid": "temizlik_mintax-sivi-bakim-deterjani-renkliler-2-695-lt",
@@ -32149,36 +32170,6 @@
     "agirlik_hacim_gecmisi": []
   },
   {
-    "_sid": "temizlik_asperox-yuzey-temizleyici-ask-masali-pembe-1-lt",
-    "ad": "Asperox Yüzey Temizleyici Aşk Masalı Pembe 1 Lt",
-    "ana_kategori": "Genel Temizlik Ürünleri",
-    "agirlik_hacim": "1 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30478295.jpg",
-    "en_dusuk_fiyat": 99.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 99.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        69.9
-      ],
-      [
-        "2026-06-25",
-        99.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 LT"
-      ]
-    ]
-  },
-  {
     "_sid": "temizlik_bingo-lilyum-konsantre-yumusatici-1-44-lt",
     "ad": "Bingo Lilyum Konsantre Yumuşatıcı 1.44 Lt",
     "ana_kategori": "Çamaşır Temizlik Ürünleri",
@@ -32410,6 +32401,32 @@
       ]
     ],
     "agirlik_hacim_gecmisi": []
+  },
+  {
+    "_sid": "temizlik_glade-lavanta-oda-kokusu-300-ml",
+    "ad": "Glade Lavanta Oda Kokusu 300 Ml",
+    "ana_kategori": "Diğer Temizlik",
+    "agirlik_hacim": "300 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30024772.png",
+    "en_dusuk_fiyat": 189.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 189.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-08-05",
+        189.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-08-05",
+        "300 ML"
+      ]
+    ]
   },
   {
     "_sid": "temizlik_febreze-banyo-temiz-carsaf-ferahligi-1-adet",
@@ -32752,40 +32769,6 @@
     ]
   },
   {
-    "_sid": "temizlik_elit-sivi-bulasik-deterjani-750-ml",
-    "ad": "Elit Sıvı Bulaşık Deterjanı 750 Ml",
-    "ana_kategori": "Bulaşık Temizlik Ürünleri",
-    "agirlik_hacim": "750 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/103932.jpg",
-    "en_dusuk_fiyat": 52.0,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 52.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        52.0
-      ],
-      [
-        "2026-06-23",
-        45.9
-      ],
-      [
-        "2026-06-30",
-        52.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "750 ML"
-      ]
-    ]
-  },
-  {
     "_sid": "temizlik_carrefour-kirec-cozucu-tablet-3x15-gr",
     "ad": "Carrefour Kireç Çözücü Tablet 3x15 Gr",
     "ana_kategori": "Çamaşır Temizlik Ürünleri",
@@ -32924,6 +32907,36 @@
       ]
     ],
     "agirlik_hacim_gecmisi": []
+  },
+  {
+    "_sid": "temizlik_asperox-yuzey-temizleyici-ask-masali-pembe-1-lt",
+    "ad": "Asperox Yüzey Temizleyici Aşk Masalı Pembe 1 Lt",
+    "ana_kategori": "Genel Temizlik Ürünleri",
+    "agirlik_hacim": "1 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30478295.jpg",
+    "en_dusuk_fiyat": 99.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 99.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        69.9
+      ],
+      [
+        "2026-06-25",
+        99.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 LT"
+      ]
+    ]
   },
   {
     "_sid": "temizlik_domestos-camasir-suyu-kar-beyazligi-750-ml",
@@ -33141,32 +33154,6 @@
     "agirlik_hacim_gecmisi": []
   },
   {
-    "_sid": "temizlik_glade-lavanta-oda-kokusu-300-ml",
-    "ad": "Glade Lavanta Oda Kokusu 300 Ml",
-    "ana_kategori": "Diğer Temizlik",
-    "agirlik_hacim": "300 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30024772.png",
-    "en_dusuk_fiyat": 189.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 189.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-08-05",
-        189.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-08-05",
-        "300 ML"
-      ]
-    ]
-  },
-  {
     "_sid": "temizlik_koroplast-dev-eko-buzdolabi-poseti-orta-boy-120-adet",
     "ad": "Koroplast Dev Eko Buzdolabı Poşeti Orta Boy 120 Adet",
     "ana_kategori": "Mutfak Sarf Malzemeleri",
@@ -33316,6 +33303,32 @@
       [
         "2026-07-03",
         "1.2 LT"
+      ]
+    ]
+  },
+  {
+    "_sid": "temizlik_sir-bio-bulasik-makinesi-deterjani-1-lt",
+    "ad": "Sır Bio Bulaşık Makinesi Deterjanı 1 Lt",
+    "ana_kategori": "Bulaşık Temizlik Ürünleri",
+    "agirlik_hacim": "1 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30461096.png",
+    "en_dusuk_fiyat": 320.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 320.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        320.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 LT"
       ]
     ]
   },
@@ -33858,32 +33871,6 @@
       ]
     ],
     "agirlik_hacim_gecmisi": []
-  },
-  {
-    "_sid": "temizlik_sir-bio-bulasik-makinesi-deterjani-1-lt",
-    "ad": "Sır Bio Bulaşık Makinesi Deterjanı 1 Lt",
-    "ana_kategori": "Bulaşık Temizlik Ürünleri",
-    "agirlik_hacim": "1 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30461096.png",
-    "en_dusuk_fiyat": 320.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 320.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        320.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 LT"
-      ]
-    ]
   },
   {
     "_sid": "temizlik_vileda-bezzy-sari-temizlik-bezi-10-adet",
@@ -35449,6 +35436,32 @@
     "agirlik_hacim_gecmisi": []
   },
   {
+    "_sid": "temizlik_migros-amonyakli-krem-temizleyici-750-ml",
+    "ad": "Migros Amonyaklı Krem Temizleyici 750 Ml",
+    "ana_kategori": "Genel Temizlik Ürünleri",
+    "agirlik_hacim": "750 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/30719703.jpg",
+    "en_dusuk_fiyat": 67.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 67.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-28",
+        67.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "750 ML"
+      ]
+    ]
+  },
+  {
     "_sid": "temizlik_macromax-klasik-yesil-oluklu-sunger-5-adet",
     "ad": "Macromax Klasik Yeşil Oluklu Sünger 5 Adet",
     "ana_kategori": "Diğer Temizlik",
@@ -35872,36 +35885,6 @@
     ]
   },
   {
-    "_sid": "temizlik_domestos-beyaz-sabun-ferahligi-1-85-lt",
-    "ad": "Domestos Beyaz Sabun Ferahlığı 1.85 Lt",
-    "ana_kategori": "Genel Temizlik Ürünleri",
-    "agirlik_hacim": "1.85 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30475711.png",
-    "en_dusuk_fiyat": 179.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 179.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        149.95
-      ],
-      [
-        "2026-06-26",
-        179.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1.85 LT"
-      ]
-    ]
-  },
-  {
     "_sid": "temizlik_bingo-beyaz-sabun-sivi-camasir-deterjani-1-755-lt",
     "ad": "Bingo Beyaz Sabun Sıvı Çamaşır Deterjanı 1.755 Lt",
     "ana_kategori": "Çamaşır Temizlik Ürünleri",
@@ -36284,32 +36267,6 @@
     ]
   },
   {
-    "_sid": "temizlik_migros-amonyakli-krem-temizleyici-750-ml",
-    "ad": "Migros Amonyaklı Krem Temizleyici 750 Ml",
-    "ana_kategori": "Genel Temizlik Ürünleri",
-    "agirlik_hacim": "750 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/30719703.jpg",
-    "en_dusuk_fiyat": 67.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 67.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-28",
-        67.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "750 ML"
-      ]
-    ]
-  },
-  {
     "_sid": "temizlik_mintax-ahsap-temizleyici-1-lt",
     "ad": "Mintax Ahşap Temizleyici 1 Lt",
     "ana_kategori": "Genel Temizlik Ürünleri",
@@ -36523,6 +36480,36 @@
       [
         "2026-08-05",
         "75 ML"
+      ]
+    ]
+  },
+  {
+    "_sid": "temizlik_domestos-beyaz-sabun-ferahligi-1-85-lt",
+    "ad": "Domestos Beyaz Sabun Ferahlığı 1.85 Lt",
+    "ana_kategori": "Genel Temizlik Ürünleri",
+    "agirlik_hacim": "1.85 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30475711.png",
+    "en_dusuk_fiyat": 179.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 179.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        149.95
+      ],
+      [
+        "2026-06-26",
+        179.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1.85 LT"
       ]
     ]
   },
@@ -42262,6 +42249,36 @@
     ]
   },
   {
+    "_sid": "temizlik_porcoz-yag-cozucu-sprey-750-ml",
+    "ad": "Porçöz Yağ Çözücü Sprey 750 Ml",
+    "ana_kategori": "Genel Temizlik Ürünleri",
+    "agirlik_hacim": "750 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30260806.png",
+    "en_dusuk_fiyat": 139.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 139.95
+      },
+      {
+        "market": "migros",
+        "fiyat": 152.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-08-05",
+        139.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-08-05",
+        "750 ML"
+      ]
+    ]
+  },
+  {
     "_sid": "temizlik_cif-limonlu-krem-750-ml",
     "ad": "Cif Limonlu Krem 750 Ml",
     "ana_kategori": "Genel Temizlik Ürünleri",
@@ -42454,55 +42471,6 @@
         "700 ML"
       ]
     ]
-  },
-  {
-    "_sid": "temizlik_selpak-havlu-6-adet",
-    "ad": "Selpak Havlu 6 Adet",
-    "ana_kategori": "Kağıt Havlu",
-    "agirlik_hacim": null,
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30053441.png",
-    "en_dusuk_fiyat": 209.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 209.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        189.95
-      ],
-      [
-        "2026-06-24",
-        199.95
-      ],
-      [
-        "2026-06-29",
-        189.95
-      ],
-      [
-        "2026-07-02",
-        199.95
-      ],
-      [
-        "2026-07-03",
-        189.95
-      ],
-      [
-        "2026-07-07",
-        209.95
-      ],
-      [
-        "2026-07-14",
-        132.6
-      ],
-      [
-        "2026-07-18",
-        209.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": []
   },
   {
     "_sid": "temizlik_yumos-acik-hava-etkisi-sprey-mavi-gelincik-430-ml",
@@ -43012,36 +42980,6 @@
     "agirlik_hacim_gecmisi": []
   },
   {
-    "_sid": "temizlik_porcoz-yag-cozucu-sprey-750-ml",
-    "ad": "Porçöz Yağ Çözücü Sprey 750 Ml",
-    "ana_kategori": "Genel Temizlik Ürünleri",
-    "agirlik_hacim": "750 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30260806.png",
-    "en_dusuk_fiyat": 139.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 139.95
-      },
-      {
-        "market": "migros",
-        "fiyat": 152.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-08-05",
-        139.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-08-05",
-        "750 ML"
-      ]
-    ]
-  },
-  {
     "_sid": "temizlik_yesil-beyaz-eko-cift-katli-tuvalet-kagidi-24-adet",
     "ad": "Yeşil Beyaz Eko Çift Katlı Tuvalet Kağıdı 24 Adet",
     "ana_kategori": "Tuvalet Kağıtları",
@@ -43121,6 +43059,55 @@
         "750 ML"
       ]
     ]
+  },
+  {
+    "_sid": "temizlik_selpak-havlu-6-adet",
+    "ad": "Selpak Havlu 6 Adet",
+    "ana_kategori": "Kağıt Havlu",
+    "agirlik_hacim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30053441.png",
+    "en_dusuk_fiyat": 209.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 209.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        189.95
+      ],
+      [
+        "2026-06-24",
+        199.95
+      ],
+      [
+        "2026-06-29",
+        189.95
+      ],
+      [
+        "2026-07-02",
+        199.95
+      ],
+      [
+        "2026-07-03",
+        189.95
+      ],
+      [
+        "2026-07-07",
+        209.95
+      ],
+      [
+        "2026-07-14",
+        132.6
+      ],
+      [
+        "2026-07-18",
+        209.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": []
   },
   {
     "_sid": "temizlik_bingo-matik-onaran-koruma-sivi-deterjan-4-lt",
@@ -47892,6 +47879,27 @@
     "agirlik_hacim_gecmisi": []
   },
   {
+    "_sid": "temizlik_scarlett-tek-sargili-gunluk-ped-20-adet",
+    "ad": "Scarlett Tek Sargılı Günlük Ped 20 Adet",
+    "ana_kategori": "Hijyenik Ped",
+    "agirlik_hacim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/bimages/1300524.jpg",
+    "en_dusuk_fiyat": 28.5,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 28.5
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-07-24",
+        28.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": []
+  },
+  {
     "_sid": "temizlik_elit-hindistan-cevizi-sivi-sabun-750-ml",
     "ad": "Elit Hindistan Cevizi Sıvı Sabun 750 Ml",
     "ana_kategori": "Duş Banyo ve Sabun",
@@ -48417,6 +48425,99 @@
     ]
   },
   {
+    "_sid": "temizlik_molped-pure-soft-gece-16-adet",
+    "ad": "Molped Pure&Soft Gece 16 Adet",
+    "ana_kategori": "Hijyenik Ped",
+    "agirlik_hacim": null,
+    "resim": null,
+    "en_dusuk_fiyat": 169.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 169.95
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 244.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        129.95
+      ],
+      [
+        "2026-06-24",
+        189.0
+      ],
+      [
+        "2026-06-25",
+        224.95
+      ],
+      [
+        "2026-06-26",
+        189.0
+      ],
+      [
+        "2026-06-30",
+        244.95
+      ],
+      [
+        "2026-07-01",
+        119.0
+      ],
+      [
+        "2026-07-03",
+        244.95
+      ],
+      [
+        "2026-07-04",
+        119.0
+      ],
+      [
+        "2026-07-06",
+        244.95
+      ],
+      [
+        "2026-07-07",
+        189.0
+      ],
+      [
+        "2026-07-08",
+        244.95
+      ],
+      [
+        "2026-07-09",
+        189.0
+      ],
+      [
+        "2026-07-10",
+        244.95
+      ],
+      [
+        "2026-07-14",
+        218.5
+      ],
+      [
+        "2026-07-18",
+        129.95
+      ],
+      [
+        "2026-07-20",
+        218.5
+      ],
+      [
+        "2026-07-22",
+        119.0
+      ],
+      [
+        "2026-08-05",
+        169.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": []
+  },
+  {
     "_sid": "temizlik_kotex-natural-ultra-quadro-uzun-16-adet",
     "ad": "Kotex Natural Ultra Quadro Uzun 16 Adet",
     "ana_kategori": "Hijyenik Ped",
@@ -48574,51 +48675,6 @@
     ]
   },
   {
-    "_sid": "temizlik_palette-icc-3-65-cikolata-kahve-sac-boyasi-1-adet",
-    "ad": "Palette ICC 3-65 Çikolata Kahve Saç Boyası 1 Adet",
-    "ana_kategori": "Saç Bakım",
-    "agirlik_hacim": null,
-    "resim": "https://cdn.marketfiyati.org.tr/migros/34480001.jpg",
-    "en_dusuk_fiyat": 203.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 203.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        144.95
-      ],
-      [
-        "2026-06-24",
-        199.95
-      ],
-      [
-        "2026-06-25",
-        203.95
-      ],
-      [
-        "2026-06-29",
-        148.95
-      ],
-      [
-        "2026-07-09",
-        139.95
-      ],
-      [
-        "2026-07-23",
-        199.95
-      ],
-      [
-        "2026-08-05",
-        203.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": []
-  },
-  {
     "_sid": "temizlik_haci-sakir-kalip-sabun-zeytinyagi-ve-bal-4x150-gr",
     "ad": "Hacı Şakir Kalıp Sabun Zeytinyağı Ve Bal 4x150 Gr",
     "ana_kategori": "Duş Banyo ve Sabun",
@@ -48645,40 +48701,6 @@
       [
         "2026-07-22",
         "600 GR"
-      ]
-    ]
-  },
-  {
-    "_sid": "temizlik_garnier-skin-naturals-nem-bombasi-nar-kagit-maske-32-gr",
-    "ad": "Garnier Skin Naturals Nem Bombası Nar Kağıt Maske 32 Gr",
-    "ana_kategori": "Cilt Bakımı",
-    "agirlik_hacim": "32 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/35409350.png",
-    "en_dusuk_fiyat": 252.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 252.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        149.95
-      ],
-      [
-        "2026-07-09",
-        75.95
-      ],
-      [
-        "2026-07-14",
-        252.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "32 GR"
       ]
     ]
   },
@@ -48814,27 +48836,6 @@
       [
         "2026-07-16",
         525.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": []
-  },
-  {
-    "_sid": "temizlik_scarlett-tek-sargili-gunluk-ped-20-adet",
-    "ad": "Scarlett Tek Sargılı Günlük Ped 20 Adet",
-    "ana_kategori": "Hijyenik Ped",
-    "agirlik_hacim": null,
-    "resim": "https://cdn.marketfiyati.org.tr/bimages/1300524.jpg",
-    "en_dusuk_fiyat": 28.5,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 28.5
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-07-24",
-        28.5
       ]
     ],
     "agirlik_hacim_gecmisi": []
@@ -49044,99 +49045,6 @@
     ]
   },
   {
-    "_sid": "temizlik_molped-pure-soft-gece-16-adet",
-    "ad": "Molped Pure&Soft Gece 16 Adet",
-    "ana_kategori": "Hijyenik Ped",
-    "agirlik_hacim": null,
-    "resim": null,
-    "en_dusuk_fiyat": 169.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 169.95
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 244.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        129.95
-      ],
-      [
-        "2026-06-24",
-        189.0
-      ],
-      [
-        "2026-06-25",
-        224.95
-      ],
-      [
-        "2026-06-26",
-        189.0
-      ],
-      [
-        "2026-06-30",
-        244.95
-      ],
-      [
-        "2026-07-01",
-        119.0
-      ],
-      [
-        "2026-07-03",
-        244.95
-      ],
-      [
-        "2026-07-04",
-        119.0
-      ],
-      [
-        "2026-07-06",
-        244.95
-      ],
-      [
-        "2026-07-07",
-        189.0
-      ],
-      [
-        "2026-07-08",
-        244.95
-      ],
-      [
-        "2026-07-09",
-        189.0
-      ],
-      [
-        "2026-07-10",
-        244.95
-      ],
-      [
-        "2026-07-14",
-        218.5
-      ],
-      [
-        "2026-07-18",
-        129.95
-      ],
-      [
-        "2026-07-20",
-        218.5
-      ],
-      [
-        "2026-07-22",
-        119.0
-      ],
-      [
-        "2026-08-05",
-        169.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": []
-  },
-  {
     "_sid": "temizlik_huggies-drynites-8-13-yas-erkek-gece-kulodu-9-adet",
     "ad": "Huggies Drynites 8-13 Yaş Erkek Gece Külodu 9 Adet",
     "ana_kategori": "Bebek ve Hasta Bezi",
@@ -49254,6 +49162,51 @@
     ]
   },
   {
+    "_sid": "temizlik_palette-icc-3-65-cikolata-kahve-sac-boyasi-1-adet",
+    "ad": "Palette ICC 3-65 Çikolata Kahve Saç Boyası 1 Adet",
+    "ana_kategori": "Saç Bakım",
+    "agirlik_hacim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/migros/34480001.jpg",
+    "en_dusuk_fiyat": 203.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 203.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        144.95
+      ],
+      [
+        "2026-06-24",
+        199.95
+      ],
+      [
+        "2026-06-25",
+        203.95
+      ],
+      [
+        "2026-06-29",
+        148.95
+      ],
+      [
+        "2026-07-09",
+        139.95
+      ],
+      [
+        "2026-07-23",
+        199.95
+      ],
+      [
+        "2026-08-05",
+        203.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": []
+  },
+  {
     "_sid": "temizlik_molped-supernight-eko-gece-16-adet",
     "ad": "Molped Supernight Eko Gece 16 Adet",
     "ana_kategori": "Hijyenik Ped",
@@ -49317,6 +49270,40 @@
       [
         "2026-07-03",
         "250 ML"
+      ]
+    ]
+  },
+  {
+    "_sid": "temizlik_garnier-skin-naturals-nem-bombasi-nar-kagit-maske-32-gr",
+    "ad": "Garnier Skin Naturals Nem Bombası Nar Kağıt Maske 32 Gr",
+    "ana_kategori": "Cilt Bakımı",
+    "agirlik_hacim": "32 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/35409350.png",
+    "en_dusuk_fiyat": 252.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 252.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        149.95
+      ],
+      [
+        "2026-07-09",
+        75.95
+      ],
+      [
+        "2026-07-14",
+        252.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "32 GR"
       ]
     ]
   },
@@ -58158,44 +58145,6 @@
     "agirlik_hacim_gecmisi": []
   },
   {
-    "_sid": "temizlik_elseve-komple-direnc-dokulme-karsiti-sampuan-300-ml",
-    "ad": "Elseve Komple Direnç Dökülme Karşıtı Şampuan 300 Ml",
-    "ana_kategori": "Saç Bakım",
-    "agirlik_hacim": "300 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30485424.jpg",
-    "en_dusuk_fiyat": 159.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 159.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        139.0
-      ],
-      [
-        "2026-07-08",
-        199.0
-      ],
-      [
-        "2026-07-09",
-        234.0
-      ],
-      [
-        "2026-07-20",
-        159.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "300 ML"
-      ]
-    ]
-  },
-  {
     "_sid": "temizlik_depend-ekstra-kadin-mesane-pedi-10-adet",
     "ad": "Depend Ekstra Kadın Mesane Pedi 10 Adet",
     "ana_kategori": "Bebek ve Hasta Bezi",
@@ -58269,6 +58218,32 @@
       [
         "2026-08-05",
         "150 ML"
+      ]
+    ]
+  },
+  {
+    "_sid": "temizlik_nivea-fresh-natural-deo-175-ml-roll-on-175-ml-hediye-seti",
+    "ad": "Nivea Fresh Natural Deo 175 Ml + Roll-On 175 Ml Hediye Seti",
+    "ana_kategori": "Parfüm ve Deodorant",
+    "agirlik_hacim": "175 ML",
+    "resim": null,
+    "en_dusuk_fiyat": 259.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 259.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-08-05",
+        259.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-08-05",
+        "175 ML"
       ]
     ]
   },
@@ -58513,6 +58488,32 @@
       [
         "2026-07-03",
         "130 ML"
+      ]
+    ]
+  },
+  {
+    "_sid": "temizlik_ebru-sivi-sabun-okyanus-ruzgari-750-ml",
+    "ad": "Ebru Sıvı Sabun Okyanus Rüzgarı 750 Ml",
+    "ana_kategori": "Duş Banyo ve Sabun",
+    "agirlik_hacim": "750 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/sokimages/72539.png",
+    "en_dusuk_fiyat": 48.0,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 48.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-07-22",
+        48.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-22",
+        "750 ML"
       ]
     ]
   },
@@ -58839,6 +58840,44 @@
     ]
   },
   {
+    "_sid": "temizlik_elseve-komple-direnc-dokulme-karsiti-sampuan-300-ml",
+    "ad": "Elseve Komple Direnç Dökülme Karşıtı Şampuan 300 Ml",
+    "ana_kategori": "Saç Bakım",
+    "agirlik_hacim": "300 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30485424.jpg",
+    "en_dusuk_fiyat": 159.0,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 159.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        139.0
+      ],
+      [
+        "2026-07-08",
+        199.0
+      ],
+      [
+        "2026-07-09",
+        234.0
+      ],
+      [
+        "2026-07-20",
+        159.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "300 ML"
+      ]
+    ]
+  },
+  {
     "_sid": "temizlik_sensodyne-dis-fircasi-yumusak-1-2-adet",
     "ad": "Sensodyne Diş Fırçası Yumuşak 1+2 Adet",
     "ana_kategori": "Ağız Bakım",
@@ -59015,32 +59054,6 @@
     "agirlik_hacim_gecmisi": []
   },
   {
-    "_sid": "temizlik_nivea-fresh-natural-deo-175-ml-roll-on-175-ml-hediye-seti",
-    "ad": "Nivea Fresh Natural Deo 175 Ml + Roll-On 175 Ml Hediye Seti",
-    "ana_kategori": "Parfüm ve Deodorant",
-    "agirlik_hacim": "175 ML",
-    "resim": null,
-    "en_dusuk_fiyat": 259.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 259.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-08-05",
-        259.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-08-05",
-        "175 ML"
-      ]
-    ]
-  },
-  {
     "_sid": "temizlik_derby-samurai-klasik-3-tiras-bicagi-10-lu",
     "ad": "Derby Samurai Klasik 3 Tıraş Bıçağı 10'lu",
     "ana_kategori": "Tıraş Ürünleri",
@@ -59188,58 +59201,6 @@
       ]
     ],
     "agirlik_hacim_gecmisi": []
-  },
-  {
-    "_sid": "temizlik_eda-taspinar-yogun-bronzlastirici-yag-200-ml",
-    "ad": "Eda Taşpınar Yoğun Bronzlaştırıcı Yağ 200 Ml",
-    "ana_kategori": "Cilt Bakımı",
-    "agirlik_hacim": "200 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30128543.png",
-    "en_dusuk_fiyat": 599.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 599.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        599.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "200 ML"
-      ]
-    ]
-  },
-  {
-    "_sid": "temizlik_ebru-sivi-sabun-okyanus-ruzgari-750-ml",
-    "ad": "Ebru Sıvı Sabun Okyanus Rüzgarı 750 Ml",
-    "ana_kategori": "Duş Banyo ve Sabun",
-    "agirlik_hacim": "750 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/sokimages/72539.png",
-    "en_dusuk_fiyat": 48.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 48.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-07-22",
-        48.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-22",
-        "750 ML"
-      ]
-    ]
   },
   {
     "_sid": "temizlik_flormar-color-joy-oje-301-1-adet",
@@ -59979,6 +59940,32 @@
     ]
   },
   {
+    "_sid": "temizlik_eda-taspinar-yogun-bronzlastirici-yag-200-ml",
+    "ad": "Eda Taşpınar Yoğun Bronzlaştırıcı Yağ 200 Ml",
+    "ana_kategori": "Cilt Bakımı",
+    "agirlik_hacim": "200 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30128543.png",
+    "en_dusuk_fiyat": 599.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 599.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        599.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "200 ML"
+      ]
+    ]
+  },
+  {
     "_sid": "temizlik_veet-hassas-sprey-tuy-dokucu-krem-150-ml",
     "ad": "Veet Hassas Sprey Tüy Dökücü Krem 150 Ml",
     "ana_kategori": "Ağda ve Epilasyon",
@@ -60460,32 +60447,6 @@
     "agirlik_hacim_gecmisi": []
   },
   {
-    "_sid": "temizlik_elseve-sampuan-cesitleri-300-ml",
-    "ad": "Elseve Şampuan Çeşitleri 300 Ml",
-    "ana_kategori": "Saç Bakım",
-    "agirlik_hacim": "300 ML",
-    "resim": null,
-    "en_dusuk_fiyat": 199.0,
-    "market_fiyatlari": [
-      {
-        "market": "hakmar",
-        "fiyat": 199.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-08-05",
-        199.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-08-05",
-        "300 ML"
-      ]
-    ]
-  },
-  {
     "_sid": "temizlik_minies-xx-large-7-beden-cocuk-bezi-22-adet",
     "ad": "Minies XX Large 7 Beden Çocuk Bezi 22 Adet",
     "ana_kategori": "Bebek ve Hasta Bezi",
@@ -60576,6 +60537,27 @@
         "300 ML"
       ]
     ]
+  },
+  {
+    "_sid": "temizlik_sleepy-extra-firsat-paketi-junior-2-li-58-adet",
+    "ad": "Sleepy Extra Fırsat Paketi Junior 2'li 58 Adet",
+    "ana_kategori": "Bebek ve Hasta Bezi",
+    "agirlik_hacim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/sok/128078.jpg",
+    "en_dusuk_fiyat": 219.0,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 219.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-07-22",
+        219.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": []
   },
   {
     "_sid": "temizlik_neutrogena-parfumlu-el-kremi-75-ml",
@@ -61195,6 +61177,32 @@
     "agirlik_hacim_gecmisi": []
   },
   {
+    "_sid": "temizlik_elseve-sampuan-cesitleri-300-ml",
+    "ad": "Elseve Şampuan Çeşitleri 300 Ml",
+    "ana_kategori": "Saç Bakım",
+    "agirlik_hacim": "300 ML",
+    "resim": null,
+    "en_dusuk_fiyat": 199.0,
+    "market_fiyatlari": [
+      {
+        "market": "hakmar",
+        "fiyat": 199.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-08-05",
+        199.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-08-05",
+        "300 ML"
+      ]
+    ]
+  },
+  {
     "_sid": "temizlik_hobby-kivir-kivir-bukle-jolesi-150-ml",
     "ad": "Hobby Kıvır Kıvır Bukle Jölesi 150 Ml",
     "ana_kategori": "Saç Bakım",
@@ -61253,27 +61261,6 @@
         "600 GR"
       ]
     ]
-  },
-  {
-    "_sid": "temizlik_sleepy-extra-firsat-paketi-junior-2-li-58-adet",
-    "ad": "Sleepy Extra Fırsat Paketi Junior 2'li 58 Adet",
-    "ana_kategori": "Bebek ve Hasta Bezi",
-    "agirlik_hacim": null,
-    "resim": "https://cdn.marketfiyati.org.tr/sok/128078.jpg",
-    "en_dusuk_fiyat": 219.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 219.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-07-22",
-        219.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": []
   },
   {
     "_sid": "temizlik_elit-naturel-zeytinyagi-sabunu-poset-2-kg",
@@ -62052,6 +62039,32 @@
     ]
   },
   {
+    "_sid": "temizlik_ebru-sivi-sabun-meyve-ruyasi-4-lt",
+    "ad": "Ebru Sıvı Sabun Meyve Rüyası 4 Lt",
+    "ana_kategori": "Duş Banyo ve Sabun",
+    "agirlik_hacim": "4 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/sokimages/77875.png",
+    "en_dusuk_fiyat": 165.0,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 165.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-07-22",
+        165.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-22",
+        "4 LT"
+      ]
+    ]
+  },
+  {
     "_sid": "temizlik_sensodyne-naneli-dis-macunu-100-ml",
     "ad": "Sensodyne Naneli Diş Macunu 100 Ml",
     "ana_kategori": "Ağız Bakım",
@@ -62288,27 +62301,6 @@
         "450 ML"
       ]
     ]
-  },
-  {
-    "_sid": "temizlik_sleepy-bio-natural-ultra-gece-50-adet-ve-natural-gunluk-uzun-50-adet",
-    "ad": "Sleepy Bio Natural Ultra Gece 50 Adet Ve Natural Günlük Uzun 50 Adet",
-    "ana_kategori": "Hijyenik Ped",
-    "agirlik_hacim": null,
-    "resim": "https://cdn.marketfiyati.org.tr/migros/31113674.jpg",
-    "en_dusuk_fiyat": 310.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 310.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-08-05",
-        310.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": []
   },
   {
     "_sid": "temizlik_parodontax-beyazlatici-dis-macunu-75-ml",
@@ -62565,27 +62557,6 @@
     "agirlik_hacim_gecmisi": []
   },
   {
-    "_sid": "temizlik_sleepy-bio-natural-premium-plus-uzun-hijyenik-ped-36-adet",
-    "ad": "Sleepy Bio Natural Premium Plus Uzun Hijyenik Ped 36 Adet",
-    "ana_kategori": "Hijyenik Ped",
-    "agirlik_hacim": null,
-    "resim": "https://cdn.marketfiyati.org.tr/migros/31113672.jpg",
-    "en_dusuk_fiyat": 99.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 99.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-07-24",
-        99.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": []
-  },
-  {
     "_sid": "temizlik_sensodyne-tam-koruma-dis-macunu-firca-1-adet",
     "ad": "Sensodyne Tam Koruma Diş Macunu & Fırça 1 Adet",
     "ana_kategori": "Ağız Bakım",
@@ -62755,32 +62726,6 @@
       [
         "2026-07-03",
         "275 ML"
-      ]
-    ]
-  },
-  {
-    "_sid": "temizlik_ebru-sivi-sabun-meyve-ruyasi-4-lt",
-    "ad": "Ebru Sıvı Sabun Meyve Rüyası 4 Lt",
-    "ana_kategori": "Duş Banyo ve Sabun",
-    "agirlik_hacim": "4 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/sokimages/77875.png",
-    "en_dusuk_fiyat": 165.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 165.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-07-22",
-        165.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-22",
-        "4 LT"
       ]
     ]
   },
@@ -62995,6 +62940,27 @@
     ]
   },
   {
+    "_sid": "temizlik_sleepy-bio-natural-ultra-gece-50-adet-ve-natural-gunluk-uzun-50-adet",
+    "ad": "Sleepy Bio Natural Ultra Gece 50 Adet Ve Natural Günlük Uzun 50 Adet",
+    "ana_kategori": "Hijyenik Ped",
+    "agirlik_hacim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/migros/31113674.jpg",
+    "en_dusuk_fiyat": 310.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 310.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-08-05",
+        310.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": []
+  },
+  {
     "_sid": "temizlik_pantene-miracle-serum-onarici-koruyucu-sac-kremi-220-ml",
     "ad": "Pantene Miracle Serum Onarıcı & Koruyucu Saç Kremi 220 Ml",
     "ana_kategori": "Saç Bakım",
@@ -63143,6 +63109,56 @@
       [
         "2026-07-19",
         "200 ML"
+      ]
+    ]
+  },
+  {
+    "_sid": "temizlik_nivea-yaslanma-karsiti-gunduz-kremi-50-ml",
+    "ad": "Nivea Yaşlanma Karşıtı Gündüz Kremi 50 Ml",
+    "ana_kategori": "Cilt Bakımı",
+    "agirlik_hacim": "50 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30263080.png",
+    "en_dusuk_fiyat": 629.98,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 629.98
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        629.98
+      ],
+      [
+        "2026-06-25",
+        503.98
+      ],
+      [
+        "2026-06-29",
+        1259.95
+      ],
+      [
+        "2026-07-04",
+        629.98
+      ],
+      [
+        "2026-07-16",
+        503.98
+      ],
+      [
+        "2026-07-20",
+        1259.95
+      ],
+      [
+        "2026-07-23",
+        629.98
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "50 ML"
       ]
     ]
   },
@@ -63429,6 +63445,27 @@
         "90 GR"
       ]
     ]
+  },
+  {
+    "_sid": "temizlik_sleepy-bio-natural-premium-plus-uzun-hijyenik-ped-36-adet",
+    "ad": "Sleepy Bio Natural Premium Plus Uzun Hijyenik Ped 36 Adet",
+    "ana_kategori": "Hijyenik Ped",
+    "agirlik_hacim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/migros/31113672.jpg",
+    "en_dusuk_fiyat": 99.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 99.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-07-24",
+        99.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": []
   },
   {
     "_sid": "temizlik_dalin-deniz-esintisi-kolonya-150-ml",
@@ -63821,56 +63858,6 @@
       ]
     ],
     "agirlik_hacim_gecmisi": []
-  },
-  {
-    "_sid": "temizlik_nivea-yaslanma-karsiti-gunduz-kremi-50-ml",
-    "ad": "Nivea Yaşlanma Karşıtı Gündüz Kremi 50 Ml",
-    "ana_kategori": "Cilt Bakımı",
-    "agirlik_hacim": "50 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30263080.png",
-    "en_dusuk_fiyat": 629.98,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 629.98
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        629.98
-      ],
-      [
-        "2026-06-25",
-        503.98
-      ],
-      [
-        "2026-06-29",
-        1259.95
-      ],
-      [
-        "2026-07-04",
-        629.98
-      ],
-      [
-        "2026-07-16",
-        503.98
-      ],
-      [
-        "2026-07-20",
-        1259.95
-      ],
-      [
-        "2026-07-23",
-        629.98
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "50 ML"
-      ]
-    ]
   },
   {
     "_sid": "temizlik_flormar-longer-than-ever-maskara-1-adet",
@@ -64820,6 +64807,32 @@
     ]
   },
   {
+    "_sid": "temizlik_colgate-dr-rabbit-2-yas-sakiz-aromali-dis-macunu-50-ml",
+    "ad": "Colgate Dr. Rabbit 2+ Yaş Sakız Aromalı Diş Macunu 50 Ml",
+    "ana_kategori": "Ağız Bakım",
+    "agirlik_hacim": "50 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/34013736.jpg",
+    "en_dusuk_fiyat": 64.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 64.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-08-06",
+        64.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-08-06",
+        "50 ML"
+      ]
+    ]
+  },
+  {
     "_sid": "temizlik_molped-yogun-koruma-gunluk-ped-60-adet",
     "ad": "Molped Yoğun Koruma Günlük Ped 60 Adet",
     "ana_kategori": "Hijyenik Ped",
@@ -65439,36 +65452,6 @@
     ]
   },
   {
-    "_sid": "temizlik_parodontax-tam-koruma-ferahlik-dis-macunu-75-ml",
-    "ad": "Parodontax Tam Koruma Ferahlık Diş Macunu 75 Ml",
-    "ana_kategori": "Ağız Bakım",
-    "agirlik_hacim": "75 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/34013480.png",
-    "en_dusuk_fiyat": 364.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 364.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        273.71
-      ],
-      [
-        "2026-07-23",
-        364.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "75 ML"
-      ]
-    ]
-  },
-  {
     "_sid": "temizlik_migros-normal-gunluk-ped-20-adet",
     "ad": "Migros Normal Günlük Ped 20 Adet",
     "ana_kategori": "Hijyenik Ped",
@@ -65511,28 +65494,64 @@
     "agirlik_hacim_gecmisi": []
   },
   {
-    "_sid": "temizlik_shela-kadin-deodorant-150-ml",
-    "ad": "Shela Kadın Deodorant 150 Ml",
-    "ana_kategori": "Parfüm ve Deodorant",
-    "agirlik_hacim": "150 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/bimages/1401252.jpg",
-    "en_dusuk_fiyat": 78.0,
+    "_sid": "temizlik_dove-pink-cream-bar-90-gr",
+    "ad": "Dove Pink Cream Bar 90 Gr",
+    "ana_kategori": "Duş Banyo ve Sabun",
+    "agirlik_hacim": "90 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 79.5,
     "market_fiyatlari": [
       {
-        "market": "bim",
-        "fiyat": 78.0
+        "market": "sok",
+        "fiyat": 79.5
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 79.5
+      },
+      {
+        "market": "migros",
+        "fiyat": 81.95
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-08-05",
-        78.0
+        "2026-06-22",
+        44.5
+      ],
+      [
+        "2026-06-27",
+        45.43
+      ],
+      [
+        "2026-06-29",
+        64.5
+      ],
+      [
+        "2026-07-01",
+        45.43
+      ],
+      [
+        "2026-07-08",
+        64.5
+      ],
+      [
+        "2026-07-15",
+        45.95
+      ],
+      [
+        "2026-07-20",
+        65.95
+      ],
+      [
+        "2026-07-22",
+        79.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-08-05",
-        "150 ML"
+        "2026-07-03",
+        "90 GR"
       ]
     ]
   },
@@ -66218,64 +66237,28 @@
     ]
   },
   {
-    "_sid": "temizlik_dove-pink-cream-bar-90-gr",
-    "ad": "Dove Pink Cream Bar 90 Gr",
-    "ana_kategori": "Duş Banyo ve Sabun",
-    "agirlik_hacim": "90 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 79.5,
+    "_sid": "temizlik_shela-kadin-deodorant-150-ml",
+    "ad": "Shela Kadın Deodorant 150 Ml",
+    "ana_kategori": "Parfüm ve Deodorant",
+    "agirlik_hacim": "150 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/bimages/1401252.jpg",
+    "en_dusuk_fiyat": 78.0,
     "market_fiyatlari": [
       {
-        "market": "sok",
-        "fiyat": 79.5
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 79.5
-      },
-      {
-        "market": "migros",
-        "fiyat": 81.95
+        "market": "bim",
+        "fiyat": 78.0
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-06-22",
-        44.5
-      ],
-      [
-        "2026-06-27",
-        45.43
-      ],
-      [
-        "2026-06-29",
-        64.5
-      ],
-      [
-        "2026-07-01",
-        45.43
-      ],
-      [
-        "2026-07-08",
-        64.5
-      ],
-      [
-        "2026-07-15",
-        45.95
-      ],
-      [
-        "2026-07-20",
-        65.95
-      ],
-      [
-        "2026-07-22",
-        79.5
+        "2026-08-05",
+        78.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-07-03",
-        "90 GR"
+        "2026-08-05",
+        "150 ML"
       ]
     ]
   },
@@ -72308,39 +72291,6 @@
     "agirlik_hacim_gecmisi": []
   },
   {
-    "_sid": "temizlik_sleepy-bio-normal-gunluk-ped-40-adet",
-    "ad": "Sleepy Bio Normal Günlük Ped 40 Adet",
-    "ana_kategori": "Hijyenik Ped",
-    "agirlik_hacim": null,
-    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/129643.jpg",
-    "en_dusuk_fiyat": 69.9,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 69.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        59.9
-      ],
-      [
-        "2026-06-23",
-        69.9
-      ],
-      [
-        "2026-07-14",
-        54.9
-      ],
-      [
-        "2026-07-23",
-        69.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": []
-  },
-  {
     "_sid": "temizlik_signal-profesyonel-bakim-yumusak-dis-fircasi-1-adet",
     "ad": "Signal Profesyonel Bakım Yumuşak Diş Fırçası 1 Adet",
     "ana_kategori": "Ağız Bakım",
@@ -73007,6 +72957,39 @@
     ]
   },
   {
+    "_sid": "temizlik_prima-premium-care-3-numara-96-adet",
+    "ad": "Prima Premium Care 3 Numara 96 Adet",
+    "ana_kategori": "Bebek ve Hasta Bezi",
+    "agirlik_hacim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30210125.png",
+    "en_dusuk_fiyat": 1075.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 1075.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        1699.95
+      ],
+      [
+        "2026-06-25",
+        1075.95
+      ],
+      [
+        "2026-07-09",
+        1699.95
+      ],
+      [
+        "2026-08-05",
+        1075.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": []
+  },
+  {
     "_sid": "temizlik_softy-ultra-gece-7-adet",
     "ad": "Softy Ultra Gece 7 Adet",
     "ana_kategori": "Hijyenik Ped",
@@ -73154,6 +73137,39 @@
       [
         "2026-06-22",
         65.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": []
+  },
+  {
+    "_sid": "temizlik_sleepy-bio-normal-gunluk-ped-40-adet",
+    "ad": "Sleepy Bio Normal Günlük Ped 40 Adet",
+    "ana_kategori": "Hijyenik Ped",
+    "agirlik_hacim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/129643.jpg",
+    "en_dusuk_fiyat": 69.9,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 69.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        59.9
+      ],
+      [
+        "2026-06-23",
+        69.9
+      ],
+      [
+        "2026-07-14",
+        54.9
+      ],
+      [
+        "2026-07-23",
+        69.9
       ]
     ],
     "agirlik_hacim_gecmisi": []
@@ -73730,39 +73746,6 @@
         "200 ML"
       ]
     ]
-  },
-  {
-    "_sid": "temizlik_prima-premium-care-3-numara-96-adet",
-    "ad": "Prima Premium Care 3 Numara 96 Adet",
-    "ana_kategori": "Bebek ve Hasta Bezi",
-    "agirlik_hacim": null,
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30210125.png",
-    "en_dusuk_fiyat": 1075.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 1075.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        1699.95
-      ],
-      [
-        "2026-06-25",
-        1075.95
-      ],
-      [
-        "2026-07-09",
-        1699.95
-      ],
-      [
-        "2026-08-05",
-        1075.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": []
   },
   {
     "_sid": "temizlik_baby-turco-zeytinyagli-islak-havlu-90-adet",
@@ -80165,6 +80148,39 @@
     "agirlik_hacim_gecmisi": []
   },
   {
+    "_sid": "temizlik_jenny-willy-junior-cocuk-bezi-32-adet",
+    "ad": "Jenny & Willy Junior Çocuk Bezi 32 Adet",
+    "ana_kategori": "Bebek ve Hasta Bezi",
+    "agirlik_hacim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1300208.png",
+    "en_dusuk_fiyat": 209.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 209.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        199.0
+      ],
+      [
+        "2026-07-14",
+        209.0
+      ],
+      [
+        "2026-07-18",
+        179.0
+      ],
+      [
+        "2026-07-22",
+        209.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": []
+  },
+  {
     "_sid": "temizlik_sensodyne-dis-eti-bakimi-dis-macunu-75-ml",
     "ad": "Sensodyne Diş Eti Bakımı Diş Macunu 75 Ml",
     "ana_kategori": "Ağız Bakım",
@@ -80302,44 +80318,6 @@
       ]
     ],
     "agirlik_hacim_gecmisi": []
-  },
-  {
-    "_sid": "temizlik_elidor-aninda-onarici-bakim-sampuani-650-ml",
-    "ad": "Elidor Anında Onarıcı Bakım Şampuanı 650 Ml",
-    "ana_kategori": "Saç Bakım",
-    "agirlik_hacim": "650 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/34266101.png",
-    "en_dusuk_fiyat": 264.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 264.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        169.95
-      ],
-      [
-        "2026-06-23",
-        264.95
-      ],
-      [
-        "2026-06-29",
-        169.95
-      ],
-      [
-        "2026-07-09",
-        264.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "650 ML"
-      ]
-    ]
   },
   {
     "_sid": "temizlik_canped-orta-emici-kulot-9-adet",
@@ -81063,39 +81041,6 @@
     "agirlik_hacim_gecmisi": []
   },
   {
-    "_sid": "temizlik_jenny-willy-junior-cocuk-bezi-32-adet",
-    "ad": "Jenny & Willy Junior Çocuk Bezi 32 Adet",
-    "ana_kategori": "Bebek ve Hasta Bezi",
-    "agirlik_hacim": null,
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1300208.png",
-    "en_dusuk_fiyat": 209.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 209.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        199.0
-      ],
-      [
-        "2026-07-14",
-        209.0
-      ],
-      [
-        "2026-07-18",
-        179.0
-      ],
-      [
-        "2026-07-22",
-        209.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": []
-  },
-  {
     "_sid": "temizlik_molfix-firsat-maxi-4-numara-kulot-bez-52-adet",
     "ad": "Molfix Fırsat Maxi 4 Numara Külot Bez 52 Adet",
     "ana_kategori": "Bebek ve Hasta Bezi",
@@ -81115,6 +81060,44 @@
       ]
     ],
     "agirlik_hacim_gecmisi": []
+  },
+  {
+    "_sid": "temizlik_elidor-aninda-onarici-bakim-sampuani-650-ml",
+    "ad": "Elidor Anında Onarıcı Bakım Şampuanı 650 Ml",
+    "ana_kategori": "Saç Bakım",
+    "agirlik_hacim": "650 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/34266101.png",
+    "en_dusuk_fiyat": 264.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 264.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        169.95
+      ],
+      [
+        "2026-06-23",
+        264.95
+      ],
+      [
+        "2026-06-29",
+        169.95
+      ],
+      [
+        "2026-07-09",
+        264.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "650 ML"
+      ]
+    ]
   },
   {
     "_sid": "temizlik_garnier-ambre-solaire-gunessiz-bronz-sprey-150-ml",
@@ -85379,6 +85362,32 @@
       ]
     ],
     "agirlik_hacim_gecmisi": []
+  },
+  {
+    "_sid": "temizlik_karayel-limon-kolonyasi-400-ml",
+    "ad": "Karayel Limon Kolonyası 400 Ml",
+    "ana_kategori": "Parfüm ve Deodorant",
+    "agirlik_hacim": "400 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/bim/1402169.jpg",
+    "en_dusuk_fiyat": 56.5,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 56.5
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-08-06",
+        56.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-08-06",
+        "400 ML"
+      ]
+    ]
   },
   {
     "_sid": "temizlik_mentor-s-code-tiras-kopugu-250-ml",
@@ -90216,40 +90225,40 @@
     "agirlik_hacim_gecmisi": []
   },
   {
-    "_sid": "temizlik_hobby-enerji-sac-jolesi-sert-250-ml",
-    "ad": "Hobby Enerji Saç Jölesi Sert 250 Ml",
-    "ana_kategori": "Saç Bakım",
-    "agirlik_hacim": "250 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/sok/34433002.jpg",
-    "en_dusuk_fiyat": 199.0,
+    "_sid": "temizlik_neutrogena-besleyici-krem-300-ml",
+    "ad": "Neutrogena Besleyici Krem 300 Ml",
+    "ana_kategori": "Cilt Bakımı",
+    "agirlik_hacim": "300 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30078318.png",
+    "en_dusuk_fiyat": 197.97,
     "market_fiyatlari": [
       {
-        "market": "sok",
-        "fiyat": 199.0
+        "market": "carrefour",
+        "fiyat": 197.97
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-06-22",
-        119.0
+        "2026-07-06",
+        329.95
       ],
       [
-        "2026-07-01",
-        199.0
+        "2026-07-09",
+        197.97
       ],
       [
-        "2026-07-19",
-        129.0
+        "2026-07-16",
+        131.98
       ],
       [
-        "2026-07-23",
-        199.0
+        "2026-07-20",
+        197.97
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-07-03",
-        "250 ML"
+        "2026-07-06",
+        "300 ML"
       ]
     ]
   },
@@ -91016,40 +91025,40 @@
     ]
   },
   {
-    "_sid": "temizlik_neutrogena-besleyici-krem-300-ml",
-    "ad": "Neutrogena Besleyici Krem 300 Ml",
-    "ana_kategori": "Cilt Bakımı",
-    "agirlik_hacim": "300 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30078318.png",
-    "en_dusuk_fiyat": 197.97,
+    "_sid": "temizlik_hobby-enerji-sac-jolesi-sert-250-ml",
+    "ad": "Hobby Enerji Saç Jölesi Sert 250 Ml",
+    "ana_kategori": "Saç Bakım",
+    "agirlik_hacim": "250 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/sok/34433002.jpg",
+    "en_dusuk_fiyat": 199.0,
     "market_fiyatlari": [
       {
-        "market": "carrefour",
-        "fiyat": 197.97
+        "market": "sok",
+        "fiyat": 199.0
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-07-06",
-        329.95
+        "2026-06-22",
+        119.0
       ],
       [
-        "2026-07-09",
-        197.97
+        "2026-07-01",
+        199.0
       ],
       [
-        "2026-07-16",
-        131.98
+        "2026-07-19",
+        129.0
       ],
       [
-        "2026-07-20",
-        197.97
+        "2026-07-23",
+        199.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-07-06",
-        "300 ML"
+        "2026-07-03",
+        "250 ML"
       ]
     ]
   },
@@ -91417,31 +91426,6 @@
     ]
   },
   {
-    "_sid": "temizlik_flormar-oje-472-color-joy-1-adet",
-    "ad": "Flormar Oje 472 Color Joy 1 Adet",
-    "ana_kategori": "Makyaj",
-    "agirlik_hacim": null,
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/24004984.png",
-    "en_dusuk_fiyat": 49.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 49.5
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        47.5
-      ],
-      [
-        "2026-07-01",
-        49.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": []
-  },
-  {
     "_sid": "temizlik_mentor-banyo-tiras-bicagi-6-adet",
     "ad": "Mentor Banyo Tıraş Bıçağı 6 Adet",
     "ana_kategori": "Tıraş Ürünleri",
@@ -91547,6 +91531,32 @@
       [
         "2026-07-03",
         "5 GR"
+      ]
+    ]
+  },
+  {
+    "_sid": "temizlik_duru-nem-bombasi-onarim-sampuan-600-ml",
+    "ad": "Duru Nem Bombası Onarım Şampuan 600 Ml",
+    "ana_kategori": "Saç Bakım",
+    "agirlik_hacim": "600 ML",
+    "resim": null,
+    "en_dusuk_fiyat": 179.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 179.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        179.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "600 ML"
       ]
     ]
   },
@@ -92026,6 +92036,31 @@
     "agirlik_hacim_gecmisi": []
   },
   {
+    "_sid": "temizlik_flormar-oje-472-color-joy-1-adet",
+    "ad": "Flormar Oje 472 Color Joy 1 Adet",
+    "ana_kategori": "Makyaj",
+    "agirlik_hacim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/24004984.png",
+    "en_dusuk_fiyat": 49.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 49.5
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        47.5
+      ],
+      [
+        "2026-07-01",
+        49.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": []
+  },
+  {
     "_sid": "temizlik_arko-nem-yagli-krem-20-ml",
     "ad": "Arko Nem Yağlı Krem 20 Ml",
     "ana_kategori": "Cilt Bakımı",
@@ -92291,32 +92326,6 @@
       ]
     ],
     "agirlik_hacim_gecmisi": []
-  },
-  {
-    "_sid": "temizlik_duru-nem-bombasi-onarim-sampuan-600-ml",
-    "ad": "Duru Nem Bombası Onarım Şampuan 600 Ml",
-    "ana_kategori": "Saç Bakım",
-    "agirlik_hacim": "600 ML",
-    "resim": null,
-    "en_dusuk_fiyat": 179.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 179.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        179.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "600 ML"
-      ]
-    ]
   },
   {
     "_sid": "temizlik_soffio-cocuk-bezi-mini-60-adet",
@@ -101237,6 +101246,64 @@
     "agirlik_hacim_gecmisi": []
   },
   {
+    "_sid": "temizlik_dalan-zeytinyagli-beyaz-banyo-sabunu-4x150-gr",
+    "ad": "Dalan Zeytinyağlı Beyaz Banyo Sabunu 4x150 Gr",
+    "ana_kategori": "Duş Banyo ve Sabun",
+    "agirlik_hacim": "600 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 111.23,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 111.23
+      },
+      {
+        "market": "migros",
+        "fiyat": 159.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        111.23
+      ],
+      [
+        "2026-06-29",
+        158.9
+      ],
+      [
+        "2026-07-01",
+        111.23
+      ],
+      [
+        "2026-07-08",
+        158.9
+      ],
+      [
+        "2026-07-14",
+        111.23
+      ],
+      [
+        "2026-07-15",
+        109.95
+      ],
+      [
+        "2026-07-20",
+        158.9
+      ],
+      [
+        "2026-08-05",
+        111.23
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "600 GR"
+      ]
+    ]
+  },
+  {
     "_sid": "temizlik_molped-supernight-mega-super-gece-hijyenik-ped-26-adet",
     "ad": "Molped Supernight Mega Süper Gece Hijyenik Ped 26 Adet",
     "ana_kategori": "Hijyenik Ped",
@@ -101532,52 +101599,6 @@
     ]
   },
   {
-    "_sid": "temizlik_neutrogena-intense-repair-dudak-nemlendirici-15-ml",
-    "ad": "Neutrogena Intense Repair Dudak Nemlendirici 15 Ml",
-    "ana_kategori": "Cilt Bakımı",
-    "agirlik_hacim": "15 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30302721.png",
-    "en_dusuk_fiyat": 185.97,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 185.97
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        309.95
-      ],
-      [
-        "2026-06-25",
-        123.98
-      ],
-      [
-        "2026-06-29",
-        309.95
-      ],
-      [
-        "2026-07-09",
-        185.97
-      ],
-      [
-        "2026-07-16",
-        123.98
-      ],
-      [
-        "2026-07-20",
-        185.97
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "15 ML"
-      ]
-    ]
-  },
-  {
     "_sid": "temizlik_elidor-aninda-onarici-bakim-sampuan-400-ml",
     "ad": "Elidor Anında Onarıcı Bakım Şampuan 400 Ml",
     "ana_kategori": "Saç Bakım",
@@ -101852,25 +101873,50 @@
     ]
   },
   {
-    "_sid": "temizlik_molfix-3d-xl-bebek-bezi-38-adet",
-    "ad": "Molfix 3D XL Bebek Bezi 38 Adet",
-    "ana_kategori": "Bebek ve Hasta Bezi",
-    "agirlik_hacim": null,
-    "resim": "https://cdn.marketfiyati.org.tr/hakmar/1030197.jpg",
-    "en_dusuk_fiyat": 415.0,
+    "_sid": "temizlik_nivea-luminous630-skin-glow-serum-30-ml",
+    "ad": "Nivea Luminous630 Skin Glow Serum 30 Ml",
+    "ana_kategori": "Cilt Bakımı",
+    "agirlik_hacim": "30 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/35406387.jpg",
+    "en_dusuk_fiyat": 419.98,
     "market_fiyatlari": [
       {
-        "market": "hakmar",
-        "fiyat": 415.0
+        "market": "carrefour",
+        "fiyat": 419.98
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-08-05",
-        415.0
+        "2026-06-22",
+        399.98
+      ],
+      [
+        "2026-06-25",
+        319.98
+      ],
+      [
+        "2026-06-29",
+        399.98
+      ],
+      [
+        "2026-07-16",
+        319.98
+      ],
+      [
+        "2026-07-20",
+        399.98
+      ],
+      [
+        "2026-07-23",
+        419.98
       ]
     ],
-    "agirlik_hacim_gecmisi": []
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "30 ML"
+      ]
+    ]
   },
   {
     "_sid": "temizlik_sensodyne-klinik-beyazlik-dis-lekelerine-karsi-dis-macunu-75-ml",
@@ -102097,64 +102143,6 @@
     ]
   },
   {
-    "_sid": "temizlik_dalan-zeytinyagli-beyaz-banyo-sabunu-4x150-gr",
-    "ad": "Dalan Zeytinyağlı Beyaz Banyo Sabunu 4x150 Gr",
-    "ana_kategori": "Duş Banyo ve Sabun",
-    "agirlik_hacim": "600 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 111.23,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 111.23
-      },
-      {
-        "market": "migros",
-        "fiyat": 159.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        111.23
-      ],
-      [
-        "2026-06-29",
-        158.9
-      ],
-      [
-        "2026-07-01",
-        111.23
-      ],
-      [
-        "2026-07-08",
-        158.9
-      ],
-      [
-        "2026-07-14",
-        111.23
-      ],
-      [
-        "2026-07-15",
-        109.95
-      ],
-      [
-        "2026-07-20",
-        158.9
-      ],
-      [
-        "2026-08-05",
-        111.23
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "600 GR"
-      ]
-    ]
-  },
-  {
     "_sid": "temizlik_arko-tiras-kopugu-klasik-200-ml",
     "ad": "Arko Tıraş Köpüğü Klasik 200 Ml",
     "ana_kategori": "Tıraş Ürünleri",
@@ -102194,35 +102182,6 @@
     "ana_kategori": "Saç Bakım",
     "agirlik_hacim": null,
     "resim": "https://cdn.marketfiyati.org.tr/sok/140779.jpg",
-    "en_dusuk_fiyat": 139.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 139.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        139.0
-      ],
-      [
-        "2026-06-26",
-        199.0
-      ],
-      [
-        "2026-07-14",
-        139.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": []
-  },
-  {
-    "_sid": "temizlik_palette-goz-alici-renkler-9-0-sari-1-adet",
-    "ad": "Palette Göz Alıcı Renkler 9-0 Sarı 1 Adet",
-    "ana_kategori": "Saç Bakım",
-    "agirlik_hacim": null,
-    "resim": "https://cdn.marketfiyati.org.tr/sokimages/140778.png",
     "en_dusuk_fiyat": 139.0,
     "market_fiyatlari": [
       {
@@ -102388,6 +102347,52 @@
       [
         "2026-07-03",
         "200 ML"
+      ]
+    ]
+  },
+  {
+    "_sid": "temizlik_neutrogena-intense-repair-dudak-nemlendirici-15-ml",
+    "ad": "Neutrogena Intense Repair Dudak Nemlendirici 15 Ml",
+    "ana_kategori": "Cilt Bakımı",
+    "agirlik_hacim": "15 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30302721.png",
+    "en_dusuk_fiyat": 185.97,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 185.97
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        309.95
+      ],
+      [
+        "2026-06-25",
+        123.98
+      ],
+      [
+        "2026-06-29",
+        309.95
+      ],
+      [
+        "2026-07-09",
+        185.97
+      ],
+      [
+        "2026-07-16",
+        123.98
+      ],
+      [
+        "2026-07-20",
+        185.97
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "15 ML"
       ]
     ]
   },
@@ -102596,50 +102601,63 @@
     ]
   },
   {
-    "_sid": "temizlik_nivea-luminous630-skin-glow-serum-30-ml",
-    "ad": "Nivea Luminous630 Skin Glow Serum 30 Ml",
-    "ana_kategori": "Cilt Bakımı",
-    "agirlik_hacim": "30 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/35406387.jpg",
-    "en_dusuk_fiyat": 419.98,
+    "_sid": "temizlik_clear-women-yumusak-ve-parlak-sampuan-600-ml",
+    "ad": "Clear Women Yumuşak Ve Parlak Şampuan 600 Ml",
+    "ana_kategori": "Saç Bakım",
+    "agirlik_hacim": "600 ML",
+    "resim": null,
+    "en_dusuk_fiyat": 319.95,
     "market_fiyatlari": [
       {
-        "market": "carrefour",
-        "fiyat": 419.98
+        "market": "migros",
+        "fiyat": 319.95
       }
     ],
     "fiyat_gecmisi": [
       [
         "2026-06-22",
-        399.98
+        179.95
       ],
       [
-        "2026-06-25",
-        319.98
+        "2026-06-23",
+        319.95
       ],
       [
         "2026-06-29",
-        399.98
+        179.95
       ],
       [
-        "2026-07-16",
-        319.98
-      ],
-      [
-        "2026-07-20",
-        399.98
-      ],
-      [
-        "2026-07-23",
-        419.98
+        "2026-07-09",
+        319.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-03",
-        "30 ML"
+        "600 ML"
       ]
     ]
+  },
+  {
+    "_sid": "temizlik_molfix-3d-xl-bebek-bezi-38-adet",
+    "ad": "Molfix 3D XL Bebek Bezi 38 Adet",
+    "ana_kategori": "Bebek ve Hasta Bezi",
+    "agirlik_hacim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/hakmar/1030197.jpg",
+    "en_dusuk_fiyat": 415.0,
+    "market_fiyatlari": [
+      {
+        "market": "hakmar",
+        "fiyat": 415.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-08-05",
+        415.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": []
   },
   {
     "_sid": "temizlik_neutrogena-yuz-temizleme-jeli-200-ml",
@@ -102967,6 +102985,35 @@
       [
         "2026-07-24",
         135.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": []
+  },
+  {
+    "_sid": "temizlik_palette-goz-alici-renkler-9-0-sari-1-adet",
+    "ad": "Palette Göz Alıcı Renkler 9-0 Sarı 1 Adet",
+    "ana_kategori": "Saç Bakım",
+    "agirlik_hacim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/sokimages/140778.png",
+    "en_dusuk_fiyat": 139.0,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 139.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        139.0
+      ],
+      [
+        "2026-06-26",
+        199.0
+      ],
+      [
+        "2026-07-14",
+        139.0
       ]
     ],
     "agirlik_hacim_gecmisi": []
@@ -103314,44 +103361,6 @@
       ]
     ],
     "agirlik_hacim_gecmisi": []
-  },
-  {
-    "_sid": "temizlik_clear-women-yumusak-ve-parlak-sampuan-600-ml",
-    "ad": "Clear Women Yumuşak Ve Parlak Şampuan 600 Ml",
-    "ana_kategori": "Saç Bakım",
-    "agirlik_hacim": "600 ML",
-    "resim": null,
-    "en_dusuk_fiyat": 319.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 319.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        179.95
-      ],
-      [
-        "2026-06-23",
-        319.95
-      ],
-      [
-        "2026-06-29",
-        179.95
-      ],
-      [
-        "2026-07-09",
-        319.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "600 ML"
-      ]
-    ]
   },
   {
     "_sid": "temizlik_gillette-fusion-proglide-tiras-makinesi-1-adet",
@@ -105566,6 +105575,40 @@
     "agirlik_hacim_gecmisi": []
   },
   {
+    "_sid": "temizlik_nivea-gul-suyu-i-ceren-cift-fazli-makyaj-temizleme-suyu-400-ml",
+    "ad": "Nivea Gül Suyu İçeren Çift Fazlı Makyaj Temizleme Suyu 400 Ml",
+    "ana_kategori": "Cilt Bakımı",
+    "agirlik_hacim": "400 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/sok/95774.jpg",
+    "en_dusuk_fiyat": 198.38,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 198.38
+      },
+      {
+        "market": "sok",
+        "fiyat": 285.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-07-24",
+        142.0
+      ],
+      [
+        "2026-08-05",
+        198.38
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-24",
+        "400 ML"
+      ]
+    ]
+  },
+  {
     "_sid": "temizlik_listerine-cool-mint-hafif-tat-250-ml",
     "ad": "Listerine Cool Mint Hafif Tat 250 Ml",
     "ana_kategori": "Ağız Bakım",
@@ -105665,48 +105708,6 @@
       ]
     ],
     "agirlik_hacim_gecmisi": []
-  },
-  {
-    "_sid": "temizlik_hawaiian-tropic-protect-carrot-oil-spray-20-spf-200-ml",
-    "ad": "Hawaiian Tropic Protect Carrot Oil Spray 20 SPF 200 Ml",
-    "ana_kategori": "Cilt Bakımı",
-    "agirlik_hacim": "200 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/35520015.jpg",
-    "en_dusuk_fiyat": 409.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 409.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        467.95
-      ],
-      [
-        "2026-06-23",
-        1169.95
-      ],
-      [
-        "2026-07-09",
-        350.95
-      ],
-      [
-        "2026-07-14",
-        1169.95
-      ],
-      [
-        "2026-08-05",
-        409.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "200 ML"
-      ]
-    ]
   },
   {
     "_sid": "temizlik_excellence-creme-200-yogun-siyah-sac-boyasi-1-adet",
@@ -106153,40 +106154,6 @@
     "agirlik_hacim_gecmisi": []
   },
   {
-    "_sid": "temizlik_nivea-gul-suyu-i-ceren-cift-fazli-makyaj-temizleme-suyu-400-ml",
-    "ad": "Nivea Gül Suyu İçeren Çift Fazlı Makyaj Temizleme Suyu 400 Ml",
-    "ana_kategori": "Cilt Bakımı",
-    "agirlik_hacim": "400 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/sok/95774.jpg",
-    "en_dusuk_fiyat": 198.38,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 198.38
-      },
-      {
-        "market": "sok",
-        "fiyat": 285.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-07-24",
-        142.0
-      ],
-      [
-        "2026-08-05",
-        198.38
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-24",
-        "400 ML"
-      ]
-    ]
-  },
-  {
     "_sid": "temizlik_elidor-superblend-serum-bakim-kremi-guclu-ve-parlak-350-ml",
     "ad": "Elidor Superblend Serum Bakım Kremi Güçlü Ve Parlak 350 Ml",
     "ana_kategori": "Saç Bakım",
@@ -106427,6 +106394,48 @@
       [
         "2026-08-05",
         "500 ML"
+      ]
+    ]
+  },
+  {
+    "_sid": "temizlik_hawaiian-tropic-protect-carrot-oil-spray-20-spf-200-ml",
+    "ad": "Hawaiian Tropic Protect Carrot Oil Spray 20 SPF 200 Ml",
+    "ana_kategori": "Cilt Bakımı",
+    "agirlik_hacim": "200 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/35520015.jpg",
+    "en_dusuk_fiyat": 409.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 409.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        467.95
+      ],
+      [
+        "2026-06-23",
+        1169.95
+      ],
+      [
+        "2026-07-09",
+        350.95
+      ],
+      [
+        "2026-07-14",
+        1169.95
+      ],
+      [
+        "2026-08-05",
+        409.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "200 ML"
       ]
     ]
   },
