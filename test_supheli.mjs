@@ -235,8 +235,10 @@ console.log('\n=== 7. TASARIM: amber/yesil, KIRMIZI YOK ===');
 console.log('\n=== 8. GRAFIKTE ZIRVE ISARETI ===');
 {
   const fg = fnKaynak('fiyatGecmisiBlogu') || '';
-  ok('fiyatGecmisiBlogu zirve isareti uretiyor', /fg-zirve/.test(fg));
-  ok('  "gün sürdü" etiketi var', /gün sürdü/.test(fg), '');
+  ok('fiyatGecmisiBlogu zirve halkasi uretiyor', /fg-zirve-halka/.test(fg));
+  ok('  "gün sürdü" notu var', /gün sürdü/.test(fg), '');
+  ok('  not SVG icine degil altyaziya yaziliyor (cakisma yok)',
+     /zirveNotu/.test(fg) && !/fg-zirve-etiket/.test(fg));
   ok('  sadece kisa_zirve/orta_zirve sebebinde ciziliyor', /kisa_zirve|zirveIsareti|_sd/.test(fg));
   ok('  mevcut cizim korunmus (bandPath/avgPath duruyor)', /bandPath/.test(fg) && /avgPath/.test(fg));
 }

@@ -1754,7 +1754,7 @@ function fiyatGecmisiBlogu(urun) {
   // Zirve işareti — yalnızca şüphe sebebi zamansal zirveyse. Süre grafiğin KENDİ
   // serisinden hesaplanır (çizilen şeyle tutarlı olsun); DB'nin fiyat_gecmisi'si
   // farklı bir seri olduğu için puanın dayandığı gün sayısı birebir aynı olmayabilir.
-  let zirveIsareti = '';
+  let zirveIsareti = '', zirveNotu = '';
   const _sd = typeof supheliDurum === 'function' ? supheliDurum(urun) : null;
   if (_sd && _sd.sebepler.some(s => s === 'kisa_zirve' || s === 'orta_zirve')) {
     const zi = gunler.findIndex(g => g.t === enYuksekGun.t);
@@ -1762,23 +1762,13 @@ function fiyatGecmisiBlogu(urun) {
     if (sonraki) {
       const sure = _fgGunFarki(enYuksekGun.t, sonraki.t);
       const zx = xFor(enYuksekGun.t), zy = yFor(enYuksekGun.avg);
-      // Konumu halka gösterir. Yazı üst kenarda, BOŞ olan köşede durur:
-      // ilk/son gün fiyat etiketleri de köşelere yaslandığı için, o gün
-      // grafiğin tepesindeyse o köşe dolu sayılır. İki köşe de doluysa yazı
-      // hiç basılmaz — halka tek başına da zirveyi işaretliyor.
-      const sagda = zx > (padL + chartW * 0.5);
-      const solBos = (yFor(ilkGun.avg) - 8) > 22;
-      const sagBos = (yFor(sonGun.avg) - 8) > 22;
-      const kose = sagda
-        ? (solBos ? 'sol' : (sagBos ? 'sag' : null))
-        : (sagBos ? 'sag' : (solBos ? 'sol' : null));
+      // Grafikte sadece halka. Açıklama SVG içine değil alt yazıya yazılır —
+      // fiyat etiketleri hem eğrinin çevresini hem iki köşeyi kullandığı için
+      // SVG içindeki her konum bir üründe çakışıyordu (ölçüm: 36 grafikte 3).
+      // Outlier notu da zaten aynı yerde duruyor.
       zirveIsareti =
         '<circle cx="' + zx.toFixed(1) + '" cy="' + zy.toFixed(1) + '" r="5.5" class="fg-zirve-halka"/>';
-      if (kose) {
-        zirveIsareti += '<text x="' + (kose === 'sol' ? padL : (W - padR)) + '" y="9.5" text-anchor="'
-          + (kose === 'sol' ? 'start' : 'end') + '" class="fg-zirve-etiket">Zirve · '
-          + sure + ' gün sürdü</text>';
-      }
+      zirveNotu = '<span class="fg-zirve-not">◯ Zirve · ' + sure + ' gün sürdü</span>';
     }
   }
 
@@ -1839,7 +1829,7 @@ function fiyatGecmisiBlogu(urun) {
     +     eksenX
     +   '</svg>'
     + '</div>'
-    + '<div class="fg-altyazi">' + altyaziText + '</div>'
+    + '<div class="fg-altyazi">' + altyaziText + (zirveNotu ? ' · ' + zirveNotu : '') + '</div>'
     + '<div class="fg-ozet">' + ozetText + '</div>'
     + '</div>';
 }

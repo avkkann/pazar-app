@@ -357,9 +357,9 @@
 
     /* Fiyat geçmişi grafiğinde zirve işareti — mevcut çizime eklenir. */
     .fg-svg .fg-zirve-halka { fill: none; stroke: #D97706; stroke-width: 1.8; }
-    .fg-svg .fg-zirve-etiket { font-size: 9px; font-weight: 700; fill: #B45309; }
+    .fg-zirve-not { color: #B45309; font-weight: 600; white-space: nowrap; }
     [data-theme="dark"] .fg-svg .fg-zirve-halka { stroke: #FBBF24; }
-    [data-theme="dark"] .fg-svg .fg-zirve-etiket { fill: #FCD34D; }
+    [data-theme="dark"] .fg-zirve-not { color: #FCD34D; }
 
     .gizli-fiyat-ozet {
       display: flex; align-items: center; justify-content: space-between; gap: 8px;
