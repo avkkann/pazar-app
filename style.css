@@ -306,6 +306,69 @@
     [data-theme="dark"] .tazelik-chip.orta { background: rgba(217,119,6,0.18); color: #FCD34D; }
     [data-theme="dark"] .tazelik-chip.eski { background: rgba(255,255,255,0.07); color: #9CA3AF; }
 
+    /* ── SAHTE İNDİRİM ────────────────────────────────────────────
+       Amber = şüphe, yeşil = doğrulanmış. Kırmızı YOK: "en pahalı"
+       etiketi (.detay-mkt-row.worst) zaten kırmızı, karışmasın.
+       Rozet metrikleri .indirim-rozet ile birebir aynı (11px/600/6px)
+       — kartta onun yerine geçtiği için satır yüksekliği değişmez. */
+    .supheli-rozet {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 3px 8px; border-radius: 6px;
+      font-size: 11px; font-weight: 600; white-space: nowrap;
+      background: #FEF3C7; color: #92400E;
+    }
+    .supheli-rozet svg {
+      width: 12px; height: 12px; flex: 0 0 12px;
+      fill: none; stroke: currentColor; stroke-width: 2;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+    [data-theme="dark"] .supheli-rozet { background: rgba(217,119,6,0.18); color: #FCD34D; }
+
+    /* Kutu ürün adından/fiyattan baskın olmasın: başlık 13px, madde 12px,
+       yumuşak zemin + sol vurgu şeridi, gölge yok. */
+    .supheli-kutu {
+      margin-top: 8px; padding: 10px 12px;
+      background: #FFFBEB; border: 1px solid #FDE68A;
+      border-left: 3px solid #D97706; border-radius: 8px;
+    }
+    .supheli-kutu-baslik {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 13px; font-weight: 700; color: #92400E; line-height: 1.35;
+    }
+    .supheli-kutu-baslik svg {
+      width: 14px; height: 14px; flex: 0 0 14px;
+      fill: none; stroke: currentColor; stroke-width: 2;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+    .supheli-kutu-liste { margin: 6px 0 0; padding-left: 20px; }
+    .supheli-kutu-madde {
+      font-size: 12px; font-weight: 500; color: #78350F;
+      line-height: 1.45; margin-top: 2px;
+    }
+    [data-theme="dark"] .supheli-kutu { background: rgba(217,119,6,0.10); border-color: rgba(217,119,6,0.35); border-left-color: #D97706; }
+    [data-theme="dark"] .supheli-kutu-baslik { color: #FCD34D; }
+    [data-theme="dark"] .supheli-kutu-madde { color: #FDE68A; }
+
+    .gercek-indirim-rozet {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 3px 8px; border-radius: 6px;
+      font-size: 11px; font-weight: 600; white-space: nowrap;
+      background: #DCFCE7; color: #065F46;
+    }
+    .gercek-indirim-rozet:not(.kisa) { font-size: 13px; padding: 6px 10px; }
+    .gercek-indirim-rozet svg {
+      width: 12px; height: 12px; flex: 0 0 12px;
+      fill: none; stroke: currentColor; stroke-width: 2;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+    [data-theme="dark"] .gercek-indirim-rozet { background: rgba(34,197,94,0.15); color: #86EFAC; }
+
+    /* Fiyat geçmişi grafiğinde zirve işareti — mevcut çizime eklenir. */
+    .fg-svg .fg-zirve-halka { fill: none; stroke: #D97706; stroke-width: 1.8; }
+    .fg-svg .fg-zirve-etiket { font-size: 9px; font-weight: 700; fill: #B45309; }
+    [data-theme="dark"] .fg-svg .fg-zirve-halka { stroke: #FBBF24; }
+    [data-theme="dark"] .fg-svg .fg-zirve-etiket { fill: #FCD34D; }
+
     .gizli-fiyat-ozet {
       display: flex; align-items: center; justify-content: space-between; gap: 8px;
       width: 100%; min-height: 44px; padding: 10px 14px; margin-top: 2px;

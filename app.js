@@ -1028,7 +1028,7 @@ function openDetay(urunId) {
     </div>
     ${(() => { const bf = birimFiyatHesapla(u); return bf ? `<div class="detay-birim-fiyat">${birimFiyatYazi(bf)}</div>` : ''; })()}
     ${(() => { const rz = tuzakRozetiHesapla(u); return rz ? tuzakRozetiHTML(rz, false) : ''; })()}
-    ${(() => { const ir = indirimRozetiHesapla(u); return ir ? indirimRozetiHTML(ir, false) : ''; })()}
+    ${urunRozetleriHTML(u, false)}
     <div class="detay-section detay-section--market">
       <div class="detay-sec-label">Market Fiyatları</div>
       <div class="detay-mkt-list">
@@ -1475,6 +1475,115 @@ function indirimRozetiHesapla(urun) {
   return null;
 }
 
+// ═══ Sahte indirim rozeti ═══════════════════════════════
+// indirim_analiz.py her gece urunler.indirim_supheli_* kolonlarini yaziyor.
+// Etiketler o dosyadaki sebepler.append(...) ile birebir; eslenmeyen bir etiket
+// gelirse o madde HIC gosterilmez (ham teknik metin kullaniciya basilmaz).
+const SUPHELI_SEBEP_CUMLE = {
+  kisa_zirve:        'Fiyat birkaç gün önce zaten bu seviyedeydi',
+  orta_zirve:        'Yüksek fiyat sadece birkaç gün sürdü',
+  yuksek_oynaklik:   'Fiyat son ayda sürekli oynadı',
+  tekrarli_dongu:    'Son 30 günde tekrarlayan zam-indirim döngüsü',
+  tek_dongu:         'Son 30 günde bir zam-indirim döngüsü oldu',
+  asiri_yuksek_oran: 'İndirim oranı gerçekçi değil'
+};
+// Kutu guclu bir iddia ("bu indirim gercek gorunmuyor"), o yuzden zamansal desen
+// sart. Yuksek indirim orani tek basina sahtelik kaniti degil — sezon sonu
+// tasfiyesinde de oran yuksek cikar (olcum: gunes urunleri, %55-70).
+const SUPHELI_ZAMANSAL_SEBEPLER = ['kisa_zirve', 'orta_zirve', 'tekrarli_dongu'];
+
+// null = veri yok. Bu durumda hicbir rozet cizilmez (ne supheli ne gercek).
+let _puanCache = null;
+
+async function supheliPuanlariYukle() {
+  if (_puanCache) return _puanCache;
+  try {
+    const { data, error } = await window.supabaseClient
+      .from('urunler')
+      .select('_sid, indirim_supheli_puan, indirim_supheli_sebepler, indirim_supheli_dusus_yuzde')
+      .gte('indirim_supheli_puan', 2);
+    if (error || !data) return null;
+    _puanCache = new Map(data.map(r => [r._sid, r]));
+    return _puanCache;
+  } catch (e) {
+    return null;
+  }
+}
+
+function supheliDurum(u) {
+  if (!u || !u._sid || !_puanCache) return null;
+  const k = _puanCache.get(u._sid);
+  if (!k || k.indirim_supheli_puan == null || k.indirim_supheli_puan < 2) return null;
+  const sebepler = (k.indirim_supheli_sebepler || [])
+    .map(s => String(s).trim())
+    .filter(s => SUPHELI_SEBEP_CUMLE[s]);
+  const zamansalVar = sebepler.some(s => SUPHELI_ZAMANSAL_SEBEPLER.indexOf(s) >= 0);
+  return {
+    seviye: (k.indirim_supheli_puan >= 4 && zamansalVar) ? 'kutu' : 'rozet',
+    puan: k.indirim_supheli_puan,
+    sebepler: sebepler,
+    dusus: k.indirim_supheli_dusus_yuzde
+  };
+}
+
+function supheliCumleler(durum) {
+  if (!durum || !durum.sebepler) return [];
+  return durum.sebepler.map(s => SUPHELI_SEBEP_CUMLE[s]).filter(Boolean);
+}
+
+function supheliRozetHTML() {
+  return `<span class="supheli-rozet">${lcIcon('alert-triangle')} Şüpheli indirim</span>`;
+}
+
+function supheliKutuHTML(durum) {
+  if (!durum || durum.seviye !== 'kutu') return '';
+  const maddeler = supheliCumleler(durum).slice(0, 2)
+    .map(c => `<li class="supheli-kutu-madde">${c}</li>`).join('');
+  return `<div class="supheli-kutu" role="note">
+      <div class="supheli-kutu-baslik">${lcIcon('alert-triangle')} Bu indirim gerçek görünmüyor</div>
+      ${maddeler ? `<ul class="supheli-kutu-liste">${maddeler}</ul>` : ''}
+    </div>`;
+}
+
+// Karsi taraf: supheli olmayan VE fiyati son 30 gunun en dusugunde olan urun.
+// _puanCache yoksa hic iddia edilmez.
+function gercekIndirimRozetiHesapla(u) {
+  if (!u || !u._sid || !_puanCache) return null;
+  if (supheliDurum(u)) return null;
+  const ir = indirimRozetiHesapla(u);
+  if (!ir) return null;
+  if (!_gecmisCache) return null;
+  const kayitlar = _gecmisCache[u._sid];
+  if (!kayitlar || !Array.isArray(kayitlar) || kayitlar.length < 2) return null;
+  const otuzGunOnce = new Date();
+  otuzGunOnce.setDate(otuzGunOnce.getDate() - 30);
+  const limit = otuzGunOnce.toISOString().slice(0, 10);
+  const sonAy = kayitlar.filter(k => k && k.t && k.f != null && k.t >= limit);
+  if (sonAy.length < 2) return null;
+  const enDusuk = Math.min(...sonAy.map(k => k.f));
+  if (u.en_dusuk_fiyat == null || u.en_dusuk_fiyat > enDusuk + 0.005) return null;
+  return { yuzde: ir.yuzde };
+}
+
+function gercekIndirimRozetiHTML(rozet, kisa) {
+  if (!rozet) return '';
+  return kisa
+    ? `<span class="gercek-indirim-rozet kisa">${lcIcon('leaf')} Gerçek indirim</span>`
+    : `<span class="gercek-indirim-rozet">${lcIcon('leaf')} Gerçek indirim · 30 günün en düşüğü</span>`;
+}
+
+// Kart ve detayin TEK rozet kaynagi. Sirali: supheli > gercek indirim > indirim.
+// Supheli ise "Büyük indirim" hic cizilmez — uygulama sahte indirimi firsat diye
+// pazarlamasin. Kartta (kisa=true) kutu yerine her zaman kucuk rozet cikar.
+function urunRozetleriHTML(u, kisa) {
+  const sd = supheliDurum(u);
+  if (sd) return (!kisa && sd.seviye === 'kutu') ? supheliKutuHTML(sd) : supheliRozetHTML();
+  const gi = gercekIndirimRozetiHesapla(u);
+  if (gi) return gercekIndirimRozetiHTML(gi, kisa);
+  const ir = indirimRozetiHesapla(u);
+  return ir ? indirimRozetiHTML(ir, kisa) : '';
+}
+
 // ═══ Fiyat Geçmişi: 30 günlük min-max band + ortalama çizgi + outlier cap ═══
 const _FG_MKT_AD = {
   a101: 'A101',
@@ -1642,6 +1751,26 @@ function fiyatGecmisiBlogu(urun) {
     fgEtiketler += '<text x="' + x.toFixed(1) + '" y="' + etiketY.toFixed(1) + '" text-anchor="' + anchor + '" class="fg-fiyat-etiket">' + fgFiyatYaz(g.avg) + ' ₺</text>';
   });
 
+  // Zirve işareti — yalnızca şüphe sebebi zamansal zirveyse. Süre grafiğin KENDİ
+  // serisinden hesaplanır (çizilen şeyle tutarlı olsun); DB'nin fiyat_gecmisi'si
+  // farklı bir seri olduğu için puanın dayandığı gün sayısı birebir aynı olmayabilir.
+  let zirveIsareti = '';
+  const _sd = typeof supheliDurum === 'function' ? supheliDurum(urun) : null;
+  if (_sd && _sd.sebepler.some(s => s === 'kisa_zirve' || s === 'orta_zirve')) {
+    const zi = gunler.findIndex(g => g.t === enYuksekGun.t);
+    const sonraki = zi >= 0 ? gunler[zi + 1] : null;
+    if (sonraki) {
+      const sure = _fgGunFarki(enYuksekGun.t, sonraki.t);
+      const zx = xFor(enYuksekGun.t), zy = yFor(enYuksekGun.avg);
+      const solda = zx > (padL + chartW * 0.6);
+      zirveIsareti =
+        '<circle cx="' + zx.toFixed(1) + '" cy="' + zy.toFixed(1) + '" r="5.5" class="fg-zirve-halka"/>'
+        + '<text x="' + (solda ? zx - 9 : zx + 9).toFixed(1) + '" y="' + (zy - 19).toFixed(1)
+        + '" text-anchor="' + (solda ? 'end' : 'start') + '" class="fg-zirve-etiket">Zirve · '
+        + sure + ' gün sürdü</text>';
+    }
+  }
+
   // Y ekseni 3 değer
   const yTicks = [fAlt, Math.round((fAlt + fUst) / 2), fUst];
   let ekseny = '';
@@ -1695,6 +1824,7 @@ function fiyatGecmisiBlogu(urun) {
     +     fgNoktalar
     +     fgEtiketler
     +     outlierMarkers
+    +     zirveIsareti
     +     eksenX
     +   '</svg>'
     + '</div>'
@@ -1960,6 +2090,18 @@ async function fiyatBildirimleriYukle() {
 }
 document.addEventListener('DOMContentLoaded', fiyatBildirimleriYukle);
 
+// Şüpheli indirim puanları da açılışta tek sefer (876 satır / ~17 KB gzip).
+// Gelmezse _puanCache null kalır ve hiçbir şüphe/gerçek-indirim rozeti çizilmez.
+document.addEventListener('DOMContentLoaded', function () {
+  supheliPuanlariYukle().then(function (m) {
+    if (!m) return;
+    // Rozetler ilk çizimden sonra gelebilir; görünen listeleri tazele.
+    if (typeof uygulaCatFiltre === 'function' && window.yuklenenUrunler && window.yuklenenUrunler.length) {
+      uygulaCatFiltre();
+    }
+  });
+});
+
 function bildirimUyariHTML(sid, market) {
   if (!sid || !market) return '';
   const n = _fiyatBildirimMap.get(sid + '|' + market);
@@ -2069,7 +2211,7 @@ function cardHTML(u) {
         : `<div class="kart-market-yok">Seçili markette yok</div>`}
       ${(() => { const bf = birimFiyatHesapla(u); return bf ? `<div class="urun-birim-fiyat">${birimFiyatYazi(bf)}</div>` : ''; })()}
       ${(() => { const rz = tuzakRozetiHesapla(u); return rz ? tuzakRozetiHTML(rz, true) : ''; })()}
-      ${(() => { const ir = indirimRozetiHesapla(u); return ir ? indirimRozetiHTML(ir, true) : ''; })()}
+      ${urunRozetleriHTML(u, true)}
     </div>
     <button class="add-btn" data-pid="${u._id}" onclick="event.stopPropagation(); toggleSepet('${u._id}')" style="${inCart ? 'background:#059669' : ''}">${inCart ? '✓' : '+'}</button>
   </div>`;
@@ -2179,7 +2321,12 @@ async function renderDusenlerSeridi() {
       productMap[u._id] = u;
     });
     const items = data.map(u => ({ u, r: { tip: u.dusus_yuzde >= 25 ? 'buyuk' : 'normal', yuzde: u.dusus_yuzde } }));
-    list.innerHTML = items.map(x => _kartaRozetEkle(_stripKartHTML(x.u, null), indirimRozetiHTML(x.r, true))).join('');
+    // RPC _sid döndürüyor, _puanCache _sid ile bakıyor -> burada da çalışıyor.
+    // Şüpheliyse "Büyük indirim" yerine şüphe rozeti çıkar.
+    list.innerHTML = items.map(x => _kartaRozetEkle(
+      _stripKartHTML(x.u, null),
+      supheliDurum(x.u) ? supheliRozetHTML() : indirimRozetiHTML(x.r, true)
+    )).join('');
     wrap.style.display = '';
   } catch (e) {
     wrap.style.display = 'none';
@@ -3384,6 +3531,8 @@ function _firsatKartHtml(u, badge, badgeClass, altText) {
     + '<div class="firsat-card-body">'
     + '<div class="firsat-card-name">'+(u.ad||'')+'</div>'
     + '<div class="firsat-card-sub">'+altText+'</div>'
+    // Şüpheli ürün listeden çıkarılmaz, rozetiyle görünür — kararı kullanıcı verir.
+    + (supheliDurum(u) ? supheliRozetHTML() : '')
     + '</div>'
     + '<div class="firsat-card-right">'
     + '<div class="firsat-card-price">'+fiyat+'</div>'
