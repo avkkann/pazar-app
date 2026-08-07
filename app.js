@@ -1762,14 +1762,15 @@ function fiyatGecmisiBlogu(urun) {
     if (sonraki) {
       const sure = _fgGunFarki(enYuksekGun.t, sonraki.t);
       const zx = xFor(enYuksekGun.t), zy = yFor(enYuksekGun.avg);
-      // Halka zirvenin üstünde; yazı ÜST KENARDA (padT'nin üstü). Eğri
-      // civarındaki fiyat etiketleriyle çakışmasın ve viewBox dışına taşmasın.
-      const solda = zx > (padL + chartW * 0.5);
-      const zTx = Math.min(W - padR, Math.max(padL, solda ? zx - 7 : zx + 7));
+      // Konumu halka gösterir; yazı üst kenarda ve zirvenin KARŞI tarafında
+      // durur. Zirve grafiğin tepesindeyken kendi fiyat etiketi de üst kenara
+      // yakın düştüğü için aynı hizaya yazmak çakışma üretiyordu.
+      const sagda = zx > (padL + chartW * 0.5);
       zirveIsareti =
         '<circle cx="' + zx.toFixed(1) + '" cy="' + zy.toFixed(1) + '" r="5.5" class="fg-zirve-halka"/>'
-        + '<text x="' + zTx.toFixed(1) + '" y="9.5" text-anchor="' + (solda ? 'end' : 'start')
-        + '" class="fg-zirve-etiket">Zirve · ' + sure + ' gün sürdü</text>';
+        + '<text x="' + (sagda ? padL : (W - padR)) + '" y="9.5" text-anchor="'
+        + (sagda ? 'start' : 'end') + '" class="fg-zirve-etiket">Zirve · '
+        + sure + ' gün sürdü</text>';
     }
   }
 
