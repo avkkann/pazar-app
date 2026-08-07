@@ -1483,6 +1483,7 @@ const _FG_MKT_AD = {
   migros: 'Migros',
   sok: 'ŞOK',
   tarim_kredi: 'Tarım Kredi',
+  hakmar: 'Hakmar',
 };
 const _FG_AYLAR = ['Oca','Şub','Mar','Nis','May','Haz','Tem','Ağu','Eyl','Eki','Kas','Ara'];
 
@@ -2279,12 +2280,20 @@ function renderUrunler(liste) {
   const list = document.getElementById('productList');
   if (!urunler.length) {
     const aramaVar = !!(window._catAramaTermi);
-    const filtreVar = !!(window.aktifMarketler && window.aktifMarketler.length) || (window._aktifAltKat && window._aktifAltKat !== 'tumu');
+    const secililer = window.aktifMarketler || [];
+    const marketAdi = secililer.map(m => MARKET_NAMES[m] || m).join(' veya ');
     if (aramaVar) {
       list.innerHTML = `<div class="empty-state">
         <div class="empty-icon">${lcIcon('search-x')}</div>
         <div class="empty-title">Sonuç bulunamadı</div>
-        <div class="empty-desc">Farklı kelimelerle dene</div>
+        <div class="empty-desc">${marketAdi ? `${marketAdi} için bu aramaya uyan ürün yok` : 'Farklı kelimelerle dene'}</div>
+      </div>`;
+    } else if (marketAdi) {
+      list.innerHTML = `<div class="empty-state">
+        <div class="empty-icon">${lcIcon('filter-x')}</div>
+        <div class="empty-title">Bu markette ürün yok</div>
+        <div class="empty-desc">${marketAdi} için bu kategoride ürün bulunamadı</div>
+        <button class="empty-cta" onclick="resetCatFilters()">Filtreleri sıfırla</button>
       </div>`;
     } else {
       list.innerHTML = `<div class="empty-state">
@@ -2479,6 +2488,11 @@ function uygulaCatFiltre() {
   }
 
   const secililer = window.aktifMarketler || [];
+  // Seçili marketlerin hiçbirinde fiyatı olmayan ürün listeden çıkar (birleşim).
+  if (secililer.length > 0) {
+    filtreliler = filtreliler.filter(u =>
+      (u.market_fiyatlari || []).some(f => secililer.includes(f.market) && f.fiyat != null));
+  }
   document.querySelectorAll('[data-market]').forEach(pill => {
     const m = pill.dataset.market;
     if (m === 'all' || m === 'tumu') {
@@ -2988,7 +3002,8 @@ function paylasSepet() {
 // ── KARŞILAŞTIRMA ─────────────────────────────────────
 const MARKET_SIRALIYE = {
   a101:'A101', bim:'BİM', carrefour:'CarrefourSA',
-  migros:'Migros', sok:'ŞOK', tarim_kredi:'Tarım Kredi'
+  migros:'Migros', sok:'ŞOK', tarim_kredi:'Tarım Kredi',
+  hakmar:'Hakmar'
 };
 
 // Bottom sheet state
@@ -3137,7 +3152,8 @@ function hesaplaSecili(seciliMarketler) {
 
   const MFROM = {
     a101:"A101'den", bim:"BİM'den", carrefour:"CarrefourSA'dan",
-    migros:"Migros'tan", sok:"ŞOK'tan", tarim_kredi:"T.Kredi'den"
+    migros:"Migros'tan", sok:"ŞOK'tan", tarim_kredi:"T.Kredi'den",
+    hakmar:"Hakmar'dan"
   };
 
   const _cmpItemHTML = (it) => {
