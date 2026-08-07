@@ -1491,6 +1491,9 @@ const SUPHELI_SEBEP_CUMLE = {
 // sart. Yuksek indirim orani tek basina sahtelik kaniti degil — sezon sonu
 // tasfiyesinde de oran yuksek cikar (olcum: gunes urunleri, %55-70).
 const SUPHELI_ZAMANSAL_SEBEPLER = ['kisa_zirve', 'orta_zirve', 'tekrarli_dongu'];
+// Kutu esigi 5. Esik 4'te 124 urun kutu aliyordu ve icinde 14 mevsimsel
+// gunes/SPF tasfiyesi vardi; esik 5'te mevsimsellerin hepsi kutudan cikiyor.
+const SUPHELI_KUTU_ESIK = 5;
 
 // null = veri yok. Bu durumda hicbir rozet cizilmez (ne supheli ne gercek).
 let _puanCache = null;
@@ -1514,12 +1517,16 @@ function supheliDurum(u) {
   if (!u || !u._sid || !_puanCache) return null;
   const k = _puanCache.get(u._sid);
   if (!k || k.indirim_supheli_puan == null || k.indirim_supheli_puan < 2) return null;
+  // Rozet bir iddiaya verilen cevap: ortada indirim yoksa sahteligini iddia
+  // etmek anlamsiz. Olcut mevcut indirim rozetiyle AYNI (yeni esik uydurulmaz);
+  // o indirim gormuyorsa hicbir sey gosterilmez.
+  if (!indirimRozetiHesapla(u)) return null;
   const sebepler = (k.indirim_supheli_sebepler || [])
     .map(s => String(s).trim())
     .filter(s => SUPHELI_SEBEP_CUMLE[s]);
   const zamansalVar = sebepler.some(s => SUPHELI_ZAMANSAL_SEBEPLER.indexOf(s) >= 0);
   return {
-    seviye: (k.indirim_supheli_puan >= 4 && zamansalVar) ? 'kutu' : 'rozet',
+    seviye: (k.indirim_supheli_puan >= SUPHELI_KUTU_ESIK && zamansalVar) ? 'kutu' : 'rozet',
     puan: k.indirim_supheli_puan,
     sebepler: sebepler,
     dusus: k.indirim_supheli_dusus_yuzde

@@ -35,6 +35,7 @@ const objKaynak = ad => { const s = blokKaynak('const ', ad + ' = '); return s ?
 
 const GEREKEN_FN = ['supheliDurum', 'supheliCumleler', 'supheliRozetHTML', 'supheliKutuHTML', 'gercekIndirimRozetiHesapla', 'urunRozetleriHTML'];
 const GEREKEN_OBJ = ['SUPHELI_SEBEP_CUMLE', 'SUPHELI_ZAMANSAL_SEBEPLER'];
+const ESIK = (APP.match(/const SUPHELI_KUTU_ESIK\s*=\s*(\d+)/) || [])[1];
 
 console.log('\n=== 0. YAPI TASLARI VAR MI ===');
 const eksik = [];
@@ -70,6 +71,7 @@ function kur(puanKayitlari, gecmis) {
     fnKaynak('gercekIndirimRozetiHesapla'),
     fnKaynak('gercekIndirimRozetiHTML'),
     fnKaynak('urunRozetleriHTML'),
+    'const SUPHELI_KUTU_ESIK = ' + ESIK + ';',
   ].join('\n');
   vm.runInContext(kaynak, ctx);
   return ctx;
@@ -93,49 +95,70 @@ console.log('\n=== 1. ETIKET -> INSAN DILI ===');
 }
 {
   const ctx = kur([{ _sid: 'x', indirim_supheli_puan: 5, indirim_supheli_sebepler: ['kisa_zirve', 'bilinmeyen_etiket', 'yuksek_oynaklik'], indirim_supheli_dusus_yuzde: 40 }]);
-  const c = calis(ctx, 'supheliCumleler(supheliDurum({_sid:"x"}), {_sid:"x"})');
+  const c = calis(ctx, 'supheliCumleler(supheliDurum({_sid:"x",_buyukIndirim:true}))');
   ok('bilinmeyen etiket cumleye donusmuyor', !c.join(' ').includes('bilinmeyen_etiket'), JSON.stringify(c));
   ok('bilinmeyen etiket atlanip digerleri kaliyor', c.length === 2, JSON.stringify(c));
   ok('hicbir cumlede alt cizgi (ham etiket) yok', c.every(x => !x.includes('_')), JSON.stringify(c));
 }
 
-console.log('\n=== 2. SEVIYE: kutu / rozet / yok ===');
+console.log('\n=== 2. SEVIYE: kutu (puan>=5) / rozet / yok ===');
 const senaryolar = [
   { ad: 'puan 5 + kisa_zirve',                        puan: 5, seb: ['kisa_zirve', 'yuksek_oynaklik', 'tekrarli_dongu'], bek: 'kutu' },
   { ad: 'puan 6 tam ev',                              puan: 6, seb: ['kisa_zirve', 'yuksek_oynaklik', 'tekrarli_dongu', 'asiri_yuksek_oran'], bek: 'kutu' },
-  { ad: 'puan 4 + tekrarli_dongu (zamansal var)',     puan: 4, seb: ['yuksek_oynaklik', 'tekrarli_dongu', 'asiri_yuksek_oran'], bek: 'kutu' },
-  { ad: 'puan 4 + orta_zirve (zamansal var)',         puan: 4, seb: ['orta_zirve', 'yuksek_oynaklik', 'tek_dongu', 'asiri_yuksek_oran'], bek: 'kutu' },
-  { ad: 'puan 4 ZAMANSAL YOK (oran+oynaklik+tek)',    puan: 4, seb: ['yuksek_oynaklik', 'tek_dongu', 'asiri_yuksek_oran'], bek: 'rozet' },
+  { ad: 'puan 5 ZAMANSAL YOK -> rozet',               puan: 5, seb: ['yuksek_oynaklik', 'tek_dongu', 'asiri_yuksek_oran'], bek: 'rozet' },
+  { ad: 'puan 4 + tekrarli_dongu -> ROZET (esik 5)',  puan: 4, seb: ['yuksek_oynaklik', 'tekrarli_dongu', 'asiri_yuksek_oran'], bek: 'rozet' },
+  { ad: 'puan 4 + orta_zirve -> ROZET (esik 5)',      puan: 4, seb: ['orta_zirve', 'yuksek_oynaklik', 'tek_dongu', 'asiri_yuksek_oran'], bek: 'rozet' },
+  { ad: 'puan 4 ZAMANSAL YOK -> rozet',               puan: 4, seb: ['yuksek_oynaklik', 'tek_dongu', 'asiri_yuksek_oran'], bek: 'rozet' },
   { ad: 'puan 3',                                     puan: 3, seb: ['kisa_zirve', 'yuksek_oynaklik'], bek: 'rozet' },
   { ad: 'puan 2',                                     puan: 2, seb: ['tek_dongu'], bek: 'rozet' },
 ];
 for (const s of senaryolar) {
   const ctx = kur([{ _sid: 'x', indirim_supheli_puan: s.puan, indirim_supheli_sebepler: s.seb, indirim_supheli_dusus_yuzde: 30 }]);
-  const d = calis(ctx, 'supheliDurum({_sid:"x"})');
+  const d = calis(ctx, 'supheliDurum({_sid:"x",_buyukIndirim:true})');
   ok(s.ad + ' -> ' + s.bek, d && d.seviye === s.bek, d ? d.seviye : String(d));
 }
 {
   const ctx = kur([{ _sid: 'x', indirim_supheli_puan: 1, indirim_supheli_sebepler: ['tek_dongu'], indirim_supheli_dusus_yuzde: 5 }]);
-  ok('puan 1 -> hicbir sey', calis(ctx, 'supheliDurum({_sid:"x"})') === null);
+  ok('puan 1 -> hicbir sey', calis(ctx, 'supheliDurum({_sid:"x",_buyukIndirim:true})') === null);
 }
 {
   const ctx = kur([]);
-  ok('cache bos -> hicbir sey', calis(ctx, 'supheliDurum({_sid:"x"})') === null);
+  ok('cache bos -> hicbir sey', calis(ctx, 'supheliDurum({_sid:"x",_buyukIndirim:true})') === null);
 }
 {
   const ctx = kur(null);
-  ok('cache YOK (istek basarisiz) -> hicbir sey', calis(ctx, 'supheliDurum({_sid:"x"})') === null);
+  ok('cache YOK (istek basarisiz) -> hicbir sey', calis(ctx, 'supheliDurum({_sid:"x",_buyukIndirim:true})') === null);
   ok('cache YOK -> gercek indirim rozeti de yok', calis(ctx, 'gercekIndirimRozetiHesapla({_sid:"x",en_dusuk_fiyat:10})') === null);
 }
 {
-  const ctx = kur([{ _sid: 'x', indirim_supheli_puan: 4, indirim_supheli_sebepler: [], indirim_supheli_dusus_yuzde: 60 }]);
-  ok('puan 4 ama sebep listesi BOS -> rozet (kutu degil)', (calis(ctx, 'supheliDurum({_sid:"x"})') || {}).seviye === 'rozet');
+  const ctx = kur([{ _sid: 'x', indirim_supheli_puan: 5, indirim_supheli_sebepler: [], indirim_supheli_dusus_yuzde: 60 }]);
+  ok('puan 5 ama sebep listesi BOS -> rozet (kutu degil)', (calis(ctx, 'supheliDurum({_sid:"x",_buyukIndirim:true})') || {}).seviye === 'rozet');
+}
+
+console.log('\n=== 2b. KARAR 1: indirim iddiasi yoksa hicbir sey ===');
+for (const p of [2, 3, 4, 5, 6]) {
+  const ctx = kur([{ _sid: 'x', indirim_supheli_puan: p, indirim_supheli_sebepler: ['kisa_zirve', 'tekrarli_dongu'], indirim_supheli_dusus_yuzde: 0 }]);
+  ok('puan ' + p + ' + indirim YOK -> null', calis(ctx, 'supheliDurum({_sid:"x"})') === null,
+     JSON.stringify(calis(ctx, 'supheliDurum({_sid:"x"})')));
+  ok('  puan ' + p + ' + indirim VAR -> null degil', calis(ctx, 'supheliDurum({_sid:"x",_buyukIndirim:true})') !== null);
+}
+{
+  const ctx = kur([{ _sid: 'x', indirim_supheli_puan: 6, indirim_supheli_sebepler: ['kisa_zirve', 'tekrarli_dongu'], indirim_supheli_dusus_yuzde: 0 }]);
+  ok('indirim yokken kartta HIC rozet yok', calis(ctx, 'urunRozetleriHTML({_sid:"x"}, true)') === '');
+  ok('indirim yokken detayda HIC rozet/kutu yok', calis(ctx, 'urunRozetleriHTML({_sid:"x"}, false)') === '');
+}
+{
+  // Olcut mevcut indirimRozetiHesapla olmali; yeni bir indirim tanimi uydurulmamali.
+  const src = fnKaynak('supheliDurum') || '';
+  ok('supheliDurum indirimRozetiHesapla kullaniyor', /indirimRozetiHesapla\s*\(/.test(src), src.replace(/\s+/g, ' ').slice(0, 240));
+  // Kendi indirim tanimini uydurmamali: gecmisi tarayip esik hesaplamamali.
+  ok('supheliDurum kendi indirim tanimini uydurmuyor (_gecmisCache okumuyor)', !/_gecmisCache/.test(src), '');
 }
 
 console.log('\n=== 3. KUTU ICERIGI ===');
 {
   const ctx = kur([{ _sid: 'x', indirim_supheli_puan: 6, indirim_supheli_sebepler: ['kisa_zirve', 'yuksek_oynaklik', 'tekrarli_dongu', 'asiri_yuksek_oran'], indirim_supheli_dusus_yuzde: 50 }]);
-  const html = calis(ctx, 'supheliKutuHTML(supheliDurum({_sid:"x"}), {_sid:"x"})');
+  const html = calis(ctx, 'supheliKutuHTML(supheliDurum({_sid:"x",_buyukIndirim:true}))');
   ok('kutu basligi "Bu indirim gerçek görünmüyor"', html.includes('Bu indirim gerçek görünmüyor'), html.slice(0, 160));
   const madde = (html.match(/supheli-kutu-madde/g) || []).length;
   ok('4 sebep verildi ama EN FAZLA 2 madde', madde === 2, 'madde=' + madde);
@@ -171,12 +194,12 @@ console.log('\n=== 4. "BUYUK INDIRIM" BASTIRILIYOR MU (davranis) ===');
     ok('puan 3 kart: "Büyük indirim" YOK', !/Büyük indirim/.test(kart), kart);
     ok('puan 3 detay: kutu YOK, rozet VAR', !/supheli-kutu/.test(detay) && /supheli-rozet/.test(detay), detay);
   }
-  // 4d) puan 4 ama zamansal sebep yok -> detayda da kutu degil rozet
+  // 4d) puan 4 (esik 5 altinda) -> detayda da kutu degil rozet
   {
-    const ctx = kur([{ _sid: 'x', indirim_supheli_puan: 4, indirim_supheli_sebepler: ['yuksek_oynaklik', 'tek_dongu', 'asiri_yuksek_oran'], indirim_supheli_dusus_yuzde: 70 }]);
+    const ctx = kur([{ _sid: 'x', indirim_supheli_puan: 4, indirim_supheli_sebepler: ['kisa_zirve', 'tekrarli_dongu'], indirim_supheli_dusus_yuzde: 70 }]);
     const detay = calis(ctx, 'urunRozetleriHTML({_sid:"x",_buyukIndirim:true,en_dusuk_fiyat:70}, false)');
-    ok('puan 4 / zamansal yok: detayda kutu YOK', !/supheli-kutu/.test(detay), detay);
-    ok('puan 4 / zamansal yok: rozet VAR', /supheli-rozet/.test(detay), detay);
+    ok('puan 4 + zamansal: detayda kutu YOK (esik 5)', !/supheli-kutu/.test(detay), detay);
+    ok('puan 4 + zamansal: rozet VAR', /supheli-rozet/.test(detay), detay);
   }
   // 4e) dort cagri yerinin hepsi ayni fonksiyondan geciyor mu
   const kartFn = fnKaynak('cardHTML') || '';
