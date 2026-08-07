@@ -1762,12 +1762,14 @@ function fiyatGecmisiBlogu(urun) {
     if (sonraki) {
       const sure = _fgGunFarki(enYuksekGun.t, sonraki.t);
       const zx = xFor(enYuksekGun.t), zy = yFor(enYuksekGun.avg);
-      const solda = zx > (padL + chartW * 0.6);
+      // Halka zirvenin üstünde; yazı ÜST KENARDA (padT'nin üstü). Eğri
+      // civarındaki fiyat etiketleriyle çakışmasın ve viewBox dışına taşmasın.
+      const solda = zx > (padL + chartW * 0.5);
+      const zTx = Math.min(W - padR, Math.max(padL, solda ? zx - 7 : zx + 7));
       zirveIsareti =
         '<circle cx="' + zx.toFixed(1) + '" cy="' + zy.toFixed(1) + '" r="5.5" class="fg-zirve-halka"/>'
-        + '<text x="' + (solda ? zx - 9 : zx + 9).toFixed(1) + '" y="' + (zy - 19).toFixed(1)
-        + '" text-anchor="' + (solda ? 'end' : 'start') + '" class="fg-zirve-etiket">Zirve · '
-        + sure + ' gün sürdü</text>';
+        + '<text x="' + zTx.toFixed(1) + '" y="9.5" text-anchor="' + (solda ? 'end' : 'start')
+        + '" class="fg-zirve-etiket">Zirve · ' + sure + ' gün sürdü</text>';
     }
   }
 
