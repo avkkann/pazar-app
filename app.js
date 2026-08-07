@@ -2316,24 +2316,76 @@ function _kartaRozetEkle(html, rozetHTML) {
   return html.slice(0, idx) + rozetHTML + html.slice(idx);
 }
 
+// Şeritte gösterilen kart sayısı. RPC limiti bundan yüksek: şüpheliler
+// elendikten sonra şerit yarım kalmasın (ölçüm: p_limit=6'da 6 üründen 3'ü
+// şüpheliydi, p_limit=40'ta 8 temiz ürün kalıyor).
+const DUSENLER_KART = 6;
+const DUSENLER_RPC_LIMIT = 40;
+
 async function renderDusenlerSeridi() {
   const wrap = document.getElementById('home-dusenler');
   const list = document.getElementById('home-dusenler-list');
   if (!wrap || !list) return;
 
   try {
-    const { data, error } = await window.supabaseClient.rpc('get_fiyat_dusenler', { p_limit: 6 });
+    await supheliPuanlariYukle();
+    await gecmisVeriGetir();
+    const { data, error } = await window.supabaseClient.rpc('get_fiyat_dusenler', { p_limit: DUSENLER_RPC_LIMIT });
     if (error || !data || !data.length) { wrap.style.display = 'none'; return; }
     data.forEach(u => {
       if (!u._id) u._id = u.ad + '_' + (u.agirlik_hacim||'');
       productMap[u._id] = u;
     });
-    const items = data.map(u => ({ u, r: { tip: u.dusus_yuzde >= 25 ? 'buyuk' : 'normal', yuzde: u.dusus_yuzde } }));
-    // RPC _sid döndürüyor, _puanCache _sid ile bakıyor -> burada da çalışıyor.
-    // Şüpheliyse "Büyük indirim" yerine şüphe rozeti çıkar.
-    list.innerHTML = items.map(x => _kartaRozetEkle(
-      _stripKartHTML(x.u, null),
-      supheliDurum(x.u) ? supheliRozetHTML() : indirimRozetiHTML(x.r, true)
+    // Düşenler bir fırsat şeridi; şüpheli ürün burada iki mesajı da zayıflatıyor.
+    // Onlar "Bu indirimlere dikkat" bölümünde gösteriliyor.
+    const temiz = data.filter(u => !supheliDurum(u)).slice(0, DUSENLER_KART);
+    if (!temiz.length) { wrap.style.display = 'none'; return; }
+    list.innerHTML = temiz.map(u => _kartaRozetEkle(
+      _stripKartHTML(u, null),
+      indirimRozetiHTML({ tip: u.dusus_yuzde >= 25 ? 'buyuk' : 'normal', yuzde: u.dusus_yuzde }, true)
+    )).join('');
+    wrap.style.display = '';
+  } catch (e) {
+    wrap.style.display = 'none';
+  }
+}
+
+// ── "Bu indirimlere dikkat" şeridi ────────────────────
+const SUPHELI_SERIT_MAX = 12;   // en fazla kart
+const SUPHELI_SERIT_MIN = 3;    // altındaysa bölüm hiç çizilmez (başlık dahil)
+const SUPHELI_SERIT_SORGU_LIMIT = 60;
+
+async function renderSupheliSeridi() {
+  const wrap = document.getElementById('home-supheli');
+  const list = document.getElementById('home-supheli-list');
+  if (!wrap || !list) return;
+
+  try {
+    await supheliPuanlariYukle();
+    await gecmisVeriGetir();
+    const { data, error } = await window.supabaseClient
+      .from('urunler')
+      .select('*')
+      .gte('indirim_supheli_puan', 4)
+      .order('indirim_supheli_puan', { ascending: false })
+      .limit(SUPHELI_SERIT_SORGU_LIMIT);
+    if (error || !data) { wrap.style.display = 'none'; return; }
+
+    const adaylar = [];
+    data.forEach(u => {
+      if (!u._id) u._id = u.ad + '_' + (u.agirlik_hacim || '');
+      // İkinci süzgeç: ortada indirim iddiası yoksa bu bölümde işi yok.
+      if (!supheliDurum(u)) return;
+      const ir = indirimRozetiHesapla(u);
+      adaylar.push({ u: u, puan: u.indirim_supheli_puan, yuzde: ir ? ir.yuzde : 0 });
+    });
+    adaylar.sort((a, b) => (b.puan - a.puan) || (b.yuzde - a.yuzde));
+    const secilen = adaylar.slice(0, SUPHELI_SERIT_MAX);
+    if (secilen.length < SUPHELI_SERIT_MIN) { wrap.style.display = 'none'; return; }
+
+    secilen.forEach(x => { productMap[x.u._id] = x.u; });
+    list.innerHTML = secilen.map(x => _kartaRozetEkle(
+      _stripKartHTML(x.u, null), supheliRozetHTML()
     )).join('');
     wrap.style.display = '';
   } catch (e) {
@@ -3378,12 +3430,13 @@ function loadData() {
     saveSepet();
     renderMevsimSeridi();
     renderDusenlerSeridi();
+    renderSupheliSeridi();
     if ('requestIdleCallback' in window) {
 requestIdleCallback(() => { renderTuzaklarSeridi(); }, { timeout: 3000 });
     } else {
 setTimeout(() => { renderTuzaklarSeridi(); }, 1500);
     }
-  }).catch(() => { renderCatGrid(); saveSepet(); renderMevsimSeridi(); renderDusenlerSeridi(); if ('requestIdleCallback' in window) { requestIdleCallback(() => { renderTuzaklarSeridi(); }, { timeout: 3000 }); } else { setTimeout(() => { renderTuzaklarSeridi(); }, 1500); } });
+  }).catch(() => { renderCatGrid(); saveSepet(); renderMevsimSeridi(); renderDusenlerSeridi(); renderSupheliSeridi(); if ('requestIdleCallback' in window) { requestIdleCallback(() => { renderTuzaklarSeridi(); }, { timeout: 3000 }); } else { setTimeout(() => { renderTuzaklarSeridi(); }, 1500); } });
 }
 
 function openHalScreen() {
@@ -3915,6 +3968,9 @@ function _injectStripIkonlari() {
   if (t2 && t2.textContent.includes('Bu hafta düşenler')) t2.innerHTML = lcIcon('trending-down','lc-icon lc-icon-lg') + ' Bu hafta düşenler';
   const t3 = document.querySelector('#home-mevsim .home-strip-title');
   if (t3 && t3.textContent.includes('Bu hafta mevsiminde')) t3.innerHTML = lcIcon('leaf','lc-icon lc-icon-lg') + ' Bu hafta mevsiminde';
+  // Diğer bölüm başlıklarıyla aynı ağırlık; sadece ikon amber.
+  const t4 = document.querySelector('#home-supheli .home-strip-title');
+  if (t4 && t4.textContent.includes('Bu indirimlere dikkat')) t4.innerHTML = lcIcon('alert-triangle','lc-icon lc-icon-lg lc-amber') + ' Bu indirimlere dikkat';
   const ft = document.querySelector('.firsat-tab[onclick*="ucuz"]');
   if (ft && ft.textContent.includes('En Ucuz')) ft.innerHTML = lcIcon('coins') + ' En Ucuz';
   // Hal mini button ikon

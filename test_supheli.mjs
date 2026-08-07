@@ -14,8 +14,10 @@ const ok = (ad, kosul, detay = '') => {
 };
 
 function blokKaynak(basSablon, ad) {
-  const bas = APP.indexOf(basSablon + ad);
+  let bas = APP.indexOf(basSablon + ad);
   if (bas < 0) return null;
+  // "async function X" ise async'i de al, yoksa govdedeki await patlar.
+  if (basSablon === 'function ' && APP.slice(Math.max(0, bas - 6), bas) === 'async ') bas -= 6;
   // Acilis parantezi { (nesne/govde) ya da [ (dizi) olabilir; hangisi once
   // geliyorsa o. Yoksa dizi sabitlerde sonraki bloga tasip fazla kod yutuyoruz.
   const iSus = APP.indexOf('{', bas), iKose = APP.indexOf('[', bas);
@@ -264,6 +266,151 @@ console.log('\n=== 8. GRAFIKTE ZIRVE ISARETI ===');
      /zirveNotu/.test(fg) && !/fg-zirve-etiket/.test(fg));
   ok('  sadece kisa_zirve/orta_zirve sebebinde ciziliyor', /kisa_zirve|zirveIsareti|_sd/.test(fg));
   ok('  mevcut cizim korunmus (bandPath/avgPath duruyor)', /bandPath/.test(fg) && /avgPath/.test(fg));
+}
+
+// ══════════════════════════════════════════════════════════════════
+console.log('\n=== 9. ANA SAYFA: "Bu hafta dusenler" temizligi ===');
+const HTML2 = fs.readFileSync('index.html', 'utf8');
+
+function seritKur({ rpcData, tableData, tableHata }) {
+  const el = {};
+  const yap = id => (el[id] = el[id] || { style: {}, innerHTML: '' });
+  const cagri = { rpcLimit: null, tableLimit: null, gte: null, order: null };
+  const zincir = {
+    select() { return this; },
+    gte(k, v) { cagri.gte = k + '>=' + v; return this; },
+    order(k, o) { cagri.order = k + (o && o.ascending === false ? ' desc' : ' asc'); return this; },
+    limit(n) { cagri.tableLimit = n; return this; },
+    then(res) { return Promise.resolve(tableHata ? { error: { message: 'x' }, data: null } : { data: tableData, error: null }).then(res); }
+  };
+  const ctx = {
+    console, Promise, productMap: {},
+    document: { getElementById: yap },
+    window: {
+      supabaseClient: {
+        rpc: (ad, p) => { cagri.rpcLimit = p && p.p_limit; return Promise.resolve({ data: rpcData, error: null }); },
+        from: () => zincir
+      }
+    },
+    supheliPuanlariYukle: async () => new Map(),
+    gecmisVeriGetir: async () => ({}),
+    supheliDurum: u => (u && u._supheli ? { seviye: 'rozet', puan: u._puan || 2, sebepler: ['kisa_zirve'] } : null),
+    indirimRozetiHesapla: u => (u && u._yuzde != null ? { tip: 'buyuk', yuzde: u._yuzde } : null),
+    indirimRozetiHTML: () => '<span class="indirim-rozet">i</span>',
+    supheliRozetHTML: () => '<span class="supheli-rozet">s</span>',
+    _stripKartHTML: u => '<div class="strip-card" data-sid="' + u._sid + '">' + u.ad + '</div>',
+    _kartaRozetEkle: (h, r) => (r ? h.replace('</div>', r + '</div>') : h),
+  };
+  vm.createContext(ctx);
+  // Fonksiyonlarin okudugu sayisal sabitleri app.js'ten oldugu gibi al —
+  // yoksa ReferenceError catch'e duser ve testler yanlis sebeple gecer.
+  const sabitAdlari = ['DUSENLER_KART', 'DUSENLER_RPC_LIMIT', 'SUPHELI_SERIT_MAX', 'SUPHELI_SERIT_MIN', 'SUPHELI_SERIT_SORGU_LIMIT'];
+  const sabitler = sabitAdlari.map(n => {
+    const m = APP.match(new RegExp('const ' + n + '\\s*=\\s*(\\d+)'));
+    if (!m) throw new Error('sabit bulunamadi: ' + n);
+    return 'const ' + n + ' = ' + m[1] + ';';
+  }).join('\n');
+  const kaynak = [sabitler, fnKaynak('renderDusenlerSeridi'), fnKaynak('renderSupheliSeridi')].filter(Boolean).join('\n');
+  vm.runInContext(kaynak, ctx);
+  return { ctx, el, cagri };
+}
+
+const varDusenler = !!fnKaynak('renderDusenlerSeridi');
+const varSupheli = !!fnKaynak('renderSupheliSeridi');
+ok('renderDusenlerSeridi tanimli', varDusenler);
+ok('renderSupheliSeridi tanimli', varSupheli);
+
+if (varDusenler && varSupheli) {
+  // 9a) supheliler cikariliyor, serit 6 kartla doluyor
+  {
+    const rpc = [];
+    for (let i = 0; i < 40; i++) rpc.push({ _sid: 's' + i, ad: 'U' + i, dusus_yuzde: 70 - i, _supheli: i % 2 === 0, _yuzde: 70 - i });
+    const { ctx, el, cagri } = seritKur({ rpcData: rpc, tableData: [] });
+    await vm.runInContext('renderDusenlerSeridi()', ctx);
+    const html = el['home-dusenler-list'].innerHTML;
+    const kart = (html.match(/strip-card/g) || []).length;
+    ok('dusenler: supheli rozetli kart YOK', !/supheli-rozet/.test(html), html.slice(0, 200));
+    ok('dusenler: 6 kart ciziliyor (yarim birakilmadi)', kart === 6, 'kart=' + kart);
+    ok('dusenler: RPC limiti 6dan buyuk (doldurmak icin)', cagri.rpcLimit > 6, 'p_limit=' + cagri.rpcLimit);
+    ok('dusenler: gorunur', el['home-dusenler'].style.display === '');
+  }
+  // 9b) hicbir temiz urun kalmazsa serit gizlenir
+  {
+    const rpc = Array.from({ length: 40 }, (_, i) => ({ _sid: 't' + i, ad: 'T' + i, dusus_yuzde: 50, _supheli: true, _yuzde: 50 }));
+    const { ctx, el } = seritKur({ rpcData: rpc, tableData: [] });
+    await vm.runInContext('renderDusenlerSeridi()', ctx);
+    ok('dusenler: hepsi supheliyse serit gizli', el['home-dusenler'].style.display === 'none');
+  }
+
+  console.log('\n=== 10. YENI BOLUM: "Bu indirimlere dikkat" ===');
+  // 10a) 3 alti -> hic render edilmez
+  {
+    const t = [
+      { _sid: 'a', ad: 'A', indirim_supheli_puan: 5, _supheli: true, _puan: 5, _yuzde: 40 },
+      { _sid: 'b', ad: 'B', indirim_supheli_puan: 4, _supheli: true, _puan: 4, _yuzde: 30 },
+      { _sid: 'c', ad: 'C', indirim_supheli_puan: 4 },   // supheli degil -> elenir
+    ];
+    const { ctx, el } = seritKur({ rpcData: [], tableData: t });
+    await vm.runInContext('renderSupheliSeridi()', ctx);
+    ok('3ten az uygun urun -> bolum GIZLI', el['home-supheli'].style.display === 'none', String(el['home-supheli'].style.display));
+    ok('3ten az uygun urun -> liste bos (baslik da cizilmedi)', !el['home-supheli-list'].innerHTML);
+  }
+  // 10b) >=3 -> render, en fazla 12, siralama puan sonra yuzde
+  {
+    const t = [];
+    for (let i = 0; i < 20; i++) t.push({ _sid: 'x' + i, ad: 'X' + i, indirim_supheli_puan: 4 + (i % 3), _supheli: true, _puan: 4 + (i % 3), _yuzde: i });
+    t.push({ _sid: 'yok', ad: 'INDIRIMSIZ', indirim_supheli_puan: 6 });   // supheliDurum null -> girmemeli
+    const { ctx, el, cagri } = seritKur({ rpcData: [], tableData: t });
+    await vm.runInContext('renderSupheliSeridi()', ctx);
+    const html = el['home-supheli-list'].innerHTML;
+    const kart = (html.match(/strip-card/g) || []).length;
+    ok('bolum gorunur', el['home-supheli'].style.display === '');
+    ok('en fazla 12 kart', kart === 12, 'kart=' + kart);
+    ok('indirim gostermeyen urun girmedi', !/INDIRIMSIZ/.test(html));
+    ok('sorgu indirim_supheli_puan>=4', cagri.gte === 'indirim_supheli_puan>=4', String(cagri.gte));
+    ok('kartlarda supheli rozeti var', /supheli-rozet/.test(html));
+    const sidler = [...html.matchAll(/data-sid="([^"]+)"/g)].map(m => m[1]);
+    const puanOf = s => t.find(x => x._sid === s)._puan;
+    const yuzdeOf = s => t.find(x => x._sid === s)._yuzde;
+    let sirali = true;
+    for (let i = 1; i < sidler.length; i++) {
+      const a = sidler[i - 1], b = sidler[i];
+      if (puanOf(a) < puanOf(b)) sirali = false;
+      if (puanOf(a) === puanOf(b) && yuzdeOf(a) < yuzdeOf(b)) sirali = false;
+    }
+    ok('siralama: once puan, esitlikte kart indirim yuzdesi (azalan)', sirali,
+       sidler.map(s => 'p' + puanOf(s) + '/%' + yuzdeOf(s)).join(' '));
+  }
+  // 10c) sorgu hatasi -> sessiz
+  {
+    const { ctx, el } = seritKur({ rpcData: [], tableData: null, tableHata: true });
+    await vm.runInContext('renderSupheliSeridi()', ctx);
+    ok('sorgu hatasi -> bolum gizli', el['home-supheli'].style.display === 'none');
+    ok('sorgu hatasi -> liste bos', !el['home-supheli-list'].innerHTML);
+    const src = fnKaynak('renderSupheliSeridi') || '';
+    ok('sorgu hatasinda konsola hata basilmiyor', !/console\.(error|warn|log)/.test(src));
+  }
+}
+
+console.log('\n=== 11. HTML: bolum yeri ve basliklar ===');
+{
+  const iD = HTML2.indexOf('id="home-dusenler"');
+  const iS = HTML2.indexOf('id="home-supheli"');
+  const iC = HTML2.indexOf('id="home-cats"');
+  ok('#home-supheli var', iS > -1);
+  ok('#home-dusenler ile #home-cats ARASINDA', iS > iD && iS < iC, 'dusenler=' + iD + ' supheli=' + iS + ' cats=' + iC);
+  const blok = iS > -1 ? HTML2.slice(iS, iS + 400) : '';
+  ok('baslik "Bu indirimlere dikkat"', /Bu indirimlere dikkat/.test(blok));
+  ok('alt baslik "Gerçek görünmeyen fiyat düşüşleri"', /Gerçek görünmeyen fiyat düşüşleri/.test(blok));
+  ok('mevcut .home-strip bileseni kullanilmis', /class="home-strip"/.test(blok) && /home-strip-scroll/.test(blok));
+  ok('baslik amber uyari BLOGU degil (supheli-kutu kullanilmamis)', !/supheli-kutu/.test(blok));
+}
+console.log('\n=== 12. TUZAK BOLUMUNE DOKUNULMADI ===');
+{
+  ok('#home-tuzaklar duruyor', /id="home-tuzaklar"/.test(HTML2));
+  ok('tuzak basligi duruyor', /Bugün yakaladığımız tuzaklar/.test(HTML2));
+  ok('renderTuzaklarSeridi duruyor', /function renderTuzaklarSeridi/.test(APP));
+  ok('tuzakRozetiHesapla duruyor', /function tuzakRozetiHesapla/.test(APP));
 }
 
 console.log('\nPASS=' + pass + '  FAIL=' + fail);
