@@ -317,11 +317,8 @@
       font-size: 11px; font-weight: 600; white-space: nowrap;
       background: #FEF3C7; color: #92400E;
     }
-    .supheli-rozet svg {
-      width: 12px; height: 12px; flex: 0 0 12px;
-      fill: none; stroke: currentColor; stroke-width: 2;
-      stroke-linecap: round; stroke-linejoin: round;
-    }
+    /* İkon boyutu .lc-icon'dan (14px) devralınır — .indirim-rozet ile birebir
+       aynı olsun, kart yüksekliği 1px bile oynamasın. */
     [data-theme="dark"] .supheli-rozet { background: rgba(217,119,6,0.18); color: #FCD34D; }
 
     /* Kutu ürün adından/fiyattan baskın olmasın: başlık 13px, madde 12px,
@@ -356,11 +353,6 @@
       background: #DCFCE7; color: #065F46;
     }
     .gercek-indirim-rozet:not(.kisa) { font-size: 13px; padding: 6px 10px; }
-    .gercek-indirim-rozet svg {
-      width: 12px; height: 12px; flex: 0 0 12px;
-      fill: none; stroke: currentColor; stroke-width: 2;
-      stroke-linecap: round; stroke-linejoin: round;
-    }
     [data-theme="dark"] .gercek-indirim-rozet { background: rgba(34,197,94,0.15); color: #86EFAC; }
 
     /* Fiyat geçmişi grafiğinde zirve işareti — mevcut çizime eklenir. */
