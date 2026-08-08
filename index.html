@@ -337,6 +337,11 @@
       <div class="profil-istat-lbl">Hal Ürünü</div>
     </div>
   </div>
+  <!-- Tasarruf özeti: grid dışında, tam genişlik. Liste boşsa JS gizler. -->
+  <div id="profil-tasarruf" class="profil-tasarruf-wrap" style="display:none">
+    <div id="profil-tasarruf-govde"></div>
+  </div>
+
   <!-- profil-kartlar: mobilde stilsiz düz blok, masaüstünde iki sütunlu grid -->
   <div class="profil-kartlar">
   <div class="profil-section">
@@ -374,6 +379,26 @@
       <div class="profil-item-chevron">›</div>
     </div>
   </div>
+  <div class="profil-section" id="profil-sablonlar" style="display:none">
+    <div class="profil-section-title">Kayıtlı Listelerim</div>
+    <div id="profil-sablonlar-govde"></div>
+  </div>
+
+  <div class="profil-section" id="profil-alarmlar" style="display:none">
+    <div class="profil-section-title">Fiyat Alarmlarım</div>
+    <div id="profil-alarmlar-govde"></div>
+  </div>
+
+  <div class="profil-section" id="profil-market-tercih" style="display:none">
+    <div class="profil-section-title">Tercih Ettiğim Marketler</div>
+    <div id="profil-market-tercih-govde"></div>
+  </div>
+
+  <div class="profil-section" id="profil-katki" style="display:none">
+    <div class="profil-section-title">Katkılarım</div>
+    <div id="profil-katki-govde"></div>
+  </div>
+
   <div class="profil-section">
     <div class="profil-section-title">Görünüm</div>
     <div class="theme-switch">
@@ -411,15 +436,38 @@
     <div class="profil-item">
       <div class="profil-item-icon" style="background:#FEE2E2" data-lc="refresh-cw">🔄</div>
       <div class="profil-item-body">
-        <div class="profil-item-title">Otomatik Güncelleme</div>
-        <div class="profil-item-sub" id="profilSonGuncelleme">Her gece 03:00'da</div>
+        <div class="profil-item-title">Fiyat Güncelliği</div>
+        <div class="profil-item-sub" id="profilVeriTazelik">Her gece 03:00’da güncellenir</div>
       </div>
     </div>
     <div class="profil-item">
-      <div class="profil-item-icon" style="background:#DCFCE7" data-lc="info">🌿</div>
+      <div class="profil-item-icon" style="background:#FEF3C7" data-lc="info">ℹ️</div>
+      <div class="profil-item-body">
+        <div class="profil-item-title">Fiyatlar mağazadan farklı olabilir</div>
+        <div class="profil-item-sub">Kaynak günlük güncellenir, rafta anlık fark olabilir. Yanlış fiyat gördüysen ürün detayından “Bu fiyat tutmadı” ile bildir.</div>
+      </div>
+    </div>
+    <div class="profil-item" onclick="onbellekTemizle()">
+      <div class="profil-item-icon" style="background:#EDE9FE" data-lc="refresh-cw">🧹</div>
+      <div class="profil-item-body">
+        <div class="profil-item-title">Önbelleği Temizle</div>
+        <div class="profil-item-sub">Güncel veriyi yeniden indir</div>
+      </div>
+      <div class="profil-item-chevron">›</div>
+    </div>
+    <div class="profil-item" onclick="paylasUygulama()">
+      <div class="profil-item-icon" style="background:#DCFCE7" data-lc="share-2">🔗</div>
+      <div class="profil-item-body">
+        <div class="profil-item-title">Uygulamayı Paylaş</div>
+        <div class="profil-item-sub">Pazar'ı arkadaşlarınla paylaş</div>
+      </div>
+      <div class="profil-item-chevron">›</div>
+    </div>
+    <div class="profil-item">
+      <div class="profil-item-icon" style="background:#DCFCE7" data-lc="leaf">🌿</div>
       <div class="profil-item-body">
         <div class="profil-item-title">Pazar Uygulaması</div>
-        <div class="profil-item-sub">v1.0 · Marketteki gizli zamları gör</div>
+        <div class="profil-item-sub" id="profilSurum">v1.0 · Marketteki gizli zamları gör</div>
       </div>
     </div>
   </div>

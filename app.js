@@ -1859,7 +1859,11 @@ const _LUCIDE_PATHS = {
   'info': '<circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>',
   'heart': '<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l7 7Z"/>',
   'search': '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
-  'bell': '<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>'
+  'bell': '<path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>',
+  'trash-2': '<path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/>',
+  'store': '<path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M2 7h20"/><path d="M12 22V12"/>',
+  'bookmark': '<path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/>',
+  'megaphone': '<path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>'
 };
 function lcIcon(name, klass) {
   const path = _LUCIDE_PATHS[name];
@@ -2478,7 +2482,8 @@ async function openCategory(slug) {
   toplamSayfa = 1;
   urunler = [];
   activeMarket = null;
-  window.aktifMarketler = [];
+  // Profildeki "Tercih Ettiğim Marketler" seçimi kategori filtresine VARSAYILAN gelir.
+  window.aktifMarketler = tercihMarketleriOku();
   document.querySelectorAll('.filter-pill').forEach(p => {
     const m = p.dataset.market;
     p.classList.toggle('active', m === 'all' || m === 'tumu');
@@ -3762,6 +3767,225 @@ function uygulaKullaniciAdi() {
   if (typeof window.renderProfilAuth === 'function') window.renderProfilAuth();
 }
 
+// ══ PROFİL BÖLÜMLERİ ═════════════════════════════════
+// Kural: verisi olmayan bölüm çizilmez. Her sayı gerçek veriden gelir.
+
+// _sid -> ürün. catCache yüklüyse oradan, yoksa productMap'ten.
+function _profilUrunBul(sid) {
+  if (!sid) return null;
+  for (const liste of Object.values(catCache || {})) {
+    const u = (liste || []).find(x => x && x._sid === sid);
+    if (u) return u;
+  }
+  return Object.values(productMap || {}).find(x => x && x._sid === sid) || null;
+}
+function _profilEnUcuz(u) {
+  const g = fiyatlariTemizle(u && u.market_fiyatlari).gecerli;
+  if (!g.length) return null;
+  return g.slice().sort((a, b) => a.fiyat - b.fiyat)[0];
+}
+
+// A) Tasarruf özeti — paylasSepet()'teki formülün AYNISI: en pahalı - en ucuz.
+function profilTasarrufHTML() {
+  if (!sepet || !sepet.length) return '';
+  let toplam = 0, enPahaliToplam = 0;
+  sepet.forEach(u => {
+    const f = fiyatlariTemizle(u.market_fiyatlari).gecerli.map(x => x.fiyat);
+    if (!f.length) return;
+    toplam += Math.min.apply(null, f);
+    enPahaliToplam += Math.max.apply(null, f);
+  });
+  const tasarruf = enPahaliToplam - toplam;
+  if (!(tasarruf > 1)) return '';
+  return `<div class="profil-tasarruf">
+      <div class="profil-tasarruf-ust">Listendeki <b>${sepet.length}</b> ürünü en ucuz marketlerden alırsan</div>
+      <div class="profil-tasarruf-rakam">${tl(tasarruf)}</div>
+      <div class="profil-tasarruf-alt">tasarruf edersin · en pahalısıyla ${tl(enPahaliToplam)}, en ucuzuyla ${tl(toplam)}</div>
+    </div>`;
+}
+
+// B) Kayıtlı listelerim — şablonlar localStorage'da (pazar_sablonlar).
+function profilSablonlarHTML() {
+  const liste = Array.isArray(sablonlar) ? sablonlar : [];
+  if (!liste.length) {
+    return `<div class="profil-bos">Kayıtlı listen yok — Listem'den şablon kaydedebilirsin
+      <button type="button" class="profil-bos-btn" onclick="goSepet()">Listem</button></div>`;
+  }
+  return liste.map(s => {
+    const idSafe = String(s.id).replace(/'/g, "\\'");
+    const adSafe = String(_sablonDisplayAd(s.ad) || 'Şablon').replace(/</g, '&lt;');
+    const sidler = (s.urunIds || []).map(x => x && x.sid).filter(Boolean);
+    let toplam = 0, bulunan = 0;
+    sidler.forEach(sid => {
+      const u = _profilUrunBul(sid);
+      const f = u && _profilEnUcuz(u);
+      if (f) { toplam += f.fiyat; bulunan++; }
+    });
+    const tutar = bulunan ? ' · ' + tl(toplam) : '';
+    return `<div class="profil-satir">
+        <button type="button" class="profil-satir-ana" onclick="sablonYukleUI('${idSafe}')">
+          <span class="profil-satir-ad">${adSafe}</span>
+          <span class="profil-satir-alt">${sidler.length} ürün${tutar}</span>
+        </button>
+        <button type="button" class="profil-satir-sil" aria-label="${adSafe} şablonunu sil" onclick="profilSablonSil('${idSafe}')">${lcIcon('trash-2')}</button>
+      </div>`;
+  }).join('');
+}
+
+// C) Fiyat alarmlarım — Supabase fiyat_alarmlari (oturuma bağlı).
+function profilAlarmlarHTML() {
+  const harita = (window.pazarAlarmMap instanceof Map) ? window.pazarAlarmMap : new Map();
+  if (!harita.size) {
+    return `<div class="profil-bos">Fiyat alarmın yok — ürün detayından hedef fiyat kurabilirsin</div>`;
+  }
+  const satirlar = [];
+  harita.forEach((hedef, sid) => {
+    const u = _profilUrunBul(sid);
+    const ad = u ? u.ad : sid;
+    const f = u && _profilEnUcuz(u);
+    const guncel = f ? f.fiyat : null;
+    const sidSafe = String(sid).replace(/'/g, "\\'");
+    let durum;
+    if (guncel == null) durum = '<span class="profil-satir-alt">Hedef ' + tl(hedef) + ' · güncel fiyat yok</span>';
+    else if (guncel <= hedef) durum = '<span class="profil-satir-alt basarili">Hedefe ulaştı · ' + tl(guncel) + '</span>';
+    else durum = '<span class="profil-satir-alt">Hedef ' + tl(hedef) + ' · güncel ' + tl(guncel) + ' · ' + tl(guncel - hedef) + ' uzakta</span>';
+    satirlar.push(`<div class="profil-satir">
+        <div class="profil-satir-ana profil-satir-ana--statik">
+          <span class="profil-satir-ad">${String(ad).replace(/</g, '&lt;')}</span>
+          ${durum}
+        </div>
+        <button type="button" class="profil-satir-sil" aria-label="Alarmı kaldır" onclick="profilAlarmKaldir('${sidSafe}')">${lcIcon('trash-2')}</button>
+      </div>`);
+  });
+  return satirlar.join('');
+}
+
+// D) Katkılarım — sayı yoksa/0 ise bölüm hiç çizilmez.
+function profilKatkiHTML(adet) {
+  const n = Number(adet);
+  if (!n || n < 1) return '';
+  return `<div class="profil-katki">
+      <div class="profil-katki-sayi">${n}</div>
+      <div class="profil-katki-yazi">fiyat bildirimi gönderdin — bildirimlerin diğer kullanıcıları uyardı</div>
+    </div>`;
+}
+
+// E) Tercih edilen marketler — localStorage, DB'ye yazılmaz.
+const TERCIH_MKT_KEY = 'pazar_tercih_marketler';
+function tercihMarketleriOku() {
+  try {
+    const v = JSON.parse(localStorage.getItem(TERCIH_MKT_KEY) || '[]');
+    return Array.isArray(v) ? v.filter(x => MARKET_NAMES[x]) : [];
+  } catch (e) { return []; }
+}
+function tercihMarketToggle(m) {
+  if (!MARKET_NAMES[m]) return;
+  const s = tercihMarketleriOku();
+  const i = s.indexOf(m);
+  if (i >= 0) s.splice(i, 1); else s.push(m);
+  localStorage.setItem(TERCIH_MKT_KEY, JSON.stringify(s));
+  const el = typeof document !== 'undefined' && document.getElementById('profil-market-tercih-govde');
+  if (el) el.innerHTML = profilMarketTercihHTML();
+}
+function profilMarketTercihHTML() {
+  const secili = tercihMarketleriOku();
+  const pills = Object.keys(MARKET_NAMES).map(m =>
+    `<button type="button" class="profil-mkt-pill${secili.includes(m) ? ' active' : ''}" aria-pressed="${secili.includes(m)}" onclick="tercihMarketToggle('${m}')">${MARKET_NAMES[m]}</button>`
+  ).join('');
+  const not = secili.length
+    ? `${secili.length} market seçili — kategori ekranı bunlarla açılır`
+    : 'Seçim yaparsan kategori ekranı bu marketlerle açılır';
+  return `<div class="profil-mkt-pills">${pills}</div><div class="profil-mkt-not">${not}</div>`;
+}
+
+// Bölümleri DOM'a bas. Veri yoksa bölümün tamamı (başlık dahil) gizlenir.
+function profilBolumleriCiz() {
+  const yaz = (id, html) => {
+    const govde = document.getElementById(id + '-govde');
+    const bolum = document.getElementById(id);
+    if (!govde || !bolum) return;
+    govde.innerHTML = html || '';
+    bolum.style.display = html ? '' : 'none';
+  };
+  yaz('profil-tasarruf', profilTasarrufHTML());
+  yaz('profil-sablonlar', profilSablonlarHTML());
+  yaz('profil-alarmlar', profilAlarmlarHTML());
+  yaz('profil-market-tercih', profilMarketTercihHTML());
+  yaz('profil-katki', profilKatkiHTML(window._profilKatkiSayi));
+  const vy = document.getElementById('profilVeriTazelik');
+  if (vy) vy.textContent = _profilSonSenkronYazi();
+}
+
+function _profilSonSenkronYazi() {
+  const t = window._profilSonSenkron;
+  if (!t) return 'Her gece 03:00’da güncellenir';
+  const d = new Date(t);
+  if (isNaN(d.getTime())) return 'Her gece 03:00’da güncellenir';
+  const saat = Math.floor((Date.now() - d.getTime()) / 3600000);
+  if (saat < 1) return 'Az önce güncellendi';
+  if (saat < 24) return saat + ' saat önce güncellendi';
+  return Math.floor(saat / 24) + ' gün önce güncellendi';
+}
+
+// Katkı sayısı ve son senkron: açılışta tek sefer, sessiz.
+async function profilVerileriniYukle() {
+  try {
+    const { data } = await window.supabaseClient
+      .from('urunler').select('son_senkron').order('son_senkron', { ascending: false }).limit(1);
+    if (data && data[0]) window._profilSonSenkron = data[0].son_senkron;
+  } catch (e) { /* sessiz */ }
+  try {
+    if (window.pazarAuth && window.pazarAuth.user) {
+      const { data, error } = await window.supabaseClient.rpc('get_kendi_bildirim_sayim');
+      if (!error && data != null) window._profilKatkiSayi = Number(data) || 0;
+    }
+  } catch (e) { /* sessiz: RPC yoksa bölüm hiç çıkmaz */ }
+  if (document.getElementById('screen-profil')) profilBolumleriCiz();
+}
+document.addEventListener('DOMContentLoaded', profilVerileriniYukle);
+
+async function onbellekTemizle() {
+  const onay = await modalAc({
+    title: 'Önbelleği temizle',
+    msg: 'Kayıtlı veri silinip yeniden indirilecek. Listen, favorilerin ve alarmların etkilenmez.',
+    okText: 'Temizle'
+  });
+  if (!onay) return;
+  try {
+    if (window.caches) { for (const k of await caches.keys()) await caches.delete(k); }
+    if (navigator.serviceWorker) {
+      const rs = await navigator.serviceWorker.getRegistrations();
+      for (const r of rs) await r.unregister();
+    }
+  } catch (e) { /* sessiz */ }
+  location.reload();
+}
+
+function paylasUygulama() {
+  const metin = 'Pazar — marketteki gizli zamları gör. 7 marketin günlük fiyatlarını tek ekranda karşılaştır.';
+  const url = 'https://avkkann.github.io/pazar-app/';
+  if (navigator.share) {
+    navigator.share({ title: 'Pazar', text: metin, url: url }).catch(() => {});
+    return;
+  }
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(metin + ' ' + url)
+      .then(() => modalAc({ title: 'Kopyalandı', msg: 'Bağlantı panoya kopyalandı.', okText: 'Tamam', tekButon: true }))
+      .catch(() => {});
+  }
+}
+
+function profilSablonSil(id) {
+  sablonSil(id);
+  profilBolumleriCiz();
+  if (typeof renderSablonBar === 'function') renderSablonBar();
+}
+
+async function profilAlarmKaldir(sid) {
+  if (typeof window.fiyatAlarmKaldir === 'function') await window.fiyatAlarmKaldir(sid);
+  profilBolumleriCiz();
+}
+
 function profilGuncelle() {
   const sepetSayi = sepet.length;
   const el = function(id){ return document.getElementById(id); };
@@ -3780,6 +4004,7 @@ function profilGuncelle() {
   if (el('profilSonGuncelleme') && window.halVerisi) {
     el('profilSonGuncelleme').textContent = 'Son güncelleme: ' + (window.halVerisi.cekme_tarihi || 'Her gece 03:00').slice(0,10);
   }
+  profilBolumleriCiz();
   const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
   const toggle = el('temaToggleBtn');
   if (toggle) { toggle.className = 'profil-toggle' + (isDark ? ' on' : ''); }
