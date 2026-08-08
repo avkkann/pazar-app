@@ -3209,11 +3209,12 @@ function renderSepet() {
     <div class="listem-ozet">
     <div class="listem-toplam">
       <div class="listem-toplam-ust">
-        <span class="listem-toplam-etiket">Toplam (en ucuz fiyatlar)</span>
+        <span class="listem-toplam-etiket">${marketSayisi} farklı markete giderek</span>
         <span style="color:var(--price-color)">${tlHTML(toplam)}</span>
       </div>
-      <div class="listem-toplam-aciklama">${marketSayisi} farklı marketten · En ucuz seçenekler için karşılaştır</div>
+      <div class="listem-toplam-aciklama">Her ürünü en ucuz olduğu marketten alırsan — tek markette ödeyeceğin tutar aşağıda</div>
     </div>
+    ${sepetMarketOzetiHTML()}
     <button class="btn-compare" onclick="karsilastir()">Marketleri Karşılaştır →</button>
     <button class="btn-compare" onclick="paylasSepet()" style="background:#25D366;margin-top:4px;display:flex;align-items:center;justify-content:center;gap:6px"><svg class="lc-share" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg> Listeyi Paylaş</button>
     <div id="compareOut"></div>
@@ -3267,6 +3268,109 @@ const MARKET_SIRALIYE = {
 // Bottom sheet state
 let _msSecili = [];
 let _msMarkets = [];
+
+// ══ SEPETİ BÖL + DÜRÜST TOPLAM ═══════════════════════
+// Karma toplam ("her ürünü en ucuz olduğu marketten al") ödenebilir bir tutar
+// değil — kullanıcının 3 markete birden gitmesini varsayıyor. Burada her market
+// için GERÇEKTEN ödenecek tutar hesaplanıyor; bir markette olmayan ürün başka
+// marketin fiyatıyla DOLDURULMUYOR, eksik olduğu açıkça yazılıyor.
+const BOLME_MIN_KAZANC = 50;
+
+function _sepetMarketFiyati(u, market) {
+  const f = fiyatlariTemizle(u.market_fiyatlari).gecerli
+    .filter(x => x.market === market && x.fiyat != null)
+    .sort((a, b) => a.fiyat - b.fiyat)[0];
+  return f ? f.fiyat : null;
+}
+
+function marketToplamlari() {
+  const liste = sepet || [];
+  if (!liste.length) return [];
+  const marketler = new Set();
+  liste.forEach(u => fiyatlariTemizle(u.market_fiyatlari).gecerli.forEach(f => {
+    if (f.market) marketler.add(f.market);
+  }));
+  const sonuc = [];
+  marketler.forEach(m => {
+    let toplam = 0, varOlan = 0;
+    liste.forEach(u => {
+      const f = _sepetMarketFiyati(u, m);
+      if (f != null) { toplam += f; varOlan++; }
+    });
+    sonuc.push({
+      market: m, ad: MARKET_NAMES[m] || m,
+      toplam: toplam, varOlan: varOlan, eksik: liste.length - varOlan
+    });
+  });
+  // Sepetin tamamını karşılayanlar önce, sonra ucuzdan pahalıya.
+  sonuc.sort((a, b) => (a.eksik - b.eksik) || (a.toplam - b.toplam));
+  return sonuc;
+}
+
+function sepetBolmeOnerisi() {
+  const liste = sepet || [];
+  const bos = { oner: false, tekMarket: null, ikili: null, kazanc: 0 };
+  if (!liste.length) return bos;
+  const toplamlar = marketToplamlari();
+  const tamKapsayan = toplamlar.filter(m => m.eksik === 0);
+  if (!tamKapsayan.length) return bos;
+  const tek = tamKapsayan[0];
+
+  // En iyi İKİ market kombinasyonu. İkiden fazlaya asla bölmüyoruz.
+  const adaylar = toplamlar.map(m => m.market);
+  let enIyi = null;
+  for (let i = 0; i < adaylar.length; i++) {
+    for (let j = i + 1; j < adaylar.length; j++) {
+      const ikili = [adaylar[i], adaylar[j]];
+      let toplam = 0, kapsandi = 0;
+      liste.forEach(u => {
+        let en = null;
+        ikili.forEach(m => {
+          const f = _sepetMarketFiyati(u, m);
+          if (f != null && (en == null || f < en)) en = f;
+        });
+        if (en != null) { toplam += en; kapsandi++; }
+      });
+      if (kapsandi !== liste.length) continue;   // ikisi birlikte sepeti karşılamıyorsa geçersiz
+      if (!enIyi || toplam < enIyi.toplam) {
+        enIyi = { marketler: ikili, adlar: ikili.map(m => MARKET_NAMES[m] || m), toplam: toplam };
+      }
+    }
+  }
+  if (!enIyi) return { oner: false, tekMarket: tek, ikili: null, kazanc: 0 };
+  const kazanc = tek.toplam - enIyi.toplam;
+  return { oner: kazanc >= BOLME_MIN_KAZANC, tekMarket: tek, ikili: enIyi, kazanc: kazanc > 0 ? kazanc : 0 };
+}
+
+function sepetMarketOzetiHTML() {
+  const toplamlar = marketToplamlari();
+  if (!toplamlar.length) return '';
+  const satirlar = toplamlar.slice(0, 5).map(m => `<div class="sepet-mkt-satir">
+      <span class="sepet-mkt-ad">${m.ad}</span>
+      <span class="sepet-mkt-tutar">${tl(m.toplam)}</span>
+      ${m.eksik ? `<span class="sepet-mkt-eksik">${m.eksik} ürün yok — tutar onlar olmadan, eksik</span>` : ''}
+    </div>`).join('');
+
+  const o = sepetBolmeOnerisi();
+  let oneri = '';
+  if (o.oner && o.ikili) {
+    oneri = `<div class="sepet-mkt-oneri">
+        ${o.ikili.adlar.join(' + ')} olarak iki markete bölersen ${tl(o.kazanc)} kazanırsın
+        <span class="sepet-mkt-oneri-alt">tek market ${o.tekMarket.ad} ${tl(o.tekMarket.toplam)} · iki market ${tl(o.ikili.toplam)}</span>
+      </div>`;
+  } else if (o.tekMarket) {
+    oneri = `<div class="sepet-mkt-oneri">
+        Tek markette almak mantıklı — ${o.tekMarket.ad}
+        ${o.kazanc > 0 ? `<span class="sepet-mkt-oneri-alt">bölmek sadece ${tl(o.kazanc)} kazandırır</span>` : ''}
+      </div>`;
+  }
+
+  return `<div class="sepet-mkt">
+      <div class="sepet-mkt-baslik">Tek markette ne ödersin</div>
+      ${satirlar}
+      ${oneri}
+    </div>`;
+}
 
 function karsilastir() {
   if (!sepet.length) {

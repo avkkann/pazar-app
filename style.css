@@ -916,6 +916,26 @@
 
 .profil-tasarruf-wrap { padding: 16px 14px 0; }
 
+/* Sepetin market bazinda GERCEK toplami. Mevcut .profil-satir metrikleri
+   (radius 14, card-bg, border) ile ayni dil; yeni bilesen yok. */
+.sepet-mkt { margin: 10px 16px 0; background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: 14px; padding: 12px 14px; }
+.sepet-mkt-baslik { font-size: .7rem; font-weight: 700; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px; }
+.sepet-mkt-satir { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px;
+  padding: 6px 0; border-bottom: 1px solid var(--border); }
+.sepet-mkt-satir:last-of-type { border-bottom: none; }
+.sepet-mkt-ad { font-size: .85rem; font-weight: 600; color: var(--text); flex: 1 1 auto; }
+.sepet-mkt-tutar { font-size: .95rem; font-weight: 700; color: var(--text); }
+.sepet-mkt-eksik { flex: 1 0 100%; font-size: .7rem; color: #B45309; line-height: 1.35; }
+[data-theme="dark"] .sepet-mkt-eksik { color: #FCD34D; }
+.sepet-mkt-oneri { margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--border);
+  font-size: .8rem; font-weight: 600; color: #0E4938; line-height: 1.4; }
+[data-theme="dark"] .sepet-mkt-oneri { color: #86EFAC; }
+.sepet-mkt-oneri-alt { display: block; font-size: .7rem; font-weight: 500;
+  color: var(--text-muted); margin-top: 2px; }
+
+
 /* Senin enflasyonun — tasarruf kartiyla ayni metrikler, yon rengi degisir.
    Dusus yesil (#059669), artis amber (#B45309). Kirmizi YOK. */
 .profil-enflasyon {
