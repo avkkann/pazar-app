@@ -191,5 +191,86 @@ ok("_apply_resim_koru scrape akisinda cagriliyor", src.count("_apply_resim_koru(
 ok("  cagri sirasi: resim koru, fiyat gecmisinden SONRA",
    src.find("_apply_resim_koru(products") > src.find("_apply_fiyat_gecmisi(products"), "")
 
+print("\n=== 5. .env OKUMA: SESSIZ YUTMA BITTI MI ===")
+oku = getattr(scr, "_env_dosyasindan_anahtar", None)
+ok("_env_dosyasindan_anahtar tanimli", oku is not None)
+
+
+def yakala(fn, *a):
+    import io as _io
+    tut = _io.StringIO()
+    eski = sys.stdout
+    sys.stdout = tut
+    try:
+        sonuc = fn(*a)
+    finally:
+        sys.stdout = eski
+    return sonuc, tut.getvalue()
+
+
+if oku:
+    # a) gecerli .env -> anahtar doner, uyari YOK
+    tf = tempfile.NamedTemporaryFile("w", suffix=".env", delete=False, encoding="utf-8")
+    tf.write('OTHER=1\nSEARLO_API_KEY="sk_testanahtar"\n')
+    tf.close()
+    s, cik = yakala(oku, tf.name)
+    ok("gecerli .env -> anahtar okundu", s == "sk_testanahtar", s)
+    ok("  gecerli .env -> UYARI basilmadi", "[UYARI]" not in cik, cik.strip())
+    os.unlink(tf.name)
+
+    # b) .env yok -> '' doner, uyari YOK (anahtar gercekten yok durumu)
+    s, cik = yakala(oku, os.path.join(tempfile.gettempdir(), "yok_boyle_env_xyz.env"))
+    ok(".env YOK -> bos doner", s == "", s)
+    ok("  .env YOK -> UYARI basilmadi (anahtar yok durumu ayri)", "[UYARI]" not in cik, cik.strip())
+
+    # c) .env var ama anahtar satiri yok -> '' doner, uyari YOK
+    tf = tempfile.NamedTemporaryFile("w", suffix=".env", delete=False, encoding="utf-8")
+    tf.write("BASKA=1\n")
+    tf.close()
+    s, cik = yakala(oku, tf.name)
+    ok(".env var ama anahtar satiri yok -> bos doner", s == "", s)
+    ok("  bu durumda da UYARI basilmadi", "[UYARI]" not in cik, cik.strip())
+    os.unlink(tf.name)
+
+    # d) .env OKUNAMIYOR -> '' doner AMA sesli uyarir
+    #    (dizin yolu vermek open() ile IsADirectoryError/PermissionError uretir)
+    dizin = tempfile.mkdtemp()
+    s, cik = yakala(oku, dizin)
+    ok(".env OKUNAMIYOR -> bos doner", s == "", s)
+    ok("  OKUNAMIYOR -> [UYARI] basildi", "[UYARI]" in cik, cik.strip())
+    ok("  mesajda '.env okunamadi' geciyor", ".env okunamadi" in cik, cik.strip())
+    ok("  mesajda 'SEARLO_API_KEY bos kalacak' geciyor", "SEARLO_API_KEY bos kalacak" in cik, cik.strip())
+    ok("  mesajda gercek hata metni var", len(cik.strip()) > 45, cik.strip())
+
+print("\n=== 6. scraper.py'de SESSIZ YUTMA KALMADI ===")
+kaynak = open(os.path.join(_BASE, "scraper.py"), encoding="utf-8").read()
+satirlar = kaynak.split("\n")
+sessizler = []
+for i, l in enumerate(satirlar):
+    if not l.strip().startswith("except"):
+        continue
+    girinti = len(l) - len(l.lstrip())
+    govde = []
+    j = i + 1
+    while j < len(satirlar) and (not satirlar[j].strip() or (len(satirlar[j]) - len(satirlar[j].lstrip())) > girinti):
+        if satirlar[j].strip():
+            govde.append(satirlar[j].strip())
+        j += 1
+        if len(govde) >= 4:
+            break
+    if govde == ["pass"]:
+        sessizler.append("satir %d: %s -> pass" % (i + 1, l.strip()))
+ok("hicbir except blogu sadece 'pass' degil", not sessizler, "; ".join(sessizler))
+
+ok("on-tarama except'i [UYARI] hizasinda",
+   "[UYARI]" in kaynak and "sayilamadi" in kaynak and
+   any("[UYARI]" in s and "sayilamadi" in s for s in satirlar), "")
+
+ok("modul seviyesinde _env_dosyasindan_anahtar cagriliyor",
+   "_env_dosyasindan_anahtar(" in kaynak and kaynak.count("_env_dosyasindan_anahtar(") >= 2,
+   kaynak.count("_env_dosyasindan_anahtar("))
+ok("'SEARLO_API_KEY yok' mesaji AYNEN duruyor",
+   "[RESIM] SEARLO_API_KEY yok, resim doldurma atlandi." in kaynak, "")
+
 print("\nPASS=%d  FAIL=%d" % (gecti, basarisiz))
 sys.exit(1 if basarisiz else 0)

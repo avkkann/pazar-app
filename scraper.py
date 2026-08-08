@@ -30,18 +30,31 @@ SEARLO_TIMEOUT      = 15
 SEARLO_MATCH_THRESHOLD = 0.55  # %55 eslesme esigi (2026-05: 0.65'ten dusuruldu - eksik resim ~2027, atlanan istekler kredi yiyordu)
 SEARLO_API_KEY      = os.environ.get("SEARLO_API_KEY", "").strip()
 
+def _env_dosyasindan_anahtar(env_path):
+    """.env dosyasindan SEARLO_API_KEY okur.
+
+    Iki farkli "anahtar yok" durumu AYIRT EDILIR:
+      - dosya yok / icinde satir yok -> sessizce "" doner, resim adimi zaten
+        "[RESIM] SEARLO_API_KEY yok" der.
+      - dosya OKUNAMIYOR (izin, bozuk, dizin) -> sesli uyarir. Onceden burada
+        "except: pass" vardi ve okuma hatasi "anahtar yok" gibi gorunuyordu.
+    """
+    if not os.path.exists(env_path):
+        return ""
+    try:
+        with open(env_path, encoding="utf-8") as _f:
+            for _line in _f:
+                _line = _line.strip()
+                if _line.startswith("SEARLO_API_KEY="):
+                    return _line.split("=", 1)[1].strip().strip('"').strip("'")
+    except Exception as e:
+        print(f"[UYARI] .env okunamadi: {e} — SEARLO_API_KEY bos kalacak")
+        return ""
+    return ""
+
+
 if not SEARLO_API_KEY:
-    _env_path = os.path.join(_BASE_DIR, ".env")
-    if os.path.exists(_env_path):
-        try:
-            with open(_env_path, encoding="utf-8") as _f:
-                for _line in _f:
-                    _line = _line.strip()
-                    if _line.startswith("SEARLO_API_KEY="):
-                        SEARLO_API_KEY = _line.split("=", 1)[1].strip().strip('"').strip("'")
-                        break
-        except Exception:
-            pass
+    SEARLO_API_KEY = _env_dosyasindan_anahtar(os.path.join(_BASE_DIR, ".env"))
 
 
 def _make_sid(slug_kisa, ad, gramaj=""):
@@ -185,7 +198,7 @@ def resimleri_doldur():
             with open(_yol, encoding="utf-8") as f:
                 toplam_eksik_aday += sum(1 for p in json.load(f) if not p.get("resim"))
         except Exception as e:
-            print(f"  [uyari] {_dosya}.json sayilamadi (iptal mesajindaki sayi eksik olabilir): {e}")
+            print(f"[UYARI] {_dosya}.json sayilamadi: {e} — iptal mesajindaki istek sayisi eksik olacak")
 
     for slug, keyword, dosya_adi in CATEGORIES:
         if iptal:
