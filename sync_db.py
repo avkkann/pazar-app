@@ -68,6 +68,7 @@ def satirlara_donustur(urunler):
             "market_fiyatlari": u.get("market_fiyatlari") or [],
             "fiyat_gecmisi": u.get("fiyat_gecmisi") or [],
             "agirlik_hacim_gecmisi": u.get("agirlik_hacim_gecmisi") or [],
+            "ilan_indirim_gecmisi": u.get("ilan_indirim_gecmisi") or [],
             "son_senkron": SENKRON_ZAMANI,
         }
     return list(satirlar.values())

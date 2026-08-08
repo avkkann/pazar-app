@@ -1004,7 +1004,7 @@ function openDetay(urunId) {
     const isFirst = i === 0, isLast = i === mktler.length - 1 && mktler.length > 1;
     return `<div class="detay-mkt-row${isFirst ? ' best' : isLast ? ' worst' : ''}">
       <span class="m-tag m-${f.market || 'default'}">${MARKET_NAMES[f.market] || f.market || '?'}</span>
-      <span class="detay-mkt-price">${tlHTML(f.fiyat)}${isLast ? '<span class="detay-mkt-badge">en pahalı</span>' : ''}</span>
+      <span class="detay-mkt-price">${listeFiyatHTML(f)}${tlHTML(f.fiyat)}${isLast ? '<span class="detay-mkt-badge">en pahalı</span>' : ''}</span>
     </div>${bildirimUyariHTML(u._sid, f.market)}`;
   }).join('');
 
@@ -1990,6 +1990,18 @@ function birimFiyatYazi(bf) {
 // Bir markette sehven girilmiş uçuk fiyat, "en pahalı" satırını ve tasarruf
 // hesabını bozuyordu. Dönüş: { gecerli: [{market,fiyat}], gizlenen: [{market,fiyat}] }
 // Her ikisi de girdi sırasını korur.
+// Marketin ILAN ETTIGI liste fiyati (API: discountlessPrice). Bizim
+// fiyat_gecmisi cikarimimizdan bagimsiz, kaynagin kendi beyani.
+// Sadece urun detayinda, market fiyat satirinda gosterilir.
+function listeFiyatHTML(mf) {
+  if (!mf) return '';
+  const liste = mf.liste_fiyat, satis = mf.fiyat;
+  if (liste == null || satis == null || !(liste > satis)) return '';
+  const yuzde = Math.round(((liste - satis) / liste) * 100);
+  if (!(yuzde > 0)) return '';
+  return `<span class="detay-mkt-liste"><s>${tl(liste)}</s><span class="detay-mkt-liste-yuzde">-%${yuzde}</span></span>`;
+}
+
 function fiyatlariTemizle(market_fiyatlari) {
   const liste = (market_fiyatlari || []).filter(f => f && f.fiyat != null);
   if (liste.length < 2) return { gecerli: liste.slice(), gizlenen: [] };

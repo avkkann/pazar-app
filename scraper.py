@@ -345,10 +345,17 @@ def parse_product(item, kategori_adi, slug_kisa="urun"):
     for depot in item.get("productDepotInfoList") or []:
         fiyat = depot.get("price")
         if fiyat is not None:
-            market_fiyatlari.append({
+            kayit = {
                 "market": depot.get("marketAdi"),
                 "fiyat":  fiyat,
-            })
+            }
+            # discountlessPrice = marketin ILAN ETTIGI liste fiyati. Kayitlarin
+            # ~%14'unde dolu (migros/carrefour/bim). Sadece gercek bir indirim
+            # ifade ediyorsa ekle; bos alani 15 bin urunde tasimayalim.
+            liste = depot.get("discountlessPrice")
+            if liste is not None and fiyat is not None and liste > fiyat:
+                kayit["liste_fiyat"] = liste
+            market_fiyatlari.append(kayit)
 
     prices = [f["fiyat"] for f in market_fiyatlari]
     ad = item.get("title")
@@ -430,6 +437,59 @@ def _apply_agirlik_gecmisi(yeni_urunler, cat_file):
                 gecmis.append([bugun, yeni_deger])
 
         u["agirlik_hacim_gecmisi"] = gecmis
+
+
+def _apply_ilan_indirim_gecmisi(yeni_urunler, cat_file):
+    """Her urune ilan_indirim_gecmisi listesi ekler.
+    "Market ne zaman, ne kadar indirim ILAN etti" tarihcesi — bizim fiyat_gecmisi'nden
+    urettigimiz cikarimla karistirilmamali, bu kaynagin kendi beyani.
+    Sadece ilan edilen bir indirim VARKEN (liste_fiyat dolu) ve o market icin deger
+    degistiginde yeni kayit yazilir (agirlik_hacim_gecmisi deseni).
+    Suresiz saklanir; amac uzun vadeli kampanya ritmi analizi.
+    Format: [{"tarih","market","liste_fiyat","satis_fiyat"}, ...]"""
+    eski_index = {}
+    if os.path.exists(cat_file):
+        try:
+            with open(cat_file, "r", encoding="utf-8") as f:
+                for u in json.load(f):
+                    sid = u.get("_sid")
+                    if sid:
+                        eski_index[sid] = u
+        except Exception as e:
+            print(f"  [uyari] eski JSON okunamadi (ilan indirim): {e}")
+
+    bugun = datetime.now().strftime("%Y-%m-%d")
+
+    for u in yeni_urunler:
+        gecmis = []
+        sid = u.get("_sid")
+        if sid and sid in eski_index:
+            gecmis = list(eski_index[sid].get("ilan_indirim_gecmisi") or [])
+
+        for mf in (u.get("market_fiyatlari") or []):
+            liste = mf.get("liste_fiyat")
+            if liste is None:
+                continue
+            market = mf.get("market")
+            satis = mf.get("fiyat")
+            if not market or satis is None:
+                continue
+            son = None
+            for k in reversed(gecmis):
+                if k.get("market") == market:
+                    son = k
+                    break
+            if son and son.get("liste_fiyat") == liste and son.get("satis_fiyat") == satis:
+                continue
+            gecmis.append({
+                "tarih":       bugun,
+                "market":      market,
+                "liste_fiyat": liste,
+                "satis_fiyat": satis,
+            })
+
+        u["ilan_indirim_gecmisi"] = gecmis
+
 
 def _kategori_sayfalarini_cek(session, api_keyword, kategori_adi, slug_kisa):
     """Tek bir API kategori adi icin butun sayfalari ceker.
@@ -513,6 +573,7 @@ def scrape_category(cookies, slug, keyword, dosya_adi):
     cat_file = os.path.join(DATA_DIR, f"{dosya_adi}.json")
     _apply_fiyat_gecmisi(products, cat_file)
     _apply_agirlik_gecmisi(products, cat_file)
+    _apply_ilan_indirim_gecmisi(products, cat_file)
     with open(cat_file, "w", encoding="utf-8") as f:
         json.dump(products, f, ensure_ascii=False, indent=2)
     print(f"  Tamamlandi: {len(products)} urun -> {cat_file}")
