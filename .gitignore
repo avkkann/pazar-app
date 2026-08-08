@@ -12,9 +12,15 @@ __pycache__/
 .idea/
 
 # Test dosyaları
+# KURAL: test_<özellik>.py / test_<özellik>.mjs = KALICI regresyon testi, repoda durur.
+#        Tek seferlik keşif script'i yazacaksan kesif_* önekini kullan (aşağıda ignore'lu).
+# Aşağıdaki üçü bu kural konmadan önce yazılmış tek seferlik denemeler; ayrıca
+# test_searlo.py içinde gömülü bir API anahtarı var (hiç commit edilmedi, öyle kalsın).
 firsat_kod.txt
 test_export.xlsx
-test_*.py
+test_debug.py
+test_resim_mini.py
+test_searlo.py
 *.test.py
 supabasepas.txt
 *.secret
