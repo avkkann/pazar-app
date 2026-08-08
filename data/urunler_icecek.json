@@ -608,6 +608,36 @@
     ]
   },
   {
+    "_sid": "icecek_damla-premium-su-750-ml",
+    "ad": "Damla Premium Su 750 Ml",
+    "ana_kategori": "Su",
+    "agirlik_hacim": "750 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30074538.png",
+    "en_dusuk_fiyat": 100.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 100.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        75.0
+      ],
+      [
+        "2026-07-22",
+        100.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "750 ML"
+      ]
+    ]
+  },
+  {
     "_sid": "icecek_i-cim-ayran-2-lt",
     "ad": "İçim Ayran 2 Lt",
     "ana_kategori": "Ayran ve Kefir",
@@ -838,44 +868,6 @@
       [
         "2026-07-25",
         "250 GR"
-      ]
-    ]
-  },
-  {
-    "_sid": "icecek_lipton-yellow-label-dokme-cay-1-kg",
-    "ad": "Lipton Yellow Label Dökme Çay 1 Kg",
-    "ana_kategori": "Çay ve Bitki Çayları",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30097414.png",
-    "en_dusuk_fiyat": 384.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 384.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        355.95
-      ],
-      [
-        "2026-07-09",
-        294.5
-      ],
-      [
-        "2026-07-24",
-        294.95
-      ],
-      [
-        "2026-08-07",
-        384.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
       ]
     ]
   },
@@ -1386,36 +1378,6 @@
     ]
   },
   {
-    "_sid": "icecek_damla-premium-su-750-ml",
-    "ad": "Damla Premium Su 750 Ml",
-    "ana_kategori": "Su",
-    "agirlik_hacim": "750 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30074538.png",
-    "en_dusuk_fiyat": 100.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 100.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        75.0
-      ],
-      [
-        "2026-07-22",
-        100.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "750 ML"
-      ]
-    ]
-  },
-  {
     "_sid": "icecek_lipton-bardak-poset-yellow-label-cay-25-adet",
     "ad": "Lipton Bardak Poşet Yellow Label Çay 25 Adet",
     "ana_kategori": "Çay ve Bitki Çayları",
@@ -1483,6 +1445,48 @@
       [
         "2026-07-03",
         "750 ML"
+      ]
+    ]
+  },
+  {
+    "_sid": "icecek_starbucks-chilled-classics-skinny-latte-220-ml",
+    "ad": "Starbucks Chilled Classics Skinny Latte 220 Ml",
+    "ana_kategori": "Gazsız İçecekler",
+    "agirlik_hacim": "220 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30284965.png",
+    "en_dusuk_fiyat": 159.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 159.9
+      },
+      {
+        "market": "migros",
+        "fiyat": 193.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        146.9
+      ],
+      [
+        "2026-07-01",
+        189.9
+      ],
+      [
+        "2026-07-25",
+        191.9
+      ],
+      [
+        "2026-08-07",
+        159.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "220 ML"
       ]
     ]
   },
@@ -1610,40 +1614,6 @@
     ]
   },
   {
-    "_sid": "icecek_jacobs-cronat-gold-instant-kahve-100-gr",
-    "ad": "Jacobs Cronat Gold Instant Kahve 100 Gr",
-    "ana_kategori": "Kahve",
-    "agirlik_hacim": "100 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/301005.png",
-    "en_dusuk_fiyat": 299.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 299.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        299.0
-      ],
-      [
-        "2026-07-14",
-        186.0
-      ],
-      [
-        "2026-08-05",
-        299.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "100 GR"
-      ]
-    ]
-  },
-  {
     "_sid": "icecek_cafissimo-caffe-crema-colombia-kapsul-10-adet",
     "ad": "Cafissimo Caffe Crema Colombia Kapsül 10 Adet",
     "ana_kategori": "Kahve",
@@ -1699,6 +1669,44 @@
       [
         "2026-07-03",
         "25 GR"
+      ]
+    ]
+  },
+  {
+    "_sid": "icecek_lipton-yellow-label-dokme-cay-1-kg",
+    "ad": "Lipton Yellow Label Dökme Çay 1 Kg",
+    "ana_kategori": "Çay ve Bitki Çayları",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30097414.png",
+    "en_dusuk_fiyat": 384.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 384.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        355.95
+      ],
+      [
+        "2026-07-09",
+        294.5
+      ],
+      [
+        "2026-07-24",
+        294.95
+      ],
+      [
+        "2026-08-07",
+        384.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
       ]
     ]
   },
@@ -2133,32 +2141,6 @@
     ]
   },
   {
-    "_sid": "icecek_pepsi-gazli-i-cecek-1-5-lt",
-    "ad": "Pepsi Gazlı İçecek 1.5 Lt",
-    "ana_kategori": "Gazlı İçecekler",
-    "agirlik_hacim": "1.5 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/hakmar/1006270.jpg",
-    "en_dusuk_fiyat": 67.0,
-    "market_fiyatlari": [
-      {
-        "market": "hakmar",
-        "fiyat": 67.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-07-25",
-        67.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-25",
-        "1.5 LT"
-      ]
-    ]
-  },
-  {
     "_sid": "icecek_lipton-seftali-buzlu-cay-2-lt",
     "ad": "Lipton Şeftali Buzlu Çay 2 Lt",
     "ana_kategori": "Gazsız İçecekler",
@@ -2534,44 +2516,28 @@
     "agirlik_hacim_gecmisi": []
   },
   {
-    "_sid": "icecek_starbucks-chilled-classics-skinny-latte-220-ml",
-    "ad": "Starbucks Chilled Classics Skinny Latte 220 Ml",
-    "ana_kategori": "Gazsız İçecekler",
-    "agirlik_hacim": "220 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30284965.png",
-    "en_dusuk_fiyat": 159.9,
+    "_sid": "icecek_herby-sade-cilek-matcha-25-gr",
+    "ad": "Herby Sade/Çilek Matcha 25 Gr",
+    "ana_kategori": "Çay ve Bitki Çayları",
+    "agirlik_hacim": "25 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bim/1712530.jpg",
+    "en_dusuk_fiyat": 130.0,
     "market_fiyatlari": [
       {
-        "market": "carrefour",
-        "fiyat": 159.9
-      },
-      {
-        "market": "migros",
-        "fiyat": 193.95
+        "market": "bim",
+        "fiyat": 130.0
       }
     ],
     "fiyat_gecmisi": [
       [
         "2026-06-22",
-        146.9
-      ],
-      [
-        "2026-07-01",
-        189.9
-      ],
-      [
-        "2026-07-25",
-        191.9
-      ],
-      [
-        "2026-08-07",
-        159.9
+        130.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-03",
-        "220 ML"
+        "25 GR"
       ]
     ]
   },
@@ -2602,36 +2568,36 @@
     ]
   },
   {
-    "_sid": "icecek_coca-cola-zero-sugar-kutu-6x250-ml",
-    "ad": "Coca-Cola Zero Sugar Kutu 6x250 Ml",
-    "ana_kategori": "Gazlı İçecekler",
-    "agirlik_hacim": "1.5 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30217095.png",
-    "en_dusuk_fiyat": 300.0,
+    "_sid": "icecek_jacobs-cronat-gold-instant-kahve-100-gr",
+    "ad": "Jacobs Cronat Gold Instant Kahve 100 Gr",
+    "ana_kategori": "Kahve",
+    "agirlik_hacim": "100 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/301005.png",
+    "en_dusuk_fiyat": 299.0,
     "market_fiyatlari": [
       {
-        "market": "migros",
-        "fiyat": 300.0
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 300.0
+        "market": "bim",
+        "fiyat": 299.0
       }
     ],
     "fiyat_gecmisi": [
       [
         "2026-06-22",
-        275.0
+        299.0
       ],
       [
-        "2026-07-27",
-        300.0
+        "2026-07-14",
+        186.0
+      ],
+      [
+        "2026-08-05",
+        299.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-03",
-        "1.5 LT"
+        "100 GR"
       ]
     ]
   },
@@ -2657,6 +2623,40 @@
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-16",
+        "1 KG"
+      ]
+    ]
+  },
+  {
+    "_sid": "icecek_lipton-earl-grey-dokme-cay-1-kg",
+    "ad": "Lipton Earl Grey Dökme Çay 1 Kg",
+    "ana_kategori": "Çay ve Bitki Çayları",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30389918.png",
+    "en_dusuk_fiyat": 524.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 524.95
+      },
+      {
+        "market": "migros",
+        "fiyat": 529.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-07-06",
+        459.95
+      ],
+      [
+        "2026-07-26",
+        524.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-06",
         "1 KG"
       ]
     ]
@@ -2804,52 +2804,6 @@
     ]
   },
   {
-    "_sid": "icecek_tarim-kredi-bardak-poset-cay-25x2-gr",
-    "ad": "Tarım Kredi Bardak Poşet Çay 25x2 Gr",
-    "ana_kategori": "Çay ve Bitki Çayları",
-    "agirlik_hacim": "50 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/104686.jpg",
-    "en_dusuk_fiyat": 34.5,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 34.5
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        32.0
-      ],
-      [
-        "2026-06-23",
-        28.9
-      ],
-      [
-        "2026-06-30",
-        32.0
-      ],
-      [
-        "2026-07-07",
-        34.5
-      ],
-      [
-        "2026-07-14",
-        28.9
-      ],
-      [
-        "2026-07-23",
-        34.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "50 GR"
-      ]
-    ]
-  },
-  {
     "_sid": "icecek_carrefour-discount-su-5-lt",
     "ad": "Carrefour Discount Su 5 Lt",
     "ana_kategori": "Su",
@@ -2954,6 +2908,32 @@
     ]
   },
   {
+    "_sid": "icecek_pepsi-gazli-i-cecek-1-5-lt",
+    "ad": "Pepsi Gazlı İçecek 1.5 Lt",
+    "ana_kategori": "Gazlı İçecekler",
+    "agirlik_hacim": "1.5 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/hakmar/1006270.jpg",
+    "en_dusuk_fiyat": 67.0,
+    "market_fiyatlari": [
+      {
+        "market": "hakmar",
+        "fiyat": 67.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-07-25",
+        67.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-25",
+        "1.5 LT"
+      ]
+    ]
+  },
+  {
     "_sid": "icecek_tarim-kredi-dibek-turk-kahvesi-200-gr",
     "ad": "Tarım Kredi Dibek Türk Kahvesi 200 Gr",
     "ana_kategori": "Kahve",
@@ -3038,6 +3018,32 @@
       [
         "2026-07-03",
         "1.5 LT"
+      ]
+    ]
+  },
+  {
+    "_sid": "icecek_lipton-tropikal-buzlu-cay-2-lt",
+    "ad": "Lipton Tropikal Buzlu Çay 2 Lt",
+    "ana_kategori": "Gazsız İçecekler",
+    "agirlik_hacim": "2 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/13002758.jpg",
+    "en_dusuk_fiyat": 76.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 76.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        76.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "2 LT"
       ]
     ]
   },
@@ -3191,32 +3197,6 @@
     "agirlik_hacim_gecmisi": []
   },
   {
-    "_sid": "icecek_herby-sade-cilek-matcha-25-gr",
-    "ad": "Herby Sade/Çilek Matcha 25 Gr",
-    "ana_kategori": "Çay ve Bitki Çayları",
-    "agirlik_hacim": "25 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bim/1712530.jpg",
-    "en_dusuk_fiyat": 130.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 130.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        130.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "25 GR"
-      ]
-    ]
-  },
-  {
     "_sid": "icecek_nescaf-coffee-mate-kahve-kremasi-200-gr",
     "ad": "Nescafé Coffee Mate Kahve Kreması 200 Gr",
     "ana_kategori": "Kahve",
@@ -3363,6 +3343,40 @@
     ]
   },
   {
+    "_sid": "icecek_coca-cola-zero-sugar-kutu-6x250-ml",
+    "ad": "Coca-Cola Zero Sugar Kutu 6x250 Ml",
+    "ana_kategori": "Gazlı İçecekler",
+    "agirlik_hacim": "1.5 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30217095.png",
+    "en_dusuk_fiyat": 300.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 300.0
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 300.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        275.0
+      ],
+      [
+        "2026-07-27",
+        300.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1.5 LT"
+      ]
+    ]
+  },
+  {
     "_sid": "icecek_l-or-espresso-supremo-kapsul-kahve-10-adet",
     "ad": "L'Or Espresso Supremo Kapsül Kahve 10 Adet",
     "ana_kategori": "Kahve",
@@ -3490,40 +3504,6 @@
       [
         "2026-07-03",
         "250 GR"
-      ]
-    ]
-  },
-  {
-    "_sid": "icecek_lipton-earl-grey-dokme-cay-1-kg",
-    "ad": "Lipton Earl Grey Dökme Çay 1 Kg",
-    "ana_kategori": "Çay ve Bitki Çayları",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30389918.png",
-    "en_dusuk_fiyat": 524.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 524.95
-      },
-      {
-        "market": "migros",
-        "fiyat": 529.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-07-06",
-        459.95
-      ],
-      [
-        "2026-07-26",
-        524.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-06",
-        "1 KG"
       ]
     ]
   },
@@ -3766,6 +3746,52 @@
       [
         "2026-07-03",
         "250 ML"
+      ]
+    ]
+  },
+  {
+    "_sid": "icecek_tarim-kredi-bardak-poset-cay-25x2-gr",
+    "ad": "Tarım Kredi Bardak Poşet Çay 25x2 Gr",
+    "ana_kategori": "Çay ve Bitki Çayları",
+    "agirlik_hacim": "50 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/104686.jpg",
+    "en_dusuk_fiyat": 34.5,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 34.5
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        32.0
+      ],
+      [
+        "2026-06-23",
+        28.9
+      ],
+      [
+        "2026-06-30",
+        32.0
+      ],
+      [
+        "2026-07-07",
+        34.5
+      ],
+      [
+        "2026-07-14",
+        28.9
+      ],
+      [
+        "2026-07-23",
+        34.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "50 GR"
       ]
     ]
   },
@@ -4016,32 +4042,6 @@
       [
         "2026-07-03",
         "1.2 LT"
-      ]
-    ]
-  },
-  {
-    "_sid": "icecek_lipton-tropikal-buzlu-cay-2-lt",
-    "ad": "Lipton Tropikal Buzlu Çay 2 Lt",
-    "ana_kategori": "Gazsız İçecekler",
-    "agirlik_hacim": "2 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/13002758.jpg",
-    "en_dusuk_fiyat": 76.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 76.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        76.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "2 LT"
       ]
     ]
   },
@@ -5344,6 +5344,44 @@
     ]
   },
   {
+    "_sid": "icecek_pinar-sporcu-suyu-750-ml",
+    "ad": "Pınar Sporcu Suyu 750 Ml",
+    "ana_kategori": "Su",
+    "agirlik_hacim": "750 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/8060705.jpg",
+    "en_dusuk_fiyat": 34.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 34.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        20.0
+      ],
+      [
+        "2026-07-24",
+        34.95
+      ],
+      [
+        "2026-07-25",
+        26.95
+      ],
+      [
+        "2026-07-31",
+        34.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "750 ML"
+      ]
+    ]
+  },
+  {
     "_sid": "icecek_cappy-limonata-1-lt",
     "ad": "Cappy Limonata 1 Lt",
     "ana_kategori": "Gazsız İçecekler",
@@ -5546,27 +5584,6 @@
         "2.5 LT"
       ]
     ]
-  },
-  {
-    "_sid": "icecek_dogadan-rezene-20-adet",
-    "ad": "Doğadan Rezene 20 Adet",
-    "ana_kategori": "Çay ve Bitki Çayları",
-    "agirlik_hacim": null,
-    "resim": "https://cdn.marketfiyati.org.tr/sokimages/3132935.png",
-    "en_dusuk_fiyat": 64.9,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 64.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-07-22",
-        64.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": []
   },
   {
     "_sid": "icecek_lipton-ice-tea-green-1-5-lt",
@@ -6208,44 +6225,6 @@
     ]
   },
   {
-    "_sid": "icecek_pinar-sporcu-suyu-750-ml",
-    "ad": "Pınar Sporcu Suyu 750 Ml",
-    "ana_kategori": "Su",
-    "agirlik_hacim": "750 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/8060705.jpg",
-    "en_dusuk_fiyat": 34.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 34.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        20.0
-      ],
-      [
-        "2026-07-24",
-        34.95
-      ],
-      [
-        "2026-07-25",
-        26.95
-      ],
-      [
-        "2026-07-31",
-        34.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "750 ML"
-      ]
-    ]
-  },
-  {
     "_sid": "icecek_i-cim-orman-meyveli-kefir-260-ml",
     "ad": "İçim Orman Meyveli Kefir 260 Ml",
     "ana_kategori": "Ayran ve Kefir",
@@ -6276,6 +6255,32 @@
       [
         "2026-07-03",
         "260 ML"
+      ]
+    ]
+  },
+  {
+    "_sid": "icecek_sek-probiyotik-i-cilebilir-yogurt-carkifelek-yuzu-250-ml",
+    "ad": "Sek Probiyotik İçilebilir Yoğurt Çarkıfelek & Yuzu 250 Ml",
+    "ana_kategori": "Ayran ve Kefir",
+    "agirlik_hacim": "250 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/12003512.jpg",
+    "en_dusuk_fiyat": 46.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 46.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-08-04",
+        46.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-08-04",
+        "250 ML"
       ]
     ]
   },
@@ -6390,6 +6395,27 @@
         "1 LT"
       ]
     ]
+  },
+  {
+    "_sid": "icecek_dogadan-rezene-20-adet",
+    "ad": "Doğadan Rezene 20 Adet",
+    "ana_kategori": "Çay ve Bitki Çayları",
+    "agirlik_hacim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/sokimages/3132935.png",
+    "en_dusuk_fiyat": 64.9,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 64.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-07-22",
+        64.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": []
   },
   {
     "_sid": "icecek_lipton-sekersiz-seftali-1-lt",
@@ -6668,40 +6694,6 @@
     ]
   },
   {
-    "_sid": "icecek_dogus-black-label-demlik-suzen-poset-cay-320-gr",
-    "ad": "Doğuş Black Label Demlik Süzen Poşet Çay 320 Gr",
-    "ana_kategori": "Çay ve Bitki Çayları",
-    "agirlik_hacim": "320 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30076685.png",
-    "en_dusuk_fiyat": 194.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 194.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        195.5
-      ],
-      [
-        "2026-06-26",
-        259.95
-      ],
-      [
-        "2026-08-07",
-        194.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "320 GR"
-      ]
-    ]
-  },
-  {
     "_sid": "icecek_dogus-karadeniz-bardak-cay-200-gr",
     "ad": "Doğuş Karadeniz Bardak Çay 200 Gr",
     "ana_kategori": "Çay ve Bitki Çayları",
@@ -6912,32 +6904,6 @@
       [
         "2026-07-22",
         "330 ML"
-      ]
-    ]
-  },
-  {
-    "_sid": "icecek_sek-probiyotik-i-cilebilir-yogurt-carkifelek-yuzu-250-ml",
-    "ad": "Sek Probiyotik İçilebilir Yoğurt Çarkıfelek & Yuzu 250 Ml",
-    "ana_kategori": "Ayran ve Kefir",
-    "agirlik_hacim": "250 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/12003512.jpg",
-    "en_dusuk_fiyat": 46.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 46.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-08-04",
-        46.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-08-04",
-        "250 ML"
       ]
     ]
   },
@@ -7422,6 +7388,40 @@
       [
         "2026-07-25",
         "225 GR"
+      ]
+    ]
+  },
+  {
+    "_sid": "icecek_dogus-black-label-demlik-suzen-poset-cay-320-gr",
+    "ad": "Doğuş Black Label Demlik Süzen Poşet Çay 320 Gr",
+    "ana_kategori": "Çay ve Bitki Çayları",
+    "agirlik_hacim": "320 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30076685.png",
+    "en_dusuk_fiyat": 194.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 194.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        195.5
+      ],
+      [
+        "2026-06-26",
+        259.95
+      ],
+      [
+        "2026-08-07",
+        194.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "320 GR"
       ]
     ]
   },
@@ -8053,6 +8053,43 @@
     ]
   },
   {
+    "_sid": "icecek_jacobs-2si-1-arada-10-adet",
+    "ad": "Jacobs 2si 1 Arada 10 Adet",
+    "ana_kategori": "Kahve",
+    "agirlik_hacim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30420884.png",
+    "en_dusuk_fiyat": 62.34,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 62.34
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        45.0
+      ],
+      [
+        "2026-07-18",
+        95.9
+      ],
+      [
+        "2026-07-25",
+        45.0
+      ],
+      [
+        "2026-07-31",
+        95.9
+      ],
+      [
+        "2026-08-07",
+        62.34
+      ]
+    ],
+    "agirlik_hacim_gecmisi": []
+  },
+  {
     "_sid": "icecek_cafe-crown-3u1-arada-10-lu-paket",
     "ad": "Cafe Crown 3ü1 Arada 10'lu Paket",
     "ana_kategori": "Kahve",
@@ -8258,29 +8295,30 @@
     ]
   },
   {
-    "_sid": "icecek_nescaf-2si1-arada-instant-kahve-15-adet",
-    "ad": "Nescafé 2si1 Arada Instant Kahve 15 Adet",
-    "ana_kategori": "Kahve",
-    "agirlik_hacim": null,
-    "resim": "https://cdn.marketfiyati.org.tr/a101/30000904.jpg",
-    "en_dusuk_fiyat": 99.5,
+    "_sid": "icecek_coca-cola-gazli-i-cecek-2-5-lt",
+    "ad": "Coca-Cola Gazlı İçecek 2.5 Lt",
+    "ana_kategori": "Gazlı İçecekler",
+    "agirlik_hacim": "2.5 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/hakmarimages/1000167.png",
+    "en_dusuk_fiyat": 90.0,
     "market_fiyatlari": [
       {
-        "market": "a101",
-        "fiyat": 99.5
+        "market": "hakmar",
+        "fiyat": 90.0
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-06-25",
-        151.0
-      ],
-      [
-        "2026-07-01",
-        99.5
+        "2026-07-25",
+        90.0
       ]
     ],
-    "agirlik_hacim_gecmisi": []
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-25",
+        "2.5 LT"
+      ]
+    ]
   },
   {
     "_sid": "icecek_tamek-100-armut-suyu-1-lt",
@@ -8305,40 +8343,6 @@
       [
         "2026-07-03",
         "1 LT"
-      ]
-    ]
-  },
-  {
-    "_sid": "icecek_uludag-frutti-karpuz-cilek-6x200-ml",
-    "ad": "Uludağ Frutti Karpuz Çilek 6x200 Ml",
-    "ana_kategori": "Maden Suyu",
-    "agirlik_hacim": "1.2 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30391724.png",
-    "en_dusuk_fiyat": 111.75,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 111.75
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        94.95
-      ],
-      [
-        "2026-07-01",
-        104.95
-      ],
-      [
-        "2026-08-06",
-        111.75
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1.2 LT"
       ]
     ]
   },
@@ -8972,43 +8976,6 @@
     "agirlik_hacim_gecmisi": []
   },
   {
-    "_sid": "icecek_jacobs-2si-1-arada-10-adet",
-    "ad": "Jacobs 2si 1 Arada 10 Adet",
-    "ana_kategori": "Kahve",
-    "agirlik_hacim": null,
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30420884.png",
-    "en_dusuk_fiyat": 62.34,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 62.34
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        45.0
-      ],
-      [
-        "2026-07-18",
-        95.9
-      ],
-      [
-        "2026-07-25",
-        45.0
-      ],
-      [
-        "2026-07-31",
-        95.9
-      ],
-      [
-        "2026-08-07",
-        62.34
-      ]
-    ],
-    "agirlik_hacim_gecmisi": []
-  },
-  {
     "_sid": "icecek_nescaf-xpress-orijinal-soguk-kahve-250-ml",
     "ad": "Nescafé Xpress Orijinal Soğuk Kahve 250 Ml",
     "ana_kategori": "Gazsız İçecekler",
@@ -9177,30 +9144,29 @@
     ]
   },
   {
-    "_sid": "icecek_coca-cola-gazli-i-cecek-2-5-lt",
-    "ad": "Coca-Cola Gazlı İçecek 2.5 Lt",
-    "ana_kategori": "Gazlı İçecekler",
-    "agirlik_hacim": "2.5 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/hakmarimages/1000167.png",
-    "en_dusuk_fiyat": 90.0,
+    "_sid": "icecek_nescaf-2si1-arada-instant-kahve-15-adet",
+    "ad": "Nescafé 2si1 Arada Instant Kahve 15 Adet",
+    "ana_kategori": "Kahve",
+    "agirlik_hacim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/a101/30000904.jpg",
+    "en_dusuk_fiyat": 99.5,
     "market_fiyatlari": [
       {
-        "market": "hakmar",
-        "fiyat": 90.0
+        "market": "a101",
+        "fiyat": 99.5
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-07-25",
-        90.0
+        "2026-06-25",
+        151.0
+      ],
+      [
+        "2026-07-01",
+        99.5
       ]
     ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-25",
-        "2.5 LT"
-      ]
-    ]
+    "agirlik_hacim_gecmisi": []
   },
   {
     "_sid": "icecek_lipton-yellow-label-demlik-poset-48-adet-154-gr",
@@ -9245,6 +9211,40 @@
       [
         "2026-07-03",
         "154 GR"
+      ]
+    ]
+  },
+  {
+    "_sid": "icecek_uludag-frutti-karpuz-cilek-6x200-ml",
+    "ad": "Uludağ Frutti Karpuz Çilek 6x200 Ml",
+    "ana_kategori": "Maden Suyu",
+    "agirlik_hacim": "1.2 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30391724.png",
+    "en_dusuk_fiyat": 111.75,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 111.75
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        94.95
+      ],
+      [
+        "2026-07-01",
+        104.95
+      ],
+      [
+        "2026-08-06",
+        111.75
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1.2 LT"
       ]
     ]
   },
@@ -9632,6 +9632,32 @@
     ]
   },
   {
+    "_sid": "icecek_kefirix-kayisi-keten-tohumlu-kefir-250-ml",
+    "ad": "Kefirix Kayısı & Keten Tohumlu Kefir 250 Ml",
+    "ana_kategori": "Ayran ve Kefir",
+    "agirlik_hacim": "250 ML",
+    "resim": null,
+    "en_dusuk_fiyat": 49.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 49.5
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-07-30",
+        49.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-30",
+        "250 ML"
+      ]
+    ]
+  },
+  {
     "_sid": "icecek_coca-cola-orijinal-tat-250-ml",
     "ad": "Coca-Cola Orijinal Tat 250 Ml",
     "ana_kategori": "Gazlı İçecekler",
@@ -9774,60 +9800,6 @@
       [
         "2026-07-03",
         "30 GR"
-      ]
-    ]
-  },
-  {
-    "_sid": "icecek_fanta-zero-portakal-1-lt",
-    "ad": "Fanta Zero Portakal 1 Lt",
-    "ana_kategori": "Gazlı İçecekler",
-    "agirlik_hacim": "1 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/8030049.jpg",
-    "en_dusuk_fiyat": 65.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 65.0
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 70.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        60.0
-      ],
-      [
-        "2026-06-25",
-        54.0
-      ],
-      [
-        "2026-07-03",
-        61.0
-      ],
-      [
-        "2026-07-09",
-        60.0
-      ],
-      [
-        "2026-07-14",
-        61.0
-      ],
-      [
-        "2026-07-24",
-        54.0
-      ],
-      [
-        "2026-08-07",
-        65.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 LT"
       ]
     ]
   },
@@ -10365,32 +10337,6 @@
     ]
   },
   {
-    "_sid": "icecek_kefirix-kayisi-keten-tohumlu-kefir-250-ml",
-    "ad": "Kefirix Kayısı & Keten Tohumlu Kefir 250 Ml",
-    "ana_kategori": "Ayran ve Kefir",
-    "agirlik_hacim": "250 ML",
-    "resim": null,
-    "en_dusuk_fiyat": 49.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 49.5
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-07-30",
-        49.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-30",
-        "250 ML"
-      ]
-    ]
-  },
-  {
     "_sid": "icecek_bobatea-yaban-mersini-aromali-i-cecek-350-ml",
     "ad": "Bobatea Yaban Mersini Aromalı İçecek 350 Ml",
     "ana_kategori": "Meyve Suyu",
@@ -10443,6 +10389,60 @@
       [
         "2026-07-03",
         "250 ML"
+      ]
+    ]
+  },
+  {
+    "_sid": "icecek_fanta-zero-portakal-1-lt",
+    "ad": "Fanta Zero Portakal 1 Lt",
+    "ana_kategori": "Gazlı İçecekler",
+    "agirlik_hacim": "1 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/8030049.jpg",
+    "en_dusuk_fiyat": 65.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 65.0
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 70.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        60.0
+      ],
+      [
+        "2026-06-25",
+        54.0
+      ],
+      [
+        "2026-07-03",
+        61.0
+      ],
+      [
+        "2026-07-09",
+        60.0
+      ],
+      [
+        "2026-07-14",
+        61.0
+      ],
+      [
+        "2026-07-24",
+        54.0
+      ],
+      [
+        "2026-08-07",
+        65.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 LT"
       ]
     ]
   },
@@ -11122,6 +11122,32 @@
     ]
   },
   {
+    "_sid": "icecek_mis-cool-lime-1-lt",
+    "ad": "Mis Cool Lime 1 Lt",
+    "ana_kategori": "Gazsız İçecekler",
+    "agirlik_hacim": "1 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/sokimages/143243.png",
+    "en_dusuk_fiyat": 29.9,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 29.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-08-08",
+        29.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-08-08",
+        "1 LT"
+      ]
+    ]
+  },
+  {
     "_sid": "icecek_crown-cola-1-lt",
     "ad": "Crown Cola 1 Lt",
     "ana_kategori": "Gazlı İçecekler",
@@ -11716,36 +11742,6 @@
       [
         "2026-07-03",
         "52 GR"
-      ]
-    ]
-  },
-  {
-    "_sid": "icecek_caykur-kamelya-1-kg",
-    "ad": "Çaykur Kamelya 1 Kg",
-    "ana_kategori": "Çay ve Bitki Çayları",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30098954.png",
-    "en_dusuk_fiyat": 263.99,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 263.99
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        237.99
-      ],
-      [
-        "2026-07-24",
-        263.99
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
       ]
     ]
   },
@@ -12481,6 +12477,36 @@
       [
         "2026-07-03",
         "225 GR"
+      ]
+    ]
+  },
+  {
+    "_sid": "icecek_caykur-kamelya-1-kg",
+    "ad": "Çaykur Kamelya 1 Kg",
+    "ana_kategori": "Çay ve Bitki Çayları",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30098954.png",
+    "en_dusuk_fiyat": 263.99,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 263.99
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        237.99
+      ],
+      [
+        "2026-07-24",
+        263.99
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
       ]
     ]
   },
@@ -16800,6 +16826,36 @@
     ]
   },
   {
+    "_sid": "icecek_nescaf-2-si-1-arada-10-gr",
+    "ad": "Nescafé 2'si 1 Arada 10 Gr",
+    "ana_kategori": "Kahve",
+    "agirlik_hacim": "10 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/sokimages/3222322.png",
+    "en_dusuk_fiyat": 15.0,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 15.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        12.25
+      ],
+      [
+        "2026-07-08",
+        15.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "10 GR"
+      ]
+    ]
+  },
+  {
     "_sid": "icecek_coca-cola-kola-gazli-i-cecek-pet-250-ml",
     "ad": "Coca-Cola Kola Gazlı İçecek Pet 250 Ml",
     "ana_kategori": "Gazlı İçecekler",
@@ -17318,32 +17374,6 @@
     ]
   },
   {
-    "_sid": "icecek_nescaf-classic-kahve-100-gr",
-    "ad": "Nescafé Classic Kahve 100 Gr",
-    "ana_kategori": "Kahve",
-    "agirlik_hacim": "100 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/hakmarimages/1007062.png",
-    "en_dusuk_fiyat": 199.5,
-    "market_fiyatlari": [
-      {
-        "market": "hakmar",
-        "fiyat": 199.5
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-07-25",
-        199.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-25",
-        "100 GR"
-      ]
-    ]
-  },
-  {
     "_sid": "icecek_migros-gold-kahve-ekonomik-paket-200-gr",
     "ad": "Migros Gold Kahve Ekonomik Paket 200 Gr",
     "ana_kategori": "Kahve",
@@ -17510,36 +17540,6 @@
       [
         "2026-07-03",
         "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "icecek_nescaf-2-si-1-arada-10-gr",
-    "ad": "Nescafé 2'si 1 Arada 10 Gr",
-    "ana_kategori": "Kahve",
-    "agirlik_hacim": "10 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/sokimages/3222322.png",
-    "en_dusuk_fiyat": 15.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 15.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        12.25
-      ],
-      [
-        "2026-07-08",
-        15.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "10 GR"
       ]
     ]
   },
@@ -17919,6 +17919,32 @@
     ]
   },
   {
+    "_sid": "icecek_migros-klasik-kahve-ekonomik-paket-100-gr",
+    "ad": "Migros Klasik Kahve Ekonomik Paket 100 Gr",
+    "ana_kategori": "Kahve",
+    "agirlik_hacim": "100 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/3222641.png",
+    "en_dusuk_fiyat": 106.9,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 106.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-07-18",
+        106.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-18",
+        "100 GR"
+      ]
+    ]
+  },
+  {
     "_sid": "icecek_sutas-sutlu-kahveli-i-cecek-latte-1-lt",
     "ad": "Sütaş Sütlü Kahveli İçecek Latte 1 Lt",
     "ana_kategori": "Gazsız İçecekler",
@@ -18077,28 +18103,28 @@
     ]
   },
   {
-    "_sid": "icecek_saka-dogal-mineralli-su-6x1-9-lt",
-    "ad": "Saka Doğal Mineralli Su 6x1.9 Lt",
-    "ana_kategori": "Maden Suyu",
-    "agirlik_hacim": "9 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/8061112.png",
-    "en_dusuk_fiyat": 166.95,
+    "_sid": "icecek_nescaf-classic-kahve-100-gr",
+    "ad": "Nescafé Classic Kahve 100 Gr",
+    "ana_kategori": "Kahve",
+    "agirlik_hacim": "100 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/hakmarimages/1007062.png",
+    "en_dusuk_fiyat": 199.5,
     "market_fiyatlari": [
       {
-        "market": "migros",
-        "fiyat": 166.95
+        "market": "hakmar",
+        "fiyat": 199.5
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-06-22",
-        166.95
+        "2026-07-25",
+        199.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-07-03",
-        "9 LT"
+        "2026-07-25",
+        "100 GR"
       ]
     ]
   },
@@ -19094,32 +19120,6 @@
     "agirlik_hacim_gecmisi": []
   },
   {
-    "_sid": "icecek_migros-klasik-kahve-ekonomik-paket-100-gr",
-    "ad": "Migros Klasik Kahve Ekonomik Paket 100 Gr",
-    "ana_kategori": "Kahve",
-    "agirlik_hacim": "100 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/3222641.png",
-    "en_dusuk_fiyat": 106.9,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 106.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-07-18",
-        106.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-18",
-        "100 GR"
-      ]
-    ]
-  },
-  {
     "_sid": "icecek_nescaf-kopuklu-3-u-1-arada-2-si-1-arada-karisim-kahve-100-gr",
     "ad": "Nescafé Köpüklü 3'ü 1 Arada & 2'si 1 Arada Karışım Kahve 100 Gr",
     "ana_kategori": "Kahve",
@@ -19172,6 +19172,32 @@
       [
         "2026-07-03",
         "500 GR"
+      ]
+    ]
+  },
+  {
+    "_sid": "icecek_saka-dogal-mineralli-su-6x1-9-lt",
+    "ad": "Saka Doğal Mineralli Su 6x1.9 Lt",
+    "ana_kategori": "Maden Suyu",
+    "agirlik_hacim": "9 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/8061112.png",
+    "en_dusuk_fiyat": 166.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 166.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        166.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "9 LT"
       ]
     ]
   },
@@ -19352,44 +19378,6 @@
       [
         "2026-07-05",
         "200 ML"
-      ]
-    ]
-  },
-  {
-    "_sid": "icecek_tarim-kredi-limonata-1-lt",
-    "ad": "Tarım Kredi Limonata 1 Lt",
-    "ana_kategori": "Gazsız İçecekler",
-    "agirlik_hacim": "1 LT",
-    "resim": null,
-    "en_dusuk_fiyat": 33.0,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 33.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        32.0
-      ],
-      [
-        "2026-07-03",
-        33.0
-      ],
-      [
-        "2026-07-24",
-        27.5
-      ],
-      [
-        "2026-07-25",
-        33.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 LT"
       ]
     ]
   },
@@ -19840,6 +19828,32 @@
     ]
   },
   {
+    "_sid": "icecek_coca-cola-sekersiz-kola-2-5-lt",
+    "ad": "Coca-Cola Şekersiz Kola 2.5 Lt",
+    "ana_kategori": "Gazlı İçecekler",
+    "agirlik_hacim": "2.5 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/13001195.png",
+    "en_dusuk_fiyat": 89.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 89.5
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        89.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "2.5 LT"
+      ]
+    ]
+  },
+  {
     "_sid": "icecek_coca-cola-kola-2-5-lt",
     "ad": "Coca-Cola Kola 2.5 Lt",
     "ana_kategori": "Gazlı İçecekler",
@@ -20146,36 +20160,28 @@
     ]
   },
   {
-    "_sid": "icecek_sariyer-kola-gazli-i-cecek-250-ml",
-    "ad": "Sarıyer Kola Gazlı İçecek 250 Ml",
-    "ana_kategori": "Gazlı İçecekler",
-    "agirlik_hacim": "250 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/13002569.png",
-    "en_dusuk_fiyat": 14.0,
+    "_sid": "icecek_mahmood-3-u-1-arada-kahve-18-gr",
+    "ad": "Mahmood 3'ü 1 Arada Kahve 18 Gr",
+    "ana_kategori": "Kahve",
+    "agirlik_hacim": "18 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/images/1000172.png",
+    "en_dusuk_fiyat": 6.5,
     "market_fiyatlari": [
       {
         "market": "hakmar",
-        "fiyat": 14.0
-      },
-      {
-        "market": "a101",
-        "fiyat": 15.5
+        "fiyat": 6.5
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-06-22",
-        15.5
-      ],
-      [
         "2026-07-25",
-        14.0
+        6.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-07-03",
-        "250 ML"
+        "2026-07-25",
+        "18 GR"
       ]
     ]
   },
@@ -20232,6 +20238,44 @@
       [
         "2026-07-22",
         "1.5 LT"
+      ]
+    ]
+  },
+  {
+    "_sid": "icecek_tarim-kredi-limonata-1-lt",
+    "ad": "Tarım Kredi Limonata 1 Lt",
+    "ana_kategori": "Gazsız İçecekler",
+    "agirlik_hacim": "1 LT",
+    "resim": null,
+    "en_dusuk_fiyat": 33.0,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 33.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        32.0
+      ],
+      [
+        "2026-07-03",
+        33.0
+      ],
+      [
+        "2026-07-24",
+        27.5
+      ],
+      [
+        "2026-07-25",
+        33.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 LT"
       ]
     ]
   },
@@ -20608,32 +20652,6 @@
     ]
   },
   {
-    "_sid": "icecek_coca-cola-sekersiz-kola-2-5-lt",
-    "ad": "Coca-Cola Şekersiz Kola 2.5 Lt",
-    "ana_kategori": "Gazlı İçecekler",
-    "agirlik_hacim": "2.5 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/13001195.png",
-    "en_dusuk_fiyat": 89.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 89.5
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        89.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "2.5 LT"
-      ]
-    ]
-  },
-  {
     "_sid": "icecek_nescaf-3u1-arada-262-gr",
     "ad": "Nescafé 3ü1 Arada 262 Gr",
     "ana_kategori": "Kahve",
@@ -20904,28 +20922,36 @@
     ]
   },
   {
-    "_sid": "icecek_mahmood-3-u-1-arada-kahve-18-gr",
-    "ad": "Mahmood 3'ü 1 Arada Kahve 18 Gr",
-    "ana_kategori": "Kahve",
-    "agirlik_hacim": "18 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/images/1000172.png",
-    "en_dusuk_fiyat": 6.5,
+    "_sid": "icecek_sariyer-kola-gazli-i-cecek-250-ml",
+    "ad": "Sarıyer Kola Gazlı İçecek 250 Ml",
+    "ana_kategori": "Gazlı İçecekler",
+    "agirlik_hacim": "250 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/13002569.png",
+    "en_dusuk_fiyat": 14.0,
     "market_fiyatlari": [
       {
         "market": "hakmar",
-        "fiyat": 6.5
+        "fiyat": 14.0
+      },
+      {
+        "market": "a101",
+        "fiyat": 15.5
       }
     ],
     "fiyat_gecmisi": [
       [
+        "2026-06-22",
+        15.5
+      ],
+      [
         "2026-07-25",
-        6.5
+        14.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-07-25",
-        "18 GR"
+        "2026-07-03",
+        "250 ML"
       ]
     ]
   },
@@ -23482,6 +23508,68 @@
     ]
   },
   {
+    "_sid": "icecek_obsesso-caramel-macchiato-250-ml",
+    "ad": "Obsesso Caramel Macchiato 250 Ml",
+    "ana_kategori": "Gazsız İçecekler",
+    "agirlik_hacim": "250 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30281054.png",
+    "en_dusuk_fiyat": 49.5,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 49.5
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 65.0
+      },
+      {
+        "market": "tarim_kredi",
+        "fiyat": 65.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        55.0
+      ],
+      [
+        "2026-06-23",
+        54.9
+      ],
+      [
+        "2026-06-30",
+        65.0
+      ],
+      [
+        "2026-07-09",
+        55.0
+      ],
+      [
+        "2026-07-16",
+        65.0
+      ],
+      [
+        "2026-07-25",
+        55.0
+      ],
+      [
+        "2026-07-31",
+        65.0
+      ],
+      [
+        "2026-08-07",
+        49.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "250 ML"
+      ]
+    ]
+  },
+  {
     "_sid": "icecek_dimes-cool-lime-meyveli-konsantre-i-cecek-310-ml",
     "ad": "Dimes Cool Lime Meyveli Konsantre İçecek 310 Ml",
     "ana_kategori": "Meyve Suyu",
@@ -23840,40 +23928,6 @@
     ]
   },
   {
-    "_sid": "icecek_pepsi-4-lt",
-    "ad": "Pepsi 4 Lt",
-    "ana_kategori": "Gazlı İçecekler",
-    "agirlik_hacim": "4 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30014755.png",
-    "en_dusuk_fiyat": 190.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 190.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        170.0
-      ],
-      [
-        "2026-07-01",
-        228.0
-      ],
-      [
-        "2026-08-07",
-        190.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "4 LT"
-      ]
-    ]
-  },
-  {
     "_sid": "icecek_dunyahayat-ihlamur-50-gr",
     "ad": "Dünyahayat Ihlamur 50 Gr",
     "ana_kategori": "Çay ve Bitki Çayları",
@@ -23896,6 +23950,32 @@
       [
         "2026-07-03",
         "50 GR"
+      ]
+    ]
+  },
+  {
+    "_sid": "icecek_migros-harman-siyah-cay-1-kg",
+    "ad": "Migros Harman Siyah Çay 1 Kg",
+    "ana_kategori": "Çay ve Bitki Çayları",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/3118646.png",
+    "en_dusuk_fiyat": 219.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 219.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        219.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
       ]
     ]
   },
@@ -23938,44 +24018,6 @@
       [
         "2026-07-03",
         "1 KG"
-      ]
-    ]
-  },
-  {
-    "_sid": "icecek_lipton-yellow-label-cay-500-gr",
-    "ad": "Lipton Yellow Label Çay 500 Gr",
-    "ana_kategori": "Çay ve Bitki Çayları",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/3111403.jpg",
-    "en_dusuk_fiyat": 319.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 319.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        239.95
-      ],
-      [
-        "2026-07-09",
-        179.96
-      ],
-      [
-        "2026-07-24",
-        279.95
-      ],
-      [
-        "2026-08-07",
-        319.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "500 GR"
       ]
     ]
   },
@@ -24191,68 +24233,6 @@
       ]
     ],
     "agirlik_hacim_gecmisi": []
-  },
-  {
-    "_sid": "icecek_obsesso-caramel-macchiato-250-ml",
-    "ad": "Obsesso Caramel Macchiato 250 Ml",
-    "ana_kategori": "Gazsız İçecekler",
-    "agirlik_hacim": "250 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30281054.png",
-    "en_dusuk_fiyat": 49.5,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 49.5
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 65.0
-      },
-      {
-        "market": "tarim_kredi",
-        "fiyat": 65.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        55.0
-      ],
-      [
-        "2026-06-23",
-        54.9
-      ],
-      [
-        "2026-06-30",
-        65.0
-      ],
-      [
-        "2026-07-09",
-        55.0
-      ],
-      [
-        "2026-07-16",
-        65.0
-      ],
-      [
-        "2026-07-25",
-        55.0
-      ],
-      [
-        "2026-07-31",
-        65.0
-      ],
-      [
-        "2026-08-07",
-        49.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "250 ML"
-      ]
-    ]
   },
   {
     "_sid": "icecek_ice-break-mocha-375-ml",
@@ -24664,28 +24644,36 @@
     ]
   },
   {
-    "_sid": "icecek_migros-harman-siyah-cay-1-kg",
-    "ad": "Migros Harman Siyah Çay 1 Kg",
-    "ana_kategori": "Çay ve Bitki Çayları",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/3118646.png",
-    "en_dusuk_fiyat": 219.95,
+    "_sid": "icecek_pepsi-4-lt",
+    "ad": "Pepsi 4 Lt",
+    "ana_kategori": "Gazlı İçecekler",
+    "agirlik_hacim": "4 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30014755.png",
+    "en_dusuk_fiyat": 190.0,
     "market_fiyatlari": [
       {
-        "market": "migros",
-        "fiyat": 219.95
+        "market": "carrefour",
+        "fiyat": 190.0
       }
     ],
     "fiyat_gecmisi": [
       [
         "2026-06-22",
-        219.95
+        170.0
+      ],
+      [
+        "2026-07-01",
+        228.0
+      ],
+      [
+        "2026-08-07",
+        190.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-03",
-        "1 KG"
+        "4 LT"
       ]
     ]
   },
@@ -24850,6 +24838,44 @@
       [
         "2026-07-03",
         "1.5 LT"
+      ]
+    ]
+  },
+  {
+    "_sid": "icecek_lipton-yellow-label-cay-500-gr",
+    "ad": "Lipton Yellow Label Çay 500 Gr",
+    "ana_kategori": "Çay ve Bitki Çayları",
+    "agirlik_hacim": "500 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/3111403.jpg",
+    "en_dusuk_fiyat": 319.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 319.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        239.95
+      ],
+      [
+        "2026-07-09",
+        179.96
+      ],
+      [
+        "2026-07-24",
+        279.95
+      ],
+      [
+        "2026-08-07",
+        319.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "500 GR"
       ]
     ]
   },
@@ -32180,6 +32206,44 @@
     ]
   },
   {
+    "_sid": "icecek_jacobs-2-si-1-arada-10-lu-paket-105-gr",
+    "ad": "Jacobs 2'si 1 Arada 10'lu Paket 105 Gr",
+    "ana_kategori": "Kahve",
+    "agirlik_hacim": "105 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 77.19,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 77.19
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        83.13
+      ],
+      [
+        "2026-07-09",
+        118.75
+      ],
+      [
+        "2026-07-24",
+        79.95
+      ],
+      [
+        "2026-08-07",
+        77.19
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "105 GR"
+      ]
+    ]
+  },
+  {
     "_sid": "icecek_lipton-slim-plus-kayisili-20-li-36-gr",
     "ad": "Lipton Slim Plus Kayısılı 20'li 36 Gr",
     "ana_kategori": "Çay ve Bitki Çayları",
@@ -32214,40 +32278,6 @@
       [
         "2026-07-03",
         "36 GR"
-      ]
-    ]
-  },
-  {
-    "_sid": "icecek_monster-watermelon-enerji-i-cecegi-500-ml",
-    "ad": "Monster Watermelon Enerji İçeceği 500 Ml",
-    "ana_kategori": "Gazlı İçecekler",
-    "agirlik_hacim": "500 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/8110061.jpg",
-    "en_dusuk_fiyat": 80.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 80.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        80.0
-      ],
-      [
-        "2026-07-14",
-        65.0
-      ],
-      [
-        "2026-07-24",
-        80.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "500 ML"
       ]
     ]
   },
@@ -33106,40 +33136,36 @@
     ]
   },
   {
-    "_sid": "icecek_jacobs-2-si-1-arada-10-lu-paket-105-gr",
-    "ad": "Jacobs 2'si 1 Arada 10'lu Paket 105 Gr",
-    "ana_kategori": "Kahve",
-    "agirlik_hacim": "105 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 77.19,
+    "_sid": "icecek_monster-watermelon-enerji-i-cecegi-500-ml",
+    "ad": "Monster Watermelon Enerji İçeceği 500 Ml",
+    "ana_kategori": "Gazlı İçecekler",
+    "agirlik_hacim": "500 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/8110061.jpg",
+    "en_dusuk_fiyat": 80.0,
     "market_fiyatlari": [
       {
         "market": "migros",
-        "fiyat": 77.19
+        "fiyat": 80.0
       }
     ],
     "fiyat_gecmisi": [
       [
         "2026-06-22",
-        83.13
+        80.0
       ],
       [
-        "2026-07-09",
-        118.75
+        "2026-07-14",
+        65.0
       ],
       [
         "2026-07-24",
-        79.95
-      ],
-      [
-        "2026-08-07",
-        77.19
+        80.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-03",
-        "105 GR"
+        "500 ML"
       ]
     ]
   },
@@ -33862,6 +33888,44 @@
     "agirlik_hacim_gecmisi": []
   },
   {
+    "_sid": "icecek_uludag-frutti-extra-yesil-limon-1-lt",
+    "ad": "Uludağ Frutti Extra Yeşil Limon 1 Lt",
+    "ana_kategori": "Maden Suyu",
+    "agirlik_hacim": "1 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/bim/301751.jpg",
+    "en_dusuk_fiyat": 52.5,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 52.5
+      },
+      {
+        "market": "bim",
+        "fiyat": 52.5
+      },
+      {
+        "market": "tarim_kredi",
+        "fiyat": 52.5
+      },
+      {
+        "market": "migros",
+        "fiyat": 54.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        52.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 LT"
+      ]
+    ]
+  },
+  {
     "_sid": "icecek_cafe-crown-turk-kahvesi-100-gr",
     "ad": "Cafe Crown Türk Kahvesi 100 Gr",
     "ana_kategori": "Kahve",
@@ -34130,32 +34194,44 @@
     ]
   },
   {
-    "_sid": "icecek_kefirim-orman-meyveli-kefir-1-lt",
-    "ad": "Kefirim Orman Meyveli Kefir 1 Lt",
-    "ana_kategori": "Ayran ve Kefir",
-    "agirlik_hacim": "1 LT",
-    "resim": null,
-    "en_dusuk_fiyat": 109.5,
+    "_sid": "icecek_nescaf-3-u-1-arada-ice-choco-cikolata-aromali-10-lu-106-gr",
+    "ad": "Nescafé 3'ü 1 Arada Ice Choco Çikolata Aromalı 10'lu 106 Gr",
+    "ana_kategori": "Gazsız İçecekler",
+    "agirlik_hacim": "106 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/3220012.png",
+    "en_dusuk_fiyat": 129.5,
     "market_fiyatlari": [
       {
-        "market": "bim",
-        "fiyat": 109.5
+        "market": "migros",
+        "fiyat": 129.5
       }
     ],
     "fiyat_gecmisi": [
       [
         "2026-06-22",
-        94.5
+        79.5
       ],
       [
-        "2026-06-26",
-        109.5
+        "2026-07-09",
+        105.0
+      ],
+      [
+        "2026-07-14",
+        129.5
+      ],
+      [
+        "2026-07-24",
+        55.0
+      ],
+      [
+        "2026-08-07",
+        129.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-03",
-        "1 LT"
+        "106 GR"
       ]
     ]
   },
@@ -34206,48 +34282,6 @@
       [
         "2026-06-22",
         159.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "250 ML"
-      ]
-    ]
-  },
-  {
-    "_sid": "icecek_starbucks-frappuccino-coffee-250-ml",
-    "ad": "Starbucks Frappuccino Coffee 250 Ml",
-    "ana_kategori": "Gazsız İçecekler",
-    "agirlik_hacim": "250 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/8059615.jpg",
-    "en_dusuk_fiyat": 189.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 189.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        149.9
-      ],
-      [
-        "2026-06-25",
-        189.95
-      ],
-      [
-        "2026-07-09",
-        159.9
-      ],
-      [
-        "2026-07-24",
-        189.9
-      ],
-      [
-        "2026-08-05",
-        189.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
@@ -34482,44 +34516,6 @@
       [
         "2026-07-18",
         "310 ML"
-      ]
-    ]
-  },
-  {
-    "_sid": "icecek_uludag-frutti-extra-yesil-limon-1-lt",
-    "ad": "Uludağ Frutti Extra Yeşil Limon 1 Lt",
-    "ana_kategori": "Maden Suyu",
-    "agirlik_hacim": "1 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/bim/301751.jpg",
-    "en_dusuk_fiyat": 52.5,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 52.5
-      },
-      {
-        "market": "bim",
-        "fiyat": 52.5
-      },
-      {
-        "market": "tarim_kredi",
-        "fiyat": 52.5
-      },
-      {
-        "market": "migros",
-        "fiyat": 54.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        52.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 LT"
       ]
     ]
   },
@@ -35034,44 +35030,32 @@
     ]
   },
   {
-    "_sid": "icecek_nescaf-3-u-1-arada-ice-choco-cikolata-aromali-10-lu-106-gr",
-    "ad": "Nescafé 3'ü 1 Arada Ice Choco Çikolata Aromalı 10'lu 106 Gr",
-    "ana_kategori": "Gazsız İçecekler",
-    "agirlik_hacim": "106 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/3220012.png",
-    "en_dusuk_fiyat": 129.5,
+    "_sid": "icecek_kefirim-orman-meyveli-kefir-1-lt",
+    "ad": "Kefirim Orman Meyveli Kefir 1 Lt",
+    "ana_kategori": "Ayran ve Kefir",
+    "agirlik_hacim": "1 LT",
+    "resim": null,
+    "en_dusuk_fiyat": 109.5,
     "market_fiyatlari": [
       {
-        "market": "migros",
-        "fiyat": 129.5
+        "market": "bim",
+        "fiyat": 109.5
       }
     ],
     "fiyat_gecmisi": [
       [
         "2026-06-22",
-        79.5
+        94.5
       ],
       [
-        "2026-07-09",
-        105.0
-      ],
-      [
-        "2026-07-14",
-        129.5
-      ],
-      [
-        "2026-07-24",
-        55.0
-      ],
-      [
-        "2026-08-07",
-        129.5
+        "2026-06-26",
+        109.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-03",
-        "106 GR"
+        "1 LT"
       ]
     ]
   },
@@ -35103,6 +35087,48 @@
       ]
     ],
     "agirlik_hacim_gecmisi": []
+  },
+  {
+    "_sid": "icecek_starbucks-frappuccino-coffee-250-ml",
+    "ad": "Starbucks Frappuccino Coffee 250 Ml",
+    "ana_kategori": "Gazsız İçecekler",
+    "agirlik_hacim": "250 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/8059615.jpg",
+    "en_dusuk_fiyat": 189.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 189.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        149.9
+      ],
+      [
+        "2026-06-25",
+        189.95
+      ],
+      [
+        "2026-07-09",
+        159.9
+      ],
+      [
+        "2026-07-24",
+        189.9
+      ],
+      [
+        "2026-08-05",
+        189.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "250 ML"
+      ]
+    ]
   },
   {
     "_sid": "icecek_dogadan-antep-fistigi-aromali-matcha-cay-25-gr",
@@ -36369,48 +36395,6 @@
     ]
   },
   {
-    "_sid": "icecek_doganay-salgam-suyu-sade-1-lt",
-    "ad": "Doğanay Şalgam Suyu Sade 1 Lt",
-    "ana_kategori": "Gazsız İçecekler",
-    "agirlik_hacim": "1 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/8078930.png",
-    "en_dusuk_fiyat": 54.9,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 54.9
-      },
-      {
-        "market": "migros",
-        "fiyat": 65.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        54.0
-      ],
-      [
-        "2026-07-22",
-        65.0
-      ],
-      [
-        "2026-07-24",
-        54.95
-      ],
-      [
-        "2026-07-26",
-        54.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 LT"
-      ]
-    ]
-  },
-  {
     "_sid": "icecek_serinoba-greyfurt-maden-suyu-6x200-ml",
     "ad": "Serinoba Greyfurt Maden Suyu 6x200 Ml",
     "ana_kategori": "Maden Suyu",
@@ -36723,6 +36707,52 @@
       [
         "2026-07-03",
         "200 ML"
+      ]
+    ]
+  },
+  {
+    "_sid": "icecek_starbucks-chilled-classics-coffee-latte-220-ml",
+    "ad": "Starbucks Chilled Classics Coffee Latte 220 Ml",
+    "ana_kategori": "Gazsız İçecekler",
+    "agirlik_hacim": "220 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/8059623.jpg",
+    "en_dusuk_fiyat": 159.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 159.9
+      },
+      {
+        "market": "migros",
+        "fiyat": 193.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        119.95
+      ],
+      [
+        "2026-07-01",
+        191.9
+      ],
+      [
+        "2026-07-06",
+        189.9
+      ],
+      [
+        "2026-07-22",
+        191.9
+      ],
+      [
+        "2026-08-07",
+        159.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "220 ML"
       ]
     ]
   },
@@ -37117,6 +37147,48 @@
     ]
   },
   {
+    "_sid": "icecek_doganay-salgam-suyu-sade-1-lt",
+    "ad": "Doğanay Şalgam Suyu Sade 1 Lt",
+    "ana_kategori": "Gazsız İçecekler",
+    "agirlik_hacim": "1 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/8078930.png",
+    "en_dusuk_fiyat": 54.9,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 54.9
+      },
+      {
+        "market": "migros",
+        "fiyat": 65.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        54.0
+      ],
+      [
+        "2026-07-22",
+        65.0
+      ],
+      [
+        "2026-07-24",
+        54.95
+      ],
+      [
+        "2026-07-26",
+        54.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 LT"
+      ]
+    ]
+  },
+  {
     "_sid": "icecek_serfresh-sade-salgam-suyu-1-lt",
     "ad": "Serfresh Sade Şalgam Suyu 1 Lt",
     "ana_kategori": "Gazsız İçecekler",
@@ -37237,6 +37309,68 @@
       [
         "2026-07-03",
         "1.5 LT"
+      ]
+    ]
+  },
+  {
+    "_sid": "icecek_dimes-eksi-elma-i-cecegi-1-lt",
+    "ad": "Dimes Ekşi Elma İçeceği 1 Lt",
+    "ana_kategori": "Meyve Suyu",
+    "agirlik_hacim": "1 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30004234.png",
+    "en_dusuk_fiyat": 69.5,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 69.5
+      },
+      {
+        "market": "tarim_kredi",
+        "fiyat": 79.0
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 80.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        70.0
+      ],
+      [
+        "2026-06-23",
+        59.9
+      ],
+      [
+        "2026-06-30",
+        70.0
+      ],
+      [
+        "2026-07-09",
+        69.5
+      ],
+      [
+        "2026-07-22",
+        67.5
+      ],
+      [
+        "2026-07-29",
+        70.0
+      ],
+      [
+        "2026-07-31",
+        79.0
+      ],
+      [
+        "2026-08-07",
+        69.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 LT"
       ]
     ]
   },
@@ -37427,36 +37561,6 @@
     ]
   },
   {
-    "_sid": "icecek_tamek-100-elma-visne-suyu-1-lt",
-    "ad": "Tamek %100 Elma-Vişne Suyu 1 Lt",
-    "ana_kategori": "Meyve Suyu",
-    "agirlik_hacim": "1 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30479183.jpg",
-    "en_dusuk_fiyat": 99.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 99.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        87.0
-      ],
-      [
-        "2026-07-01",
-        99.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 LT"
-      ]
-    ]
-  },
-  {
     "_sid": "icecek_cafex-klasik-kahve-eko-paket-100-gr",
     "ad": "Cafex Klasik Kahve Eko Paket 100 Gr",
     "ana_kategori": "Kahve",
@@ -37559,52 +37663,6 @@
       [
         "2026-07-03",
         "1.5 LT"
-      ]
-    ]
-  },
-  {
-    "_sid": "icecek_starbucks-chilled-classics-coffee-latte-220-ml",
-    "ad": "Starbucks Chilled Classics Coffee Latte 220 Ml",
-    "ana_kategori": "Gazsız İçecekler",
-    "agirlik_hacim": "220 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/8059623.jpg",
-    "en_dusuk_fiyat": 159.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 159.9
-      },
-      {
-        "market": "migros",
-        "fiyat": 193.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        119.95
-      ],
-      [
-        "2026-07-01",
-        191.9
-      ],
-      [
-        "2026-07-06",
-        189.9
-      ],
-      [
-        "2026-07-22",
-        191.9
-      ],
-      [
-        "2026-08-07",
-        159.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "220 ML"
       ]
     ]
   },
@@ -38102,68 +38160,6 @@
     ]
   },
   {
-    "_sid": "icecek_dimes-eksi-elma-i-cecegi-1-lt",
-    "ad": "Dimes Ekşi Elma İçeceği 1 Lt",
-    "ana_kategori": "Meyve Suyu",
-    "agirlik_hacim": "1 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30004234.png",
-    "en_dusuk_fiyat": 69.5,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 69.5
-      },
-      {
-        "market": "tarim_kredi",
-        "fiyat": 79.0
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 80.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        70.0
-      ],
-      [
-        "2026-06-23",
-        59.9
-      ],
-      [
-        "2026-06-30",
-        70.0
-      ],
-      [
-        "2026-07-09",
-        69.5
-      ],
-      [
-        "2026-07-22",
-        67.5
-      ],
-      [
-        "2026-07-29",
-        70.0
-      ],
-      [
-        "2026-07-31",
-        79.0
-      ],
-      [
-        "2026-08-07",
-        69.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 LT"
-      ]
-    ]
-  },
-  {
     "_sid": "icecek_nescaf-3u1-arada-10x17-175-gr",
     "ad": "Nescafé 3ü1 Arada 10x17.175 Gr",
     "ana_kategori": "Kahve",
@@ -38198,52 +38194,6 @@
       [
         "2026-07-03",
         "175 GR"
-      ]
-    ]
-  },
-  {
-    "_sid": "icecek_fuse-tea-limon-1-lt",
-    "ad": "Fuse Tea Limon 1 Lt",
-    "ana_kategori": "Gazsız İçecekler",
-    "agirlik_hacim": "1 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30027685.png",
-    "en_dusuk_fiyat": 70.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 70.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        60.0
-      ],
-      [
-        "2026-06-25",
-        53.9
-      ],
-      [
-        "2026-07-08",
-        44.9
-      ],
-      [
-        "2026-07-14",
-        60.0
-      ],
-      [
-        "2026-07-24",
-        53.9
-      ],
-      [
-        "2026-08-07",
-        70.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 LT"
       ]
     ]
   },
@@ -38306,6 +38256,36 @@
       [
         "2026-08-07",
         80.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 LT"
+      ]
+    ]
+  },
+  {
+    "_sid": "icecek_tamek-100-elma-visne-suyu-1-lt",
+    "ad": "Tamek %100 Elma-Vişne Suyu 1 Lt",
+    "ana_kategori": "Meyve Suyu",
+    "agirlik_hacim": "1 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30479183.jpg",
+    "en_dusuk_fiyat": 99.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 99.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        87.0
+      ],
+      [
+        "2026-07-01",
+        99.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
@@ -38398,6 +38378,36 @@
       [
         "2026-07-03",
         "250 GR"
+      ]
+    ]
+  },
+  {
+    "_sid": "icecek_coffee-mate-400-gr",
+    "ad": "Coffee Mate 400 Gr",
+    "ana_kategori": "Kahve",
+    "agirlik_hacim": "400 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/3411309.png",
+    "en_dusuk_fiyat": 199.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 199.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        329.95
+      ],
+      [
+        "2026-07-24",
+        199.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "400 GR"
       ]
     ]
   },
@@ -38568,34 +38578,42 @@
     ]
   },
   {
-    "_sid": "icecek_sizzle-pop-summer-camp-seftali-elma-ananas-200-ml",
-    "ad": "Sizzle-Pop Summer Camp Şeftali & Elma & Ananas 200 Ml",
-    "ana_kategori": "Meyve Suyu",
+    "_sid": "icecek_eker-orman-meyveli-kefir-200-ml",
+    "ad": "Eker Orman Meyveli Kefir 200 Ml",
+    "ana_kategori": "Ayran ve Kefir",
     "agirlik_hacim": "200 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30491467.jpg",
-    "en_dusuk_fiyat": 19.5,
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/12002957.png",
+    "en_dusuk_fiyat": 33.5,
     "market_fiyatlari": [
       {
         "market": "migros",
-        "fiyat": 19.5
+        "fiyat": 33.5
       },
       {
         "market": "carrefour",
-        "fiyat": 19.5
+        "fiyat": 41.5
       }
     ],
     "fiyat_gecmisi": [
       [
         "2026-06-22",
-        19.5
+        29.95
       ],
       [
-        "2026-08-06",
-        15.9
+        "2026-06-25",
+        41.5
+      ],
+      [
+        "2026-07-25",
+        41.9
+      ],
+      [
+        "2026-07-31",
+        41.5
       ],
       [
         "2026-08-07",
-        19.5
+        33.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
@@ -38722,6 +38740,32 @@
       [
         "2026-07-03",
         "2 LT"
+      ]
+    ]
+  },
+  {
+    "_sid": "icecek_nescaf-xpress-sekersiz-latte-soguk-kahve-250-ml",
+    "ad": "Nescafé Xpress Şekersiz Latte Soğuk Kahve 250 Ml",
+    "ana_kategori": "Gazsız İçecekler",
+    "agirlik_hacim": "250 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/13002942.jpg",
+    "en_dusuk_fiyat": 55.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 55.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-07-14",
+        55.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-14",
+        "250 ML"
       ]
     ]
   },
@@ -38930,48 +38974,6 @@
     ]
   },
   {
-    "_sid": "icecek_caf-crown-turk-kahvesi-100-gr",
-    "ad": "Café Crown Türk Kahvesi 100 Gr",
-    "ana_kategori": "Kahve",
-    "agirlik_hacim": "100 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30410954.png",
-    "en_dusuk_fiyat": 79.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 79.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        72.5
-      ],
-      [
-        "2026-07-09",
-        79.95
-      ],
-      [
-        "2026-07-18",
-        81.95
-      ],
-      [
-        "2026-07-24",
-        69.95
-      ],
-      [
-        "2026-08-07",
-        79.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "100 GR"
-      ]
-    ]
-  },
-  {
     "_sid": "icecek_dogadan-limonlu-yesil-cay-20-adet",
     "ad": "Doğadan Limonlu Yeşil Çay 20 Adet",
     "ana_kategori": "Çay ve Bitki Çayları",
@@ -39121,36 +39123,6 @@
       [
         "2026-07-18",
         "320 ML"
-      ]
-    ]
-  },
-  {
-    "_sid": "icecek_coffee-mate-400-gr",
-    "ad": "Coffee Mate 400 Gr",
-    "ana_kategori": "Kahve",
-    "agirlik_hacim": "400 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/3411309.png",
-    "en_dusuk_fiyat": 199.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 199.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        329.95
-      ],
-      [
-        "2026-07-24",
-        199.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "400 GR"
       ]
     ]
   },
@@ -39407,6 +39379,44 @@
     ]
   },
   {
+    "_sid": "icecek_sizzle-pop-summer-camp-seftali-elma-ananas-200-ml",
+    "ad": "Sizzle-Pop Summer Camp Şeftali & Elma & Ananas 200 Ml",
+    "ana_kategori": "Meyve Suyu",
+    "agirlik_hacim": "200 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30491467.jpg",
+    "en_dusuk_fiyat": 19.5,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 19.5
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 19.5
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        19.5
+      ],
+      [
+        "2026-08-06",
+        15.9
+      ],
+      [
+        "2026-08-07",
+        19.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "200 ML"
+      ]
+    ]
+  },
+  {
     "_sid": "icecek_coca-cola-pet-250-ml",
     "ad": "Coca-Cola Pet 250 Ml",
     "ana_kategori": "Gazlı İçecekler",
@@ -39463,52 +39473,6 @@
       [
         "2026-07-03",
         "330 ML"
-      ]
-    ]
-  },
-  {
-    "_sid": "icecek_eker-orman-meyveli-kefir-200-ml",
-    "ad": "Eker Orman Meyveli Kefir 200 Ml",
-    "ana_kategori": "Ayran ve Kefir",
-    "agirlik_hacim": "200 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/12002957.png",
-    "en_dusuk_fiyat": 33.5,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 33.5
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 41.5
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        29.95
-      ],
-      [
-        "2026-06-25",
-        41.5
-      ],
-      [
-        "2026-07-25",
-        41.9
-      ],
-      [
-        "2026-07-31",
-        41.5
-      ],
-      [
-        "2026-08-07",
-        33.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "200 ML"
       ]
     ]
   },
@@ -39659,32 +39623,6 @@
     ]
   },
   {
-    "_sid": "icecek_nescaf-xpress-sekersiz-latte-soguk-kahve-250-ml",
-    "ad": "Nescafé Xpress Şekersiz Latte Soğuk Kahve 250 Ml",
-    "ana_kategori": "Gazsız İçecekler",
-    "agirlik_hacim": "250 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/13002942.jpg",
-    "en_dusuk_fiyat": 55.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 55.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-07-14",
-        55.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-14",
-        "250 ML"
-      ]
-    ]
-  },
-  {
     "_sid": "icecek_pin-hibiscus-cayi-250-ml",
     "ad": "Pin Hibiscus Çayı 250 Ml",
     "ana_kategori": "Gazsız İçecekler",
@@ -39775,6 +39713,48 @@
       [
         "2026-07-03",
         "250 ML"
+      ]
+    ]
+  },
+  {
+    "_sid": "icecek_caf-crown-turk-kahvesi-100-gr",
+    "ad": "Café Crown Türk Kahvesi 100 Gr",
+    "ana_kategori": "Kahve",
+    "agirlik_hacim": "100 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30410954.png",
+    "en_dusuk_fiyat": 79.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 79.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        72.5
+      ],
+      [
+        "2026-07-09",
+        79.95
+      ],
+      [
+        "2026-07-18",
+        81.95
+      ],
+      [
+        "2026-07-24",
+        69.95
+      ],
+      [
+        "2026-08-07",
+        79.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "100 GR"
       ]
     ]
   },
@@ -39979,32 +39959,32 @@
     ]
   },
   {
-    "_sid": "icecek_caykur-organik-zumrut-yesil-cay-125-gr",
-    "ad": "Çaykur Organik Zümrüt Yeşil Çay 125 Gr",
+    "_sid": "icecek_caykur-filiz-cayi-1-kg",
+    "ad": "Çaykur Filiz Çayı 1 Kg",
     "ana_kategori": "Çay ve Bitki Çayları",
-    "agirlik_hacim": "125 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/3118266.png",
-    "en_dusuk_fiyat": 249.95,
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/3118272.png",
+    "en_dusuk_fiyat": 279.95,
     "market_fiyatlari": [
       {
+        "market": "a101",
+        "fiyat": 279.95
+      },
+      {
         "market": "migros",
-        "fiyat": 249.95
+        "fiyat": 499.95
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-07-09",
-        209.95
-      ],
-      [
-        "2026-07-31",
-        249.95
+        "2026-06-22",
+        279.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-07-09",
-        "125 GR"
+        "2026-07-03",
+        "1 KG"
       ]
     ]
   },
@@ -40798,32 +40778,32 @@
     ]
   },
   {
-    "_sid": "icecek_caykur-filiz-cayi-1-kg",
-    "ad": "Çaykur Filiz Çayı 1 Kg",
+    "_sid": "icecek_caykur-organik-zumrut-yesil-cay-125-gr",
+    "ad": "Çaykur Organik Zümrüt Yeşil Çay 125 Gr",
     "ana_kategori": "Çay ve Bitki Çayları",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/3118272.png",
-    "en_dusuk_fiyat": 279.95,
+    "agirlik_hacim": "125 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/3118266.png",
+    "en_dusuk_fiyat": 249.95,
     "market_fiyatlari": [
       {
-        "market": "a101",
-        "fiyat": 279.95
-      },
-      {
         "market": "migros",
-        "fiyat": 499.95
+        "fiyat": 249.95
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-06-22",
-        279.95
+        "2026-07-09",
+        209.95
+      ],
+      [
+        "2026-07-31",
+        249.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-07-03",
-        "1 KG"
+        "2026-07-09",
+        "125 GR"
       ]
     ]
   },
@@ -41514,6 +41494,32 @@
     ]
   },
   {
+    "_sid": "icecek_damla-su-6x1-9-lt",
+    "ad": "Damla Su 6x1.9 Lt",
+    "ana_kategori": "Su",
+    "agirlik_hacim": "9 LT",
+    "resim": null,
+    "en_dusuk_fiyat": 87.99,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 87.99
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-08-05",
+        87.99
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-08-05",
+        "9 LT"
+      ]
+    ]
+  },
+  {
     "_sid": "icecek_dimes-portakal-meyveli-i-cecek-1-lt",
     "ad": "Dimes Portakal Meyveli İçecek 1 Lt",
     "ana_kategori": "Meyve Suyu",
@@ -41544,36 +41550,6 @@
       [
         "2026-07-03",
         "1 LT"
-      ]
-    ]
-  },
-  {
-    "_sid": "icecek_sarikiz-ekstra-mandalina-1-2-lt",
-    "ad": "Sarıkız Ekstra Mandalina 1.2 Lt",
-    "ana_kategori": "Maden Suyu",
-    "agirlik_hacim": "1.2 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30386029.png",
-    "en_dusuk_fiyat": 113.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 113.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        100.0
-      ],
-      [
-        "2026-07-02",
-        113.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1.2 LT"
       ]
     ]
   },
@@ -42108,28 +42084,40 @@
     ]
   },
   {
-    "_sid": "icecek_dimes-smoothie-turuncu-310-ml",
-    "ad": "Dimes Smoothie Turuncu 310 Ml",
-    "ana_kategori": "Meyve Suyu",
-    "agirlik_hacim": "310 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30457008.png",
-    "en_dusuk_fiyat": 60.0,
+    "_sid": "icecek_kizilcahamam-dogal-maden-suyu-6x200-ml",
+    "ad": "Kızılcahamam Doğal Maden Suyu 6x200 Ml",
+    "ana_kategori": "Maden Suyu",
+    "agirlik_hacim": "1.2 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/8040460.jpg",
+    "en_dusuk_fiyat": 58.5,
     "market_fiyatlari": [
       {
-        "market": "carrefour",
-        "fiyat": 60.0
+        "market": "tarim_kredi",
+        "fiyat": 58.5
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-07-15",
-        60.0
+        "2026-06-22",
+        49.5
+      ],
+      [
+        "2026-07-04",
+        58.5
+      ],
+      [
+        "2026-07-23",
+        44.9
+      ],
+      [
+        "2026-07-24",
+        58.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-07-15",
-        "310 ML"
+        "2026-07-03",
+        "1.2 LT"
       ]
     ]
   },
@@ -42298,32 +42286,6 @@
     ]
   },
   {
-    "_sid": "icecek_damla-su-6x1-9-lt",
-    "ad": "Damla Su 6x1.9 Lt",
-    "ana_kategori": "Su",
-    "agirlik_hacim": "9 LT",
-    "resim": null,
-    "en_dusuk_fiyat": 87.99,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 87.99
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-08-05",
-        87.99
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-08-05",
-        "9 LT"
-      ]
-    ]
-  },
-  {
     "_sid": "icecek_coca-cola-orijinal-tat-daha-az-kalori-2-5-lt",
     "ad": "Coca-Cola Orijinal Tat Daha Az Kalori 2.5 Lt",
     "ana_kategori": "Gazlı İçecekler",
@@ -42346,6 +42308,36 @@
       [
         "2026-07-03",
         "2.5 LT"
+      ]
+    ]
+  },
+  {
+    "_sid": "icecek_sarikiz-ekstra-mandalina-1-2-lt",
+    "ad": "Sarıkız Ekstra Mandalina 1.2 Lt",
+    "ana_kategori": "Maden Suyu",
+    "agirlik_hacim": "1.2 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30386029.png",
+    "en_dusuk_fiyat": 113.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 113.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        100.0
+      ],
+      [
+        "2026-07-02",
+        113.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1.2 LT"
       ]
     ]
   },
@@ -42786,40 +42778,28 @@
     ]
   },
   {
-    "_sid": "icecek_kizilcahamam-dogal-maden-suyu-6x200-ml",
-    "ad": "Kızılcahamam Doğal Maden Suyu 6x200 Ml",
-    "ana_kategori": "Maden Suyu",
-    "agirlik_hacim": "1.2 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/8040460.jpg",
-    "en_dusuk_fiyat": 58.5,
+    "_sid": "icecek_dimes-smoothie-turuncu-310-ml",
+    "ad": "Dimes Smoothie Turuncu 310 Ml",
+    "ana_kategori": "Meyve Suyu",
+    "agirlik_hacim": "310 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30457008.png",
+    "en_dusuk_fiyat": 60.0,
     "market_fiyatlari": [
       {
-        "market": "tarim_kredi",
-        "fiyat": 58.5
+        "market": "carrefour",
+        "fiyat": 60.0
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-06-22",
-        49.5
-      ],
-      [
-        "2026-07-04",
-        58.5
-      ],
-      [
-        "2026-07-23",
-        44.9
-      ],
-      [
-        "2026-07-24",
-        58.5
+        "2026-07-15",
+        60.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-07-03",
-        "1.2 LT"
+        "2026-07-15",
+        "310 ML"
       ]
     ]
   },
@@ -44941,6 +44921,36 @@
     ]
   },
   {
+    "_sid": "icecek_migros-karisik-nektari-200-ml",
+    "ad": "Migros Karışık Nektarı 200 Ml",
+    "ana_kategori": "Meyve Suyu",
+    "agirlik_hacim": "200 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/8050257.jpg",
+    "en_dusuk_fiyat": 12.5,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 12.5
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        11.0
+      ],
+      [
+        "2026-07-26",
+        12.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "200 ML"
+      ]
+    ]
+  },
+  {
     "_sid": "icecek_tamek-buzlu-cay-karpuz-ve-cilek-200-ml",
     "ad": "Tamek Buzlu Çay Karpuz Ve Çilek 200 Ml",
     "ana_kategori": "Gazsız İçecekler",
@@ -45219,27 +45229,6 @@
         "330 ML"
       ]
     ]
-  },
-  {
-    "_sid": "icecek_jacobs-2-si-1-arada-kahve-10-adet",
-    "ad": "Jacobs 2'si 1 Arada Kahve 10 Adet",
-    "ana_kategori": "Kahve",
-    "agirlik_hacim": null,
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/30000574.png",
-    "en_dusuk_fiyat": 65.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 65.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        65.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": []
   },
   {
     "_sid": "icecek_coca-cola-kola-1-25-lt",
@@ -45716,36 +45705,6 @@
     ]
   },
   {
-    "_sid": "icecek_migros-karisik-nektari-200-ml",
-    "ad": "Migros Karışık Nektarı 200 Ml",
-    "ana_kategori": "Meyve Suyu",
-    "agirlik_hacim": "200 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/8050257.jpg",
-    "en_dusuk_fiyat": 12.5,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 12.5
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        11.0
-      ],
-      [
-        "2026-07-26",
-        12.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "200 ML"
-      ]
-    ]
-  },
-  {
     "_sid": "icecek_tarim-kredi-ayran-285-ml",
     "ad": "Tarım Kredi Ayran 285 Ml",
     "ana_kategori": "Ayran ve Kefir",
@@ -46128,6 +46087,27 @@
         "2.5 LT"
       ]
     ]
+  },
+  {
+    "_sid": "icecek_jacobs-2-si-1-arada-kahve-10-adet",
+    "ad": "Jacobs 2'si 1 Arada Kahve 10 Adet",
+    "ana_kategori": "Kahve",
+    "agirlik_hacim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/30000574.png",
+    "en_dusuk_fiyat": 65.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 65.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        65.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": []
   },
   {
     "_sid": "icecek_red-bull-peach-edition-250-ml",
@@ -46898,6 +46878,32 @@
     ]
   },
   {
+    "_sid": "icecek_hisar-turk-kahvesi-100-gr",
+    "ad": "Hisar Türk Kahvesi 100 Gr",
+    "ana_kategori": "Kahve",
+    "agirlik_hacim": "100 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/3211954.jpg",
+    "en_dusuk_fiyat": 51.99,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 51.99
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        51.99
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "100 GR"
+      ]
+    ]
+  },
+  {
     "_sid": "icecek_fuse-tea-kavun-cilek-buzlu-cay-1-lt",
     "ad": "Fuse Tea Kavun Çilek Buzlu Çay 1 Lt",
     "ana_kategori": "Gazsız İçecekler",
@@ -47489,32 +47495,6 @@
       [
         "2026-07-03",
         "1 LT"
-      ]
-    ]
-  },
-  {
-    "_sid": "icecek_hisar-turk-kahvesi-100-gr",
-    "ad": "Hisar Türk Kahvesi 100 Gr",
-    "ana_kategori": "Kahve",
-    "agirlik_hacim": "100 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/3211954.jpg",
-    "en_dusuk_fiyat": 51.99,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 51.99
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        51.99
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "100 GR"
       ]
     ]
   },
@@ -48225,44 +48205,6 @@
     ]
   },
   {
-    "_sid": "icecek_sariyer-portakalli-1-lt",
-    "ad": "Sarıyer Portakallı 1 Lt",
-    "ana_kategori": "Gazlı İçecekler",
-    "agirlik_hacim": "1 LT",
-    "resim": null,
-    "en_dusuk_fiyat": 37.5,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 37.5
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        32.5
-      ],
-      [
-        "2026-06-23",
-        37.5
-      ],
-      [
-        "2026-07-18",
-        29.9
-      ],
-      [
-        "2026-07-20",
-        37.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 LT"
-      ]
-    ]
-  },
-  {
     "_sid": "icecek_cappy-seftali-nektari-330-ml",
     "ad": "Cappy Şeftali Nektarı 330 Ml",
     "ana_kategori": "Meyve Suyu",
@@ -48437,6 +48379,36 @@
       [
         "2026-07-03",
         "320 GR"
+      ]
+    ]
+  },
+  {
+    "_sid": "icecek_coca-cola-kola-3-lt",
+    "ad": "Coca-Cola Kola 3 Lt",
+    "ana_kategori": "Gazlı İçecekler",
+    "agirlik_hacim": "3 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/13002590.png",
+    "en_dusuk_fiyat": 107.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 107.5
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        97.5
+      ],
+      [
+        "2026-07-19",
+        107.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "3 LT"
       ]
     ]
   },
@@ -49052,6 +49024,44 @@
     ]
   },
   {
+    "_sid": "icecek_sariyer-portakalli-1-lt",
+    "ad": "Sarıyer Portakallı 1 Lt",
+    "ana_kategori": "Gazlı İçecekler",
+    "agirlik_hacim": "1 LT",
+    "resim": null,
+    "en_dusuk_fiyat": 37.5,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 37.5
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        32.5
+      ],
+      [
+        "2026-06-23",
+        37.5
+      ],
+      [
+        "2026-07-18",
+        29.9
+      ],
+      [
+        "2026-07-20",
+        37.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 LT"
+      ]
+    ]
+  },
+  {
     "_sid": "icecek_sek-cilekli-probiyotik-kefir-250-ml",
     "ad": "Sek Çilekli Probiyotik Kefir 250 Ml",
     "ana_kategori": "Ayran ve Kefir",
@@ -49433,36 +49443,6 @@
       [
         "2026-07-28",
         "1 LT"
-      ]
-    ]
-  },
-  {
-    "_sid": "icecek_coca-cola-kola-3-lt",
-    "ad": "Coca-Cola Kola 3 Lt",
-    "ana_kategori": "Gazlı İçecekler",
-    "agirlik_hacim": "3 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/13002590.png",
-    "en_dusuk_fiyat": 107.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 107.5
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        97.5
-      ],
-      [
-        "2026-07-19",
-        107.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "3 LT"
       ]
     ]
   },
@@ -50555,36 +50535,6 @@
     ]
   },
   {
-    "_sid": "icecek_avril-su-500-ml",
-    "ad": "Avril Su 500 Ml",
-    "ana_kategori": "Su",
-    "agirlik_hacim": "500 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/sokimages/145189.png",
-    "en_dusuk_fiyat": 6.75,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 6.75
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-07-04",
-        7.25
-      ],
-      [
-        "2026-07-08",
-        6.75
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-04",
-        "500 ML"
-      ]
-    ]
-  },
-  {
     "_sid": "icecek_nescaf-3-u-1-arada-ice-orijinal-10-gr",
     "ad": "Nescafé 3'ü 1 Arada Ice Orijinal 10 Gr",
     "ana_kategori": "Gazsız İçecekler",
@@ -50726,6 +50676,36 @@
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-26",
+        "500 ML"
+      ]
+    ]
+  },
+  {
+    "_sid": "icecek_performans-multivitamin-sekersiz-enerji-i-cecegi-500-ml",
+    "ad": "Performans Multivitamin Şekersiz Enerji İçeceği 500 Ml",
+    "ana_kategori": "Gazlı İçecekler",
+    "agirlik_hacim": "500 ML",
+    "resim": null,
+    "en_dusuk_fiyat": 35.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 35.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        29.5
+      ],
+      [
+        "2026-08-05",
+        35.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
         "500 ML"
       ]
     ]
@@ -51362,6 +51342,36 @@
     ]
   },
   {
+    "_sid": "icecek_avril-su-500-ml",
+    "ad": "Avril Su 500 Ml",
+    "ana_kategori": "Su",
+    "agirlik_hacim": "500 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/sokimages/145189.png",
+    "en_dusuk_fiyat": 6.75,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 6.75
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-07-04",
+        7.25
+      ],
+      [
+        "2026-07-08",
+        6.75
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-04",
+        "500 ML"
+      ]
+    ]
+  },
+  {
     "_sid": "icecek_saka-su-500-ml",
     "ad": "Saka Su 500 Ml",
     "ana_kategori": "Su",
@@ -51418,36 +51428,6 @@
     ]
   },
   {
-    "_sid": "icecek_performans-multivitamin-sekersiz-enerji-i-cecegi-500-ml",
-    "ad": "Performans Multivitamin Şekersiz Enerji İçeceği 500 Ml",
-    "ana_kategori": "Gazlı İçecekler",
-    "agirlik_hacim": "500 ML",
-    "resim": null,
-    "en_dusuk_fiyat": 35.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 35.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        29.5
-      ],
-      [
-        "2026-08-05",
-        35.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "500 ML"
-      ]
-    ]
-  },
-  {
     "_sid": "icecek_starbucks-vanilla-latte-22-gr",
     "ad": "Starbucks Vanilla Latte 22 Gr",
     "ana_kategori": "Kahve",
@@ -51486,36 +51466,54 @@
     ]
   },
   {
-    "_sid": "icecek_sariyer-sekersiz-kola-1-5-lt",
-    "ad": "Sarıyer Şekersiz Kola 1.5 Lt",
-    "ana_kategori": "Gazlı İçecekler",
-    "agirlik_hacim": "1.5 LT",
+    "_sid": "icecek_migros-tomurcuk-bergamot-aromali-siyah-cay-100-gr",
+    "ad": "Migros Tomurcuk Bergamot Aromalı Siyah Çay 100 Gr",
+    "ana_kategori": "Çay ve Bitki Çayları",
+    "agirlik_hacim": "100 GR",
     "resim": null,
-    "en_dusuk_fiyat": 42.5,
+    "en_dusuk_fiyat": 39.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 39.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        39.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "100 GR"
+      ]
+    ]
+  },
+  {
+    "_sid": "icecek_kizilay-seftali-aromali-soguk-cay-1-lt",
+    "ad": "Kızılay Şeftali Aromalı Soğuk Çay 1 Lt",
+    "ana_kategori": "Gazsız İçecekler",
+    "agirlik_hacim": "1 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/13002862.jpg",
+    "en_dusuk_fiyat": 46.9,
     "market_fiyatlari": [
       {
         "market": "tarim_kredi",
-        "fiyat": 42.5
+        "fiyat": 46.9
       }
     ],
     "fiyat_gecmisi": [
       [
         "2026-07-14",
-        42.5
-      ],
-      [
-        "2026-07-22",
-        49.5
-      ],
-      [
-        "2026-07-29",
-        42.5
+        46.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-14",
-        "1.5 LT"
+        "1 LT"
       ]
     ]
   },
@@ -52290,54 +52288,36 @@
     ]
   },
   {
-    "_sid": "icecek_migros-tomurcuk-bergamot-aromali-siyah-cay-100-gr",
-    "ad": "Migros Tomurcuk Bergamot Aromalı Siyah Çay 100 Gr",
-    "ana_kategori": "Çay ve Bitki Çayları",
-    "agirlik_hacim": "100 GR",
+    "_sid": "icecek_sariyer-sekersiz-kola-1-5-lt",
+    "ad": "Sarıyer Şekersiz Kola 1.5 Lt",
+    "ana_kategori": "Gazlı İçecekler",
+    "agirlik_hacim": "1.5 LT",
     "resim": null,
-    "en_dusuk_fiyat": 39.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 39.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        39.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "100 GR"
-      ]
-    ]
-  },
-  {
-    "_sid": "icecek_kizilay-seftali-aromali-soguk-cay-1-lt",
-    "ad": "Kızılay Şeftali Aromalı Soğuk Çay 1 Lt",
-    "ana_kategori": "Gazsız İçecekler",
-    "agirlik_hacim": "1 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/13002862.jpg",
-    "en_dusuk_fiyat": 46.9,
+    "en_dusuk_fiyat": 42.5,
     "market_fiyatlari": [
       {
         "market": "tarim_kredi",
-        "fiyat": 46.9
+        "fiyat": 42.5
       }
     ],
     "fiyat_gecmisi": [
       [
         "2026-07-14",
-        46.9
+        42.5
+      ],
+      [
+        "2026-07-22",
+        49.5
+      ],
+      [
+        "2026-07-29",
+        42.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-14",
-        "1 LT"
+        "1.5 LT"
       ]
     ]
   },
@@ -52436,6 +52416,40 @@
       [
         "2026-07-03",
         "330 ML"
+      ]
+    ]
+  },
+  {
+    "_sid": "icecek_coca-cola-orijinal-tat-450-ml",
+    "ad": "Coca-Cola Orijinal Tat 450 Ml",
+    "ana_kategori": "Gazlı İçecekler",
+    "agirlik_hacim": "450 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/8011118.png",
+    "en_dusuk_fiyat": 55.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 55.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        50.95
+      ],
+      [
+        "2026-07-27",
+        55.95
+      ],
+      [
+        "2026-08-07",
+        55.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "450 ML"
       ]
     ]
   },
@@ -52840,40 +52854,6 @@
     ]
   },
   {
-    "_sid": "icecek_dogadan-cilek-aromali-matcha-yesil-cay-tozu-25-gr",
-    "ad": "Doğadan Çilek Aromalı Matcha Yeşil Çay Tozu 25 Gr",
-    "ana_kategori": "Çay ve Bitki Çayları",
-    "agirlik_hacim": "25 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/3130036.jpg",
-    "en_dusuk_fiyat": 325.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 325.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        243.75
-      ],
-      [
-        "2026-07-09",
-        199.0
-      ],
-      [
-        "2026-08-07",
-        325.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "25 GR"
-      ]
-    ]
-  },
-  {
     "_sid": "icecek_kekik-suyu-1-adet",
     "ad": "Kekik Suyu 1 Adet",
     "ana_kategori": "Meyve Suyu",
@@ -53117,40 +53097,6 @@
       [
         "2026-07-03",
         "300 ML"
-      ]
-    ]
-  },
-  {
-    "_sid": "icecek_coca-cola-orijinal-tat-450-ml",
-    "ad": "Coca-Cola Orijinal Tat 450 Ml",
-    "ana_kategori": "Gazlı İçecekler",
-    "agirlik_hacim": "450 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/8011118.png",
-    "en_dusuk_fiyat": 55.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 55.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        50.95
-      ],
-      [
-        "2026-07-27",
-        55.95
-      ],
-      [
-        "2026-08-07",
-        55.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "450 ML"
       ]
     ]
   },
@@ -53427,44 +53373,6 @@
     ]
   },
   {
-    "_sid": "icecek_ustad-kara-maya-ayran-cam-sise-1-lt",
-    "ad": "Üstad Kara Maya Ayran Cam Şişe 1 Lt",
-    "ana_kategori": "Ayran ve Kefir",
-    "agirlik_hacim": "1 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/12003522.jpg",
-    "en_dusuk_fiyat": 99.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 99.5
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        95.0
-      ],
-      [
-        "2026-07-15",
-        99.5
-      ],
-      [
-        "2026-07-19",
-        84.5
-      ],
-      [
-        "2026-07-26",
-        99.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 LT"
-      ]
-    ]
-  },
-  {
     "_sid": "icecek_nescafe-2si1-arada-15-adet",
     "ad": "Nescafe 2si1 Arada 15 Adet",
     "ana_kategori": "Kahve",
@@ -53689,6 +53597,86 @@
       [
         "2026-07-03",
         "1 LT"
+      ]
+    ]
+  },
+  {
+    "_sid": "icecek_dogadan-cilek-aromali-matcha-yesil-cay-tozu-25-gr",
+    "ad": "Doğadan Çilek Aromalı Matcha Yeşil Çay Tozu 25 Gr",
+    "ana_kategori": "Çay ve Bitki Çayları",
+    "agirlik_hacim": "25 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/3130036.jpg",
+    "en_dusuk_fiyat": 325.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 325.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        243.75
+      ],
+      [
+        "2026-07-09",
+        199.0
+      ],
+      [
+        "2026-08-07",
+        325.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "25 GR"
+      ]
+    ]
+  },
+  {
+    "_sid": "icecek_caykur-rize-turist-cay-1-kg",
+    "ad": "Çaykur Rize Turist Çay 1 Kg",
+    "ana_kategori": "Çay ve Bitki Çayları",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/13000054.png",
+    "en_dusuk_fiyat": 349.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 349.95
+      },
+      {
+        "market": "sok",
+        "fiyat": 365.0
+      },
+      {
+        "market": "a101",
+        "fiyat": 365.0
+      },
+      {
+        "market": "tarim_kredi",
+        "fiyat": 365.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        325.0
+      ],
+      [
+        "2026-07-22",
+        365.0
+      ],
+      [
+        "2026-08-06",
+        349.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
       ]
     ]
   },
@@ -54245,6 +54233,44 @@
     ]
   },
   {
+    "_sid": "icecek_ustad-kara-maya-ayran-cam-sise-1-lt",
+    "ad": "Üstad Kara Maya Ayran Cam Şişe 1 Lt",
+    "ana_kategori": "Ayran ve Kefir",
+    "agirlik_hacim": "1 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/12003522.jpg",
+    "en_dusuk_fiyat": 99.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 99.5
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        95.0
+      ],
+      [
+        "2026-07-15",
+        99.5
+      ],
+      [
+        "2026-07-19",
+        84.5
+      ],
+      [
+        "2026-07-26",
+        99.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 LT"
+      ]
+    ]
+  },
+  {
     "_sid": "icecek_sarikiz-ekstra-c-vitaminli-6x200-ml",
     "ad": "Sarıkız Ekstra C Vitaminli 6x200 Ml",
     "ana_kategori": "Maden Suyu",
@@ -54541,52 +54567,6 @@
       [
         "2026-07-03",
         "1.5 LT"
-      ]
-    ]
-  },
-  {
-    "_sid": "icecek_caykur-rize-turist-cay-1-kg",
-    "ad": "Çaykur Rize Turist Çay 1 Kg",
-    "ana_kategori": "Çay ve Bitki Çayları",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/13000054.png",
-    "en_dusuk_fiyat": 349.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 349.95
-      },
-      {
-        "market": "sok",
-        "fiyat": 365.0
-      },
-      {
-        "market": "a101",
-        "fiyat": 365.0
-      },
-      {
-        "market": "tarim_kredi",
-        "fiyat": 365.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        325.0
-      ],
-      [
-        "2026-07-22",
-        365.0
-      ],
-      [
-        "2026-08-06",
-        349.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
       ]
     ]
   },
@@ -56623,6 +56603,36 @@
     ]
   },
   {
+    "_sid": "icecek_fuse-tea-mango-ananas-soguk-cay-330-ml",
+    "ad": "Fuse Tea Mango Ananas Soğuk Çay 330 Ml",
+    "ana_kategori": "Gazsız İçecekler",
+    "agirlik_hacim": "330 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/hakmarimages/1030671.png",
+    "en_dusuk_fiyat": 60.0,
+    "market_fiyatlari": [
+      {
+        "market": "hakmar",
+        "fiyat": 60.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-07-25",
+        50.0
+      ],
+      [
+        "2026-07-31",
+        60.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-25",
+        "330 ML"
+      ]
+    ]
+  },
+  {
     "_sid": "icecek_sogutlucesme-limon-6x200-ml",
     "ad": "Söğütlüçeşme Limon 6x200 Ml",
     "ana_kategori": "Gazlı İçecekler",
@@ -56765,36 +56775,6 @@
       [
         "2026-07-03",
         "1.2 LT"
-      ]
-    ]
-  },
-  {
-    "_sid": "icecek_nescaf-xpress-soguk-kahve-250-ml",
-    "ad": "Nescafé Xpress Soğuk Kahve 250 Ml",
-    "ana_kategori": "Gazsız İçecekler",
-    "agirlik_hacim": "250 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/13001021.png",
-    "en_dusuk_fiyat": 70.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 70.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        55.0
-      ],
-      [
-        "2026-07-04",
-        70.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "250 ML"
       ]
     ]
   },
@@ -57304,36 +57284,6 @@
     ]
   },
   {
-    "_sid": "icecek_fuse-tea-mango-ananas-soguk-cay-330-ml",
-    "ad": "Fuse Tea Mango Ananas Soğuk Çay 330 Ml",
-    "ana_kategori": "Gazsız İçecekler",
-    "agirlik_hacim": "330 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/hakmarimages/1030671.png",
-    "en_dusuk_fiyat": 60.0,
-    "market_fiyatlari": [
-      {
-        "market": "hakmar",
-        "fiyat": 60.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-07-25",
-        50.0
-      ],
-      [
-        "2026-07-31",
-        60.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-25",
-        "330 ML"
-      ]
-    ]
-  },
-  {
     "_sid": "icecek_assu-su-3-lt",
     "ad": "Assu Su 3 Lt",
     "ana_kategori": "Su",
@@ -57394,6 +57344,66 @@
     ]
   },
   {
+    "_sid": "icecek_nescaf-xpress-soguk-kahve-250-ml",
+    "ad": "Nescafé Xpress Soğuk Kahve 250 Ml",
+    "ana_kategori": "Gazsız İçecekler",
+    "agirlik_hacim": "250 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/13001021.png",
+    "en_dusuk_fiyat": 70.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 70.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        55.0
+      ],
+      [
+        "2026-07-04",
+        70.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "250 ML"
+      ]
+    ]
+  },
+  {
+    "_sid": "icecek_avoya-blend-i-ncir-aromali-maden-suyu-1-lt",
+    "ad": "Avoya Blend İncir Aromalı Maden Suyu 1 Lt",
+    "ana_kategori": "Maden Suyu",
+    "agirlik_hacim": "1 LT",
+    "resim": null,
+    "en_dusuk_fiyat": 72.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 72.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        89.0
+      ],
+      [
+        "2026-07-18",
+        72.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 LT"
+      ]
+    ]
+  },
+  {
     "_sid": "icecek_i-stanbul-osmanli-dibek-kahvesi-200-gr",
     "ad": "İstanbul Osmanlı Dibek Kahvesi 200 Gr",
     "ana_kategori": "Kahve",
@@ -57416,48 +57426,6 @@
       [
         "2026-07-25",
         "200 GR"
-      ]
-    ]
-  },
-  {
-    "_sid": "icecek_dimes-active-visne-i-cecegi-1-lt",
-    "ad": "Dimes Active Vişne İçeceği 1 Lt",
-    "ana_kategori": "Meyve Suyu",
-    "agirlik_hacim": "1 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30090511.jpg",
-    "en_dusuk_fiyat": 80.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 80.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        80.0
-      ],
-      [
-        "2026-06-25",
-        70.0
-      ],
-      [
-        "2026-07-09",
-        80.0
-      ],
-      [
-        "2026-07-14",
-        70.0
-      ],
-      [
-        "2026-07-31",
-        80.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 LT"
       ]
     ]
   },
@@ -58058,44 +58026,6 @@
     ]
   },
   {
-    "_sid": "icecek_starbucks-caramel-latte-23-gr",
-    "ad": "Starbucks Caramel Latte 23 Gr",
-    "ana_kategori": "Kahve",
-    "agirlik_hacim": "23 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30390021.jpg",
-    "en_dusuk_fiyat": 36.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 36.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        29.95
-      ],
-      [
-        "2026-07-14",
-        36.95
-      ],
-      [
-        "2026-07-24",
-        23.0
-      ],
-      [
-        "2026-07-31",
-        36.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "23 GR"
-      ]
-    ]
-  },
-  {
     "_sid": "icecek_keyfe-hazir-aromali-turk-kahvesi-100-gr",
     "ad": "Keyfe Hazır Aromalı Türk Kahvesi 100 Gr",
     "ana_kategori": "Kahve",
@@ -58186,6 +58116,40 @@
       [
         "2026-07-03",
         "250 ML"
+      ]
+    ]
+  },
+  {
+    "_sid": "icecek_cappy-bubble-mango-ananas-330-ml",
+    "ad": "Cappy Bubble Mango Ananas 330 Ml",
+    "ana_kategori": "Meyve Suyu",
+    "agirlik_hacim": "330 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30490885.jpg",
+    "en_dusuk_fiyat": 55.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 55.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        55.0
+      ],
+      [
+        "2026-07-24",
+        19.9
+      ],
+      [
+        "2026-07-25",
+        55.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "330 ML"
       ]
     ]
   },
@@ -58454,26 +58418,38 @@
     ]
   },
   {
-    "_sid": "icecek_avoya-blend-i-ncir-aromali-maden-suyu-1-lt",
-    "ad": "Avoya Blend İncir Aromalı Maden Suyu 1 Lt",
-    "ana_kategori": "Maden Suyu",
+    "_sid": "icecek_dimes-active-visne-i-cecegi-1-lt",
+    "ad": "Dimes Active Vişne İçeceği 1 Lt",
+    "ana_kategori": "Meyve Suyu",
     "agirlik_hacim": "1 LT",
-    "resim": null,
-    "en_dusuk_fiyat": 72.0,
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30090511.jpg",
+    "en_dusuk_fiyat": 80.0,
     "market_fiyatlari": [
       {
-        "market": "bim",
-        "fiyat": 72.0
+        "market": "carrefour",
+        "fiyat": 80.0
       }
     ],
     "fiyat_gecmisi": [
       [
         "2026-06-22",
-        89.0
+        80.0
       ],
       [
-        "2026-07-18",
-        72.0
+        "2026-06-25",
+        70.0
+      ],
+      [
+        "2026-07-09",
+        80.0
+      ],
+      [
+        "2026-07-14",
+        70.0
+      ],
+      [
+        "2026-07-31",
+        80.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
@@ -58810,6 +58786,44 @@
     ]
   },
   {
+    "_sid": "icecek_starbucks-caramel-latte-23-gr",
+    "ad": "Starbucks Caramel Latte 23 Gr",
+    "ana_kategori": "Kahve",
+    "agirlik_hacim": "23 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30390021.jpg",
+    "en_dusuk_fiyat": 36.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 36.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        29.95
+      ],
+      [
+        "2026-07-14",
+        36.95
+      ],
+      [
+        "2026-07-24",
+        23.0
+      ],
+      [
+        "2026-07-31",
+        36.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "23 GR"
+      ]
+    ]
+  },
+  {
     "_sid": "icecek_altinkilic-sade-kefir-250-ml",
     "ad": "Altınkılıç Sade Kefir 250 Ml",
     "ana_kategori": "Ayran ve Kefir",
@@ -58892,40 +58906,6 @@
       [
         "2026-07-03",
         "250 ML"
-      ]
-    ]
-  },
-  {
-    "_sid": "icecek_cappy-bubble-mango-ananas-330-ml",
-    "ad": "Cappy Bubble Mango Ananas 330 Ml",
-    "ana_kategori": "Meyve Suyu",
-    "agirlik_hacim": "330 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30490885.jpg",
-    "en_dusuk_fiyat": 55.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 55.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        55.0
-      ],
-      [
-        "2026-07-24",
-        19.9
-      ],
-      [
-        "2026-07-25",
-        55.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "330 ML"
       ]
     ]
   },
@@ -60115,32 +60095,6 @@
     ]
   },
   {
-    "_sid": "icecek_dogadan-probiyotikli-rooibos-cay-14-lu-27-gr",
-    "ad": "Doğadan Probiyotikli Rooibos Çay 14'lü 27 Gr",
-    "ana_kategori": "Çay ve Bitki Çayları",
-    "agirlik_hacim": "26.6 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/3118516.png",
-    "en_dusuk_fiyat": 139.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 139.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        139.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "26.6 GR"
-      ]
-    ]
-  },
-  {
     "_sid": "icecek_nestl-coffee-mate-625-gr",
     "ad": "Nestlé Coffee Mate 625 Gr",
     "ana_kategori": "Kahve",
@@ -60171,6 +60125,56 @@
       [
         "2026-07-03",
         "625 GR"
+      ]
+    ]
+  },
+  {
+    "_sid": "icecek_jacobs-cronat-gold-cozunebilir-kahve-100-gr",
+    "ad": "Jacobs Cronat Gold Çözünebilir Kahve 100 Gr",
+    "ana_kategori": "Kahve",
+    "agirlik_hacim": "100 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/30000347.png",
+    "en_dusuk_fiyat": 194.68,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 194.68
+      },
+      {
+        "market": "sok",
+        "fiyat": 299.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        209.0
+      ],
+      [
+        "2026-06-24",
+        209.65
+      ],
+      [
+        "2026-07-08",
+        189.95
+      ],
+      [
+        "2026-07-19",
+        189.0
+      ],
+      [
+        "2026-07-23",
+        189.95
+      ],
+      [
+        "2026-07-24",
+        194.68
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "100 GR"
       ]
     ]
   },
@@ -60993,52 +60997,28 @@
     ]
   },
   {
-    "_sid": "icecek_jacobs-cronat-gold-cozunebilir-kahve-100-gr",
-    "ad": "Jacobs Cronat Gold Çözünebilir Kahve 100 Gr",
-    "ana_kategori": "Kahve",
-    "agirlik_hacim": "100 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/30000347.png",
-    "en_dusuk_fiyat": 194.68,
+    "_sid": "icecek_dogadan-probiyotikli-rooibos-cay-14-lu-27-gr",
+    "ad": "Doğadan Probiyotikli Rooibos Çay 14'lü 27 Gr",
+    "ana_kategori": "Çay ve Bitki Çayları",
+    "agirlik_hacim": "26.6 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/3118516.png",
+    "en_dusuk_fiyat": 139.95,
     "market_fiyatlari": [
       {
         "market": "migros",
-        "fiyat": 194.68
-      },
-      {
-        "market": "sok",
-        "fiyat": 299.0
+        "fiyat": 139.95
       }
     ],
     "fiyat_gecmisi": [
       [
         "2026-06-22",
-        209.0
-      ],
-      [
-        "2026-06-24",
-        209.65
-      ],
-      [
-        "2026-07-08",
-        189.95
-      ],
-      [
-        "2026-07-19",
-        189.0
-      ],
-      [
-        "2026-07-23",
-        189.95
-      ],
-      [
-        "2026-07-24",
-        194.68
+        139.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-03",
-        "100 GR"
+        "26.6 GR"
       ]
     ]
   },
@@ -62972,6 +62952,52 @@
     ]
   },
   {
+    "_sid": "icecek_hayat-su-6-lt",
+    "ad": "Hayat Su 6 Lt",
+    "ana_kategori": "Su",
+    "agirlik_hacim": "1 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/13000219.jpg",
+    "en_dusuk_fiyat": 32.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 32.9
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        29.9
+      ],
+      [
+        "2026-06-25",
+        23.9
+      ],
+      [
+        "2026-07-09",
+        29.9
+      ],
+      [
+        "2026-07-14",
+        32.9
+      ],
+      [
+        "2026-07-24",
+        26.25
+      ],
+      [
+        "2026-08-07",
+        32.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 LT"
+      ]
+    ]
+  },
+  {
     "_sid": "icecek_doganay-sade-salgam-suyu-300-ml",
     "ad": "Doğanay Sade Şalgam Suyu 300 Ml",
     "ana_kategori": "Gazsız İçecekler",
@@ -63332,52 +63358,6 @@
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-31",
-        "50 GR"
-      ]
-    ]
-  },
-  {
-    "_sid": "icecek_lipton-yellow-label-bardak-poset-25-adet-50-gr",
-    "ad": "Lipton Yellow Label Bardak Poşet 25 Adet 50 Gr",
-    "ana_kategori": "Çay ve Bitki Çayları",
-    "agirlik_hacim": "50 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30098532.png",
-    "en_dusuk_fiyat": 85.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 85.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        119.95
-      ],
-      [
-        "2026-06-26",
-        121.0
-      ],
-      [
-        "2026-07-06",
-        119.95
-      ],
-      [
-        "2026-07-09",
-        85.95
-      ],
-      [
-        "2026-07-24",
-        121.0
-      ],
-      [
-        "2026-08-07",
-        85.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
         "50 GR"
       ]
     ]
@@ -63943,52 +63923,6 @@
     ]
   },
   {
-    "_sid": "icecek_hayat-su-6-lt",
-    "ad": "Hayat Su 6 Lt",
-    "ana_kategori": "Su",
-    "agirlik_hacim": "1 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/13000219.jpg",
-    "en_dusuk_fiyat": 32.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 32.9
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        29.9
-      ],
-      [
-        "2026-06-25",
-        23.9
-      ],
-      [
-        "2026-07-09",
-        29.9
-      ],
-      [
-        "2026-07-14",
-        32.9
-      ],
-      [
-        "2026-07-24",
-        26.25
-      ],
-      [
-        "2026-08-07",
-        32.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 LT"
-      ]
-    ]
-  },
-  {
     "_sid": "icecek_damla-su-1-lt",
     "ad": "Damla Su 1 Lt",
     "ana_kategori": "Su",
@@ -64425,6 +64359,52 @@
       [
         "2026-07-03",
         "500 ML"
+      ]
+    ]
+  },
+  {
+    "_sid": "icecek_lipton-yellow-label-bardak-poset-25-adet-50-gr",
+    "ad": "Lipton Yellow Label Bardak Poşet 25 Adet 50 Gr",
+    "ana_kategori": "Çay ve Bitki Çayları",
+    "agirlik_hacim": "50 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30098532.png",
+    "en_dusuk_fiyat": 85.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 85.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        119.95
+      ],
+      [
+        "2026-06-26",
+        121.0
+      ],
+      [
+        "2026-07-06",
+        119.95
+      ],
+      [
+        "2026-07-09",
+        85.95
+      ],
+      [
+        "2026-07-24",
+        121.0
+      ],
+      [
+        "2026-08-07",
+        85.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "50 GR"
       ]
     ]
   },
@@ -65017,6 +64997,32 @@
     ]
   },
   {
+    "_sid": "icecek_pepsi-sekersiz-1-5-lt",
+    "ad": "Pepsi Şekersiz 1.5 Lt",
+    "ana_kategori": "Gazlı İçecekler",
+    "agirlik_hacim": "1.5 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/13000321.png",
+    "en_dusuk_fiyat": 65.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 65.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        65.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1.5 LT"
+      ]
+    ]
+  },
+  {
     "_sid": "icecek_dogadan-kusburnu-20-adet",
     "ad": "Doğadan Kuşburnu 20 Adet",
     "ana_kategori": "Çay ve Bitki Çayları",
@@ -65417,40 +65423,6 @@
     ]
   },
   {
-    "_sid": "icecek_l-or-beans-crema-abs-kavrulmus-kahve-cekirdegi-500-gr",
-    "ad": "L'or Beans Crema Abs Kavrulmuş Kahve Çekirdeği 500 Gr",
-    "ana_kategori": "Kahve",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/3270031.jpg",
-    "en_dusuk_fiyat": 1249.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 1249.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        1249.0
-      ],
-      [
-        "2026-07-16",
-        874.3
-      ],
-      [
-        "2026-07-22",
-        1249.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "500 GR"
-      ]
-    ]
-  },
-  {
     "_sid": "icecek_cafe-crown-2-si-1-arada-findik-11-gr",
     "ad": "Cafe Crown 2'si 1 Arada Fındık 11 Gr",
     "ana_kategori": "Kahve",
@@ -65780,32 +65752,6 @@
       [
         "2026-07-03",
         "1 LT"
-      ]
-    ]
-  },
-  {
-    "_sid": "icecek_pepsi-sekersiz-1-5-lt",
-    "ad": "Pepsi Şekersiz 1.5 Lt",
-    "ana_kategori": "Gazlı İçecekler",
-    "agirlik_hacim": "1.5 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/13000321.png",
-    "en_dusuk_fiyat": 65.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 65.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        65.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1.5 LT"
       ]
     ]
   },
@@ -66214,6 +66160,40 @@
     ]
   },
   {
+    "_sid": "icecek_l-or-beans-crema-abs-kavrulmus-kahve-cekirdegi-500-gr",
+    "ad": "L'or Beans Crema Abs Kavrulmuş Kahve Çekirdeği 500 Gr",
+    "ana_kategori": "Kahve",
+    "agirlik_hacim": "500 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/3270031.jpg",
+    "en_dusuk_fiyat": 1249.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 1249.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        1249.0
+      ],
+      [
+        "2026-07-16",
+        874.3
+      ],
+      [
+        "2026-07-22",
+        1249.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "500 GR"
+      ]
+    ]
+  },
+  {
     "_sid": "icecek_mila-dogal-kaynak-suyu-500-ml",
     "ad": "Mila Doğal Kaynak Suyu 500 Ml",
     "ana_kategori": "Su",
@@ -66584,6 +66564,68 @@
     ]
   },
   {
+    "_sid": "icecek_red-bull-enerji-i-cecegi-250-ml",
+    "ad": "Red Bull Enerji İçeceği 250 Ml",
+    "ana_kategori": "Gazlı İçecekler",
+    "agirlik_hacim": "250 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/sokimages/8110030.png",
+    "en_dusuk_fiyat": 59.5,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 59.5
+      },
+      {
+        "market": "migros",
+        "fiyat": 60.0
+      },
+      {
+        "market": "a101",
+        "fiyat": 70.0
+      },
+      {
+        "market": "bim",
+        "fiyat": 70.0
+      },
+      {
+        "market": "hakmar",
+        "fiyat": 70.0
+      },
+      {
+        "market": "tarim_kredi",
+        "fiyat": 70.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        54.0
+      ],
+      [
+        "2026-06-23",
+        59.5
+      ],
+      [
+        "2026-06-27",
+        70.0
+      ],
+      [
+        "2026-07-14",
+        58.9
+      ],
+      [
+        "2026-07-23",
+        59.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "250 ML"
+      ]
+    ]
+  },
+  {
     "_sid": "icecek_coca-cola-zero-sugar-1-lt",
     "ad": "Coca-Cola Zero Sugar 1 Lt",
     "ana_kategori": "Gazlı İçecekler",
@@ -66840,48 +66882,6 @@
     ]
   },
   {
-    "_sid": "icecek_dimes-kirmizi-meyveli-1-lt",
-    "ad": "Dimes Kırmızı Meyveli 1 Lt",
-    "ana_kategori": "Meyve Suyu",
-    "agirlik_hacim": "1 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30094507.png",
-    "en_dusuk_fiyat": 80.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 80.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        80.0
-      ],
-      [
-        "2026-06-25",
-        70.0
-      ],
-      [
-        "2026-07-09",
-        80.0
-      ],
-      [
-        "2026-07-14",
-        70.0
-      ],
-      [
-        "2026-07-31",
-        80.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 LT"
-      ]
-    ]
-  },
-  {
     "_sid": "icecek_damla-minera-elmali-maden-suyu-1-2-lt",
     "ad": "Damla Minera Elmalı Maden Suyu 1.2 Lt",
     "ana_kategori": "Maden Suyu",
@@ -67070,32 +67070,6 @@
       [
         "2026-07-03",
         "250 GR"
-      ]
-    ]
-  },
-  {
-    "_sid": "icecek_dooy-karpuz-cilek-limon-meyveli-i-cecek-200-ml",
-    "ad": "Dooy Karpuz Çilek Limon Meyveli İçecek 200 Ml",
-    "ana_kategori": "Meyve Suyu",
-    "agirlik_hacim": "200 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/13002601.png",
-    "en_dusuk_fiyat": 11.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 11.5
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        11.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "200 ML"
       ]
     ]
   },
@@ -67529,68 +67503,6 @@
     ]
   },
   {
-    "_sid": "icecek_red-bull-enerji-i-cecegi-250-ml",
-    "ad": "Red Bull Enerji İçeceği 250 Ml",
-    "ana_kategori": "Gazlı İçecekler",
-    "agirlik_hacim": "250 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/sokimages/8110030.png",
-    "en_dusuk_fiyat": 59.5,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 59.5
-      },
-      {
-        "market": "migros",
-        "fiyat": 60.0
-      },
-      {
-        "market": "a101",
-        "fiyat": 70.0
-      },
-      {
-        "market": "bim",
-        "fiyat": 70.0
-      },
-      {
-        "market": "hakmar",
-        "fiyat": 70.0
-      },
-      {
-        "market": "tarim_kredi",
-        "fiyat": 70.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        54.0
-      ],
-      [
-        "2026-06-23",
-        59.5
-      ],
-      [
-        "2026-06-27",
-        70.0
-      ],
-      [
-        "2026-07-14",
-        58.9
-      ],
-      [
-        "2026-07-23",
-        59.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "250 ML"
-      ]
-    ]
-  },
-  {
     "_sid": "icecek_fuse-tea-karpuzlu-soguk-cay-330-ml",
     "ad": "Fuse Tea Karpuzlu Soğuk Çay 330 Ml",
     "ana_kategori": "Gazsız İçecekler",
@@ -67730,6 +67642,48 @@
     "agirlik_hacim_gecmisi": []
   },
   {
+    "_sid": "icecek_dimes-kirmizi-meyveli-1-lt",
+    "ad": "Dimes Kırmızı Meyveli 1 Lt",
+    "ana_kategori": "Meyve Suyu",
+    "agirlik_hacim": "1 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30094507.png",
+    "en_dusuk_fiyat": 80.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 80.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        80.0
+      ],
+      [
+        "2026-06-25",
+        70.0
+      ],
+      [
+        "2026-07-09",
+        80.0
+      ],
+      [
+        "2026-07-14",
+        70.0
+      ],
+      [
+        "2026-07-31",
+        80.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 LT"
+      ]
+    ]
+  },
+  {
     "_sid": "icecek_kent-boringer-findikli-kahve-surubu-355-ml",
     "ad": "Kent Boringer Fındıklı Kahve Şurubu 355 Ml",
     "ana_kategori": "Kahve",
@@ -67760,6 +67714,32 @@
       [
         "2026-07-03",
         "355 ML"
+      ]
+    ]
+  },
+  {
+    "_sid": "icecek_kefirim-cilekli-kefir-1-lt",
+    "ad": "Kefirim Çilekli Kefir 1 Lt",
+    "ana_kategori": "Ayran ve Kefir",
+    "agirlik_hacim": "1 LT",
+    "resim": null,
+    "en_dusuk_fiyat": 109.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 109.0
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        109.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 LT"
       ]
     ]
   },
@@ -67940,6 +67920,32 @@
       [
         "2026-07-03",
         "500 ML"
+      ]
+    ]
+  },
+  {
+    "_sid": "icecek_dooy-karpuz-cilek-limon-meyveli-i-cecek-200-ml",
+    "ad": "Dooy Karpuz Çilek Limon Meyveli İçecek 200 Ml",
+    "ana_kategori": "Meyve Suyu",
+    "agirlik_hacim": "200 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/13002601.png",
+    "en_dusuk_fiyat": 11.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 11.5
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        11.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "200 ML"
       ]
     ]
   },
@@ -68178,36 +68184,6 @@
     ]
   },
   {
-    "_sid": "icecek_frutti-extra-yesil-limon-aromali-maden-suyu-250-ml",
-    "ad": "Frutti Extra Yeşil Limon Aromalı Maden Suyu 250 Ml",
-    "ana_kategori": "Maden Suyu",
-    "agirlik_hacim": "250 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/8040688.jpg",
-    "en_dusuk_fiyat": 40.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 40.95
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-07-24",
-        39.95
-      ],
-      [
-        "2026-08-06",
-        40.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-24",
-        "250 ML"
-      ]
-    ]
-  },
-  {
     "_sid": "icecek_cappy-pulpy-portakal-330-ml",
     "ad": "Cappy Pulpy Portakal 330 Ml",
     "ana_kategori": "Meyve Suyu",
@@ -68442,28 +68418,28 @@
     ]
   },
   {
-    "_sid": "icecek_kefirim-cilekli-kefir-1-lt",
-    "ad": "Kefirim Çilekli Kefir 1 Lt",
-    "ana_kategori": "Ayran ve Kefir",
-    "agirlik_hacim": "1 LT",
-    "resim": null,
-    "en_dusuk_fiyat": 109.0,
+    "_sid": "icecek_uludag-limonata-2-lt",
+    "ad": "Uludağ Limonata 2 Lt",
+    "ana_kategori": "Gazsız İçecekler",
+    "agirlik_hacim": "2 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30149977.jpg",
+    "en_dusuk_fiyat": 99.0,
     "market_fiyatlari": [
       {
-        "market": "bim",
-        "fiyat": 109.0
+        "market": "carrefour",
+        "fiyat": 99.0
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-06-22",
-        109.0
+        "2026-06-23",
+        99.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-03",
-        "1 LT"
+        "2 LT"
       ]
     ]
   },
@@ -68993,6 +68969,36 @@
     ]
   },
   {
+    "_sid": "icecek_frutti-extra-yesil-limon-aromali-maden-suyu-250-ml",
+    "ad": "Frutti Extra Yeşil Limon Aromalı Maden Suyu 250 Ml",
+    "ana_kategori": "Maden Suyu",
+    "agirlik_hacim": "250 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/8040688.jpg",
+    "en_dusuk_fiyat": 40.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 40.95
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-07-24",
+        39.95
+      ],
+      [
+        "2026-08-06",
+        40.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-24",
+        "250 ML"
+      ]
+    ]
+  },
+  {
     "_sid": "icecek_akmina-maden-suyu-pet-1-lt",
     "ad": "Akmina Maden Suyu Pet 1 Lt",
     "ana_kategori": "Maden Suyu",
@@ -69352,32 +69358,6 @@
       [
         "2026-07-03",
         "250 ML"
-      ]
-    ]
-  },
-  {
-    "_sid": "icecek_uludag-limonata-2-lt",
-    "ad": "Uludağ Limonata 2 Lt",
-    "ana_kategori": "Gazsız İçecekler",
-    "agirlik_hacim": "2 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30149977.jpg",
-    "en_dusuk_fiyat": 99.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 99.0
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-23",
-        99.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "2 LT"
       ]
     ]
   },
