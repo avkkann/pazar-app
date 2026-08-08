@@ -62,6 +62,8 @@ function calistir(urunlerVeri, aktifMarketler, altKat = 'tumu', arama = '') {
     sepet: [], currentKategori: 'meyve', currentSayfa: 1, toplamSayfa: 1, urunler: [], PAGE_SIZE,
     MARKET_NAMES,
     popScore: () => 0, birimFiyatHesapla: () => null, lcIcon: () => '',
+    // renderUrunler birim-fiyat vurgusu icin bunu cagiriyor; bu testin konusu degil.
+    enIyiBirimIdleri: () => new Set(),
     cardHTML: (u) => '<div class="product-card">' + u.ad + '</div>' };
   vm.createContext(ctx);
   vm.runInContext(fnKaynak('renderUrunler') + '\n' + fnKaynak('uygulaCatFiltre') + '\nuygulaCatFiltre();', ctx);

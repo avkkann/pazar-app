@@ -1985,6 +1985,31 @@ function rakipMarkalariBul(u) {
   return out.slice(0, 6);
 }
 
+// Listede birim fiyatı KARŞILAŞTIRILABİLİR olanlar arasında en iyiyi bulur.
+// Sadece aynı birim (kg / L / adet) kendi içinde karşılaştırılır; grupta tek
+// ürün varsa "en iyi" demek anlamsız olduğu için vurgulanmaz.
+// Birim fiyatı hesaplanamayan ürün hiç yarışmaz — uydurma değer üretilmez.
+let _enIyiBirimSet = null;
+
+function enIyiBirimIdleri(liste) {
+  const sonuc = new Set();
+  if (!liste || !liste.length) return sonuc;
+  const gruplar = {};
+  liste.forEach(u => {
+    const bf = birimFiyatHesapla(u);
+    if (!bf || !(bf.deger > 0)) return;
+    if (!gruplar[bf.birim]) gruplar[bf.birim] = [];
+    gruplar[bf.birim].push({ id: u._id, deger: bf.deger });
+  });
+  Object.values(gruplar).forEach(g => {
+    if (g.length < 2) return;
+    let en = g[0];
+    g.forEach(x => { if (x.deger < en.deger) en = x; });
+    if (en.id != null) sonuc.add(en.id);
+  });
+  return sonuc;
+}
+
 function birimFiyatYazi(bf) {
   if (!bf) return '';
   return bf.birim + ' başına ' + tl(bf.deger);
@@ -2233,7 +2258,13 @@ function cardHTML(u) {
       ${gosterilenFiyat != null
         ? `<div class="product-price">${tlHTML(gosterilenFiyat)}${marketLbl ? `<span class="product-market-lbl"> · ${marketLbl}</span>` : ''}</div>`
         : `<div class="kart-market-yok">Seçili markette yok</div>`}
-      ${(() => { const bf = birimFiyatHesapla(u); return bf ? `<div class="urun-birim-fiyat">${birimFiyatYazi(bf)}</div>` : ''; })()}
+      ${(() => {
+        const bf = birimFiyatHesapla(u);
+        if (!bf) return '';
+        const enIyi = !!(_enIyiBirimSet && _enIyiBirimSet.has(u._id));
+        // Renk tek gösterge olmasın: metin de ekleniyor.
+        return `<div class="urun-birim-fiyat${enIyi ? ' en-iyi' : ''}">${birimFiyatYazi(bf)}${enIyi ? ' · en ucuz birim' : ''}</div>`;
+      })()}
       ${(() => { const rz = tuzakRozetiHesapla(u); return rz ? tuzakRozetiHTML(rz, true) : ''; })()}
       ${urunRozetleriHTML(u, true)}
     </div>
@@ -2497,6 +2528,9 @@ async function openCategory(slug) {
 }
 
 function renderUrunler(liste) {
+  // Vurgu TÜM filtreli liste üzerinden hesaplanır (sayfa-1 değil), böylece
+  // sonsuz scroll'da gelen kartlar da aynı kazananı biliyor.
+  _enIyiBirimSet = enIyiBirimIdleri(liste);
   window._catUrunler = liste;
   currentSayfa = 1;
   toplamSayfa = Math.max(1, Math.ceil(liste.length / PAGE_SIZE));

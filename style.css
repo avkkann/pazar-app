@@ -259,6 +259,9 @@
     .product-hal-badge { font-size: 10px; color: #D97706; font-weight: 600; margin-top: 3px; display: block; }
      .product-price { font-size: 22px; font-weight: 800; color: var(--price-color); margin-top: 4px; line-height: 1.1; }
     .urun-birim-fiyat { font-size: 11px; color: #888; margin-top: 2px; line-height: 1.2; }
+    /* Listedeki en iyi birim fiyat — detaydaki .detay-mkt-row.best ile AYNI
+       yeşil, yeni rozet yok. Metin de eklendiği için renk tek gösterge değil. */
+    .urun-birim-fiyat.en-iyi { color: #059669; font-weight: 700; }
     .detay-birim-fiyat { font-size: 15px; color: #888; margin-top: 4px; margin-bottom: 12px; }
     .detay-bolum { margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border, #2a2a2a); }
     .detay-bolum-baslik { font-size: 14px; font-weight: 600; color: var(--text, #fff); margin-bottom: 10px; }
