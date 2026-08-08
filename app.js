@@ -3387,15 +3387,57 @@ function karsilastir() {
   msSheetAc(mktList);
 }
 
-function msSheetAc(mktList) {
-  _msMarkets = mktList.map(m => {
-    const adet = sepet.filter(u => (u.market_fiyatlari||[]).some(f => f.market === m && f.fiyat != null)).length;
-    const minToplam = sepet.reduce((s, u) => {
-      const f = (u.market_fiyatlari||[]).filter(ff => ff.market === m && ff.fiyat != null).sort((a,b) => a.fiyat - b.fiyat)[0];
-      return s + (f ? f.fiyat : 0);
-    }, 0);
-    return { key: m, name: MARKET_SIRALIYE[m] || MARKET_NAMES[m] || m, adet, minToplam };
+// Bir markette olmayan ürün toplama HİÇ girmez (başka marketin fiyatıyla da
+// doldurulmaz). O yüzden 2 ürünlük bir toplam, 4 ürünlük bir toplamla yan yana
+// dururken "daha ucuz" gibi okunmasın diye eksik sayısı da taşınıyor.
+function msMarketOzetleri(mktList) {
+  const sepetToplam = (sepet || []).length;
+  return (mktList || []).map(m => {
+    let adet = 0, minToplam = 0;
+    (sepet || []).forEach(u => {
+      const f = (u.market_fiyatlari || []).filter(ff => ff.market === m && ff.fiyat != null).sort((a, b) => a.fiyat - b.fiyat)[0];
+      if (!f) return;
+      adet++;
+      minToplam += f.fiyat;
+    });
+    return {
+      key: m,
+      name: MARKET_SIRALIYE[m] || MARKET_NAMES[m] || m,
+      adet: adet,
+      eksik: sepetToplam - adet,
+      sepetToplam: sepetToplam,
+      minToplam: minToplam
+    };
   });
+}
+
+function msMarketMetaHTML(m) {
+  const temel = `${m.adet} ürün · ${tl(m.minToplam)}`;
+  if (!m.eksik) return temel;
+  return `${temel}<span class="ms-meta-eksik"> · ${m.eksik} ürün yok (tutar eksik)</span>`;
+}
+
+// Seçili marketlerin BİRLİKTE sepeti ne kadar kapsadığı.
+function msSecimKapsami(secilenler) {
+  const sec = secilenler || [];
+  const toplam = (sepet || []).length;
+  let tutar = 0, kapsanan = 0;
+  (sepet || []).forEach(u => {
+    let min = null;
+    (u.market_fiyatlari || []).forEach(f => {
+      if (f.fiyat == null) return;
+      if (sec.indexOf(f.market) < 0) return;
+      if (min === null || f.fiyat < min) min = f.fiyat;
+    });
+    if (min === null) return;
+    kapsanan++;
+    tutar += min;
+  });
+  return { toplam: toplam, kapsanan: kapsanan, eksik: toplam - kapsanan, tutar: tutar };
+}
+
+function msSheetAc(mktList) {
+  _msMarkets = msMarketOzetleri(mktList);
   _msSecili = _msMarkets.map(x => x.key);
 
   const listEl = document.getElementById('msList');
@@ -3405,7 +3447,7 @@ function msSheetAc(mktList) {
       <div class="ms-market-avatar">${harf}</div>
       <div class="ms-market-info">
         <div class="ms-market-name">${m.name}</div>
-        <div class="ms-market-meta">${m.adet} ürün · ${tl(m.minToplam)}</div>
+        <div class="ms-market-meta">${msMarketMetaHTML(m)}</div>
       </div>
       <div class="ms-tick">✓</div>
     </div>`;
@@ -3437,19 +3479,16 @@ function msSheetToggle(m, rowEl) {
 }
 
 function msSheetGuncelle() {
-  const secilenler = _msSecili;
-  let total = 0;
-  for (const u of sepet) {
-    let min = null;
-    for (const f of (u.market_fiyatlari || [])) {
-      if (f.fiyat == null) continue;
-      if (!secilenler.includes(f.market)) continue;
-      if (min === null || f.fiyat < min) min = f.fiyat;
-    }
-    if (min !== null) total += min;
+  const kapsam = msSecimKapsami(_msSecili);
+  document.getElementById('msSheetTotal').textContent = tl(kapsam.tutar);
+  const uyari = document.getElementById('msSheetEksik');
+  if (uyari) {
+    uyari.textContent = kapsam.eksik
+      ? `${kapsam.eksik} ürün seçili marketlerde yok — tutar onlar olmadan`
+      : '';
+    uyari.style.display = kapsam.eksik ? '' : 'none';
   }
-  document.getElementById('msSheetTotal').textContent = tl(total);
-  const n = secilenler.length;
+  const n = _msSecili.length;
   const btn = document.getElementById('msSheetBtn');
   btn.textContent = n === 1 ? 'Hesapla (1 market)' : `Hesapla (${n} market)`;
   btn.disabled = n === 0;

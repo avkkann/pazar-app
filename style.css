@@ -1367,6 +1367,8 @@
     .ms-market-info { flex: 1; min-width: 0; }
     .ms-market-name { font-weight: 600; font-size: 15px; color: #1a1a1a; }
     .ms-market-meta { font-size: 12px; color: #888; margin-top: 2px; }
+    .ms-meta-eksik { color: #B45309; }
+    .ms-sheet-eksik { font-size: 12px; color: #B45309; line-height: 1.4; margin: 0 0 10px; }
 
     .ms-tick {
       width: 24px; height: 24px; border-radius: 50%;
@@ -1749,6 +1751,10 @@
 [data-theme="dark"] .mf-sheet-empty,
 [data-theme="dark"] .mf-depot-fiyat-yok,
 [data-theme="dark"] .cmp-mkt-item-price { color: var(--text-muted); }
+
+/* Eksik ürün uyarısı koyu temada okunur kalsın (amber, kırmızı değil) */
+[data-theme="dark"] .ms-meta-eksik,
+[data-theme="dark"] .ms-sheet-eksik { color: #D97706; }
 
 /* Detay sayfası market satırları */
 [data-theme="dark"] .detay-mkt-row { border-color: var(--border); }
