@@ -31,23 +31,30 @@ const varFn = !!fnKaynak('ekranRotasiUygula');
 ok('function ekranRotasiUygula tanimli', varFn);
 
 if (varFn) {
-  function calistir(qs) {
+  function calistir(qs, { authHazir = true } = {}) {
     const cagrilan = [];
+    const dinleyiciler = {};
     const ctx = {
       console, URLSearchParams,
       location: { search: qs },
+      document: {
+        addEventListener: (ad, fn, o) => { (dinleyiciler[ad] = dinleyiciler[ad] || []).push(fn); },
+      },
       showScreen: id => cagrilan.push('showScreen:' + id),
       goSepet: () => cagrilan.push('goSepet'),
       goFirsatlar: () => cagrilan.push('goFirsatlar'),
       goProfil: () => cagrilan.push('goProfil'),
       openHalScreen: () => cagrilan.push('openHalScreen'),
-      window: { openFavoriler: () => cagrilan.push('openFavoriler') },
+      window: { openFavoriler: () => cagrilan.push('openFavoriler'), pazarAuth: { ready: authHazir, user: authHazir ? { id: 'u' } : null } },
       _hata: null,
     };
     vm.createContext(ctx);
     try { vm.runInContext(fnKaynak('ekranRotasiUygula') + '\nekranRotasiUygula();', ctx); }
     catch (e) { ctx._hata = String(e.message); }
-    return { cagrilan, hata: ctx._hata };
+    return {
+      cagrilan, hata: ctx._hata, dinleyiciler,
+      authHazirOldu: () => (dinleyiciler['pazarAuthReady'] || []).forEach(f => f()),
+    };
   }
 
   const bekle = [
@@ -71,6 +78,23 @@ if (varFn) {
     const r = calistir(qs);
     ok((qs || '(bos)').padEnd(20) + ' -> Ana Sayfa, hata YOK',
        r.cagrilan.join(',') === 'showScreen:screen-home' && !r.hata, JSON.stringify(r));
+  }
+  console.log('  --- oturuma bagli ekran: auth HAZIR DEGILKEN ---');
+  {
+    const r = calistir('?screen=favoriler', { authHazir: false });
+    ok('auth hazir degilken openFavoriler HEMEN cagrilmiyor',
+       !r.cagrilan.includes('openFavoriler'), JSON.stringify(r.cagrilan));
+    ok('  pazarAuthReady dinleyicisi kuruldu',
+       (r.dinleyiciler['pazarAuthReady'] || []).length === 1, Object.keys(r.dinleyiciler).join(','));
+    ok('  Ana Sayfa\'ya DUSMUYOR (ekran calinmiyor)',
+       !r.cagrilan.includes('showScreen:screen-home'), JSON.stringify(r.cagrilan));
+    r.authHazirOldu();
+    ok('  auth hazir olunca openFavoriler cagriliyor',
+       r.cagrilan.includes('openFavoriler'), JSON.stringify(r.cagrilan));
+  }
+  {
+    const r = calistir('?screen=hal', { authHazir: false });
+    ok('oturumsuz ekran auth beklemiyor (hal)', r.cagrilan.includes('openHalScreen'), JSON.stringify(r.cagrilan));
   }
   console.log('  --- manifest kisayollari BOZULMADI ---');
   for (const s of (MANIFEST.shortcuts || [])) {

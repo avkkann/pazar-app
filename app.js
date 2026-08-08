@@ -4101,7 +4101,17 @@ function ekranRotasiUygula() {
     'favoriler': function () { window.openFavoriler(); },
     'hal':       function () { openHalScreen(); }
   };
-  (rota[ekran] || function () { showScreen('screen-home'); })();
+  var hedef = rota[ekran];
+  if (!hedef) { showScreen('screen-home'); return; }
+  // Favoriler oturuma bağlı. Bu fonksiyon script sonunda senkron koşuyor, oturum
+  // ise Supabase'den asenkron geri geliyor; erken çağrılırsa openFavoriler auth
+  // kapısından dönüp ekranı hiç açmıyor. Auth hazır değilse bir kez bekle.
+  var authGerekli = { favori: 1, favoriler: 1 };
+  if (authGerekli[ekran] && !(window.pazarAuth && window.pazarAuth.ready)) {
+    document.addEventListener('pazarAuthReady', function () { hedef(); }, { once: true });
+    return;
+  }
+  hedef();
 }
 ekranRotasiUygula();
 
