@@ -84,9 +84,23 @@ def _match_score(aranan, donen):
     return hit / len(tokens)
 
 
+# Kalici hatalar: tekrar denemek anlamsiz, insan mudahalesi gerekir.
+# (402 kredi bitti, 401 anahtar gecersiz, 403 yetki yok)
+SEARLO_KALICI_KODLAR = {401, 402, 403}
+
+
 def _searlo_resim_ara(urun_adi):
+    """Donus: (img, title, hata).
+
+    hata None ise istek basarili. Degilse:
+      {"tur": "402"|"401"|"429"|"timeout"|"baglanti"|"bos_sonuc"|..., "kod": str, "kalici": bool}
+
+    Onceden burada TUM hatalar yutuluyordu (status != 200 -> None, except -> None);
+    cagiran taraf 402 ile timeout'u ayirt edemedigi icin Searlo kredisi 74 gun
+    bitmis halde her gece 950 anlamsiz istek atildi.
+    """
     if not SEARLO_API_KEY:
-        return None, None
+        return None, None, {"tur": "anahtar_yok", "kod": "", "kalici": True}
     try:
         r = requests.get(
             SEARLO_URL,
@@ -94,22 +108,43 @@ def _searlo_resim_ara(urun_adi):
             params={"q": urun_adi},
             timeout=SEARLO_TIMEOUT,
         )
-        if r.status_code != 200:
-            return None, None
+    except requests.exceptions.Timeout:
+        return None, None, {"tur": "timeout", "kod": "", "kalici": False}
+    except requests.exceptions.ConnectionError:
+        return None, None, {"tur": "baglanti", "kod": "", "kalici": False}
+    except Exception as e:
+        return None, None, {"tur": "istisna", "kod": type(e).__name__, "kalici": False}
+
+    if r.status_code != 200:
+        kod = ""
+        try:
+            govde = r.json()
+            kod = str(govde.get("code") or govde.get("error") or govde.get("message") or "")[:80]
+        except Exception:
+            kod = (getattr(r, "text", "") or "")[:80]
+        return None, None, {
+            "tur": str(r.status_code),
+            "kod": kod,
+            "kalici": r.status_code in SEARLO_KALICI_KODLAR,
+        }
+
+    try:
         data = r.json()
-        items = data.get("images") or data.get("items") or data.get("results") or []
-        if not items or not isinstance(items, list):
-            return None, None
-        first = items[0]
-        if not isinstance(first, dict):
-            return None, None
-        img = (first.get("image_url") or first.get("imageUrl") or
-               first.get("original") or first.get("url") or
-               first.get("thumbnail") or first.get("link"))
-        title = first.get("title", "")
-        return img, title
-    except Exception:
-        return None, None
+    except Exception as e:
+        return None, None, {"tur": "gecersiz_json", "kod": type(e).__name__, "kalici": False}
+
+    items = data.get("images") or data.get("items") or data.get("results") or []
+    if not items or not isinstance(items, list):
+        return None, None, {"tur": "bos_sonuc", "kod": "", "kalici": False}
+    first = items[0]
+    if not isinstance(first, dict):
+        return None, None, {"tur": "bos_sonuc", "kod": "", "kalici": False}
+    img = (first.get("image_url") or first.get("imageUrl") or
+           first.get("original") or first.get("url") or
+           first.get("thumbnail") or first.get("link"))
+    if not img:
+        return None, None, {"tur": "bos_sonuc", "kod": "", "kalici": False}
+    return img, first.get("title", ""), None
 
 
 def resimleri_doldur():
@@ -126,9 +161,35 @@ def resimleri_doldur():
     toplam_atlandi = 0
     toplam_hata = 0
     GUNLUK_LIMIT = 950
+    ARDISIK_KALICI_ESIK = 5   # bu kadar ardisik kalici hata -> tum adimi iptal et
     istek_sayisi = 0
+    hata_turleri = {}
+    ardisik_kalici = 0
+    son_kalici = None
+    iptal = False
+
+    def _hata_yaz(h):
+        anahtar = h.get("tur", "?")
+        if h.get("kod"):
+            anahtar += " " + h["kod"]
+        hata_turleri[anahtar] = hata_turleri.get(anahtar, 0) + 1
+
+    # Iptal mesajindaki "N istek yapilmadi" gercek bir sayi olsun diye
+    # planlanan toplam istek once hesaplanir.
+    toplam_eksik_aday = 0
+    for _slug, _kw, _dosya in CATEGORIES:
+        _yol = os.path.join(DATA_DIR, f"{_dosya}.json")
+        if not os.path.exists(_yol):
+            continue
+        try:
+            with open(_yol, encoding="utf-8") as f:
+                toplam_eksik_aday += sum(1 for p in json.load(f) if not p.get("resim"))
+        except Exception as e:
+            print(f"  [uyari] {_dosya}.json sayilamadi (iptal mesajindaki sayi eksik olabilir): {e}")
 
     for slug, keyword, dosya_adi in CATEGORIES:
+        if iptal:
+            break
         cat_file = os.path.join(DATA_DIR, f"{dosya_adi}.json")
         if not os.path.exists(cat_file):
             continue
@@ -159,15 +220,25 @@ def resimleri_doldur():
             if not sorgu:
                 continue
 
-            img, title = _searlo_resim_ara(sorgu)
+            img, title, hata = _searlo_resim_ara(sorgu)
             istek_sayisi += 1
-            if not img:
+            if hata is not None:
+                _hata_yaz(hata)
                 toplam_hata += 1
                 kat_hata += 1
+                if hata.get("kalici"):
+                    ardisik_kalici += 1
+                    son_kalici = hata
+                    if ardisik_kalici >= ARDISIK_KALICI_ESIK:
+                        iptal = True
+                        break
+                else:
+                    ardisik_kalici = 0
                 if i % 25 == 0:
                     print(f"    ... {i}/{len(eksikler)} (dolduruldu:{kat_dolduruldu}, atland:{kat_atlandi}, hata:{kat_hata})")
                 time.sleep(6.5)
                 continue
+            ardisik_kalici = 0
 
             skor = _match_score(sorgu, title)
             if skor >= SEARLO_MATCH_THRESHOLD:
@@ -189,7 +260,16 @@ def resimleri_doldur():
             json.dump(products, f, ensure_ascii=False, indent=2)
         print(f"  -> {keyword} sonuc: {kat_dolduruldu} dolduruldu, {kat_atlandi} atlandi (esik altı), {kat_hata} hata")
 
+    if iptal:
+        kalan = max(0, min(GUNLUK_LIMIT, toplam_eksik_aday) - istek_sayisi)
+        kod = (son_kalici or {}).get("kod") or "(kod yok)"
+        tur = (son_kalici or {}).get("tur") or "?"
+        print(f"\n[RESIM] IPTAL: Searlo {tur} {kod} — kalici hata, {kalan} istek yapilmadi")
+
     print(f"\n[RESIM] TOPLAM: {toplam_eksik} eksik | {toplam_dolduruldu} dolduruldu | {toplam_atlandi} atlandi (esik altı) | {toplam_hata} hata")
+    if hata_turleri:
+        dagilim = " | ".join(f"{k}: {v}" for k, v in sorted(hata_turleri.items(), key=lambda x: -x[1]))
+        print(f"[RESIM] HATA TURLERI: {dagilim}")
     print("=" * 60)
 
 
@@ -439,6 +519,36 @@ def _apply_agirlik_gecmisi(yeni_urunler, cat_file):
         u["agirlik_hacim_gecmisi"] = gecmis
 
 
+def _apply_resim_koru(yeni_urunler, cat_file):
+    """API bu kez resim vermediyse dosyadaki mevcut resmi korur.
+
+    parse_product her gece urunu sifirdan kurup resim'i item['imageUrl'] ile
+    yaziyor; kaynak o gun bos donerse elde olan resim de siliniyordu. Searlo'nun
+    26 Mayis'ta doldurdugu 73 resim de ertesi gece bu yuzden ucmustu.
+    Kural: yeni deger BOSSA eski korunur, DOLUYSA API kazanir (kaynak
+    guncellemis olabilir). agirlik_hacim_gecmisi ile ayni desen."""
+    eski_index = {}
+    if os.path.exists(cat_file):
+        try:
+            with open(cat_file, "r", encoding="utf-8") as f:
+                for u in json.load(f):
+                    sid = u.get("_sid")
+                    if sid:
+                        eski_index[sid] = u
+        except Exception as e:
+            print(f"  [uyari] eski JSON okunamadi (resim): {e}")
+
+    korunan = 0
+    for u in yeni_urunler:
+        if u.get("resim"):
+            continue
+        eski = eski_index.get(u.get("_sid"))
+        if eski and eski.get("resim"):
+            u["resim"] = eski["resim"]
+            korunan += 1
+    return korunan
+
+
 def _apply_ilan_indirim_gecmisi(yeni_urunler, cat_file):
     """Her urune ilan_indirim_gecmisi listesi ekler.
     "Market ne zaman, ne kadar indirim ILAN etti" tarihcesi — bizim fiyat_gecmisi'nden
@@ -574,6 +684,9 @@ def scrape_category(cookies, slug, keyword, dosya_adi):
     _apply_fiyat_gecmisi(products, cat_file)
     _apply_agirlik_gecmisi(products, cat_file)
     _apply_ilan_indirim_gecmisi(products, cat_file)
+    _korunan_resim = _apply_resim_koru(products, cat_file)
+    if _korunan_resim:
+        print(f"  {_korunan_resim} resim korundu (API bu kez vermedi)")
     with open(cat_file, "w", encoding="utf-8") as f:
         json.dump(products, f, ensure_ascii=False, indent=2)
     print(f"  Tamamlandi: {len(products)} urun -> {cat_file}")
