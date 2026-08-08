@@ -3838,6 +3838,86 @@ function profilTasarrufHTML() {
     </div>`;
 }
 
+// A2) "Senin enflasyonun" — sepetteki ürünlerin 30 günlük değişimi.
+// fiyat_gecmisi yalnızca fiyat DEĞİŞİNCE kayıt yazıyor, o yüzden "30 gün önceki
+// fiyat" = 30 günden eski son kayıt (o tarihte yürürlükte olan fiyat).
+// Bugünle aynı mantık: her iki tarafta da marketler arası EN UCUZ fiyat.
+const ENFLASYON_MIN_URUN = 3;
+
+function _otuzGunOncekiEnUcuz(sid) {
+  if (!sid || !_gecmisCache) return null;
+  const kayitlar = _gecmisCache[sid];
+  if (!Array.isArray(kayitlar) || !kayitlar.length) return null;
+  const d = new Date();
+  d.setDate(d.getDate() - 30);
+  const limit = d.toISOString().slice(0, 10);
+  const sonKayit = {};
+  kayitlar.forEach(k => {
+    if (!k || !k.t || k.f == null || k.t > limit) return;
+    const m = k.m || '?';
+    if (!sonKayit[m] || k.t >= sonKayit[m].t) sonKayit[m] = k;
+  });
+  const fiyatlar = Object.values(sonKayit).map(k => k.f).filter(f => f > 0);
+  return fiyatlar.length ? Math.min.apply(null, fiyatlar) : null;
+}
+
+function sepetEnflasyonuHesapla() {
+  const liste = sepet || [];
+  let eskiToplam = 0, yeniToplam = 0, katilan = 0;
+  liste.forEach(u => {
+    const gecerli = fiyatlariTemizle(u.market_fiyatlari).gecerli.map(f => f.fiyat).filter(f => f > 0);
+    if (!gecerli.length) return;
+    const bugun = Math.min.apply(null, gecerli);
+    const eski = _otuzGunOncekiEnUcuz(u._sid);
+    if (eski == null || !(eski > 0)) return;
+    eskiToplam += eski;
+    yeniToplam += bugun;
+    katilan++;
+  });
+  if (!katilan || !(eskiToplam > 0)) {
+    return { katilan: 0, toplam: liste.length, eskiToplam: 0, yeniToplam: 0, yuzde: 0, yon: 'sabit' };
+  }
+  const yuzde = ((yeniToplam - eskiToplam) / eskiToplam) * 100;
+  return {
+    katilan: katilan,
+    toplam: liste.length,
+    eskiToplam: eskiToplam,
+    yeniToplam: yeniToplam,
+    yuzde: yuzde,
+    yon: yuzde > 0.05 ? 'artis' : (yuzde < -0.05 ? 'dusus' : 'sabit')
+  };
+}
+
+function profilEnflasyonHTML() {
+  if (!sepet || !sepet.length) return '';
+  const r = sepetEnflasyonuHesapla();
+  if (!r || r.katilan < ENFLASYON_MIN_URUN) return '';
+  const isaret = r.yuzde > 0 ? '+' : '';
+  const yuzdeYazi = isaret + r.yuzde.toFixed(1).replace('.', ',') + '%';
+  const cumle = r.yon === 'dusus' ? 'ucuzladı' : (r.yon === 'artis' ? 'zamlandı' : 'değişmedi');
+  return `<div class="profil-enflasyon ${r.yon}">
+      <div class="profil-enflasyon-ust">Senin sepetin bu ay</div>
+      <div class="profil-enflasyon-rakam">${yuzdeYazi} ${cumle}</div>
+      <div class="profil-enflasyon-alt">30 gün önce ${tl(r.eskiToplam)} · bugün ${tl(r.yeniToplam)} — ${r.toplam} üründen ${r.katilan}'i hesaba katıldı</div>
+      <button type="button" class="profil-enflasyon-paylas" onclick="paylasEnflasyon()">${lcIcon('share-2')} Paylaş</button>
+    </div>`;
+}
+
+function paylasEnflasyon() {
+  const r = sepetEnflasyonuHesapla();
+  if (!r || r.katilan < ENFLASYON_MIN_URUN) return;
+  const isaret = r.yuzde > 0 ? '+' : '';
+  const cumle = r.yon === 'dusus' ? 'ucuzladı' : (r.yon === 'artis' ? 'zamlandı' : 'değişmedi');
+  const metin = `Sepetim bu ay ${isaret}${r.yuzde.toFixed(1).replace('.', ',')}% ${cumle}. `
+    + `${r.katilan} üründe 30 gün önce ${tl(r.eskiToplam)}, bugün ${tl(r.yeniToplam)}.`;
+  const url = 'https://avkkann.github.io/pazar-app/';
+  if (navigator.share) {
+    navigator.share({ title: 'Pazar — Senin enflasyonun', text: metin, url: url }).catch(() => {});
+    return;
+  }
+  window.open('https://wa.me/?text=' + encodeURIComponent(metin + ' ' + url), '_blank');
+}
+
 // B) Kayıtlı listelerim — şablonlar localStorage'da (pazar_sablonlar).
 function profilSablonlarHTML() {
   const liste = Array.isArray(sablonlar) ? sablonlar : [];
@@ -3942,6 +4022,7 @@ function profilBolumleriCiz() {
     bolum.style.display = html ? '' : 'none';
   };
   yaz('profil-tasarruf', profilTasarrufHTML());
+  yaz('profil-enflasyon', profilEnflasyonHTML());
   yaz('profil-sablonlar', profilSablonlarHTML());
   yaz('profil-alarmlar', profilAlarmlarHTML());
   yaz('profil-market-tercih', profilMarketTercihHTML());
