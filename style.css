@@ -906,6 +906,11 @@
    Mevcut .profil-item metrikleri (radius 14, border, card-bg) aynen
    kullanılır; yeni palet yok. Boş durumlar tek satır + tek eylem. */
 
+/* Mobilde sarmalayıcı YOK sayılır: DOM sırası = ekran sırası, geometri
+   birebir korunur. Masaüstünde her sarmalayıcı kendi sütunu olur, böylece
+   grid'in satır kilitlemesi (kısa bölümün altında dev boşluk) ortadan kalkar. */
+.profil-sutun { display: contents; }
+
 .profil-tasarruf-wrap { padding: 16px 14px 0; }
 .profil-tasarruf {
   background: var(--card-bg); border: 1px solid var(--border);
@@ -2121,6 +2126,12 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     column-gap: 24px;
     align-items: start;
+  }
+  /* Sütunlar bağımsız yığın: bölümler artık satır hizasına kilitlenmiyor. */
+  .profil-sutun {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
   }
 
   /* ── 3. ÜRÜN DETAYI ──────────────────────────────────────────────── */

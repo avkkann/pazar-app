@@ -344,6 +344,9 @@
 
   <!-- profil-kartlar: mobilde stilsiz düz blok, masaüstünde iki sütunlu grid -->
   <div class="profil-kartlar">
+  <!-- Sütun 1 — kullanıcıya ait bölümler. Mobilde .profil-sutun display:contents,
+       yani sarmalayıcı yokmuş gibi davranır; sıra ve geometri değişmez. -->
+  <div class="profil-sutun">
   <div class="profil-section">
     <div class="profil-section-title">Hızlı Erişim</div>
     <div class="profil-item" onclick="goSepet()">
@@ -394,6 +397,12 @@
     <div id="profil-market-tercih-govde"></div>
   </div>
 
+  </div><!-- /sütun 1 -->
+
+  <!-- Sütun 2 — katkı + ayarlar + uygulama bilgisi.
+       Bölme noktası 1440px ölçümüyle seçildi: 342+103+167+158=770px vs
+       94+75+190+503=862px (fark 92px). Göz kararı değil. -->
+  <div class="profil-sutun">
   <div class="profil-section" id="profil-katki" style="display:none">
     <div class="profil-section-title">Katkılarım</div>
     <div id="profil-katki-govde"></div>
@@ -471,7 +480,8 @@
       </div>
     </div>
   </div>
-  </div>
+  </div><!-- /sütun 2 -->
+  </div><!-- /profil-kartlar -->
   <div style="height:24px"></div>
 </div>
 

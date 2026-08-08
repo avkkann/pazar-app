@@ -4082,12 +4082,28 @@ function halArama() {
 
 loadData();
 
-(function() {
-  var params = new URLSearchParams(location.search);
-  var ekran = params.get('screen');
-  var hedefEkran = { list: 'screen-sepet', firsat: 'screen-firsatlar', hal: 'screen-hal' }[ekran];
-  if (hedefEkran) showScreen(hedefEkran);
-})();
+// ?screen= ile derin bağlantı. Ekranı doğrudan showScreen ile açmak yetmiyor —
+// her ekranın kendi açıcısı önce veriyi basıyor (renderSepet gibi), o yüzden
+// açıcı fonksiyon varsa o çağrılır. Bilinmeyen değer sessizce Ana Sayfa'ya düşer.
+// manifest.json kısayolları list/firsat/hal kullanıyor, o adlar KORUNDU.
+function ekranRotasiUygula() {
+  var ekran = String(new URLSearchParams(location.search).get('screen') || '').toLowerCase().trim();
+  var rota = {
+    'home':      function () { showScreen('screen-home'); },
+    'anasayfa':  function () { showScreen('screen-home'); },
+    'list':      function () { goSepet(); },
+    'listem':    function () { goSepet(); },
+    'sepet':     function () { goSepet(); },
+    'firsat':    function () { goFirsatlar(); },
+    'firsatlar': function () { goFirsatlar(); },
+    'profil':    function () { goProfil(); },
+    'favori':    function () { window.openFavoriler(); },
+    'favoriler': function () { window.openFavoriler(); },
+    'hal':       function () { openHalScreen(); }
+  };
+  (rota[ekran] || function () { showScreen('screen-home'); })();
+}
+ekranRotasiUygula();
 
 // ── BADGE INIT ────────────────────────────────────────
 window.addEventListener('load', function() {
