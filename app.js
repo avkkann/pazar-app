@@ -2263,7 +2263,7 @@ function cardHTML(u) {
         if (!bf) return '';
         const enIyi = !!(_enIyiBirimSet && _enIyiBirimSet.has(u._id));
         // Renk tek gösterge olmasın: metin de ekleniyor.
-        return `<div class="urun-birim-fiyat${enIyi ? ' en-iyi' : ''}">${birimFiyatYazi(bf)}${enIyi ? ' · en ucuz birim' : ''}</div>`;
+        return `<div class="urun-birim-fiyat${enIyi ? ' en-iyi' : ''}">${birimFiyatYazi(bf)}${enIyi ? ' · en ucuz' : ''}</div>`;
       })()}
       ${(() => { const rz = tuzakRozetiHesapla(u); return rz ? tuzakRozetiHTML(rz, true) : ''; })()}
       ${urunRozetleriHTML(u, true)}

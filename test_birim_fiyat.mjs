@@ -71,7 +71,7 @@ console.log('\n=== 2. cardHTML VURGUYU CIZIYOR MU ===');
   ok('cardHTML _enIyiBirimSet okuyor', /_enIyiBirimSet/.test(kart), '');
   ok('vurgu mevcut .urun-birim-fiyat elemanina veriliyor', /urun-birim-fiyat[^`]*en-iyi/.test(kart), '');
   ok('YENI ROZET sinifi uydurulmadi', !/birim-rozet|en-iyi-rozet|badge-birim/.test(APP), '');
-  ok('renk TEK gosterge degil, metin de var', /en ucuz birim/.test(kart), '');
+  ok('renk TEK gosterge degil, metin de var', /en ucuz/.test(kart), '');
 }
 
 console.log('\n=== 3. renderUrunler SETI KURUYOR MU ===');
