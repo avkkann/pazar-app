@@ -448,6 +448,19 @@ def parse_product(item, kategori_adi, slug_kisa="urun"):
             liste = depot.get("discountlessPrice")
             if liste is not None and fiyat is not None and liste > fiyat:
                 kayit["liste_fiyat"] = liste
+            # API her zincir icin TEK temsilci magaza donduruyor ve bu temsilci
+            # zaman icinde degisebiliyor (2026-08-11 olcumu: ayni anda depots'suz
+            # sorgu carrefour-1012 "Acibadem Hiper", depot filtreli sorgu
+            # carrefour-5027 "Karakoy Mini" donuyor). Magaza degisimini ZAM
+            # sanmamak icin fiyati hangi magazadan okudugumuzu kaydediyoruz.
+            # liste_fiyat gibi additive: alan bos ise anahtar hic acilmiyor.
+            for kaynak, hedef in (("depotId", "depot_id"), ("depotName", "depot_ad")):
+                deger = depot.get(kaynak)
+                if deger is None:
+                    continue
+                deger = str(deger).strip()
+                if deger:
+                    kayit[hedef] = deger
             market_fiyatlari.append(kayit)
 
     prices = [f["fiyat"] for f in market_fiyatlari]
