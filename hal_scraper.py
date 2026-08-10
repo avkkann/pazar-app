@@ -97,6 +97,11 @@ def parse_excel_response(content):
         if cols[0] in ('Urün Adı', 'Ürün Adı', '', '12345678910...'):
             continue
 
+        # Kaynak tablo kolonlari (10.08.2026 bulteninden dogrulandi):
+        #   0 Urun Adi | 1 Urun Cinsi | 2 Urun Turu | 3 Ortalama Fiyat
+        #   4 Islem Hacmi | 5 Birim Adi
+        # Her satir bir (urun x cins x tur) kombinasyonunun O GUNKU ortalamasi;
+        # "Islem Hacmi" o kombinasyonda gerceklesen miktar, yani dogru agirlik.
         ad = title_case(cols[0])
         birim = cols[5] if len(cols) > 5 else 'Kg'
         fiyat_str = cols[3] if len(cols) > 3 else ''
@@ -109,7 +114,10 @@ def parse_excel_response(content):
 
         products.append({
             "ad": ad,
+            "cinsi": cols[1] if len(cols) > 1 else "",
+            "turu": cols[2] if len(cols) > 2 else "",
             "fiyat": fiyat,
+            "hacim": parse_fiyat(cols[4]) if len(cols) > 4 else None,
             "birim": birim,
             "sehir": "TR",
         })
@@ -123,19 +131,37 @@ def parse_excel_response(content):
 
 
 def merge_products(products):
-    """Aynı isimli ürünlerin fiyat ortalamasını al."""
-    merged = {}
+    """Ayni isimli (urun x cins x tur) satirlarini tek urune indirger.
+
+    Satirlarin kendisi de ciktiya ozet olarak tasinir: kac satirdan geldigi,
+    toplam islem hacmi, fiyat araligi ve turler. Boylece "tek sayi" nereden
+    geliyor sorusu veriden cevaplanabilir.
+    """
+    gruplar = {}
     for p in products:
-        key = p['ad'].lower()
-        if key not in merged:
-            merged[key] = {'ad': p['ad'], 'fiyat': p['fiyat'], 'birim': p['birim'], 'sehir': p['sehir'], 'count': 1}
-        else:
-            merged[key]['fiyat'] = round((merged[key]['fiyat'] * merged[key]['count'] + p['fiyat']) / (merged[key]['count'] + 1), 2)
-            merged[key]['count'] += 1
+        gruplar.setdefault(p['ad'].lower(), []).append(p)
+
     result = []
-    for v in merged.values():
-        r = {k: v[k] for k in ['ad', 'fiyat', 'birim', 'sehir']}
-        result.append(r)
+    for satirlar in gruplar.values():
+        ilk = satirlar[0]
+        fiyatlar = [s['fiyat'] for s in satirlar if s.get('fiyat')]
+        hacimler = [s.get('hacim') or 0 for s in satirlar]
+        turler = []
+        for s in satirlar:
+            t = (s.get('turu') or '').strip()
+            if t and t not in turler:
+                turler.append(t)
+        result.append({
+            'ad': ilk['ad'],
+            'fiyat': round(sum(fiyatlar) / len(fiyatlar), 2),
+            'birim': ilk['birim'],
+            'sehir': ilk['sehir'],
+            'hacim': round(sum(hacimler), 2),
+            'satir_sayisi': len(satirlar),
+            'fiyat_min': min(fiyatlar),
+            'fiyat_max': max(fiyatlar),
+            'turler': turler,
+        })
     return result
 
 
