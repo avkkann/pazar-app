@@ -108,6 +108,23 @@ if (varFn) {
      !/\{\s*list:\s*'screen-sepet',\s*firsat:/.test(APP), '');
 }
 
+console.log('\n=== ?screen=hal VERI GELMEDEN ACILIRSA ===');
+{
+  // openHalScreen() renderHalScreen()'i HEMEN cagiriyor; halVerisi henuz yoksa
+  // ekran "yukleniyor"da kaliyordu ve veri gelince kimse yeniden cizmiyordu.
+  // hal.json 18 KB -> 44 KB buyuyunce (cinsi/turu/hacim alanlari) bu yaris
+  // kalici sekilde kaybedilmeye basladi.
+  const oh = fnKaynak('openHalScreen') || '';
+  ok('openHalScreen hala tek seferde ciziyor', /renderHalScreen\(\)/.test(oh), oh);
+  const ld = fnKaynak('loadData') || '';
+  ok('loadData veri gelince hal ekranini YENIDEN ciziyor', /renderHalScreen\(\)/.test(ld),
+     ld.split('\n').filter(l => /render/.test(l)).join(' | '));
+  ok('  yalnizca hal ekrani acikken (her yuklemede degil)',
+     /screen-hal/.test(ld), ld.split('\n').filter(l => /screen-hal|renderHalScreen/.test(l)).join(' | '));
+  const rh = fnKaynak('renderHalScreen') || '';
+  ok('renderHalScreen bos veride hala guvenli cikiyor', /if \(!window\.halVerisi\)/.test(rh.replace(/\s+/g, ' ')), '');
+}
+
 console.log('\n=== 2. PROFIL MASAUSTU SUTUN DENGESI ===');
 {
   const p = HTML.slice(HTML.indexOf('id="screen-profil"'), HTML.indexOf('id="install-banner"'));

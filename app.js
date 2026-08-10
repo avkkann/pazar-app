@@ -3746,6 +3746,12 @@ function loadData() {
       if (bt) document.getElementById('halDate').innerHTML =
         `<span class="hal-badge">Hal: ${bt.slice(0, 10)}</span>`;
     }
+    // ?screen=hal derin baglantisi script sonunda SENKRON kosuyor, hal.json ise
+    // asenkron geliyor. openHalScreen() renderHalScreen()'i hemen cagirdigi icin
+    // ekran "yukleniyor"da kaliyordu ve veri gelince kimse yeniden cizmiyordu.
+    // Acik olan hal ekrani veri hazir olunca bir kez yenilenir.
+    const _halEkran = document.getElementById('screen-hal');
+    if (_halEkran && _halEkran.style.display !== 'none') renderHalScreen();
     renderCatGrid();
     saveSepet();
     renderMevsimSeridi();
