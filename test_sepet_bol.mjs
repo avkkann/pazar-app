@@ -36,6 +36,9 @@ function kur(sepet) {
     tlHTML: v => '<span>' + Number(v).toFixed(2).replace('.', ',') + ' ₺</span>',
     lcIcon: () => '<svg></svg>',
     fiyatlariTemizle: mf => ({ gecerli: (mf || []).filter(f => f && f.fiyat != null), gizlenen: [] }),
+    // Sehir SECILMEMIS durum: marketVarMi her zaman true doner, hicbir zincir
+    // gizlenmez. Sehir seciliyken filtreleme test_sehir.mjs'de kilitli.
+    marketVarMi: () => true,
   };
   vm.createContext(ctx);
   const esik = (APP.match(/const BOLME_MIN_KAZANC\s*=\s*(\d+)/) || [])[1] || '50';

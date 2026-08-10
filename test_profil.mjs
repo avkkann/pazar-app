@@ -59,6 +59,8 @@ function kur({ sepet = [], sablon = [], alarm = [], katki = null, tercih = [], u
     fiyatlariTemizle: mf => ({ gecerli: (mf || []).filter(f => f && f.fiyat != null), gizlenen: [] }),
     _sablonDisplayAd: a => a,
     lcIcon: () => '<svg></svg>',
+    // Sehir SECILMEMIS durum — hicbir zincir gizlenmez (digeri test_sehir.mjs'de).
+    marketVarMi: () => true,
     catCache: { test: urunler },
     productMap: {},
     _tumUrunler: urunler,

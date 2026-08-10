@@ -3323,9 +3323,11 @@ function _sepetMarketFiyati(u, market) {
 function marketToplamlari() {
   const liste = sepet || [];
   if (!liste.length) return [];
+  // Sehir seciliyse o ilde BULUNMAYAN zincir hic aday olmasin — kullaniciyi
+  // gidemeyecegi bir markete yonlendirmeyelim. Secim yoksa marketVarMi hep true.
   const marketler = new Set();
   liste.forEach(u => fiyatlariTemizle(u.market_fiyatlari).gecerli.forEach(f => {
-    if (f.market) marketler.add(f.market);
+    if (f.market && marketVarMi(f.market)) marketler.add(f.market);
   }));
   const sonuc = [];
   marketler.forEach(m => {
@@ -3414,8 +3416,11 @@ function karsilastir() {
     document.getElementById('compareOut').innerHTML = `<div class="state-msg">Listeniz boş.</div>`;
     return;
   }
+  // Sehir seciliyse o ilde bulunmayan zincir karsilastirmaya girmez.
   const mevcutMarketler = new Set();
-  sepet.forEach(u => (u.market_fiyatlari||[]).forEach(f => mevcutMarketler.add(f.market)));
+  sepet.forEach(u => (u.market_fiyatlari||[]).forEach(f => {
+    if (f.market && marketVarMi(f.market)) mevcutMarketler.add(f.market);
+  }));
   const mktList = [...mevcutMarketler];
   if (!mktList.length) {
     document.getElementById('compareOut').innerHTML = `<div class="state-msg">Hiç market fiyatı yok.</div>`;
@@ -4145,12 +4150,120 @@ function profilKatkiHTML(adet) {
     </div>`;
 }
 
+// ═══ ŞEHİR SEÇİMİ + ZİNCİR MEVCUDİYETİ ══════════════════
+// Ölçüm (2026-08-10, 81 il): a101/bim/migros/sok/tarim_kredi 81/81 ilde;
+// carrefour 34/81 (%42); hakmar 8/81 (%10, yalnızca Marmara çevresi).
+// Yani illerin 46'sında bugüne kadar orada BULUNMAYAN iki zincir gösteriliyordu.
+// Şehir kullanıcı tarafından ELLE seçilir — konum izni istemiyoruz (KVKK).
+// Seçilmemişse ilMarketleri() null döner ve HİÇBİR ŞEY filtrelenmez.
+const SEHIR_KEY = 'pazar_sehir';
+let _ilMarketCache = null;
+let _ilMarketPromise = null;
+
+function ilMarketVeriGetir() {
+  if (_ilMarketCache) return Promise.resolve(_ilMarketCache);
+  if (_ilMarketPromise) return _ilMarketPromise;
+  _ilMarketPromise = fetch('./data/il_marketler.json')
+    .then(r => { if (!r.ok) throw new Error('fetch failed'); return r.json(); })
+    .then(d => { _ilMarketCache = d; return d; })
+    .catch(() => { _ilMarketCache = { iller: {} }; return _ilMarketCache; });
+  return _ilMarketPromise;
+}
+
+function sehirOku() {
+  try {
+    const v = localStorage.getItem(SEHIR_KEY);
+    return v && String(v).trim() ? String(v) : null;
+  } catch (e) { return null; }
+}
+
+function sehirSec(il) {
+  try {
+    if (il && String(il).trim()) localStorage.setItem(SEHIR_KEY, String(il));
+    else localStorage.removeItem(SEHIR_KEY);
+  } catch (e) { /* localStorage kapaliysa sessizce gec */ }
+}
+
+// null  = filtre YOK (şehir seçilmemiş ya da o il haritada yok)
+// Set   = o ilde bulunan zincirler
+function ilMarketleri() {
+  const il = sehirOku();
+  if (!il) return null;
+  const harita = (_ilMarketCache && _ilMarketCache.iller) || null;
+  if (!harita) return null;
+  const kayit = harita[il];
+  if (!kayit || !Array.isArray(kayit.marketler) || !kayit.marketler.length) return null;
+  return new Set(kayit.marketler);
+}
+
+// Tek karar noktası. Şehir seçili değilse HER ZAMAN true — hiçbir şey gizlenmez.
+function marketVarMi(m) {
+  const s = ilMarketleri();
+  if (!s) return true;
+  return s.has(m);
+}
+
+function sehirPillleriUygula() {
+  if (typeof document === 'undefined') return;
+  document.querySelectorAll('.filter-pill[data-market]').forEach(p => {
+    const m = p.getAttribute('data-market');
+    if (!m || m === 'all') return;
+    p.style.display = marketVarMi(m) ? '' : 'none';
+  });
+}
+
+function sehirDegisti(il) {
+  sehirSec(il);
+  const s = ilMarketleri();
+  // Seçili markette artık bulunmayan zincirler tercihten düşsün.
+  if (s) {
+    try {
+      const eski = JSON.parse(localStorage.getItem(TERCIH_MKT_KEY) || '[]');
+      const yeni = (Array.isArray(eski) ? eski : []).filter(x => s.has(x));
+      if (yeni.length !== (eski || []).length) localStorage.setItem(TERCIH_MKT_KEY, JSON.stringify(yeni));
+    } catch (e) { /* yoksay */ }
+  }
+  sehirPillleriUygula();
+  if (typeof profilBolumleriCiz === 'function') profilBolumleriCiz();
+  if (typeof renderSepet === 'function' && document.getElementById('screen-sepet') &&
+      document.getElementById('screen-sepet').style.display !== 'none') renderSepet();
+}
+
+function profilSehirHTML() {
+  const secili = sehirOku();
+  const harita = (_ilMarketCache && _ilMarketCache.iller) || {};
+  const iller = Object.keys(harita).sort((a, b) => a.localeCompare(b, 'tr'));
+  const secenekler = ['<option value="">Seçilmedi</option>']
+    .concat(iller.map(i => `<option value="${i}"${i === secili ? ' selected' : ''}>${i}</option>`))
+    .join('');
+  const s = ilMarketleri();
+  const eksik = s ? Object.keys(MARKET_NAMES).filter(m => !s.has(m)) : [];
+  const not = !secili
+    ? 'Şehrini seçersen o ilde bulunmayan marketler gizlenir'
+    : (eksik.length
+        ? `${eksik.map(m => MARKET_NAMES[m]).join(' ve ')} senin ilinde bulunmuyor`
+        : 'Bu ildeki tüm marketler gösteriliyor');
+  return `<div class="profil-sehir">
+      <select class="profil-sehir-select" aria-label="Şehir seç" onchange="sehirDegisti(this.value)">${secenekler}</select>
+      <div class="profil-sehir-not">${not}</div>
+    </div>`;
+}
+
+// Açılışta bir kez çek. Gelene kadar ilMarketleri() null döner ve hiçbir şey
+// filtrelenmez — güvenli varsayılan, yanlışlıkla market gizlenmez.
+ilMarketVeriGetir().then(() => {
+  sehirPillleriUygula();
+  const p = typeof document !== 'undefined' && document.getElementById('screen-profil');
+  if (p && p.style.display !== 'none' && typeof profilBolumleriCiz === 'function') profilBolumleriCiz();
+});
+
 // E) Tercih edilen marketler — localStorage, DB'ye yazılmaz.
 const TERCIH_MKT_KEY = 'pazar_tercih_marketler';
 function tercihMarketleriOku() {
   try {
     const v = JSON.parse(localStorage.getItem(TERCIH_MKT_KEY) || '[]');
-    return Array.isArray(v) ? v.filter(x => MARKET_NAMES[x]) : [];
+    // marketVarMi: sehir degistiyse eski secimdeki olmayan zincir dısarıda kalır.
+    return Array.isArray(v) ? v.filter(x => MARKET_NAMES[x] && marketVarMi(x)) : [];
   } catch (e) { return []; }
 }
 function tercihMarketToggle(m) {
@@ -4164,13 +4277,19 @@ function tercihMarketToggle(m) {
 }
 function profilMarketTercihHTML() {
   const secili = tercihMarketleriOku();
-  const pills = Object.keys(MARKET_NAMES).map(m =>
+  const gorunur = Object.keys(MARKET_NAMES).filter(m => marketVarMi(m));
+  const gizli = Object.keys(MARKET_NAMES).filter(m => !marketVarMi(m));
+  const pills = gorunur.map(m =>
     `<button type="button" class="profil-mkt-pill${secili.includes(m) ? ' active' : ''}" aria-pressed="${secili.includes(m)}" onclick="tercihMarketToggle('${m}')">${MARKET_NAMES[m]}</button>`
   ).join('');
   const not = secili.length
     ? `${secili.length} market seçili — kategori ekranı bunlarla açılır`
     : 'Seçim yaparsan kategori ekranı bu marketlerle açılır';
-  return `<div class="profil-mkt-pills">${pills}</div><div class="profil-mkt-not">${not}</div>`;
+  // Gizleme sessiz olmasin: kullanici neden eksik oldugunu gorsun.
+  const gizliNot = gizli.length
+    ? `<div class="profil-mkt-gizli">${gizli.map(m => MARKET_NAMES[m]).join(' ve ')} senin ilinde bulunmuyor</div>`
+    : '';
+  return `<div class="profil-mkt-pills">${pills}</div><div class="profil-mkt-not">${not}</div>${gizliNot}`;
 }
 
 // Bölümleri DOM'a bas. Veri yoksa bölümün tamamı (başlık dahil) gizlenir.
@@ -4186,6 +4305,7 @@ function profilBolumleriCiz() {
   yaz('profil-enflasyon', profilEnflasyonHTML());
   yaz('profil-sablonlar', profilSablonlarHTML());
   yaz('profil-alarmlar', profilAlarmlarHTML());
+  yaz('profil-sehir', profilSehirHTML());
   yaz('profil-market-tercih', profilMarketTercihHTML());
   yaz('profil-katki', profilKatkiHTML(window._profilKatkiSayi));
   const vy = document.getElementById('profilVeriTazelik');
