@@ -263,6 +263,17 @@
        yeşil, yeni rozet yok. Metin de eklendiği için renk tek gösterge değil. */
     .urun-birim-fiyat.en-iyi { color: #059669; font-weight: 700; }
     .detay-birim-fiyat { font-size: 15px; color: #888; margin-top: 4px; margin-bottom: 12px; }
+
+    /* "Şimdi al / bekle" — uyarı değil tavsiye: amber yok, ürün adından küçük. */
+    .detay-zaman {
+      display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px;
+      margin-top: 8px; padding: 8px 12px; border-radius: 8px;
+      font-size: 13px; line-height: 1.35;
+    }
+    .detay-zaman-ana { font-weight: 700; }
+    .detay-zaman-alt { font-size: 12px; opacity: .85; }
+    .detay-zaman--iyi { background: #ECFDF5; border: 1px solid #D1FAE5; color: #065F46; }
+    .detay-zaman--bekle { background: var(--card-bg); border: 1px solid var(--border); color: var(--text); }
     .detay-bolum { margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border, #2a2a2a); }
     .detay-bolum-baslik { font-size: 14px; font-weight: 600; color: var(--text, #fff); margin-bottom: 10px; }
     .detay-bolum-liste { display: flex; flex-direction: column; gap: 8px; }
@@ -1751,6 +1762,9 @@
 [data-theme="dark"] .mf-sheet-empty,
 [data-theme="dark"] .mf-depot-fiyat-yok,
 [data-theme="dark"] .cmp-mkt-item-price { color: var(--text-muted); }
+
+/* "İyi zaman" koyu temada açık yeşil yama olmasın */
+[data-theme="dark"] .detay-zaman--iyi { background: rgba(52, 211, 153, 0.10); border-color: rgba(52, 211, 153, 0.28); color: #6EE7B7; }
 
 /* Eksik ürün uyarısı koyu temada okunur kalsın (amber, kırmızı değil) */
 [data-theme="dark"] .ms-meta-eksik,

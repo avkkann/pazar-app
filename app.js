@@ -1029,6 +1029,7 @@ function openDetay(urunId) {
     ${(() => { const bf = birimFiyatHesapla(u); return bf ? `<div class="detay-birim-fiyat">${birimFiyatYazi(bf)}</div>` : ''; })()}
     ${(() => { const rz = tuzakRozetiHesapla(u); return rz ? tuzakRozetiHTML(rz, false) : ''; })()}
     ${urunRozetleriHTML(u, false)}
+    ${alZamaniHTML(u)}
     <div class="detay-section detay-section--market">
       <div class="detay-sec-label">Market Fiyatları</div>
       <div class="detay-mkt-list">
@@ -1577,6 +1578,90 @@ function gercekIndirimRozetiHTML(rozet, kisa) {
   return kisa
     ? `<span class="gercek-indirim-rozet kisa">${lcIcon('leaf')} Gerçek indirim</span>`
     : `<span class="gercek-indirim-rozet">${lcIcon('leaf')} Gerçek indirim · 30 günün en düşüğü</span>`;
+}
+
+// ═══ "Şimdi al / bekle" ═════════════════════════════════
+// Kayitlar yalnizca fiyat DEGISINCE yaziliyor, o yuzden ham kayit listesi sureyi
+// yok sayar: 29 gun 100 TL, 1 gun 60 TL olan urun ham listede iki esit deger gibi
+// gorunur. Bu yuzden 30 gunluk seri carry-forward ile GUN GUN kuruluyor
+// (olcum: ham listeyle %33,2 farkli dilim cikiyordu).
+// Yuzdelik dilim de KULLANILMIYOR: basamakli seride mod ile uc ayni degere
+// dusunce p20, urun tam maksimumdayken "alt dilim" ilan ediyordu (olcum: ithal
+// yaban mersini, bugun=69,5 = serinin maksimumu, naif p20 "alt" diyordu).
+// Referans dogrudan 30 gunun min/max'i.
+const AL_ZAMANI_MIN_OYNAMA = 0.05;  // 30 gunde en az %5 oynama yoksa yorum yok
+const AL_ZAMANI_TOLERANS = 0.02;    // uca %2 yakinlik "ucta" sayilir
+
+function otuzGunlukSeri(sid) {
+  if (!sid || !_gecmisCache) return [];
+  const kayitlar = _gecmisCache[sid];
+  if (!Array.isArray(kayitlar) || !kayitlar.length) return [];
+  const marketler = {};
+  kayitlar.forEach(k => {
+    if (!k || !k.t || k.f == null || !(k.f > 0)) return;
+    const m = k.m || '?';
+    if (!marketler[m]) marketler[m] = [];
+    marketler[m].push(k);
+  });
+  Object.values(marketler).forEach(a => a.sort((x, y) => x.t < y.t ? -1 : 1));
+  const bas = new Date();
+  bas.setDate(bas.getDate() - 29);
+  const seri = [];
+  for (let i = 0; i < 30; i++) {
+    const g = new Date(bas);
+    g.setDate(g.getDate() + i);
+    const gs = g.toISOString().slice(0, 10);
+    let min = null;
+    Object.values(marketler).forEach(a => {
+      let son = null;
+      for (const k of a) { if (k.t <= gs) son = k; else break; }
+      if (son && (min === null || son.f < min)) min = son.f;
+    });
+    if (min !== null) seri.push(min);
+  }
+  return seri;
+}
+
+function alZamaniDurumu(u) {
+  if (!u || !u._sid) return null;
+  // Supheli indirimde hicbir tavsiye verilmez — "iyi zaman" demek celiskili olur.
+  if (supheliDurum(u)) return null;
+  const gecerli = fiyatlariTemizle(u.market_fiyatlari).gecerli.map(f => f.fiyat).filter(f => f > 0);
+  if (!gecerli.length) return null;
+  const bugun = Math.min.apply(null, gecerli);
+  const seri = otuzGunlukSeri(u._sid);
+  if (seri.length < 30) return null;              // 30 gunu doldurmayan urunde yorum yok
+  const min = Math.min.apply(null, seri);
+  const max = Math.max.apply(null, seri);
+  if (!(max > 0) || min >= max) return null;
+  if ((max - min) / max < AL_ZAMANI_MIN_OYNAMA) return null;
+
+  if (bugun <= min * (1 + AL_ZAMANI_TOLERANS)) {
+    // "Gercek indirim · 30 gunun en dusugu" rozeti zaten tam bunu soyluyor.
+    // Ayni seyi iki kere yazmamak icin rozet varken bu blok cizilmez; rozetin
+    // cikmadigi durum (dusus %10'un altinda) gercek bir bosluk, orada cizilir.
+    if (gercekIndirimRozetiHesapla(u)) return null;
+    return { tip: 'iyi', bugun: bugun, min: min, max: max };
+  }
+  if (bugun >= max * (1 - AL_ZAMANI_TOLERANS) && min < bugun) {
+    return { tip: 'bekle', bugun: bugun, min: min, max: max };
+  }
+  return null;
+}
+
+function alZamaniHTML(u) {
+  const d = alZamaniDurumu(u);
+  if (!d) return '';
+  if (d.tip === 'iyi') {
+    return `<div class="detay-zaman detay-zaman--iyi">
+      <span class="detay-zaman-ana">İyi zaman</span>
+      <span class="detay-zaman-alt">son ayın en ucuz seviyesinde</span>
+    </div>`;
+  }
+  return `<div class="detay-zaman detay-zaman--bekle">
+      <span class="detay-zaman-ana">Beklemek mantıklı</span>
+      <span class="detay-zaman-alt">son ayda ${tl(d.min)}'ye kadar indi</span>
+    </div>`;
 }
 
 // Kart ve detayin TEK rozet kaynagi. Sirali: supheli > gercek indirim > indirim.
