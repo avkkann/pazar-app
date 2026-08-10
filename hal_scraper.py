@@ -7,6 +7,7 @@ T.C. Ticaret Bakanlığı Hal Kayıt Sistemi gunluk fiyat listesi.
 import json
 import os
 import re
+import statistics
 import time
 import requests
 from datetime import datetime
@@ -130,6 +131,44 @@ def parse_excel_response(content):
     return products, tarih_str
 
 
+def _birlesik_fiyat(satirlar):
+    """Bir urunun (urun x cins x tur) satirlarindan TEK temsili fiyat.
+
+    HACIM AGIRLIKLI ORTALAMA kullanilir: sum(fiyat*hacim) / sum(hacim).
+    Kaynakta her satir zaten o kombinasyonun gunluk ortalamasi, "Islem Hacmi"
+    ise o kombinasyonda gerceklesen miktar; yani agirlikli ortalama "o gun
+    gercekten odenen kilo basina ortalama" demek.
+
+    Neden duz ortalama degil: 10.08.2026 bulteninde elma 12 satir; bir satir
+    747.438 kg'yi 28,51 TL'den, baska bir satir 2 kg'yi 158,85 TL'den gormus.
+    Duz ortalama bu ikisini esit sayip 93,68 TL diyordu.
+
+    Neden medyan da degil — olcum (ayni bulten, leave-one-out kararlilik testi;
+    bir satir eksildiginde ciktinin oynama yuzdesi, gunden gune degisen sey tam
+    olarak bu):
+        duz ortalama            medyan sapma %8,6
+        medyan                  medyan sapma %9,4
+        HACIM AGIRLIKLI         medyan sapma %1,8   <-- secildi
+        hacim agirlikli medyan  medyan sapma %0,0 ama p90 %73 (basamak fonksiyonu,
+                                atladiginda sert atliyor) ve buyuklugu atiyor
+
+    Hacim politikasi:
+      - hacim<=0 / eksik olan satir AGIRLIKTAN CIKAR. Uydurma agirlik verilmez;
+        veri o satirda islem olmadigini soyluyor.
+      - Bir urunun TUM satirlarinda hacim yoksa medyana dusulur (duz ortalamaya
+        degil) — agirlik bilgisi yokken medyan uc degerlere daha dayanikli.
+        10.08.2026 bulteninde bu duruma dusen urun sayisi: 0.
+    """
+    fiyatlar = [s['fiyat'] for s in satirlar if s.get('fiyat')]
+    if not fiyatlar:
+        return None
+    hacimliler = [s for s in satirlar if s.get('fiyat') and (s.get('hacim') or 0) > 0]
+    if not hacimliler:
+        return round(statistics.median(fiyatlar), 2)
+    toplam_hacim = sum(s['hacim'] for s in hacimliler)
+    return round(sum(s['fiyat'] * s['hacim'] for s in hacimliler) / toplam_hacim, 2)
+
+
 def merge_products(products):
     """Ayni isimli (urun x cins x tur) satirlarini tek urune indirger.
 
@@ -153,7 +192,7 @@ def merge_products(products):
                 turler.append(t)
         result.append({
             'ad': ilk['ad'],
-            'fiyat': round(sum(fiyatlar) / len(fiyatlar), 2),
+            'fiyat': _birlesik_fiyat(satirlar),
             'birim': ilk['birim'],
             'sehir': ilk['sehir'],
             'hacim': round(sum(hacimler), 2),

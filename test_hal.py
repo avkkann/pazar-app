@@ -98,5 +98,50 @@ if birlesik:
         ok("  '%s' alani hala var" % alan, alan in e, list(e.keys()))
     ok("fiyat sayi", isinstance(e["fiyat"], (int, float)), type(e["fiyat"]))
 
+print("\n=== 5. HACIM AGIRLIKLI BIRLESTIRME ===")
+# Elma gercek ornegi: 747438 kg 28,51 TL'den, 2 kg 158,85 TL'den islem gormus.
+# Duz ortalama 93,68 TL der; gercekte odenen ortalama 28,51 TL'ye cok yakin.
+e = hs.merge_products([
+    {"ad": "Elma", "cinsi": "ELMA", "turu": "Geleneksel(Konvansiyonel)", "fiyat": 28.51, "hacim": 747438.0, "birim": "Kg", "sehir": "TR"},
+    {"ad": "Elma", "cinsi": "ELMA", "turu": "İyi Tarım", "fiyat": 158.85, "hacim": 2.0, "birim": "Kg", "sehir": "TR"},
+])[0]
+ok("fiyat hacim agirlikli", abs(e["fiyat"] - 28.51) < 0.01, e["fiyat"])
+ok("  duz ortalama (93,68) DEGIL", abs(e["fiyat"] - 93.68) > 1, e["fiyat"])
+
+# Esit hacim -> duz ortalama ile ayni sonuc
+d = hs.merge_products([
+    {"ad": "X", "cinsi": "X", "turu": "a", "fiyat": 10.0, "hacim": 100.0, "birim": "Kg", "sehir": "TR"},
+    {"ad": "X", "cinsi": "X", "turu": "b", "fiyat": 20.0, "hacim": 100.0, "birim": "Kg", "sehir": "TR"},
+])[0]
+ok("esit hacimde sonuc duz ortalamaya esit (15,00)", abs(d["fiyat"] - 15.0) < 0.001, d["fiyat"])
+
+print("\n=== 6. HACIM EKSIK/SIFIR POLITIKASI ===")
+# hacim<=0 olan satir AGIRLIKTAN cikar (uydurma agirlik verilmez), digerleri hesaplar
+k = hs.merge_products([
+    {"ad": "K", "cinsi": "K", "turu": "a", "fiyat": 10.0, "hacim": 1000.0, "birim": "Kg", "sehir": "TR"},
+    {"ad": "K", "cinsi": "K", "turu": "b", "fiyat": 90.0, "hacim": 0.0, "birim": "Kg", "sehir": "TR"},
+])[0]
+ok("hacim=0 satir agirliktan cikiyor -> 10,00", abs(k["fiyat"] - 10.0) < 0.001, k["fiyat"])
+ok("  ama fiyat_max hala tum satirlari goruyor (90)", k["fiyat_max"] == 90.0, k["fiyat_max"])
+ok("  ve satir_sayisi hala 2", k["satir_sayisi"] == 2, k["satir_sayisi"])
+
+n = hs.merge_products([
+    {"ad": "N", "cinsi": "N", "turu": "a", "fiyat": 10.0, "hacim": None, "birim": "Kg", "sehir": "TR"},
+    {"ad": "N", "cinsi": "N", "turu": "b", "fiyat": 90.0, "hacim": 0.0, "birim": "Kg", "sehir": "TR"},
+    {"ad": "N", "cinsi": "N", "turu": "c", "fiyat": 20.0, "hacim": None, "birim": "Kg", "sehir": "TR"},
+])[0]
+ok("TUM satirlarda hacim yoksa MEDYANA dusuyor (20,00)", abs(n["fiyat"] - 20.0) < 0.001, n["fiyat"])
+ok("  duz ortalamaya (40,00) DUSMUYOR", abs(n["fiyat"] - 40.0) > 1, n["fiyat"])
+
+t = hs.merge_products([
+    {"ad": "T", "cinsi": "T", "turu": "a", "fiyat": 42.0, "hacim": None, "birim": "Kg", "sehir": "TR"},
+])[0]
+ok("tek satirli urun degismiyor", abs(t["fiyat"] - 42.0) < 0.001, t["fiyat"])
+
+print("\n=== 7. CIKTI HALA GECERLI ===")
+for u in (e, d, k, n, t):
+    ok("  fiyat pozitif sayi (%s)" % u["ad"], isinstance(u["fiyat"], (int, float)) and u["fiyat"] > 0, u["fiyat"])
+ok("fiyat 2 haneye yuvarli", e["fiyat"] == round(e["fiyat"], 2), e["fiyat"])
+
 print("\nPASS=%d  FAIL=%d" % (_pass, _fail))
 sys.exit(1 if _fail else 0)
