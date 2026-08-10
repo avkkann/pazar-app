@@ -195,9 +195,13 @@ def _birlesik_fiyat(satirlar):
 def merge_products(products):
     """Ayni isimli (urun x cins x tur) satirlarini tek urune indirger.
 
-    Satirlarin kendisi de ciktiya ozet olarak tasinir: kac satirdan geldigi,
-    toplam islem hacmi, fiyat araligi ve turler. Boylece "tek sayi" nereden
-    geliyor sorusu veriden cevaplanabilir.
+    Satirlarin ozeti de ciktiya tasinir: kac satirdan geldigi, toplam islem
+    hacmi ve fiyat araligi. Boylece "tek sayi" nereden geliyor sorusu veriden
+    cevaplanabilir.
+
+    'turler' BILINCLI olarak ciktiya yazilmiyor: 9,8 KB tutuyordu (dosyanin
+    %24'u) ve hicbir tuketici okumuyor. Satir seviyesinde okunmaya devam
+    ediyor (parse_excel_response), yalnizca istemciye gonderilmiyor.
     """
     gruplar = {}
     for p in products:
@@ -208,11 +212,6 @@ def merge_products(products):
         ilk = satirlar[0]
         fiyatlar = [s['fiyat'] for s in satirlar if s.get('fiyat')]
         hacimler = [s.get('hacim') or 0 for s in satirlar]
-        turler = []
-        for s in satirlar:
-            t = (s.get('turu') or '').strip()
-            if t and t not in turler:
-                turler.append(t)
         result.append({
             'ad': ilk['ad'],
             'fiyat': _birlesik_fiyat(satirlar),
@@ -222,7 +221,6 @@ def merge_products(products):
             'satir_sayisi': len(satirlar),
             'fiyat_min': min(fiyatlar),
             'fiyat_max': max(fiyatlar),
-            'turler': turler,
         })
     return result
 

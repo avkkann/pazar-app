@@ -84,11 +84,15 @@ if birlesik:
     ok("ad korundu", e.get("ad") == "Elma", e.get("ad"))
     ok("birim korundu", e.get("birim") == "Kg", e.get("birim"))
     ok("sehir korundu", e.get("sehir") == "TR", e.get("sehir"))
+    ok("  ama satirlarda turu HALA okunuyor", urunler[0].get("turu") == "Geleneksel(Konvansiyonel)", urunler[0].get("turu"))
     ok("HACIM toplami tasiniyor", e.get("hacim") == 747440.0, e.get("hacim"))
     ok("SATIR SAYISI tasiniyor", e.get("satir_sayisi") == 2, e.get("satir_sayisi"))
     ok("fiyat_min tasiniyor", e.get("fiyat_min") == 28.51, e.get("fiyat_min"))
     ok("fiyat_max tasiniyor", e.get("fiyat_max") == 158.85, e.get("fiyat_max"))
-    ok("TURLER tasiniyor", isinstance(e.get("turler"), list) and len(e["turler"]) == 2, e.get("turler"))
+    # turler CIKTIYA yazilmiyor: 9,8 KB (dosyanin %24'u) ve hicbir tuketici okumuyor.
+    # Okunmaya devam ediyor (parse_excel_response satirlarinda "turu" var), sadece
+    # merge ciktisina konmuyor.
+    ok("TURLER ciktiya YAZILMIYOR (payload)", "turler" not in e, list(e.keys()))
 
 print("\n=== 4. TUKETICILERIN BEKLEDIGI ALANLAR DURUYOR ===")
 # app.js: u.ad, u.fiyat, u.gorsel / hal_gorsel_cek.py: data["urunler"][i]["ad"]
