@@ -21,6 +21,10 @@ os.makedirs(DATA_DIR, exist_ok=True)
 OUTPUT_FILE = os.path.join(DATA_DIR, "hal.json")
 MAX_RETRIES = 3
 
+# Bu fiyatin ustundeki satirlar atiliyor. Esik bilincli olarak DEGISTIRILMEDI;
+# once ne eledigini gormek icin eleme log'a basiliyor (bkz. parse_excel_response).
+MAX_PRICE = 500
+
 HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -82,7 +86,7 @@ def parse_excel_response(content):
 
     products = []
     tarih_str = ""
-    MAX_PRICE = 500
+    elenenler = []   # MAX_PRICE ustu satirlar — sessizce yutulmuyor, sonda basiliyor
 
     for row in rows[1:]:
         cols = [td.get_text(strip=True) for td in row.find_all(['td', 'th'])]
@@ -111,6 +115,8 @@ def parse_excel_response(content):
         if not fiyat:
             continue
         if fiyat > MAX_PRICE:
+            elenenler.append({"ad": ad, "turu": cols[2] if len(cols) > 2 else "",
+                              "fiyat": fiyat, "birim": birim})
             continue
 
         products.append({
@@ -128,7 +134,24 @@ def parse_excel_response(content):
         if m:
             tarih_str = m.group(0)
 
+    _elenenleri_bildir(elenenler, products)
     return products, tarih_str
+
+
+def _elenenleri_bildir(elenenler, kalanlar):
+    """MAX_PRICE elemesini sesli yapar. Eskiden bu satirlar sessizce yutuluyordu;
+    bazi urunler (Ahududu, Bogurtlen, Frenk Uzumu...) uygulamada hic gorunmuyor
+    ama bunu soyleyen tek bir satir yoktu."""
+    if not elenenler:
+        return
+    kalan_adlar = {p["ad"] for p in kalanlar}
+    tamamen = sorted({e["ad"] for e in elenenler if e["ad"] not in kalan_adlar})
+    print("  [ELENEN] %d satir MAX_PRICE=%s ustunde kaldigi icin atildi:" % (len(elenenler), MAX_PRICE))
+    for e in sorted(elenenler, key=lambda x: -x["fiyat"]):
+        print("    %-28s %10.2f %-4s %s" % (e["ad"][:28], e["fiyat"], e["birim"], e["turu"]))
+    if tamamen:
+        print("  [ELENEN] Bu %d urun TAMAMEN dusuyor, uygulamada hic gorunmeyecek:" % len(tamamen))
+        print("    " + ", ".join(tamamen))
 
 
 def _birlesik_fiyat(satirlar):

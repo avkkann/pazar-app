@@ -143,5 +143,36 @@ for u in (e, d, k, n, t):
     ok("  fiyat pozitif sayi (%s)" % u["ad"], isinstance(u["fiyat"], (int, float)) and u["fiyat"] > 0, u["fiyat"])
 ok("fiyat 2 haneye yuvarli", e["fiyat"] == round(e["fiyat"], 2), e["fiyat"])
 
+print("\n=== 8. MAX_PRICE ELEMESI SESLI ===")
+import io
+import contextlib
+
+ham3 = excel_yaniti([
+    ["UCUZ", "UCUZ", "Geleneksel(Konvansiyonel)", "20,00", "100", "Kg"],
+    ["AHUDUDU(FRAMBUAZ)", "AHUDUDU(FRAMBUAZ)", "Geleneksel(Konvansiyonel)", "661,89", "506", "Kg"],
+    ["AHUDUDU(FRAMBUAZ)", "AHUDUDU(FRAMBUAZ)", "İyi Tarım", "973,83", "2940", "Kg"],
+    ["ADAÇAYI (YAŞ-TAZE)", "ADAÇAYI (YAŞ-TAZE)", "Geleneksel(Konvansiyonel)", "76,48", "8", "Kg"],
+    ["ADAÇAYI (YAŞ-TAZE)", "ADAÇAYI (YAŞ-TAZE)", "İyi Tarım", "4180,21", "4", "Kg"],
+])
+buf = io.StringIO()
+with contextlib.redirect_stdout(buf):
+    u3, _ = hs.parse_excel_response(ham3)
+cikti = buf.getvalue()
+
+ok("esik DEGISMEDI (500)", hs.MAX_PRICE == 500, hs.MAX_PRICE)
+ok("elenen satirlar gecmiyor", len(u3) == 2, [x["ad"] for x in u3])
+ok("log SESSIZ DEGIL", cikti.strip() != "", repr(cikti[:80]))
+ok("  elenen SATIR SAYISI yaziliyor (3)", "3" in cikti, cikti.replace("\n", " | ")[:200])
+ok("  elenen URUN ADLARI yaziliyor", "Ahududu" in cikti or "AHUDUDU" in cikti.upper(), cikti.replace("\n", " | ")[:200])
+ok("  elenen FIYATLAR yaziliyor", "4180" in cikti and "973" in cikti, cikti.replace("\n", " | ")[:240])
+ok("  TAMAMEN elenen urun ayrica belirtiliyor",
+   "tamamen" in cikti.lower() or "hic" in cikti.lower(), cikti.replace("\n", " | ")[:240])
+ok("  esik degeri log'da geciyor", "500" in cikti, cikti.replace("\n", " | ")[:200])
+
+buf2 = io.StringIO()
+with contextlib.redirect_stdout(buf2):
+    hs.parse_excel_response(excel_yaniti([["UCUZ", "UCUZ", "a", "20,00", "100", "Kg"]]))
+ok("elenen yoksa gereksiz uyari basmiyor", "ELENEN" not in buf2.getvalue().upper(), repr(buf2.getvalue()[:80]))
+
 print("\nPASS=%d  FAIL=%d" % (_pass, _fail))
 sys.exit(1 if _fail else 0)
