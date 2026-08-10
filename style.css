@@ -1880,6 +1880,22 @@
   cursor: pointer; font-family: 'Inter', sans-serif; white-space: nowrap;
 }
 .alarm-kur-btn:active { opacity: .85; }
+
+/* Hedef fiyat önerisi — tavsiye, uyarı değil: amber yok.
+   Aktif alarm kutusuyla aynı yeşil (ECFDF5/D1FAE5/065F46), yeni ton yok. */
+.alarm-oneri {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 8px;
+  margin-top: 8px; font-size: 12px; line-height: 1.4;
+}
+.alarm-oneri-metin { color: var(--text-muted); }
+.alarm-oneri-btn {
+  border: 1px solid #D1FAE5; background: #ECFDF5; color: #065F46;
+  border-radius: 999px; padding: 5px 12px;
+  font-size: 12px; font-weight: 600; font-family: 'Inter', sans-serif;
+  cursor: pointer; white-space: nowrap;
+}
+.alarm-oneri-btn:active { opacity: .85; }
+
 .alarm-box.alarm-active { background: #ECFDF5; border-color: #D1FAE5; justify-content: space-between; }
 .alarm-active-text { font-size: .85rem; color: #065F46; font-weight: 600; }
 .alarm-kaldir-btn {
@@ -1887,6 +1903,7 @@
   cursor: pointer; font-family: 'Inter', sans-serif; padding: 6px 8px; white-space: nowrap;
 }
 [data-theme="dark"] .alarm-box.alarm-active { background: rgba(16,185,129,0.12); border-color: rgba(16,185,129,0.3); }
+[data-theme="dark"] .alarm-oneri-btn { background: rgba(16,185,129,0.12); border-color: rgba(16,185,129,0.3); color: #6EE7B7; }
 [data-theme="dark"] .alarm-active-text { color: #6ee7b7; }
 [data-theme="dark"] .alarm-kaldir-btn { color: #f87171; }
 /* === /FİYAT ALARMI === */

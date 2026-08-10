@@ -1334,6 +1334,43 @@ function enDusukFiyat(u) {
   return min === Infinity ? null : min;
 }
 
+// Hedef fiyat onerisi. Onceden alan enDusuk*0.95 ile doluyordu — keyfi bir %5,
+// urunun gercek gecmisiyle hicbir bagi yok, o yuzden alarmlar ates almiyordu.
+// Artik oneri son 30 gunun GERCEKTEN gorulmus en dusuk fiyati.
+function otuzGunMinFiyat(sid) {
+  const seri = otuzGunlukSeri(sid);
+  if (!seri.length) return null;
+  return Math.min.apply(null, seri);
+}
+
+function alarmOnerisi(u) {
+  if (!u || !u._sid) return null;
+  const guncel = enDusukFiyat(u);
+  if (guncel == null || !(guncel > 0)) return null;
+  const min = otuzGunMinFiyat(u._sid);
+  if (min == null || !(min > 0)) return null;
+  // Fiyat zaten 30 gunun dibindeyse onerecek daha dusuk bir seviye yok.
+  if (min >= guncel) return null;
+  return { deger: min, guncel: guncel };
+}
+
+function alarmOneriHTML(u) {
+  const o = alarmOnerisi(u);
+  if (!o) return '';
+  const sid = String(u._sid).replace(/'/g, "\\'");
+  return `<div class="alarm-oneri">
+      <span class="alarm-oneri-metin">Son ay ${tl(o.deger)}'ye kadar indi</span>
+      <button type="button" class="alarm-oneri-btn" onclick="alarmOneriUygula('${sid}', ${o.deger})">Bu fiyatı kullan</button>
+    </div>`;
+}
+
+function alarmOneriUygula(sid, deger) {
+  const el = document.getElementById('alarmInput-' + sid);
+  if (!el) return;
+  el.value = deger;
+  el.focus();
+}
+
 function fiyatAlarmiBlogu(u) {
   const sid = u && u._sid;
   if (!sid) return '';
@@ -1347,14 +1384,18 @@ function fiyatAlarmiBlogu(u) {
       </div>
     </div>`;
   }
+  // Gecmis varsa 30 gunun gercek dibi onerilir; yoksa MEVCUT akis (enDusuk*0.95)
+  // aynen korunur — bos alanla birakmak kullaniciyi geriye goturuyordu.
+  const gecmisOneri = alarmOnerisi(u);
   const enDusuk = enDusukFiyat(u);
-  const oneri = enDusuk ? (enDusuk * 0.95).toFixed(2) : '';
+  const oneri = gecmisOneri ? gecmisOneri.deger : (enDusuk ? (enDusuk * 0.95).toFixed(2) : '');
   return `<div class="detay-section detay-section--alarm" id="alarmBlogu-${sid}">
     <div class="detay-sec-label">Fiyat Alarmı</div>
     <div class="alarm-box">
       <input type="number" inputmode="decimal" step="0.01" min="0.01" class="alarm-input" id="alarmInput-${sid}" placeholder="Hedef fiyat (₺)" value="${oneri}">
       <button class="alarm-kur-btn" onclick="fiyatAlarmKur('${sid}')">Alarm Kur</button>
     </div>
+    ${alarmOneriHTML(u)}
   </div>`;
 }
 
