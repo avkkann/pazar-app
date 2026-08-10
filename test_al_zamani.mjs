@@ -42,6 +42,7 @@ function kur(gecmis, opts = {}) {
     fiyatlariTemizle: mf => ({ gecerli: (mf || []).filter(f => f && f.fiyat != null), gizlenen: [] }),
     supheliDurum: () => opts.supheli || null,
     gercekIndirimRozetiHesapla: () => opts.gercek || null,
+    indirimRozetiHesapla: () => opts.indirim || opts.gercek || null,
   };
   vm.createContext(ctx);
   const sabitler = ['AL_ZAMANI_MIN_OYNAMA', 'AL_ZAMANI_TOLERANS']
@@ -123,11 +124,23 @@ console.log('\n=== 4. YIGILMA: BASKA ROZET VARKEN SUS ===');
   ok('SUPHELI varken "bekle" de YOK', calis(ctx, 'alZamaniDurumu(' + JSON.stringify(U('a', 100)) + ')') === null);
 }
 {
+  // urunRozetleriHTML tek rozet kaynagi: bir sey soyluyorsa bu blok tamamen susar.
   const ctx = kur(GECMIS_GENIS, { gercek: { yuzde: 30 } });
   ok('"Gercek indirim" rozeti varken "iyi" YOK (rozet zaten ayni seyi soyluyor)',
      calis(ctx, 'alZamaniDurumu(' + JSON.stringify(U('a', 60)) + ')') === null);
-  const r = calis(ctx, 'alZamaniDurumu(' + JSON.stringify(U('a', 100)) + ')');
-  ok('  ama "bekle" ETKILENMEZ (rozet ust dilimi anlatmiyor)', r && r.tip === 'bekle', JSON.stringify(r));
+  ok('  "bekle" de YOK (olcum: 186 uruncte rozetle CELISIYORDU)',
+     calis(ctx, 'alZamaniDurumu(' + JSON.stringify(U('a', 100)) + ')') === null);
+}
+{
+  const ctx = kur(GECMIS_GENIS, { indirim: { tip: 'buyuk', yuzde: 39 } });
+  ok('"Buyuk indirim" rozeti varken "bekle" YOK', calis(ctx, 'alZamaniDurumu(' + JSON.stringify(U('a', 100)) + ')') === null);
+  ok('"Buyuk indirim" rozeti varken "iyi" de YOK', calis(ctx, 'alZamaniDurumu(' + JSON.stringify(U('a', 60)) + ')') === null);
+}
+{
+  // rozet YOKKEN normal davranis bozulmadi
+  const ctx = kur(GECMIS_GENIS);
+  ok('rozet yokken "iyi" cikiyor', (calis(ctx, 'alZamaniDurumu(' + JSON.stringify(U('a', 60)) + ')') || {}).tip === 'iyi');
+  ok('rozet yokken "bekle" cikiyor', (calis(ctx, 'alZamaniDurumu(' + JSON.stringify(U('a', 100)) + ')') || {}).tip === 'bekle');
 }
 
 console.log('\n=== 5. HTML ===');

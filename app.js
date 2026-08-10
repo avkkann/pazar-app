@@ -1667,6 +1667,13 @@ function alZamaniDurumu(u) {
   if (!u || !u._sid) return null;
   // Supheli indirimde hicbir tavsiye verilmez — "iyi zaman" demek celiskili olur.
   if (supheliDurum(u)) return null;
+  // urunRozetleriHTML detayin TEK rozet kaynagi. O bir sey soyluyorsa bu blok
+  // susar; ikisi ayni anda konusunca celisiyorlar. Olcum: 186 "bekle" urunu ayni
+  // anda indirim rozeti tasiyordu — Dolma Biber'de rozet "30 gunun en dusugu"
+  // derken blok "son ayda 79,00 TL'ye kadar indi" diyordu.
+  // gercekIndirimRozetiHesapla zaten indirimRozetiHesapla'ya bagli, bu tek
+  // kontrol ucunu birden kapsiyor.
+  if (indirimRozetiHesapla(u)) return null;
   const gecerli = fiyatlariTemizle(u.market_fiyatlari).gecerli.map(f => f.fiyat).filter(f => f > 0);
   if (!gecerli.length) return null;
   const bugun = Math.min.apply(null, gecerli);
@@ -1678,10 +1685,6 @@ function alZamaniDurumu(u) {
   if ((max - min) / max < AL_ZAMANI_MIN_OYNAMA) return null;
 
   if (bugun <= min * (1 + AL_ZAMANI_TOLERANS)) {
-    // "Gercek indirim · 30 gunun en dusugu" rozeti zaten tam bunu soyluyor.
-    // Ayni seyi iki kere yazmamak icin rozet varken bu blok cizilmez; rozetin
-    // cikmadigi durum (dusus %10'un altinda) gercek bir bosluk, orada cizilir.
-    if (gercekIndirimRozetiHesapla(u)) return null;
     return { tip: 'iyi', bugun: bugun, min: min, max: max };
   }
   if (bugun >= max * (1 - AL_ZAMANI_TOLERANS) && min < bugun) {
