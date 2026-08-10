@@ -2477,6 +2477,109 @@ async function renderSupheliSeridi() {
   }
 }
 
+// ═══ "Bu ay en çok zamlananlar" ═════════════════════════
+// ÖLÇÜT KEŞİFLE SEÇİLDİ. Denenen ve ELENEN iki yaklaşım:
+//   A) seri[0] vs bugün — çapası tek güne bağlı. Ölçüm: A'nın ilk 10'unun
+//      9'unda seri[0], ilk hafta medyanından %10+ sapıyordu.
+//   B) ilk hafta ort. vs son hafta ort. — dayanıklı ama KAMPANYA BİTİŞİNİ
+//      zam sanıyor. Palmolive gerçek geçmişi: 369,95 -> 189,95 -> 369,95 ->
+//      129,95 -> 369,95. Ürünün normal fiyatı 369,95; 129,95 biten bir
+//      kampanyaydı. B bunu "%185 zam" diye listeliyordu. B'nin ilk 10'unun
+//      6'sı bu sınıftandı.
+// SEÇİLEN: son 7 günün ortalaması, PENCERE ÖNCESİ TEPE ile karşılaştırılıyor.
+// Fiyat eski bir seviyeye geri dönmüşse zam değildir; ancak daha önce hiç
+// görülmemiş bir seviyeye çıkmışsa zamdır.
+// Çapa tek kayda dayanmasın diye pencere öncesi en az 2 kayıt şartı var
+// (ölçüm: kayıt>=1 ile 361 ürün, >=2 ile 159; >=2'de liste gözle de makul).
+const ZAM_ESIK = 15;        // bu yüzdenin altındaki artış listeye girmez
+const ZAM_MAX = 10;         // en fazla kaç ürün
+const ZAM_MIN = 3;          // bundan azsa bölüm hiç çizilmez
+const ZAM_MIN_KAYIT = 2;    // pencere öncesi en az kaç kayıt olmalı
+
+function zamOncekiZirve(sid) {
+  if (!sid || !_gecmisCache) return null;
+  const kayitlar = _gecmisCache[sid];
+  if (!Array.isArray(kayitlar) || !kayitlar.length) return null;
+  const d = new Date();
+  d.setDate(d.getDate() - 29);
+  const pencereBas = d.toISOString().slice(0, 10);
+  const eski = kayitlar.filter(k => k && k.t && k.f > 0 && k.t < pencereBas);
+  if (eski.length < ZAM_MIN_KAYIT) return null;
+  return { zirve: Math.max.apply(null, eski.map(k => k.f)), kayit: eski.length };
+}
+
+function zamAdaylari() {
+  if (!_gecmisCache) return [];
+  const havuz = [];
+  const gorulen = {};
+  Object.values(catCache || {}).forEach(liste => (liste || []).forEach(u => {
+    if (u && u._sid && !gorulen[u._sid]) { gorulen[u._sid] = 1; havuz.push(u); }
+  }));
+  const out = [];
+  havuz.forEach(u => {
+    // MEVSİM TUZAĞI: taze meyve/sebzede fiyat sezona göre doğal oynuyor,
+    // karpuzun pahalanması zam değil. Ölçüm: iki naif yöntemin de ilk 10'unda
+    // taze ürün YOKTU ve %15 üstü 1661 üründen yalnızca 12'si tazeydi — yani
+    // tamamen dışarıda bırakmanın maliyeti neredeyse sıfır.
+    const kat = ustKategori(u.ana_kategori || '');
+    if (kat === 'meyve' || kat === 'sebze') return;
+
+    const gecerli = fiyatlariTemizle(u.market_fiyatlari).gecerli.filter(f => f.fiyat > 0);
+    if (!gecerli.length) return;
+    // Şehir seçiliyse o ilde bulunmayan zincirin ürünü listeye girmesin.
+    if (!gecerli.some(f => marketVarMi(f.market))) return;
+
+    const seri = otuzGunlukSeri(u._sid);
+    if (seri.length < 30) return;
+    const sonHafta = seri.slice(23, 30).reduce((a, b) => a + b, 0) / 7;
+    const capa = zamOncekiZirve(u._sid);
+    if (!capa || !(capa.zirve > 0)) return;
+    const artis = ((sonHafta - capa.zirve) / capa.zirve) * 100;
+    if (artis < ZAM_ESIK) return;
+    out.push({ u: u, ad: u.ad, eski: capa.zirve, yeni: sonHafta, artis: artis, kayit: capa.kayit });
+  });
+  out.sort((a, b) => b.artis - a.artis);
+  return out.slice(0, ZAM_MAX);
+}
+
+function zamRozetHTML(artis) {
+  return `<span class="zam-rozet">+%${Math.round(artis)}</span>`;
+}
+
+async function renderZamSeridi() {
+  const wrap = document.getElementById('home-zam');
+  const list = document.getElementById('home-zam-list');
+  if (!wrap || !list) return;
+  try {
+    await gecmisVeriGetir();
+    const secilen = zamAdaylari();
+    if (secilen.length < ZAM_MIN) { wrap.style.display = 'none'; return; }
+    window._zamListesi = secilen;
+    secilen.forEach(x => { productMap[x.u._id] = x.u; });
+    list.innerHTML = secilen.map(x => _kartaRozetEkle(
+      _stripKartHTML(x.u, null), zamRozetHTML(x.artis)
+    )).join('');
+    const btn = document.getElementById('home-zam-paylas');
+    if (btn) btn.style.display = '';
+    wrap.style.display = '';
+  } catch (e) {
+    wrap.style.display = 'none';
+  }
+}
+
+function paylasZamlar() {
+  const liste = (window._zamListesi || []).slice(0, 5);
+  if (!liste.length) return;
+  const satirlar = liste.map(x => `${x.ad} +%${Math.round(x.artis)}`).join('\n');
+  const metin = `Son 30 günde en çok zamlananlar:\n${satirlar}`;
+  const url = 'https://avkkann.github.io/pazar-app/';
+  if (navigator.share) {
+    navigator.share({ title: 'Pazar — Bu ay en çok zamlananlar', text: metin, url: url }).catch(() => {});
+    return;
+  }
+  window.open('https://wa.me/?text=' + encodeURIComponent(metin + '\n' + url), '_blank');
+}
+
 const MEVSIM = {
   0:  ['portakal','mandalina','greyfurt','elma','lahana','kereviz','pırasa'],
   1:  ['portakal','mandalina','greyfurt','elma','lahana','pırasa','ıspanak'],
@@ -3678,6 +3781,7 @@ function loadData() {
     renderMevsimSeridi();
     renderDusenlerSeridi();
     renderSupheliSeridi();
+    renderZamSeridi();
     if ('requestIdleCallback' in window) {
 requestIdleCallback(() => { renderTuzaklarSeridi(); }, { timeout: 3000 });
     } else {
