@@ -4285,11 +4285,10 @@ function profilMarketTercihHTML() {
   const not = secili.length
     ? `${secili.length} market seçili — kategori ekranı bunlarla açılır`
     : 'Seçim yaparsan kategori ekranı bu marketlerle açılır';
-  // Gizleme sessiz olmasin: kullanici neden eksik oldugunu gorsun.
-  const gizliNot = gizli.length
-    ? `<div class="profil-mkt-gizli">${gizli.map(m => MARKET_NAMES[m]).join(' ve ')} senin ilinde bulunmuyor</div>`
-    : '';
-  return `<div class="profil-mkt-pills">${pills}</div><div class="profil-mkt-not">${not}</div>${gizliNot}`;
+  // Gizlenen zincirlerin aciklamasi BU BOLUMDE TEKRARLANMIYOR: "Şehrim" bolumu
+  // hemen ustte ayni cumleyi yaziyor (masaustunde 129px, mobilde ~100px ara,
+  // ikisi de ayni sutunda). Ayni cumleyi iki kez basmak gurultu.
+  return `<div class="profil-mkt-pills">${pills}</div><div class="profil-mkt-not">${not}</div>`;
 }
 
 // Bölümleri DOM'a bas. Veri yoksa bölümün tamamı (başlık dahil) gizlenir.

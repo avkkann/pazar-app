@@ -113,7 +113,11 @@ console.log('\n=== 5. FILTRE PILL\'LERI VE TERCIH MARKETLERI ===');
   ok('pill gizleme fonksiyonu var', /function sehirPillleriUygula/.test(src), '');
   const pm = fnKaynak('profilMarketTercihHTML') || '';
   ok('tercih marketleri marketVarMi ile suzuluyor', /marketVarMi\s*\(/.test(pm), '');
-  ok('  gizlenen zincir kullaniciya SOYLENIYOR', /bulunmuyor/.test(pm), pm.replace(/\s+/g, ' ').slice(0, 220));
+  // Gizleme SESSIZ degil ama TEK YERDE: "Sehrim" bolumu soyluyor. Iki bolum ayni
+  // sutunda ve 129px arayla duruyor (1440px olcumu), tekrar gurultu olurdu.
+  const ps2 = fnKaynak('profilSehirHTML') || '';
+  ok('  gizlenen zincir kullaniciya SOYLENIYOR (Sehrim bolumunde)', /bulunmuyor/.test(ps2), ps2.replace(/\s+/g, ' ').slice(0, 240));
+  ok('  Tercih bolumunde TEKRARLANMIYOR', !/bulunmuyor/.test(pm), pm.replace(/\s+/g, ' ').slice(0, 200));
   const to = fnKaynak('tercihMarketleriOku') || '';
   ok('tercihMarketleriOku da suzuyor (eski secim kalmasin)', /marketVarMi\s*\(/.test(to), '');
 }
