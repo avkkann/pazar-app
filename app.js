@@ -2542,6 +2542,48 @@ function zamMarketArtisi(sid, market) {
   return { artis: ((sonHafta - zirve) / zirve) * 100, zirve: zirve, sonHafta: sonHafta, kayit: eski.length };
 }
 
+// ═══ SALINIM ELEMESİ ════════════════════════════════════
+// Ölçütün ilkesi zaten şu: fiyat eski bir seviyeye geri dönmüşse zam değildir,
+// HİÇ GÖRÜLMEMİŞ bir seviyeye çıktıysa zamdır. Zikzak bu ilkenin ihlal edilmiş
+// hâli: seri pencerede bir seviyeye ayrılıp GERİ DÖNÜYORSA, çıkılan yer yeni
+// bir seviye değil ikinci kez ziyaret edilen eski seviyedir. Basamak değil,
+// salınımdır.
+//
+// Yeni sabit YOK. Pencere zaten ölçütün penceresi (30 gün), tolerans 0.
+// TOLERANS 0 SEÇİLMEDİ, ÖLÇÜLDÜ: "ayrılıp geri dönen" 34.919 noktanın %59,4'ü
+// TAM AYNI fiyata dönüyor, bir sonraki kutu %4,6 — 13x uçurum, ve bu uçurum
+// "ayrıldı" eşiğine %0 ile %20 arasında tamamen duyarsız. gecmis_fiyatlar.json
+// saf change-log (47.104 ardışık çiftin 0'ı aynı fiyat), fiyatların %84'ü
+// ,95/,00/,90/,50 ile bitiyor. Yuvarlanacak kuruş gürültüsü yok.
+//
+// NEDEN: API her market zinciri için TEK temsilci mağaza döndürüyor ve temsilci
+// zaman içinde değişiyor (2026-08-11 ölçümü, aynı ürün aynı anda: depots'suz
+// sorgu carrefour-1012 "Acıbadem Hıper" 169,95 · depot filtreli sorgu
+// carrefour-5027 "Karaköy Mını" 171,50). Mağaza değişimi geçmişimizde zam gibi
+// görünüyordu: Lux Zigzag 27 -> 85,90 -> 28 -> 85,90.
+//
+// GELECEK — BU KURAL GEÇİCİ: scraper 2026-08-11'den beri market_fiyatlari
+// içine depot_id/depot_ad yazıyor. 2-3 hafta veri birikince salınımın gerçekten
+// mağaza değişimi olup olmadığı DOĞRUDAN doğrulanabilecek; o zaman bu yapısal
+// kural, depot_id değişimini izleyen ölçüme dayalı kuralla değiştirilmeli.
+// Ölçüm (2026-08-11): 17.668 market serisinin %22,7'si salınımlı — zincir
+// bazında carrefour %28,6 · bim %24,7 · tarim_kredi %21,2 · migros %21,0 ·
+// sok %16,8 · a101 %13,1. Eşiği geçen 295 üründen 64'ü (%21,7) eleniyor.
+function zamSalinimVar(sid, market) {
+  const seri = zamMarketSerisi(sid, market);
+  if (!Array.isArray(seri) || seri.length < 3) return null;
+  const gorulen = new Map();
+  let blok = 0;
+  for (let i = 0; i < seri.length; i++) {
+    if (i > 0 && seri[i] !== seri[i - 1]) blok++;
+    const v = seri[i];
+    // Aynı değer daha önce BAŞKA bir blokta görüldüyse oraya geri dönülmüş.
+    if (gorulen.has(v) && gorulen.get(v) !== blok) return v;
+    gorulen.set(v, blok);
+  }
+  return null;
+}
+
 function zamOncekiZirve(sid) {
   if (!sid || !_gecmisCache) return null;
   const kayitlar = _gecmisCache[sid];
@@ -2584,6 +2626,9 @@ function zamAdaylari() {
     let enIyi = null;
     gecerli.forEach(f => {
       if (!marketVarMi(f.market)) return;
+      // Salınımlı seride "yeni seviye" iddiası kurulamaz — bkz. zamSalinimVar.
+      // Market bazında eleniyor: aynı ürünün temiz bir marketi varsa o temsil eder.
+      if (zamSalinimVar(u._sid, f.market) !== null) return;
       const r = zamMarketArtisi(u._sid, f.market);
       if (!r || r.artis < ZAM_ESIK) return;
       if (!enIyi || r.artis > enIyi.artis) {

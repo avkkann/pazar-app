@@ -57,7 +57,7 @@ function kur(gecmis, urunler, opts = {}) {
   vm.runInContext([
     sabitler, seriCache ? seriCache[0] : '',
     fnKaynak('otuzGunlukSeri'), fnKaynak('_zamGunISO'),
-    fnKaynak('zamMarketSerisi'), fnKaynak('zamMarketArtisi'),
+    fnKaynak('zamMarketSerisi'), fnKaynak('zamMarketArtisi'), fnKaynak('zamSalinimVar'),
     fnKaynak('zamOncekiZirve'), fnKaynak('_zamMarka'), fnKaynak('zamAdaylari'),
   ].join('\n'), ctx);
   return ctx;
