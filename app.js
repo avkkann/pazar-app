@@ -1030,6 +1030,7 @@ function openDetay(urunId) {
     ${(() => { const rz = tuzakRozetiHesapla(u); return rz ? tuzakRozetiHTML(rz, false) : ''; })()}
     ${urunRozetleriHTML(u, false)}
     ${alZamaniHTML(u)}
+    ${zamDetayHTML(u)}
     <div class="detay-section detay-section--market">
       <div class="detay-sec-label">Market Fiyatları</div>
       <div class="detay-mkt-list">
@@ -2546,6 +2547,187 @@ function zamRozetHTML(artis) {
   return `<span class="zam-rozet">+%${Math.round(artis)}</span>`;
 }
 
+// ═══ ZAMMIN GEREKÇESİ ═══════════════════════════════════
+// KURAL: zammın SEBEBİ uydurulmaz. Döviz/maliyet/tedarik verisi elimizde yok;
+// yalnızca kendi fiyat geçmişimizden çıkan olgular gösterilir.
+const ZAM_KADEME_ESIK = 5;   // gün-güne bu %'nin üstü ayrı bir kademe sayılır
+const ZAM_KAT_MIN = 5;       // kategoride bundan az ürün varsa bağlam gösterilmez
+const ZAM_AYLAR = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
+
+function _zamGunISO(n) {
+  const d = new Date();
+  d.setDate(d.getDate() - n);
+  return d.toISOString().slice(0, 10);
+}
+function _zamTarihYazi(iso) {
+  const p = String(iso).split('-');
+  if (p.length !== 3) return iso;
+  return Number(p[2]) + ' ' + (ZAM_AYLAR[Number(p[1]) - 1] || '');
+}
+
+// Turkce bulunma eki: unlu uyumu (a,ı,o,u -> da/ta · e,i,ö,ü -> de/te) +
+// unsuz benzesmesi (sert unsuzden sonra ta/te). Rakamla bitenler okunusa gore.
+const _ZAM_RAKAM_SON = { '0': 'sıfır', '1': 'bir', '2': 'iki', '3': 'üç', '4': 'dört',
+                         '5': 'beş', '6': 'altı', '7': 'yedi', '8': 'sekiz', '9': 'dokuz' };
+function _trBulunma(kelime) {
+  let s = String(kelime || '').trim();
+  if (!s) return s;
+  const sonKarakter = s[s.length - 1];
+  if (_ZAM_RAKAM_SON[sonKarakter]) s = _ZAM_RAKAM_SON[sonKarakter];
+  const kucuk = s.toLocaleLowerCase('tr');
+  const unluler = 'aeıioöuü';
+  let sonUnlu = '';
+  for (let i = kucuk.length - 1; i >= 0; i--) {
+    if (unluler.indexOf(kucuk[i]) >= 0) { sonUnlu = kucuk[i]; break; }
+  }
+  const kalin = 'aıou'.indexOf(sonUnlu) >= 0;
+  const sonHarf = kucuk[kucuk.length - 1];
+  const sert = 'fstkçşhp'.indexOf(sonHarf) >= 0;
+  return kelime + "'" + (sert ? (kalin ? 'ta' : 'te') : (kalin ? 'da' : 'de'));
+}
+
+// 30 günlük seride ardışık günler arasındaki sıçramalar. Kademeli zam
+// (60 -> 90 -> 159) tek sıçrama gibi gösterilmesin diye hepsi ayrı döner.
+function zamKademeleri(sid) {
+  const seri = otuzGunlukSeri(sid);
+  if (seri.length < 30) return [];
+  // Kademe = O ANA KADARKI EN YUKSEK seviyeyi asan adim. Sadece "gun-gune
+  // yukselis" saymak yanlisti: 1 gunluk cukurdan geri donusu ayri bir kademe
+  // sanip zincirde ayni degeri iki kez yaziyordu (Garnier Pro-Retinol:
+  // ... 242,50 -> 133,38 -> 242,50 ... "3 kademe" gorunuyordu, gercekte 1).
+  const out = [];
+  let tepe = seri[0];
+  for (let i = 1; i < seri.length; i++) {
+    const b = seri[i];
+    if (!(b > 0)) continue;
+    if (!(tepe > 0)) { tepe = b; continue; }
+    const yuzde = ((b - tepe) / tepe) * 100;
+    if (yuzde >= ZAM_KADEME_ESIK) {
+      out.push({ tarih: _zamGunISO(29 - i), oncesi: tepe, sonrasi: b, yuzde: yuzde, gunOnce: 29 - i });
+      tepe = b;
+    }
+  }
+  return out;
+}
+
+// Ürün hangi marketlerde satılıyor, hangilerinde zamlandı.
+// ÖLÇÜM NOTU: havuzdaki 159 ürünün 153'ü TEK markette satılıyor. Bunun sebebi
+// yapısal: seri günlük EN UCUZ fiyatı izliyor, bir market zamlanmazsa min onu
+// takip eder ve ürün zaten listeye girmez. Yani "A101'de zamlandı ama BİM'de
+// aynı" vakası bu ölçütle nadiren görünür — gördüğümüzde doğru anlatıyoruz.
+function zamMarketDurumu(u) {
+  const bos = { satilan: [], zamli: [], sabit: [] };
+  if (!u || !u._sid || !_gecmisCache) return bos;
+  const kayitlar = _gecmisCache[u._sid];
+  if (!Array.isArray(kayitlar)) return bos;
+  const satilan = (fiyatlariTemizle(u.market_fiyatlari).gecerli || [])
+    .map(f => f.market).filter(m => m && marketVarMi(m));
+  const pencereBas = _zamGunISO(29);
+  const mk = {};
+  kayitlar.forEach(k => {
+    if (!k || !k.t || !(k.f > 0)) return;
+    (mk[k.m] = mk[k.m] || []).push(k);
+  });
+  Object.values(mk).forEach(a => a.sort((x, y) => x.t < y.t ? -1 : 1));
+  const zamli = [], sabit = [];
+  satilan.forEach(m => {
+    const a = mk[m];
+    if (!a || !a.length) return;
+    const sonHafta = [];
+    for (let i = 6; i >= 0; i--) {
+      const gs = _zamGunISO(i);
+      let son = null;
+      for (const k of a) { if (k.t <= gs) son = k; else break; }
+      if (son) sonHafta.push(son.f);
+    }
+    if (sonHafta.length < 7) return;
+    const ortSon = sonHafta.reduce((x, y) => x + y, 0) / sonHafta.length;
+    const eski = a.filter(k => k.t < pencereBas);
+    if (eski.length < ZAM_MIN_KAYIT) return;
+    const zirve = Math.max.apply(null, eski.map(k => k.f));
+    const artis = ((ortSon - zirve) / zirve) * 100;
+    (artis >= ZAM_ESIK ? zamli : sabit).push(m);
+  });
+  return { satilan: satilan, zamli: zamli, sabit: sabit };
+}
+
+// Alt kategorinin 30 günlük ortalama değişimi. Yeterli ürün yoksa null.
+function zamKategoriOrt(anaKategori) {
+  if (!anaKategori) return null;
+  const gorulen = {}, degisimler = [];
+  Object.values(catCache || {}).forEach(liste => (liste || []).forEach(u => {
+    if (!u || !u._sid || gorulen[u._sid]) return;
+    if ((u.ana_kategori || '') !== anaKategori) return;
+    gorulen[u._sid] = 1;
+    const s = otuzGunlukSeri(u._sid);
+    if (s.length < 30) return;
+    const ilk = s.slice(0, 7).reduce((a, b) => a + b, 0) / 7;
+    const son = s.slice(23, 30).reduce((a, b) => a + b, 0) / 7;
+    if (!(ilk > 0)) return;
+    degisimler.push(((son - ilk) / ilk) * 100);
+  }));
+  if (degisimler.length < ZAM_KAT_MIN) return null;
+  return { ortalama: degisimler.reduce((a, b) => a + b, 0) / degisimler.length, adet: degisimler.length };
+}
+
+// KART: yer dar, yalnızca en güçlü tek bilgi.
+function zamYayginlikHTML(u) {
+  const d = zamMarketDurumu(u);
+  if (!d.satilan.length) return '';
+  const ad = m => MARKET_NAMES[m] || m;
+  let metin;
+  if (d.satilan.length === 1) {
+    // Tek markette satılıyor: "başka markette aynı" DİYEMEYİZ, orada satılmıyor.
+    metin = `Yalnızca ${_trBulunma(ad(d.satilan[0]))} satılıyor`;
+  } else if (d.zamli.length && d.zamli.length < d.satilan.length) {
+    metin = `Sadece ${_trBulunma(d.zamli.map(ad).join(', '))} zamlandı · ${d.sabit.map(ad).join(', ')} aynı`;
+  } else if (d.zamli.length) {
+    metin = `${d.satilan.length} marketin ${d.zamli.length}'sinde zamlandı`;
+  } else {
+    return '';
+  }
+  return `<div class="zam-yayginlik">${metin}</div>`;
+}
+
+// DETAY: tarih, kademeler, kategori bağlamı.
+function zamDetayHTML(u) {
+  if (!u || !u._sid || !_gecmisCache) return '';
+  const kad = zamKademeleri(u._sid);
+  if (!kad.length) return '';
+  const capa = zamOncekiZirve(u._sid);
+  const seri = otuzGunlukSeri(u._sid);
+  if (!capa || seri.length < 30) return '';
+  const sonHafta = seri.slice(23, 30).reduce((a, b) => a + b, 0) / 7;
+  if (((sonHafta - capa.zirve) / capa.zirve) * 100 < ZAM_ESIK) return '';
+
+  const son = kad[kad.length - 1];
+  const satirlar = [];
+  if (kad.length === 1) {
+    satirlar.push(`${_trBulunma(_zamTarihYazi(son.tarih))} ${tl(son.oncesi)} → ${tl(son.sonrasi)}`);
+  } else {
+    const zincir = [kad[0].oncesi].concat(kad.map(k => k.sonrasi)).map(v => tl(v)).join(' → ');
+    satirlar.push(`${kad.length} kademede zamlandı: ${zincir}`);
+    satirlar.push(`son kademe ${_trBulunma(_zamTarihYazi(son.tarih))}`);
+  }
+  if (son.gunOnce > 0) satirlar.push(`${son.gunOnce} gündür bu fiyatta`);
+
+  const kat = zamKategoriOrt(u.ana_kategori);
+  let katSatir = '';
+  if (kat) {
+    const v = kat.ortalama;
+    const mutlak = Math.abs(v).toFixed(1).replace('.', ',');
+    // "%-0,4 degisim var" garip okunuyor; yon kelimeyle veriliyor.
+    const yon = v >= 0.05 ? `ortalama %${mutlak} zam var`
+              : (v <= -0.05 ? `fiyatlar ortalama %${mutlak} düştü` : 'fiyatlar ortalama değişmedi');
+    katSatir = `<div class="zam-detay-kat">${u.ana_kategori} kategorisinde bu ay ${yon}</div>`;
+  }
+  return `<div class="zam-detay">
+      <div class="zam-detay-baslik">Bu zam ne zaman oldu</div>
+      <div class="zam-detay-govde">${satirlar.join(' · ')}</div>
+      ${katSatir}
+    </div>`;
+}
+
 async function renderZamSeridi() {
   const wrap = document.getElementById('home-zam');
   const list = document.getElementById('home-zam-list');
@@ -2560,8 +2742,10 @@ async function renderZamSeridi() {
     if (secilen.length < ZAM_MIN) { wrap.style.display = 'none'; return; }
     window._zamListesi = secilen;
     secilen.forEach(x => { productMap[x.u._id] = x.u; });
+    // Kartta yer dar: rozet + EN GUCLU TEK bilgi (yayginlik). Tarih/kademe/
+    // kategori baglami urun detayinda.
     list.innerHTML = secilen.map(x => _kartaRozetEkle(
-      _stripKartHTML(x.u, null), zamRozetHTML(x.artis)
+      _stripKartHTML(x.u, null), zamRozetHTML(x.artis) + zamYayginlikHTML(x.u)
     )).join('');
     const btn = document.getElementById('home-zam-paylas');
     if (btn) btn.style.display = '';
