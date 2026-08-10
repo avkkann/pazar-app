@@ -247,6 +247,59 @@ def parse_fiyat(text):
         return None
 
 
+HISTORY_FILE = os.path.join(DATA_DIR, "hal_gecmis.json")
+
+
+def hal_gecmis_kaydet(urunler, bugun=None, dosya=None):
+    """Hal fiyatlarinin gecmisini biriktirir. scraper.py'deki gecmis_kaydet()
+    deseninin aynisi: yalnizca DEGER DEGISTIGINDE kayit eklenir, ayni gun ikinci
+    kez kosulursa mukerrer yazilmaz. Format: { "<ad>": [{"t","f"}, ...] }
+    Market kirilimi yok, kaynak tek (hal.gov.tr TR geneli bulteni).
+
+    GERIYE DONUK DOLDURMA YAPILMIYOR — bilincli karar.
+    Git'te data/hal.json'in 86 gunluk snapshot'i duruyor ama o dosyalar
+    hacmi yok sayan DUZ ORTALAMA ile uretildi; cok satirli urunlerin %100'unde
+    yanlis degerler iceriyorlar (Semizotu 120,89 TL yerine 19,38 TL olmaliydi).
+    Geriye doldurmak gurultuyu de beraberinde getirirdi. Gecmis BUGUNDEN
+    itibaren, hacim agirlikli duzeltilmis degerlerle birikmeye baslar.
+    """
+    if bugun is None:
+        bugun = datetime.now().strftime("%Y-%m-%d")
+    if dosya is None:
+        dosya = HISTORY_FILE
+
+    if os.path.exists(dosya):
+        try:
+            with open(dosya, "r", encoding="utf-8") as f:
+                gecmis = json.load(f)
+        except Exception as e:
+            print(f"  [UYARI] hal_gecmis.json okunamadi: {e} — bu kosuda gecmis yazilmayacak")
+            return 0
+    else:
+        gecmis = {}
+
+    yeni_kayit = 0
+    for u in urunler:
+        ad = (u.get("ad") or "").strip()
+        fiyat = u.get("fiyat")
+        if not ad or fiyat is None:
+            continue
+        anahtar = ad.lower()
+        kayitlar = gecmis.setdefault(anahtar, [])
+        son = kayitlar[-1] if kayitlar else None
+        if son and son.get("t") == bugun:
+            continue
+        if son and son.get("f") == fiyat:
+            continue
+        kayitlar.append({"t": bugun, "f": fiyat})
+        yeni_kayit += 1
+
+    with open(dosya, "w", encoding="utf-8") as f:
+        json.dump(gecmis, f, ensure_ascii=False, separators=(",", ":"))
+    print(f"  {yeni_kayit} yeni hal fiyat kaydi -> {dosya}")
+    return yeni_kayit
+
+
 def scrape():
     print("=" * 60)
     print("Hal Fiyatlari Scraper - TR geneli (hal.gov.tr)")
@@ -337,6 +390,10 @@ def scrape():
 
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
+
+    # hal.json her kosuda eziliyor; gecmis ayri dosyada birikiyor.
+    print("\n--- Hal gecmis kaydi ---")
+    hal_gecmis_kaydet(output["urunler"])
 
     print(f"\nTamamlandi: {len(products)} urun -> {OUTPUT_FILE}")
     return output

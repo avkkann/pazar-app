@@ -174,5 +174,65 @@ with contextlib.redirect_stdout(buf2):
     hs.parse_excel_response(excel_yaniti([["UCUZ", "UCUZ", "a", "20,00", "100", "Kg"]]))
 ok("elenen yoksa gereksiz uyari basmiyor", "ELENEN" not in buf2.getvalue().upper(), repr(buf2.getvalue()[:80]))
 
+print("\n=== 9. HAL GECMISI ===")
+import tempfile
+import json as _json
+
+ok("hal_gecmis_kaydet tanimli", hasattr(hs, "hal_gecmis_kaydet"))
+
+if hasattr(hs, "hal_gecmis_kaydet"):
+    tmpdir = tempfile.mkdtemp()
+    yol = os.path.join(tmpdir, "hal_gecmis.json")
+    U = lambda ad, f: {"ad": ad, "fiyat": f, "birim": "Kg", "sehir": "TR"}
+
+    hs.hal_gecmis_kaydet([U("Domates", 30.0), U("Elma", 28.5)], bugun="2026-08-10", dosya=yol)
+    g = _json.load(open(yol, encoding="utf-8"))
+    ok("dosya olustu ve 2 urun var", len(g) == 2, list(g.keys()))
+    ok("  kayit formati {t,f}", g["domates"][0] == {"t": "2026-08-10", "f": 30.0}, g["domates"][0])
+    ok("  market alani YOK (tek kaynak)", "m" not in g["domates"][0], g["domates"][0])
+
+    # ayni deger, ertesi gun -> yeni kayit YOK
+    hs.hal_gecmis_kaydet([U("Domates", 30.0), U("Elma", 28.5)], bugun="2026-08-11", dosya=yol)
+    g = _json.load(open(yol, encoding="utf-8"))
+    ok("deger degismediyse kayit EKLENMIYOR", len(g["domates"]) == 1, g["domates"])
+
+    # deger degisti -> yeni kayit
+    hs.hal_gecmis_kaydet([U("Domates", 34.0), U("Elma", 28.5)], bugun="2026-08-12", dosya=yol)
+    g = _json.load(open(yol, encoding="utf-8"))
+    ok("deger degisince kayit ekleniyor", len(g["domates"]) == 2, g["domates"])
+    ok("  eski kayit korunuyor", g["domates"][0]["f"] == 30.0, g["domates"])
+    ok("  degismeyen urun yine tek kayit", len(g["elma"]) == 1, g["elma"])
+
+    # ayni gun tekrar kosulursa mukerrer kayit yok
+    hs.hal_gecmis_kaydet([U("Domates", 99.0)], bugun="2026-08-12", dosya=yol)
+    g = _json.load(open(yol, encoding="utf-8"))
+    ok("ayni gun ikinci kosu mukerrer kayit yazmiyor", len(g["domates"]) == 2, g["domates"])
+
+    # yeni urun
+    hs.hal_gecmis_kaydet([U("Kivi", 55.0)], bugun="2026-08-13", dosya=yol)
+    g = _json.load(open(yol, encoding="utf-8"))
+    ok("yeni urun kendi listesini aliyor", g.get("kivi") and g["kivi"][0]["f"] == 55.0, g.get("kivi"))
+    ok("  onceki urunler silinmiyor", "domates" in g and "elma" in g, list(g.keys()))
+
+    # fiyati olmayan urun
+    hs.hal_gecmis_kaydet([{"ad": "Bos", "fiyat": None, "birim": "Kg", "sehir": "TR"}], bugun="2026-08-14", dosya=yol)
+    g = _json.load(open(yol, encoding="utf-8"))
+    ok("fiyati None olan urun kaydedilmiyor", "bos" not in g, list(g.keys()))
+
+print("\n=== 10. GERIYE DONUK DOLDURMA YOK ===")
+kaynak = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "hal_scraper.py"), encoding="utf-8").read()
+ok("git snapshot'tan doldurma kodu YOK",
+   "git show" not in kaynak and "subprocess" not in kaynak, "git/subprocess izi var")
+ok("neden doldurulmadigi yorumda aciklanmis",
+   "geriye donuk" in kaynak.lower() or "geriye dönük" in kaynak.lower(), "aciklama yok")
+ok("  gerekce: eski kayitlar duz ortalamayla uretilmis",
+   "duz ortalama" in kaynak.lower() or "düz ortalama" in kaynak.lower(), "gerekce yok")
+
+print("\n=== 11. SCRAPE AKISINA BAGLI ===")
+sc = kaynak[kaynak.index("def scrape("):]
+ok("scrape() hal_gecmis_kaydet cagiriyor", "hal_gecmis_kaydet(" in sc, "")
+ok("  hal.json yazildiktan SONRA cagriliyor",
+   sc.index("hal_gecmis_kaydet(") > sc.index("json.dump(output"), "")
+
 print("\nPASS=%d  FAIL=%d" % (_pass, _fail))
 sys.exit(1 if _fail else 0)
