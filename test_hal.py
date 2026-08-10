@@ -147,36 +147,86 @@ for u in (e, d, k, n, t):
     ok("  fiyat pozitif sayi (%s)" % u["ad"], isinstance(u["fiyat"], (int, float)) and u["fiyat"] > 0, u["fiyat"])
 ok("fiyat 2 haneye yuvarli", e["fiyat"] == round(e["fiyat"], 2), e["fiyat"])
 
-print("\n=== 8. MAX_PRICE ELEMESI SESLI ===")
+print("\n=== 8. SATIR BAZLI MAX_PRICE KALKTI ===")
 import io
 import contextlib
 
+ok("MAX_PRICE sabiti kalmadi", not hasattr(hs, "MAX_PRICE"), getattr(hs, "MAX_PRICE", None))
 ham3 = excel_yaniti([
-    ["UCUZ", "UCUZ", "Geleneksel(Konvansiyonel)", "20,00", "100", "Kg"],
     ["AHUDUDU(FRAMBUAZ)", "AHUDUDU(FRAMBUAZ)", "Geleneksel(Konvansiyonel)", "661,89", "506", "Kg"],
-    ["AHUDUDU(FRAMBUAZ)", "AHUDUDU(FRAMBUAZ)", "İyi Tarım", "973,83", "2940", "Kg"],
-    ["ADAÇAYI (YAŞ-TAZE)", "ADAÇAYI (YAŞ-TAZE)", "Geleneksel(Konvansiyonel)", "76,48", "8", "Kg"],
-    ["ADAÇAYI (YAŞ-TAZE)", "ADAÇAYI (YAŞ-TAZE)", "İyi Tarım", "4180,21", "4", "Kg"],
+    ["AHUDUDU(FRAMBUAZ)", "AHUDUDU(FRAMBUAZ)", "İyi Tarım", "1600,00", "53", "Kg"],
 ])
+u3, _ = hs.parse_excel_response(ham3)
+ok("500 TL ustu satir artik PARSE ediliyor", len(u3) == 2, [x["fiyat"] for x in u3])
+
+print("\n=== 9. URUN-ICI AYKIRI SATIR ELEMESI (K) ===")
+ok("AYKIRI_KAT sabiti var", hasattr(hs, "AYKIRI_KAT"), "")
+ok("  deger 20", getattr(hs, "AYKIRI_KAT", None) == 20, getattr(hs, "AYKIRI_KAT", None))
+
+# Adacayi gercek ornegi: 76,48 (hacim 8, en cok islem goren) ve 4180,21 (hacim 4).
+# 4180/76 = 55 kat -> veri hatasi, atilmali. Hacim agirligi TEK BASINA korumuyor:
+# agirlikli ortalama 1444,39 cikardi.
 buf = io.StringIO()
 with contextlib.redirect_stdout(buf):
-    u3, _ = hs.parse_excel_response(ham3)
-cikti = buf.getvalue()
+    a = hs.merge_products([
+        {"ad": "Adaçayi", "cinsi": "A", "turu": "Geleneksel(Konvansiyonel)", "fiyat": 76.48, "hacim": 8.0, "birim": "Kg", "sehir": "TR"},
+        {"ad": "Adaçayi", "cinsi": "A", "turu": "İyi Tarım", "fiyat": 4180.21, "hacim": 4.0, "birim": "Kg", "sehir": "TR"},
+    ])
+log9 = buf.getvalue()
+ok("55 kat aykiri satir atildi -> 76,48", a and abs(a[0]["fiyat"] - 76.48) < 0.01, a[0]["fiyat"] if a else None)
+ok("  agirlikli ortalamaya (1444,39) DUSMUYOR", a and abs(a[0]["fiyat"] - 1444.39) > 1, a[0]["fiyat"] if a else None)
+ok("  atilan satir log'a basildi", "4180" in log9, log9.replace("\n", " | ")[:200])
+ok("  urun adi log'da", "Adaçayi" in log9, log9.replace("\n", " | ")[:200])
 
-ok("esik DEGISMEDI (500)", hs.MAX_PRICE == 500, hs.MAX_PRICE)
-ok("elenen satirlar gecmiyor", len(u3) == 2, [x["ad"] for x in u3])
-ok("log SESSIZ DEGIL", cikti.strip() != "", repr(cikti[:80]))
-ok("  elenen SATIR SAYISI yaziliyor (3)", "3" in cikti, cikti.replace("\n", " | ")[:200])
-ok("  elenen URUN ADLARI yaziliyor", "Ahududu" in cikti or "AHUDUDU" in cikti.upper(), cikti.replace("\n", " | ")[:200])
-ok("  elenen FIYATLAR yaziliyor", "4180" in cikti and "973" in cikti, cikti.replace("\n", " | ")[:240])
-ok("  TAMAMEN elenen urun ayrica belirtiliyor",
-   "tamamen" in cikti.lower() or "hic" in cikti.lower(), cikti.replace("\n", " | ")[:240])
-ok("  esik degeri log'da geciyor", "500" in cikti, cikti.replace("\n", " | ")[:200])
+# 2,4 kat fark -> gercek premium kademe olabilir, ATILMAZ
+b = hs.merge_products([
+    {"ad": "Ahududu", "cinsi": "A", "turu": "Geleneksel(Konvansiyonel)", "fiyat": 661.89, "hacim": 506.0, "birim": "Kg", "sehir": "TR"},
+    {"ad": "Ahududu", "cinsi": "A", "turu": "İyi Tarım", "fiyat": 1600.0, "hacim": 53.0, "birim": "Kg", "sehir": "TR"},
+])
+ok("2,4 kat fark ATILMIYOR (premium kademe olabilir)", b and abs(b[0]["fiyat"] - 750.83) < 1, b[0]["fiyat"] if b else None)
+ok("  Ahududu artik uygulamada VAR", len(b) == 1, b)
 
-buf2 = io.StringIO()
-with contextlib.redirect_stdout(buf2):
-    hs.parse_excel_response(excel_yaniti([["UCUZ", "UCUZ", "a", "20,00", "100", "Kg"]]))
-ok("elenen yoksa gereksiz uyari basmiyor", "ELENEN" not in buf2.getvalue().upper(), repr(buf2.getvalue()[:80]))
+# tek satirli urunde referans yok -> eleme yapilmaz
+c = hs.merge_products([{"ad": "Tek", "cinsi": "T", "turu": "x", "fiyat": 700.0, "hacim": 115.0, "birim": "Kg", "sehir": "TR"}])
+ok("tek satirli urun elenmiyor", c and abs(c[0]["fiyat"] - 700.0) < 0.01, c[0]["fiyat"] if c else None)
+
+print("\n=== 10. URUN BAZLI AKIL SAGLIGI KONTROLU ===")
+ok("URUN_MAX_FIYAT sabiti var", hasattr(hs, "URUN_MAX_FIYAT"), "")
+ok("  deger 2000", getattr(hs, "URUN_MAX_FIYAT", None) == 2000, getattr(hs, "URUN_MAX_FIYAT", None))
+
+# Mercan Kosk gercek ornegi: tek satir, 4800 TL, hacim 0
+buf = io.StringIO()
+with contextlib.redirect_stdout(buf):
+    d = hs.merge_products([
+        {"ad": "Mercan Köşk", "cinsi": "M", "turu": "İyi Tarım", "fiyat": 4800.0, "hacim": 0.0, "birim": "Kg", "sehir": "TR"},
+        {"ad": "Domates", "cinsi": "D", "turu": "x", "fiyat": 30.0, "hacim": 5000.0, "birim": "Kg", "sehir": "TR"},
+    ])
+log10 = buf.getvalue()
+ok("absurd fiyatli urun DUSTU", all(x["ad"] != "Mercan Köşk" for x in d), [x["ad"] for x in d])
+ok("  saglam urun kaldi", any(x["ad"] == "Domates" for x in d), [x["ad"] for x in d])
+ok("  dusurme SESSIZ DEGIL", "Mercan" in log10, log10.replace("\n", " | ")[:200])
+ok("  sebep log'da yaziyor", "URUN_MAX_FIYAT" in log10 or "2000" in log10, log10.replace("\n", " | ")[:200])
+
+# hacmi bilinmeyen ama fiyati MAKUL urun DUSMEZ (fazla ileri gitme)
+g2 = hs.merge_products([{"ad": "Hacimsiz", "cinsi": "H", "turu": "x", "fiyat": 25.0, "hacim": 0.0, "birim": "Kg", "sehir": "TR"}])
+ok("hacmi 0 ama fiyati makul urun KALIYOR", len(g2) == 1 and g2[0]["fiyat"] == 25.0, g2)
+
+buf = io.StringIO()
+with contextlib.redirect_stdout(buf):
+    e2 = hs.merge_products([
+        {"ad": "Absurd", "cinsi": "A", "turu": "x", "fiyat": 3000.0, "hacim": 500.0, "birim": "Kg", "sehir": "TR"},
+    ])
+log10b = buf.getvalue()
+ok("2000 TL ustu urun DUSTU", len(e2) == 0, e2)
+ok("  esik log'da geciyor", "2000" in log10b, log10b.replace("\n", " | ")[:200])
+
+f2 = hs.merge_products([{"ad": "Frenk", "cinsi": "F", "turu": "x", "fiyat": 1102.75, "hacim": 132.0, "birim": "Kg", "sehir": "TR"}])
+ok("1102,75 TL (gercek hacimli) KALIYOR", len(f2) == 1, f2)
+
+buf = io.StringIO()
+with contextlib.redirect_stdout(buf):
+    hs.merge_products([{"ad": "Normal", "cinsi": "N", "turu": "x", "fiyat": 30.0, "hacim": 100.0, "birim": "Kg", "sehir": "TR"}])
+ok("sorun yoksa gereksiz uyari basmiyor", buf.getvalue().strip() == "", repr(buf.getvalue()[:80]))
 
 print("\n=== 9. HAL GECMISI ===")
 import tempfile

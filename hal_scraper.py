@@ -21,9 +21,26 @@ os.makedirs(DATA_DIR, exist_ok=True)
 OUTPUT_FILE = os.path.join(DATA_DIR, "hal.json")
 MAX_RETRIES = 3
 
-# Bu fiyatin ustundeki satirlar atiliyor. Esik bilincli olarak DEGISTIRILMEDI;
-# once ne eledigini gormek icin eleme log'a basiliyor (bkz. parse_excel_response).
-MAX_PRICE = 500
+# Satir bazli mutlak fiyat esigi KALDIRILDI (eskiden MAX_PRICE = 500).
+# Kaba bir korumaydi ve 9 gercek urunu tamamen yok ediyordu: Ahududu, Frenk
+# Uzumu, Kuskonmaz, Passionfruit, Isirgan, Tamarind, Turmeric, Pshalis, Mercan
+# Kosk. Yerine iki asamali, urun baglaminda calisan kontrol geldi.
+
+# 1) URUN-ICI AYKIRI SATIR: bir satirin fiyati, o urunun EN COK ISLEM GOREN
+#    satirinin bu kat sayisindan yuksekse veri hatasi sayilir ve atilir.
+#    Neden 20: 10.08.2026 bulteninde bu esigin attigi 9 satirin HEPSI "Iyi Tarim"
+#    ve baskin fiyatin 30-55 kati (Adacayi 4180 vs 76 = 55x, Ispanak 842 vs 22 =
+#    38x). Bu bir premium kademe degil, hata. K=10 denendi: 1261 kg hacimli
+#    Kuzukulagi satirini da atiyordu — fazla agresif. K=20 gercek hacimli
+#    satirlara dokunmuyor.
+#    Hacim agirligi bu iSi TEK BASINA yapamiyor: Adacayi'nda saglam satir 8 kg,
+#    hatali satir 4 kg; agirlikli ortalama 1444 TL cikiyordu (dogrusu 76,48).
+AYKIRI_KAT = 20
+
+# 2) URUN BAZLI AKIL SAGLIGI: temizlikten sonra hala bu tutarin ustundeyse
+#    urun tamamen dusurulur. Temizlik sonrasi en pahali gercek urun Frenk Uzumu
+#    1102,75 TL (132 kg gercek hacim), o yuzden 2000 rahat bir tavan.
+URUN_MAX_FIYAT = 2000
 
 HEADERS = {
     "User-Agent": (
@@ -86,7 +103,6 @@ def parse_excel_response(content):
 
     products = []
     tarih_str = ""
-    elenenler = []   # MAX_PRICE ustu satirlar — sessizce yutulmuyor, sonda basiliyor
 
     for row in rows[1:]:
         cols = [td.get_text(strip=True) for td in row.find_all(['td', 'th'])]
@@ -114,10 +130,6 @@ def parse_excel_response(content):
 
         if not fiyat:
             continue
-        if fiyat > MAX_PRICE:
-            elenenler.append({"ad": ad, "turu": cols[2] if len(cols) > 2 else "",
-                              "fiyat": fiyat, "birim": birim})
-            continue
 
         products.append({
             "ad": ad,
@@ -134,24 +146,29 @@ def parse_excel_response(content):
         if m:
             tarih_str = m.group(0)
 
-    _elenenleri_bildir(elenenler, products)
     return products, tarih_str
 
 
-def _elenenleri_bildir(elenenler, kalanlar):
-    """MAX_PRICE elemesini sesli yapar. Eskiden bu satirlar sessizce yutuluyordu;
-    bazi urunler (Ahududu, Bogurtlen, Frenk Uzumu...) uygulamada hic gorunmuyor
-    ama bunu soyleyen tek bir satir yoktu."""
-    if not elenenler:
-        return
-    kalan_adlar = {p["ad"] for p in kalanlar}
-    tamamen = sorted({e["ad"] for e in elenenler if e["ad"] not in kalan_adlar})
-    print("  [ELENEN] %d satir MAX_PRICE=%s ustunde kaldigi icin atildi:" % (len(elenenler), MAX_PRICE))
-    for e in sorted(elenenler, key=lambda x: -x["fiyat"]):
-        print("    %-28s %10.2f %-4s %s" % (e["ad"][:28], e["fiyat"], e["birim"], e["turu"]))
-    if tamamen:
-        print("  [ELENEN] Bu %d urun TAMAMEN dusuyor, uygulamada hic gorunmeyecek:" % len(tamamen))
-        print("    " + ", ".join(tamamen))
+def _aykiri_satirlari_ele(satirlar):
+    """Bir urunun satirlari icinde veri hatasi olanlari ayirir.
+
+    Referans: o urunun EN COK ISLEM GOREN satirinin fiyati — o gun gercekten en
+    cok alinip satilan fiyat, elimizdeki en guvenilir capa. Bu fiyatin
+    AYKIRI_KAT katindan yuksek satirlar hata sayilir.
+    Donen: (kalan_satirlar, atilan_satirlar)
+    """
+    hacimli = [s for s in satirlar if (s.get('hacim') or 0) > 0]
+    if len(satirlar) < 2 or not hacimli:
+        return satirlar, []
+    referans = max(hacimli, key=lambda s: s['hacim'])['fiyat']
+    if not referans or referans <= 0:
+        return satirlar, []
+    sinir = referans * AYKIRI_KAT
+    kalan = [s for s in satirlar if s['fiyat'] <= sinir]
+    atilan = [s for s in satirlar if s['fiyat'] > sinir]
+    if not kalan:
+        return satirlar, []
+    return kalan, atilan
 
 
 def _birlesik_fiyat(satirlar):
@@ -208,21 +225,55 @@ def merge_products(products):
         gruplar.setdefault(p['ad'].lower(), []).append(p)
 
     result = []
+    atilan_satirlar = []
+    dusen_urunler = []
     for satirlar in gruplar.values():
         ilk = satirlar[0]
-        fiyatlar = [s['fiyat'] for s in satirlar if s.get('fiyat')]
-        hacimler = [s.get('hacim') or 0 for s in satirlar]
+        kalan, atilan = _aykiri_satirlari_ele(satirlar)
+        for a in atilan:
+            atilan_satirlar.append((ilk['ad'], a['fiyat'], a.get('hacim') or 0, a.get('turu') or ''))
+
+        fiyatlar = [s['fiyat'] for s in kalan if s.get('fiyat')]
+        if not fiyatlar:
+            continue
+        hacim = round(sum((s.get('hacim') or 0) for s in kalan), 2)
+        fiyat = _birlesik_fiyat(kalan)
+
+        # Urun bazli akil sagligi. Sessiz degil.
+        # NOT: "hacim=0 ise dusur" kurali denendi ve VAZGECILDI — hacmi bilinmeyen
+        # ama fiyati makul bir urunu atmak fazla ileri gidiyor, ve tek gercek vaka
+        # (Mercan Kosk 4800 TL) zaten fiyat tavanindan dusuyor. Hacim bilgisi
+        # yoksa _birlesik_fiyat medyana dusuyor, o yeterli.
+        if fiyat is None or fiyat > URUN_MAX_FIYAT:
+            dusen_urunler.append((ilk['ad'], fiyat, 'fiyat URUN_MAX_FIYAT=%s ustunde' % URUN_MAX_FIYAT))
+            continue
+
         result.append({
             'ad': ilk['ad'],
-            'fiyat': _birlesik_fiyat(satirlar),
+            'fiyat': fiyat,
             'birim': ilk['birim'],
             'sehir': ilk['sehir'],
-            'hacim': round(sum(hacimler), 2),
-            'satir_sayisi': len(satirlar),
+            'hacim': hacim,
+            'satir_sayisi': len(kalan),
             'fiyat_min': min(fiyatlar),
             'fiyat_max': max(fiyatlar),
         })
+
+    _temizligi_bildir(atilan_satirlar, dusen_urunler)
     return result
+
+
+def _temizligi_bildir(atilan_satirlar, dusen_urunler):
+    """Eleme sessiz olmasin: ne atildi, neden atildi, hepsi log'a."""
+    if atilan_satirlar:
+        print("  [AYKIRI SATIR] %d satir atildi (urun-ici en cok islem goren fiyatin %dx ustu):"
+              % (len(atilan_satirlar), AYKIRI_KAT))
+        for ad, fiyat, hacim, turu in sorted(atilan_satirlar, key=lambda x: -x[1]):
+            print("    %-28s %10.2f  hacim=%-9.0f %s" % (ad[:28], fiyat, hacim, turu))
+    if dusen_urunler:
+        print("  [URUN DUSTU] %d urun akil sagligi kontrolunden gecemedi:" % len(dusen_urunler))
+        for ad, fiyat, sebep in sorted(dusen_urunler, key=lambda x: -(x[1] or 0)):
+            print("    %-28s %10s  %s" % (ad[:28], ("%.2f" % fiyat) if fiyat is not None else "-", sebep))
 
 
 def parse_fiyat(text):
