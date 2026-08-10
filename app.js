@@ -3742,8 +3742,13 @@ function loadData() {
         const k = norm(u.ad);
         if (!halMap[k] || (u.fiyat != null && u.fiyat < (halMap[k].fiyat ?? 9999))) halMap[k] = u;
       }
+      // #halDate elemani index.html'de YOK (2026-07-10 inline->app.js ayiklamasinda
+      // dustu). Korumasiz getElementById(...).innerHTML her acilista TypeError
+      // atiyor, .then govdesi burada kesiliyor ve asagidaki hicbir satir
+      // calismiyordu. Hata da .catch tarafindan sessizce yutuluyordu.
       const bt = halData.bulten_tarihi || '';
-      if (bt) document.getElementById('halDate').innerHTML =
+      const _halDate = document.getElementById('halDate');
+      if (bt && _halDate) _halDate.innerHTML =
         `<span class="hal-badge">Hal: ${bt.slice(0, 10)}</span>`;
     }
     // ?screen=hal derin baglantisi script sonunda SENKRON kosuyor, hal.json ise
@@ -3762,7 +3767,7 @@ requestIdleCallback(() => { renderTuzaklarSeridi(); }, { timeout: 3000 });
     } else {
 setTimeout(() => { renderTuzaklarSeridi(); }, 1500);
     }
-  }).catch(() => { renderCatGrid(); saveSepet(); renderMevsimSeridi(); renderDusenlerSeridi(); renderSupheliSeridi(); if ('requestIdleCallback' in window) { requestIdleCallback(() => { renderTuzaklarSeridi(); }, { timeout: 3000 }); } else { setTimeout(() => { renderTuzaklarSeridi(); }, 1500); } });
+  }).catch((e) => { console.error('[loadData]', e); renderCatGrid(); saveSepet(); renderMevsimSeridi(); renderDusenlerSeridi(); renderSupheliSeridi(); if ('requestIdleCallback' in window) { requestIdleCallback(() => { renderTuzaklarSeridi(); }, { timeout: 3000 }); } else { setTimeout(() => { renderTuzaklarSeridi(); }, 1500); } });
 }
 
 function openHalScreen() {

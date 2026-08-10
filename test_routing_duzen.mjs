@@ -123,6 +123,15 @@ console.log('\n=== ?screen=hal VERI GELMEDEN ACILIRSA ===');
      /screen-hal/.test(ld), ld.split('\n').filter(l => /screen-hal|renderHalScreen/.test(l)).join(' | '));
   const rh = fnKaynak('renderHalScreen') || '';
   ok('renderHalScreen bos veride hala guvenli cikiyor', /if \(!window\.halVerisi\)/.test(rh.replace(/\s+/g, ' ')), '');
+
+  // #halDate index.html'de YOK; korumasiz erisim .then govdesini her acilista
+  // kesiyordu ve hata .catch tarafindan sessizce yutuluyordu.
+  ok('#halDate gercekten index.html\'de yok (varsayim degil olcum)', !/halDate/.test(HTML), '');
+  ok('halDate erisimi KORUMALI', !/getElementById\('halDate'\)\.innerHTML/.test(ld),
+     ld.split('\n').filter(l => /halDate/.test(l)).join(' | '));
+  ok('  null kontrolu var', /_halDate\s*&&|halDate\)\s*\{|if \(bt && /.test(ld), '');
+  ok('loadData catch sessiz DEGIL', /\.catch\(\(?\w+\)?\s*=>\s*\{\s*console\.(error|warn)/.test(ld.replace(/\s+/g, ' ')),
+     ld.replace(/\s+/g, ' ').slice(ld.replace(/\s+/g, ' ').indexOf('.catch'), ld.replace(/\s+/g, ' ').indexOf('.catch') + 60));
 }
 
 console.log('\n=== 2. PROFIL MASAUSTU SUTUN DENGESI ===');
