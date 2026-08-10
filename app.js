@@ -1758,7 +1758,10 @@ function fiyatGecmisiBlogu(urun) {
   // Eligibility: 7+ farklı tarih
   const farkliTarihler = new Set(son30.map(k => k.t));
   if (farkliTarihler.size < 7) {
-    return _fgEmptyBlock('Fiyat geçmişi henüz yeterli değil · Birkaç hafta sonra görünür');
+    // Veri YOK demek degil: fiyat son ayda yeterince farkli gunde degismedigi
+    // icin cizilecek nokta yok. Ust taraftaki "son ayda X TL'ye kadar indi"
+    // blogu ayni ekranda durabildigi icin metin sebebi acikca soyluyor.
+    return _fgEmptyBlock('Grafik için yeterli fiyat noktası yok · Fiyat son ayda az değişti');
   }
 
   // Aynı tarih + market varsa en son kaydı al

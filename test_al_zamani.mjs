@@ -185,5 +185,22 @@ console.log('\n=== 7. YER: SADECE URUN DETAYI, KART DEGISMEDI ===');
   ok('urunRozetleriHTML degismedi (tek rozet kaynagi bozulmadi)', !/alZamani/.test(fnKaynak('urunRozetleriHTML') || ''));
 }
 
+console.log('\n=== 8. GRAFIK BOS-DURUM METNI BLOKLA CELISMIYOR ===');
+{
+  // Grafik 7+ farkli tarih istiyor. Esige DOKUNULMADI, sadece metin.
+  // Eski metin "Fiyat gecmisi henuz yeterli degil" idi ve ayni ekranda blok
+  // "son ayda 47,50 TL'ye kadar indi" derken celisiyordu (4832 urunun 4806'si).
+  const fg = fnKaynak('fiyatGecmisiBlogu') || '';
+  ok('7 esigi degismedi', /farkliTarihler\.size < 7/.test(fg), '');
+  ok('"henuz yeterli degil" ifadesi KALKTI', !/geçmişi henüz yeterli değil/.test(fg), (fg.match(/_fgEmptyBlock\('[^']*'\)/g) || []).join(' | '));
+  ok('"birkac hafta sonra gorunur" vaadi KALKTI', !/Birkaç hafta sonra/.test(fg), '');
+  const mesajlar = (fg.match(/_fgEmptyBlock\('([^']*)'\)/g) || []).join(' | ');
+  ok('sebep FIYAT NOKTASI eksikligi olarak yaziliyor', /nokta/i.test(mesajlar), mesajlar);
+  ok('  "veri yok" anlamina gelen bir sey demiyor', !/geçmişi yok · |veri yok/.test(mesajlar), mesajlar);
+  const yeni = (fg.match(/_fgEmptyBlock\('([^']*)'\)/g) || []).filter(m => /nokta/i.test(m))[0] || '';
+  ok('  kisa (<=70 karakter)', yeni.length - 18 <= 70, yeni + ' (' + (yeni.length - 18) + ')');
+  ok('gercekten veri olmayan durumun mesaji AYNEN duruyor', /fiyat geçmişi henüz yok/.test(fg), '');
+}
+
 console.log('\nPASS=' + pass + '  FAIL=' + fail);
 process.exit(fail ? 1 : 0);
