@@ -1,0 +1,27 @@
+# Il -> market zinciri haritasi. GUNLUK DEGIL HAFTALIK:
+# zincir agi her gun degismiyor, gecelik "Veri Guncelle" kosusunu uzatmasin.
+# 81 istek x 4,5 sn ~ 7 dakika.
+name: Il Market Haritasi
+on:
+  schedule:
+    # Pazar 04:30 UTC — gecelik veri kosusu (03:00, ~2 saat) bittikten sonra
+    - cron: '30 4 * * 0'
+  workflow_dispatch:
+jobs:
+  tara:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - run: pip install requests
+      - run: python il_market_tara.py
+      - run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add data/il_marketler.json
+          git commit -m "Il market haritasi guncellendi" || exit 0
+          git pull --rebase origin main
+          git push
