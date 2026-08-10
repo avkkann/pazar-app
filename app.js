@@ -1129,95 +1129,6 @@ function ustKategori(k) {
   return 'diger';
 }
 
-// ── HAL EŞLEŞME — akıllı sistem ──────────────────────
-// Kural 1: Sadece taze sebze/meyve kategorisi eşleşir
-// Kural 2: Dondurulmuş/konserve/işlenmiş ürünler eşleşmez
-// Kural 3: Birim normalleştirme (1 adet ≈ 0.2kg, 500gr = 0.5 oran)
-// Kural 4: Minimum %60 kelime örtüşmesi gerekir
-
-const HAL_UYUMSUZ = ['donuk','dondurulmus','dondurulmuş','dondurma','konserve','hazir','islenmis',
-  'salca','tursu','kurutulmus','fileto','salam','sucuk','sosis','pastirma',
-  'corba','pure','püre','cipsi','cips','nugget','kroket','burger','superfresh',
-  'pack','paket','kutu','sis','rulo','dilim','mince','frozen',
-  'recel','reçel','marmelat','meyve suyu','suyu','nektar','smoothie',
-  'sirup','şurup','surup','komposto','kompoto','suzme','sikma','sıkma',
-  'dondurmasi','dondurmali','dondurmalı','tatlandirici','aromali','aromalı',
-  'feast','tukas','tukaş','garden','migrosone','tat','penguen',
-  'lapestos','yagi','yağı'];
-
-function halKgHesapla(ad, fiyat) {
-  if (!fiyat || !ad) return fiyat;
-  const n = ad.toLowerCase();
-  // "500 gr", "500gr", "0.5 kg" gibi ağırlık ifadelerini bul
-  const grMatch = n.match(/(\d+(?:[.,]\d+)?)\s*gr\b/);
-  const kgMatch = n.match(/(\d+(?:[.,]\d+)?)\s*kg\b/);
-  const adetMatch = n.match(/(\d+)\s*adet\b/);
-  if (grMatch) {
-    const gr = parseFloat(grMatch[1].replace(',', '.'));
-    if (gr > 0 && gr < 5000) return fiyat / (gr / 1000); // kg fiyatına çevir
-  }
-  if (kgMatch) {
-    const kg = parseFloat(kgMatch[1].replace(',', '.'));
-    if (kg > 0 && kg < 50) return fiyat / kg; // kg fiyatına çevir
-  }
-  if (adetMatch) {
-    // 1 adet ≈ 0.2kg ortalama (avokado, limon vb.)
-    return fiyat / 0.2;
-  }
-  return fiyat; // birim yoksa olduğu gibi bırak (zaten kg fiyatı)
-}
-
-function halEsles(u) {
-  // Sadece taze meyve/sebze kategorileri için çalış
-  const kat = ustKategori(u.ana_kategori || '');
-  if (kat !== 'meyve' && kat !== 'sebze') return null;
-
-  const urunAdNorm = norm(u.ad);
-
-  // Dondurulmuş/işlenmiş ürünleri atla
-  if (HAL_UYUMSUZ.some(k => urunAdNorm.includes(k))) return null;
-
-  // "Adet" birimi var → birim belirsizliği büyük (1 ananas != 1 limon), hal ile eşleşmesin
-  if (/\b\d+\s*adet\b/.test(urunAdNorm)) return null;
-
-  // Market ürün adından ağırlık/birim bilgisini temizle, ana kelimeyi al
-  const temizAd = urunAdNorm
-    .replace(/\d+([.,]\d+)?\s*(gr|kg|ml|lt|adet|pk|paket)\b/g, '')
-    .replace(/\b(taze|gunluk|gunluk|organik|dogal|ithal|yerli|sele|demet|bag)\b/g, '')
-    .trim();
-
-  const mW = temizAd.split(/\s+/).filter(w => w.length > 2);
-  if (!mW.length) return null;
-
-  let best = null, bestSc = 0;
-
-  for (const [key, rec] of Object.entries(halMap)) {
-    const hW = key.split(/\s+/).filter(w => w.length > 2);
-    if (!hW.length) continue;
-
-    const eslesenW = hW.filter(w => mW.includes(w)).length;
-    // Hal adındaki tüm kelimeler market adında varsa tam eşleşme say
-    // Örn: hal="patates", market="kizartmalik patates" → 1/1 = 1.0
-    const sc = eslesenW / Math.max(hW.length, mW.length);
-    const scHalBazli = eslesenW / hW.length; // hal kelimelerinin market'te kapsanma oranı
-
-    const finalSc = Math.max(sc, scHalBazli >= 1.0 ? 0.9 : 0);
-
-    if (finalSc > bestSc) { bestSc = finalSc; best = rec; }
-  }
-
-  if (bestSc < 0.6 || !best) return null;
-
-  // Fiyat mantık kontrolü: hal/market oranı 0.1x - 5x arasında olmalı
-  const marketKgFiyat = halKgHesapla(u.ad, u.en_dusuk_fiyat);
-  if (marketKgFiyat && best.fiyat) {
-    const oran = best.fiyat / marketKgFiyat;
-    if (oran > 5 || oran < 0.1) return null; // saçma oran → eşleşmeyi iptal et
-  }
-
-  return best;
-}
-
 // ── SKELETON ──────────────────────────────────────────
 function skeletonHTML(n = 4) {
   return Array(n).fill(`
@@ -3979,36 +3890,6 @@ function renderFirsatUcuz(container, ucuzGruplari) {
     html += '</div>';
   });
   container.innerHTML = html || '<div class="firsat-loading">Veri yükleniyor...</div>';
-}
-
-function renderFirsatHal(container, tumUrunler) {
-  halVeriGetir().then(function() {
-    const meyveSebze = (tumUrunler||[]).filter(function(u){
-      const k = ustKategori(u.ana_kategori||'');
-      return k==='meyve'||k==='sebze';
-    });
-    const karsilastirmalar = [];
-    meyveSebze.forEach(function(u) {
-      if (!u.en_dusuk_fiyat) return;
-      const hal = halEsles(u);
-      if (!hal) return;
-      const marketKg = halKgHesapla(u.ad, u.en_dusuk_fiyat);
-      const tasarruf = marketKg - hal.fiyat;
-      if (tasarruf > 0.5) karsilastirmalar.push({u:u, hal:hal, marketKg:marketKg, tasarruf:tasarruf});
-    });
-    karsilastirmalar.sort(function(a,b){return b.tasarruf-a.tasarruf;});
-    if (!karsilastirmalar.length) {
-      container.innerHTML = '<div class="firsat-loading">Şu an hal daha ucuz olan ürün bulunamadı.</div>';
-      return;
-    }
-    let html = '<div class="firsat-section"><div class="firsat-section-title">' + lcIcon('building-2') + ' Marketten Değil Halden Al — Tasarruf Et</div>';
-    karsilastirmalar.slice(0,20).forEach(function(item) {
-      const altText = 'Hal: '+tl(item.hal.fiyat)+'/kg · Market: '+tl(item.marketKg)+'/kg';
-      html += _firsatKartHtml(item.u, tl(item.tasarruf)+' ucuz', 'firsat-badge-hal', altText);
-    });
-    html += '</div>';
-    container.innerHTML = html;
-  });
 }
 
 function renderFirsatTasarruf(container, tumUrunler) {
