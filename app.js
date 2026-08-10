@@ -1580,6 +1580,9 @@ function alZamaniDurumu(u) {
   // gercekIndirimRozetiHesapla zaten indirimRozetiHesapla'ya bagli, bu tek
   // kontrol ucunu birden kapsiyor.
   if (indirimRozetiHesapla(u)) return null;
+  // Zam blogu ayni olguyu daha ayrintili anlatiyor; ikisi birden cizilince
+  // detaydaki yigin 5'e cikiyordu. Ayni kural: zam blogu konusuyorsa bu susar.
+  if (typeof zamDurumu === 'function' && zamDurumu(u)) return null;
   const gecerli = fiyatlariTemizle(u.market_fiyatlari).gecerli.map(f => f.fiyat).filter(f => f > 0);
   if (!gecerli.length) return null;
   const bugun = Math.min.apply(null, gecerli);
@@ -2492,10 +2495,52 @@ async function renderSupheliSeridi() {
 // görülmemiş bir seviyeye çıkmışsa zamdır.
 // Çapa tek kayda dayanmasın diye pencere öncesi en az 2 kayıt şartı var
 // (ölçüm: kayıt>=1 ile 361 ürün, >=2 ile 159; >=2'de liste gözle de makul).
+// MARKET BAZLI ölçüm. Önce tek bir "günlük en ucuz" serisi kullanılıyordu ve
+// bu yapısal bir körlük yaratıyordu: bir market zamlanmayınca minimum onu
+// izliyor, ürün eşiği hiç geçemiyordu. Sonuç, eşiği geçen 159 ürünün 153'ünün
+// TEK markette satılan ürünler olması; süt/yağ/deterjan gibi her markette
+// satılan temel ürünler listeye giremiyordu.
+// Ölçüm (market bazlı seriye geçince): 295 ürün-market çifti, 278 ürün,
+// birden çok markette satılan 6 -> 118, "biri zamlı diğeri aynı" 0 -> 91.
 const ZAM_ESIK = 15;        // bu yüzdenin altındaki artış listeye girmez
 const ZAM_MAX = 10;         // en fazla kaç ürün
 const ZAM_MIN = 3;          // bundan azsa bölüm hiç çizilmez
 const ZAM_MIN_KAYIT = 2;    // pencere öncesi en az kaç kayıt olmalı
+const ZAM_MARKA_MAX = 2;    // aynı markadan en fazla kaç ürün
+const ZAM_KAT_MAX = 3;      // aynı alt kategoriden en fazla kaç ürün
+
+// Tek bir marketin KENDI 30 gunluk carry-forward serisi.
+function zamMarketSerisi(sid, market) {
+  if (!sid || !market || !_gecmisCache) return null;
+  const ks = (_gecmisCache[sid] || [])
+    .filter(k => k && k.m === market && k.t && k.f > 0)
+    .sort((a, b) => a.t < b.t ? -1 : 1);
+  if (!ks.length) return null;
+  const seri = [];
+  for (let i = 29; i >= 0; i--) {
+    const gs = _zamGunISO(i);
+    let son = null;
+    for (const k of ks) { if (k.t <= gs) son = k; else break; }
+    if (!son) return null;              // pencerenin basinda fiyat bilinmiyorsa olcme
+    seri.push(son.f);
+  }
+  return seri;
+}
+
+// Olcut TEK SERIDEKIYLE AYNI, yalnizca kapsam market: son 7 gun ortalamasi,
+// o marketin pencere oncesi tepesiyle karsilastiriliyor.
+function zamMarketArtisi(sid, market) {
+  const seri = zamMarketSerisi(sid, market);
+  if (!seri) return null;
+  const sonHafta = seri.slice(23, 30).reduce((a, b) => a + b, 0) / 7;
+  const pencereBas = _zamGunISO(29);
+  const eski = (_gecmisCache[sid] || [])
+    .filter(k => k && k.m === market && k.t && k.f > 0 && k.t < pencereBas);
+  if (eski.length < ZAM_MIN_KAYIT) return null;
+  const zirve = Math.max.apply(null, eski.map(k => k.f));
+  if (!(zirve > 0)) return null;
+  return { artis: ((sonHafta - zirve) / zirve) * 100, zirve: zirve, sonHafta: sonHafta, kayit: eski.length };
+}
 
 function zamOncekiZirve(sid) {
   if (!sid || !_gecmisCache) return null;
@@ -2509,6 +2554,10 @@ function zamOncekiZirve(sid) {
   return { zirve: Math.max.apply(null, eski.map(k => k.f)), kayit: eski.length };
 }
 
+function _zamMarka(ad) {
+  return String(ad || '').trim().split(/\s+/)[0].toLocaleLowerCase('tr');
+}
+
 function zamAdaylari() {
   if (!_gecmisCache) return [];
   const havuz = [];
@@ -2516,7 +2565,7 @@ function zamAdaylari() {
   Object.values(catCache || {}).forEach(liste => (liste || []).forEach(u => {
     if (u && u._sid && !gorulen[u._sid]) { gorulen[u._sid] = 1; havuz.push(u); }
   }));
-  const out = [];
+  const adaylar = [];
   havuz.forEach(u => {
     // MEVSİM TUZAĞI: taze meyve/sebzede fiyat sezona göre doğal oynuyor,
     // karpuzun pahalanması zam değil. Ölçüm: iki naif yöntemin de ilk 10'unda
@@ -2530,21 +2579,41 @@ function zamAdaylari() {
     // Şehir seçiliyse o ilde bulunmayan zincirin ürünü listeye girmesin.
     if (!gecerli.some(f => marketVarMi(f.market))) return;
 
-    const seri = otuzGunlukSeri(u._sid);
-    if (seri.length < 30) return;
-    const sonHafta = seri.slice(23, 30).reduce((a, b) => a + b, 0) / 7;
-    const capa = zamOncekiZirve(u._sid);
-    if (!capa || !(capa.zirve > 0)) return;
-    const artis = ((sonHafta - capa.zirve) / capa.zirve) * 100;
-    if (artis < ZAM_ESIK) return;
-    out.push({ u: u, ad: u.ad, eski: capa.zirve, yeni: sonHafta, artis: artis, kayit: capa.kayit });
+    // HER MARKETI AYRI OLC. Ayni urun birden cok markette zamlandiysa tek kart
+    // cizilir, en yuksek artisli market temsil eder.
+    let enIyi = null;
+    gecerli.forEach(f => {
+      if (!marketVarMi(f.market)) return;
+      const r = zamMarketArtisi(u._sid, f.market);
+      if (!r || r.artis < ZAM_ESIK) return;
+      if (!enIyi || r.artis > enIyi.artis) {
+        enIyi = { u: u, ad: u.ad, market: f.market, eski: r.zirve, yeni: r.sonHafta,
+                  artis: r.artis, kayit: r.kayit };
+      }
+    });
+    if (enIyi) adaylar.push(enIyi);
   });
-  out.sort((a, b) => b.artis - a.artis);
-  return out.slice(0, ZAM_MAX);
+  adaylar.sort((a, b) => b.artis - a.artis);
+
+  // ÇEŞİTLİLİK: marka başına en fazla 2, alt kategori başına en fazla 3.
+  // Kural yüzünden liste dolmazsa EŞİK DÜŞÜRÜLMEZ, daha az ürünle gösterilir.
+  const secilen = [], markaSay = {}, katSay = {};
+  for (const x of adaylar) {
+    if (secilen.length >= ZAM_MAX) break;
+    const mk = _zamMarka(x.ad);
+    const ak = x.u.ana_kategori || '';
+    if ((markaSay[mk] || 0) >= ZAM_MARKA_MAX) continue;
+    if ((katSay[ak] || 0) >= ZAM_KAT_MAX) continue;
+    markaSay[mk] = (markaSay[mk] || 0) + 1;
+    katSay[ak] = (katSay[ak] || 0) + 1;
+    secilen.push(x);
+  }
+  return secilen;
 }
 
-function zamRozetHTML(artis) {
-  return `<span class="zam-rozet">+%${Math.round(artis)}</span>`;
+function zamRozetHTML(artis, market) {
+  const mk = market ? ` <span class="zam-rozet-mkt">${MARKET_NAMES[market] || market}</span>` : '';
+  return `<span class="zam-rozet">+%${Math.round(artis)}${mk}</span>`;
 }
 
 // ═══ ZAMMIN GEREKÇESİ ═══════════════════════════════════
@@ -2588,8 +2657,9 @@ function _trBulunma(kelime) {
 
 // 30 günlük seride ardışık günler arasındaki sıçramalar. Kademeli zam
 // (60 -> 90 -> 159) tek sıçrama gibi gösterilmesin diye hepsi ayrı döner.
-function zamKademeleri(sid) {
-  const seri = otuzGunlukSeri(sid);
+// market verilirse O MARKETIN serisinden, verilmezse gunluk en ucuz seriden.
+function zamKademeleri(sid, market) {
+  const seri = market ? (zamMarketSerisi(sid, market) || []) : otuzGunlukSeri(sid);
   if (seri.length < 30) return [];
   // Kademe = O ANA KADARKI EN YUKSEK seviyeyi asan adim. Sadece "gun-gune
   // yukselis" saymak yanlisti: 1 gunluk cukurdan geri donusu ayri bir kademe
@@ -2622,31 +2692,11 @@ function zamMarketDurumu(u) {
   if (!Array.isArray(kayitlar)) return bos;
   const satilan = (fiyatlariTemizle(u.market_fiyatlari).gecerli || [])
     .map(f => f.market).filter(m => m && marketVarMi(m));
-  const pencereBas = _zamGunISO(29);
-  const mk = {};
-  kayitlar.forEach(k => {
-    if (!k || !k.t || !(k.f > 0)) return;
-    (mk[k.m] = mk[k.m] || []).push(k);
-  });
-  Object.values(mk).forEach(a => a.sort((x, y) => x.t < y.t ? -1 : 1));
   const zamli = [], sabit = [];
   satilan.forEach(m => {
-    const a = mk[m];
-    if (!a || !a.length) return;
-    const sonHafta = [];
-    for (let i = 6; i >= 0; i--) {
-      const gs = _zamGunISO(i);
-      let son = null;
-      for (const k of a) { if (k.t <= gs) son = k; else break; }
-      if (son) sonHafta.push(son.f);
-    }
-    if (sonHafta.length < 7) return;
-    const ortSon = sonHafta.reduce((x, y) => x + y, 0) / sonHafta.length;
-    const eski = a.filter(k => k.t < pencereBas);
-    if (eski.length < ZAM_MIN_KAYIT) return;
-    const zirve = Math.max.apply(null, eski.map(k => k.f));
-    const artis = ((ortSon - zirve) / zirve) * 100;
-    (artis >= ZAM_ESIK ? zamli : sabit).push(m);
+    const r = zamMarketArtisi(u._sid, m);
+    if (!r) return;                 // olculemedi: ne zamli ne sabit say
+    (r.artis >= ZAM_ESIK ? zamli : sabit).push(m);
   });
   return { satilan: satilan, zamli: zamli, sabit: sabit };
 }
@@ -2679,10 +2729,14 @@ function zamYayginlikHTML(u) {
   if (d.satilan.length === 1) {
     // Tek markette satılıyor: "başka markette aynı" DİYEMEYİZ, orada satılmıyor.
     metin = `Yalnızca ${_trBulunma(ad(d.satilan[0]))} satılıyor`;
-  } else if (d.zamli.length && d.zamli.length < d.satilan.length) {
+  } else if (d.zamli.length && d.sabit.length) {
+    // "aynı" iddiası YALNIZCA gerçekten ölçebildiğimiz marketler için.
     metin = `Sadece ${_trBulunma(d.zamli.map(ad).join(', '))} zamlandı · ${d.sabit.map(ad).join(', ')} aynı`;
-  } else if (d.zamli.length) {
+  } else if (d.zamli.length && d.zamli.length === d.satilan.length) {
     metin = `${d.satilan.length} marketin ${d.zamli.length}'sinde zamlandı`;
+  } else if (d.zamli.length) {
+    // Diğer market(ler) ölçülemedi — "aynı" diyemeyiz, yalnızca olguyu söyle.
+    metin = `${_trBulunma(d.zamli.map(ad).join(', '))} zamlandı`;
   } else {
     return '';
   }
@@ -2690,16 +2744,26 @@ function zamYayginlikHTML(u) {
 }
 
 // DETAY: tarih, kademeler, kategori bağlamı.
-function zamDetayHTML(u) {
-  if (!u || !u._sid || !_gecmisCache) return '';
-  const kad = zamKademeleri(u._sid);
-  if (!kad.length) return '';
-  const capa = zamOncekiZirve(u._sid);
-  const seri = otuzGunlukSeri(u._sid);
-  if (!capa || seri.length < 30) return '';
-  const sonHafta = seri.slice(23, 30).reduce((a, b) => a + b, 0) / 7;
-  if (((sonHafta - capa.zirve) / capa.zirve) * 100 < ZAM_ESIK) return '';
+// Urunun EN COK zamlanan marketi. Hem detay blogu hem al/bekle bastirmasi
+// bunu kullaniyor (HTML kurmadan karar verilebilsin diye ayri fonksiyon).
+function zamDurumu(u) {
+  if (!u || !u._sid || !_gecmisCache) return null;
+  const gecerli = fiyatlariTemizle(u.market_fiyatlari).gecerli.filter(f => f.fiyat > 0);
+  let enIyi = null;
+  gecerli.forEach(f => {
+    if (!marketVarMi(f.market)) return;
+    const r = zamMarketArtisi(u._sid, f.market);
+    if (!r || r.artis < ZAM_ESIK) return;
+    if (!enIyi || r.artis > enIyi.artis) enIyi = { market: f.market, ...r };
+  });
+  return enIyi;
+}
 
+function zamDetayHTML(u) {
+  const durum = zamDurumu(u);
+  if (!durum) return '';
+  const kad = zamKademeleri(u._sid, durum.market);
+  if (!kad.length) return '';
   const son = kad[kad.length - 1];
   const satirlar = [];
   if (kad.length === 1) {
@@ -2722,7 +2786,7 @@ function zamDetayHTML(u) {
     katSatir = `<div class="zam-detay-kat">${u.ana_kategori} kategorisinde bu ay ${yon}</div>`;
   }
   return `<div class="zam-detay">
-      <div class="zam-detay-baslik">Bu zam ne zaman oldu</div>
+      <div class="zam-detay-baslik">${MARKET_NAMES[durum.market] || durum.market} bu zammı ne zaman yaptı</div>
       <div class="zam-detay-govde">${satirlar.join(' · ')}</div>
       ${katSatir}
     </div>`;
@@ -2745,7 +2809,7 @@ async function renderZamSeridi() {
     // Kartta yer dar: rozet + EN GUCLU TEK bilgi (yayginlik). Tarih/kademe/
     // kategori baglami urun detayinda.
     list.innerHTML = secilen.map(x => _kartaRozetEkle(
-      _stripKartHTML(x.u, null), zamRozetHTML(x.artis) + zamYayginlikHTML(x.u)
+      _stripKartHTML(x.u, null), zamRozetHTML(x.artis, x.market) + zamYayginlikHTML(x.u)
     )).join('');
     const btn = document.getElementById('home-zam-paylas');
     if (btn) btn.style.display = '';

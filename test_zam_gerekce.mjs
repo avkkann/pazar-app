@@ -43,7 +43,7 @@ function kur(gecmis, urunler) {
     ustKategori: () => 'gida',
   };
   vm.createContext(ctx);
-  const sabitler = ['ZAM_ESIK', 'ZAM_MIN_KAYIT', 'ZAM_KADEME_ESIK', 'ZAM_KAT_MIN']
+  const sabitler = ['ZAM_ESIK', 'ZAM_MIN_KAYIT', 'ZAM_KADEME_ESIK', 'ZAM_KAT_MIN', 'ZAM_MARKA_MAX', 'ZAM_KAT_MAX']
     .map(s => { const m = APP.match(new RegExp('const ' + s + '\\s*=\\s*([0-9.]+)')); return m ? 'const ' + s + ' = ' + m[1] + ';' : ''; })
     .filter(Boolean).join('\n');
   const seriCache = APP.match(/let _seriCache[^\n]*\n/);
@@ -54,6 +54,7 @@ function kur(gecmis, urunler) {
     rakam ? rakam[0] : '',
     fnKaynak('otuzGunlukSeri'), fnKaynak('zamOncekiZirve'),
     fnKaynak('_zamGunISO'), fnKaynak('_zamTarihYazi'), fnKaynak('_trBulunma'),
+    fnKaynak('zamMarketSerisi'), fnKaynak('zamMarketArtisi'), fnKaynak('zamDurumu'),
     ...GEREKEN.map(fnKaynak)].join('\n'), ctx);
   return ctx;
 }
@@ -125,6 +126,21 @@ console.log('\n=== 2. YAYGINLIK ===');
   const dz = calis(c, 'zamYayginlikHTML(' + JSON.stringify(u) + ')').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
   ok('kart metni sabit kalan marketi ADIYLA soyluyor', /BİM/.test(dz), dz);
   ok('  "Sadece A101" diyor', /Sadece A101|Yalnızca A101/.test(dz), dz);
+}
+
+{
+  // 2 markette satiliyor ama digerinin serisi OLCULEMIYOR (tek kayit).
+  // "aynı" DIYEMEYIZ — olcemedigimiz markete iddia kurulmaz.
+  const g = { s: [{ t: gun(78), m: 'migros', f: 50 }, { t: gun(60), m: 'migros', f: 50 }, { t: gun(20), m: 'migros', f: 120 },
+                  { t: gun(20), m: 'a101', f: 55 }] };
+  const u = U('s', 'X', [{ market: 'migros', fiyat: 120 }, { market: 'a101', fiyat: 55 }]);
+  const c = kur(g, []);
+  const d = calis(c, 'zamMarketDurumu(' + JSON.stringify(u) + ')');
+  ok('olculemeyen market ne zamli ne sabit', d.zamli.length === 1 && d.sabit.length === 0, JSON.stringify(d));
+  const dz = calis(c, 'zamYayginlikHTML(' + JSON.stringify(u) + ')').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+  ok('  "aynı" iddiasi KURULMUYOR', !/aynı/.test(dz), dz);
+  ok('  bos market adi yazilmiyor', !/·\s*aynı/.test(dz) && !/,\s*aynı/.test(dz), dz);
+  ok('  yalnizca olgu: "Migros\'ta zamlandı"', /Migros'ta zamlandı/.test(dz), dz);
 }
 
 console.log('\n=== 3. KATEGORI BAGLAMI ===');
@@ -235,6 +251,37 @@ console.log('\n=== 5. EKRAN YERLESIMI ===');
   ok('  kartta detay blogu YOK (yer dar)', !/zamDetayHTML/.test(rz), '');
   const od = APP.slice(APP.indexOf('function openDetay'), APP.indexOf('function openDetay') + 5000);
   ok('detayda zamDetayHTML ciziliyor', /zamDetayHTML\s*\(/.test(od), '');
+}
+
+console.log('\n=== 5b. YIGIN: ZAM VARKEN AL/BEKLE SUSUYOR ===');
+{
+  const az = fnKaynak('alZamaniDurumu') || '';
+  ok('alZamaniDurumu zamDurumu ile susuyor', /zamDurumu\(u\)\)\s*return null/.test(az.replace(/\s+/g, ' ')),
+     az.split('\n').filter(l => /zamDurumu/.test(l)).join(' | '));
+  ok('  rozet kurali da duruyor', /indirimRozetiHesapla\(u\)\)\s*return null/.test(az.replace(/\s+/g, ' ')), '');
+  // davranis: zamli urunde al/bekle null
+  const ctx2 = (() => {
+    const c = {
+      console, Math, Date, JSON, Array, Object, Number, String, isNaN, Set, Map,
+      _gecmisCache: { s: [{ t: gun(78), m: 'a101', f: 60 }, { t: gun(60), m: 'a101', f: 60 },
+                          { t: gun(20), m: 'a101', f: 159 }] },
+      MARKET_NAMES: { a101: 'A101' },
+      fiyatlariTemizle: mf => ({ gecerli: (mf || []).filter(f => f && f.fiyat != null), gizlenen: [] }),
+      marketVarMi: () => true, supheliDurum: () => null, indirimRozetiHesapla: () => null,
+      gercekIndirimRozetiHesapla: () => null, tl: v => String(v),
+    };
+    vm.createContext(c);
+    const sb = ['ZAM_ESIK', 'ZAM_MIN_KAYIT', 'AL_ZAMANI_MIN_OYNAMA', 'AL_ZAMANI_TOLERANS']
+      .map(s => { const m = APP.match(new RegExp('const ' + s + '\\s*=\\s*([0-9.]+)')); return m ? 'const ' + s + ' = ' + m[1] + ';' : ''; }).join('\n');
+    vm.runInContext([sb, (APP.match(/let _seriCache[^\n]*\n/) || [''])[0],
+      fnKaynak('otuzGunlukSeri'), fnKaynak('_zamGunISO'), fnKaynak('zamMarketSerisi'),
+      fnKaynak('zamMarketArtisi'), fnKaynak('zamDurumu'), fnKaynak('alZamaniDurumu')].join('\n'), c);
+    return c;
+  })();
+  const zamliUrun = { _sid: 's', ad: 'Sprite', en_dusuk_fiyat: 159,
+                      market_fiyatlari: [{ market: 'a101', fiyat: 159 }] };
+  ok('zamli urunde zamDurumu VAR', calis(ctx2, 'zamDurumu(' + JSON.stringify(zamliUrun) + ')') !== null);
+  ok('  al/bekle blogu SUSUYOR', calis(ctx2, 'alZamaniDurumu(' + JSON.stringify(zamliUrun) + ')') === null);
 }
 
 console.log('\n=== 6. TASARIM: AMBER, KIRMIZI YOK ===');

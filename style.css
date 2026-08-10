@@ -1228,6 +1228,7 @@
   font-size:11px; font-weight:600; white-space:nowrap;
   background:#FFFBEB; color:#92400E;
 }
+.zam-rozet-mkt { font-weight:500; opacity:.8; }
 /* Kartta yayginlik satiri — rozetin altinda, urun adindan sonuk. */
 .zam-yayginlik {
   font-size:10px; line-height:1.3; color:#92400E; margin-top:4px;

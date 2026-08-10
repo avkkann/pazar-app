@@ -50,13 +50,15 @@ function kur(gecmis, urunler, opts = {}) {
   };
   ctx.window = ctx;
   vm.createContext(ctx);
-  const sabitler = ['ZAM_ESIK', 'ZAM_MAX', 'ZAM_MIN', 'ZAM_MIN_KAYIT']
+  const sabitler = ['ZAM_ESIK', 'ZAM_MAX', 'ZAM_MIN', 'ZAM_MIN_KAYIT', 'ZAM_MARKA_MAX', 'ZAM_KAT_MAX']
     .map(s => { const m = APP.match(new RegExp('const ' + s + '\\s*=\\s*([0-9.]+)')); return m ? 'const ' + s + ' = ' + m[1] + ';' : ''; })
     .filter(Boolean).join('\n');
   const seriCache = APP.match(/let _seriCache[^\n]*\n/);
   vm.runInContext([
     sabitler, seriCache ? seriCache[0] : '',
-    fnKaynak('otuzGunlukSeri'), fnKaynak('zamOncekiZirve'), fnKaynak('zamAdaylari'),
+    fnKaynak('otuzGunlukSeri'), fnKaynak('_zamGunISO'),
+    fnKaynak('zamMarketSerisi'), fnKaynak('zamMarketArtisi'),
+    fnKaynak('zamOncekiZirve'), fnKaynak('_zamMarka'), fnKaynak('zamAdaylari'),
   ].join('\n'), ctx);
   return ctx;
 }
@@ -127,10 +129,14 @@ console.log('\n=== 3. ESIK VE SINIRLAR ===');
      calis(kur(g, [U('x', 'Tek Kayit', 200)]), 'zamAdaylari()').length === 0);
 }
 {
+  // NOT: cesitlilik kurali (marka<=2, alt kategori<=3) yuzunden her urun
+  // FARKLI marka ve kategoriden olmali, yoksa 10'a varmadan kesilir.
   const g = {}; const urunler = [];
   for (let i = 0; i < 15; i++) {
     g['u' + i] = [{ t: gun(80), m: 'bim', f: 100 }, { t: gun(60), m: 'bim', f: 100 }, { t: gun(20), m: 'bim', f: 200 + i }];
-    urunler.push(U('u' + i, 'Urun ' + i, 200 + i));
+    const p = U('u' + i, 'Marka' + i + ' Urun', 200 + i);
+    p.ana_kategori = 'Kategori' + i;
+    urunler.push(p);
   }
   const liste = calis(kur(g, urunler), 'zamAdaylari()');
   ok('en fazla 10 urun', liste.length === 10, liste.length);
@@ -145,6 +151,68 @@ console.log('\n=== 4. MEVSIM TUZAGI: TAZE URUN ALINMIYOR ===');
   ok('taze meyve listeye GIRMIYOR', calis(c, 'zamAdaylari()').length === 0);
   const za = fnKaynak('zamAdaylari') || '';
   ok('  ust kategori ile eleniyor', /ustKategori\s*\(/.test(za) && /meyve|sebze/.test(za), '');
+}
+
+console.log('\n=== 4b. LISTE URUN-MARKET CIFTINDEN KURULUYOR ===');
+{
+  // a101 zamlandi, bim ayni. Tek-seri yonteminde min bim'i izler ve urun
+  // esigi GECEMEZ. Market bazli olcutle a101 yakalanmali.
+  const g = { x: [
+    { t: gun(78), m: 'a101', f: 50 }, { t: gun(60), m: 'a101', f: 50 }, { t: gun(20), m: 'a101', f: 120 },
+    { t: gun(78), m: 'bim', f: 52 },  { t: gun(60), m: 'bim', f: 52 },  { t: gun(20), m: 'bim', f: 53 },
+  ] };
+  const u = [{ _sid: 'x', _id: 'x', ad: 'Test Deterjan', ana_kategori: 'Gıda',
+               en_dusuk_fiyat: 53, market_fiyatlari: [{ market: 'a101', fiyat: 120 }, { market: 'bim', fiyat: 53 }] }];
+  const liste = calis(kur(g, u), 'zamAdaylari()');
+  ok('bir markette zamlanan urun ARTIK yakalaniyor', liste.length === 1, JSON.stringify(liste.map(x => x.ad)));
+  ok('  zamlanan market kayitta', liste[0] && liste[0].market === 'a101', JSON.stringify(liste[0] && liste[0].market));
+  ok('  artis o marketin kendi serisinden (%140)', liste[0] && Math.round(liste[0].artis) === 140, liste[0] && liste[0].artis);
+  ok('  eski fiyat o marketin tepesi (50)', liste[0] && liste[0].eski === 50, liste[0] && liste[0].eski);
+}
+{
+  // ayni urun IKI markette zamli -> TEK kart
+  const g = { x: [
+    { t: gun(78), m: 'a101', f: 50 }, { t: gun(60), m: 'a101', f: 50 }, { t: gun(20), m: 'a101', f: 120 },
+    { t: gun(78), m: 'bim', f: 52 },  { t: gun(60), m: 'bim', f: 52 },  { t: gun(20), m: 'bim', f: 110 },
+  ] };
+  const u = [{ _sid: 'x', _id: 'x', ad: 'Iki Markette', ana_kategori: 'Gıda',
+               en_dusuk_fiyat: 110, market_fiyatlari: [{ market: 'a101', fiyat: 120 }, { market: 'bim', fiyat: 110 }] }];
+  const liste = calis(kur(g, u), 'zamAdaylari()');
+  ok('ayni urun icin TEK kart', liste.length === 1, JSON.stringify(liste.map(x => x.ad + '/' + x.market)));
+  ok('  en yuksek artisli market temsil ediyor', liste[0] && liste[0].market === 'a101', liste[0] && liste[0].market);
+}
+
+console.log('\n=== 4c. CESITLILIK KURALI (marka<=2, alt kategori<=3) ===');
+{
+  const g = {}; const u = [];
+  // ayni marka + ayni alt kategoride 6 urun
+  for (let i = 0; i < 6; i++) {
+    g['m' + i] = [{ t: gun(78), m: 'a101', f: 50 }, { t: gun(60), m: 'a101', f: 50 }, { t: gun(20), m: 'a101', f: 200 - i }];
+    u.push({ _sid: 'm' + i, _id: 'm' + i, ad: 'Garnier Urun ' + i, ana_kategori: 'Cilt Bakımı',
+             en_dusuk_fiyat: 200 - i, market_fiyatlari: [{ market: 'a101', fiyat: 200 - i }] });
+  }
+  const liste = calis(kur(g, u), 'zamAdaylari()');
+  ok('ayni markadan en fazla 2', liste.length === 2, JSON.stringify(liste.map(x => x.ad)));
+}
+{
+  const g = {}; const u = [];
+  // ayni alt kategoride 6 FARKLI marka
+  const markalar = ['Aa', 'Bb', 'Cc', 'Dd', 'Ee', 'Ff'];
+  markalar.forEach((mk, i) => {
+    g['k' + i] = [{ t: gun(78), m: 'a101', f: 50 }, { t: gun(60), m: 'a101', f: 50 }, { t: gun(20), m: 'a101', f: 200 - i }];
+    u.push({ _sid: 'k' + i, _id: 'k' + i, ad: mk + ' Urun', ana_kategori: 'Cilt Bakımı',
+             en_dusuk_fiyat: 200 - i, market_fiyatlari: [{ market: 'a101', fiyat: 200 - i }] });
+  });
+  const liste = calis(kur(g, u), 'zamAdaylari()');
+  ok('ayni alt kategoriden en fazla 3', liste.length === 3, JSON.stringify(liste.map(x => x.ad)));
+}
+{
+  // kural yuzunden 10'a dolmuyorsa ESIK DUSURULMEZ, az urunle gosterilir
+  const za = fnKaynak('zamAdaylari') || '';
+  ok('esik dinamik degil (tek ZAM_ESIK karsilastirmasi)',
+     (za.match(/ZAM_ESIK/g) || []).length <= 2, (za.match(/ZAM_ESIK/g) || []).length + ' kez geciyor');
+  ok('  marka siniri kodda', /ZAM_MARKA_MAX/.test(za), '');
+  ok('  alt kategori siniri kodda', /ZAM_KAT_MAX/.test(za), '');
 }
 
 console.log('\n=== 5. SEHIR FILTRESI ===');
