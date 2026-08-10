@@ -1494,20 +1494,58 @@ async function gecmisVeriGetir() {
 
 gecmisVeriGetir();
 
+// ═══ 30 GÜNLÜK SERİ — son 30 günle ilgili TEK KAYNAK ════
+// Kayitlar yalnizca fiyat DEGISINCE yaziliyor. Ham kayit listesini tarihe gore
+// suzmek iki hata birden yapiyordu:
+//   1) Sureyi yok sayiyordu — 29 gun 100 TL, 1 gun 60 TL olan urun ham listede
+//      iki esit deger gibi gorunuyordu (olcum: %33,2 farkli dilim).
+//   2) Pencere basinda YURURLUKTE olan ama kaydi daha eski tarihli fiyati hic
+//      gormuyordu. Ornek: BIM 2026-06-10'da 79 TL, sonraki BIM kaydi 07-31.
+//      Pencerenin ilk ~19 gunu BIM 79 TL'ydi ama kayit "pencere disi" sayiliyordu.
+//      Bu yuzden "30 gunun en dusugu" rozeti olculebilen urunlerin %21,5'inde
+//      YANLIS iddia ediyordu.
+// Seri carry-forward ile gun gun kuruluyor; indirim rozeti, gercek indirim
+// rozeti ve "simdi al / bekle" blogunun UCU DE buradan besleniyor.
+let _seriCache = new Map();
+
+function otuzGunlukSeri(sid) {
+  if (!sid || !_gecmisCache) return [];
+  const bellek = _seriCache.get(sid);
+  if (bellek) return bellek;
+  const kayitlar = _gecmisCache[sid];
+  if (!Array.isArray(kayitlar) || !kayitlar.length) return [];
+  const marketler = {};
+  kayitlar.forEach(k => {
+    if (!k || !k.t || k.f == null || !(k.f > 0)) return;
+    const m = k.m || '?';
+    if (!marketler[m]) marketler[m] = [];
+    marketler[m].push(k);
+  });
+  Object.values(marketler).forEach(a => a.sort((x, y) => x.t < y.t ? -1 : 1));
+  const bas = new Date();
+  bas.setDate(bas.getDate() - 29);
+  const seri = [];
+  for (let i = 0; i < 30; i++) {
+    const g = new Date(bas);
+    g.setDate(g.getDate() + i);
+    const gs = g.toISOString().slice(0, 10);
+    let min = null;
+    Object.values(marketler).forEach(a => {
+      let son = null;
+      for (const k of a) { if (k.t <= gs) son = k; else break; }
+      if (son && (min === null || son.f < min)) min = son.f;
+    });
+    if (min !== null) seri.push(min);
+  }
+  _seriCache.set(sid, seri);
+  return seri;
+}
+
 function indirimRozetiHesapla(urun) {
   if (!urun || !urun._sid) return null;
-  if (!_gecmisCache) return null;
-  const kayitlar = _gecmisCache[urun._sid];
-  if (!kayitlar || !Array.isArray(kayitlar) || kayitlar.length < 2) return null;
-
-  const bugun = new Date();
-  const otuzGunOnce = new Date(bugun);
-  otuzGunOnce.setDate(otuzGunOnce.getDate() - 30);
-  const limit = otuzGunOnce.toISOString().slice(0, 10);
-  const sonAy = kayitlar.filter(k => k && k.t && k.t >= limit);
-  if (sonAy.length < 2) return null;
-
-  const zirve = Math.max(...sonAy.map(k => k.f));
+  const seri = otuzGunlukSeri(urun._sid);
+  if (seri.length < 2) return null;
+  const zirve = Math.max.apply(null, seri);
   const simdi = urun.en_dusuk_fiyat;
   if (zirve == null || simdi == null || zirve <= simdi) return null;
 
@@ -1601,15 +1639,9 @@ function gercekIndirimRozetiHesapla(u) {
   if (supheliDurum(u)) return null;
   const ir = indirimRozetiHesapla(u);
   if (!ir) return null;
-  if (!_gecmisCache) return null;
-  const kayitlar = _gecmisCache[u._sid];
-  if (!kayitlar || !Array.isArray(kayitlar) || kayitlar.length < 2) return null;
-  const otuzGunOnce = new Date();
-  otuzGunOnce.setDate(otuzGunOnce.getDate() - 30);
-  const limit = otuzGunOnce.toISOString().slice(0, 10);
-  const sonAy = kayitlar.filter(k => k && k.t && k.f != null && k.t >= limit);
-  if (sonAy.length < 2) return null;
-  const enDusuk = Math.min(...sonAy.map(k => k.f));
+  const seri = otuzGunlukSeri(u._sid);
+  if (seri.length < 2) return null;
+  const enDusuk = Math.min.apply(null, seri);
   if (u.en_dusuk_fiyat == null || u.en_dusuk_fiyat > enDusuk + 0.005) return null;
   return { yuzde: ir.yuzde };
 }
@@ -1622,46 +1654,8 @@ function gercekIndirimRozetiHTML(rozet, kisa) {
 }
 
 // ═══ "Şimdi al / bekle" ═════════════════════════════════
-// Kayitlar yalnizca fiyat DEGISINCE yaziliyor, o yuzden ham kayit listesi sureyi
-// yok sayar: 29 gun 100 TL, 1 gun 60 TL olan urun ham listede iki esit deger gibi
-// gorunur. Bu yuzden 30 gunluk seri carry-forward ile GUN GUN kuruluyor
-// (olcum: ham listeyle %33,2 farkli dilim cikiyordu).
-// Yuzdelik dilim de KULLANILMIYOR: basamakli seride mod ile uc ayni degere
-// dusunce p20, urun tam maksimumdayken "alt dilim" ilan ediyordu (olcum: ithal
-// yaban mersini, bugun=69,5 = serinin maksimumu, naif p20 "alt" diyordu).
-// Referans dogrudan 30 gunun min/max'i.
 const AL_ZAMANI_MIN_OYNAMA = 0.05;  // 30 gunde en az %5 oynama yoksa yorum yok
 const AL_ZAMANI_TOLERANS = 0.02;    // uca %2 yakinlik "ucta" sayilir
-
-function otuzGunlukSeri(sid) {
-  if (!sid || !_gecmisCache) return [];
-  const kayitlar = _gecmisCache[sid];
-  if (!Array.isArray(kayitlar) || !kayitlar.length) return [];
-  const marketler = {};
-  kayitlar.forEach(k => {
-    if (!k || !k.t || k.f == null || !(k.f > 0)) return;
-    const m = k.m || '?';
-    if (!marketler[m]) marketler[m] = [];
-    marketler[m].push(k);
-  });
-  Object.values(marketler).forEach(a => a.sort((x, y) => x.t < y.t ? -1 : 1));
-  const bas = new Date();
-  bas.setDate(bas.getDate() - 29);
-  const seri = [];
-  for (let i = 0; i < 30; i++) {
-    const g = new Date(bas);
-    g.setDate(g.getDate() + i);
-    const gs = g.toISOString().slice(0, 10);
-    let min = null;
-    Object.values(marketler).forEach(a => {
-      let son = null;
-      for (const k of a) { if (k.t <= gs) son = k; else break; }
-      if (son && (min === null || son.f < min)) min = son.f;
-    });
-    if (min !== null) seri.push(min);
-  }
-  return seri;
-}
 
 function alZamaniDurumu(u) {
   if (!u || !u._sid) return null;

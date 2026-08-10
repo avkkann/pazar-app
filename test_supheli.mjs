@@ -63,7 +63,11 @@ function kur(puanKayitlari, gecmis) {
     indirimRozetiHTML: (r, kisa) => '<span class="indirim-rozet ' + (kisa ? 'buyuk-kisa' : 'buyuk') + '">Büyük indirim</span>',
   };
   vm.createContext(ctx);
+  const seriCache = APP.match(/let _seriCache[^\n]*\n/);
   const kaynak = [
+    // gercekIndirimRozetiHesapla artik 30 gunluk seriden besleniyor (tek kaynak).
+    seriCache ? seriCache[0] : '',
+    fnKaynak('otuzGunlukSeri'),
     objKaynak('SUPHELI_SEBEP_CUMLE'),
     objKaynak('SUPHELI_ZAMANSAL_SEBEPLER'),
     fnKaynak('supheliDurum'),

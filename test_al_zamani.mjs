@@ -35,7 +35,7 @@ const gun = n => { const d = new Date(); d.setDate(d.getDate() - n); return d.to
 
 function kur(gecmis, opts = {}) {
   const ctx = {
-    console, Math, Date, JSON, Array, Object, Number, String, isNaN, Set, parseFloat,
+    console, Math, Date, JSON, Array, Object, Number, String, isNaN, Set, Map, parseFloat,
     _gecmisCache: gecmis,
     tl: v => Number(v).toFixed(2).replace('.', ',') + ' ₺',
     lcIcon: () => '<svg></svg>',
@@ -48,7 +48,8 @@ function kur(gecmis, opts = {}) {
   const sabitler = ['AL_ZAMANI_MIN_OYNAMA', 'AL_ZAMANI_TOLERANS']
     .map(s => { const m = APP.match(new RegExp('const ' + s + '\\s*=\\s*([0-9.]+)')); return m ? 'const ' + s + ' = ' + m[1] + ';' : ''; })
     .filter(Boolean).join('\n');
-  vm.runInContext([sabitler, ...GEREKEN.map(fnKaynak)].join('\n'), ctx);
+  const seriCache = APP.match(/let _seriCache[^\n]*\n/);
+  vm.runInContext([sabitler, seriCache ? seriCache[0] : '', ...GEREKEN.map(fnKaynak)].join('\n'), ctx);
   return ctx;
 }
 const calis = (ctx, i) => vm.runInContext(i, ctx);

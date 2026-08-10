@@ -40,9 +40,12 @@ function kur(gecmis, alarmMap) {
     fiyatlariTemizle: mf => ({ gecerli: (mf || []).filter(f => f && f.fiyat != null), gizlenen: [] }),
     enDusukFiyat: u => { const a = (u.market_fiyatlari || []).map(f => f.fiyat).filter(x => x > 0); return a.length ? Math.min.apply(null, a) : null; },
   };
+  ctx.Map = Map;
   ctx.window = { pazarAlarmMap: alarmMap || new Map() };
   vm.createContext(ctx);
+  const seriCache = APP.match(/let _seriCache[^\n]*\n/);
   vm.runInContext([
+    seriCache ? seriCache[0] : '',
     fnKaynak('otuzGunlukSeri'),
     fnKaynak('otuzGunMinFiyat'), fnKaynak('alarmOnerisi'), fnKaynak('alarmOneriHTML'),
     fnKaynak('fiyatAlarmiBlogu'),
