@@ -2551,6 +2551,10 @@ async function renderZamSeridi() {
   const list = document.getElementById('home-zam-list');
   if (!wrap || !list) return;
   try {
+    // catCache LAZY dolduruluyor. loadData icinde cagrilirsa catCache henuz bos
+    // olur ve hicbir aday bulunamaz — bolum sessizce gizli kalirdi.
+    // renderTuzaklarSeridi ile ayni desen: once tum kategoriler.
+    await loadAllCats();
     await gecmisVeriGetir();
     const secilen = zamAdaylari();
     if (secilen.length < ZAM_MIN) { wrap.style.display = 'none'; return; }
@@ -3781,11 +3785,12 @@ function loadData() {
     renderMevsimSeridi();
     renderDusenlerSeridi();
     renderSupheliSeridi();
-    renderZamSeridi();
+    // Zam seridi 16.790 urun tariyor ve loadAllCats gerektiriyor — tuzaklarla
+    // ayni sekilde ilk boyamayi bloklamasin diye erteleniyor.
     if ('requestIdleCallback' in window) {
-requestIdleCallback(() => { renderTuzaklarSeridi(); }, { timeout: 3000 });
+requestIdleCallback(() => { renderTuzaklarSeridi(); renderZamSeridi(); }, { timeout: 3000 });
     } else {
-setTimeout(() => { renderTuzaklarSeridi(); }, 1500);
+setTimeout(() => { renderTuzaklarSeridi(); renderZamSeridi(); }, 1500);
     }
   }).catch((e) => { console.error('[loadData]', e); renderCatGrid(); saveSepet(); renderMevsimSeridi(); renderDusenlerSeridi(); renderSupheliSeridi(); if ('requestIdleCallback' in window) { requestIdleCallback(() => { renderTuzaklarSeridi(); }, { timeout: 3000 }); } else { setTimeout(() => { renderTuzaklarSeridi(); }, 1500); } });
 }

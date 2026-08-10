@@ -179,6 +179,14 @@ console.log('\n=== 7. YER: "Bu indirimlere dikkat"in HEMEN ALTI ===');
   ok('baslik dogru', /Bu ay en çok zamlananlar/.test(HTML), '');
   ok('alt baslik dogru', /Son 30 günde fiyatı en çok artan ürünler/.test(HTML), '');
   ok('loadData renderZamSeridi cagiriyor', /renderZamSeridi\s*\(/.test(fnKaynak('loadData') || ''), '');
+  // catCache LAZY: loadData icinde dogrudan cagrilirsa havuz bos olur ve bolum
+  // sessizce gizli kalir. Canlida tam bunu yasadik.
+  const rz2 = fnKaynak('renderZamSeridi') || '';
+  ok('  renderZamSeridi once loadAllCats bekliyor', /await\s+loadAllCats\s*\(/.test(rz2),
+     rz2.split('\n').filter(l => /await/.test(l)).join(' | '));
+  ok('  ilk boyamayi bloklamiyor (idle/timeout icinde)',
+     /requestIdleCallback\([^)]*renderZamSeridi|setTimeout\(\s*\(\)\s*=>\s*\{[^}]*renderZamSeridi/.test((fnKaynak('loadData') || '').replace(/\s+/g, ' ')),
+     '');
 }
 
 console.log('\n=== 8. PAYLASIM ===');
