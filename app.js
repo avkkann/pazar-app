@@ -167,7 +167,7 @@
           closeAuthSheet();
         }
       }
-    } catch (err) {
+    } catch (err) { console.warn('[onboarding] kapanis kaydedilemedi, ekran tekrar cikabilir:', err && err.message);
       errEl.textContent = 'Beklenmeyen bir hata: ' + err.message;
       errEl.style.display = 'block';
     } finally {
@@ -204,7 +204,7 @@
         .eq('id', window.pazarAuth.user.id)
         .single();
       if (!error) pazarProfile = data;
-    } catch (e) { /* sessiz */ }
+    } catch (e) { console.warn('[profil] kullanici profili yuklenemedi, ad/avatar bos kalacak:', e && e.message); }
   }
 
   window.renderProfilAuth = function() {
@@ -384,7 +384,7 @@
     await Promise.all(kategoriler.map(async kat => {
       try {
         if (typeof loadCat === 'function' && !productMap[kat + '_0']) await loadCat(kat);
-      } catch(e) {}
+      } catch(e) { console.warn('[favori] kategori yuklenemedi, favoriler eksik gorunebilir:', kat, e && e.message); }
     }));
 
     // productMap key formatı tutarlı değil — Object.values'tan sidMap oluştur
@@ -539,7 +539,7 @@
       const reg = await navigator.serviceWorker.ready;
       const sub = await reg.pushManager.getSubscription();
       el.textContent = sub ? 'Açık ✓' : 'Alarm kurduğun ürünler için haber al';
-    } catch (e) { el.textContent = 'Alarm kurduğun ürünler için haber al'; }
+    } catch (e) { /* bildirim izni okunamadi: altta notr aciklama metni yaziliyor, kullanici yine dogru bilgi goruyor */ el.textContent = 'Alarm kurduğun ürünler için haber al'; }
   }
 
   window.bildirimAbonelikToggle = async function() {
@@ -806,7 +806,7 @@ async function sablonKaydetUI() {
   if (yuklenecekler.length) {
     try {
       await Promise.all(yuklenecekler.map(slug => loadCat(slug)));
-    } catch (e) {
+    } catch (e) { console.warn('[sablon] liste kaydedilemedi, kullanicinin listesi kayboldu:', e && e.message);
       await modalAc({
         title: 'Bağlantı hatası',
         msg: 'Ürün verileri yüklenemedi. İnternet bağlantınızı kontrol edin.',
@@ -862,7 +862,7 @@ async function sablonYukleUI(id) {
   if (yuklenecekler.length) {
     try {
       await Promise.all(yuklenecekler.map(slug => loadCat(slug)));
-    } catch (e) {
+    } catch (e) { console.warn('[sablon] kayitli liste yuklenemedi:', e && e.message);
       await modalAc({
         title: 'Bağlantı hatası',
         msg: 'Ürün verileri yüklenirken hata oluştu. Lütfen internet bağlantınızı kontrol edin.',
@@ -1444,7 +1444,7 @@ async function gecmisVeriGetir() {
       const r = await fetch('./data/gecmis_fiyatlar.json');
       if (!r.ok) throw new Error('fetch failed');
       _gecmisCache = await r.json();
-    } catch(e) {
+    } catch(e) { console.warn('[gecmis] gecmis_fiyatlar.json yuklenemedi; rozetler, alarm onerisi ve al/bekle SESSIZCE cikmaz:', e && e.message);
       _gecmisCache = {};
     }
     return _gecmisCache;
@@ -1705,7 +1705,7 @@ async function supheliPuanlariYukle() {
     if (error || !data) return null;
     _puanCache = new Map(data.map(r => [r._sid, r]));
     return _puanCache;
-  } catch (e) {
+  } catch (e) { console.warn('[supheli] indirim_supheli puanlari alinamadi, sahte-indirim rozetleri hic cizilmeyecek:', e && e.message);
     return null;
   }
 }
@@ -2393,7 +2393,7 @@ async function fiyatBildirimleriYukle() {
       if (sid && r.market) _fiyatBildirimMap.set(sid + '|' + r.market, Number(adet) || 0);
     });
     _bildirimYetkiVar = true;
-  } catch (e) { /* sessiz düş */ }
+  } catch (e) { console.warn('[bildirim] fiyat bildirim sayilari alinamadi, rozetler hic cikmayacak:', e && e.message); }
 }
 document.addEventListener('DOMContentLoaded', fiyatBildirimleriYukle);
 
@@ -2471,7 +2471,7 @@ async function fiyatBildirAc(urunId) {
       kullanici_id: (window.pazarAuth && window.pazarAuth.user) ? window.pazarAuth.user.id : null
     });
     if (error) { toastGoster('Bildirim gönderilemedi'); return; }
-  } catch (e) {
+  } catch (e) { console.warn('[bildirim] fiyat bildirim penceresi acilamadi:', e && e.message);
     toastGoster('Bildirim gönderilemedi');
     return;
   }
@@ -2600,7 +2600,7 @@ async function renderTuzaklarSeridi() {
         }
       }
     }
-  } catch(e){}
+  } catch(e){ /* sessionStorage okunamadi/bozuk: onbellek atlanip serit bastan hesaplanacak, veri kaybi yok */ }
 
   await loadAllCats();
 
@@ -2642,7 +2642,7 @@ async function renderTuzaklarSeridi() {
       t: Date.now(),
       ids: secililer.map(x => x.u._id)
     }));
-  } catch(e){}
+  } catch(e){ /* sessionStorage yazilamadi (kota/gizli mod): serit calisiyor, sadece bir dahaki acilista yeniden hesaplanir */ }
 }
 
 function _kartaRozetEkle(html, rozetHTML) {
@@ -2695,7 +2695,7 @@ async function renderDusenlerSeridi() {
       indirimRozetiHTML({ tip: u.dusus_yuzde >= 25 ? 'buyuk' : 'normal', yuzde: u.dusus_yuzde }, true)
     )).join('');
     wrap.style.display = '';
-  } catch (e) {
+  } catch (e) { console.warn('[dusenler] serit cizilemedi, bolum gizlenecek:', e && e.message);
     wrap.style.display = 'none';
   }
 }
@@ -2755,7 +2755,7 @@ async function renderSupheliSeridi() {
       _stripKartHTML(x.u, null), supheliRozetHTML()
     )).join('');
     wrap.style.display = '';
-  } catch (e) {
+  } catch (e) { console.warn('[supheli] serit cizilemedi, bolum gizlenecek:', e && e.message);
     wrap.style.display = 'none';
   }
 }
@@ -3162,7 +3162,7 @@ async function renderZamSeridi() {
     const btn = document.getElementById('home-zam-paylas');
     if (btn) btn.style.display = '';
     wrap.style.display = '';
-  } catch (e) {
+  } catch (e) { console.warn('[zam] serit cizilemedi, bolum gizlenecek:', e && e.message);
     wrap.style.display = 'none';
   }
 }
@@ -3174,7 +3174,7 @@ function paylasZamlar() {
   const metin = `Son 30 günde en çok zamlananlar:\n${satirlar}`;
   const url = 'https://avkkann.github.io/pazar-app/';
   if (navigator.share) {
-    navigator.share({ title: 'Pazar — Bu ay en çok zamlananlar', text: metin, url: url }).catch(() => {});
+    navigator.share({ title: 'Pazar — Bu ay en çok zamlananlar', text: metin, url: url }).catch(() => { /* kullanici paylasim penceresini kapatti veya iptal etti: hata degil, sessiz gecmek DOGRU */ });
     return;
   }
   window.open('https://wa.me/?text=' + encodeURIComponent(metin + '\n' + url), '_blank');
@@ -3627,7 +3627,7 @@ function marketfiyatiAra(keywords) {
     body: JSON.stringify({ keywords, pages: 0, size: 20 })
   })
   .then(r => r.ok ? r.json() : null)
-  .catch(() => null);
+  .catch(e => { console.warn('[arama] marketfiyati aramasi basarisiz, sonuc bos donecek:', e && e.message); return null; });
 }
 
 function mfGorsel(item) { return ''; }
@@ -3654,7 +3654,7 @@ async function mfUrunGorseliBul(id, title) {
     const found = j.content?.find(it => it.imageUrl)?.imageUrl || null;
     window.__mfImgCache[id] = found;
     return found;
-  } catch (e) {
+  } catch (e) { console.warn('[gorsel] marketfiyati gorseli alinamadi, placeholder cizilecek:', e && e.message);
     window.__mfImgCache[id] = null;
     return null;
   }
@@ -3997,7 +3997,7 @@ function paylasSepet() {
   const metin = `🛒 *Pazar Listem* — ${sepet.length} ürün\n\n${satirlar.join('\n')}\n\n${ozet}\n\n📲 Sen de dene → ${location.origin}${location.pathname}`;
 
   if (navigator.share) {
-    navigator.share({ title: 'Pazar Listem', text: metin }).catch(() => {});
+    navigator.share({ title: 'Pazar Listem', text: metin }).catch(() => { /* kullanici paylasim penceresini kapatti veya iptal etti: hata degil, sessiz gecmek DOGRU */ });
   } else {
     const url = 'https://wa.me/?text=' + encodeURIComponent(metin);
     window.open(url, '_blank');
@@ -4392,7 +4392,7 @@ function loadData() {
     renderTuzaklarSeridi();
     renderZamSeridi();
   }).catch((e) => {
-    console.error('[loadData]', e);
+    console.error('[loadData] hal.json yuklenemedi veya render zinciri kirildi; kategori izgarasi ve seritler yine cizilecek:', e && e.message, e);
     renderCatGrid(); saveSepet(); renderMevsimSeridi();
     renderDusenlerSeridi(); renderSupheliSeridi(); renderTuzaklarSeridi(); renderZamSeridi();
   });
@@ -4670,7 +4670,7 @@ async function duzenleKullaniciAdi() {
     if (error) { await modalAc({ title: 'Kaydedilemedi', msg: error.message, okText: 'Tamam' }); return; }
     if (typeof pazarProfile === 'object' && pazarProfile) pazarProfile.ad = ad;
     if (typeof window.renderProfilAuth === 'function') window.renderProfilAuth();
-  } catch (e) {
+  } catch (e) { console.warn('[profil] kullanici adi kaydedilemedi:', e && e.message);
     await modalAc({ title: 'Hata', msg: e.message, okText: 'Tamam' });
   }
 }
@@ -4788,7 +4788,7 @@ function paylasEnflasyon() {
     + `${r.katilan} üründe 30 gün önce ${tl(r.eskiToplam)}, bugün ${tl(r.yeniToplam)}.`;
   const url = 'https://avkkann.github.io/pazar-app/';
   if (navigator.share) {
-    navigator.share({ title: 'Pazar — Senin enflasyonun', text: metin, url: url }).catch(() => {});
+    navigator.share({ title: 'Pazar — Senin enflasyonun', text: metin, url: url }).catch(() => { /* kullanici paylasim penceresini kapatti veya iptal etti: hata degil, sessiz gecmek DOGRU */ });
     return;
   }
   window.open('https://wa.me/?text=' + encodeURIComponent(metin + ' ' + url), '_blank');
@@ -4876,7 +4876,7 @@ function ilMarketVeriGetir() {
   _ilMarketPromise = fetch('./data/il_marketler.json')
     .then(r => { if (!r.ok) throw new Error('fetch failed'); return r.json(); })
     .then(d => { _ilMarketCache = d; return d; })
-    .catch(() => { _ilMarketCache = { iller: {} }; return _ilMarketCache; });
+    .catch(e => { console.warn('[sehir] il_marketler.json yuklenemedi, sehir filtresi TUM marketleri gosterecek:', e && e.message); _ilMarketCache = { iller: {} }; return _ilMarketCache; });
   return _ilMarketPromise;
 }
 
@@ -4884,7 +4884,7 @@ function sehirOku() {
   try {
     const v = localStorage.getItem(SEHIR_KEY);
     return v && String(v).trim() ? String(v) : null;
-  } catch (e) { return null; }
+  } catch (e) { return null; /* localStorage okunamadi (gizli mod): sehir secilmemis sayilir, TUM marketler gosterilir */ }
 }
 
 function sehirSec(il) {
@@ -4931,7 +4931,7 @@ function sehirDegisti(il) {
       const eski = JSON.parse(localStorage.getItem(TERCIH_MKT_KEY) || '[]');
       const yeni = (Array.isArray(eski) ? eski : []).filter(x => s.has(x));
       if (yeni.length !== (eski || []).length) localStorage.setItem(TERCIH_MKT_KEY, JSON.stringify(yeni));
-    } catch (e) { /* yoksay */ }
+    } catch (e) { /* localStorage tercih temizligi basarisiz: sehirde olmayan market secili kalir, marketVarMi zaten sizdirmiyor */ }
   }
   sehirPillleriUygula();
   if (typeof profilBolumleriCiz === 'function') profilBolumleriCiz();
@@ -4974,7 +4974,7 @@ function tercihMarketleriOku() {
     const v = JSON.parse(localStorage.getItem(TERCIH_MKT_KEY) || '[]');
     // marketVarMi: sehir degistiyse eski secimdeki olmayan zincir dısarıda kalır.
     return Array.isArray(v) ? v.filter(x => MARKET_NAMES[x] && marketVarMi(x)) : [];
-  } catch (e) { return []; }
+  } catch (e) { return []; /* localStorage okunamadi (gizli mod): market tercihi bos sayilir, filtre uygulanmaz */ }
 }
 function tercihMarketToggle(m) {
   if (!MARKET_NAMES[m]) return;
@@ -5046,13 +5046,13 @@ async function profilVerileriniYukle() {
     const { data } = await window.supabaseClient
       .from('urunler').select('son_senkron').order('son_senkron', { ascending: false }).limit(1);
     if (data && data[0]) window._profilSonSenkron = data[0].son_senkron;
-  } catch (e) { /* sessiz */ }
+  } catch (e) { console.warn('[profil] son_senkron okunamadi, veri tazelik damgasi cikmayacak:', e && e.message); }
   try {
     if (window.pazarAuth && window.pazarAuth.user) {
       const { data, error } = await window.supabaseClient.rpc('get_kendi_bildirim_sayim');
       if (!error && data != null) window._profilKatkiSayi = Number(data) || 0;
     }
-  } catch (e) { /* sessiz: RPC yoksa bölüm hiç çıkmaz */ }
+  } catch (e) { console.warn('[profil] katki sayisi RPC hatasi, katki bolumu cikmayacak:', e && e.message); }
   if (document.getElementById('screen-profil')) profilBolumleriCiz();
 }
 document.addEventListener('DOMContentLoaded', profilVerileriniYukle);
@@ -5070,7 +5070,7 @@ async function onbellekTemizle() {
       const rs = await navigator.serviceWorker.getRegistrations();
       for (const r of rs) await r.unregister();
     }
-  } catch (e) { /* sessiz */ }
+  } catch (e) { /* SW kaydi silinemedi: hemen altta location.reload() var, kullanici yine tazelenmis sayfayi alir */ }
   location.reload();
 }
 
@@ -5078,13 +5078,13 @@ function paylasUygulama() {
   const metin = 'Pazar — marketteki gizli zamları gör. 7 marketin günlük fiyatlarını tek ekranda karşılaştır.';
   const url = 'https://avkkann.github.io/pazar-app/';
   if (navigator.share) {
-    navigator.share({ title: 'Pazar', text: metin, url: url }).catch(() => {});
+    navigator.share({ title: 'Pazar', text: metin, url: url }).catch(() => { /* kullanici paylasim penceresini kapatti veya iptal etti: hata degil, sessiz gecmek DOGRU */ });
     return;
   }
   if (navigator.clipboard) {
     navigator.clipboard.writeText(metin + ' ' + url)
       .then(() => modalAc({ title: 'Kopyalandı', msg: 'Bağlantı panoya kopyalandı.', okText: 'Tamam', tekButon: true }))
-      .catch(() => {});
+      .catch(() => { /* kullanici paylasim penceresini kapatti veya iptal etti: hata degil, sessiz gecmek DOGRU */ });
   }
 }
 
@@ -5129,31 +5129,31 @@ function temaToggle() {
   const root = document.documentElement;
   const isDark = root.getAttribute('data-theme') !== 'light';
   root.setAttribute('data-theme', isDark ? 'light' : 'dark');
-  try { localStorage.setItem('pazar_theme', isDark ? 'light' : 'dark'); } catch(e){}
+  try { localStorage.setItem('pazar_theme', isDark ? 'light' : 'dark'); } catch(e){ /* localStorage yazilamadi (gizli mod/kota): tema bu oturumda calisir, kalici olmaz */ }
   profilGuncelle();
 }
 
 function setTheme(val) {
-  try { localStorage.setItem('pazar_theme', val); } catch(e){}
+  try { localStorage.setItem('pazar_theme', val); } catch(e){ /* localStorage yazilamadi (gizli mod/kota): tema bu oturumda calisir, kalici olmaz */ }
   applyTheme();
   refreshThemeSwitch();
 }
 function applyTheme() {
   var saved = 'auto';
-  try { saved = localStorage.getItem('pazar_theme') || 'auto'; } catch(e){}
+  try { saved = localStorage.getItem('pazar_theme') || 'auto'; } catch(e){ /* localStorage okunamadi: 'auto' varsayilani zaten atanmis, tema yine dogru cizilir */ }
   var dark = saved === 'dark' || (saved === 'auto' && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches);
   document.documentElement.dataset.theme = dark ? 'dark' : 'light';
 }
 function refreshThemeSwitch() {
   var cur = 'auto';
-  try { cur = localStorage.getItem('pazar_theme') || 'auto'; } catch(e){}
+  try { cur = localStorage.getItem('pazar_theme') || 'auto'; } catch(e){ /* localStorage okunamadi: 'auto' varsayilani zaten atanmis, anahtar dogru konumda kalir */ }
   document.querySelectorAll('.theme-opt').forEach(function(b){
     b.classList.toggle('aktif', b.dataset.themeVal === cur);
   });
 }
 
 function firsatSepetEkle(btn, id) {
-  try { id = decodeURIComponent(escape(atob(id))); } catch(e) {}
+  try { id = decodeURIComponent(escape(atob(id))); } catch(e) { /* id base64 degil, duz metin: asagidaki productMap aramasi ham id ile zaten calisiyor */ }
   var u = null;
   if (productMap[id]) {
     u = productMap[id];
@@ -5268,7 +5268,7 @@ if (window.matchMedia) {
       if (!t) return false;
       var gecenGun = (Date.now() - parseInt(t, 10)) / (1000 * 60 * 60 * 24);
       return gecenGun < 14;
-    } catch(e) { return false; }
+    } catch(e) { return false; /* localStorage okunamadi: banner kapatilmamis sayilir, tekrar gosterilir */ }
   }
 
   window.installPWA = function() {
@@ -5282,7 +5282,7 @@ if (window.matchMedia) {
     }
   };
   window.dismissInstall = function() {
-    try { localStorage.setItem(DISMISS_KEY, String(Date.now())); } catch(e){}
+    try { localStorage.setItem(DISMISS_KEY, String(Date.now())); } catch(e){ /* localStorage yazilamadi: banner bu oturumda kapali kalir, bir dahakine tekrar cikar */ }
     hideInstallBanner();
   };
   function showInstallBanner() {
@@ -5312,7 +5312,7 @@ if (window.matchMedia) {
 
   window.addEventListener('appinstalled', function() {
     hideInstallBanner();
-    try { localStorage.setItem(DISMISS_KEY, String(Date.now())); } catch(e){}
+    try { localStorage.setItem(DISMISS_KEY, String(Date.now())); } catch(e){ /* localStorage yazilamadi: banner bu oturumda kapali kalir, bir dahakine tekrar cikar */ }
   });
 })();
   (function(){
@@ -5381,7 +5381,7 @@ async function bultenDurumGuncelle() {
     const { data, error } = await window.supabaseClient.from('bulten_abonelik').select('aktif_mi').eq('user_id', user.id).maybeSingle();
     if (error) { el.textContent = 'Düşen fiyatlar ve şüpheli indirimler, e-posta ile'; return; }
     el.textContent = (data && data.aktif_mi) ? 'Açık ✓' : 'Düşen fiyatlar ve şüpheli indirimler, e-posta ile';
-  } catch (e) { el.textContent = 'Düşen fiyatlar ve şüpheli indirimler, e-posta ile'; }
+  } catch (e) { /* abonelik durumu okunamadi: altta notr aciklama metni yaziliyor, buton yine calisiyor */ el.textContent = 'Düşen fiyatlar ve şüpheli indirimler, e-posta ile'; }
 }
 
 window.bultenAbonelikToggle = async function() {
