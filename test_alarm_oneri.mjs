@@ -46,7 +46,7 @@ function kur(gecmis, alarmMap) {
   const seriCache = APP.match(/let _seriCache[^\n]*\n/);
   vm.runInContext([
     seriCache ? seriCache[0] : '',
-    fnKaynak('otuzGunlukSeri'),
+    fnKaynak('_yerelGunISO'), fnKaynak('_salinimVarSeri'), fnKaynak('_seriKur'), fnKaynak('otuzGunlukSeri'), fnKaynak('otuzGunlukSeriTemiz'), fnKaynak('otuzGunMinFiyatTemiz'),
     fnKaynak('otuzGunMinFiyat'), fnKaynak('alarmOnerisi'), fnKaynak('alarmOneriHTML'),
     fnKaynak('fiyatAlarmiBlogu'),
   ].join('\n'), ctx);

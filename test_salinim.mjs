@@ -56,7 +56,7 @@ function kur(gecmis, urunler = [], opts = {}) {
   const seriCache = APP.match(/let _seriCache[^\n]*\n/);
   vm.runInContext([
     sabitler, seriCache ? seriCache[0] : '',
-    fnKaynak('otuzGunlukSeri'), fnKaynak('_zamGunISO'),
+    fnKaynak('_yerelGunISO'), fnKaynak('_salinimVarSeri'), fnKaynak('_seriKur'), fnKaynak('otuzGunlukSeri'), fnKaynak('otuzGunlukSeriTemiz'), fnKaynak('otuzGunMinFiyatTemiz'), fnKaynak('_zamGunISO'),
     fnKaynak('zamMarketSerisi'), fnKaynak('zamMarketArtisi'), fnKaynak('zamSalinimVar'),
     fnKaynak('zamOncekiZirve'), fnKaynak('_zamMarka'), fnKaynak('zamAdaylari'),
   ].join('\n'), ctx);

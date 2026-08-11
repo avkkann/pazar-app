@@ -44,6 +44,7 @@ function kur(sepet, gecmis) {
   const esik = (APP.match(/const ENFLASYON_MIN_URUN\s*=\s*(\d+)/) || [])[1] || '3';
   vm.runInContext([
     'const ENFLASYON_MIN_URUN = ' + esik + ';',
+    fnKaynak('_yerelGunISO'),
     fnKaynak('_otuzGunOncekiEnUcuz'),
     fnKaynak('sepetEnflasyonuHesapla'),
     fnKaynak('profilEnflasyonHTML'),

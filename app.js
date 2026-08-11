@@ -1255,11 +1255,21 @@ function otuzGunMinFiyat(sid) {
   return Math.min.apply(null, seri);
 }
 
+// Salınımsız serinin dibi. Hedef fiyat için savunabileceğimiz değer bu:
+// istikrarlı bir seviyede GERÇEKTEN gözlenmiş fiyat. Bkz. _seriKur.
+function otuzGunMinFiyatTemiz(sid) {
+  const seri = otuzGunlukSeriTemiz(sid);
+  if (!seri.length) return null;
+  return Math.min.apply(null, seri);
+}
+
 function alarmOnerisi(u) {
   if (!u || !u._sid) return null;
   const guncel = enDusukFiyat(u);
   if (guncel == null || !(guncel > 0)) return null;
-  const min = otuzGunMinFiyat(u._sid);
+  // Ölçüm: kirli dip 158 üründe hayaletti (medyan %14, max %49 sapma).
+  // Erikli Su 10,00 ₺ hedefi hiç çalmaz; temiz dip 18,75 ₺ ulaşılabilir.
+  const min = otuzGunMinFiyatTemiz(u._sid);
   if (min == null || !(min > 0)) return null;
   // Fiyat zaten 30 gunun dibindeyse onerecek daha dusuk bir seviye yok.
   if (min >= guncel) return null;
@@ -1420,12 +1430,62 @@ gecmisVeriGetir();
 // rozeti ve "simdi al / bekle" blogunun UCU DE buradan besleniyor.
 let _seriCache = new Map();
 
-function otuzGunlukSeri(sid) {
-  if (!sid || !_gecmisCache) return [];
+// Gün sınırı YEREL takvime göre. toISOString() UTC'ye çevirdiği için UTC+3'te
+// her gece 00:00-03:00 arasında pencereyi bir gün geriye kaydırıyordu — o
+// saatte uygulamayı açan kullanıcı bir gün kaymış veri görüyordu.
+function _yerelGunISO(n) {
+  const d = new Date();
+  d.setDate(d.getDate() - (n || 0));
+  return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') +
+         '-' + String(d.getDate()).padStart(2, '0');
+}
+
+// Bir dizide bir DEĞER ayrılıp GERİ DÖNÜYORSA (iki ayrı blokta görünüyorsa)
+// salınım vardır. Gerekçesi ve tolerans=0 ölçümü için bkz. zamSalinimVar.
+// null girdiler (marketin o gün fiyatı bilinmiyor) atlanıyor.
+function _salinimVarSeri(seri) {
+  if (!Array.isArray(seri)) return null;
+  const gorulen = new Map();
+  let blok = 0, onceki = null, sayi = 0, bulunan = null;
+  for (let i = 0; i < seri.length; i++) {
+    const v = seri[i];
+    if (v == null) continue;
+    if (sayi > 0 && v !== onceki) blok++;
+    sayi++;
+    if (bulunan === null && gorulen.has(v) && gorulen.get(v) !== blok) bulunan = v;
+    gorulen.set(v, blok);
+    onceki = v;
+  }
+  return sayi >= 3 ? bulunan : null;
+}
+
+// 30 günlük seriyi TEK GEÇİŞTE kurar ve üç çıktıyı birden verir:
+//   marketSeri : her market için kendi carry-forward dizisi (bilinmeyen gün null)
+//   tum        : günlük minimum, TÜM marketler üzerinden  (eski davranış)
+//   temiz      : günlük minimum, yalnızca SALINIMSIZ marketler üzerinden
+// Salınım testi zaten market serisini gerektirdiği için "temiz" varyantı bu
+// hesabın içinden bedavaya çıkıyor — ikinci bir geçiş gerekmiyor. Ölçüm:
+// tam tarama 1014 ms -> 660 ms (market dizileri artık gün başına yeniden
+// taranmıyor, bir kez kurulup indeksleniyor).
+//
+// TEMIZ NİYE VAR: API her zincir için TEK temsilci mağaza döndürüyor ve
+// temsilci zaman içinde değişiyor; mağaza değişimi seride hayalet bir dip
+// bırakıyor. Erikli Su'da 30 günün dibi 10,00 ₺ görünüyordu, ürün 28,00 ₺ —
+// o hedefe kurulan alarm hiç çalmaz. Salınımsız seriden gelen 18,75 ₺ ise
+// istikrarlı seviyede gerçekten gözlenmiş bir fiyat.
+//
+// GELECEK — BU GEÇİCİ: scraper 2026-08-11'den beri market_fiyatlari içine
+// depot_id/depot_ad yazıyor. 2-3 hafta veri birikince "bu dip gerçekten başka
+// mağazanın mı" sorusu DOĞRUDAN cevaplanabilecek; bu yapısal ayrım o zaman
+// depot_id değişimini izleyen ölçüme dayalı kuralla değiştirilmeli.
+function _seriKur(sid) {
+  const bos = { tum: [], temiz: [], marketSeri: new Map(), salinimli: new Set() };
+  if (!sid || !_gecmisCache) return bos;
   const bellek = _seriCache.get(sid);
   if (bellek) return bellek;
   const kayitlar = _gecmisCache[sid];
-  if (!Array.isArray(kayitlar) || !kayitlar.length) return [];
+  if (!Array.isArray(kayitlar) || !kayitlar.length) return bos;
+
   const marketler = {};
   kayitlar.forEach(k => {
     if (!k || !k.t || k.f == null || !(k.f > 0)) return;
@@ -1434,24 +1494,45 @@ function otuzGunlukSeri(sid) {
     marketler[m].push(k);
   });
   Object.values(marketler).forEach(a => a.sort((x, y) => x.t < y.t ? -1 : 1));
-  const bas = new Date();
-  bas.setDate(bas.getDate() - 29);
-  const seri = [];
-  for (let i = 0; i < 30; i++) {
-    const g = new Date(bas);
-    g.setDate(g.getDate() + i);
-    const gs = g.toISOString().slice(0, 10);
-    let min = null;
-    Object.values(marketler).forEach(a => {
-      let son = null;
-      for (const k of a) { if (k.t <= gs) son = k; else break; }
-      if (son && (min === null || son.f < min)) min = son.f;
-    });
-    if (min !== null) seri.push(min);
+
+  const gunler = [];
+  for (let i = 29; i >= 0; i--) gunler.push(_yerelGunISO(i));
+
+  const marketSeri = new Map();
+  const salinimli = new Set();
+  for (const m of Object.keys(marketler)) {
+    const a = marketler[m];
+    const seri = new Array(30).fill(null);
+    let j = 0, son = null;
+    for (let i = 0; i < 30; i++) {
+      while (j < a.length && a[j].t <= gunler[i]) { son = a[j]; j++; }
+      seri[i] = son ? son.f : null;
+    }
+    marketSeri.set(m, seri);
+    if (_salinimVarSeri(seri) !== null) salinimli.add(m);
   }
-  _seriCache.set(sid, seri);
-  return seri;
+
+  const tum = [], temiz = [];
+  for (let i = 0; i < 30; i++) {
+    let hepsi = null, sade = null;
+    for (const [m, seri] of marketSeri) {
+      const v = seri[i];
+      if (v == null) continue;
+      if (hepsi === null || v < hepsi) hepsi = v;
+      if (!salinimli.has(m) && (sade === null || v < sade)) sade = v;
+    }
+    if (hepsi !== null) tum.push(hepsi);
+    if (sade !== null) temiz.push(sade);
+  }
+
+  // SUSTURMA YOK: hiç salınımsız market yoksa temiz seri tüm seriye düşer.
+  const out = { tum: tum, temiz: temiz.length ? temiz : tum, marketSeri: marketSeri, salinimli: salinimli };
+  _seriCache.set(sid, out);
+  return out;
 }
+
+function otuzGunlukSeri(sid) { return _seriKur(sid).tum; }
+function otuzGunlukSeriTemiz(sid) { return _seriKur(sid).temiz; }
 
 function indirimRozetiHesapla(urun) {
   if (!urun || !urun._sid) return null;
@@ -1552,8 +1633,10 @@ function gercekIndirimRozetiHesapla(u) {
   const ir = indirimRozetiHesapla(u);
   if (!ir) return null;
   const seri = otuzGunlukSeri(u._sid);
-  if (seri.length < 2) return null;
-  const enDusuk = Math.min.apply(null, seri);
+  if (seri.length < 2) return null;              // uygunluk kapısı: DEĞİŞMEDİ
+  // "30 günün en düşüğü" iddiası salınımsız seriden ölçülüyor: hayalet bir dip
+  // yüzünden bugünkü gerçek dip rozetsiz kalmasın. Bkz. _seriKur.
+  const enDusuk = Math.min.apply(null, otuzGunlukSeriTemiz(u._sid));
   if (u.en_dusuk_fiyat == null || u.en_dusuk_fiyat > enDusuk + 0.005) return null;
   return { yuzde: ir.yuzde };
 }
@@ -1588,8 +1671,12 @@ function alZamaniDurumu(u) {
   const bugun = Math.min.apply(null, gecerli);
   const seri = otuzGunlukSeri(u._sid);
   if (seri.length < 30) return null;              // 30 gunu doldurmayan urunde yorum yok
-  const min = Math.min.apply(null, seri);
-  const max = Math.max.apply(null, seri);
+  // Uygunluk kapısı yukarıda TÜM seride kaldı (susturma yok); yalnızca ÖLÇÜLEN
+  // uçlar salınımsız seriden alınıyor — hayalet dip "bekle"yi "iyi zaman"
+  // gösteriyordu. Bkz. _seriKur.
+  const olcum = otuzGunlukSeriTemiz(u._sid);
+  const min = Math.min.apply(null, olcum);
+  const max = Math.max.apply(null, olcum);
   if (!(max > 0) || min >= max) return null;
   if ((max - min) / max < AL_ZAMANI_MIN_OYNAMA) return null;
 
@@ -1666,8 +1753,7 @@ function fiyatGecmisiBlogu(urun) {
 
   // Son 30 gün
   const bugun = new Date();
-  const otuzGunOnce = new Date(bugun); otuzGunOnce.setDate(otuzGunOnce.getDate() - 30);
-  const limitIso = otuzGunOnce.toISOString().slice(0, 10);
+  const limitIso = _yerelGunISO(30);            // yerel takvim günü, bkz. _yerelGunISO
   const son30 = tumKayitlar.filter(k => k && k.t && k.f != null && k.m && k.t >= limitIso);
 
   // Eligibility: 7+ farklı tarih
@@ -2512,18 +2598,11 @@ const ZAM_KAT_MAX = 3;      // aynı alt kategoriden en fazla kaç ürün
 // Tek bir marketin KENDI 30 gunluk carry-forward serisi.
 function zamMarketSerisi(sid, market) {
   if (!sid || !market || !_gecmisCache) return null;
-  const ks = (_gecmisCache[sid] || [])
-    .filter(k => k && k.m === market && k.t && k.f > 0)
-    .sort((a, b) => a.t < b.t ? -1 : 1);
-  if (!ks.length) return null;
-  const seri = [];
-  for (let i = 29; i >= 0; i--) {
-    const gs = _zamGunISO(i);
-    let son = null;
-    for (const k of ks) { if (k.t <= gs) son = k; else break; }
-    if (!son) return null;              // pencerenin basinda fiyat bilinmiyorsa olcme
-    seri.push(son.f);
-  }
+  // _seriKur market kirilimini zaten kuruyor ve memoize ediyor — burada
+  // yeniden kurmuyoruz. Dizi salt okunur kullanilmali.
+  const seri = _seriKur(sid).marketSeri.get(market);
+  if (!seri) return null;
+  if (seri[0] == null) return null;     // pencerenin basinda fiyat bilinmiyorsa olcme
   return seri;
 }
 
@@ -2570,27 +2649,14 @@ function zamMarketArtisi(sid, market) {
 // bazında carrefour %28,6 · bim %24,7 · tarim_kredi %21,2 · migros %21,0 ·
 // sok %16,8 · a101 %13,1. Eşiği geçen 295 üründen 64'ü (%21,7) eleniyor.
 function zamSalinimVar(sid, market) {
-  const seri = zamMarketSerisi(sid, market);
-  if (!Array.isArray(seri) || seri.length < 3) return null;
-  const gorulen = new Map();
-  let blok = 0;
-  for (let i = 0; i < seri.length; i++) {
-    if (i > 0 && seri[i] !== seri[i - 1]) blok++;
-    const v = seri[i];
-    // Aynı değer daha önce BAŞKA bir blokta görüldüyse oraya geri dönülmüş.
-    if (gorulen.has(v) && gorulen.get(v) !== blok) return v;
-    gorulen.set(v, blok);
-  }
-  return null;
+  return _salinimVarSeri(zamMarketSerisi(sid, market));
 }
 
 function zamOncekiZirve(sid) {
   if (!sid || !_gecmisCache) return null;
   const kayitlar = _gecmisCache[sid];
   if (!Array.isArray(kayitlar) || !kayitlar.length) return null;
-  const d = new Date();
-  d.setDate(d.getDate() - 29);
-  const pencereBas = d.toISOString().slice(0, 10);
+  const pencereBas = _yerelGunISO(29);          // yerel takvim günü, bkz. _yerelGunISO
   const eski = kayitlar.filter(k => k && k.t && k.f > 0 && k.t < pencereBas);
   if (eski.length < ZAM_MIN_KAYIT) return null;
   return { zirve: Math.max.apply(null, eski.map(k => k.f)), kayit: eski.length };
@@ -2668,10 +2734,10 @@ const ZAM_KADEME_ESIK = 5;   // gün-güne bu %'nin üstü ayrı bir kademe say�
 const ZAM_KAT_MIN = 5;       // kategoride bundan az ürün varsa bağlam gösterilmez
 const ZAM_AYLAR = ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
 
+// Tek kaynak _yerelGunISO — zam penceresi ile 30 günlük seri AYNI gün ızgarasını
+// kullanmak zorunda, ayrışırlarsa gece yarısı ölçüm bozulur.
 function _zamGunISO(n) {
-  const d = new Date();
-  d.setDate(d.getDate() - n);
-  return d.toISOString().slice(0, 10);
+  return _yerelGunISO(n);
 }
 function _zamTarihYazi(iso) {
   const p = String(iso).split('-');
@@ -4416,9 +4482,7 @@ function _otuzGunOncekiEnUcuz(sid) {
   if (!sid || !_gecmisCache) return null;
   const kayitlar = _gecmisCache[sid];
   if (!Array.isArray(kayitlar) || !kayitlar.length) return null;
-  const d = new Date();
-  d.setDate(d.getDate() - 30);
-  const limit = d.toISOString().slice(0, 10);
+  const limit = _yerelGunISO(30);               // yerel takvim günü, bkz. _yerelGunISO
   const sonKayit = {};
   kayitlar.forEach(k => {
     if (!k || !k.t || k.f == null || k.t > limit) return;

@@ -25,7 +25,8 @@ function fnKaynak(ad) {
   return null;
 }
 
-const GEREKEN = ['otuzGunlukSeri', 'alZamaniDurumu', 'alZamaniHTML'];
+const GEREKEN = ['_yerelGunISO', '_salinimVarSeri', '_seriKur', 'otuzGunlukSeri',
+  'otuzGunlukSeriTemiz', 'alZamaniDurumu', 'alZamaniHTML'];
 console.log('\n=== 0. YAPI ===');
 const eksik = [];
 for (const f of GEREKEN) { const v = !!fnKaynak(f); ok('function ' + f, v); if (!v) eksik.push(f); }
