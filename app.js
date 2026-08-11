@@ -1456,6 +1456,18 @@ async function gecmisVeriGetir() {
 // kullanıcı eksikliği fark etmez. O yüzden ekran açılışında tetikleyip veri
 // gelince BİR KEZ yeniden çiziyoruz. gecmisVeriGetir zaten uçuşta
 // tekilleştiriyor, birden çok ekran çağırsa da tek istek gider.
+// Ekran GERÇEKTEN görünüyor mu. Yalnızca inline style.display'e bakmak YETMEZ:
+// showScreen ilk kez çalışana kadar tüm ekranların inline display'i BOŞ, gizlilik
+// CSS'ten geliyor. Ölçümde yakalandı — gizli profil ekranı "görünür" sanıldı ve
+// 4,2 MB geçmiş her sayfa açılışında indi.
+function _ekranGorunur(id) {
+  const e = document.getElementById(id);
+  if (!e) return false;
+  if (e.style.display === 'none') return false;
+  if (typeof getComputedStyle !== 'function') return true;
+  return getComputedStyle(e).display !== 'none';
+}
+
 function gecmisGerekli(yenile) {
   if (_gecmisCache) return;                 // zaten elde, yeniden çizmeye gerek yok
   gecmisVeriGetir()
@@ -3213,9 +3225,7 @@ async function openCategory(slug) {
   // (cardHTML -> urunRozetleriHTML). Ana sayfa geçmişi indirmediği için
   // burada tetikleniyor; gelince liste bir kez yeniden çiziliyor.
   gecmisGerekli(() => {
-    if (document.getElementById('screen-cat').style.display !== 'none' && window._catUrunler) {
-      renderUrunler(window._catUrunler);
-    }
+    if (_ekranGorunur('screen-cat') && window._catUrunler) renderUrunler(window._catUrunler);
   });
   await loadKategoriSayfasi(slug, 1);
 }
@@ -4955,12 +4965,8 @@ function profilBolumleriCiz() {
   // GÖRÜNÜRLÜK ŞARTI ŞART: bu fonksiyon açılışta da çağrılıyor (ekran gizliyken
   // profil bölümlerini hazırlamak için). Şartsız bırakınca 4,2 MB geçmiş her
   // sayfa açılışında iniyordu — ölçümde yakalandı.
-  const _pEkran = document.getElementById('screen-profil');
-  if (_pEkran && _pEkran.style.display !== 'none') {
-    gecmisGerekli(() => {
-      const e = document.getElementById('screen-profil');
-      if (e && e.style.display !== 'none') profilBolumleriCiz();
-    });
+  if (_ekranGorunur('screen-profil')) {
+    gecmisGerekli(() => { if (_ekranGorunur('screen-profil')) profilBolumleriCiz(); });
   }
   const yaz = (id, html) => {
     const govde = document.getElementById(id + '-govde');

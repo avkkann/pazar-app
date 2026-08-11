@@ -124,7 +124,17 @@ ok('profil enflasyonu gecmisi tetikliyor',
   const pb = fnKaynak('profilBolumleriCiz') || '';
   const once = pb.slice(0, pb.indexOf('gecmisGerekli'));
   ok('  profil YALNIZCA EKRAN GORUNURSE tetikliyor',
-    /style\.display\s*!==\s*'none'/.test(once), once.slice(-200));
+    /_ekranGorunur\s*\(\s*'screen-profil'\s*\)/.test(once), once.slice(-200));
+}
+// Yalnizca inline style.display'e bakmak YETMEZ: showScreen ilk kez kosana
+// kadar tum ekranlarin inline display'i BOS, gizlilik CSS'ten geliyor.
+// Canli olcumde yakalandi — gizli profil "gorunur" sanildi, 4,2 MB indi.
+{
+  const eg = fnKaynak('_ekranGorunur') || '';
+  ok('_ekranGorunur tanimli', !!eg);
+  ok('  hesaplanan stile de bakiyor (sadece inline degil)',
+    /getComputedStyle/.test(eg), eg.slice(0, 200));
+  ok('  inline none kisa devre', /style\.display\s*===\s*'none'/.test(eg), '');
 }
 {
   const oc = fnKaynak('openCategory') || '';
