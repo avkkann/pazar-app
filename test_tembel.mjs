@@ -118,6 +118,19 @@ ok('gecmisGerekli sessiz yutmuyor (console.warn)', /console\.warn/.test(gg), '')
 ok('openCategory gecmisi tetikliyor', /gecmisGerekli\s*\(/.test(fnKaynak('openCategory') || ''), '');
 ok('profil enflasyonu gecmisi tetikliyor',
   /gecmisGerekli\s*\(/.test(fnKaynak('profilBolumleriCiz') || ''), '');
+// profilBolumleriCiz ACILISTA da cagriliyor (ekran gizliyken). Sartsiz
+// tetiklerse 4,2 MB her sayfa acilisinda iner — canli olcumde yakalandi.
+{
+  const pb = fnKaynak('profilBolumleriCiz') || '';
+  const once = pb.slice(0, pb.indexOf('gecmisGerekli'));
+  ok('  profil YALNIZCA EKRAN GORUNURSE tetikliyor',
+    /style\.display\s*!==\s*'none'/.test(once), once.slice(-200));
+}
+{
+  const oc = fnKaynak('openCategory') || '';
+  ok('  openCategory tetiklemesi kategori ekrani acilirken',
+    oc.indexOf('gecmisGerekli') > oc.indexOf("showScreen('screen-cat')"), '');
+}
 ok('openDetay gecmisi tetikliyor',
   /gecmisVeriGetir|gecmisGerekli/.test(fnKaynak('openDetay') || ''), '');
 

@@ -4952,12 +4952,16 @@ function profilMarketTercihHTML() {
 function profilBolumleriCiz() {
   // Sepet enflasyonu geçmişten hesaplanıyor (_otuzGunOncekiEnUcuz). Ana sayfa
   // geçmişi indirmediği için burada tetikleniyor; gelince bölüm yenileniyor.
-  gecmisGerekli(() => {
-    if (document.getElementById('screen-profil') &&
-        document.getElementById('screen-profil').style.display !== 'none') {
-      profilBolumleriCiz();
-    }
-  });
+  // GÖRÜNÜRLÜK ŞARTI ŞART: bu fonksiyon açılışta da çağrılıyor (ekran gizliyken
+  // profil bölümlerini hazırlamak için). Şartsız bırakınca 4,2 MB geçmiş her
+  // sayfa açılışında iniyordu — ölçümde yakalandı.
+  const _pEkran = document.getElementById('screen-profil');
+  if (_pEkran && _pEkran.style.display !== 'none') {
+    gecmisGerekli(() => {
+      const e = document.getElementById('screen-profil');
+      if (e && e.style.display !== 'none') profilBolumleriCiz();
+    });
+  }
   const yaz = (id, html) => {
     const govde = document.getElementById(id + '-govde');
     const bolum = document.getElementById(id);
