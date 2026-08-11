@@ -242,7 +242,11 @@ console.log('\n=== 6. VERI YOLU: tek istek, puan>=2, sessiz hata ===');
     ok('  select listesi 4 kolon (tum satir cekilmiyor)',
        /select\(\s*['"]_sid,\s*indirim_supheli_puan,\s*indirim_supheli_sebepler,\s*indirim_supheli_dusus_yuzde['"]/.test(yukle),
        (yukle.match(/select\([^)]*\)/) || [''])[0]);
-    ok('  hata yolunda console.error/warn YOK (sessiz)', !/console\.(error|warn)/.test(yukle), (yukle.match(/console\.\w+/g) || []).join(','));
+    // ESKI IDDIA: "hata yolu SESSIZ olmali". 2026-08-11 denetimi bunu CURUTTU —
+    // sessiz catch deseni projeye UC KEZ pahaliya mal oldu (3 hafta bayat veri,
+    // 74 gun bosa istek, 1 ay kirik render zinciri). Supheli puanlari gelmezse
+    // sahte-indirim rozetleri HIC cizilmiyor; bunun sessizce olmasi kabul edilemez.
+    ok('  hata yolu GORUNUR (console.warn/error var)', /console\.(error|warn)/.test(yukle), (yukle.match(/console\.\w+/g) || []).join(','));
     ok('  hatada _puanCache null kaliyor', /catch/.test(yukle) && !/_puanCache\s*=\s*new Map\(\)\s*;?\s*\}?\s*catch/.test(yukle));
   }
 }
@@ -394,7 +398,8 @@ if (varDusenler && varSupheli) {
     ok('sorgu hatasi -> bolum gizli', el['home-supheli'].style.display === 'none');
     ok('sorgu hatasi -> liste bos', !el['home-supheli-list'].innerHTML);
     const src = fnKaynak('renderSupheliSeridi') || '';
-    ok('sorgu hatasinda konsola hata basilmiyor', !/console\.(error|warn|log)/.test(src));
+    // Eski iddia "sessiz"di; ayni gerekceyle cevrildi (bkz. 6. bolum notu).
+    ok('sorgu hatasi konsola BASILIYOR', /console\.(error|warn)/.test(src));
   }
 }
 
