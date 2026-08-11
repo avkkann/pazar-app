@@ -2309,3 +2309,29 @@
     @media (prefers-contrast: more) {
       :focus-visible { outline-width: 3px; }
     }
+
+    /* ═══ KOYU TEMA KONTRAST DÜZELTMELERİ ═══════════════════
+       2026-08-11 denetimi: koyu tema AÇIK temadan KÖTÜ durumdaydı
+       (10 AA ihlali vs 7). En ağırı: .cat-card koyu temada BEYAZ kalıyor
+       ama metni --text ile açık griye dönüyordu -> oran 1,24, kategori
+       ızgarası pratikte okunamıyordu.
+       Renkler mevcut koyu tema paletinden (#E5E7EB, #9CA3AF, #FCD34D). */
+    [data-theme="dark"] .cat-card {
+      background: var(--card-bg);
+      border-color: var(--border);
+    }
+    [data-theme="dark"] .cat-card-name { color: #E5E7EB; }
+    /* Kart görsel zemini de beyaz kalıyordu; emoji placeholder'ı parlıyordu. */
+    [data-theme="dark"] .strip-card-img,
+    [data-theme="dark"] .strip-card-img-ph { background: #1C2823; }
+    /* Amber yaygınlık metni koyu zeminde 2,15 idi; paletin koyu amberi 4,5+ veriyor. */
+    [data-theme="dark"] .zam-yayginlik { color: #FCD34D; }
+    /* İkincil açıklama metinleri: açıkta 4,48 (sınırda), koyuda 3,41. */
+    .ms-subtitle, .mf-subtitle { color: #595959; }
+    [data-theme="dark"] .ms-subtitle,
+    [data-theme="dark"] .mf-subtitle { color: #9CA3AF; }
+    .mf-sheet-footer { color: #5C5C5C; }
+    [data-theme="dark"] .mf-sheet-footer { color: #9CA3AF; }
+    /* Pasif alt gezinme butonu koyu zeminde 3,15 idi. */
+    [data-theme="dark"] .nav-btn { color: #9CA3AF; }
+    [data-theme="dark"] .nav-btn.active { color: #fff; }
