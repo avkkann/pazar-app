@@ -1167,8 +1167,27 @@ function assignIds(slug, products) {
   return products;
 }
 
+// UÇUŞTA TEKİLLEŞTİRME: yalnızca catCache'e bakmak yetmiyordu — iki çağıran
+// aynı anda gelirse ikisi de cache'i boş görüp AYRI istek atıyordu. Ölçüldü:
+// her kategori JSON'u iki kez iniyordu (urunler_et 733 ms ve 734 ms), çünkü
+// renderTuzaklarSeridi ile renderZamSeridi loadAllCats()'i eş zamanlı
+// çağırıyordu. Artık ikinci çağıran AYNI Promise'i bekliyor.
+let _catYukleniyor = new Map();
 async function loadCat(slug) {
   if (catCache[slug]) return catCache[slug];
+  const ucusta = _catYukleniyor.get(slug);
+  if (ucusta) return ucusta;
+  const p = _loadCatGetir(slug);
+  _catYukleniyor.set(slug, p);
+  try {
+    return await p;
+  } finally {
+    // Hata durumunda da temizleniyor, yoksa slug kalıcı olarak kilitlenirdi.
+    _catYukleniyor.delete(slug);
+  }
+}
+
+async function _loadCatGetir(slug) {
   const kat = KATEGORILER.find(k => k.slug === slug);
   let products = [];
   try {
@@ -1425,6 +1444,23 @@ async function gecmisVeriGetir() {
     return _gecmisCache;
   })();
   return _gecmisYukleniyor;
+}
+
+// gecmis_fiyatlar.json 4,2 MB (653 KB gzip). ANA SAYFA ONU İSTEMİYOR —
+// dört şerit build zamanında hesaplanıyor (bkz. anasayfaVeriGetir). Yalnızca
+// gerçekten gerektiğinde iniyor: ürün detayı, kategori ekranı kartlarındaki
+// rozetler (urunRozetleriHTML -> indirimRozetiHesapla) ve profildeki sepet
+// enflasyonu (_otuzGunOncekiEnUcuz).
+//
+// Bu fonksiyonlar geçmiş yoksa SESSİZCE boş dönüyor — rozet hiç çizilmez ve
+// kullanıcı eksikliği fark etmez. O yüzden ekran açılışında tetikleyip veri
+// gelince BİR KEZ yeniden çiziyoruz. gecmisVeriGetir zaten uçuşta
+// tekilleştiriyor, birden çok ekran çağırsa da tek istek gider.
+function gecmisGerekli(yenile) {
+  if (_gecmisCache) return;                 // zaten elde, yeniden çizmeye gerek yok
+  gecmisVeriGetir()
+    .then(() => { if (typeof yenile === 'function') yenile(); })
+    .catch(e => console.warn('[gecmis] yuklenemedi, rozetler eksik kalabilir:', e && e.message));
 }
 
 // ═══ ANA SAYFA ÖNCEDEN HESAPLANMIŞ ŞERİTLER ═════════════
@@ -3173,6 +3209,14 @@ async function openCategory(slug) {
   });
   showScreen('screen-cat');
   document.getElementById('screen-cat').scrollTop = 0;
+  // Karttaki "gerçek indirim" / indirim rozetleri geçmişten hesaplanıyor
+  // (cardHTML -> urunRozetleriHTML). Ana sayfa geçmişi indirmediği için
+  // burada tetikleniyor; gelince liste bir kez yeniden çiziliyor.
+  gecmisGerekli(() => {
+    if (document.getElementById('screen-cat').style.display !== 'none' && window._catUrunler) {
+      renderUrunler(window._catUrunler);
+    }
+  });
   await loadKategoriSayfasi(slug, 1);
 }
 
@@ -4906,6 +4950,14 @@ function profilMarketTercihHTML() {
 
 // Bölümleri DOM'a bas. Veri yoksa bölümün tamamı (başlık dahil) gizlenir.
 function profilBolumleriCiz() {
+  // Sepet enflasyonu geçmişten hesaplanıyor (_otuzGunOncekiEnUcuz). Ana sayfa
+  // geçmişi indirmediği için burada tetikleniyor; gelince bölüm yenileniyor.
+  gecmisGerekli(() => {
+    if (document.getElementById('screen-profil') &&
+        document.getElementById('screen-profil').style.display !== 'none') {
+      profilBolumleriCiz();
+    }
+  });
   const yaz = (id, html) => {
     const govde = document.getElementById(id + '-govde');
     const bolum = document.getElementById(id);
