@@ -173,6 +173,12 @@ RPC fonksiyonları: `get_fiyat_dusenler(p_limit)`, `indirim_puan_toplu_guncelle(
 
 ## Bekleyen / ertelenen işler
 
+> **TAM DENETİM RAPORU: [`DENETIM.md`](DENETIM.md)** — 2026-08-11, beş hat (güvenlik, veri
+> doğruluğu, performans, tasarım/erişilebilirlik, altyapı) + TestSprite denemesi. 18 bulgu,
+> hepsi kanıtlı; önem sırası, hat hat ayrıntı, düzeltme sırası önerisi ve **ölçülemeyenlerin
+> açık listesi** içinde. Üçü (rozet iddiası, klavye erişimi, bildirim hız sınırı) düzeltildi;
+> kalanlar aşağıdaki listelerde. **Bir sonraki oturum buradan başlasın.**
+
 **Mustafa'nın kararını bekleyen — bu oturumdan:**
 1. **HAYALET ZAM: yapısal kural ölçüye dayalı kuralla değiştirilmeli.** `depot_id`/`depot_ad` **2026-08-11'den beri** birikiyor. **~2026-09-01'de** yeterli veri olacak ve "bu dip/zıplama gerçekten mağaza değişimi mi" sorusu **doğrudan** cevaplanabilecek. O zaman `zamSalinimVar`'daki yapısal salınım testi, `depot_id` değişimini izleyen ölçüme dayalı kuralla değiştirilmeli. Not `app.js`'te `_seriKur` ve `zamSalinimVar` üzerinde duruyor. **Bu tarih geçmeden kuralı değiştirme, ölçüm olmadan yeni eşik uydurma.**
 2. **Al/bekle'de kaybolan 900 çıktı.** Temiz seriye geçince alarm önerisi −492, al/bekle −408 düştü. Bunlar yeni bir susturma kuralı değil, **mevcut kapılar** düzeltilmiş veriye uygulandığı için: alarm "fiyat zaten dipteyse öneri yok"a, al/bekle `AL_ZAMANI_MIN_OYNAMA` %5 kapısına takılıyor. Düşenlerin yarısında temiz aralık **tam sıfır** (ürün 30 gündür kımıldamamış, "bekle" demek yanlıştı). Ama dürüst sınır: salınımlı seri "yanlış seri" değil — inip biten bir kampanya gerçek bir diptir ve o bilgiyi kaybettik. Kabul mü, yoksa hedefli bir istisna mı gerekiyor?
@@ -242,7 +248,8 @@ RPC fonksiyonları: `get_fiyat_dusenler(p_limit)`, `indirim_puan_toplu_guncelle(
 - **GitHub Actions — `deploy.yml`** ("Build ve Deploy"): `push` + **`workflow_run` ("Veri Guncelle" completed)** + `workflow_dispatch`. `npm ci` → `npm run build` → Pages deploy.
 - **Vite** — `npm run build` = `scripts/prepare-public.mjs` + `vite build` → `dist/`. `base: '/pazar-app/'`.
 - **GoatCounter** (`pazar-app.goatcounter.com`) — analytics, kartsız/ücretsiz, çerezsiz
-- **Claude in Chrome (Browser MCP)** — canlı doğrulama; `resize_window` çalışmıyor (iframe kullan), smooth-scroll animasyonlanmıyor
+- **Claude in Chrome (Browser MCP)** — canlı doğrulama; `resize_window` çalışmıyor (iframe kullan), smooth-scroll animasyonlanmıyor. **`Tab` tuşu da sayfanın odak sistemine ulaşmıyor** (odak `BODY`'de kalıyor), ve `element.focus()` programatik olduğu için `:focus-visible` tanım gereği eşleşmez — **odak halkasını bu araçla görsel olarak doğrulayamazsın**, kuralın yüklendiğini CSSOM'dan oku, görünürlüğü insan doğrulasın.
+- **TestSprite — DENENDİ, UYMADI (2026-08-11), tekrar deneme.** MCP sunucusu *yerel* sunucuyu tünelliyor; canlı URL'yi (`avkkann.github.io/pazar-app`) test EDEMİYOR — kendi açıklaması "use the TestSprite CLI instead" diyor. `dist/` yerelde sunulup denendi: `testsprite_bootstrap` 48100'de **etkileşimli bir kurulum arayüzü** açıp insan onayı bekledi, 1800 sn sessizlik sonrası düştü (`status` hep `"init"`, 0 kredi harcandı). Ayrıca **12 yetim süreç** bıraktı (3/5/7 Ağustos oturumlarından, günlerdir çalışıyorlardı) ve `Desktop/.mcp.json`'da API anahtarını **düz metin** tutuyordu. Hepsi temizlendi. Canlı URL denenecekse **MCP değil CLI**.
 - **gh CLI** — `gh run list/watch/view --log`, deploy ve veri koşusu doğrulaması
 
 ---
