@@ -1312,8 +1312,14 @@ function alarmOneriHTML(u) {
   const o = alarmOnerisi(u);
   if (!o) return '';
   const sid = String(u._sid).replace(/'/g, "\\'");
+  // "Son ay X'ye kadar indi" HAM seriye ait bir iddia. Öneri salınımsız seriden
+  // geldiği için X ham seride gözlenmemiş olabilir — o zaman CÜMLE KURULMAZ,
+  // ama öneri butonu kalır (özellik susmuyor, yalnızca yanlış iddia susuyor).
+  const metin = _hamDipMi(u._sid, o.deger)
+    ? `<span class="alarm-oneri-metin">Son ay ${tl(o.deger)}'ye kadar indi</span>`
+    : `<span class="alarm-oneri-metin">Önerilen hedef ${tl(o.deger)}</span>`;
   return `<div class="alarm-oneri">
-      <span class="alarm-oneri-metin">Son ay ${tl(o.deger)}'ye kadar indi</span>
+      ${metin}
       <button type="button" class="alarm-oneri-btn" onclick="alarmOneriUygula('${sid}', ${o.deger})">Bu fiyatı kullan</button>
     </div>`;
 }
@@ -1635,6 +1641,23 @@ function _seriKur(sid) {
 function otuzGunlukSeri(sid) { return _seriKur(sid).tum; }
 function otuzGunlukSeriTemiz(sid) { return _seriKur(sid).temiz; }
 
+// ═══ İDDİA–HESAP UYUMU ══════════════════════════════════
+// Kullanıcıya gösterilen sayısal cümleler ("30 günün en düşüğü", "son ay X'ye
+// kadar indi", "son ayın en ucuz seviyesinde") HAM seriye ait bir iddia kuruyor.
+// Ölçüm (2026-08-11 denetimi): rozet SALINIMSIZ seriden hesaplanırken metin
+// değişmemişti — 1492 rozetin 91'i (%6,1) yanlıştı, en kötüsü %45,5
+// (Ülker Gofret: "30 günün en düşüğü" 16,00 ₺ derken ham seride 11,00 ₺ vardı).
+//
+// KURAL: iddia zayıflatılmaz, doğru olmadığı yerde GÖSTERİLMEZ. Salınımsız seri
+// hâlâ ölçüm için kullanılıyor (hayalet dip sorunu için); yalnızca HAM seriye
+// ait cümle kurulmadan önce bu kapıdan geçiliyor.
+function _hamDipMi(sid, deger) {
+  if (deger == null || !(deger > 0)) return false;
+  const ham = otuzGunlukSeri(sid);
+  if (!ham || !ham.length) return false;
+  return deger <= Math.min.apply(null, ham) + 0.005;
+}
+
 function indirimRozetiHesapla(urun) {
   if (!urun || !urun._sid) return null;
   const seri = otuzGunlukSeri(urun._sid);
@@ -1735,10 +1758,10 @@ function gercekIndirimRozetiHesapla(u) {
   if (!ir) return null;
   const seri = otuzGunlukSeri(u._sid);
   if (seri.length < 2) return null;              // uygunluk kapısı: DEĞİŞMEDİ
-  // "30 günün en düşüğü" iddiası salınımsız seriden ölçülüyor: hayalet bir dip
-  // yüzünden bugünkü gerçek dip rozetsiz kalmasın. Bkz. _seriKur.
-  const enDusuk = Math.min.apply(null, otuzGunlukSeriTemiz(u._sid));
-  if (u.en_dusuk_fiyat == null || u.en_dusuk_fiyat > enDusuk + 0.005) return null;
+  // Rozetin metni "30 günün en düşüğü" — bu HAM seriye ait bir iddia, o yüzden
+  // HAM seriye karşı doğrulanıyor. Bkz. _hamDipMi. (Önceden salınımsız seriden
+  // ölçülüyordu ve 91 üründe yanlış iddia kuruyordu.)
+  if (!_hamDipMi(u._sid, u.en_dusuk_fiyat)) return null;
   return { yuzde: ir.yuzde };
 }
 
@@ -1793,15 +1816,22 @@ function alZamaniDurumu(u) {
 function alZamaniHTML(u) {
   const d = alZamaniDurumu(u);
   if (!d) return '';
+  // Alt satırlar HAM seriye ait iddia kuruyor ("en ucuz seviyesinde",
+  // "son ayda X'ye kadar indi"). Ölçüm salınımsız seriden geldiği için iddia
+  // ham seriye karşı doğrulanmadan yazılmaz — bkz. _hamDipMi.
   if (d.tip === 'iyi') {
+    const alt = _hamDipMi(u._sid, d.bugun)
+      ? '<span class="detay-zaman-alt">son ayın en ucuz seviyesinde</span>' : '';
     return `<div class="detay-zaman detay-zaman--iyi">
       <span class="detay-zaman-ana">İyi zaman</span>
-      <span class="detay-zaman-alt">son ayın en ucuz seviyesinde</span>
+      ${alt}
     </div>`;
   }
+  const altB = _hamDipMi(u._sid, d.min)
+    ? `<span class="detay-zaman-alt">son ayda ${tl(d.min)}'ye kadar indi</span>` : '';
   return `<div class="detay-zaman detay-zaman--bekle">
       <span class="detay-zaman-ana">Beklemek mantıklı</span>
-      <span class="detay-zaman-alt">son ayda ${tl(d.min)}'ye kadar indi</span>
+      ${altB}
     </div>`;
 }
 

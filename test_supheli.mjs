@@ -67,7 +67,7 @@ function kur(puanKayitlari, gecmis) {
   const kaynak = [
     // gercekIndirimRozetiHesapla artik 30 gunluk seriden besleniyor (tek kaynak).
     seriCache ? seriCache[0] : '',
-    fnKaynak('_yerelGunISO'), fnKaynak('_salinimVarSeri'), fnKaynak('_seriKur'), fnKaynak('otuzGunlukSeri'), fnKaynak('otuzGunlukSeriTemiz'), fnKaynak('otuzGunMinFiyatTemiz'),
+    fnKaynak('_yerelGunISO'), fnKaynak('_salinimVarSeri'), fnKaynak('_seriKur'), fnKaynak('otuzGunlukSeri'), fnKaynak('otuzGunlukSeriTemiz'), fnKaynak('_hamDipMi'), fnKaynak('otuzGunMinFiyatTemiz'),
     objKaynak('SUPHELI_SEBEP_CUMLE'),
     objKaynak('SUPHELI_ZAMANSAL_SEBEPLER'),
     fnKaynak('supheliDurum'),

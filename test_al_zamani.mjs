@@ -25,7 +25,7 @@ function fnKaynak(ad) {
   return null;
 }
 
-const GEREKEN = ['_yerelGunISO', '_salinimVarSeri', '_seriKur', 'otuzGunlukSeri',
+const GEREKEN = ['_hamDipMi', '_yerelGunISO', '_salinimVarSeri', '_seriKur', 'otuzGunlukSeri',
   'otuzGunlukSeriTemiz', 'alZamaniDurumu', 'alZamaniHTML'];
 console.log('\n=== 0. YAPI ===');
 const eksik = [];

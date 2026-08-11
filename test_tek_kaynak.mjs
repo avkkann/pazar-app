@@ -43,7 +43,7 @@ function kur(gecmis, opts = {}) {
   vm.runInContext([
     sabitler,
     seriCache ? seriCache[0] : '',
-    fnKaynak('_yerelGunISO'), fnKaynak('_salinimVarSeri'), fnKaynak('_seriKur'), fnKaynak('otuzGunlukSeri'), fnKaynak('otuzGunlukSeriTemiz'), fnKaynak('otuzGunMinFiyatTemiz'),
+    fnKaynak('_yerelGunISO'), fnKaynak('_salinimVarSeri'), fnKaynak('_seriKur'), fnKaynak('otuzGunlukSeri'), fnKaynak('otuzGunlukSeriTemiz'), fnKaynak('_hamDipMi'), fnKaynak('otuzGunMinFiyatTemiz'),
     fnKaynak('indirimRozetiHesapla'),
     fnKaynak('gercekIndirimRozetiHesapla'),
     fnKaynak('alZamaniDurumu'),
@@ -139,7 +139,7 @@ console.log('\n=== 5. SERI ONBELLEGI ===');
   // kuruluyor, otuzGunlukSeri onun uzerine ince bir sarmalayici.
   ok('  onbellek _seriKur icinde kullaniliyor', /_seriCache/.test(fnKaynak('_seriKur') || ''), '');
   ok('  otuzGunlukSeri _seriKur uzerinden okuyor', /_seriKur/.test(fnKaynak('otuzGunlukSeri') || ''), '');
-  ok('  temiz varyant ayni onbellekten', /_seriKur/.test(fnKaynak('otuzGunlukSeriTemiz') || ''), '');
+  ok('  temiz varyant ayni onbellekten', /_seriKur/.test(fnKaynak('otuzGunlukSeriTemiz'), fnKaynak('_hamDipMi') || ''), '');
 }
 
 console.log('\nPASS=' + pass + '  FAIL=' + fail);

@@ -58,7 +58,7 @@ function kur(gecmis, urunler = []) {
   vm.runInContext([
     sabitler, seriCache ? seriCache[0] : '',
     fnKaynak('_yerelGunISO'), fnKaynak('_salinimVarSeri'), fnKaynak('_seriKur'),
-    fnKaynak('otuzGunlukSeri'), fnKaynak('otuzGunlukSeriTemiz'),
+    fnKaynak('otuzGunlukSeri'), fnKaynak('otuzGunlukSeriTemiz'), fnKaynak('_hamDipMi'),
     fnKaynak('otuzGunMinFiyat'), fnKaynak('otuzGunMinFiyatTemiz'), fnKaynak('enDusukFiyat'),
     fnKaynak('supheliDurum'), fnKaynak('indirimRozetiHesapla'), fnKaynak('gercekIndirimRozetiHesapla'),
     fnKaynak('alarmOnerisi'), fnKaynak('_zamGunISO'), fnKaynak('zamMarketSerisi'),
@@ -158,7 +158,15 @@ ok('kirli dip gercekten hayalet (20)', calis(c, 'otuzGunMinFiyat("z1")') === 20,
 ok('temiz dip bugunku fiyat (45)', calis(c, 'otuzGunMinFiyatTemiz("z1")') === 45,
   calis(c, 'otuzGunMinFiyatTemiz("z1")'));
 const gi = calis(c, 'gercekIndirimRozetiHesapla(' + JSON.stringify(urun4) + ')');
-ok('temiz dipteki fiyat "gercek indirim" sayiliyor', !!gi, JSON.stringify(gi));
+// ESKI IDDIA: "temiz dipteki fiyat gercek indirim sayilir". 2026-08-11 denetimi
+// bunu CURUTTU: rozetin metni "30 günün en düşüğü", yani HAM seriye ait bir iddia;
+// temiz dipten olculunce 1492 rozetin 91'i (%6,1) YANLIS cikiyordu.
+// YENI DEGISMEZ: temiz dipte ama HAM dipte degilse rozet CIKMAZ. Burada ham dip
+// carrefour'un salinimli serisinden 20, bugunku fiyat 45 -> rozet olmamali.
+ok('temiz dipte ama HAM dipte degilse rozet YOK', gi === null, JSON.stringify(gi));
+const urun4b = { ...urun4, en_dusuk_fiyat: 20, market_fiyatlari: [{ market: 'carrefour', fiyat: 20 }] };
+ok('HAM dipteki fiyata rozet VAR',
+  !!calis(c, 'gercekIndirimRozetiHesapla(' + JSON.stringify(urun4b) + ')'));
 // bugun 60 -> temiz dip 45'in ustunde -> rozet YOK
 const urun5 = { ...urun4, en_dusuk_fiyat: 60, market_fiyatlari: [{ market: 'migros', fiyat: 60 }] };
 ok('temiz dibin ustundeki fiyata rozet yok',
@@ -182,7 +190,7 @@ ok('zamSalinimVar temiz seri kullanmiyor', !TEMIZ_FN.test(fnKaynak('zamSalinimVa
 console.log('\n=== 8. TEK GECIS — temiz varyant bedava ===');
 ok('_seriKur ikisini birden donduruyor', /temiz/.test(fnKaynak('_seriKur') || ''));
 ok('otuzGunlukSeri _seriKur uzerinden', /_seriKur/.test(fnKaynak('otuzGunlukSeri') || ''));
-ok('otuzGunlukSeriTemiz _seriKur uzerinden', /_seriKur/.test(fnKaynak('otuzGunlukSeriTemiz') || ''));
+ok('otuzGunlukSeriTemiz _seriKur uzerinden', /_seriKur/.test(fnKaynak('otuzGunlukSeriTemiz'), fnKaynak('_hamDipMi') || ''));
 ok('zamMarketSerisi de ayni cache\'ten', /_seriKur/.test(fnKaynak('zamMarketSerisi') || ''));
 
 console.log('\n=== 9. GELECEK NOTU ===');
