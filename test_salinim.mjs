@@ -58,7 +58,7 @@ function kur(gecmis, urunler = [], opts = {}) {
     sabitler, seriCache ? seriCache[0] : '',
     fnKaynak('_yerelGunISO'), fnKaynak('_salinimVarSeri'), fnKaynak('_seriKur'), fnKaynak('otuzGunlukSeri'), fnKaynak('otuzGunlukSeriTemiz'), fnKaynak('otuzGunMinFiyatTemiz'), fnKaynak('_zamGunISO'),
     fnKaynak('zamMarketSerisi'), fnKaynak('zamMarketArtisi'), fnKaynak('zamSalinimVar'),
-    fnKaynak('zamOncekiZirve'), fnKaynak('_zamMarka'), fnKaynak('zamAdaylari'),
+    fnKaynak('zamOncekiZirve'), fnKaynak('_zamMarka'), fnKaynak('zamHavuzu'), fnKaynak('zamSecHavuzdan'), fnKaynak('zamAdaylari'),
   ].join('\n'), ctx);
   return ctx;
 }

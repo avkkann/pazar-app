@@ -1,6 +1,10 @@
-﻿const CACHE_NAME = 'pazar-cache-v194';
+﻿const CACHE_NAME = 'pazar-cache-v195';
 const DATA_URLS = [
   new URL('./data/hal.json', self.location).href,
+  // Ana sayfanin dort seridi buradan besleniyor (25,9 KB gzip). Ilk boyamada
+  // gerektigi icin precache'te; kategori JSON'lari ve gecmis_fiyatlar.json
+  // artik ana sayfa icin GEREKMIYOR, tembel yukleniyorlar.
+  new URL('./data/anasayfa.json', self.location).href,
 ];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(DATA_URLS)));

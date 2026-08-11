@@ -297,6 +297,8 @@ function seritKur({ rpcData, tableData, tableHata }) {
       }
     },
     supheliPuanlariYukle: async () => new Map(),
+      anasayfaVeriGetir: async () => false,
+      _anasayfaKartlariKaydet: () => {},
     gecmisVeriGetir: async () => ({}),
     supheliDurum: u => (u && u._supheli ? { seviye: 'rozet', puan: u._puan || 2, sebepler: ['kisa_zirve'] } : null),
     indirimRozetiHesapla: u => (u && u._yuzde != null ? { tip: 'buyuk', yuzde: u._yuzde } : null),

@@ -991,6 +991,19 @@ function openDetay(urunId) {
   if (!u) return;
   productMap[u._id] = u;
 
+  // Ana sayfa şeritleri KISA kart taşıyor (ana sayfa 14 MB indirmesin diye).
+  // Detayda seri, alarm önerisi, al/bekle ve rozetler tam veri istiyor —
+  // burada tembel yüklenip ekran bir kez yenileniyor.
+  if (u._kisa || !_gecmisCache) {
+    Promise.all([loadAllCats(), gecmisVeriGetir()]).then(() => {
+      const tam = productMap[urunId];
+      if (tam && !tam._kisa && document.getElementById('screen-detay') &&
+          document.getElementById('screen-detay').style.display !== 'none') {
+        openDetay(urunId);
+      }
+    }).catch(e => console.warn('[detay] tam veri yuklenemedi:', e && e.message));
+  }
+
   const temiz    = fiyatlariTemizle(u.market_fiyatlari);
   const mktler   = temiz.gecerli.slice().sort((a, b) => a.fiyat - b.fiyat);
   const emoji    = KAT_EMOJI[ustKategori(u.ana_kategori)] || '📦';
@@ -1414,7 +1427,47 @@ async function gecmisVeriGetir() {
   return _gecmisYukleniyor;
 }
 
-gecmisVeriGetir();
+// ═══ ANA SAYFA ÖNCEDEN HESAPLANMIŞ ŞERİTLER ═════════════
+// Dört şeridin içeriği build zamanında scripts/anasayfa-uret.mjs ile
+// hesaplanıyor (app.js'in KENDİ fonksiyonları Node'da koşturularak — mantık
+// tek yerde, sapma yok). Ölçüm: ana sayfa 2,00 MB gzip + 14,7 sn tuzak
+// taraması yerine 25,9 KB tek dosya.
+// gecmis_fiyatlar.json artık ana sayfada GEREKMİYOR; yalnızca ürün detayı
+// veya kategori gezinmesi açıldığında tembel yükleniyor.
+let _anasayfaCache = null;
+let _anasayfaYukleniyor = null;
+async function anasayfaVeriGetir() {
+  if (_anasayfaCache !== null) return _anasayfaCache;
+  if (_anasayfaYukleniyor) return _anasayfaYukleniyor;
+  _anasayfaYukleniyor = (async () => {
+    try {
+      const r = await fetch('./data/anasayfa.json');
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      const d = await r.json();
+      if (!d || d.surum !== 1) throw new Error('surum uyumsuz: ' + (d && d.surum));
+      _anasayfaCache = d;
+    } catch (e) {
+      // SESSİZ YUTMA YOK: eski yol (istemcide hesaplama) devreye girecek.
+      console.warn('[anasayfa] onceden hesaplanmis serit yuklenemedi, istemcide hesaplanacak:', e.message);
+      _anasayfaCache = false;
+    }
+    return _anasayfaCache;
+  })();
+  return _anasayfaYukleniyor;
+}
+
+// Önceden hesaplanmış kartlar productMap'e "kısa" olarak giriyor. Detay
+// açılınca tam ürün gerekiyor (fiyat_gecmisi, seri, rozetler) — openDetay
+// bunu görüp tam veriyi tembel yüklüyor.
+function _anasayfaKartlariKaydet(kartlar) {
+  (kartlar || []).forEach(u => {
+    if (!u || !u._id) return;
+    if (!productMap[u._id] || productMap[u._id]._kisa) {
+      u._kisa = true;
+      productMap[u._id] = u;
+    }
+  });
+}
 
 // ═══ 30 GÜNLÜK SERİ — son 30 günle ilgili TEK KAYNAK ════
 // Kayitlar yalnizca fiyat DEGISINCE yaziliyor. Ham kayit listesini tarihe gore
@@ -2425,6 +2478,24 @@ async function renderTuzaklarSeridi() {
   const list = document.getElementById('home-tuzaklar-list');
   if (!wrap || !list) return;
 
+  // ÖNCE önceden hesaplanmış havuz. Tarama build'de yapıldı (ölçüm: istemcide
+  // 16.807 üründe 14.701 ms). Seçim bugünkü davranışın aynısı: karıştır + 6.
+  const on = await anasayfaVeriGetir();
+  if (on && on.tuzaklar && (on.tuzaklar.kirmizi || []).length) {
+    const k = on.tuzaklar.kirmizi || [], s = on.tuzaklar.sari || [];
+    let havuzOn = k.slice();
+    if (havuzOn.length < 6) havuzOn = havuzOn.concat(s);
+    _anasayfaKartlariKaydet(havuzOn.map(x => x.u));
+    for (let i = havuzOn.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [havuzOn[i], havuzOn[j]] = [havuzOn[j], havuzOn[i]];
+    }
+    list.innerHTML = havuzOn.slice(0, 6).map(x => _stripKartHTML(x.u, x.r)).join('');
+    wrap.style.display = '';
+    return;
+  }
+
+  // GERİYE DÜŞÜŞ: dosya yok/bozuk — eskisi gibi istemcide tara.
   try {
     const raw = sessionStorage.getItem(TUZAK_CACHE_KEY);
     if (raw) {
@@ -2501,6 +2572,20 @@ async function renderDusenlerSeridi() {
   const list = document.getElementById('home-dusenler-list');
   if (!wrap || !list) return;
 
+  // ÖNCE önceden hesaplanmış liste (RPC + supheliDurum süzgeci build'de koştu).
+  const on = await anasayfaVeriGetir();
+  if (on && Array.isArray(on.dusenler) && on.dusenler.length) {
+    _anasayfaKartlariKaydet(on.dusenler.map(x => x.u));
+    const sec = on.dusenler.slice(0, DUSENLER_KART);
+    list.innerHTML = sec.map(x => _kartaRozetEkle(
+      _stripKartHTML(x.u, null),
+      indirimRozetiHTML({ tip: x.dusus_yuzde >= 25 ? 'buyuk' : 'normal', yuzde: x.dusus_yuzde }, true)
+    )).join('');
+    wrap.style.display = '';
+    return;
+  }
+
+  // GERİYE DÜŞÜŞ
   try {
     await supheliPuanlariYukle();
     await gecmisVeriGetir();
@@ -2535,6 +2620,23 @@ async function renderSupheliSeridi() {
   if (!wrap || !list) return;
 
   try {
+    // ÖNCE önceden hesaplanmış liste (sorgu + supheliDurum + indirimRozeti
+    // build'de koştu). Sıralama ve kesme burada, bugünküyle aynı kodla.
+    const on = await anasayfaVeriGetir();
+    if (on && Array.isArray(on.supheli) && on.supheli.length) {
+      const ad = on.supheli.slice();
+      ad.sort((a, b) => (b.puan - a.puan) || (b.yuzde - a.yuzde));
+      const sec = ad.slice(0, SUPHELI_SERIT_MAX);
+      if (sec.length < SUPHELI_SERIT_MIN) { wrap.style.display = 'none'; return; }
+      _anasayfaKartlariKaydet(sec.map(x => x.u));
+      list.innerHTML = sec.map(x => _kartaRozetEkle(
+        _stripKartHTML(x.u, null), supheliRozetHTML()
+      )).join('');
+      wrap.style.display = '';
+      return;
+    }
+
+    // GERİYE DÜŞÜŞ
     await supheliPuanlariYukle();
     await gecmisVeriGetir();
     const { data, error } = await window.supabaseClient
@@ -2666,39 +2768,64 @@ function _zamMarka(ad) {
   return String(ad || '').trim().split(/\s+/)[0].toLocaleLowerCase('tr');
 }
 
-function zamAdaylari() {
+// ═══ HAVUZ / SEÇİM AYRIMI ═══════════════════════════════
+// zamHavuzu() ŞEHİRDEN BAĞIMSIZ: ürünün satıldığı HER market için artış
+// hesaplanıp saklanır. zamSecHavuzdan() şehir filtresini, çeşitliliği ve
+// ZAM_MAX'i uygular. zamAdaylari() ikisinin bileşimi — davranış değişmedi.
+//
+// NEDEN: havuz build zamanında bir kez hesaplanıp data/anasayfa.json'a
+// yazılıyor; istemci 14 MB indirip 16.790 ürün taramak yerine hazır havuza
+// AYNI seçim kodunu uyguluyor. Mantık tek yerde kaldığı için sapma olamaz.
+// Şehir filtresi seçim aşamasında olduğundan önceden hesaplama onu bozmuyor.
+function zamHavuzu() {
   if (!_gecmisCache) return [];
-  const havuz = [];
+  const urunler = [];
   const gorulen = {};
   Object.values(catCache || {}).forEach(liste => (liste || []).forEach(u => {
-    if (u && u._sid && !gorulen[u._sid]) { gorulen[u._sid] = 1; havuz.push(u); }
+    if (u && u._sid && !gorulen[u._sid]) { gorulen[u._sid] = 1; urunler.push(u); }
   }));
-  const adaylar = [];
-  havuz.forEach(u => {
-    // MEVSİM TUZAĞI: taze meyve/sebzede fiyat sezona göre doğal oynuyor,
-    // karpuzun pahalanması zam değil. Ölçüm: iki naif yöntemin de ilk 10'unda
-    // taze ürün YOKTU ve %15 üstü 1661 üründen yalnızca 12'si tazeydi — yani
-    // tamamen dışarıda bırakmanın maliyeti neredeyse sıfır.
+  const havuz = [];
+  urunler.forEach(u => {
+    // MEVSİM TUZAĞI: taze meyve/sebzede fiyat sezona göre doğal oynuyor.
     const kat = ustKategori(u.ana_kategori || '');
     if (kat === 'meyve' || kat === 'sebze') return;
-
     const gecerli = fiyatlariTemizle(u.market_fiyatlari).gecerli.filter(f => f.fiyat > 0);
     if (!gecerli.length) return;
-    // Şehir seçiliyse o ilde bulunmayan zincirin ürünü listeye girmesin.
-    if (!gecerli.some(f => marketVarMi(f.market))) return;
-
-    // HER MARKETI AYRI OLC. Ayni urun birden cok markette zamlandiysa tek kart
-    // cizilir, en yuksek artisli market temsil eder.
-    let enIyi = null;
+    // Ürünün satıldığı HER market ölçülüyor (şehir filtresi YOK — seçimde).
+    const marketArtis = {};
+    let adayVar = false;
     gecerli.forEach(f => {
-      if (!marketVarMi(f.market)) return;
-      // Salınımlı seride "yeni seviye" iddiası kurulamaz — bkz. zamSalinimVar.
-      // Market bazında eleniyor: aynı ürünün temiz bir marketi varsa o temsil eder.
-      if (zamSalinimVar(u._sid, f.market) !== null) return;
+      if (!f.market || marketArtis[f.market] !== undefined) return;
       const r = zamMarketArtisi(u._sid, f.market);
-      if (!r || r.artis < ZAM_ESIK) return;
+      if (!r) { marketArtis[f.market] = null; return; }
+      const kayit = { artis: r.artis, zirve: r.zirve, sonHafta: r.sonHafta, kayit: r.kayit };
+      // Salınımlı seride "yeni seviye" iddiası kurulamaz — bkz. zamSalinimVar.
+      // Kayıt SİLİNMİYOR, işaretleniyor: aday seçiminden düşer ama yaygınlık
+      // sayımı (zamMarketDurumu) onu görmeye devam eder — canlı yolla aynı.
+      if (zamSalinimVar(u._sid, f.market) !== null) kayit.salinim = true;
+      else if (r.artis >= ZAM_ESIK) adayVar = true;
+      marketArtis[f.market] = kayit;
+    });
+    if (!adayVar) return;
+    havuz.push({ u: u, marketArtis: marketArtis });
+  });
+  return havuz;
+}
+
+function zamSecHavuzdan(havuz) {
+  if (!Array.isArray(havuz) || !havuz.length) return [];
+  const adaylar = [];
+  havuz.forEach(x => {
+    if (!x || !x.u || !x.marketArtis) return;
+    const u = x.u;
+    // Şehir seçiliyse o ilde bulunmayan zincirin ürünü listeye girmesin.
+    let enIyi = null;
+    Object.keys(x.marketArtis).forEach(m => {
+      if (!marketVarMi(m)) return;
+      const r = x.marketArtis[m];
+      if (!r || r.salinim || r.artis < ZAM_ESIK) return;
       if (!enIyi || r.artis > enIyi.artis) {
-        enIyi = { u: u, ad: u.ad, market: f.market, eski: r.zirve, yeni: r.sonHafta,
+        enIyi = { u: u, ad: u.ad, market: m, eski: r.zirve, yeni: r.sonHafta,
                   artis: r.artis, kayit: r.kayit };
       }
     });
@@ -2712,7 +2839,7 @@ function zamAdaylari() {
   for (const x of adaylar) {
     if (secilen.length >= ZAM_MAX) break;
     const mk = _zamMarka(x.ad);
-    const ak = x.u.ana_kategori || '';
+    const ak = (x.u && x.u.ana_kategori) || '';
     if ((markaSay[mk] || 0) >= ZAM_MARKA_MAX) continue;
     if ((katSay[ak] || 0) >= ZAM_KAT_MAX) continue;
     markaSay[mk] = (markaSay[mk] || 0) + 1;
@@ -2720,6 +2847,10 @@ function zamAdaylari() {
     secilen.push(x);
   }
   return secilen;
+}
+
+function zamAdaylari() {
+  return zamSecHavuzdan(zamHavuzu());
 }
 
 function zamRozetHTML(artis, market) {
@@ -2796,16 +2927,19 @@ function zamKademeleri(sid, market) {
 // yapısal: seri günlük EN UCUZ fiyatı izliyor, bir market zamlanmazsa min onu
 // takip eder ve ürün zaten listeye girmez. Yani "A101'de zamlandı ama BİM'de
 // aynı" vakası bu ölçütle nadiren görünür — gördüğümüzde doğru anlatıyoruz.
-function zamMarketDurumu(u) {
+// marketArtis verilirse (önceden hesaplanmış havuzdan) geçmişe gerek kalmaz;
+// verilmezse eskisi gibi _gecmisCache'ten hesaplanır. İkisi AYNI sonucu verir.
+function zamMarketDurumu(u, marketArtis) {
   const bos = { satilan: [], zamli: [], sabit: [] };
-  if (!u || !u._sid || !_gecmisCache) return bos;
-  const kayitlar = _gecmisCache[u._sid];
-  if (!Array.isArray(kayitlar)) return bos;
+  if (!u || !u._sid) return bos;
+  if (!marketArtis) {
+    if (!_gecmisCache || !Array.isArray(_gecmisCache[u._sid])) return bos;
+  }
   const satilan = (fiyatlariTemizle(u.market_fiyatlari).gecerli || [])
     .map(f => f.market).filter(m => m && marketVarMi(m));
   const zamli = [], sabit = [];
   satilan.forEach(m => {
-    const r = zamMarketArtisi(u._sid, m);
+    const r = marketArtis ? marketArtis[m] : zamMarketArtisi(u._sid, m);
     if (!r) return;                 // olculemedi: ne zamli ne sabit say
     (r.artis >= ZAM_ESIK ? zamli : sabit).push(m);
   });
@@ -2832,8 +2966,8 @@ function zamKategoriOrt(anaKategori) {
 }
 
 // KART: yer dar, yalnızca en güçlü tek bilgi.
-function zamYayginlikHTML(u) {
-  const d = zamMarketDurumu(u);
+function zamYayginlikHTML(u, marketArtis) {
+  const d = zamMarketDurumu(u, marketArtis);
   if (!d.satilan.length) return '';
   const ad = m => MARKET_NAMES[m] || m;
   let metin;
@@ -2908,19 +3042,31 @@ async function renderZamSeridi() {
   const list = document.getElementById('home-zam-list');
   if (!wrap || !list) return;
   try {
-    // catCache LAZY dolduruluyor. loadData icinde cagrilirsa catCache henuz bos
-    // olur ve hicbir aday bulunamaz — bolum sessizce gizli kalirdi.
-    // renderTuzaklarSeridi ile ayni desen: once tum kategoriler.
-    await loadAllCats();
-    await gecmisVeriGetir();
-    const secilen = zamAdaylari();
+    // ÖNCE önceden hesaplanmış havuz. Seçim (şehir filtresi + çeşitlilik +
+    // ZAM_MAX) burada, istemcide, zamSecHavuzdan ile AYNI kodla yapılıyor —
+    // bu yüzden şehir seçimi bozulmuyor.
+    let secilen = null, havuzHarita = null;
+    const on = await anasayfaVeriGetir();
+    if (on && Array.isArray(on.zam) && on.zam.length) {
+      havuzHarita = {};
+      on.zam.forEach(x => { if (x && x.u && x.u._id) havuzHarita[x.u._id] = x.marketArtis; });
+      _anasayfaKartlariKaydet(on.zam.map(x => x.u));
+      secilen = zamSecHavuzdan(on.zam);
+    } else {
+      // GERİYE DÜŞÜŞ: dosya yok/bozuk — eskisi gibi istemcide hesapla.
+      await loadAllCats();
+      await gecmisVeriGetir();
+      secilen = zamAdaylari();
+    }
     if (secilen.length < ZAM_MIN) { wrap.style.display = 'none'; return; }
     window._zamListesi = secilen;
     secilen.forEach(x => { productMap[x.u._id] = x.u; });
     // Kartta yer dar: rozet + EN GUCLU TEK bilgi (yayginlik). Tarih/kademe/
     // kategori baglami urun detayinda.
     list.innerHTML = secilen.map(x => _kartaRozetEkle(
-      _stripKartHTML(x.u, null), zamRozetHTML(x.artis, x.market) + zamYayginlikHTML(x.u)
+      _stripKartHTML(x.u, null),
+      zamRozetHTML(x.artis, x.market) +
+      zamYayginlikHTML(x.u, havuzHarita ? havuzHarita[x.u._id] : null)
     )).join('');
     const btn = document.getElementById('home-zam-paylas');
     if (btn) btn.style.display = '';
@@ -4142,16 +4288,17 @@ function loadData() {
     renderCatGrid();
     saveSepet();
     renderMevsimSeridi();
+    // Dört şerit artık tek küçük dosyadan (25,9 KB gzip) besleniyor; 16.790
+    // ürün taraması build'e taşındı. idle callback'i beklemelerine gerek yok.
     renderDusenlerSeridi();
     renderSupheliSeridi();
-    // Zam seridi 16.790 urun tariyor ve loadAllCats gerektiriyor — tuzaklarla
-    // ayni sekilde ilk boyamayi bloklamasin diye erteleniyor.
-    if ('requestIdleCallback' in window) {
-requestIdleCallback(() => { renderTuzaklarSeridi(); renderZamSeridi(); }, { timeout: 3000 });
-    } else {
-setTimeout(() => { renderTuzaklarSeridi(); renderZamSeridi(); }, 1500);
-    }
-  }).catch((e) => { console.error('[loadData]', e); renderCatGrid(); saveSepet(); renderMevsimSeridi(); renderDusenlerSeridi(); renderSupheliSeridi(); if ('requestIdleCallback' in window) { requestIdleCallback(() => { renderTuzaklarSeridi(); }, { timeout: 3000 }); } else { setTimeout(() => { renderTuzaklarSeridi(); }, 1500); } });
+    renderTuzaklarSeridi();
+    renderZamSeridi();
+  }).catch((e) => {
+    console.error('[loadData]', e);
+    renderCatGrid(); saveSepet(); renderMevsimSeridi();
+    renderDusenlerSeridi(); renderSupheliSeridi(); renderTuzaklarSeridi(); renderZamSeridi();
+  });
 }
 
 function openHalScreen() {

@@ -58,7 +58,7 @@ function kur(gecmis, urunler, opts = {}) {
     sabitler, seriCache ? seriCache[0] : '',
     fnKaynak('_yerelGunISO'), fnKaynak('_salinimVarSeri'), fnKaynak('_seriKur'), fnKaynak('otuzGunlukSeri'), fnKaynak('otuzGunlukSeriTemiz'), fnKaynak('otuzGunMinFiyatTemiz'), fnKaynak('_zamGunISO'),
     fnKaynak('zamMarketSerisi'), fnKaynak('zamMarketArtisi'), fnKaynak('zamSalinimVar'),
-    fnKaynak('zamOncekiZirve'), fnKaynak('_zamMarka'), fnKaynak('zamAdaylari'),
+    fnKaynak('zamOncekiZirve'), fnKaynak('_zamMarka'), fnKaynak('zamHavuzu'), fnKaynak('zamSecHavuzdan'), fnKaynak('zamAdaylari'),
   ].join('\n'), ctx);
   return ctx;
 }
@@ -149,7 +149,7 @@ console.log('\n=== 4. MEVSIM TUZAGI: TAZE URUN ALINMIYOR ===');
   const c = kur(g, [{ _sid: 'k', _id: 'k', ad: 'Karpuz 1 Kg', ana_kategori: 'Meyve',
                       en_dusuk_fiyat: 40, market_fiyatlari: [{ market: 'bim', fiyat: 40 }] }]);
   ok('taze meyve listeye GIRMIYOR', calis(c, 'zamAdaylari()').length === 0);
-  const za = fnKaynak('zamAdaylari') || '';
+  const za = (fnKaynak('zamHavuzu') || '') + (fnKaynak('zamSecHavuzdan') || '') + (fnKaynak('zamAdaylari') || '');
   ok('  ust kategori ile eleniyor', /ustKategori\s*\(/.test(za) && /meyve|sebze/.test(za), '');
 }
 
@@ -208,7 +208,7 @@ console.log('\n=== 4c. CESITLILIK KURALI (marka<=2, alt kategori<=3) ===');
 }
 {
   // kural yuzunden 10'a dolmuyorsa ESIK DUSURULMEZ, az urunle gosterilir
-  const za = fnKaynak('zamAdaylari') || '';
+  const za = (fnKaynak('zamHavuzu') || '') + (fnKaynak('zamSecHavuzdan') || '') + (fnKaynak('zamAdaylari') || '');
   ok('esik dinamik degil (tek ZAM_ESIK karsilastirmasi)',
      (za.match(/ZAM_ESIK/g) || []).length <= 2, (za.match(/ZAM_ESIK/g) || []).length + ' kez geciyor');
   ok('  marka siniri kodda', /ZAM_MARKA_MAX/.test(za), '');
@@ -222,7 +222,7 @@ console.log('\n=== 5. SEHIR FILTRESI ===');
                market_fiyatlari: [{ market: 'bim', fiyat: 200 }] }];
   ok('sehir filtresi yokken listede', calis(kur(g, u), 'zamAdaylari()').length === 1);
   ok('o ilde bim YOKSA listeden dusuyor', calis(kur(g, u, { yokMarket: 'bim' }), 'zamAdaylari()').length === 0);
-  const za = fnKaynak('zamAdaylari') || '';
+  const za = (fnKaynak('zamHavuzu') || '') + (fnKaynak('zamSecHavuzdan') || '') + (fnKaynak('zamAdaylari') || '');
   ok('  marketVarMi ile suzuluyor', /marketVarMi\s*\(/.test(za), '');
 }
 
@@ -250,11 +250,17 @@ console.log('\n=== 7. YER: "Bu indirimlere dikkat"in HEMEN ALTI ===');
   // catCache LAZY: loadData icinde dogrudan cagrilirsa havuz bos olur ve bolum
   // sessizce gizli kalir. Canlida tam bunu yasadik.
   const rz2 = fnKaynak('renderZamSeridi') || '';
-  ok('  renderZamSeridi once loadAllCats bekliyor', /await\s+loadAllCats\s*\(/.test(rz2),
+  ok('  GERIYE DUSUSTE loadAllCats bekliyor', /await\s+loadAllCats\s*\(/.test(rz2),
      rz2.split('\n').filter(l => /await/.test(l)).join(' | '));
-  ok('  ilk boyamayi bloklamiyor (idle/timeout icinde)',
-     /requestIdleCallback\([^)]*renderZamSeridi|setTimeout\(\s*\(\)\s*=>\s*\{[^}]*renderZamSeridi/.test((fnKaynak('loadData') || '').replace(/\s+/g, ' ')),
-     '');
+  // ESKI IDDIA: "idle callback icinde olmali". Artik gecerli DEGIL — serit
+  // 16.790 urun taramak yerine onceden hesaplanmis 25,9 KB dosyadan besleniyor
+  // (bkz. scripts/anasayfa-uret.mjs), ertelemeye gerek kalmadi.
+  // YENI DEGISMEZ: hizli yolda kategori/gecmis BEKLENMIYOR.
+  ok('  once onceden hesaplanmis dosyaya bakiyor', /anasayfaVeriGetir\s*\(/.test(rz2), '');
+  const kesim = rz2.indexOf('GERİYE DÜŞÜŞ');
+  const hizli = kesim > 0 ? rz2.slice(0, kesim) : rz2;
+  ok('  hizli yolda loadAllCats BEKLENMIYOR', !/await\s+loadAllCats\s*\(/.test(hizli), '');
+  ok('  havuzdan secim AYNI kodla (zamSecHavuzdan)', /zamSecHavuzdan\s*\(/.test(rz2), '');
 }
 
 console.log('\n=== 8. PAYLASIM ===');
