@@ -43,6 +43,29 @@ jobs:
             -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}" \
             -H "Content-Type: application/json"
 
+      # Ana sayfanin dort seridi. "Sahte Indirim Analizi"nden SONRA kosmali:
+      # supheli serit indirim_supheli_* kolonlarini okuyor.
+      # "Build ve Deploy" de uretiyor ama repoya COMMIT ATAMIYOR (izni
+      # contents: read). Burada uretip islemezsek dosya git'te bayatlar ve
+      # tazelik kontrolu iki gunde YANLIS ALARM verir.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Ana Sayfa Seritleri
+        run: node scripts/anasayfa-uret.mjs
+      - name: Ana Sayfa Seritlerini Isle
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add data/anasayfa.json
+          if git diff --cached --quiet; then
+            echo "anasayfa.json degismedi"
+          else
+            git commit -m "Ana sayfa seritleri guncellendi"
+            git pull --rebase origin main
+            git push
+          fi
+
       # Bilerek EN SONA konuldu: bayat bir dosya bulunsa bile taze kategorilerin
       # DB'ye akmasi engellenmesin, ama is yine de kirmizi olsun (hata maili).
       # continue-on-error YOK - amaci tam olarak isi kirmizi yapmak.

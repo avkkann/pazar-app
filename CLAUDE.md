@@ -1,6 +1,6 @@
 # Pazar App — Proje Handoff (Claude için)
 
-**Son güncelleme:** 2026-08-08 oturumu sonunda. Bu dosya her oturum başında okunur, sohbete asla ham metin olarak yapıştırılmaz.
+**Son güncelleme:** 2026-08-11 oturumu sonunda. Bu dosya her oturum başında okunur, sohbete asla ham metin olarak yapıştırılmaz.
 
 ---
 
@@ -18,7 +18,34 @@ Mustafa (GitHub: avkkann), **Pazar App**'in tek geliştiricisi — Türk market 
 
 ---
 
-## Mevcut durum (2026-08-08 itibarıyla)
+## Mevcut durum (2026-08-11 itibarıyla)
+
+### 2026-08-09/11 oturumu — ana sayfa 16× hızlandı, zam ölçütü yeniden kuruldu, hayalet zam bulundu
+
+**Ana sayfa önceden hesaplanıyor (`aa60d59`, `5e54234`, `4f97113`, `158bf81`).** Dört şerit (tuzaklar, düşenler, dikkat, zam) build zamanında `scripts/anasayfa-uret.mjs` ile hesaplanıp `data/anasayfa.json`'a yazılıyor: **168 KB ham / 26 KB gzip**. Ana sayfanın indirdiği: **2,09 MB → 0,13 MB gzip** (17,14 MB → 0,67 MB ham), 15 → 8 istek. Asıl kazanç ağda değil hesapta: **tuzak taraması 16.807 üründe 14.701 ms sürüyordu** ve şerit 18.311 ms'de çiziliyordu — o tarama kritik yoldan tamamen çıktı, dört şerit artık `requestIdleCallback` bile beklemiyor.
+
+> **Mantık YENİDEN YAZILMADI.** Üretici `app.js`'i `node:vm` içinde **olduğu gibi** koşturup kendi fonksiyonlarını çağırıyor (`zamHavuzu`, `tuzakRozetiHesapla`, `supheliDurum`, `indirimRozetiHesapla`, `_seriKur`). Betikte tek bir eşik, filtre veya sıralama kuralı yok; Supabase için yalnızca taşıma katmanı (PostgREST'e `fetch`) var. Bu kural bilerek kondu — iki ayrı uygulama = kaçınılmaz sapma.
+
+**Şehir filtresi bozulmadan korundu.** `zamAdaylari()` ikiye ayrıldı: `zamHavuzu()` şehirden bağımsız (ürünün HER marketi için artış), `zamSecHavuzdan()` şehir filtresi + çeşitlilik + `ZAM_MAX`. `zamAdaylari() = zamSecHavuzdan(zamHavuzu())`. Build havuzu yazıyor, istemci **aynı** `zamSecHavuzdan`'ı koşuyor. 6 senaryoda (seçim yok / İstanbul / Erzurum / Trabzon / Gaziantep / İzmir) liste ve yaygınlık metni **birebir aynı, fark 0**; tuzaklarda kırmızı 30/30, sarı 30/30, rozet farkı 0.
+
+**Tembelleştirme (`5e54234`).** `gecmis_fiyatlar.json` (4,2 MB / 653 KB gzip) ana sayfada artık **inmiyor**; yalnızca ürün detayı, kategori ekranı ve profil enflasyonu açılınca `gecmisGerekli(yenile)` ile yükleniyor ve veri gelince ekran bir kez yenileniyor. `loadCat` uçuştaki isteği `_catYukleniyor` Map'inde tekilleştiriyor — öncesinde her kategori JSON'u **iki kez** iniyordu (`urunler_et` 733 ms ve 734 ms), çünkü iki şerit `loadAllCats()`'i eş zamanlı çağırıyordu. Canlı test: kategori 3 kez hızlıca açıldı → her dosya 1 kez indi.
+
+**Zam ölçütü MARKET BAZLI oldu (`52a2c0d`, `4df772a`).** Ölçüt günlük EN UCUZ seriye bakıyordu; bir market zamlanmayınca minimum onu izliyor ve ürün eşiği hiç geçemiyordu. Eşiği geçen 159 ürünün 153'ü tek markette satılan ürünlerdi. Market bazlı seriye geçince: 295 ürün-market çifti, birden çok markette satılan **6 → 118**, "biri zamlı diğeri aynı" **0 → 91**. Çeşitlilik kuralı: marka başına ≤2, alt kategori başına ≤3; kural yüzünden liste dolmazsa **eşik düşürülmez**.
+
+**Salınım elemesi (`f6ec19b`).** Ölçütün ilkesi zaten "eski seviyeye dönüş zam değildir"di; zikzak bunun ihlal edilmiş hâliydi (Lux Zigzag: `27 → 85,90 → 28 → 85,90`). `zamSalinimVar` 30 günlük market serisinde bir değere **ayrılıp geri dönüşü** arıyor. **Tolerans 0 seçilmedi, ÖLÇÜLDÜ**: "ayrılıp geri dönen" 34.919 noktanın **%59,4'ü tam aynı fiyata** dönüyor, sonraki kutu %4,6 — 13× uçurum, ve bu uçurum "ayrıldı" eşiğine %0–%20 arasında tamamen duyarsız. Geçmiş saf change-log (47.104 ardışık çiftin 0'ı aynı fiyat), fiyatların %84'ü `,95`/`,00`/`,90`/`,50` ile bitiyor — yuvarlanacak kuruş gürültüsü yok. Yaygınlık: 17.668 serinin %22,7'si salınımlı (carrefour %28,6 · bim %24,7 · migros %21,0 · a101 %13,1). Havuz 295 → 231, liste 10'a doluyor.
+> İlk denemem yanlıştı ve ölçüm yakaladı: "serinin herhangi bir yerinde tekrar" dersem serilerin **%84,7'si** salınımlı çıkıyordu — bu kusur değil promosyonun normali. Doğru test, iddianın **kapsadığı** 30 günlük pencerede geri dönüş olup olmadığı.
+
+**Hedefli değer düzeltmesi (`7a61f6b`).** Alarm önerisi, al/bekle ve "gerçek indirim" rozeti artık salınımsız seriden ölçüyor (`otuzGunlukSeriTemiz`). Uygunluk kapıları TÜM seride kaldı — susturma yok, sadece değer düzeltme. Etki (aynı gün, kirli vs temiz): alarm 5603 → 5111, al/bekle 3953 → 3563 ("iyi zaman" 100 → 125, "bekle" 3853 → 3438), gerçek indirim 2068 → **2180** (düşen 0). Alarm önerisi değeri değişen 162 ürün, sapma medyan %12,6 · max %48,7 (Erikli Su hedefi 10,00 ₺ → 18,75 ₺, ürün 28,00 ₺). Performans **iyileşti**: `_seriKur` market kırılımını tek geçişte kuruyor, tam tarama 1014 → 793 ms, üç özellik 2259 → 1401 ms, `zamAdaylari` 1554 → 782 ms.
+
+**HAYALET ZAM BULGUSU — çözülmedi, önlem alındı (`bd31c1f`).** API her market zinciri için **tek temsilci mağaza** döndürüyor ve temsilci sabit değil. 2026-08-11 ölçümü, aynı ürün aynı dakika: `depots` parametresi yokken `carrefour-1012 "Istanbul Acıbadem Hıper" 169,95`, 5 İstanbul depotu verilince `carrefour-5027 "Karaköy Mını" 171,50`. Scraper `depots` göndermiyor, yani temsilciyi backend seçiyor. Mağaza değişimi geçmişimizde zam gibi görünüyor. **Önlem:** `parse_product` artık `market_fiyatlari` kayıtlarına `depot_id`/`depot_ad` yazıyor (`liste_fiyat` gibi additive, alan boşsa anahtar hiç açılmıyor). Maliyet: ham +%15,2 (kayıt başına 56 bayt), **gzip +%4,6 (47 KB)**. Geriye dönük doldurma YAPILMADI. Üretimde %100 dolu (2026-08-11 gecelik koşusu). Kontrol grubu: BİM iki farklı mağazada aynı 159,00 verdi; tarih kümelenmesi Carrefour'a özgü DEĞİL (migros %25 vs carrefour %22), yani kümelenme tek başına kanıt değil.
+
+**Şehir seçimi + zincir mevcudiyeti.** `il_market_tara.py` 81 ilin koordinatından `/api/v2/nearest` sorgulayıp `data/il_marketler.json` üretiyor (6,9 KB ham / 0,9 KB gzip); ayrı **haftalık** iş (`il-marketler.yml`, Pazar 04:30 UTC). Konum izni İSTENMİYOR — kullanıcı ili elle seçiyor (KVKK borcu doğmasın). `marketVarMi(m)` tek kapı: zam adayları, yaygınlık metni, market toplamları ve karşılaştırma hepsi buradan geçiyor. Bir il için hiç sonuç dönmezse eski değer korunuyor.
+
+**Hal verisi düzeltildi.** `MAX_PRICE` satır filtresi kaldırıldı, yerine ürün bağlamında aykırı-satır elemesi (`AYKIRI_KAT = 20`, `URUN_MAX_FIYAT = 2000`) kondu; birleştirme **hacim ağırlıklı** (medyan yedekli). Sonuç: 127 → 135 ürün, kayıp 0. Yalnızca `MAX_PRICE`'ı kaldırmak 13 ürünü bozuyordu (Tarhun 90 → 1984). `hal_gecmis_kaydet()` geçmiş biriktiriyor, geriye dönük doldurma yok. `turler` alanı çıkarıldı.
+
+**Gün sınırı yerel takvime geçti.** `_yerelGunISO` tek kaynak; `toISOString()` UTC'ye çevirdiği için UTC+3'te her gece 00:00–03:00 arası pencere bir gün geri kayıyordu. 5 yerde düzeltildi: `_seriKur`, `_zamGunISO`, `zamOncekiZirve`, `fiyatGecmisiBlogu`, `_otuzGunOncekiEnUcuz`. İkisini ayrı bırakmak gece yarısı ölçümü bozacağı için hepsi aynı ızgaraya bağlandı.
+
+**Tazelik kontrolü `anasayfa.json`'ı da izliyor.** Ana sayfanın tamamı o dosyaya bağlı; bayatlarsa ekran sessizce eskir. Aynı 2 gün eşiği. Üretimi bilerek **"Veri Guncelle" işine de** eklendi — yalnızca "Build ve Deploy" üretseydi repoya hiç işlenmezdi (o işin izni `contents: read`) ve git tabanlı kontrol iki günde **yanlış alarm** verirdi.
 
 ### 2026-08-07/08 oturumu — sessiz altyapı görünür oldu, resim hattı onarıldı, ürün katmanı
 
@@ -78,16 +105,29 @@ Mustafa (GitHub: avkkann), **Pazar App**'in tek geliştiricisi — Türk market 
 | Dosya | Assertion | Neyi koruyor |
 |---|---|---|
 | `test_supheli.mjs` | 114 | Sahte indirim rozeti/kutusu, eşikler, puan cache'i |
+| `test_hal.py` | 83 | Hal birleştirme (hacim ağırlıklı), aykırı eleme, geçmiş |
+| `test_zam_gerekce.mjs` | 64 | Zam gerekçesi: tarih, kademe, yaygınlık, kategori bağlamı |
+| `test_zam.mjs` | 62 | Zam ölçütü, kampanya bitişinin zam sayılmaması, çeşitlilik |
+| `test_al_zamani.mjs` | 57 | Al/bekle, uygunluk kapıları, rozet-blok yığılma kuralı |
 | `test_profil.mjs` | 55 | Profil bölümleri, "verisi yoksa çizme" kuralı |
 | `test_resim.py` | 53 | Searlo kalıcı hata kesmesi, resim koruma, `.env` okuma |
+| `test_sehir.mjs` | 51 | Şehir seçimi, `marketVarMi` kapısı, il market haritası |
+| `test_temiz_seri.mjs` | 46 | Salınımsız seri, susturma-yok kuralı, yerel gün sınırı |
+| `test_routing_duzen.mjs` | 44 | `?screen=` haritası, PWA kısayolları, masaüstü sütun dengesi |
 | `test_hakmar.mjs` | 39 | Hakmar bütünlüğü, market filtresinin gerçekten daraltması |
-| `test_routing_duzen.mjs` | 36 | `?screen=` haritası, PWA kısayolları, masaüstü sütun dengesi |
 | `test_ms_sheet.mjs` | 34 | msSheet kapsam bilgisi, eksik ürünün doldurulmaması |
 | `test_enflasyon.mjs` | 34 | Enflasyon hesabı, 3 ürün eşiği, renk yönü |
+| `test_alarm_oneri.mjs` | 34 | Alarm hedef önerisi (30 günün gerçek dibi) |
 | `test_sepet_bol.mjs` | 33 | Dürüst toplam, bölme önerisi, "ikiden fazla market yok" |
+| `test_tembel.mjs` | 30 | Tembel geçmiş, uçuşta tekilleştirme, `_ekranGorunur` |
 | `test_liste_fiyat.mjs` | 30 | `liste_fiyat` UI gösterimi (yalnızca detayda) |
+| `test_tek_kaynak.mjs` | 26 | 30 günlük serinin TEK kaynak olması, `_seriKur` önbelleği |
+| `test_salinim.mjs` | 24 | Salınım elemesi, tolerans 0, eşiğin düşürülmemesi |
+| `test_anasayfa.mjs` | 22 | Havuz/seçim ayrımı, şehirli-şehirsiz birebir eşitlik |
 | `test_birim_fiyat.mjs` | 22 | Birim fiyat vurgusu, diğer ekranların etkilenmemesi |
 | `test_liste_fiyat.py` | 21 | `discountlessPrice` parse'ı, `ilan_indirim_gecmisi` birikimi |
+| `test_depot.py` | 19 | `depot_id`/`depot_ad` additive kaydı, boş alan taşınmaması |
+| `test_tazelik.py` | 18 | Tazelik kontrolü kapsamı, `anasayfa.json`'ın izlenmesi |
 
 ### Backend / DB — 2026-07-08 geçişi (hâlâ geçerli)
 Frontend'in ağır noktaları (8 kategori JSON dosyasını client'ta indirip tarama) tek tek DB sorgusuna taşındı:
@@ -133,6 +173,11 @@ RPC fonksiyonları: `get_fiyat_dusenler(p_limit)`, `indirim_puan_toplu_guncelle(
 
 ## Bekleyen / ertelenen işler
 
+**Mustafa'nın kararını bekleyen — bu oturumdan:**
+1. **HAYALET ZAM: yapısal kural ölçüye dayalı kuralla değiştirilmeli.** `depot_id`/`depot_ad` **2026-08-11'den beri** birikiyor. **~2026-09-01'de** yeterli veri olacak ve "bu dip/zıplama gerçekten mağaza değişimi mi" sorusu **doğrudan** cevaplanabilecek. O zaman `zamSalinimVar`'daki yapısal salınım testi, `depot_id` değişimini izleyen ölçüme dayalı kuralla değiştirilmeli. Not `app.js`'te `_seriKur` ve `zamSalinimVar` üzerinde duruyor. **Bu tarih geçmeden kuralı değiştirme, ölçüm olmadan yeni eşik uydurma.**
+2. **Al/bekle'de kaybolan 900 çıktı.** Temiz seriye geçince alarm önerisi −492, al/bekle −408 düştü. Bunlar yeni bir susturma kuralı değil, **mevcut kapılar** düzeltilmiş veriye uygulandığı için: alarm "fiyat zaten dipteyse öneri yok"a, al/bekle `AL_ZAMANI_MIN_OYNAMA` %5 kapısına takılıyor. Düşenlerin yarısında temiz aralık **tam sıfır** (ürün 30 gündür kımıldamamış, "bekle" demek yanlıştı). Ama dürüst sınır: salınımlı seri "yanlış seri" değil — inip biten bir kampanya gerçek bir diptir ve o bilgiyi kaybettik. Kabul mü, yoksa hedefli bir istisna mı gerekiyor?
+3. **Tuzak şeridi rastgele seçiyor.** Havuz (30 kırmızı + 30 sarı) build'de hesaplanıyor, istemci karıştırıp 6 alıyor — bugünkü davranışın aynısı. Kalıcı/kişiselleştirilmiş seçim isteniyorsa ayrı karar.
+
 **Ürün yönü (öncelik sırasıyla):**
 1. **Searlo kredisi kararı** — resim doldurma adımı artık boşa koşmuyor ama **hiç resim de doldurmuyor**. Ya kredi yenilenecek ya alternatif kaynak seçilecek ya da adım tamamen kaldırılacak. Alternatif kaynak araştırması bilinçli olarak yapılmadı — ayrı karar, Mustafa'da.
 2. **Gramaj hilesi (shrinkflation) analizi** — `agirlik_hacim_gecmisi` birikiyor, veri bekliyor (3-6 ay).
@@ -162,7 +207,7 @@ RPC fonksiyonları: `get_fiyat_dusenler(p_limit)`, `indirim_puan_toplu_guncelle(
 
 - **GitHub Actions, varsayılan `GITHUB_TOKEN` ile atılan push'lardan yeni workflow TETİKLEMEZ** (sonsuz döngü koruması). İstisnası `workflow_run` ve `workflow_dispatch` — PAT/secret gerekmez. Bir workflow'un commit'i başka bir workflow'u tetiklemeli diyorsan `workflow_run` kullan. Bu tam olarak 21 gün fark edilmeden yayının durmasına yol açtı.
 - **Kaynak sitedeki kategori/isim değişiklikleri sessizce gelir; API hata değil BOŞ SONUÇ döner.** Boş sonuç ile ağ hatasını asla aynı dala düşürme — biri retry ister, diğeri insan müdahalesi. Boş sonuç sesli olsun (`[KRITIK]`) ve mümkünse hattı görünür şekilde kırmızıya çevirsin. Sessiz `[ATLA]` + "dosyayı hiç yazma" kombinasyonu bayat veriyi 12 gün taze gösterdi.
-- **`showScreen()` aktif ekrana inline `display: block` yazıyor.** Bu yüzden `#screen-*` seçicisine CSS'ten `display: grid`/`flex` vermek ÇALIŞMAZ (inline stil stil sayfasını ezer). Düzeni her zaman bir iç sarmalayıcıya ver (`.profil-kartlar` gibi).
+- **`showScreen()` inline `display` yazıyor — bu tuzağa ÜÇ kez düşüldü.** (1) Aktif ekrana inline `display: block` yazdığı için `#screen-*` seçicisine CSS'ten `display: grid`/`flex` vermek ÇALIŞMAZ (inline stil stil sayfasını ezer); düzeni her zaman bir iç sarmalayıcıya ver (`.profil-kartlar` gibi). (2) Diğer ekranlara `display: none` yazdığı için `style.display !== 'none'` kontrolü ancak *showScreen bir kez koştuktan sonra* doğrudur. (3) **showScreen İLK KEZ koşana kadar TÜM ekranların inline `display`'i BOŞ (`""`), gizlilik yalnızca CSS'ten geliyor** — 2026-08-11 ölçümü: `screen-profil` → `inline=""`, `hesaplanan="none"`, `offsetParent=null`. Yani `style.display !== 'none'` açılışta gizli ekranı GÖRÜNÜR sanıyor. Somut zarar: `profilBolumleriCiz()` açılışta da çağrılıyor, oraya konan tembel-yükleme tetikleyicisi ateşlendi ve **4,2 MB geçmiş her sayfa açılışında indi** (üç deploy sürdü, her adımda canlı ölçümle yakalandı). **Görünürlük kontrolü inline stile değil `getComputedStyle`'a bakmalı** — `_ekranGorunur(id)` bunun için var, yeni kontrol yazma, onu kullan.
 - **Claude in Chrome'da `resize_window` çalışmıyor** — başarı raporluyor ama sayfanın viewport'u değişmiyor (`outerWidth: 0`). Responsive test için aynı origin'de **iframe** aç (`<iframe width=390>`); medya sorguları iframe genişliğine göre değerlendiği için gerçek render verir. Not: ekran geçiş animasyonu iframe'de tamamlanmadığı için `.screen` `translateX(100%)`'te takılı kalabilir — ölçümden önce `anim-slide-in`/`anim-slide-out` sınıflarını kaldır.
 - **Dosya tazeliğini `fetch` yanıtının `Last-Modified` başlığından okuyabilirsin** — 15 bin ürünlük JSON'a satır başına zaman alanı eklemeye gerek yok. Başlık yoksa özelliği sessizce kapat.
 - **PostgREST upsert, kısmi kolon seti ile NOT NULL ihlali verir.** `POST /rest/v1/table?on_conflict=col` arka planda `INSERT ... ON CONFLICT DO UPDATE` çalıştırır; INSERT tarafı NOT NULL kolonlar için değer ister, UPDATE'e düşecek olsa bile. Sadece var olan satırları güncelleyecek toplu yazmalarda özel SQL fonksiyonu yaz: `UPDATE ... FROM jsonb_to_recordset($1) AS x(...) WHERE tablo._sid = x._sid`.

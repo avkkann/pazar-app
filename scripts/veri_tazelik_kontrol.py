@@ -2,8 +2,17 @@
 """
 Veri tazelik kontrolu.
 
-data/urunler_*.json dosyalarinin her birinin SON COMMIT tarihine bakar; herhangi
-biri ESIK_GUN'den eskiyse net bir mesajla exit 1 verir.
+data/urunler_*.json ve data/anasayfa.json dosyalarinin her birinin SON COMMIT
+tarihine bakar; herhangi biri ESIK_GUN'den eskiyse net bir mesajla exit 1 verir.
+
+anasayfa.json NEDEN BURADA: ana sayfanin dort seridi (tuzaklar, dusenler,
+supheli, zam) artik TAMAMEN bu dosyaya bagli, istemci hicbir hesap yapmiyor.
+Dosya bayatlarsa ana sayfa SESSIZCE eskir - kategori dosyalari taze olsa bile.
+
+Uretimi bilerek "Veri Guncelle" isine de eklendi. Yalnizca "Build ve Deploy"
+uretseydi repoya hic islenmezdi (o isin izni contents: read) ve bu git tabanli
+kontrol iki gunde YANLIS ALARM verirdi. Yanlis alarm, hic alarm olmamasindan
+kotudur - kirmizi hattin anlamini yok eder.
 
 Amaci hattı GORUNUR sekilde kirmiziya cevirmektir: 2026-07 sonunda
 marketfiyati.org.tr "Temizlik ve Kişisel Bakım" kategorisini ikiye bolunce
@@ -48,10 +57,38 @@ def son_commit_zamani(path):
         return None
 
 
-def main():
+def izlenen_dosyalar():
+    """Tazeligi izlenen dosyalar.
+
+    hal.json BILEREK DISARIDA: kaynagi Ticaret Bakanligi bulteni, kendi
+    ritmi var ve hafta sonu guncellenmiyor.
+    il_marketler.json BILEREK DISARIDA: HAFTALIK is (Il Market Haritasi),
+    2 gun esigi ona uymaz.
+    """
     dosyalar = sorted(glob.glob(os.path.join(DATA_DIR, "urunler_*.json")))
+    anasayfa = os.path.join(DATA_DIR, "anasayfa.json")
+    if os.path.exists(anasayfa):
+        dosyalar.append(anasayfa)
+    return dosyalar
+
+
+def bayat_mi(zaman, simdi):
+    """Commit zamani None ise (gecmis bulunamadi) BAYAT sayilir - sessiz
+    gecmektense gurultu yapmak amac."""
+    if zaman is None:
+        return True
+    return (simdi - zaman).total_seconds() / 86400.0 > ESIK_GUN
+
+
+def main():
+    dosyalar = izlenen_dosyalar()
     if not dosyalar:
         print("TAZELIK HATASI: data/urunler_*.json hic bulunamadi.")
+        return 1
+    if not any(os.path.basename(p) == "anasayfa.json" for p in dosyalar):
+        print("TAZELIK HATASI: data/anasayfa.json YOK.")
+        print("  Ana sayfanin dort seridi bu dosyadan besleniyor; yoksa istemci")
+        print("  geriye dusup 17 MB indirir. scripts/anasayfa-uret.mjs kostu mu?")
         return 1
 
     simdi = datetime.now(timezone.utc)
@@ -67,9 +104,9 @@ def main():
             bayatlar.append((ad, None))
             continue
         yas = (simdi - zaman).total_seconds() / 86400.0
-        durum = "BAYAT" if yas > ESIK_GUN else "taze"
+        durum = "BAYAT" if bayat_mi(zaman, simdi) else "taze"
         print(f"  {ad:32s}  {zaman.date()}  {yas:5.1f} gun  {durum}")
-        if yas > ESIK_GUN:
+        if bayat_mi(zaman, simdi):
             bayatlar.append((ad, yas))
     print("-" * 64)
 
