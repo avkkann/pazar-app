@@ -2286,3 +2286,26 @@
   #sepetContent, #screen-profil, #detayContent { overflow-x: clip; }
 }
 /* MASAUSTU-DUZEN-TAMAM */
+
+    /* ═══ ODAK GOSTERGESI ═══════════════════════════════
+       2026-08-11 denetimi: odaklanabilir 15 ogenin 15inde gorunur odak
+       gostergesi yoktu (WCAG 2.4.7). Tiklanabilir kartlar da klavyeye
+       acildi (tabindex+role+_kartTus), onlarin da gostergesi gerekiyor.
+       :focus-visible kullaniliyor -> FARE ile tiklaninca CIKMAZ, yalnizca
+       klavye gezintisinde cikar; gorsel tasarim degismez.
+       Renk mevcut tasarim dilinden (--primary #0E4938), agresif degil. */
+    :focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+    }
+    .strip-card:focus-visible,
+    .product-card:focus-visible,
+    .cat-card:focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 2px;
+      border-radius: inherit;
+    }
+    .nav-btn:focus-visible { outline: 2px solid #fff; outline-offset: -3px; }
+    @media (prefers-contrast: more) {
+      :focus-visible { outline-width: 3px; }
+    }

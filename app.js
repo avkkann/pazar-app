@@ -2507,7 +2507,7 @@ function cardHTML(u) {
     }
   }
   const marketLbl = gosterilenMarket ? MARKET_NAMES[gosterilenMarket] || gosterilenMarket : '';
-  return `<div class="product-card" data-urun-id="${u._id}" data-sid="${u._sid || ''}" data-markets="${(u.market_fiyatlari||[]).map(f=>f.market).join(',')}" onclick="openDetay('${u._id}')" style="cursor:pointer">
+  return `<div class="product-card" tabindex="0" role="button" aria-label="${u.ad}" data-urun-id="${u._id}" data-sid="${u._sid || ''}" data-markets="${(u.market_fiyatlari||[]).map(f=>f.market).join(',')}" onclick="openDetay('${u._id}')" onkeydown="_kartTus(event, '${u._id}')" style="cursor:pointer">
     ${favBtnHTML(u._sid)}
     ${img}
     <div class="product-card-body">
@@ -2533,6 +2533,19 @@ function cardHTML(u) {
 const TUZAK_CACHE_KEY = 'pazar_tuzaklar_v4';
 const TUZAK_CACHE_TTL_MS = 1000 * 60 * 60 * 6;
 
+// Tıklanabilir kartlar <div>. Klavye kullanıcısı ve ekran okuyucu için
+// tabindex+role+bu tuş işleyicisi gerekiyor — 2026-08-11 denetimi: 51 öğe
+// onclick taşıyor ama odaklanabilir değildi, uygulamanın ana işlevi (ürün
+// detayına gitmek) klavyeye TAMAMEN kapalıydı.
+// Space varsayılan olarak sayfayı kaydırır; preventDefault ile durduruluyor.
+function _kartTus(e, id) {
+  if (!e) return;
+  if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+    e.preventDefault();
+    openDetay(id);
+  }
+}
+
 function _stripKartHTML(u, rozet) {
   const ph = placeholderRenk(ustKategori(u.ana_kategori));
   const img = u.resim
@@ -2543,7 +2556,7 @@ function _stripKartHTML(u, rozet) {
   const rozetHTML = rozet
     ? `<div class="strip-card-rozet ${rozet.tip}"><span class="lc-dot ${rozet.tip}"></span>%${rozet.yuzde} pahalı</div>`
     : '';
-  return `<div class="strip-card" onclick="openDetay('${u._id}')">
+  return `<div class="strip-card" tabindex="0" role="button" aria-label="${u.ad}" onclick="openDetay('${u._id}')" onkeydown="_kartTus(event, '${u._id}')">
     ${img}
     <div class="strip-card-name">${u.ad}</div>
     <div class="strip-card-sub">${bfYazi}</div>
