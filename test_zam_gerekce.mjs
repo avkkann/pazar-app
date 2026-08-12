@@ -289,7 +289,11 @@ console.log('\n=== 6. TASARIM: AMBER, KIRMIZI YOK ===');
   const k = (CSS.match(/[^\n{}]*\.zam-(yayginlik|detay)[^{}]*\{[^}]*\}/g) || []).join('\n');
   ok('.zam-yayginlik / .zam-detay kurallari var', k.length > 40, 'uzunluk=' + k.length);
   ok('KIRMIZI yok', !/#(DC2626|EF4444|B91C1C|FF0000)/i.test(k), k.slice(0, 200));
-  const yeni = (k.match(/#[0-9A-Fa-f]{6}/g) || []).filter(c => !/^#(B45309|D97706|92400E|FFFBEB|FDE68A)$/i.test(c));
+  // FCD34D koyu tema amberi: YENI palet DEGIL, projede zaten 9 yerde var
+  // (.supheli-rozet, .tazelik-chip.orta, .supheli-kutu-baslik ...). 2026-08-11
+  // denetiminde .zam-yayginlik koyu zeminde 2,15 oraniyla AA'yi geciremiyordu;
+  // acik tema amberi (#92400E) koyu zeminde okunmuyor, ayni ailenin koyu tonu kondu.
+  const yeni = (k.match(/#[0-9A-Fa-f]{6}/g) || []).filter(c => !/^#(B45309|D97706|92400E|FFFBEB|FDE68A|FCD34D)$/i.test(c));
   ok('yeni palet getirilmedi (amber ailesi)', yeni.length === 0, yeni.join(','));
 }
 

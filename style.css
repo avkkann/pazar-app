@@ -2335,3 +2335,54 @@
     /* Pasif alt gezinme butonu koyu zeminde 3,15 idi. */
     [data-theme="dark"] .nav-btn { color: #9CA3AF; }
     [data-theme="dark"] .nav-btn.active { color: #fff; }
+
+    /* ═══ KOYU TEMA — 2. TUR ════════════════════════════════
+       Kok neden: auth modalinin koyu tema override'i HIC YOKTU (0 kural),
+       modal koyu temada beyaz/acik gri zeminde acik gri metinle ciziliyordu.
+       Ayrica iki nokta daha: aktif alt gezinme butonu koyu temada parlak
+       yesil (--primary #10B981) zemin uzerinde BEYAZ metin -> oran 2,54;
+       profil ikon cipi pastel zeminini koruyup metnini --text'e cevirmisti. */
+    [data-theme="dark"] .auth-tab { color: #9CA3AF; }
+    [data-theme="dark"] .auth-tab--active { background: var(--card-bg); color: #86EFAC; }
+    [data-theme="dark"] .auth-divider { color: #9CA3AF; }
+    [data-theme="dark"] .auth-divider::before,
+    [data-theme="dark"] .auth-divider::after { background: var(--border); }
+    /* Parlak yesil zeminde beyaz yerine koyu metin: ayni vurgu, okunur kontrast. */
+    [data-theme="dark"] .nav-btn.active { color: #0F1A14; }
+    [data-theme="dark"] .nav-btn.active svg { stroke: #0F1A14; }
+    /* Pastel ikon cipi koyu temada da acik kaliyor -> on plan koyu kalmali. */
+    [data-theme="dark"] .profil-item-icon { color: #1A1A2E; }
+
+    /* ═══ DOKUNMA HEDEFLERİ — 44×44 ═════════════════════════
+       2026-08-11 denetimi: 38 etkileşim öğesinin çoğu 44px altındaydı
+       (.siralama-btn 15px, .tazelik-chip 20px, .filter-pill 25px,
+        .hal-filter-btn 28px, .btn-ekle 29px, .karsilastir-pill 29px,
+        .add-btn 30px, .back-btn 36px, .firsat-tab 40px).
+       YÖNTEM: görsel boyut DEĞİŞMİYOR. Görünmez bir ::after katmanı
+       öğeyi ortalayarak 44×44'e tamamlıyor — kart yükseklikleri, padding,
+       font ve yerleşim aynı kalıyor, yalnızca basılabilir alan büyüyor.
+       Ölçüm: mobil geometri parmak izinde kart yüksekliği değişmemeli. */
+    .add-btn, .filter-pill, .btn-ekle, .karsilastir-pill,
+    .hal-filter-btn, .siralama-btn, .tazelik-chip, .back-btn,
+    .firsat-tab, .alarm-kur-btn, .alarm-kaldir-btn, .bildirim-pill,
+    .fiyat-bildir-btn, .home-strip-paylas, .theme-opt {
+      position: relative;
+    }
+    .add-btn::after, .filter-pill::after, .btn-ekle::after,
+    .karsilastir-pill::after, .hal-filter-btn::after, .siralama-btn::after,
+    .tazelik-chip::after, .back-btn::after, .firsat-tab::after,
+    .alarm-kur-btn::after, .alarm-kaldir-btn::after, .bildirim-pill::after,
+    .fiyat-bildir-btn::after, .home-strip-paylas::after, .theme-opt::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%; height: 100%;
+      min-width: 44px; min-height: 44px;
+      /* Görünmez ve tıklama dışında hiçbir şeyi etkilemiyor. */
+      pointer-events: auto;
+    }
+    /* Kaydırılabilir şeritlerde komşu hedefler üst üste binmesin diye
+       yalnızca dikey tamamlama yeterli olan öğeler: */
+    .firsat-tab::after { min-width: 0; }
+    .tazelik-chip::after { min-width: 0; }
