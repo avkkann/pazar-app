@@ -420,6 +420,9 @@ Az gören kullanıcı sayfayı büyütemiyor. WCAG 1.4.4 ihlali.
 **Koyu tema (10 ihlal)** — `data-theme=dark`, gövde zemini `rgb(15,26,20)`, tema gerçekten uygulandı:
 ```
   .cat-card-name     oran 1,24  esik 4,5  13px bold   <- neredeyse okunamaz
+  ^ 2026-08-12 KAPANDI: bu okuma YANLISTI. Kod dogruydu; getComputedStyle
+    onceden var olan dugumde bayat deger donduruyordu. Ekran goruntusuyle
+    dogrulandi — kategori izgarasi koyu temada koyu zemin/acik metin.
   .zam-yayginlik     oran 2,15  esik 4,5  10px
   .nav-btn (pasif)   oran 3,15  esik 4,5  14px bold
   .ms-subtitle       oran 3,41  esik 4,5  13px
