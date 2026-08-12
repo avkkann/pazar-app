@@ -2538,6 +2538,20 @@ const TUZAK_CACHE_TTL_MS = 1000 * 60 * 60 * 6;
 // onclick taşıyor ama odaklanabilir değildi, uygulamanın ana işlevi (ürün
 // detayına gitmek) klavyeye TAMAMEN kapalıydı.
 // Space varsayılan olarak sayfayı kaydırır; preventDefault ile durduruluyor.
+// Satır içi tetikleyiciler (profil menü satırları) için genel tuş işleyicisi.
+// 2026-08-11 denetimi: 8 `.profil-item` onclick taşıyıp klavyeye kapalıydı.
+// Modal ARKA PLANLARI (.mf-sheet-backdrop, .ms-sheet-backdrop,
+// .auth-sheet__backdrop) BİLEREK odaklanabilir yapılmadı: arka planı tab
+// sırasına sokmak ekran okuyucuda anlamsız bir durak yaratır. Klavye yolu
+// Escape — modalKapat()'a bağlı dinleyici zaten var (app.js:735).
+function _satirTus(e, fn) {
+  if (!e) return;
+  if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+    e.preventDefault();
+    if (typeof fn === 'function') fn();
+  }
+}
+
 function _kartTus(e, id) {
   if (!e) return;
   if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
