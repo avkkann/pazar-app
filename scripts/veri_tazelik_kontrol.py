@@ -66,9 +66,10 @@ def izlenen_dosyalar():
     2 gun esigi ona uymaz.
     """
     dosyalar = sorted(glob.glob(os.path.join(DATA_DIR, "urunler_*.json")))
-    anasayfa = os.path.join(DATA_DIR, "anasayfa.json")
-    if os.path.exists(anasayfa):
-        dosyalar.append(anasayfa)
+    for ek in ("anasayfa.json", "indirim_analiz_son.json"):
+        yol = os.path.join(DATA_DIR, ek)
+        if os.path.exists(yol):
+            dosyalar.append(yol)
     return dosyalar
 
 
@@ -89,6 +90,12 @@ def main():
         print("TAZELIK HATASI: data/anasayfa.json YOK.")
         print("  Ana sayfanin dort seridi bu dosyadan besleniyor; yoksa istemci")
         print("  geriye dusup 17 MB indirir. scripts/anasayfa-uret.mjs kostu mu?")
+        return 1
+    if not any(os.path.basename(p) == "indirim_analiz_son.json" for p in dosyalar):
+        print("TAZELIK HATASI: data/indirim_analiz_son.json YOK.")
+        print("  'Sahte Indirim Analizi' adimi continue-on-error ile kosuyor;")
+        print("  basarisiz olunca is YESIL geciyor ama 'Bu indirimlere dikkat'")
+        print("  seridi ESKI puanlarla uretiliyor. Damga yoksa adim atlandi demektir.")
         return 1
 
     simdi = datetime.now(timezone.utc)

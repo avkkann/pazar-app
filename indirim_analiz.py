@@ -9,7 +9,9 @@ import os
 import sys
 import time
 import requests
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
+
+_BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 SUPABASE_URL = "https://gbgxxahhbfnulmyecxia.supabase.co"
 SERVICE_ROLE_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY")
@@ -208,6 +210,28 @@ def main():
 
     basarili, hata = sonuclari_yaz(satirlar)
     print(f"Yazildi: {basarili}/{len(satirlar)} basarili, {hata} hatali batch")
+
+    # BASARI DAMGASI. Bu adim workflow'da continue-on-error: true ile kosuyor —
+    # veri akisini kesmemesi icin dogru, ama basarisiz olunca is YESIL geciyordu
+    # ve "Bu indirimlere dikkat" seridi ESKI puanlarla uretiliyordu (2026-08-11
+    # denetim bulgusu). Damga yazilmazsa veri_tazelik_kontrol.py bunu yakalayip
+    # isi kirmiziya cevirir. Yalnizca GERCEKTEN yazma yapildiysa damgalaniyor.
+    if basarili > 0:
+        damga = os.path.join(_BASE_DIR, "data", "indirim_analiz_son.json")
+        with open(damga, "w", encoding="utf-8") as f:
+            json.dump({
+                "tarih": datetime.now(timezone.utc).isoformat(),
+                "urun": len(satirlar),
+                "basarili_batch": basarili,
+                "hatali_batch": hata,
+                "supheli": supheli_sayisi,
+                "dikkat": dikkat_sayisi,
+            }, f, ensure_ascii=False, indent=1)
+        print("Damga yazildi: data/indirim_analiz_son.json")
+    else:
+        print("[KRITIK] Hicbir batch yazilamadi — damga YAZILMADI, "
+              "tazelik kontrolu bunu yakalayip isi kirmiziya cevirecek.")
+
     print("\nINDIRIM ANALIZI TAMAMLANDI.")
 
 
