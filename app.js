@@ -1231,10 +1231,24 @@ function placeholderRenk(kategori) {
   return renkler[kategori] || {bg:'#F5F5F5', emoji:'📦'};
 }
 
+// Ayrıştırma çekirdeği: gramaj metni + VERİLEN fiyat → birim fiyat.
+// Ayrı fonksiyon olmasının sebebi: "Marketleri Karşılaştır" sonuç ekranında
+// doğru fiyat ürünün global mininmumu DEĞİL, o satıra ATANAN marketin fiyatı.
+// birimFiyatHesapla(u) davranışı değişmedi, sadece ayrıştırmayı buraya devretti.
+function _birimFiyatHam(agirlikHacim, fiyat, ad) {
+  if (!fiyat || fiyat <= 0) return null;
+  const u = { agirlik_hacim: agirlikHacim, ad: ad };
+  return _birimFiyatAyristir(u, fiyat);
+}
+
 function birimFiyatHesapla(u) {
   if (!u) return null;
   const fiyat = enDusukFiyat(u);
   if (!fiyat || fiyat <= 0) return null;
+  return _birimFiyatAyristir(u, fiyat);
+}
+
+function _birimFiyatAyristir(u, fiyat) {
   const s = String(u.agirlik_hacim || '').toLowerCase().replace(/,/g, '.');
   let m = s.match(/(\d+(?:\.\d+)?)\s*kg\b/);
   if (m) { const kg = parseFloat(m[1]); if (kg > 0) return { deger: fiyat / kg, birim: 'kg' }; }
@@ -4308,7 +4322,11 @@ function hesaplaSecili(seciliMarketler) {
     }
     if (best) {
       if (!atama[best.key]) atama[best.key] = { items: [], total: 0 };
-      atama[best.key].items.push({ ad: item.ad, resim: item.resim, ana_kategori: item.ana_kategori, fiyat: best.price });
+      // agirlik_hacim sepette VARDI ama bu projeksiyonda dusuyordu; birim
+      // fiyat gosterebilmek icin tasiniyor (bkz. _cmpItemHTML).
+      atama[best.key].items.push({ ad: item.ad, resim: item.resim,
+        ana_kategori: item.ana_kategori, agirlik_hacim: item.agirlik_hacim,
+        fiyat: best.price });
       atama[best.key].total += best.price;
       genelToplam += best.price;
     } else {
@@ -4327,10 +4345,23 @@ function hesaplaSecili(seciliMarketler) {
     const img = it.resim
       ? `<img class="cmp-mkt-item-img" src="${it.resim}" alt="" loading="lazy" onerror="this.outerHTML='<div class=\\'cmp-mkt-item-img-ph\\'>${ph.emoji}</div>'">`
       : `<div class="cmp-mkt-item-img-ph">${ph.emoji}</div>`;
+    // İkinci satır: gramaj + birim fiyat. Birim fiyat bu satıra ATANAN
+    // marketin fiyatından hesaplanıyor (ürünün global minimumundan DEĞİL) —
+    // aksi halde "CarrefourSA'dan alacakların" listesinde başka marketin
+    // fiyatına dayanan bir ₺/kg yazardı.
+    const bf = it.fiyat != null ? _birimFiyatHam(it.agirlik_hacim, it.fiyat, it.ad) : null;
+    const parcalar = [];
+    if (it.agirlik_hacim) parcalar.push(it.agirlik_hacim);
+    if (bf) parcalar.push(birimFiyatYazi(bf));
+    const meta = parcalar.length
+      ? `<div class="cmp-mkt-item-meta">${parcalar.join(' · ')}</div>` : '';
     return `<div class="cmp-mkt-item">
       ${img}
-      <span class="cmp-mkt-item-name">${it.ad}</span>
-      <span class="cmp-mkt-item-price">${it.fiyat != null ? tl(it.fiyat) : '<span style=\"color:var(--text-muted)\">—</span>'}</span>
+      <div class="cmp-mkt-item-main">
+        <div class="cmp-mkt-item-name">${it.ad}</div>
+        ${meta}
+      </div>
+      <span class="cmp-mkt-item-price">${it.fiyat != null ? tl(it.fiyat) : '<span class="cmp-mkt-item-yok">—</span>'}</span>
     </div>`;
   };
 
@@ -4339,14 +4370,14 @@ function hesaplaSecili(seciliMarketler) {
     return `<div class="cmp-mkt-block">
       <div class="cmp-mkt-name"><span class="cmp-mkt-dot m-${k}"></span>${MFROM[k] || g.name + "'den"} alacakların:</div>
       ${g.items.map(_cmpItemHTML).join('')}
-      <div class="cmp-mkt-subtotal">Toplam: ${tl(g.total)}</div>
+      <div class="cmp-mkt-subtotal"><span>Toplam</span><span class="cmp-mkt-subtotal-val">${tl(g.total)}</span></div>
     </div>`;
   }).join('');
 
   const atanamayanHtml = atanamayan.length ? `
     <div class="cmp-mkt-block" style="margin-top:12px">
       <div class="cmp-mkt-name">⚠️ Seçili marketlerde bulunmayan ürünler:</div>
-      ${atanamayan.map(it => _cmpItemHTML({ ad: it.ad, resim: it.resim, ana_kategori: it.ana_kategori, fiyat: null })).join('')}
+      ${atanamayan.map(it => _cmpItemHTML({ ad: it.ad, resim: it.resim, ana_kategori: it.ana_kategori, agirlik_hacim: it.agirlik_hacim, fiyat: null })).join('')}
     </div>` : '';
 
   document.getElementById('compareResult').innerHTML =

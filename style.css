@@ -2386,3 +2386,81 @@
        yalnızca dikey tamamlama yeterli olan öğeler: */
     .firsat-tab::after { min-width: 0; }
     .tazelik-chip::after { min-width: 0; }
+
+    /* ═══ CMP SATIR YENIDEN TASARIM ═════════════════════════
+       "Marketleri Karşılaştır" SONUÇ ekranı ürün satırları.
+       Öncesi: 30×30 görsel, tek satır ad (nowrap+ellipsis ile KESİLİYORDU),
+       sağda fiyat — satır ~43px, bilgi 2 alan, ortada büyük boşluk.
+       Sonrası: 56×56 görsel, ad 2 satıra sarıyor, altında gramaj + birim
+       fiyat. Bilgi 4 alana çıktı; boşluk ürünün kendi verisiyle doldu.
+       Yeni palet YOK — var(--text/--text-muted/--border/--card-bg) ve
+       mevcut ölçek kullanıldı. */
+    .cmp-mkt-item {
+      align-items: center;
+      gap: 10px;
+      padding: 8px 0;
+    }
+    .cmp-mkt-item-img,
+    .cmp-mkt-item-img-ph {
+      width: 56px; height: 56px; border-radius: 10px;
+    }
+    .cmp-mkt-item-img-ph { font-size: 26px; }
+    /* Ad + meta ortak sütun. min-width:0 şart — yoksa flex çocuk taşar. */
+    .cmp-mkt-item-main {
+      flex: 1; min-width: 0;
+      display: flex; flex-direction: column; gap: 2px;
+    }
+    .cmp-mkt-item-name {
+      font-size: .82rem; font-weight: 600; line-height: 1.3;
+      color: var(--text);
+      /* KESME YOK: iki satıra sarıyor, kart yüksekliği görselle sınırlı. */
+      white-space: normal;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+      overflow: hidden;
+      padding-right: 0;
+    }
+    .cmp-mkt-item-meta {
+      font-size: .68rem; line-height: 1.25;
+      color: #595959;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .cmp-mkt-item-price {
+      font-size: .88rem; font-weight: 800;
+      color: var(--text); flex-shrink: 0;
+      align-self: center;
+      font-variant-numeric: tabular-nums;
+    }
+    .cmp-mkt-item-yok { color: #595959; font-weight: 600; }
+    /* Market başlığı ürün satırlarından AYRIŞSIN — öncesi ikisi de .8rem/700. */
+    .cmp-mkt-name {
+      font-size: .95rem; font-weight: 800;
+      margin-bottom: 10px; padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      gap: 8px;
+    }
+    .cmp-mkt-dot { width: 10px; height: 10px; }
+    /* Toplam satırı: etiket + değer, sağa yığılmış tek metin değil. */
+    .cmp-mkt-subtotal {
+      display: flex; justify-content: space-between; align-items: baseline;
+      font-size: .82rem; text-align: left;
+      color: var(--text); margin-top: 10px; padding-top: 8px;
+    }
+    .cmp-mkt-subtotal .cmp-mkt-subtotal-val { font-weight: 800; font-variant-numeric: tabular-nums; }
+
+    /* Koyu tema: görsel zeminleri açık kaynakta #fff sabit yazılmış,
+       ezilmezse koyu temada beyaz kare olarak parlıyor (.strip-card ile
+       aynı desen). */
+    [data-theme="dark"] .cmp-mkt-item-img,
+    [data-theme="dark"] .cmp-mkt-item-img-ph { background: #1C2823; }
+    [data-theme="dark"] .cmp-mkt-item-meta { color: #9CA3AF; }
+    [data-theme="dark"] .cmp-mkt-item-yok { color: #9CA3AF; }
+    [data-theme="dark"] .cmp-mkt-item-price { color: var(--text); }
+
+    /* 320-360px: görsel küçülür, ad iki satırda okunur kalır. */
+    @media (max-width: 360px) {
+      .cmp-mkt-item-img,
+      .cmp-mkt-item-img-ph { width: 48px; height: 48px; }
+      .cmp-mkt-item-img-ph { font-size: 22px; }
+      .cmp-mkt-item { gap: 8px; }
+      .cmp-mkt-item-price { font-size: .82rem; }
+    }

@@ -37,7 +37,7 @@ const U = (id, ad, agirlik, fiyat) => ({ _id: id, ad, agirlik_hacim: agirlik, ma
 if (varFn) {
   const ctx = { console, Math, String, Number, parseFloat, parseInt, isNaN, Array, Object, Set };
   vm.createContext(ctx);
-  vm.runInContext([fnKaynak('enDusukFiyat'), fnKaynak('birimFiyatHesapla'), fnKaynak('enIyiBirimIdleri')].join('\n'), ctx);
+  vm.runInContext([fnKaynak('enDusukFiyat'), fnKaynak('_birimFiyatAyristir'), fnKaynak('birimFiyatHesapla'), fnKaynak('enIyiBirimIdleri')].join('\n'), ctx);
   const calis = i => vm.runInContext(i, ctx);
   const idler = liste => [...calis('enIyiBirimIdleri(' + JSON.stringify(liste) + ')')];
 
