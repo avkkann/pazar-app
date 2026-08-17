@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pazar taşındı → pazarapp.net</title>
+
+<!-- Eski service worker'i sokup atmak icin guncelleme kontrolunu ZORLA.
+     register() cagrisi Update algoritmasini tetikliyor; script fetch'i
+     tarayici yapiyor, eski SW'nin fetch dinleyicisinden GECMIYOR (eski SW
+     yalnizca data/hal.json ve data/anasayfa.json'i yakaliyordu). Bu satir
+     meta refresh'ten ONCE calissin diye burada duruyor. -->
+<script>
+  if ('serviceWorker' in navigator) {
+    try { navigator.serviceWorker.register('./sw.js'); } catch (e) { /* eski tarayici: SW yoksa temizlenecek bir sey de yok */ }
+  }
+</script>
+
+<!-- 0 gecikmeli meta refresh: Google bunu "soft redirect" sayip sinyali
+     aktariyor. GitHub Pages statik barindirma oldugu icin 301/308 uretmek
+     MUMKUN DEGIL — header yazamiyoruz. canonical de ayni yone isaret ediyor. -->
+<meta http-equiv="refresh" content="0;url=https://pazarapp.net/">
+<link rel="canonical" href="https://pazarapp.net/">
+<meta name="robots" content="noarchive">
+
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:24px;
+       background:linear-gradient(135deg,#0E4938 0%,#1D9E75 100%);
+       font-family:'Segoe UI',system-ui,-apple-system,sans-serif;color:#fff}
+  .kutu{max-width:min(520px,calc(100% - 16px));background:rgba(14,73,56,.72);
+        border-radius:16px;padding:28px 26px;line-height:1.6;font-size:16px}
+  h1{font-size:24px;font-weight:800;letter-spacing:-.02em;margin-bottom:6px}
+  .alt{font-size:14px;opacity:.82;margin-bottom:16px}
+  a.git{display:inline-block;margin-top:18px;background:#E8DCC4;color:#0F4F3E;
+        text-decoration:none;font-weight:700;padding:13px 22px;border-radius:11px}
+  a.metin{color:#E8DCC4}
+</style>
+</head>
+<body>
+  <div class="kutu">
+    <h1>Pazar yeni adresine taşındı</h1>
+    <p class="alt">Marketteki gizli zamları gör</p>
+    <p>
+      Uygulama artık <strong>pazarapp.net</strong> adresinde.
+      Birkaç saniye içinde otomatik yönlendirileceksiniz; olmazsa aşağıdaki
+      düğmeye dokunun. Eski adresi kaydettiyseniz veya ana ekrana eklediyseniz,
+      lütfen yeni adresten tekrar ekleyin — eski kopya artık güncellenmiyor.
+    </p>
+    <a class="git" href="https://pazarapp.net/">pazarapp.net'e git</a>
+    <p style="margin-top:16px;font-size:14px;opacity:.82">
+      Yönlendirme çalışmazsa adres:
+      <a class="metin" href="https://pazarapp.net/">https://pazarapp.net/</a>
+    </p>
+  </div>
+</body>
+</html>
