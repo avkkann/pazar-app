@@ -6,19 +6,17 @@
   "main": "./src/worker.js",
   "compatibility_date": "2026-07-10",
 
-  // CUSTOM DOMAIN BURADA BAGLANMIYOR — bilerek. Asagidaki blok acik olsa
-  // "wrangler deploy" pazarapp.net'i kendisi custom domain olarak baglardi;
-  // o adim Mustafa'da (pano: Worker -> Settings -> Domains & Routes).
-  // Ilk deploy bu yuzden yalnizca *.workers.dev adresine cikiyor.
-  // Deklaratif hale getirmek istenirse blok aynen acilabilir.
+  // CUSTOM DOMAIN — apex pazarapp.net. Mustafa'nin onayindan sonra acildi
+  // (2026-08-17). Ilk iki deploy yalnizca *.workers.dev'e cikmisti; CSP ve
+  // font dogrulamasi orada yapildi, sonra alan adi baglandi.
   //
-  // NOT: www AYRICA custom domain YAPILMAMALI — iki alan adi da ayni icerigi
-  // verirse yinelenen icerik olur. www -> apex yonlendirmesi Cloudflare
-  // Redirect Rule ile kurulmali.
-  //
-  // "routes": [
-  //   { "pattern": "pazarapp.net", "custom_domain": true }
-  // ],
+  // www AYRICA custom domain YAPILMADI ve YAPILMAMALI — iki alan adi da ayni
+  // icerigi verirse yinelenen icerik olur ve yeni kurulan canonical bozulur.
+  // www -> apex yonlendirmesi Cloudflare Redirect Rule ile pano tarafinda
+  // kurulmali (bu dosyadan yapilamaz).
+  "routes": [
+    { "pattern": "pazarapp.net", "custom_domain": true }
+  ],
 
   "assets": {
     "directory": "./dist",
