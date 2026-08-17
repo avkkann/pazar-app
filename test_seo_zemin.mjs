@@ -42,7 +42,46 @@ console.log('\n=== 2. BASLIK KESILMIYOR (mevcut durum korunuyor) ===');
   ok('baslik <= 60 karakter', t.length <= 60, t.length + ' -> ' + t);
 }
 
-console.log('\n=== 3. ONCEKI ISLER BOZULMADI ===');
+console.log('\n=== 3. NOSCRIPT ===');
+{
+  // JS kapaliyken sorun sadece "icerik yok" degildi: #splash tam ekran
+  // (position:fixed, inset:0, z-index:9999, background:#fff) ve onu SADECE
+  // app.js kaldiriyor. Yani DOM'daki 2475 karakter metnin ustu kapaliydi,
+  // kullanici beyaz ekran + ikon goruyordu. Iki parca gerekiyor:
+  //   head'de <noscript><style> -> splash'i kaldirir
+  //   body'de <noscript><div>   -> gorunur aciklama
+  const bodyBas = HTML.indexOf('<body>');
+  const bloklar = [...HTML.matchAll(/<noscript>([\s\S]*?)<\/noscript>/g)]
+    .map(m => ({ ic: m[1], head: m.index < bodyBas }));
+  ok('<noscript> var', bloklar.length > 0, 'adet=' + bloklar.length);
+
+  const kafa = bloklar.find(b => b.head);
+  ok('head\'de <noscript><style> var', !!kafa && /<style>/.test(kafa.ic), (kafa?.ic || '(yok)').slice(0, 90));
+  ok('  splash overlay\'i kaldiriyor', /#splash[^}]*display:\s*none/.test(kafa?.ic || ''), (kafa?.ic || '').slice(0, 120));
+
+  const govde = bloklar.find(b => !b.head);
+  ok('body\'de gorunur <noscript> icerigi var', !!govde);
+  if (govde) {
+    const metin = govde.ic.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+    console.log('    "' + metin + '"');
+    ok('  tek paragraf aciklama (>=120 karakter)', metin.length >= 120, metin.length + ' karakter');
+    ok('  uygulamanin NE OLDUGUNU anlatiyor', /market/i.test(metin) && /fiyat/i.test(metin), '');
+    ok('  JavaScript gerektigini soyluyor', /JavaScript/i.test(metin), '');
+    ok('  kendisi display:none DEGIL', !/display:\s*none/.test(govde.ic), '');
+  }
+  // kontrast: panel marka yesili uzerine beyaz metin
+  {
+    const CSS = fs.readFileSync('style.css', 'utf8');
+    const k = (CSS.match(/\.nojs\s*\{([^}]*)\}/) || [, ''])[1];
+    ok('.nojs CSS kurali var', k.length > 10, k.trim());
+    ok('  marka yesili zemin #0E4938', /#0E4938/i.test(k), k.trim());
+    ok('  beyaz metin (9.86:1)', /color:\s*#fff/i.test(k), k.trim());
+    ok('  okunur govde olcusu >= 16px', /font-size:\s*(1[6-9]|[2-9]\d)px/.test(k), k.trim());
+    ok('  satir yuksekligi 1.5-1.75', /line-height:\s*1\.[5-7]\d?/.test(k), k.trim());
+  }
+}
+
+console.log('\n=== 4. ONCEKI ISLER BOZULMADI ===');
 ok('tek h1 duruyor', (HTML.match(/<h1/g) || []).length === 1, 'adet=' + (HTML.match(/<h1/g) || []).length);
 ok('og:image duruyor', !!meta('property', 'og:image'));
 ok('twitter:card summary_large_image duruyor', meta('name', 'twitter:card') === 'summary_large_image');

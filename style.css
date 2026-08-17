@@ -2466,3 +2466,25 @@
       .cmp-mkt-item { gap: 8px; }
       .cmp-mkt-item-price { font-size: .82rem; }
     }
+
+    /* ═══ JS KAPALI PANELI ═══
+       Sadece <noscript> icinde gorunur; JS acikken tarayici bu dugumu hic
+       olusturmuyor, o yuzden mevcut ekranlarin hicbirine dokunmuyor.
+       Marka yesili zemin + beyaz metin = 9.86:1, baglantilar krem = 11.9:1.
+       Govde 16px / line-height 1.6, satir uzunlugu max-width ile ~70 karakter. */
+    .nojs {
+      /* margin yatayda auto: genis ekranda ortalar. Dar ekranda auto 0'a
+         dustugu icin panel kenara dayaniyordu — max-width'e calc konarak
+         her genislikte 16px kenar bosluğu garanti ediliyor. */
+      margin: 16px auto; padding: 20px 22px;
+      max-width: min(560px, calc(100% - 32px)); border-radius: 14px;
+      background: #0E4938; color: #fff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 16px; line-height: 1.6;
+    }
+    .nojs strong {
+      display: block; margin-bottom: 10px;
+      font-size: 19px; font-weight: 700; letter-spacing: -0.01em;
+    }
+    .nojs p + p { margin-top: 12px; }
+    .nojs a { color: #E8DCC4; text-decoration: underline; }

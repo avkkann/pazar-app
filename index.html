@@ -54,10 +54,25 @@
     })();
   </script>
   <link rel="stylesheet" href="./style.css">
+  <!-- JS kapaliysa #splash (position:fixed, inset:0, z-index:9999, #fff) tam
+       ekrani kapatiyor ve onu sadece app.js kaldiriyor — kullanici beyaz ekran
+       goruyordu. Onboarding overlay'i de ayni sekilde ele almak gerekmiyor
+       (zaten display:none), ama alt gezinme tiklanamaz oldugu icin gizleniyor. -->
+  <noscript><style>
+    #splash { display: none !important; }
+    .bottom-nav { display: none !important; }
+  </style></noscript>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script data-goatcounter="https://pazar-app.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
+<noscript>
+  <div class="nojs">
+    <strong>Pazar — Marketteki gizli zamları gör</strong>
+    <p>Pazar; A101, BİM, Migros, CarrefourSA, ŞOK, Tarım Kredi ve Hakmar marketlerinin günlük fiyatlarını tek ekranda karşılaştıran ücretsiz bir uygulamadır. Aynı ürünün hangi markette kaç para olduğunu görür, gizli zamları yakalar, alışveriş listenizi en ucuz markete göre kurarsınız; hal fiyatları ve 30 günlük fiyat geçmişi de içindedir. Fiyatlar her gün <a href="https://marketfiyati.org.tr" rel="noopener">marketfiyati.org.tr</a> (TÜBİTAK) ve <a href="https://hal.gov.tr" rel="noopener">hal.gov.tr</a> (T.C. Ticaret Bakanlığı) verisinden güncellenir.</p>
+    <p>Uygulamayı kullanmak için tarayıcınızda JavaScript'i açmanız gerekiyor.</p>
+  </div>
+</noscript>
 <div id="splash"><img src="/static/icon-192.png" alt=""></div>
 <div id="onboarding-overlay" class="onboarding-overlay">
   <button class="onboarding-skip" onclick="onboardingBitir()">Geç</button>

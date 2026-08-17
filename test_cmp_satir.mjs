@@ -151,8 +151,12 @@ for (const s of ['.strip-card', '.product-card', '.cat-card', '.cart-item']) {
   ok(s + ' kurali duruyor', k.length > 20, 'uzunluk=' + k.length);
 }
 {
-  // yeni kurallar YALNIZCA cmp-* ve sadece bu ekrani hedefliyor
-  const yeni = (CSS.split('CMP SATIR YENIDEN TASARIM')[1] || '');
+  // yeni kurallar YALNIZCA cmp-* ve sadece bu ekrani hedefliyor.
+  // SINIR: blok "CMP SATIR YENIDEN TASARIM" ile baslar, SONRAKI ═══ bolum
+  // basligina kadar surer. Once "isaretciden sonrasi tumu" diye alinmisti;
+  // dosya sonuna baska bir is (JS KAPALI PANELI) eklendiginde bu koruma
+  // yanlis yere ates etti. Koruma ayni sey icin duruyor, sinir kapatildi.
+  const yeni = (CSS.split('CMP SATIR YENIDEN TASARIM')[1] || '').split(/\/\*\s*═+\s/)[0];
   ok('yeni CSS blogu var', yeni.length > 100, 'uzunluk=' + yeni.length);
   const secililer = [...yeni.matchAll(/^\s*([.\[][^{]*)\{/gm)].map(m => m[1].trim());
   const kacak = secililer.filter(s => !/cmp-/.test(s));
