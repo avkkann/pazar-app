@@ -3260,7 +3260,7 @@ async function renderMevsimSeridi() {
 // ── KATEGORİ GRİD ─────────────────────────────────────
 function renderCatGrid() {
   document.getElementById('home-cats').innerHTML = KATEGORILER.map(k =>
-    `<div class="cat-card" onclick="openCategory('${k.slug}')">
+    `<div class="cat-card" tabindex="0" role="button" aria-label="${k.label}" onclick="openCategory('${k.slug}')" onkeydown="_satirTus(event, function(){openCategory('${k.slug}')})">
       <span class="cat-emoji">${k.emoji}</span>
       <div class="cat-card-name">${k.label}</div>
     </div>`
@@ -3738,7 +3738,7 @@ function mfRenderResults(list) {
     const title = it.title || it.name || '—';
     const meta = [it.refinedVolumeOrWeight, it.brand].filter(Boolean).join(' · ');
     const initial = mfMarketInitial(it);
-    return `<div class="mf-card" onclick="mfSheetAc(${idx})">
+    return `<div class="mf-card" tabindex="0" role="button" onclick="mfSheetAc(${idx})" onkeydown="_satirTus(event, function(){mfSheetAc(${idx})})">
       <div class="mf-market-avatar">${initial}</div>
       <div class="mf-card-info">
         <div class="mf-card-title">${title}</div>
@@ -3955,7 +3955,7 @@ function renderSepet() {
       ? `<div style="text-align:right;color:var(--primary);font-size:.82rem;font-weight:700;flex-shrink:0;margin-right:6px;line-height:1.4">
            ${tlHTML(mktF.fiyat)}<br><span style="font-size:.65rem;font-weight:500">${MARKET_NAMES[mktF.market]||mktF.market||'?'}</span>
          </div>` : '';
-    return `<div class="cart-item" onclick="openDetay('${u._id}')" style="cursor:pointer">
+    return `<div class="cart-item" tabindex="0" role="button" aria-label="${u.ad}" onclick="openDetay('${u._id}')" onkeydown="_kartTus(event, '${u._id}')" style="cursor:pointer">
       <div class="cart-item-img">${img}</div>
       <div class="cart-item-info">
         <div class="cart-item-name">${u.ad}</div>
@@ -4222,7 +4222,7 @@ function msSheetAc(mktList) {
   const listEl = document.getElementById('msList');
   listEl.innerHTML = _msMarkets.map(m => {
     const harf = (m.name || '?').trim().charAt(0).toUpperCase();
-    return `<div class="ms-market-row selected" data-mkt="${m.key}" onclick="msSheetToggle('${m.key}', this)">
+    return `<div class="ms-market-row selected" data-mkt="${m.key}" tabindex="0" role="button" aria-pressed="true" aria-label="${m.name}" onclick="msSheetToggle('${m.key}', this)" onkeydown="_satirTus(event, function(){msSheetToggle('${m.key}', document.querySelector(&quot;[data-mkt=\'${m.key}\']&quot;))})">
       <div class="ms-market-avatar">${harf}</div>
       <div class="ms-market-info">
         <div class="ms-market-name">${m.name}</div>
@@ -4253,7 +4253,12 @@ function msSheetToggle(m, rowEl) {
   if (i >= 0) _msSecili.splice(i, 1);
   else _msSecili.push(m);
   const on = _msSecili.includes(m);
-  rowEl.classList.toggle('selected', on);
+  if (rowEl) {
+    rowEl.classList.toggle('selected', on);
+    // Satır bir TOGGLE; ekran okuyucu durumu duymalı. Görsel tik (.ms-tick)
+    // tek başına yeterli değil.
+    rowEl.setAttribute('aria-pressed', on ? 'true' : 'false');
+  }
   msSheetGuncelle();
 }
 

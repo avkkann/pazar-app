@@ -142,7 +142,7 @@
   </div>
 
   <div id="home-hal" class="hal-mini-wrap">
-    <div class="hal-mini-btn" onclick="openHalScreen()">
+    <div class="hal-mini-btn" tabindex="0" role="button" onclick="openHalScreen()" onkeydown="_satirTus(event, openHalScreen)">
       <span class="hal-mini-icon" data-lc="building-2"></span>
       <div class="hal-mini-title">Hal Fiyatları</div>
       <svg class="hal-mini-arrow" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
@@ -321,7 +321,7 @@
   </header>
   <div class="profil-hero">
     <div class="profil-avatar" id="profilAvatar">🛒</div>
-    <div class="profil-isim" id="profilIsim" onclick="duzenleKullaniciAdi()">Pazar Kullanıcısı <span class="profil-isim-edit">✏️</span></div>
+    <div class="profil-isim" id="profilIsim" tabindex="0" role="button" onclick="duzenleKullaniciAdi()" onkeydown="_satirTus(event, duzenleKullaniciAdi)">Pazar Kullanıcısı <span class="profil-isim-edit">✏️</span></div>
     <div class="profil-alt" id="profilAlt">Fiyatları takip ediyorsun</div>
     <!-- AUTH CTA START -->
     <div id="profil-auth-cta" class="profil-auth-cta" style="display:none;">

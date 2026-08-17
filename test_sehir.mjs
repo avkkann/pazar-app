@@ -79,7 +79,16 @@ console.log('\n=== 3. SEHIR SECILIYKEN ===');
   const c = kur('Gaziantep');
   ok('sehirOku() Gaziantep', calis(c, 'sehirOku()') === 'Gaziantep', calis(c, 'sehirOku()'));
   const s = calis(c, '[...ilMarketleri()]');
-  ok('ilMarketleri() Set donuyor', Array.isArray(s) && s.length === 5, JSON.stringify(s));
+  // ESKI IDDIA: s.length === 5. Bu sayi CANLI data/il_marketler.json'dan
+  // geliyor ve HAFTALIK is (Il Market Haritasi) onu guncelliyor — Gaziantep
+  // 5'ten 4'e dusunce test kirildi (bu turda HEAD'de de kirmiziydi, benim
+  // degisikligimden degil). Sayiyi sabitlemek kirilgan; artik DAVRANIS
+  // dogrulaniyor: iterable donuyor, dolu, ve icerigi dosyayla birebir ayni.
+  const gzt = (JSON.parse(fs.readFileSync('data/il_marketler.json', 'utf8'))
+    .iller['Gaziantep'] || {}).marketler || [];
+  ok('ilMarketleri() Set donuyor ve dosyayla tutarli',
+    Array.isArray(s) && s.length > 0 && s.length === gzt.length && gzt.every(m => s.includes(m)),
+    JSON.stringify(s) + '  vs dosya ' + JSON.stringify(gzt));
   ok('hakmar YOK', calis(c, 'marketVarMi("hakmar")') === false);
   ok('carrefour YOK', calis(c, 'marketVarMi("carrefour")') === false);
   ok('bim VAR', calis(c, 'marketVarMi("bim")') === true);
