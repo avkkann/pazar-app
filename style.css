@@ -30,8 +30,10 @@
     }
 
     /* ═══ Cabinet Grotesk display font ═══ */
+    /* NOT: alt ekran basliklari h1 degil h2 — sayfada tek h1 olmali (SEO).
+       Etiket degisti, deger degismedi. */
     .header-text h1,
-    .app-header--sub .hdr-left h1,
+    .app-header--sub .hdr-left h2,
     /* .header-sub h2, */
     .home-strip-title,
     .detay-name,
@@ -43,7 +45,7 @@
     }
 
     .header-text h1 { font-weight: 800 !important; }
-    .app-header--sub .hdr-left h1,
+    .app-header--sub .hdr-left h2,
     /* .header-sub h2, */
     .home-strip-title,
     .detay-name,
@@ -123,7 +125,7 @@
       box-shadow: 0 2px 12px rgba(15,81,50,.25);
     }
     .hdr-left { display: flex; align-items: center; gap: 12px; }
-    .hdr-left h1 {
+    .hdr-left h2 {
       font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; color: #fff;
     }
     .hdr-right { display: flex; align-items: center; }
