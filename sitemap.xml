@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Asagidaki lastmod yer tutucusu build sirasinda dolduruluyor:
+     scripts/prepare-public.mjs damgayi data/anasayfa.json'un "uretim"
+     alanindan alir. Buraya ELLE tarih yazma — bayatlar.
+     Bkz. scripts/sitemap.mjs
+     (Bu yorumda yer tutucunun kendisi YAZILMAZ: degistirme islemi burayi da
+      degistirip yorumu anlamsizlastiriyor. Testte yakalandi.) -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://avkkann.github.io/pazar-app/</loc><priority>1.0</priority></url>
+  <url><loc>https://avkkann.github.io/pazar-app/</loc><lastmod>__LASTMOD__</lastmod><priority>1.0</priority></url>
 </urlset>
