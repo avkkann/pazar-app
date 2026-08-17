@@ -88,9 +88,17 @@ ok('MFROM eki Hakmar-dan (Hakmar-den DEGIL)', /hakmar\s*:\s*"Hakmar'dan"/.test(m
 const metaDesc = (HTML.match(/<meta name="description" content="([^"]*)"/) || [])[1] || '';
 const onboard  = (HTML.match(/<p>A101[^<]*<\/p>/) || [''])[0];
 const MKT_AD_RE = /A101|BİM|Migros|CarrefourSA|ŞOK|Tarım Kredi|Hakmar/g;
-ok('meta description Hakmar sayiyor', /Hakmar/.test(metaDesc), metaDesc);
+// DEGISTI (2026-08-17): bu iki iddia eskiden meta description'in yedi market
+// adini TEK TEK saymasini sart kosuyordu. Aciklama 196 karakterdi ve arama
+// sonucunda kesiliyordu; liste cikarildi, yerine ne ise yaradigi yazildi.
+// Korunmasi gereken degismez sey "Hakmar kullaniciya 7. zincir olarak
+// gosteriliyor" — onu asagidaki onboarding iddialari zaten kanitliyor.
+// Aciklamada listenin OLMAMASI artik kasitli, o yuzden tersi dogrulaniyor.
+ok('meta description market adi LISTELEMIYOR (kasitli, 155 kr siniri)',
+  (metaDesc.match(MKT_AD_RE) || []).length === 0,
+  'sayilan=' + (metaDesc.match(MKT_AD_RE) || []).length + ' -> ' + metaDesc);
+ok('  yerine "7 market" sayisiyla anlatiyor', /7 market/.test(metaDesc), metaDesc);
 ok('onboarding metni Hakmar sayiyor', /Hakmar/.test(onboard), onboard);
-ok('meta description 7 market adi sayiyor', (metaDesc.match(MKT_AD_RE) || []).length === 7, 'sayilan=' + (metaDesc.match(MKT_AD_RE) || []).length);
 ok('onboarding 7 market adi sayiyor', (onboard.match(MKT_AD_RE) || []).length === 7, 'sayilan=' + (onboard.match(MKT_AD_RE) || []).length);
 
 console.log('\n=== IS 2: filtre gercekten daraltiyor ===');
