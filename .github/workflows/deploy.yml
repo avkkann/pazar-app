@@ -41,4 +41,13 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # SURUM SABIT. wrangler neredeyse her gun yayin yapiyor (npm: 4.113.0
+          # 21 Tem -> 4.123.0 13 Agu, 12 kararli surum); sabitlemezsek deploy
+          # davranisi biz hicbir sey degistirmeden gunden gune kayar.
+          # 4.122.0 secildi: latest'in (4.123.0) bir minor gerisi, 12 Agustos'ta
+          # yayinlandi ve ARDINDAN HOTFIX GELMEDI (4.123.0 bir sonraki minor,
+          # 4.122.x yamasi degil). Karsilastirma: 4.120.0 ertesi gun 4.120.1
+          # ile yamandi — o tur '.0'lardan kacinildi. Sabit, dondurma degil;
+          # periyodik gozden gecirilecek.
+          wranglerVersion: '4.122.0'
           # wrangler.jsonc: main src/worker.js, assets ./dist, CSP header Worker'dan
