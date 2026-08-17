@@ -28,7 +28,14 @@ jobs:
           ref: main
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          # 20 -> 24. wrangler 4.x "node >= 22" istiyor; Node 20'de deploy adimi
+          # "Wrangler requires at least Node.js v22.0.0" diyip dusuyordu (kosu
+          # 32044309234). Bu satir Pages is akisindan aynen tasinmisti — Pages
+          # icin dogruydu, wrangler devreye girince yanlis oldu.
+          # 22 degil 24: yerel gelistirme ortami v24.18.0 ve hata TAM OLARAK
+          # yerel-CI majör farkindan cikti; ikisi ayni majörde olsun.
+          # (Runner'in kendi varsayilani da 24; Node 20 kullanimdan kaldiriliyor.)
+          node-version: '24'
       - run: npm ci
       - run: npm run build
         env:
