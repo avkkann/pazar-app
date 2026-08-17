@@ -2,14 +2,14 @@
   "name": "Pazar - Fiyat Karşılaştırma",
   "short_name": "Pazar",
   "description": "Haldeki fiyatı, markete gitmeden bil",
-  "start_url": "/pazar-app/",
-  "scope": "/pazar-app/",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#0E4938",
   "theme_color": "#0E4938",
   "orientation": "portrait",
   "lang": "tr",
-  "id": "/pazar-app/",
+  "id": "/",
   "categories": ["shopping", "finance", "lifestyle"],
   "screenshots": [
     { "src": "static/screenshot-list.jpg", "sizes": "788x1600", "type": "image/jpeg", "form_factor": "narrow" },
@@ -31,8 +31,8 @@
     }
   ],
   "shortcuts": [
-    { "name": "Listem", "short_name": "Listem", "url": "/pazar-app/?screen=list", "icons": [{ "src": "static/icon-192.png", "sizes": "192x192" }] },
-    { "name": "Fırsatlar", "short_name": "Fırsatlar", "url": "/pazar-app/?screen=firsat", "icons": [{ "src": "static/icon-192.png", "sizes": "192x192" }] },
-    { "name": "Hal Fiyatları", "short_name": "Hal", "url": "/pazar-app/?screen=hal", "icons": [{ "src": "static/icon-192.png", "sizes": "192x192" }] }
+    { "name": "Listem", "short_name": "Listem", "url": "/?screen=list", "icons": [{ "src": "static/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Fırsatlar", "short_name": "Fırsatlar", "url": "/?screen=firsat", "icons": [{ "src": "static/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Hal Fiyatları", "short_name": "Hal", "url": "/?screen=hal", "icons": [{ "src": "static/icon-192.png", "sizes": "192x192" }] }
   ]
 }

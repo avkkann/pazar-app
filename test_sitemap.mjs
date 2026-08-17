@@ -10,9 +10,10 @@
 //     tipi kesme uc kez yerel-gun hatasina yol acti. W3C Datetime tam
 //     damgayi kabul ediyor, boylece saat dilimi varsayimi da gerekmiyor.
 //
-// KAPSAM NOTU: burada duzeltilen SADECE bu deponun sitemap'i. Kokteki
-// avkkann.github.io/sitemap.xml (lastmod'u 2026-07-03'te takili) BASKA bir
-// depoda; bu turdan erisilemiyor.
+// KAPSAM NOTU: burada duzeltilen SADECE bu deponun sitemap'i. Eski kokteki
+// avkkann.github.io/sitemap.xml BASKA bir depoda ve pazarapp.net gecisinden
+// sonra bu proje icin ANLAMSIZ — Google artik pazarapp.net/robots.txt'i
+// okuyacak. O dosya bu depodan uretiliyor.
 import fs from 'fs';
 import { lastmodDamgasi, sitemapDoldur } from './scripts/sitemap.mjs';
 
@@ -29,7 +30,7 @@ ok('sitemap.xml\'de sabit tarih YOK', !/\d{4}-\d{2}-\d{2}/.test(KAYNAK),
 ok('  yer tutucu __LASTMOD__ var', KAYNAK.includes('__LASTMOD__'));
 ok('  <lastmod> etiketi var', /<lastmod>/.test(KAYNAK));
 ok('  tek <url> ve dogru adres', (KAYNAK.match(/<url>/g) || []).length === 1
-  && KAYNAK.includes('https://avkkann.github.io/pazar-app/'), '');
+  && KAYNAK.includes('https://pazarapp.net/'), '');
 ok('  urlset ad alani dogru', KAYNAK.includes('http://www.sitemaps.org/schemas/sitemap/0.9'));
 
 console.log('\n=== 2. lastmodDamgasi: ICERIKTEN okuyor ===');

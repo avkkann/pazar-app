@@ -19,7 +19,7 @@ from hal_ceviri import CEVIRI
 HAL_JSON_PATH = "data/hal.json"
 OUT_DIR = "data/hal-images"
 LOG_PATH = "data/hal-images/_log.json"
-USER_AGENT = "PazarApp/1.0 (https://avkkann.github.io/pazar-app; hal-urun-gorseli)"
+USER_AGENT = "PazarApp/1.0 (https://pazarapp.net; hal-urun-gorseli)"
 
 
 def slugify(ad):

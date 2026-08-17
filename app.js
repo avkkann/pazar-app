@@ -3200,7 +3200,7 @@ function paylasZamlar() {
   if (!liste.length) return;
   const satirlar = liste.map(x => `${x.ad} +%${Math.round(x.artis)}`).join('\n');
   const metin = `Son 30 günde en çok zamlananlar:\n${satirlar}`;
-  const url = 'https://avkkann.github.io/pazar-app/';
+  const url = 'https://pazarapp.net/';
   if (navigator.share) {
     navigator.share({ title: 'Pazar — Bu ay en çok zamlananlar', text: metin, url: url }).catch(() => { /* kullanici paylasim penceresini kapatti veya iptal etti: hata degil, sessiz gecmek DOGRU */ });
     return;
@@ -4836,7 +4836,7 @@ function paylasEnflasyon() {
   const cumle = r.yon === 'dusus' ? 'ucuzladı' : (r.yon === 'artis' ? 'zamlandı' : 'değişmedi');
   const metin = `Sepetim bu ay ${isaret}${r.yuzde.toFixed(1).replace('.', ',')}% ${cumle}. `
     + `${r.katilan} üründe 30 gün önce ${tl(r.eskiToplam)}, bugün ${tl(r.yeniToplam)}.`;
-  const url = 'https://avkkann.github.io/pazar-app/';
+  const url = 'https://pazarapp.net/';
   if (navigator.share) {
     navigator.share({ title: 'Pazar — Senin enflasyonun', text: metin, url: url }).catch(() => { /* kullanici paylasim penceresini kapatti veya iptal etti: hata degil, sessiz gecmek DOGRU */ });
     return;
@@ -5126,7 +5126,7 @@ async function onbellekTemizle() {
 
 function paylasUygulama() {
   const metin = 'Pazar — marketteki gizli zamları gör. 7 marketin günlük fiyatlarını tek ekranda karşılaştır.';
-  const url = 'https://avkkann.github.io/pazar-app/';
+  const url = 'https://pazarapp.net/';
   if (navigator.share) {
     navigator.share({ title: 'Pazar', text: metin, url: url }).catch(() => { /* kullanici paylasim penceresini kapatti veya iptal etti: hata degil, sessiz gecmek DOGRU */ });
     return;

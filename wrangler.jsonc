@@ -1,11 +1,36 @@
 {
+  // Cloudflare Workers (Pages DEGIL). Statik varliklar ./dist'ten, CSP header'i
+  // src/worker.js'ten geliyor. _headers yolu 2026-07-12'de denendi ve
+  // guvenilmez cikti (bkz. commit 540d417), o yuzden CSP Worker'da.
   "name": "pazar-app",
   "main": "./src/worker.js",
   "compatibility_date": "2026-07-10",
+
+  // Apex alan adi. www AYRICA custom domain YAPILMADI — iki alan adi da ayni
+  // icerigi verirse yinelenen icerik olur. www -> apex yonlendirmesi
+  // Cloudflare Redirect Rule ile pano tarafinda kurulacak.
+  "routes": [
+    { "pattern": "pazarapp.net", "custom_domain": true }
+  ],
+
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
-    "not_found_handling": "single-page-application",
+
+    // "none": olmayan varlik icin duz 404. Onceki deger
+    // "single-page-application" idi ve BOZUKTU: uygulama ?screen= query
+    // routing kullaniyor, path routing kullanmiyor. SPA fallback acikken
+    // /herhangi/derin/yol istegi index.html donuyordu ve o sayfada
+    // src="./app.<hash>.js" -> /herhangi/derin/app.<hash>.js olarak
+    // cozulup 404'e dusuyordu (ayni sey ./data/*.json ve ./sw.js icin de).
+    // GitHub Pages'te SPA fallback olmadigi icin bu risk hic yoktu.
+    "not_found_handling": "none",
+
+    // TRUE OLMAK ZORUNDA — CSP'nin tek uygulanma yolu bu. false olsa statik
+    // varliklar Worker'a hic ugramadan servis edilir ve index.html CSP
+    // header'i ALMAZ. Maliyeti: her istek Worker'i calistirir.
+    // "none" ile tutarli: Worker once kosar, env.ASSETS.fetch() varligi
+    // bulamazsa 404 doner ve Worker o 404'e de CSP ekler.
     "run_worker_first": true
   }
 }

@@ -7,18 +7,20 @@ on:
     types: [completed]
   workflow_dispatch:
 
+# Cloudflare Workers'a deploy ediliyor, GitHub Pages'e DEGIL.
+# pages: write ve id-token: write kaldirildi — ikisi de Pages'e ozguydu.
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: pages
+  group: deploy
   cancel-in-progress: false
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
+    # "Veri Guncelle" basarisiz bittiyse deploy etme. Diger tetikleyicilerde
+    # (push, workflow_dispatch) kosul yok. Bu kapi Pages'e ozgu DEGILDI, aynen duruyor.
     if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     steps:
       - uses: actions/checkout@v4
@@ -29,15 +31,14 @@ jobs:
           node-version: '20'
       - run: npm ci
       - run: npm run build
-      - uses: actions/upload-pages-artifact@v3
+        env:
+          # vite.config.js'in VARSAYILANI zaten base:'/' — bu satir zorunlu degil.
+          # Niyeti acik tutmak ve varsayilan ileride degisirse koruma saglamak icin
+          # duruyor. Eski Pages duzeni icin deger 'ghpages' olurdu.
+          DEPLOY_TARGET: cloudflare
+      - name: Cloudflare Workers Deploy
+        uses: cloudflare/wrangler-action@v3
         with:
-          path: ./dist
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # wrangler.jsonc: main src/worker.js, assets ./dist, CSP header Worker'dan

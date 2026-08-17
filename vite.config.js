@@ -24,7 +24,12 @@ function hashClassicScript() {
 }
 
 export default {
-  base: process.env.DEPLOY_TARGET === 'cloudflare' ? '/' : '/pazar-app/',
+  // VARSAYILAN '/' — hedef Cloudflare Workers, site kokte duruyor.
+  // Onceki varsayilan '/pazar-app/' idi (GitHub Pages alt yolu) ve gecisten
+  // sonra TUZAK oldu: DEPLOY_TARGET set edilmezse build sessizce /pazar-app/
+  // onekli yollar uretir, Cloudflare'de tum varliklar 404 olur.
+  // Eski Pages duzeni gerekirse DEPLOY_TARGET=ghpages ile alinabilir.
+  base: process.env.DEPLOY_TARGET === 'ghpages' ? '/pazar-app/' : '/',
   publicDir: 'public',
   plugins: [hashClassicScript()],
   build: {
