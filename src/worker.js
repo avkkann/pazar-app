@@ -2,7 +2,20 @@ const CSP = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://gc.zgo.at",
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://api.fontshare.com",
-  "font-src https://fonts.gstatic.com https://api.fontshare.com",
+  // IKI HOSTLU DESEN — her font saglayicisi CSS'i bir hosttan, font
+  // DOSYALARINI baska bir hosttan veriyor:
+  //   fonts.googleapis.com (CSS)  -> fonts.gstatic.com   (woff2)   [Inter]
+  //   api.fontshare.com    (CSS)  -> cdn.fontshare.com   (woff2)   [Cabinet Grotesk]
+  // Googleapis cifti bastan dogru yazilmisti, fontshare ciftinin ikinci
+  // yarisi atlanmisti: CSS icindeki src'ler PROTOKOL-GORELI (//cdn.fontshare.com/wf/...)
+  // ve o host repoda hicbir yerde gecmiyor, yalnizca indirilen CSS'in icinde.
+  // Sonuc: 2026-08-17'de canli olculdu, uzantisiz temiz profilde 6 ihlal
+  // ("Loading the font 'https://cdn.fontshare.com/...woff2' violates ...
+  //   font-src ... The action has been blocked") ve Cabinet Grotesk hic
+  // yuklenmiyordu — .header-text h1, .hdr-left h2, .home-strip-title,
+  // .detay-name, .detay-mkt-price, .product-price, .profil-istat-sayi
+  // sessizce Inter'e dusuyordu.
+  "font-src https://fonts.gstatic.com https://api.fontshare.com https://cdn.fontshare.com",
   // cdn.marketfiyati.org.tr  : urun resimleri (data/ icinde 14.336 urunun resmi
   //                            bu host'tan geliyor — olculdu 2026-08-17)
   // lh3.googleusercontent.com: Google OAuth avatari. app.js:225 giris yapan
