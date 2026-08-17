@@ -6,7 +6,7 @@
 
 ## Amaç & bağlam
 
-Mustafa (GitHub: avkkann), **Pazar App**'in tek geliştiricisi — Türk market fiyat karşılaştırma PWA'sı, `avkkann.github.io/pazar-app` (repo: `avkkann/pazar-app`, yerel yol: `C:\Users\MUSTAFA KARABIYIK\Desktop\pazar-app`). Misyon: gizli zamları, sahte indirimleri, gramaj hilelerini ortaya çıkarmak — A101, BİM, Migros, CarrefourSA, ŞOK, Tarım Kredi, Hakmar. Slogan: **"Marketteki gizli zamları gör."**
+Mustafa (GitHub: avkkann), **Pazar App**'in tek geliştiricisi — Türk market fiyat karşılaştırma PWA'sı, **`pazarapp.net`** (repo: `avkkann/pazar-app`, yerel yol: `C:\Users\MUSTAFA KARABIYIK\Desktop\pazar-app`). Barındırma **Cloudflare Workers** (2026-08-17'de GitHub Pages'ten taşındı; eski adres `avkkann.github.io/pazar-app` mezar taşı bekliyor). Misyon: gizli zamları, sahte indirimleri, gramaj hilelerini ortaya çıkarmak — A101, BİM, Migros, CarrefourSA, ŞOK, Tarım Kredi, Hakmar. Slogan: **"Marketteki gizli zamları gör."**
 
 **İş akışı:** Dosya düzenlemeleri **Claude Code** ile doğrudan yapılır (Windows, PowerShell + Bash). Eski iki-Claude/OpenCode modeli bırakıldı — artık aynı oturumda hem karar veriliyor hem kod yazılıyor hem canlı doğrulanıyor. SQL şema değişiklikleri hâlâ Supabase SQL Editor'a verilir (Mustafa çalıştırır, Claude çalıştırmaz).
 
@@ -19,6 +19,32 @@ Mustafa (GitHub: avkkann), **Pazar App**'in tek geliştiricisi — Türk market 
 ---
 
 ## Mevcut durum (2026-08-17 itibarıyla)
+
+### 2026-08-17 (akşam) — barındırma Cloudflare Workers'a taşındı, pazarapp.net canlı
+
+**Site artık `https://pazarapp.net`, Cloudflare Workers üzerinde.** GitHub Pages bırakıldı. `sw.js` **v207**.
+
+> **DOKÜMAN BAYATLIĞI — ÜÇÜNCÜ KEZ.** `wrangler.jsonc` (`e3a4a5f`, 2026-07-11) ve `src/worker.js` (`540d417`, 2026-07-12) **beş haftadır repodaydı** ve CLAUDE.md onlardan hiç söz etmiyordu; üstelik bu dosya "P1-T2 (CSP) hosting migration gerektirir, karar bekliyor" diye yazıyordu — oysa CSP kodu çoktan yazılmıştı. Aynı desen daha önce `urunler.json` ve `marketfiyati.json` ile yaşandı. **Kural: bir iş yarım bırakılıp repoda dosya kalıyorsa CLAUDE.md'ye o turda yazılacak; yoksa bir sonraki oturum onu yok sayıp baştan planlıyor.**
+
+**Hedef Workers, Pages değil.** `wrangler.jsonc`: `main: src/worker.js`, `assets.directory: ./dist`, `run_worker_first: true`. `run_worker_first` **zorunlu** — `false` olsa statik varlıklar Worker'a hiç uğramadan servis edilir ve `index.html` CSP header'ı **almaz**.
+
+**`not_found_handling`: `single-page-application` → `none`.** SPA fallback bu uygulamada **bozuktu**: routing `?screen=` query ile yapılıyor, path ile değil. Fallback açıkken `/herhangi/derin/yol` isteği `index.html` döndürüyor ve o sayfada `src="./app.<hash>.js"` → `/herhangi/derin/app.<hash>.js` olarak çözülüp 404'e düşüyordu (aynısı `./data/*.json` ve `./sw.js` için de). GitHub Pages'te fallback olmadığı için bu risk hiç yoktu; Cloudflare yapılandırması **getiriyordu**. Ölçüldü: derin yollar artık **404, 0 bayt gövde**, CSP header'ı 404'e de ekleniyor.
+
+**P1-T2 (CSP) KAPANDI.** Header Worker'dan geliyor (`_headers` yolu 2026-07-12'de "güvenilmez" diye bırakılmıştı). Canlıda **9 direktif** + Cloudflare'in eklediği yok; 404'lere de uygulanıyor. İki genişletme ölçümle geldi:
+- `img-src` += `lh3.googleusercontent.com` (Google OAuth avatarı, `app.js:225`) ve `pazar-app.goatcounter.com` (GoatCounter'ın `sendBeacon` yoksa düştüğü `img.src` yedeği).
+- `font-src` += `cdn.fontshare.com` — **canlıda 6 ihlal yakalandı**, Cabinet Grotesk hiç yüklenmiyordu (aşağıdaki öğrenmeye bak).
+
+**`deploy.yml` tek job'a indi.** KORUNAN: `push` + `workflow_run("Veri Guncelle")` + `workflow_dispatch`, `conclusion == 'success'` kapısı, `concurrency`, `checkout ref:main`, `npm ci`. KALDIRILAN: `pages: write`, `id-token: write`, `upload-pages-artifact`, `deploy-pages`, ayrı deploy job'ı, `github-pages` environment. EKLENEN: `cloudflare/wrangler-action@v3` (`CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`), **Node 24**, **`wranglerVersion: '4.122.0'` sabit**.
+- Node 20 → 24 çünkü wrangler 4.x `node >= 22` istiyor; ilk deploy tam bu yüzden düştü. 22 değil 24: yerel ortam v24.18.0, hata zaten yerel-CI majör farkından çıkmıştı.
+- Sürüm sabitlendi çünkü wrangler neredeyse her gün yayın yapıyor (21 Tem–13 Ağu arası 12 kararlı sürüm). 4.122.0 seçildi: latest'in bir minor gerisi ve ardından hotfix gelmemiş (4.120.0 ertesi gün 4.120.1 ile yamanmıştı).
+
+**`vite.config.js` base varsayılanı `/pazar-app/` → `/`.** Eski varsayılanı bırakmak sessiz 404 tuzağıydı. Kaçış yolu duruyor: `DEPLOY_TARGET=ghpages` eski düzeni verir (ölçüldü).
+
+**18 elle düzenleme** (index.html 4 meta, manifest 6, app.js 3 paylaşım URL'i, robots, sitemap `<loc>`, anasayfa-uret vm stub 2, test_sitemap, hal_gorsel_cek UA). **Dokunulmayanlar:** `index.html`'deki 17 kök-mutlak yolu Vite base ile yeniden yazıyor; `app.js`'in 6 fetch'i göreli; `sw.js`'te alan adı hiç yok (`new URL(..., self.location)`); `static/og-image.svg`'de alan adı bilerek yok.
+
+**Canlı doğrulama (uzantısız temiz profil):** 13 `data/*.json` 200 · manifest `start_url`/`scope`/`id` = `/` · `sw.js` v207, cache tam 2 kayıt · beş şerit dolu (6/6/12/10/6 kart) · Cabinet Grotesk 700+800 `loaded` · TLS `CN=pazarapp.net`, Google Trust Services, 15 Kas 2026'ya kadar.
+
+**Supabase URL Configuration güncellendi:** Site URL `https://pazarapp.net`, Redirect URLs'e `https://pazarapp.net/**`. Öncesinde Google girişi kullanıcıyı **eski alan adına** düşürüyordu (ölçüldü). E-posta/şifre girişi etkilenmiyordu — `signInWithPassword` yönlendirme kullanmıyor.
 
 ### 2026-08-11/17 oturumları — denetim borcu kapatıldı, karşılaştırma satırı yenilendi, SEO zemini kuruldu
 
@@ -202,16 +228,21 @@ RPC fonksiyonları: `get_fiyat_dusenler(p_limit)`, `indirim_puan_toplu_guncelle(
 - **SEO meta paketi 2026-08-17'de tamamlandı** — og:image, tek h1, açıklama uzunluğu, noscript, sitemap lastmod. Yukarıdaki oturum bölümüne bak.
 - **Stale/dismissed:** P0-T1, P0-T2, P1-T3, P1-İ1.
 - **Bilinçli atlandı:** P0-G1 (KVKK — "uygulama bitince"), P0-U2 (5. nav sekmesi), P0-U3 (kontrol edildi, zaten doğru).
-- **Hâlâ karar bekliyor:** P1-T2 (CSP header — hosting migration gerektirir), P1-B1 (tuzak public landing — tuzak'ın geleceği belirsizken erken).
+- **P1-T2 (CSP header) TAMAMLANDI — 2026-08-17.** Cloudflare Workers'a geçişle birlikte kapandı; header `src/worker.js`'ten geliyor, 9 direktif, 404'lere de uygulanıyor. Kod aslında 2026-07-12'de yazılmıştı ama deploy edilmemişti (yukarıdaki doküman bayatlığı notuna bak).
+- **Hâlâ karar bekliyor:** P1-B1 (tuzak public landing — tuzak'ın geleceği belirsizken erken).
 - **Henüz bakılmadı:** P1-U1 (erişilebilirlik taraması), P1-U2 (offline banner), P1-B2 (push izni zamanlaması), P2 maddeleri.
 
 ### Dağıtım durumu (2026-08-17)
 
-Uygulama teknik olarak çalışıyor ama **pratikte dağıtılmamış durumda.** Bu bölüm o boşluğu görünür tutmak için var — özellik eklemeden önce buraya bak.
+Uygulama teknik olarak çalışıyor ama **pratikte hâlâ dağıtılmamış durumda.** Bu bölüm o boşluğu görünür tutmak için var — özellik eklemeden önce buraya bak.
 
+- **Alan adı geçişi TAMAM (2026-08-17).** `https://pazarapp.net` canlı, Cloudflare Workers, TLS geçerli. Custom domain `wrangler.jsonc`'taki `routes` bloğuyla apex olarak bağlı.
+- **`www.pazarapp.net` YOK — NXDOMAIN.** DNS kaydı hiç oluşturulmadı. Bilerek: iki alan adı da aynı içeriği verirse yinelenen içerik olur ve yeni kurulan canonical bozulur. Ama `www` yazan kullanıcı **hata alır** — `www → apex` yönlendirmesi Cloudflare Redirect Rule ile panodan kurulmalı, bu repodan yapılamaz.
+- **`*.workers.dev` adresi KAPANDI.** `routes` eklenince wrangler onu devre dışı bıraktı (deploy logunda uyarısı var); ölçüldü, `pazar-app.mustafaavkan72.workers.dev` → 404. SEO açısından iyi (aynı içeriği veren ikinci URL yok) ama **yedek test adresi kalmadı**; gerekirse `workers_dev: true` ile geri açılır.
+- **Eski origin `avkkann.github.io/pazar-app` HÂLÂ ESKİ UYGULAMAYI SERVİS EDİYOR.** GitHub Pages kendiliğinden kapanmıyor. `mezar-tasi` dalı (orphan, `6f72f3a`, uzakta) hazır ve Pages Source ona çevrildi, ama **`actions/deploy-pages` 503 veriyor** (build başarılı, deploy adımı düşüyor; yeniden deneme de 503 aldı). Deploy geçene kadar eski adres donmuş veriyle, eski canonical'la ve eski `sw.js` (v206) ile ayakta.
 - **GoatCounter (1 Tem – 17 Ağu): 59 ziyaret.** Kaynakların **%90'ı doğrudan/bilinmeyen**, **arama trafiği sıfır**. %97 Türkiye, **%68 telefon**, **%64 iOS/Safari**. İki sonuç: (a) tek dağıtım kanalı doğrudan link paylaşımı — o yüzden `og:image` en öncelikli SEO maddesiydi; (b) **kullanıcıların üçte ikisi Safari'de ve uygulama Safari'de hiç test edilmedi.**
-- **Google'da hiç indekslenmemiş** (`site:` sorgusu 0 sonuç). 2026-08-17 zemin taraması: robots engellemiyor, `noindex` yok, `X-Robots-Tag` yok, canonical doğru, cloaking yok, sitemap geçerli ve erişilebilir, 371 kelime indekslenebilir metin var, kökten iç bağlantı var. **Teknik engel yok** — sebep Search Console'a hiç eklenmemiş olması (dolayısıyla sitemap hiç sunulmamış) ve dışarıdan bağlantı olmaması.
-- **Alan adı `pazarapp.net` alındı (Cloudflare). Geçiş YAPILMADI** — site hâlâ `avkkann.github.io/pazar-app`.
+- **Google'da hiç indekslenmemiş** (`site:` sorgusu 0 sonuç, eski adres için). 2026-08-17 zemin taraması: robots engellemiyor, `noindex` yok, `X-Robots-Tag` yok, canonical doğru, cloaking yok, sitemap geçerli ve erişilebilir, indekslenebilir metin var. **Teknik engel yok** — sebep Search Console'a hiç eklenmemiş olması ve dışarıdan bağlantı olmaması. Alan adı geçişi bittiği için **artık yapılabilir** ve sıradaki işlerin 1. maddesi.
+- **Cloudflare Web Analytics beacon'ı bloklu ve öyle KALACAK.** Cloudflare `static.cloudflareinsights.com/beacon.min.js`'i HTML'e sonradan enjekte ediyor; `script-src` izin vermediği için çalışmıyor. **Karar: CSP'ye eklenmeyecek** — analitik zaten GoatCounter'dan geliyor, ikinci bir izleyici gereksiz. Konsolda bu tek ihlal görünür, uygulamayı etkilemiyor. (Kapatmak istenirse pano → Web Analytics.)
 - **`fiyat_bildirim` tablosunda 1 kayıt var, o da test** (2026-08-11 denetiminde yanlışlıkla eklenen `{"_sid":"x","market":"bim"}`). **Gerçek kullanıcı bildirimi yok.** anon DELETE kapalı olduğu için Claude silemedi; temizlik SQL'i `sql/fiyat_bildirim_hiz_siniri.sql`'in başında, hız sınırıyla birlikte bekliyor.
 - **TÜBİTAK BİLGEM'e veri kullanımı için e-posta başvurusu yapıldı, cevap bekleniyor.** Cevap gelmezse CİMER'den tekrarlanacak. Veri kaynağı attribution footer'da zaten duruyor (`marketfiyati.org.tr` + `hal.gov.tr`).
 
@@ -237,14 +268,16 @@ Uygulama teknik olarak çalışıyor ama **pratikte dağıtılmamış durumda.**
 > işaretli, gerçekte daha fazlası kapandı. Durum için bu dosyayı esas al.
 
 **Sıradaki işler (öncelik sırasıyla):**
-1. **`pazarapp.net` geçişi.** Alan adı alındı (Cloudflare), geçiş yapılmadı. Dokunulacaklar: `CNAME`, Vite `base`, SW scope, **tüm mutlak URL'ler**, `manifest.json`, `og:url`, `og:image`, `twitter:image`, `canonical`, `sitemap.xml`'deki `<loc>`. Not: `og:image` mutlak URL olmak zorunda (WhatsApp göreli yolu çözmüyor), o yüzden canonical/og:url ile birlikte değişir. `vite.config.js`'te `DEPLOY_TARGET=cloudflare` dalı zaten `base: '/'` veriyor.
-2. **Search Console'a ekleme + sitemap gönderimi.** Repoda doğrulama dosyası/meta etiketi **yok**, git geçmişinde de iz yok. İndekslenmemenin tek sebebi bu + dış bağlantı yokluğu; teknik engel yok. Alan adı geçişinden **sonra** yapılmalı, yoksa iki kez yapılır.
+1. **Search Console'a ekleme + sitemap gönderimi — ARTIK YAPILABİLİR.** Alan adı geçişi bitti, bekleme sebebi kalmadı. Repoda doğrulama dosyası/meta etiketi **yok**, git geçmişinde de iz yok. İndekslenmemenin tek sebebi bu + dış bağlantı yokluğu. Mülk **`pazarapp.net`** için açılmalı (eski adres için değil); `robots.txt` ve `sitemap.xml` zaten yeni alan adını gösteriyor.
+2. **Mezar taşını yayına al** (`mezar-tasi` dalı hazır, Pages Source ayarlandı, `deploy-pages` 503 veriyor). Geçtikten sonra ölçülecek: mezar taşı mı geliyor, meta refresh süresi, canonical, JS kapalı metin, ve **eski `sw.js` gerçekten `unregister` oluyor mu**. **main'e MERGE EDİLMEZ** — dosya adları uygulamanınkiyle aynı, merge giriş sayfasını ve service worker'ı ezer.
 3. **Aranabilir içerik üretimi.** Ürün başına statik sayfa + aylık zam listesi sayfası, **build zamanında** `anasayfa.json` deseniyle (`app.js`'i `node:vm`'de koşturup kendi fonksiyonlarını çağır — mantık ikinci kez yazılmaz). SPA'nın tek URL'si arama için yeterli değil.
 4. **KVKK aydınlatma metni.** Artık hesap, fiyat alarmı, push bildirimi ve şehir tercihi tutuluyor — "uygulama bitince" erteleme gerekçesi kalmadı.
 5. **Sepet şemasına `_sid` eklenmesi.** Karşılaştırma ekranındaki rozetler için gerekiyor. Etkilenenler: Listem, şablonlar ve **localStorage'daki mevcut sepetler** — geriye dönük uyumluluk düşünülmeli.
 6. **Searlo kredisi kararı** — resim doldurma adımı artık boşa koşmuyor ama **hiç resim de doldurmuyor**. Ya kredi yenilenecek ya alternatif kaynak seçilecek ya da adım tamamen kaldırılacak. Alternatif kaynak araştırması bilinçli olarak yapılmadı.
 7. **~2026-09-01: HAYALET ZAM kuralı ölçüye dayalı hale getirilecek.** `depot_id`/`depot_ad` **2026-08-11'den beri** birikiyor. O tarihte yeterli veri olacak ve "bu dip/zıplama gerçekten mağaza değişimi mi" sorusu **doğrudan** cevaplanabilecek; `zamSalinimVar`'daki yapısal salınım testi `depot_id` değişimini izleyen ölçüme dayalı kuralla değiştirilmeli. Not `app.js`'te `_seriKur` ve `zamSalinimVar` üzerinde duruyor. **Bu tarih geçmeden kuralı değiştirme, ölçüm olmadan yeni eşik uydurma.**
-8. **Kök `avkkann.github.io/sitemap.xml` `lastmod`'u bayat** (2026-07-03'te takılı). O dosya **başka bir depoda** (`avkkann.github.io`), bu repodan erişilemiyor. Google'ın okuduğu `Sitemap:` satırı da oradaki `robots.txt`'ten geliyor — `robots.txt` host başına okunur, `/pazar-app/robots.txt` hiç okunmuyor.
+8. **`www.pazarapp.net` yönlendirmesi** — şu an NXDOMAIN, `www` yazan kullanıcı hata alıyor. Cloudflare Redirect Rule ile `www → apex`; bu repodan yapılamaz, pano işi. **İkinci custom domain olarak bağlanmamalı** (yinelenen içerik).
+
+> Eski **kök `avkkann.github.io/sitemap.xml`** maddesi 2026-08-17'de düştü: artık `pazarapp.net` kendi host'u, kendi `robots.txt`'i ve kendi `sitemap.xml`'i var. `robots.txt` host başına okunduğu için Google artık bu depodan üretilen dosyayı okuyor. Başka bir depodaki o dosya bu proje için anlamsız.
 
 **Karar bekleyen:**
 - **Al/bekle'de kaybolan 900 çıktı.** Temiz seriye geçince alarm önerisi −492, al/bekle −408 düştü. Bunlar yeni bir susturma kuralı değil, **mevcut kapılar** düzeltilmiş veriye uygulandığı için: alarm "fiyat zaten dipteyse öneri yok"a, al/bekle `AL_ZAMANI_MIN_OYNAMA` %5 kapısına takılıyor. Düşenlerin yarısında temiz aralık **tam sıfır** (ürün 30 gündür kımıldamamış, "bekle" demek yanlıştı). Ama dürüst sınır: salınımlı seri "yanlış seri" değil — inip biten bir kampanya gerçek bir diptir ve o bilgiyi kaybettik. Kabul mü, yoksa hedefli bir istisna mı gerekiyor?
@@ -258,7 +291,8 @@ Uygulama teknik olarak çalışıyor ama **pratikte dağıtılmamış durumda.**
 - **Hal'de iki kırılgan kalem** — `Tamarind(demirhindi)` (tek satır, 5 kg hacim) ve `Isırgan (yaş-taze)` (tek satır, 2 kg hacim). Fiyatları absürt değil ve `URUN_MAX_FIYAT`'ı geçmiyorlar, ama doğrulanacak ikinci kayıt yok — tek bir hatalı bültende sessizce yanlış değer gösterebilirler.
 - **`app.js`'te çağrılmayan 4 fonksiyon + 1 ölü değişken** (2026-08-10 taraması, 177 fonksiyon içinde): `filterUrunler` (2660), `mfGorsel` (2924, boş stub), `mfPlaceholderEmoji` (2926, boş stub), `temaToggle` (4291); `activeMarket` (616) yalnızca `null` atanıyor, hiç okunmuyor. Ayrıca `halMap` (611) artık **yalnızca yazılıyor** — tek okuyucusu silinen `halEsles`'ti; `loadData` hâlâ dolduruyor. Hiçbiri silinmedi, karar Mustafa'da.
 - **`.sablon-chip` klavyeye kapalı — üç klavye turunun hepsi kaçırdı.** Listem'deki kayıtlı şablon çipleri `<span class="sablon-chip" onclick="sablonYukleUI(...)">`; `tabindex`/`role`/`onkeydown` yok, JS yalnızca `touchstart/end/move` (uzun bas → düzenle) bağlıyor. **Neden kaçtı:** üç tur da tek satırlık markup'a baktı, bu öğe `'` + `'` ile çok satırlı birleştirmeyle üretiliyor, `class="sablon-chip" ... onclick=` deseni hiçbir satırda yan yana çıkmıyor. Hiçbir test de kapsamıyor. **Tarama yapacaksan önce birleştirmeleri düzleştir.** Doğrulandı 2026-08-17: düzleştirilmiş taramada onclick taşıyan 20 blok/inline öğeden `tabindex` taşımayan 5 tane — 4'ü bilerek dışarıda bırakılan modal arka planı, 5.'si bu.
-- **Sürüm numarası tek kaynaktan gelmiyor** — `index.html:529`'da `v1.0` elle yazılı, `sw.js`'teki `CACHE_NAME` (`v206`) ile hiçbir bağı yok.
+- **Sürüm numarası tek kaynaktan gelmiyor** — `index.html:528`'de `v1.0` elle yazılı, `sw.js`'teki `CACHE_NAME` (`v207`) ile hiçbir bağı yok.
+- **`update-data.yml` hâlâ Node 20, `deploy.yml` Node 24 — AÇIK BORÇ.** Somut sonucu: `data/anasayfa.json` **iki farklı Node majöründe** üretiliyor — gece koşusu onu Node 20'de üretip repoya commit'liyor, deploy build'i aynı script'i Node 24'te yeniden koşturup `dist/`e onu koyuyor. Yani commit'lenen dosya ile yayına giden dosya farklı motorlarda doğuyor. Mantık aynı olduğu için çıktının da aynı olması beklenir ama **doğrulanmadı**; "aynı türetilmiş dosyanın iki kaynağı" bu dosyanın tuzak diye işaretlediği desen. `update-data.yml` wrangler kullanmadığı için geçiş turunda bilerek dokunulmadı. Kapatılırken iki koşunun çıktısı bayt bayt karşılaştırılmalı.
 - **`style.css`'te iki adet birebir aynı ölü `@media` bloğu** (`CENTER-FIX-TAMAM` ×2) — temizlenmedi.
 - **Ölü `.cmp-mkt-item-img` kuralı** — `style.css:650`'de eski 30px tanımı duruyor, dosyanın sonundaki yeniden tasarım bloğu 56px'le eziyor. Zararsız ama yanıltıcı.
 - **Kaçış fonksiyonu hâlâ YOK, 79 `innerHTML`** (DENETIM 1.5, YÜKSEK). Doğrulandı 2026-08-17: `esc`/`kacis` tipi bir fonksiyon 0, `innerHTML` sayısı 79. Kullanıcı girdisi tutan alanlar (şablon adı, bildirim notu) tek tek `replace` ile kaçırılıyor — merkezi bir kapı yok.
@@ -268,7 +302,7 @@ Uygulama teknik olarak çalışıyor ama **pratikte dağıtılmamış durumda.**
 
 **Diğer:**
 - **A101 Kapıda entegrasyonu** — pilot scraper hazır, DB'ye nasıl ekleneceği kararı bekliyor.
-- **P1-T2 (CSP/hosting migration), P1-B1 (tuzak landing), P1-U1/U2/B2, P2** — tartışılmadı. Not: alan adı Cloudflare'de olduğu için CSP header artık **mümkün** — geçiş yapılınca yeniden değerlendir.
+- **P1-B1 (tuzak landing), P1-U1/U2/B2, P2** — tartışılmadı. (P1-T2 CSP 2026-08-17'de kapandı.)
 - **Safari'de hiç test edilmedi** — kullanıcıların **%64'ü** iOS/Safari (aşağıdaki dağıtım durumuna bak). Test hep masaüstü Chrome ve Claude in Chrome ile yapıldı.
 
 ---
@@ -296,13 +330,17 @@ Uygulama teknik olarak çalışıyor ama **pratikte dağıtılmamış durumda.**
 - **PowerShell `Set-Content` test dosyalarındaki Türkçe karakterleri bozuyor** — `gerçek` → `gerÃ§ek`, 5 test bir seferde kırıldı. **Bu üçüncü tekrar.** Test dosyalarında (ve genel olarak Türkçe metin taşıyan dosyalarda) **Edit aracını kullan**, `Set-Content`/`Out-File` ile yazma.
 - **Test canlı veriye sabit sayı PİNLEMEMELİ.** `test_sehir.mjs` `ilMarketleri().length === 5` diye pinliyordu; haftalık il taraması Gaziantep'i 4'e düşürünce test HEAD'de kırmızıya döndü — kod değişmemişti, veri değişti. **Davranışı doğrula, sayıyı değil:** "dosyada ne yazıyorsa fonksiyon onu döndürüyor mu".
 - **Tam ekran örtüler ham HTML'deki metni GÖRÜNMEZ kılar.** `#splash` `position:fixed; inset:0; z-index:9999` ve onu yalnızca `app.js` kaldırıyordu; ham HTML'de 2475 karakter indekslenebilir metin vardı ama JS kapalıyken kullanıcı beyaz ekran görüyordu. "Bot ne görüyor" ile "JS kapalı kullanıcı ne görüyor" **ayrı sorular** — ikincisi için `<noscript>` içinden örtüyü de kaldır.
+- **Tarayıcı uzantısı CSP response header'ını SIYIRIYOR — MCP tarayıcısıyla CSP doğrulanamaz.** 2026-08-17: `img-src` sınamamda kontrol grubu olarak koyduğum `example.com` de "geçti"; iki farklı yöntemde de. Sebep iki katmanlı: (a) `javascript_tool` uzantının **izole dünyasında** koşuyor ve içerik script'leri sayfa CSP'sine tabi değil; (b) o profildeki cüzdan uzantısı CSP header'ını **tamamen kaldırıyor** — sayfa `content-security-policy: yok` görürken curl aynı adreste 9 direktif görüyordu (`window.ethereum` varlığı ipucuydu). **CSP ölçümü uzantısız temiz profille yapılmalı** (`--disable-extensions` + taze `--user-data-dir`), tercihen CDP ile — `Runtime.evaluate` sayfanın ANA dünyasında koşar. **Ve her CSP sınamasına bir NEGATİF KONTROL koy**: izin verilmeyen bir hosttan kaynak iste, engellendiğini gör. Kontrol geçiyorsa ölçüm bozuktur, bulgu değil.
+- **Statik tarama bir CSP ihlalini yakalayamaz — kaynak host, isteyen host değildir.** Her font sağlayıcısı CSS'i bir hosttan, font DOSYALARINI başka hosttan veriyor: `fonts.googleapis.com`→`fonts.gstatic.com`, `api.fontshare.com`→**`cdn.fontshare.com`**. İkincisi repoda **hiçbir yerde geçmiyor**; CSS'in içinde ve **protokol-göreli** (`//cdn.fontshare.com/...`). Repo taraması temiz dedi, canlı ölçüm 6 ihlal buldu ve Cabinet Grotesk hiç yüklenmiyordu. Aynı sınıf: **Cloudflare beacon'ı** HTML'e *sonradan* ve **UA'ya koşullu** enjekte ediliyor — curl varsayılan UA'sıyla görünmüyor, tarayıcı UA'sıyla görünüyor (34.570 vs 34.929 bayt). **CSP'yi repo grep'iyle doğrulama; canlı sayfada, gerçek tarayıcıda ölç.**
+- **Supabase redirect allowlist'i CALLBACK'te uygulanıyor, authorize'da değil.** `/auth/v1/authorize?redirect_to=...` uydurma bir alan adına bile aynı 302'yi veriyor — orada bakmak hiçbir şey ayırt etmiyor. Doğrusu: authorize'dan `state`'i al, `/auth/v1/callback?state=...&error=access_denied` ile dön ve **nereye yönlendirdiğine** bak. Ama hedef alan adına bakmak da yetmez — Site URL zaten o alan adıysa izinli/izinsiz aynı yere düşer. **`redirect_to`'ya ayırt edici bir yol izi koy** (`/olcum-izi`): allowlist eşleşirse yol aynen korunur, eşleşmezse çıplak Site URL'e düşer. Kimlik bilgisi girmeden ölçülebilir.
+- **Kullanılmayan bir hedefin varsayılan kalması sessiz 404 tuzağıdır.** `vite.config.js` `base` varsayılanı geçişten sonra da `/pazar-app/` idi; `DEPLOY_TARGET` set edilmeyen her build (yerel, ya da env satırı düşerse CI) sessizce yanlış önekli yollar üretip Cloudflare'de tüm varlıkları 404 yapardı. Bir hedef terk edildiğinde **varsayılanı da taşı**, eskisini opt-in yap.
 - **Commit ile test koşusunu aynı komut zincirine bağlama.** `for ... done; echo; git commit` şeklinde zincirlediğim için kırmızı test varken commit geçti (`test_hakmar.mjs` 2 FAIL). Testi **ayrı** koştur, çıktısını gör, sonra commit et.
 
 ---
 
 ## Yaklaşım & desenler
 
-- **SW cache version** her anlamlı `index.html`/`app.js`/`style.css`/`sw.js` değişikliğinde artırılır (şu an **v206**). Backend-only değişikliklerde (scraper, sync) bump edilmez. Akış: `git add` → `git commit` → `git pull --rebase` → `git push`. Not: `sw.js` yalnızca `data/hal.json` + `data/anasayfa.json`'ı önbelleğe alıyor ve `fetch`'i yalnızca o iki URL için yakalıyor — HTML/CSS/JS'i tutmuyor, onlar GitHub Pages'in `max-age=600`'üyle gelir. Bump proje kuralı ve tutarlılık için, HTML dağıtımını hızlandırmıyor.
+- **SW cache version** her anlamlı `index.html`/`app.js`/`style.css`/`sw.js` değişikliğinde artırılır (şu an **v207**). Backend-only değişikliklerde (scraper, sync) bump edilmez. Akış: `git add` → `git commit` → `git pull --rebase` → `git push`. Not: `sw.js` yalnızca `data/hal.json` + `data/anasayfa.json`'ı önbelleğe alıyor ve `fetch`'i yalnızca o iki URL için yakalıyor — HTML/CSS/JS'i tutmuyor, onlar GitHub Pages'in `max-age=600`'üyle gelir. Bump proje kuralı ve tutarlılık için, HTML dağıtımını hızlandırmıyor.
 - **Doğrulama:** Push sonrası `gh run watch` ile deploy'un koştuğu doğrulanır, sonra canlıda (Browser MCP) gerçek fonksiyonel test yapılır — "dosyada var mı" değil, "gerçekten çalışıyor mu". Layout değişikliklerinde ekran görüntüsü yetmez: değişiklikten ÖNCE geometri parmak izi (`getBoundingClientRect`) alınıp sonra sayısal karşılaştırılır.
 - **Kapsam disiplini:** İstenmeyen ekleme/çıkarma sessizce yapılmaz, not düşülür. Doküman/analiz önerileri körü körüne uygulanmaz — önce kodda geçerli mi diye bakılır.
 - **Büyük ürün/mimari kararları** (hosting migration, nav yapısı, tuzak'ın geleceği) Mustafa'nın onayı olmadan koda dökülmez.
@@ -315,8 +353,9 @@ Uygulama teknik olarak çalışıyor ama **pratikte dağıtılmamış durumda.**
 - **Claude Code** — dosya düzenlemeleri, git, gh CLI, canlı doğrulama (Windows; PowerShell ve Bash ayrı sözdizimi)
 - **Supabase** — auth, DB, Edge Functions, RPC (`get_fiyat_dusenler`, `indirim_puan_toplu_guncelle`, `get_fiyat_bildirimleri`, `jsonb_fiyat_max`)
 - **GitHub Actions — `update-data.yml`** (cron `0 3 * * *`, ~2 saat): checkout (`fetch-depth: 0`) → setup-python → pip install → `scraper.py` → `hal_scraper.py` → veri commit+push → **DB Senkronizasyonu** (`sync_db.py`) → **Sahte Indirim Analizi** (`indirim_analiz.py`, `continue-on-error`, başarı damgası `data/indirim_analiz_son.json`) → **Fiyat Alarmı Taraması** (curl edge function) → **Ana Sayfa Şeritleri** (`scripts/anasayfa-uret.mjs`) → **Ana Sayfa Şeritlerini İşle** (commit+push) → **Veri Tazelik Kontrolü** (`scripts/veri_tazelik_kontrol.py`, en son, kırmızıya çevirir). Secrets: `SEARLO_API_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_ANON_KEY`.
-- **GitHub Actions — `deploy.yml`** ("Build ve Deploy"): `push` + **`workflow_run` ("Veri Guncelle" completed)** + `workflow_dispatch`. `npm ci` → `npm run build` → Pages deploy.
-- **Vite** — `npm run build` = `scripts/anasayfa-uret.mjs` + `scripts/prepare-public.mjs` + `vite build` → `dist/`. `base: '/pazar-app/'` (`DEPLOY_TARGET=cloudflare` ise `/`).
+- **GitHub Actions — `deploy.yml`** ("Build ve Deploy"): `push` + **`workflow_run` ("Veri Guncelle" completed)** + `workflow_dispatch`. **Tek job**, `permissions: contents: read`. checkout(`ref: main`) → setup-node **24** → `npm ci` → `npm run build` (`DEPLOY_TARGET=cloudflare`) → **`cloudflare/wrangler-action@v3`** (`wranglerVersion: '4.122.0'` sabit). Secrets: `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`. GitHub Pages'e **artık yayınlamıyor**.
+- **Cloudflare Workers** — `wrangler.jsonc`: `name: pazar-app`, `main: ./src/worker.js`, `assets: { directory: ./dist, binding: ASSETS, not_found_handling: "none", run_worker_first: true }`, `routes: [{ pattern: "pazarapp.net", custom_domain: true }]`. **`run_worker_first: true` zorunlu** — CSP'nin uygulanmasının tek yolu. `src/worker.js` `env.ASSETS.fetch()` yapıp yanıta CSP header'ı ekliyor.
+- **Vite** — `npm run build` = `scripts/anasayfa-uret.mjs` + `scripts/prepare-public.mjs` + `vite build` → `dist/`. **`base: '/'`** varsayılan; eski Pages düzeni için `DEPLOY_TARGET=ghpages`.
 - **`scripts/og-gorsel-uret.mjs`** — `static/og-image.svg` → `static/og-image.png` (1200×630), Chrome headless `--screenshot`. SVG kaynak dosyadır, elle düzenlenir; script yalnızca PNG üretir. PNG'yi build ayrıca taşımıyor — `prepare-public.mjs` `static/` klasörünü komple kopyalıyor.
 - **`scripts/sitemap.mjs`** — `lastmod` damgası (iki saf fonksiyon, `prepare-public.mjs` çağırıyor). Kaynak `sitemap.xml`'de tarih değil yer tutucu var; **elle tarih yazma**.
 - **GoatCounter** (`pazar-app.goatcounter.com`) — analytics, kartsız/ücretsiz, çerezsiz
