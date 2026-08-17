@@ -13,7 +13,7 @@ Tek istisna: TestSprite kurulum denemesi.
 | # | Bulgu | Hat | Nerede | Kanıt (özet) | Önem |
 |---|---|---|---|---|---|
 | 1 | "30 günün en düşüğü" rozeti **%6,1 yanlış** | 2 | `app.js:1686`, metin `:1565` | 1492 gösterim / 91 yanlış; en kötü %45,5 (Ülker Gofret 16,00 ₺ iddia, ham dip 11,00 ₺) | **KRİTİK** |
-| 2 | Ürün kartlarının hiçbiri **klavyeyle erişilemiyor** | 4 | `.strip-card`, 51 öğe | onclick var, tabindex/role/keydown yok; sayfada toplam 15 odaklanabilir öğe | **KRİTİK** |
+| 2 | ~~Ürün kartlarının hiçbiri klavyeyle erişilemiyor~~ **KAPANDI 2026-08-17 (0 oge)** | 4 | `.strip-card`, 51 öğe | onclick var, tabindex/role/keydown yok; sayfada toplam 15 odaklanabilir öğe | **KRİTİK** |
 | 3 | Odaklanabilir 15 öğenin **15'inde odak göstergesi yok** | 4 | genel CSS | outline 0/none, telafi box-shadow yok — WCAG 2.4.7 | **KRİTİK** |
 | 4 | `fiyat_bildirim`'e **anon INSERT açık**, hız sınırı yok | 1 | Supabase, `app.js:2436` | POST `{"_sid":123}` → `23502 NOT NULL` = RLS/GRANT geçildi | **YÜKSEK** |
 | 5 | **Kaçış fonksiyonu hiç yok**, 79 `innerHTML` | 1 | `app.js` geneli | 588 ürün adında kesme işareti (%3,5); onclick `SyntaxError` üretiyor | **YÜKSEK** |
@@ -22,7 +22,7 @@ Tek istisna: TestSprite kurulum denemesi.
 | 8 | "Sahte İndirim Analizi" **sessizce atlanabiliyor** | 5 | `update-data.yml` | `continue-on-error: true`; ardından şerit eski puanla üretilir, iş YEŞİL geçer | **YÜKSEK** |
 | 9 | `maximum-scale=1.0` — **yakınlaştırma engelli** | 4 | `index.html` viewport | WCAG 1.4.4 | **YÜKSEK** |
 | 10 | **Koyu tema kontrastı açıktan kötü** (10 vs 7 ihlal) | 4 | `.cat-card-name` 1,24 · `.zam-yayginlik` 2,15 | tarayıcıda `getComputedStyle` ile doğrulandı | **YÜKSEK** |
-| 11 | **Dokunma hedefleri 44px altında** | 4 | `.siralama-btn` 15px … `.add-btn` 30px | 38 öğe tarandı, çoğu eşiğin altında | **YÜKSEK** |
+| 11 | ~~Dokunma hedefleri 44px altında~~ **KAPANDI 2026-08-17** | 4 | `.siralama-btn` 15px … `.add-btn` 30px | 38 öğe tarandı, çoğu eşiğin altında | **YÜKSEK** |
 | 12 | Alarm önerisi hiç gözlenmemiş fiyat önerebiliyor | 2 | `app.js:1285` | 5219 gösterim / 9 vaka (%0,2); ham dibin altında 0 | **ORTA** |
 | 13 | `load` olayı **7,6 sn** (166 görsel) | 3 | ana sayfa | DCL 1457 ms, inen 118 KB | **ORTA** |
 | 14 | SW sürüm/veri ayrışması riski | 3 | `sw.js` | `anasayfa.json` günlük değişiyor, `CACHE_NAME` elle bump | **ORTA** |
@@ -435,6 +435,39 @@ Az gören kullanıcı sayfayı büyütemiyor. WCAG 1.4.4 ihlali.
 bulgu yazmıyorum.
 
 ### 4.5 Dokunma hedefleri 44×44 altında — **YÜKSEK**
+
+> **2026-08-17 KAPANDI — iframe olcumuyle dogrulandi.** 15 sinifa gorunmez
+> `::after` katmani eklendi (gorsel boyut degismedi). resize_window bu araclarda
+> calismadigi icin ayni origin'de iframe kuruldu ve iki genislikte olculdu:
+> ```
+>   390px   8 sinif DOM'da bulundu, 44x44 ALTINDA KALAN: 0
+>     .add-btn            30x30 -> dokunma  44x44  GECER
+>     .filter-pill        59x26 -> dokunma  57x44  GECER
+>     .hal-filter-btn     57x30 -> dokunma  55x44  GECER
+>     .siralama-btn      142x32 -> dokunma 140x44  GECER
+>     .back-btn           36x36 -> dokunma  44x44  GECER
+>     .firsat-tab         98x41 -> dokunma  98x44  GECER
+>     .home-strip-paylas  64x27 -> dokunma  62x44  GECER
+>     .theme-opt         108x37 -> dokunma 106x44  GECER
+>   1440px  ayni 8 sinif, KALAN: 0  (.theme-opt 74x37 -> 72x44)
+> ```
+> **Geometri degismedi** (390px / 1440px):
+> ```
+>   .strip-card       150x196 / 150x196   pad 10px
+>   .strip-card-img   128x90  / 128x90    pad 6px
+>   .strip-card-name  128x34  / 128x34    font 13px
+>   .cat-card         164x124 / 217x130   pad degismedi
+>   .product-card     164x324 / 210x324
+>   .nav-btn           93x62  / 235x40
+>   yatay kaydirma    YOK    (390px scrollWidth 371)
+> ```
+> **Komsu hedef cakismasi YOK:** .firsat-tab 2 oge 0 cakisma · .filter-pill
+> 8 oge 0 · .hal-filter-btn 3 oge 0. (.tazelik-chip sayfada tek oge oldugu
+> icin cakisma olculemedi.)
+> **Olculemeyen 7 sinif** (DOM'a ancak modal/detay acilinca giriyor, iframe
+> icinde acilamadi): .btn-ekle .karsilastir-pill .tazelik-chip .alarm-kur-btn
+> .alarm-kaldir-btn .bildirim-pill .fiyat-bildir-btn — CSS kurali onlari da
+> kapsiyor ama **olculmedi.**
 CSS'ten hesaplanan yükseklik (padding·2 + font-size·1,3):
 ```
   .siralama-btn       15px   pad=var(--space-2) var(--space-3)
