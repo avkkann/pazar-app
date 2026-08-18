@@ -153,18 +153,48 @@ console.log('\n=== 5. gunDamgasi: SAF DIZE ISLEMI (TZ BAGIMSIZ) ===');
 console.log('\n=== 6. ESIKLER TEK YERDE TANIMLI ===');
 {
   const kaynak = fs.readFileSync('scripts/hub-sayfa.mjs', 'utf8');
+
+  // Esigin elle koda gomulmesi demek, esik degerinin KARSILASTIRMA ya da
+  // ATAMA baglaminda literal olarak kullanilmasi demek (orn. `satir >= 12`,
+  // `if (gun > 3)`, `const x = 300`). CSS'teki `1.35`, `padding: 3px` ya da
+  // metin icindeki bir sayi bu degil -- bu kontrolun amaci "esik degeri
+  // koda elle gomulmesin", "bu rakam dosyada gecmesin" degil. Bu yuzden
+  // kontrol operator komsulugu arayan bir desenle sinirlaniyor.
+  const esikGomulmuMu = (kaynakParcasi, deger) => {
+    const desen = new RegExp(`[<>=!]=?=?\\s*\\b${deger}\\b|\\b${deger}\\b\\s*[<>=!]=?=?`, 'g');
+    return kaynakParcasi.match(desen) || [];
+  };
+
   const tekYerdeKontrolEt = (isim, deger) => {
     ok(`export const ${isim} tanimi kaynakta var`,
       new RegExp(`export const ${isim}\\s*=\\s*${deger}\\s*;`).test(kaynak));
     const kullanimSayisi = (kaynak.match(new RegExp(`\\b${isim}\\b`, 'g')) || []).length;
     ok(`  ${isim} kod icinde en az bir kez KULLANILIYOR (tanim disinda)`, kullanimSayisi >= 2, String(kullanimSayisi));
-    const literalSayisi = (kaynak.match(new RegExp(`\\b${deger}\\b`, 'g')) || []).length;
-    ok(`  ${isim} degeri (${deger}) kaynakta SADECE tanim satirinda geciyor (literal tekrari yok)`,
-      literalSayisi === 1, `literal '${deger}' ${literalSayisi} kez geciyor`);
+
+    // Tanim satirini disarida birak, kalan kaynakta esik degerinin
+    // karsilastirma/atama baglaminda gecip gecmedigine bak.
+    const tanimDeseni = new RegExp(`^export const ${isim}\\s*=\\s*${deger}\\s*;\\s*$`, 'm');
+    const kalanKaynak = kaynak.replace(tanimDeseni, '');
+    const gomulmeler = esikGomulmuMu(kalanKaynak, deger);
+    ok(`  ${isim} degeri (${deger}) kod icinde karsilastirma/atama baglaminda GOMULU degil (tanim disinda)`,
+      gomulmeler.length === 0, `gomulme(ler): ${gomulmeler.join(', ')}`);
   };
   tekYerdeKontrolEt('ESIK_SATIR', ESIK_SATIR);
   tekYerdeKontrolEt('ESIK_KELIME', ESIK_KELIME);
   tekYerdeKontrolEt('ESIK_AY_BASLANGIC', ESIK_AY_BASLANGIC);
+
+  console.log('\n=== 6b. DARALTILMIS ESIK-LITERAL KONTROLU HALA DIRI (sentetik ornek) ===');
+  const sahteKaynakGomulu = 'function sayfaKarari(model) {\n  const satirTamam = satir >= 12;\n  return satirTamam;\n}\n';
+  ok('sentetik "satir >= 12" gommesi hala yakalaniyor (kontrol diri)',
+    esikGomulmuMu(sahteKaynakGomulu, 12).length > 0, JSON.stringify(esikGomulmuMu(sahteKaynakGomulu, 12)));
+
+  const sahteKaynakAtama = 'function f() {\n  const x = 300;\n  return x;\n}\n';
+  ok('  sentetik "const x = 300" atamasi da yakalaniyor',
+    esikGomulmuMu(sahteKaynakAtama, 300).length > 0, JSON.stringify(esikGomulmuMu(sahteKaynakAtama, 300)));
+
+  const sahteKaynakTemiz = 'function sayfaKarari(model) {\n  const satirTamam = satir >= ESIK_SATIR;\n  return satirTamam;\n}\n// CSS notu: line-height 1.35, padding: 12px, 12'; // '12' burada karsilastirma/atama baglaminda DEGIL
+  ok('  isim uzerinden karsilastirma (ESIK_SATIR) ve ilgisiz CSS/metin sayilari YANLIS POZITIF uretmiyor',
+    esikGomulmuMu(sahteKaynakTemiz, 12).length === 0, JSON.stringify(esikGomulmuMu(sahteKaynakTemiz, 12)));
 }
 
 console.log('\n=== 7. SLUG URETIMI ===');
@@ -183,6 +213,26 @@ console.log('\n=== 7. SLUG URETIMI ===');
   for (const k of KATEGORI_SLUGLARI) {
     ok(`slug('${k}') kendi kendinin sabit noktasi (bozmuyor)`, slug(k) === k, slug(k));
   }
+}
+
+console.log('\n=== 8. TABLO HUCRESI LINK BICIMI: sayfaKarari SADECE metin SAYIYOR ===');
+{
+  // Ayni metin, FARKLI uzunlukta yol tasiyan iki link hucresi + bir duz
+  // metin hucresi karsilastirmasi. sayfaKarari kelime sayisi SADECE
+  // metin'den gelmeli; yol'un uzunlugu sonucu ETKILEMEMELI.
+  const metinIcerik = 'Sut Kahvalti Urunleri';
+  const duzMetinBolum = { baslik: 'Kategoriler', tur: 'tablo', sutunlar: ['Kategori'], satirlar: [[metinIcerik]] };
+  const kisaYolBolum = { baslik: 'Kategoriler', tur: 'tablo', sutunlar: ['Kategori'], satirlar: [[{ metin: metinIcerik, yol: '/k/' }]] };
+  const uzunYolBolum = { baslik: 'Kategoriler', tur: 'tablo', sutunlar: ['Kategori'], satirlar: [[{ metin: metinIcerik, yol: '/kategori/cok-daha-uzun-bir-slug-burada/alt-slug-bile-var/' }]] };
+
+  const ozetDolgu = kelimeUret(ESIK_KELIME + 50, 'ozet_');
+  const rDuz = sayfaKarari(temelModel([duzMetinBolum], { ozet: ozetDolgu }));
+  const rKisa = sayfaKarari(temelModel([kisaYolBolum], { ozet: ozetDolgu }));
+  const rUzun = sayfaKarari(temelModel([uzunYolBolum], { ozet: ozetDolgu }));
+
+  ok('link hucresi crash etmiyor, kelime sayisi duz metin hucresiyle AYNI', rKisa.kelime === rDuz.kelime, `${rKisa.kelime} vs ${rDuz.kelime}`);
+  ok('  farkli uzunlukta yol kelime sayisini DEGISTIRMIYOR (sadece metin sayiliyor)', rUzun.kelime === rDuz.kelime, `${rUzun.kelime} vs ${rDuz.kelime}`);
+  ok('  satir sayisi da normal sekilde 1 (link hucresi satir sayimini bozmuyor)', rDuz.satir === 1 && rKisa.satir === 1 && rUzun.satir === 1);
 }
 
 console.log('\nPASS=' + pass + '  FAIL=' + fail);

@@ -191,7 +191,11 @@ export function sayfaKarari(model) {
       const satirlar = Array.isArray(bolum.satirlar) ? bolum.satirlar : [];
       satir += satirlar.length;
       for (const satirDizisi of satirlar) {
-        for (const hucre of satirDizisi) kelime += kelimeSay(hucre);
+        // Hucre duz dize ya da { metin, yol } link hucresi olabilir. Sayilan
+        // her zaman metin'dir -- yol bir adres, kelime sayimina girmez.
+        for (const hucre of satirDizisi) {
+          kelime += kelimeSay(hucre && typeof hucre === 'object' ? hucre.metin : hucre);
+        }
       }
     } else if (bolum && bolum.tur === 'metin') {
       kelime += kelimeSay(bolum.metin);
@@ -282,6 +286,30 @@ function sayfaModelDogrula(model) {
   return karar;
 }
 
+// ── tabloHucreHTML ────────────────────────────────────────────────────
+// Tablo hucreleri iki bicimden birini kabul eder: duz dize (eski davranis,
+// aynen calismaya devam eder) ya da { metin, yol } link hucresi. Bu link
+// hucreleri hub sayfalari arasindaki IC LINK GRAFIGININ ana tasiyicisi --
+// bu sayfalarin dis baglantisi yok, Google'in onlari taramasinin yolu
+// sitemap + bu ic linkler; footer'daki toplu link blogu bunun yerini
+// tutmaz.
+//
+// yol '/' ile baslamiyor ya da '/' ile bitmiyorsa throw edilir: kanonik
+// bicim canli olcumle sabitlendi (2026-08-18) -- Cloudflare egik cizgisiz
+// yolu ve index.html bicimini 307 ile egik cizgili yola yonlendiriyor,
+// goreli ya da egik cizgisiz ic link uretmek gereksiz yonlendirme zinciri
+// kurar.
+function tabloHucreHTML(hucre) {
+  if (hucre && typeof hucre === 'object') {
+    const yol = hucre.yol;
+    if (typeof yol !== 'string' || !yol.startsWith('/') || !yol.endsWith('/')) {
+      throw new Error("[hub-sayfa] sayfaHTML: tablo hucre yolu '/' ile baslayip '/' ile bitmeli: " + JSON.stringify(yol));
+    }
+    return `<td><a href="${kacir(yol)}">${kacir(hucre.metin)}</a></td>`;
+  }
+  return `<td>${kacir(hucre)}</td>`;
+}
+
 function bolumHTML(bolum) {
   const on = '[hub-sayfa] sayfaHTML: ';
   const baslikHTML = `<h2>${kacir(bolum && bolum.baslik)}</h2>`;
@@ -290,7 +318,7 @@ function bolumHTML(bolum) {
     const satirlar = Array.isArray(bolum.satirlar) ? bolum.satirlar : [];
     const theadSatir = '<tr>' + sutunlar.map((s) => `<th>${kacir(s)}</th>`).join('') + '</tr>';
     const govdeSatirlari = satirlar
-      .map((satir) => '<tr>' + satir.map((hucre) => `<td>${kacir(hucre)}</td>`).join('') + '</tr>')
+      .map((satir) => '<tr>' + satir.map((hucre) => tabloHucreHTML(hucre)).join('') + '</tr>')
       .join('');
     const notHTML = bolum.not ? `<p class="kirpma-notu">${kacir(bolum.not)}</p>` : '';
     return `${baslikHTML}\n<div class="tablo-sarmalayici"><table><thead>${theadSatir}</thead><tbody>${govdeSatirlari}</tbody></table></div>\n${notHTML}`;

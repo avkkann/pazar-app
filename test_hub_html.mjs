@@ -227,5 +227,64 @@ console.log('\n=== 13. hub-sayfa.mjs SAF KALMAYA DEVAM EDIYOR ===');
     !/require\(/.test(kodSatirlari) && !/fetch\(/.test(kodSatirlari) && !/app\.js/.test(kodSatirlari));
 }
 
+console.log('\n=== 14. TABLO HUCRESI: LINK BICIMI RENDER EDILIYOR ===');
+{
+  const model = gecerliModel();
+  model.bolumler = [
+    {
+      baslik: 'Kategoriler', tur: 'tablo', sutunlar: ['Kategori'],
+      satirlar: [
+        [{ metin: 'Süt & Kahvaltı', yol: '/kategori/sut/' }],
+        ['Duz metin hucre'],
+      ],
+    },
+    ...model.bolumler,
+  ];
+  const html = sayfaHTML(model);
+  ok('link hucresi <td><a href="yol">metin</a></td> olarak render edildi, metin VE yol kacirilmis',
+    html.includes(`<td><a href="${kacir('/kategori/sut/')}">${kacir('Süt & Kahvaltı')}</a></td>`));
+  ok('  duz metin hucre eski davranisini koruyor (regresyon: <td>metin</td>)',
+    html.includes('<td>Duz metin hucre</td>'));
+
+  // Ozel karakterli link hucresiyle kacisi daha net dogrula (& ve " ayri ayri).
+  const modelOzel = gecerliModel();
+  modelOzel.bolumler = [
+    {
+      baslik: 'Kategoriler', tur: 'tablo', sutunlar: ['Kategori'],
+      satirlar: [[{ metin: 'A & B "x"', yol: '/kategori/a-b/' }]],
+    },
+    ...modelOzel.bolumler,
+  ];
+  const htmlOzel = sayfaHTML(modelOzel);
+  ok('  link hucresindeki metin kacirildi (& -> &amp;, " -> &quot;), yol degismedi',
+    htmlOzel.includes('<td><a href="/kategori/a-b/">A &amp; B &quot;x&quot;</a></td>'));
+}
+
+console.log('\n=== 15. TABLO HUCRESI LINK: GECERSIZ YOL -> THROW ===');
+{
+  const throwEtti = (fn) => { try { fn(); return false; } catch (e) { return true; } };
+
+  const modelBastaEgikCizgiYok = gecerliModel();
+  modelBastaEgikCizgiYok.bolumler = [
+    { baslik: 'Kategoriler', tur: 'tablo', sutunlar: ['Kategori'], satirlar: [[{ metin: 'Süt', yol: 'kategori/sut/' }]] },
+    ...modelBastaEgikCizgiYok.bolumler,
+  ];
+  ok("link hucresi yolu '/' ile baslamiyor -> throw", throwEtti(() => sayfaHTML(modelBastaEgikCizgiYok)));
+
+  const modelSonEgikCizgiYok = gecerliModel();
+  modelSonEgikCizgiYok.bolumler = [
+    { baslik: 'Kategoriler', tur: 'tablo', sutunlar: ['Kategori'], satirlar: [[{ metin: 'Süt', yol: '/kategori/sut' }]] },
+    ...modelSonEgikCizgiYok.bolumler,
+  ];
+  ok("link hucresi yolu '/' ile bitmiyor -> throw", throwEtti(() => sayfaHTML(modelSonEgikCizgiYok)));
+
+  ok('gecerli link hucreli model throw ETMIYOR (kontrol)', !throwEtti(() => sayfaHTML(gecerliModel({
+    bolumler: [
+      { baslik: 'Kategoriler', tur: 'tablo', sutunlar: ['Kategori'], satirlar: [[{ metin: 'Süt', yol: '/kategori/sut/' }]] },
+      ...gecerliModel().bolumler,
+    ],
+  }))));
+}
+
 console.log('\nPASS=' + pass + '  FAIL=' + fail);
 process.exit(fail ? 1 : 0);
