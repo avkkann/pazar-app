@@ -3,6 +3,7 @@
 // Kullanim: node test_supheli.mjs
 import fs from 'fs';
 import vm from 'vm';
+import { tokenCoz } from './scripts/css-token.mjs';
 
 const APP = fs.readFileSync('app.js', 'utf8');
 const CSS = fs.readFileSync('style.css', 'utf8');
@@ -253,9 +254,13 @@ console.log('\n=== 6. VERI YOLU: tek istek, puan>=2, sessiz hata ===');
 
 console.log('\n=== 7. TASARIM: amber/yesil, KIRMIZI YOK ===');
 {
-  const kurallar = (CSS.match(/\.supheli-[a-z-]*\s*\{[^}]*\}/g) || []).join('\n')
-                 + (CSS.match(/\.gercek-indirim-rozet[a-z-]*\s*\{[^}]*\}/g) || []).join('\n');
-  ok('supheli/gercek-indirim CSS kurallari yazilmis', kurallar.length > 40, 'uzunluk=' + kurallar.length);
+  // Renkler `:root`ta anlamsal token'a tasindi (--rozet-supheli-*, --rozet-iyi-*).
+  // Kural govdesinde ham hex yok; token COZULUP sinaniyor, boylece iddia hem
+  // korunuyor hem gucleniyor (token yanlis renge baglanirsa test kirilir).
+  const ham = (CSS.match(/\.supheli-[a-z-]*\s*\{[^}]*\}/g) || []).join('\n')
+            + (CSS.match(/\.gercek-indirim-rozet[a-z-]*\s*\{[^}]*\}/g) || []).join('\n');
+  const kurallar = tokenCoz(CSS, ham);
+  ok('supheli/gercek-indirim CSS kurallari yazilmis', ham.length > 40, 'uzunluk=' + ham.length);
   const kirmiziRe = /#(DC2626|dc2626|EF4444|ef4444|B91C1C|b91c1c|F87171|f87171)|(^|[^a-z])red([^a-z]|$)/;
   ok('supheli/gercek kurallarinda KIRMIZI yok', !kirmiziRe.test(kurallar), (kurallar.match(kirmiziRe) || []).join(','));
   ok('supheli kurallarinda amber var', /#(F59E0B|D97706|B45309|92400E|FEF3C7|FFFBEB|f59e0b|d97706|b45309|92400e|fef3c7|fffbeb)/.test(kurallar));

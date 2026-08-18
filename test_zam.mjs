@@ -4,6 +4,7 @@
 // (Palmolive gecmisi: 369,95 -> 189,95 -> 369,95 -> 129,95 -> 369,95).
 import fs from 'fs';
 import vm from 'vm';
+import { tokenCoz } from './scripts/css-token.mjs';
 
 const APP = fs.readFileSync('app.js', 'utf8');
 const HTML = fs.readFileSync('index.html', 'utf8');
@@ -280,8 +281,14 @@ console.log('\n=== 8. PAYLASIM ===');
 
 console.log('\n=== 9. TASARIM: AMBER, KIRMIZI YOK ===');
 {
-  const k = (CSS.match(/[^\n{}]*\.zam-rozet[^{}]*\{[^}]*\}/g) || []).join('\n');
-  ok('.zam-rozet kurali var', k.length > 20, 'uzunluk=' + k.length);
+  // Renkler artik `:root`ta anlamsal token (--rozet-zam-*). Kural govdesinde
+  // ham hex aramak yerine TOKEN COZULUP oyle sinaniyor: iddia ("bu rozet
+  // amber, kirmizi degil") aynen duruyor ama artik token'in gercekten amber'e
+  // cozuldugunu de dogruluyor -- token yanlis renge baglanirsa test kirilir.
+  const kHam = (CSS.match(/[^\n{}]*\.zam-rozet[^{}]*\{[^}]*\}/g) || []).join('\n');
+  const k = tokenCoz(CSS, kHam);
+  ok('.zam-rozet kurali var', kHam.length > 20, 'uzunluk=' + kHam.length);
+  ok('  renkler token uzerinden geliyor (ham hex degil)', /var\(--rozet-zam-/.test(kHam), kHam.slice(0, 160));
   ok('KIRMIZI kullanilmadi', !/#(DC2626|EF4444|B91C1C|FF0000)/i.test(k), k.slice(0, 200));
   ok('amber ton (B45309/D97706/92400E/FFFBEB/FDE68A)', /#(B45309|D97706|92400E|FFFBEB|FDE68A)/i.test(k), k.slice(0, 200));
   const yeni = (k.match(/#[0-9A-Fa-f]{6}/g) || []).filter(c => !/^#(B45309|D97706|92400E|FFFBEB|FDE68A)$/i.test(c));
