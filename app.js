@@ -591,6 +591,26 @@ const MARKET_NAMES = {
   migros:'Migros', sok:'ŞOK', tarim_kredi:'T.Kredi',
   hakmar:'Hakmar'
 };
+
+// ── KAÇIRMA (escape) ─────────────────────────────────────────────
+// f.market (marketfiyati.org.tr API -> scraper.py -> data/urunler_*.json)
+// ÜÇÜNCÜ TARAF kaynaklı bir dize. Tanınan kodlar MARKET_NAMES'ten sabit
+// Türkçe adlara geçiyor ama tanınmayan kod ham haliyle innerHTML'e
+// basılabiliyor -- bu, o ham geçişleri HTML'e güvenli hale getirir.
+// Yalnızca HTML metin/öznitelik bağlamı içindir; bu depoda merkezî bir
+// kaçış katmanı YOK (DENETIM.md 1.5, 79 innerHTML çağrısı açık kalıyor,
+// bu fonksiyon o borcu kapatmıyor). & MUTLAKA ilk çevrilir, yoksa
+// sonraki değişimler çift kaçışa (&amp;lt; gibi) yol açar.
+function _kacir(metin) {
+  if (metin === null || metin === undefined) return '';
+  return String(metin)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 const KAT_EMOJI = {
   meyve:'🍎', sebze:'🥦', et:'🥩', sut:'🧀',
   gida:'🥫', icecek:'🥤', temizlik:'🧴', atistirmalik:'🍫', dondurulmus:'🧊', diger:'📦'
@@ -1018,7 +1038,7 @@ function openDetay(urunId) {
   const mktRows = mktler.map((f, i) => {
     const { isBest, isWorst } = durumlar[i];
     return `<div class="detay-mkt-row${isBest ? ' best' : isWorst ? ' worst' : ''}">
-      <span class="m-tag m-${f.market || 'default'}">${MARKET_NAMES[f.market] || f.market || '?'}</span>
+      <span class="m-tag m-${f.market || 'default'}">${MARKET_NAMES[f.market] || _kacir(f.market) || '?'}</span>
       <span class="detay-mkt-price">${listeFiyatHTML(f)}${tlHTML(f.fiyat)}${isWorst ? '<span class="detay-mkt-badge">en pahalı</span>' : ''}</span>
     </div>${bildirimUyariHTML(u._sid, f.market)}`;
   }).join('');
@@ -1887,6 +1907,38 @@ function _fgGunFarki(isoA, isoB) {
   return Math.round((b - a) / 86400000);
 }
 
+// ── EN UCUZ / EN PAHALI ÖZET BİLGİSİ — eşitlikte TÜM marketler + EN GEÇ tarih ──
+// temiz: [{t: ISO tarih, m: market kodu, f: fiyat}]. Minimum (veya maksimum)
+// fiyata sahip TÜM kayıtlar toplanır: market adlarının HEPSİ yazılır
+// (_veBaglacliListe ile "A ve B" / "A, B ve C"), tarih olarak ise en GEÇ
+// (en son) görülen seçilir -- kullanıcı için yararlı olan "bu fiyat hâlâ o
+// seviyeye iniyor mu" sorusudur, ilk görüldüğü tarih değil. Aynı fiyat
+// birden çok AYRI tarihte görülmüşse "en son " ön eki eklenir; tek tarihte
+// görülmüşse eklenmez. Ölçüm (13.503 seri): minimum fiyat serilerin
+// %2,6'sında birden çok markette, %20,9'unda birden çok tarihte eşit
+// çıkıyor -- reduce ile "ilkini al" öncesi davranış hem market adını hem
+// tarihi keyfi seçiyordu.
+function _fgAsiriDegerBilgisi(temiz, yon) {
+  const hedefF = yon === 'min'
+    ? temiz.reduce((m, k) => (k.f < m ? k.f : m), temiz[0].f)
+    : temiz.reduce((m, k) => (k.f > m ? k.f : m), temiz[0].f);
+  const esitler = temiz.filter(k => k.f === hedefF);
+  const tarihler = [...new Set(esitler.map(k => k.t))].sort();
+  const enGecTarih = tarihler[tarihler.length - 1];
+  const enSonMu = tarihler.length > 1;
+  const adlarSet = new Set();
+  const adlar = [];
+  esitler.forEach(k => {
+    const ad = _FG_MKT_AD[k.m] || _kacir(k.m);
+    if (!adlarSet.has(ad)) { adlarSet.add(ad); adlar.push(ad); }
+  });
+  return {
+    fiyat: hedefF,
+    tarihText: (enSonMu ? 'en son ' : '') + _fgTarihFormatla(enGecTarih),
+    marketText: _veBaglacliListe(adlar),
+  };
+}
+
 function _fgEmptyBlock(mesaj) {
   return '<div class="detay-section detay-section--gecmis"><div class="detay-sec-label">Fiyat Geçmişi</div><div class="fg-empty">' + mesaj + '</div></div>';
 }
@@ -2005,6 +2057,13 @@ function fiyatGecmisiBlogu(urun) {
   });
 
   // Net fiyat noktaları: ilk gün, son gün, en düşük ortalama, en yüksek ortalama
+  // DOĞRULANDI (değiştirilmedi): "<" / ">" ile reduce EŞİTLİKTE ZATEN EN GEÇ
+  // günü tutuyor -- ilkini değil. reduce soldan sağa aktığı için eşit avg'de
+  // sıkı eşitsizlik false döner ve akış hep sağdaki (daha geç) elemana geçer;
+  // bu, dizideki global min/maks değerin SON görüldüğü indekste durmakla
+  // sonuçlanır (node ile üç kontrol serisiyle doğrulandı). "<=" / ">=" yapmak
+  // burada YANLIŞ yönde bir REGRESYON olurdu -- eşitlikte EN ERKEN günü
+  // seçmeye çevirirdi. Bu yüzden operatörler kasıtlı olarak değiştirilmedi.
   const fgFiyatYaz = f => f.toFixed(2).replace('.', ',');
   const ilkGun = gunler[0];
   const sonGun = gunler[gunler.length - 1];
@@ -2083,14 +2142,14 @@ function fiyatGecmisiBlogu(urun) {
   const sonAvg = sonYari.reduce((s, g) => s + g.avg, 0) / sonYari.length;
   const degisim = ((sonAvg - ilkAvg) / ilkAvg) * 100;
   const yon = degisim > 1 ? 'yükseldi' : (degisim < -1 ? 'düştü' : 'sabit');
-  const enUcuz = temiz.reduce((a, b) => a.f < b.f ? a : b);
-  const enPahali = temiz.reduce((a, b) => a.f > b.f ? a : b);
+  const enUcuzBilgi = _fgAsiriDegerBilgisi(temiz, 'min');
+  const enPahaliBilgi = _fgAsiriDegerBilgisi(temiz, 'max');
   const degisimText = yon === 'sabit'
     ? 'Son 30 günde fiyat <b>sabit</b>'
     : 'Son 30 günde <b>%' + Math.abs(degisim).toFixed(0) + ' ' + yon + '</b>';
   const ozetText = degisimText
-    + ' · En ucuz: <b>' + enUcuz.f.toFixed(2).replace('.', ',') + ' ₺</b> (' + _fgTarihFormatla(enUcuz.t) + ', ' + (_FG_MKT_AD[enUcuz.m] || enUcuz.m) + ')'
-    + ' · En pahalı: <b>' + enPahali.f.toFixed(2).replace('.', ',') + ' ₺</b> (' + _fgTarihFormatla(enPahali.t) + ', ' + (_FG_MKT_AD[enPahali.m] || enPahali.m) + ')';
+    + ' · En ucuz: <b>' + enUcuzBilgi.fiyat.toFixed(2).replace('.', ',') + ' ₺</b> (' + enUcuzBilgi.tarihText + ', ' + enUcuzBilgi.marketText + ')'
+    + ' · En pahalı: <b>' + enPahaliBilgi.fiyat.toFixed(2).replace('.', ',') + ' ₺</b> (' + enPahaliBilgi.tarihText + ', ' + enPahaliBilgi.marketText + ')';
 
   // Altyazı: outlier varsa not düş
   const altyaziText = outlierAktif
@@ -2406,7 +2465,7 @@ function _veBaglacliListe(adlar) {
 // olduğu söylenir -- sayı değil, isim: "kaç market" onun işine yaramaz.
 function _esitFiyatBilgiHTML(mktler, fiyatlarFarkli) {
   if (fiyatlarFarkli || !mktler || mktler.length < 2) return '';
-  const adlar = mktler.map(f => MARKET_NAMES[f.market] || f.market || '?');
+  const adlar = mktler.map(f => MARKET_NAMES[f.market] || _kacir(f.market) || '?');
   return `<div class="fg-ozet">${_veBaglacliListe(adlar)} aynı fiyatı veriyor</div>`;
 }
 
@@ -2480,8 +2539,8 @@ function bildirimUyariHTML(sid, market) {
 // ── "BU FİYAT TUTMADI" BİLDİRİMİ ──────────────────────────────────
 let _bildirimSecilenMarket = null;
 
-function _bildirimMarketSec(el, market) {
-  _bildirimSecilenMarket = market;
+function _bildirimMarketSec(el) {
+  _bildirimSecilenMarket = el.dataset.bildirimMarket;
   Array.from(el.parentElement.querySelectorAll('.bildirim-pill')).forEach(p => {
     const secili = p === el;
     p.classList.toggle('secili', secili);
@@ -2496,7 +2555,13 @@ async function fiyatBildirAc(urunId) {
   if (!mktler.length) return;
 
   _bildirimSecilenMarket = mktler[0].market;
-  const pills = mktler.map((f, i) => `<button type="button" class="bildirim-pill${i === 0 ? ' secili' : ''}" aria-pressed="${i === 0}" onclick="_bildirimMarketSec(this, '${f.market}')">${MARKET_NAMES[f.market] || f.market}</button>`).join('');
+  // data-bildirim-market -- KASITLI OLARAK "data-market" DEĞİL. Kategori/detay
+  // ekranlarındaki market filtresi çipleri de "data-market" öznitelik adını
+  // kullanıyor ve document.querySelectorAll('[data-market]') ile (bkz. aşağıda
+  // uygulaCatFiltre içindeki döngü) global taranıyor -- aynı adı burada da
+  // kullanmak bu bildirim pill'lerini o döngüye yanlışlıkla dahil eder, filtre
+  // durumuna göre active/disabled/pointerEvents uygulanır ve tıklanamaz olabilirler.
+  const pills = mktler.map((f, i) => `<button type="button" class="bildirim-pill${i === 0 ? ' secili' : ''}" aria-pressed="${i === 0}" data-bildirim-market="${_kacir(f.market)}" onclick="_bildirimMarketSec(this)">${MARKET_NAMES[f.market] || _kacir(f.market)}</button>`).join('');
 
   const sonuc = await modalAc({
     title: 'Bu fiyat tutmadı',
