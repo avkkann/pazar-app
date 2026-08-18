@@ -24,5 +24,17 @@ catch (e) { console.warn('[sitemap] data/anasayfa.json okunamadi: ' + e.message)
 const damga = lastmodDamgasi(anasayfa);
 writeFileSync(`${PUB}/sitemap.xml`, sitemapDoldur(readFileSync('sitemap.xml', 'utf8'), damga));
 
+// ── GECICI OLCUM BLOGU — GOREV 0, OLCUMDEN SONRA GERI ALINACAK ─────────
+// Soru: Cloudflare Workers statik varliklarinda /zam/test-olcum/ gibi bir
+// DIZIN istegi zam/test-olcum/index.html'e dusuyor mu? wrangler.jsonc'ta
+// html_handling YAZILI DEGIL (yalnizca not_found_handling: "none"), yani
+// varsayilan gecerli ve varsayilanin ne oldugu HIC OLCULMEDI. Yanlissa
+// planlanan 19 hub sayfasinin hepsi 404 olur. Dokumana degil olcume bakiliyor.
+mkdirSync(`${PUB}/zam/test-olcum`, { recursive: true });
+writeFileSync(`${PUB}/zam/test-olcum/index.html`,
+  '<!doctype html><html lang="tr"><head><meta charset="utf-8">' +
+  '<title>Olcum</title></head><body><h1>OLCUM-TAMAM</h1></body></html>');
+// ── /GECICI OLCUM BLOGU ────────────────────────────────────────────────
+
 console.log('public/ hazir: static, data, manifest.json, robots.txt, sitemap.xml, sw.js');
 console.log('sitemap lastmod: ' + damga);
