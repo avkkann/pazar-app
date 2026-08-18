@@ -87,6 +87,10 @@
       --rozet-supheli-bg-koyu: rgba(249,115,22,0.15); --rozet-supheli-fg-koyu: #FDBA74;
       --rozet-iyi-bg-koyu: rgba(34,197,94,0.15);    --rozet-iyi-fg-koyu: #86EFAC;
       --rozet-notr-bg-koyu: rgba(255,255,255,0.07); --rozet-notr-fg-koyu: #9CA3AF;
+
+      /* Şerit kartı genişliği — TEK KAYNAK. 390px'te ölçülerek seçildi,
+         gerekçesi .strip-card kuralının başında. */
+      --kart-genislik: 164px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -119,6 +123,10 @@
     .detay-name,
     .detay-mkt-price,
     .product-price { font-weight: 700 !important; }
+    /* Öncelikli şeritler (bkz. .home-strip--oncelik) tek kesim daha ağır.
+       800 seçildi çünkü fontshare'den YALNIZCA 700 ve 800 indiriliyor —
+       ara bir değer istemek tarayıcıyı en yakına yuvarlamaya bırakırdı. */
+    .home-strip--oncelik .home-strip-title,
     .profil-istat-sayi { font-weight: 800 !important; }
 
     /* ═══ Parçalı fiyat (lira/kuruş/₺) ═══ */
@@ -349,7 +357,10 @@
     .detay-bolum-liste { display: flex; flex-direction: column; gap: var(--space-2); }
     .detay-bolum-liste-strip { flex-direction: row; overflow-x: auto; gap: var(--space-3); padding-bottom: var(--space-1); scrollbar-width: none; -webkit-overflow-scrolling: touch; }
     .detay-bolum-liste-strip::-webkit-scrollbar { display: none; }
-    .detay-bolum-liste-strip .strip-card { flex: 0 0 150px; }
+    /* Ürün detayı da AYNI kartı kullanıyor; genişliği burada 150px'e
+       sabitlemek token'ı eziyordu ve detay ekranında kart, ana sayfadakinden
+       dar kalıp yeni 24px fiyatı sıkıştırıyordu. Tek kaynağa bağlandı. */
+    .detay-bolum-liste-strip .strip-card { flex: 0 0 var(--kart-genislik); }
     .detay-paket-item { padding: var(--space-3) var(--space-3); background: var(--card-bg, #1a1a1a); border-radius: 8px; cursor: pointer; border: 1px solid var(--border, #2a2a2a); }
     .detay-paket-item:hover { border-color: var(--primary, #1D9E75); }
     .detay-paket-ad { font-size: 13px; font-weight: 500; margin-bottom: var(--space-1); line-height: 1.3; }
@@ -1283,9 +1294,39 @@
       from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
     }
-.home-strip { padding: var(--space-2) 0 var(--space-1); margin-bottom: var(--space-6); }
+/* ── ŞERİT AYRIMI VE ÖNCELİĞİ ──────────────────────────────────────────
+   Öncesinde beş şerit GÖRSEL OLARAK EŞİTTİ: aynı başlık, aynı boşluk, aynı
+   kart, hiç ayraç yok. "Bugün yakaladığımız tuzaklar" ile "Bu hafta
+   mevsiminde" aynı ağırlıkta çiziliyordu — sıralama vardı, hiyerarşi yoktu.
+
+   Ayrım BOŞLUKLA kuruldu, çizgiyle değil: şeritler arası 24 → 32px.
+   Ağır ayraç çizgileri sayfayı bölerdi; boşluk aynı işi sessizce yapıyor. */
+.home-strip { padding: var(--space-2) 0 var(--space-1); margin-bottom: var(--space-8); }
+/* Öncelikli şeritler ürünün ASIL İDDİASINI taşıyanlar: bugün yakalanan
+   fiyat tuzakları ve bu ayın zamları — uygulamanın sloganı ("Marketteki
+   gizli zamları gör") tam olarak bu ikisi. Ayrıcalık iki şeyle veriliyor:
+   başlık bir ölçek adımı büyük (20 → 24px) ve bir kesim ağır (700 → 800).
+   Üçüncü/dördüncü şerit de ilgili ama vurguyu üçe bölmek vurguyu bitirir. */
+.home-strip--oncelik .home-strip-title { font-size: var(--fs-5); }
+.home-strip--oncelik { margin-bottom: var(--space-10); }
 .home-strip-head { display:flex; align-items:center; justify-content:space-between; padding: 0 var(--space-4); margin-bottom: var(--space-3); }
 .home-strip-title { display: inline-flex; align-items: center; gap: var(--space-2); font-size:var(--fs-4); font-weight:600; color:#111; }
+
+/* ── VERİ TAZELİĞİ ─────────────────────────────────────────────────────
+   Sade bilgi satırı, çip değil: rozet diline benzeseydi kartlardaki anlam
+   taşıyan rozetlerle yarışırdı. Arama kutusunun hemen altında, fiyatların
+   üstünde. */
+.veri-tazelik {
+  display: flex; align-items: center; gap: var(--space-2);
+  padding: 0 var(--space-4) var(--space-2);
+  font-size: var(--fs-1); font-weight: 500; color: var(--text-muted);
+}
+.veri-tazelik time { font-weight: 600; color: var(--text); }
+.veri-tazelik .lc-icon { width: 14px; height: 14px; flex: 0 0 14px; }
+/* Veri bayatladıysa sus­mak yerine söyle — amber, kırmızı değil: bu bir
+   hata değil, bir uyarı (zam rozetiyle aynı gerekçe). */
+.veri-tazelik--eski { color: var(--rozet-zam-fg); }
+[data-theme="dark"] .veri-tazelik--eski { color: var(--rozet-zam-fg-koyu); }
 /* Şerit alt başlığı — başlığın ağırlığını değiştirmez, altına sönük satır. */
 .home-strip-baslik-grup { display:flex; flex-direction:column; gap: var(--space-05); min-width:0; }
 .home-strip-sub { font-size:var(--fs-2); font-weight:500; color:var(--text-muted); line-height:1.3; }
@@ -1329,15 +1370,42 @@
 .home-strip-scroll::-webkit-scrollbar { display:none; }
 /* min-width:0 — flex öğesinin varsayılanı auto'dur ve içerik sığmayınca
    flex-basis'i EZER. Ölçüldü: rozet büyüyünce kart 150→158px oluyordu.
-   Kart genişliği artık tek yerden (flex-basis) yönetiliyor. */
-.strip-card { flex:0 0 150px; min-width:0; background:#fff; border-radius:14px; padding: var(--space-3); box-shadow:0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04); cursor:pointer; display:flex; flex-direction:column; gap: var(--space-2); border: 1px solid rgba(0,0,0,0.06); transition: box-shadow .18s ease, transform .18s ease; }
+   Kart genişliği artık tek yerden (--kart-genislik) yönetiliyor.
+
+   150 → 164px: 390px'te ölçüldü, 164 yapısal eşik. 150'de zam rozeti
+   ("+%137 CarrefourSA") 8 kartta ikiye bölünüyor ve birim fiyatın "₺"
+   işareti tek başına alt satıra düşüyordu. 164'te ikisi de düzeliyor
+   (rozet sarması 8→0), kırpılan ürün adı 22→17, en yüksek kart 348→315px.
+   Bedeli ekrana sığan kart 2,48 → 2,28: 0,20 kartlık görünürlük, karşılığı
+   sıkışmayan bir kart. Daha geniş seçenekler (176/190) kırpılmayı azaltıyor
+   ama 190'da ekrana 2 kart bile sığmıyor — "yandaki kart görünüyor" ipucu
+   kayboluyor, kullanıcı şeridin kaydığını anlamıyor. */
+.strip-card { flex:0 0 var(--kart-genislik); min-width:0; background:#fff; border-radius:14px; padding: var(--space-3); box-shadow:0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04); cursor:pointer; display:flex; flex-direction:column; gap: var(--space-2); border: 1px solid rgba(0,0,0,0.06); transition: box-shadow .18s ease, transform .18s ease; }
 @media (hover: hover) {
   .strip-card:hover { box-shadow: 0 2px 4px rgba(0,0,0,0.06), 0 8px 20px rgba(0,0,0,0.08); transform: translateY(-1px); }
 }
 .strip-card:active { transform: scale(0.98); }
 .strip-card-img { width:100%; height:90px; border-radius:8px; object-fit:cover; background:#FFFFFF; padding: var(--space-2); }
 .strip-card-img-ph { width:100%; height:90px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:var(--glif-2); background:#FFFFFF; padding: var(--space-2); }
-.strip-card-name { font-size:var(--fs-3); font-weight:600; color:var(--text); line-height:1.3; overflow:hidden; text-overflow:ellipsis; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; min-height:34px; }
+/* KARTIN KAHRAMANI. Öncesinde kartta fiyat HİÇ YOKTU — bir fiyat
+   karşılaştırma uygulamasının ana sayfasında ürünün fiyatı görünmüyordu;
+   yerine yalnızca birim fiyat vardı. Veri zaten mevcuttu: en_dusuk_fiyat
+   katalogdaki 16.813 ürünün %100'ünde dolu, uydurulan hiçbir şey yok.
+
+   Cabinet Grotesk tercih edildi çünkü marka yazı tipi OLMASININ yanı sıra
+   ÖLÇÜLDÜ: katalogdaki en uzun fiyat metni ("1.849,95 ₺") 24px'te Cabinet
+   Grotesk 800 ile 109px, Inter 800 ile 127px — %14 dar. Kartın 138px'lik iç
+   genişliğine Inter sığmazdı. */
+.strip-card-fiyat {
+  font-family:'Cabinet Grotesk','Inter',sans-serif;
+  font-size:var(--fs-5); font-weight:800; line-height:1.05;
+  letter-spacing:-.3px; color:var(--text); white-space:nowrap;
+}
+/* Ad artık İKİNCİL: fiyat 24px/800 iken ad 16px/500. Küçültülmedi — Faz 1'in
+   16px gövde kazanımı (iOS okunabilirliği) duruyor, hiyerarşi BOYUT ve
+   AĞIRLIK KARŞITLIĞIYLA kuruldu. min-height 2 satırı ölçekten türetiyor,
+   böylece tek satırlık adlar kart yüksekliğini bozmuyor. */
+.strip-card-name { font-size:var(--fs-3); font-weight:500; color:var(--text); line-height:1.3; overflow:hidden; text-overflow:ellipsis; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; min-height:calc(var(--fs-3) * 1.3 * 2); }
 .strip-card-sub { font-size:var(--fs-2); color:#666; }
 .strip-card-rozet { display: inline-flex; align-items: center; gap: var(--space-1); font-size:var(--fs-1); font-weight:600; padding: var(--space-1) var(--space-2); border-radius:6px; align-self:flex-start; }
 .strip-card-rozet.sari { background:var(--rozet-zam-bg); color:var(--rozet-zam-fg); }

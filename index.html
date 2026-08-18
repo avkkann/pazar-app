@@ -124,7 +124,13 @@
     </div>
   </div>
 
-  <div id="home-tuzaklar" class="home-strip" style="display:none">
+  <!-- Veri tazeligi: "bu fiyatlar ne zamanin" sorusunun ana sayfadaki cevabi.
+       Fiyatlarin HEMEN USTUNDE duruyor cunku cevabi fiyatlari okumadan once
+       bilmek gerekir. Iceriği app.js dolduruyor (anasayfa.json → veri_tarihi);
+       veri gelmezse gizli kalir, bos kabuk gostermez. -->
+  <div class="veri-tazelik" id="veri-tazelik" hidden></div>
+
+  <div id="home-tuzaklar" class="home-strip home-strip--oncelik" style="display:none">
     <div class="home-strip-head">
       <span class="home-strip-title">🚨 Bugün yakaladığımız tuzaklar</span>
     </div>
@@ -148,7 +154,7 @@
     <div class="home-strip-scroll" id="home-supheli-list"></div>
   </div>
 
-  <div id="home-zam" class="home-strip" style="display:none">
+  <div id="home-zam" class="home-strip home-strip--oncelik" style="display:none">
     <div class="home-strip-head">
       <div class="home-strip-baslik-grup">
         <span class="home-strip-title">Bu ay en çok zamlananlar</span>

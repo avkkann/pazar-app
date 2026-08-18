@@ -18,6 +18,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { appOrtamiKur } from './app-vm.mjs';
+import { enYeniGozlemTarihi } from './veri-tarihi.mjs';
+import { gunDamgasi } from './hub-sayfa.mjs';
 
 const KOK = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const D = (p) => path.join(KOK, p);
@@ -111,9 +113,27 @@ const supheli = await (async () => {
 })();
 console.log(`[anasayfa] supheli: ${supheli.length} aday, ${Date.now() - tSup} ms`);
 
+// ── veri_tarihi: ana sayfanin tazelik gostergesi ──────────────────────
+// `uretim` BUILD ANIDIR ve tazelik olcemez (her kosuda "simdi"ye esitleniyor).
+// Gosterge VERININ KENDI en yeni gozlem tarihinden turer — hub sayfalarindaki
+// pazar-veri-damgasi ile AYNI fonksiyondan (scripts/veri-tarihi.mjs), ki iki
+// yer ayni gunu soylesin. Diskten okunuyor: catCache VM icinde ve tum katalogu
+// VM sinirindan gecirmek okumaktan pahali.
+const tVeri = Date.now();
+const gecmisFiyatlar = JSON.parse(fs.readFileSync(D('data/gecmis_fiyatlar.json'), 'utf8'));
+const katalog = fs.readdirSync(D('data'))
+  .filter((f) => /^urunler_.*\.json$/.test(f))
+  .flatMap((f) => {
+    const a = JSON.parse(fs.readFileSync(D('data/' + f), 'utf8'));
+    return Array.isArray(a) ? a : (a.urunler || []);
+  });
+const veriTarihi = gunDamgasi(enYeniGozlemTarihi(gecmisFiyatlar, katalog));
+console.log(`[anasayfa] veri_tarihi (en yeni gozlem): ${veriTarihi}  (${Date.now() - tVeri} ms)`);
+
 const cikti = {
   surum: 1,
   uretim: new Date().toISOString(),
+  veri_tarihi: veriTarihi,
   urun_sayisi: urunSayisi,
   zam: zam,
   tuzaklar: tuzaklar,

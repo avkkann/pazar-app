@@ -17,6 +17,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { appOrtamiKur } from './app-vm.mjs';
 import { gunDamgasi, sayiTR, kirpmaNotu, ayKarari, sayfaKarari, sayfaHTML, slug } from './hub-sayfa.mjs';
+import { enYeniGozlemTarihi } from './veri-tarihi.mjs';
 
 const KOK = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const D = (p) => path.join(KOK, p);
@@ -156,21 +157,10 @@ console.log(`[hub] katalog: ${tumUrunler.length} urun, ${sidSlug.size} sid eslen
 // AYNI deger verilir (BUGUN'den ayri tutuluyor: BUGUN "su an ne zaman"
 // sorusuna, VERI_DAMGASI "veri ne kadar taze" sorusuna cevap veriyor --
 // ikisi karistirilirsa build zamani veriye sizar, tam da bu kusur).
-let enYeniGenelGozlem = null;
-for (const sid of Object.keys(gecmisFiyatlar)) {
-  for (const k of gecmisFiyatlar[sid]) {
-    if (k && k.t && (!enYeniGenelGozlem || k.t > enYeniGenelGozlem)) enYeniGenelGozlem = k.t;
-  }
-}
-for (const u of tumUrunler) {
-  for (const kayit of u.fiyat_gecmisi || []) {
-    const tarih = kayit && kayit[0];
-    if (tarih && (!enYeniGenelGozlem || tarih > enYeniGenelGozlem)) enYeniGenelGozlem = tarih;
-  }
-}
-if (!enYeniGenelGozlem) {
-  throw new Error('[hub] en yeni gozlem tarihi bulunamadi -- gecmis_fiyatlar.json ve urunler_*.json fiyat_gecmisi bos mu?');
-}
+// Hesap scripts/veri-tarihi.mjs'e tasindi: ana sayfa tazelik gostergesi de
+// AYNI tarihi kullaniyor ve iki uretici ayni sayiyi farkli yerden turetirse
+// hub "18 Agustos" derken ana sayfa "17 Agustos" diyebilirdi.
+const enYeniGenelGozlem = enYeniGozlemTarihi(gecmisFiyatlar, tumUrunler);
 const VERI_DAMGASI = gunDamgasi(enYeniGenelGozlem);
 console.log(`[hub] VERI_DAMGASI (en yeni gozlem): ${enYeniGenelGozlem} -> ${VERI_DAMGASI}`);
 

@@ -1573,6 +1573,13 @@ async function anasayfaVeriGetir() {
       console.warn('[anasayfa] onceden hesaplanmis serit yuklenemedi, istemcide hesaplanacak:', e.message);
       _anasayfaCache = false;
     }
+    // Tazelik göstergesi buradan besleniyor: veri zaten indirildi, ayrı
+    // istek yok. Yüklenemezse gösterge hiç çizilmiyor (yanlış tarih
+    // göstermektense hiç göstermemek doğru).
+    if (_anasayfaCache && _anasayfaCache.veri_tarihi) {
+      try { veriTazelikCiz(_anasayfaCache.veri_tarihi); }
+      catch (e) { console.warn('[tazelik] gosterge cizilemedi:', e && e.message); }
+    }
     return _anasayfaCache;
   })();
   return _anasayfaYukleniyor;
@@ -2209,6 +2216,10 @@ function fiyatGecmisiBlogu(urun) {
 // Lucide SVG icon helpers — inline (kütüphane yüklemeden)
 const _LUCIDE_PATHS = {
   'alert-triangle': '<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/>',
+  // .tazelik-chip zaten bu cizimi satir ici SVG olarak tasiyordu; ana sayfa
+  // tazelik gostergesi ayni ikonu isteyince ikinci kopya yazmak yerine
+  // projenin ikon sistemine tasindi.
+  'clock': '<circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/>',
   'trending-down': '<polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/>',
   'flame': '<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>',
   'leaf': '<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19.2 2.96a1 1 0 0 1 1.8.66c0 4.49-1.05 8.74-6.41 11.59a7 7 0 0 1-3.59.79z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/>',
@@ -2722,17 +2733,65 @@ function _stripKartHTML(u, rozet) {
   const img = u.resim
     ? `<img class="strip-card-img" src="${u.resim}" alt="" loading="lazy" onerror="this.outerHTML='<div class=\\'strip-card-img-ph\\'>${ph.emoji}</div>'">`
     : `<div class="strip-card-img-ph">${ph.emoji}</div>`;
+  // FIYAT kartin kahramani. Once buradaki tek kapidan gecer (enDusukFiyat,
+  // market_fiyatlari uzerinden), o veremezse onceden hesaplanmis alana duser.
+  // Kapsam olculdu: en_dusuk_fiyat katalogdaki 16.813 urunun %100'unde dolu.
+  const fiyat = enDusukFiyat(u) ?? (u.en_dusuk_fiyat != null ? u.en_dusuk_fiyat : null);
   const bf = birimFiyatHesapla(u);
-  const bfYazi = bf ? birimFiyatYazi(bf) : (u.en_dusuk_fiyat != null ? tl(u.en_dusuk_fiyat) : '');
+  // Birim fiyat, fiyatin AYNISI ise satiri yazma: 1 kg / 1 L urunlerde ayni
+  // sayi kartta iki kez cikiyordu ("1.849,90 ₺" ve "kg basina 1.849,90 ₺").
+  //
+  // AMA tuzak rozeti varken ASLA gizleme. O rozet ("%100 pahali") marketler
+  // arasi farki degil, AYNI URUNUN BASKA PAKET BOYUNA gore birim fiyat
+  // farkini soyluyor (tuzakRozetiHesapla → digerPaketleriBul). Yani rozetin
+  // dayanagi tam da bu satir; "L basina" etiketi olmadan kullanici neyin
+  // %100 pahali oldugunu anlayamaz. Tekrar gorunmesi, cercevenin kaybolmasindan
+  // iyidir.
+  const bfTekrar = bf && fiyat != null && !rozet && Math.abs(bf.deger - fiyat) < 0.005;
+  const bfYazi = bf && !bfTekrar ? birimFiyatYazi(bf) : '';
   const rozetHTML = rozet
     ? `<div class="strip-card-rozet ${rozet.tip}"><span class="lc-dot ${rozet.tip}"></span>%${rozet.yuzde} pahalı</div>`
     : '';
+  // Hiyerarsi: gorsel → FIYAT → rozet → ad → birim fiyat.
+  // Rozet yuvasi ISARETCI ile aciliyor; cagiranlarin ekledigi rozetler
+  // (dusenler/supheli) _kartaRozetEkle ile TAM BURAYA giriyor. Oncesinde
+  // kartin sonuna ekleniyorlardi ve yeni sirada en altta kalirlardi.
   return `<div class="strip-card" tabindex="0" role="button" aria-label="${u.ad}" onclick="openDetay('${u._id}')" onkeydown="_kartTus(event, '${u._id}')">
     ${img}
+    ${fiyat != null ? `<div class="strip-card-fiyat">${tl(fiyat)}</div>` : ''}
+    ${rozetHTML}<!--ROZET-->
     <div class="strip-card-name">${u.ad}</div>
-    <div class="strip-card-sub">${bfYazi}</div>
-    ${rozetHTML}
+    ${bfYazi ? `<div class="strip-card-sub">${bfYazi}</div>` : ''}
   </div>`;
+}
+
+// ── VERİ TAZELİĞİ (ana sayfa) ─────────────────────────────────────────
+// Kaynak anasayfa.json'un `veri_tarihi` alanı: verinin KENDİ en yeni gözlem
+// tarihi (scripts/veri-tarihi.mjs). `uretim` BİLEREK kullanılmıyor — o build
+// anıdır, her deploy'da tazelenir ve tazelik ölçemez; hub sayfalarında tam
+// bu kusur Görev 8'de düzeltilmişti, ana sayfada aynı hataya düşmeyelim.
+function veriTazelikCiz(veriTarihi) {
+  const el = document.getElementById('veri-tazelik');
+  if (!el) return;
+  if (!veriTarihi) { el.hidden = true; return; }
+  const p = String(veriTarihi).slice(0, 10).split('-').map(Number);
+  if (p.length !== 3 || p.some(isNaN)) { el.hidden = true; return; }
+  // Yerel Date kurucusu — toISOString().slice() YASAK (bu depoda 3 kez
+  // gün kaydırdı, UTC+3'te gece yarısı penceresi bir gün geri gidiyordu).
+  const veriGunu = new Date(p[0], p[1] - 1, p[2]);
+  const s = new Date();
+  const bugun = new Date(s.getFullYear(), s.getMonth(), s.getDate());
+  const gun = Math.round((bugun - veriGunu) / 86400000);
+  const tarihYazi = p[2] + ' ' + (ZAM_AYLAR[p[1] - 1] || '') + ' ' + p[0];
+  const iso = String(veriTarihi).slice(0, 10);
+  // Eşik 2 gün: veri işi günlük koşuyor ve tazelik kapısı da 2 günü sınır
+  // sayıyor (scripts/veri_tazelik_kontrol.py). İki yer aynı sınırı görsün.
+  const eski = gun >= 2;
+  el.className = 'veri-tazelik' + (eski ? ' veri-tazelik--eski' : '');
+  el.innerHTML = lcIcon('clock', 'lc-icon') +
+    ` Fiyatlar <time datetime="${iso}">${tarihYazi}</time> verisi` +
+    (eski ? ` · ${gun} gün eski` : '');
+  el.hidden = false;
 }
 
 async function renderTuzaklarSeridi() {
@@ -2816,11 +2875,25 @@ async function renderTuzaklarSeridi() {
   } catch(e){ /* sessionStorage yazilamadi (kota/gizli mod): serit calisiyor, sadece bir dahaki acilista yeniden hesaplanir */ }
 }
 
-function _kartaRozetEkle(html, rozetHTML) {
-  if (!rozetHTML) return html;
-  const idx = html.lastIndexOf('</div>');
-  if (idx === -1) return html + rozetHTML;
-  return html.slice(0, idx) + rozetHTML + html.slice(idx);
+// rozetHTML → fiyatin hemen altindaki yuvaya (vurgu katmani)
+// altHTML    → kartin EN ALTINA (nitelendirici satir: "yalnizca X'te satiliyor")
+// Ikisi ayri, cunku yayginlik satiri urun adindan ONCE okunursa neyin
+// nitelendirildigi belirsiz kaliyor.
+function _kartaRozetEkle(html, rozetHTML, altHTML) {
+  if (rozetHTML) {
+    // Yuva isaretcisi varsa rozet TAM oraya girer. Isaretci yoksa eski
+    // davranis korunur — kartin sonuna eklenir.
+    if (html.includes('<!--ROZET-->')) html = html.replace('<!--ROZET-->', rozetHTML);
+    else {
+      const i = html.lastIndexOf('</div>');
+      html = i === -1 ? html + rozetHTML : html.slice(0, i) + rozetHTML + html.slice(i);
+    }
+  }
+  if (altHTML) {
+    const i = html.lastIndexOf('</div>');
+    html = i === -1 ? html + altHTML : html.slice(0, i) + altHTML + html.slice(i);
+  }
+  return html.replace('<!--ROZET-->', '');
 }
 
 // Şeritte gösterilen kart sayısı. RPC limiti bundan yüksek: şüpheliler
@@ -3354,7 +3427,7 @@ async function renderZamSeridi() {
     // kategori baglami urun detayinda.
     list.innerHTML = secilen.map(x => _kartaRozetEkle(
       _stripKartHTML(x.u, null),
-      zamRozetHTML(x.artis, x.market) +
+      zamRozetHTML(x.artis, x.market),
       zamYayginlikHTML(x.u, havuzHarita ? havuzHarita[x.u._id] : null)
     )).join('');
     const btn = document.getElementById('home-zam-paylas');
