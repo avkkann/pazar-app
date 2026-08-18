@@ -1016,8 +1016,8 @@ function openDetay(urunId) {
   const { fiyatlarFarkli, durumlar } = _mktRowDurumu(mktler);
 
   const mktRows = mktler.map((f, i) => {
-    const { isFirst, isWorst } = durumlar[i];
-    return `<div class="detay-mkt-row${isFirst ? ' best' : isWorst ? ' worst' : ''}">
+    const { isBest, isWorst } = durumlar[i];
+    return `<div class="detay-mkt-row${isBest ? ' best' : isWorst ? ' worst' : ''}">
       <span class="m-tag m-${f.market || 'default'}">${MARKET_NAMES[f.market] || f.market || '?'}</span>
       <span class="detay-mkt-price">${listeFiyatHTML(f)}${tlHTML(f.fiyat)}${isWorst ? '<span class="detay-mkt-badge">en pahalı</span>' : ''}</span>
     </div>${bildirimUyariHTML(u._sid, f.market)}`;
@@ -2373,18 +2373,20 @@ function tazelikChipHTML(u) {
 // GERÇEKTEN farklı fiyat varsa iddia edilir. Bütün marketler aynı fiyatı
 // veriyorsa (mktler.length>1 ama hepsi eşit) ne best ne worst ne rozet
 // işaretlenir -- satırlar nötr kalır (bkz. test_esit_fiyat.mjs).
-// Fiyatların en yükseği birden çok markette EŞİTSE (ör. 3 market, 2'si aynı
-// en yüksek fiyatta) o eşit-en-yüksek marketlerin HEPSİ işaretlenir --
-// yalnızca sıralamada son sıraya düşen tek satır değil. Aksi halde tekil
-// ("en pahalı" TEK marketmiş) yanlış iddiası, tam bu projenin bilinen hata
-// desenine (kod bir şey ölçer, metin başkasını iddia eder) girerdi.
+// Fiyatların en düşüğü ya da en yükseği birden çok markette EŞİTSE (ör. 3
+// market, 2'si aynı en düşük ya da aynı en yüksek fiyatta) o eşit-uçtaki
+// marketlerin HEPSİ işaretlenir -- yalnızca sıralamada ilk ya da son sıraya
+// düşen tek satır değil. Aksi halde tekil ("en ucuz"/"en pahalı" TEK
+// marketmiş) yanlış iddiası -- ki bu görsel bir iddiadır, .best/.worst CSS
+// sınıfları satırı yeşil/kırmızı boyar -- tam bu projenin bilinen hata
+// desenine (kod bir şey ölçer, görsel başkasını iddia eder) girerdi.
 function _mktRowDurumu(mktler) {
   if (!mktler || !mktler.length) return { fiyatlarFarkli: false, durumlar: [] };
   const enDusukFiy  = mktler[0].fiyat;
   const enYuksekFiy = mktler[mktler.length - 1].fiyat;
   const fiyatlarFarkli = mktler.length > 1 && enYuksekFiy !== enDusukFiy;
-  const durumlar = mktler.map((f, i) => ({
-    isFirst: fiyatlarFarkli && i === 0,
+  const durumlar = mktler.map((f) => ({
+    isBest: fiyatlarFarkli && f.fiyat === enDusukFiy,
     isWorst: fiyatlarFarkli && f.fiyat === enYuksekFiy,
   }));
   return { fiyatlarFarkli, durumlar };

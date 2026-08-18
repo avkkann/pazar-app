@@ -55,7 +55,7 @@ console.log('\n=== 1. IKI MARKET, ESIT FIYAT -> notr ===');
   ctx._m1 = mktler;
   const r = calis(ctx, '_mktRowDurumu(_m1)');
   ok('fiyatlarFarkli = false', r.fiyatlarFarkli === false, JSON.stringify(r));
-  ok('hicbir satir isFirst degil', r.durumlar.every(d => !d.isFirst), JSON.stringify(r.durumlar));
+  ok('hicbir satir isBest degil', r.durumlar.every(d => !d.isBest), JSON.stringify(r.durumlar));
   ok('hicbir satir isWorst degil (rozet yok)', r.durumlar.every(d => !d.isWorst), JSON.stringify(r.durumlar));
 }
 
@@ -65,10 +65,10 @@ console.log('\n=== 2. IKI MARKET, FARKLI FIYAT -> eski davranis (REGRESYON) ==='
   ctx._m2 = mktler;
   const r = calis(ctx, '_mktRowDurumu(_m2)');
   ok('fiyatlarFarkli = true', r.fiyatlarFarkli === true);
-  ok('ilk (en ucuz) satir isFirst', r.durumlar[0].isFirst === true, JSON.stringify(r.durumlar));
+  ok('ilk (en ucuz) satir isBest', r.durumlar[0].isBest === true, JSON.stringify(r.durumlar));
   ok('ilk satir isWorst degil', r.durumlar[0].isWorst === false);
   ok('son (en pahali) satir isWorst', r.durumlar[1].isWorst === true, JSON.stringify(r.durumlar));
-  ok('son satir isFirst degil', r.durumlar[1].isFirst === false);
+  ok('son satir isBest degil', r.durumlar[1].isBest === false);
 }
 
 console.log('\n=== 3. UC MARKET, IKISI ESIT EN PAHALIDA -> HEPSI isaretlenir (karar) ===');
@@ -78,9 +78,32 @@ console.log('\n=== 3. UC MARKET, IKISI ESIT EN PAHALIDA -> HEPSI isaretlenir (ka
   ctx._m3 = mktler;
   const r = calis(ctx, '_mktRowDurumu(_m3)');
   ok('fiyatlarFarkli = true', r.fiyatlarFarkli === true);
-  ok('en ucuz (ilk) satir isFirst', r.durumlar[0].isFirst === true);
+  ok('en ucuz (ilk) satir isBest', r.durumlar[0].isBest === true);
   ok('esit-en-yuksek IKI satir da isWorst (tekil degil, ikisi de gercek)', r.durumlar[1].isWorst === true && r.durumlar[2].isWorst === true, JSON.stringify(r.durumlar));
   ok('en ucuz satir isWorst degil', r.durumlar[0].isWorst === false);
+  ok('esit-en-yuksek satirlar isBest degil', r.durumlar[1].isBest === false && r.durumlar[2].isBest === false, JSON.stringify(r.durumlar));
+}
+
+console.log('\n=== 3b. UC MARKET, IKISI ESIT EN UCUZDA -> HEPSI isaretlenir (simetri, karar) ===');
+{
+  // 10, 10, 15 -- siralanmis (fiyata gore artan); iki market ayni en dusuk fiyatta
+  const mktler = [{ market: 'sok', fiyat: 10 }, { market: 'bim', fiyat: 10 }, { market: 'a101', fiyat: 15 }];
+  ctx._m3b = mktler;
+  const r = calis(ctx, '_mktRowDurumu(_m3b)');
+  ok('fiyatlarFarkli = true', r.fiyatlarFarkli === true);
+  ok('esit-en-ucuz IKI satir da isBest (tekil degil, ikisi de gercek)', r.durumlar[0].isBest === true && r.durumlar[1].isBest === true, JSON.stringify(r.durumlar));
+  ok('esit-en-ucuz satirlar isWorst degil', r.durumlar[0].isWorst === false && r.durumlar[1].isWorst === false, JSON.stringify(r.durumlar));
+  ok('en pahali (son) satir isWorst', r.durumlar[2].isWorst === true, JSON.stringify(r.durumlar));
+  ok('en pahali satir isBest degil', r.durumlar[2].isBest === false);
+}
+
+console.log('\n=== 3c. UC MARKET, EN UCUZ TEK -> yalnizca o isBest (REGRESYON) ===');
+{
+  const mktler = [{ market: 'sok', fiyat: 10 }, { market: 'bim', fiyat: 15 }, { market: 'a101', fiyat: 20 }];
+  ctx._m3c = mktler;
+  const r = calis(ctx, '_mktRowDurumu(_m3c)');
+  ok('yalnizca en ucuz satir isBest', r.durumlar[0].isBest === true && r.durumlar[1].isBest === false && r.durumlar[2].isBest === false, JSON.stringify(r.durumlar));
+  ok('yalnizca en pahali satir isWorst', r.durumlar[2].isWorst === true && r.durumlar[0].isWorst === false && r.durumlar[1].isWorst === false, JSON.stringify(r.durumlar));
 }
 
 console.log('\n=== 4. ESITLIK BILGI SATIRI -- market adlari + baglac ===');
