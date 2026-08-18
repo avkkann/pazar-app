@@ -94,11 +94,19 @@ console.log('\n=== 5. ODAK GOSTERGESI YENI OGELERI KAPSIYOR ===');
 }
 
 console.log('\n=== 6. GORSEL TASARIM DEGISMEDI ===');
-// NOT: markup .cat-emoji + .cat-card-name kullaniyor; CSS'teki
-// .cat-card-emoji ve .cat-card-img kurallari OLU (hicbir yerde uretilmiyor).
-// Bu turda dokunulmadi, yalnizca not.
+// GUNCELLEME (Faz 3): markup artik .cat-emoji degil .cat-ikon (SVG) tasiyor;
+// isletim sistemi emojisi marka SVG diline cevrildi. Bu testin derdi kartin
+// KLAVYE/A11Y yapisinin bozulmamasi -- ikonun bicimi degil. O yuzden iddia
+// sinif adina degil, erisilebilirligi tasiyan parcalara baglandi.
+// Not: eskiden burada "olu" diye isaretlenen .cat-card-emoji/.cat-card-img
+// kurallari Faz 3'te CSS'ten SILINDI.
 ok('.cat-card sinifi ve yapisi duruyor',
-  /class="cat-card"/.test(APP) && /class="cat-emoji"/.test(APP) && /cat-card-name/.test(APP));
+  /class="cat-card"/.test(APP) && /cat-card-name/.test(APP));
+ok('  kart klavyeye ve ekran okuyucuya acik (tabindex+role+aria-label)',
+  /class="cat-card"[^>]*tabindex="0"/.test(APP) && /class="cat-card"[^>]*role="button"/.test(APP)
+  && /class="cat-card"[^>]*aria-label=/.test(APP), '');
+ok('  kategori ikonu DEKORATIF (kart zaten aria-label + gorunur ad tasiyor)',
+  /lcIcon\(k\.ikon, 'cat-ikon'\)/.test(APP) && /aria-hidden="true"/.test(APP), '');
 ok('.cart-item yapisi duruyor', /cart-item-name/.test(APP));
 ok('.ms-market-row yapisi duruyor', /ms-market-avatar/.test(APP) && /ms-tick/.test(APP));
 ok('.mf-card yapisi duruyor', /mf-card/.test(APP));

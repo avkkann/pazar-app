@@ -1,6 +1,6 @@
 # Pazar App — Proje Handoff (Claude için)
 
-**Son güncelleme:** 2026-08-18 oturumu sonunda (ana sayfa tasarımı Faz 1+2 canlı). Bu dosya her oturum başında okunur, sohbete asla ham metin olarak yapıştırılmaz.
+**Son güncelleme:** 2026-08-19 oturumu (Faz 3 kategori ikonları, yerel — push edilmedi). Bu dosya her oturum başında okunur, sohbete asla ham metin olarak yapıştırılmaz.
 
 ---
 
@@ -19,6 +19,61 @@ Mustafa (GitHub: avkkann), **Pazar App**'in tek geliştiricisi — Türk market 
 ---
 
 ## Mevcut durum (2026-08-17 itibarıyla)
+
+### 2026-08-19 — Faz 3: kategori emojisi marka SVG diline çevrildi (YEREL, PUSH EDİLMEDİ)
+
+**Durum: kod bitti, 38/38 test yeşil, CANLIYA ÇIKMADI.** `sw.js` **v213**.
+Ana sayfanın en büyük görsel bloğu (ızgara, dikey alanın ~%20'si) 56px **işletim
+sistemi emojisiyle** çiziliyordu: iOS'ta Apple, Windows'ta Segoe, Android'de Noto —
+marka en büyük görsel öğesini kontrol etmiyordu. Seçenek C uygulandı (foto/illüstrasyon
+üretmek yok, saf metne düşmek yok): 8 kategori **markanın kendi SVG ikon dilinde**.
+
+**Dil envanteri (ana sayfada 26 görünür SVG, ölçüldü):** `viewBox 0 0 24 24` 26/26 ·
+`fill:none` 25/26 · `stroke:currentColor` 24/26 · `stroke-width:2` 24/26 · `round/round`
+24/26 · `aria-hidden` 24/26. Dil **tek üreticiden** geliyor: `lcIcon()` + `_LUCIDE_PATHS`.
+Yeni ikonlar o haritaya eklendi — elle SVG yazılmadı, sapma riski sıfır.
+
+**Metaforlar** (hepsi Lucide'ın kendi setinden): elma · but (`drumstick`; et+tavuk'u
+BİRLİKTE karşılayan tek şekil, biftek kırmızı ete kayardı) · süt kutusu · buğday
+(temel gıda) · pipetli bardak · sprey · kurabiye · kar tanesi.
+
+**Boyut 32px** — 24/32/40 canlıda ölçüldü. Görünen çizgi = `stroke-width × (boyut/24)`:
+24px→2,00 · 32px→2,67 · 40px→3,33 (mevcut 14px ikonlarda 1,17). 24 kartta kaybolup
+ızgarayı "sadece metin"e düşürüyordu, 40 çizgiyi dilin dışına taşıyordu. Kart 124→100px,
+sayfa 3258→3162px. `--ikon-kategori` token'ı.
+
+**Neden satır içi SVG:** `<img src="*.svg">` `currentColor` ALMAZ (ayrı belge) — tema
+duyarlılığı ölürdü, ki emojiden kurtulma sebebimizin yarısı buydu. `mask-image` tema
+verirdi ama 8 ek istek. Satır içi SVG **markup**'tır, hiçbir CSP direktifine tabi değil;
+9 direktif aynen duruyor. Maliyet: **+3.922 bayt ham / +1.836 bayt gzip** (%1,5 / %2,3).
+
+> **Optik değişkenlik şüphem YANLIŞ ALARM çıktı — ölçüm kurtardı.** Yeni ikonların
+> viewBox doluluğu %34,7–69,4 arasında oynuyordu (süt en ince) ve "düzelteyim" diyecektim.
+> Mevcut 24 ikonu aynı ölçütle ölçtüm: **min 34,7 · max 69,4 · yayılım 34,7 · ort 57,3** —
+> yenilerin ortalaması 57,8. Yani değişkenlik dilin kendi doğası; "düzeltseydim" yeni
+> ikonları diğer 24'ünden AYIRMIŞ olurdum.
+
+**Ölü kod temizliği (her biri tek tek doğrulandı, dinamik sınıf ataması da arandı):**
+`.cat-card-emoji` · `.cat-card-img` · `.cat-card-count` CSS'ten silindi (kod tarafında
+0 kullanım) · `KATEGORILER[].img` silindi (hiç okunmuyordu, `static/cat/` klasörü zaten
+hiç var olmamıştı) · `KATEGORILER[].emoji` silindi (yalnızca ızgarada 1 kullanım) ·
+Faz 1'de açılan `--glif-1..5` ailesinin tek tüketicisi kaldığı için tek anlamsal token'a
+indi (`--glif-foto-yedek`).
+
+> **Ürün fotoğrafı emoji yedeğine DOKUNULMADI** (`.strip-card-img-ph`, 6 kartta aktif).
+> Onun emojisi `KATEGORILER`'den değil `placeholderRenk`'in KENDİ haritasından geliyor —
+> silmeden önce ölçüldü, bağımlılık olsaydı 6 kartın yedeği sessizce bozulacaktı.
+
+**Yeni test:** `test_kategori_ikon.mjs` (31 iddia) — 8 ikonun tanımlı olması, dile uyum,
+**sessiz boş üretim** (`lcIcon` tanımsız isimde `''` döndürür, kart ikonsuz kalır ve kimse
+fark etmez), emoji temizliği, foto yedeğinin korunması, token bağlantısı, ölü kod.
+Koruma doğrulandı: bir kategori olmayan ikona bağlanınca test kırılıyor.
+
+> **AÇIK BORÇ — arama kutusundaki büyüteç dilin dışında.** `index.html`'de satır içi,
+> `stroke="#0E4938"` sabit hex (token değil), `butt`/`miter` (dil `round`/`round`),
+> `aria-hidden` yok. Ana sayfadaki 26 SVG'nin dil dışında kalan **tek** öğesi (ikincisi
+> kategori emojisiydi, Faz 3 onu kapattı). Faz 3'e dahil edilmedi çünkü kapsam kategori
+> ızgarasıydı; ayrı ve küçük bir iş.
 
 ### 2026-08-18 — Ana sayfa tasarımı: token sistemi + hiyerarşi (CANLI, DOĞRULANDI)
 
@@ -466,7 +521,7 @@ Uygulama teknik olarak çalışıyor ama **pratikte hâlâ dağıtılmamış dur
 
 ## Yaklaşım & desenler
 
-- **SW cache version** her anlamlı `index.html`/`app.js`/`style.css`/`sw.js` değişikliğinde artırılır (şu an **v212**, canlıda doğrulandı 2026-08-18). Backend-only değişikliklerde (scraper, sync) bump edilmez. Akış: `git add` → `git commit` → `git pull --rebase` → `git push`. Not: `sw.js` yalnızca `data/hal.json` + `data/anasayfa.json`'ı önbelleğe alıyor ve `fetch`'i yalnızca o iki URL için yakalıyor — HTML/CSS/JS'i tutmuyor, onlar Cloudflare'den `Cache-Control: public, max-age=0, must-revalidate` ile geliyor (ölçüldü; eski GitHub Pages `max-age=600` notu bayattı). Bump proje kuralı ve tutarlılık için, HTML dağıtımını hızlandırmıyor.
+- **SW cache version** her anlamlı `index.html`/`app.js`/`style.css`/`sw.js` değişikliğinde artırılır (şu an **v213** yerelde; canlıda v212, 2026-08-18). Backend-only değişikliklerde (scraper, sync) bump edilmez. Akış: `git add` → `git commit` → `git pull --rebase` → `git push`. Not: `sw.js` yalnızca `data/hal.json` + `data/anasayfa.json`'ı önbelleğe alıyor ve `fetch`'i yalnızca o iki URL için yakalıyor — HTML/CSS/JS'i tutmuyor, onlar Cloudflare'den `Cache-Control: public, max-age=0, must-revalidate` ile geliyor (ölçüldü; eski GitHub Pages `max-age=600` notu bayattı). Bump proje kuralı ve tutarlılık için, HTML dağıtımını hızlandırmıyor.
 - **Doğrulama:** Push sonrası `gh run watch` ile deploy'un koştuğu doğrulanır, sonra canlıda (Browser MCP) gerçek fonksiyonel test yapılır — "dosyada var mı" değil, "gerçekten çalışıyor mu". Layout değişikliklerinde ekran görüntüsü yetmez: değişiklikten ÖNCE geometri parmak izi (`getBoundingClientRect`) alınıp sonra sayısal karşılaştırılır.
 - **Kapsam disiplini:** İstenmeyen ekleme/çıkarma sessizce yapılmaz, not düşülür. Doküman/analiz önerileri körü körüne uygulanmaz — önce kodda geçerli mi diye bakılır.
 - **Büyük ürün/mimari kararları** (hosting migration, nav yapısı, tuzak'ın geleceği) Mustafa'nın onayı olmadan koda dökülmez.

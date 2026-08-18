@@ -32,15 +32,13 @@
       --fs-5: 24px;   /* vurgulu değer, marka başlığı          */
       --fs-6: 32px;   /* sayfa düzeyi büyük değer               */
 
-      /* Glif/emoji yer tutucu boyutları — TİPOGRAFİ DEĞİL.
-         Bunlar metin değil, görselin yerine geçen karakterler; ölçeğe
-         sokmak yanlış olurdu. Faz 3'te gerçek görsellerle değişecekler,
-         o yüzden ayrı isim alanında ve değerleri KORUNDU. */
-      --glif-1: 24px;
-      --glif-2: 32px;
-      --glif-3: 48px;
-      --glif-4: 56px;
-      --glif-5: 80px;
+      /* Glif/emoji yer tutucu boyutu — TİPOGRAFİ DEĞİL. Metin değil, görselin
+         yerine geçen bir karakter; ölçeğe sokmak yanlış olurdu.
+         Faz 1'de beş adımlık bir aile (--glif-1..5) açılmıştı; Faz 3 kategori
+         emojisini SVG'ye çevirince GERİYE TEK TÜKETİCİ kaldı: ürün fotoğrafı
+         yüklenemeyince devreye giren `.strip-card-img-ph`. Kullanılmayan dört
+         adım silindi, kalan tek boyut anlamıyla adlandırıldı (değer aynı). */
+      --glif-foto-yedek: 32px;
 
       /* ══ SPACING (4px gridi) ═══════════════════════════════════════
          --space-N = N × 4px. Grid zaten tanımlıydı ama %4,7 kullanılıyordu;
@@ -91,6 +89,16 @@
       /* Şerit kartı genişliği — TEK KAYNAK. 390px'te ölçülerek seçildi,
          gerekçesi .strip-card kuralının başında. */
       --kart-genislik: 164px;
+
+      /* Kategori ızgarası ikon boyutu. 24/32/40 ölçüldü (390px, canlı):
+         24 → görünen çizgi 2,00px, kartta kayboluyor, ızgara "sadece metin"e
+              düşüyor (bilerek elenen B seçeneği)
+         32 → 2,67px, kart 124→100px, sayfa 96px kısalıyor          ← SEÇİLDİ
+         40 → 3,33px, çizgi dilin geri kalanına göre kalınlaşıyor
+         (14px ikonlarda görünen çizgi 1,17px, 18px'te 1,50px.)
+         Hiyerarşi kontrolü: sayfanın en büyük glifi bu ikon DEĞİL —
+         .strip-card-img-ph (32px foto yedeği) zaten aynı boyutta. */
+      --ikon-kategori: 32px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -266,11 +274,18 @@
     }
     .cat-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,.13); transform: translateY(-2px); }
     .cat-card:active { transform: scale(.96); box-shadow: 0 2px 8px rgba(0,0,0,.08); }
-    .cat-card-emoji { font-size: 3rem; line-height: 1; }
-    .cat-emoji { font-size: var(--glif-4); line-height: 1; display: block; text-align: center; margin: 0 auto; font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif; }
-    .cat-card-img { width: 64px; height: 64px; object-fit: contain; margin: 0 auto; display: block; }
+    /* Kategori ikonu — marka SVG dili (lcIcon → Lucide). Emojinin yerini aldı.
+       Boyut token'dan; renk verilmiyor çünkü stroke="currentColor" ve kart
+       rengini (--text) devralıyor — tema değişince ikon da değişiyor, emojinin
+       hiç yapamadığı şey. Ölçüldü: koyu temada #E5E7EB'ye dönüyor. */
+    .cat-ikon {
+      width: var(--ikon-kategori); height: var(--ikon-kategori);
+      display: block; margin: 0 auto; flex-shrink: 0;
+    }
     .cat-card-name { font-size: var(--fs-3); font-weight: 700; color: var(--text); text-align: center; line-height: 1.35; }
-    .cat-card-count { font-size: .68rem; color: var(--text-muted); font-weight: 500; }
+    /* SİLİNDİ (ölü kod, tek tek doğrulandı — CSS dışında 0 kullanım, dinamik
+       sınıf ataması da yok): .cat-card-emoji, .cat-card-img, .cat-card-count.
+       Üçü de hiç üretilmeyen öğeleri biçimlendiriyordu. */
 
     /* ── STATS ── */
     .stats-row {
@@ -1386,7 +1401,7 @@
 }
 .strip-card:active { transform: scale(0.98); }
 .strip-card-img { width:100%; height:90px; border-radius:8px; object-fit:cover; background:#FFFFFF; padding: var(--space-2); }
-.strip-card-img-ph { width:100%; height:90px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:var(--glif-2); background:#FFFFFF; padding: var(--space-2); }
+.strip-card-img-ph { width:100%; height:90px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:var(--glif-foto-yedek); background:#FFFFFF; padding: var(--space-2); }
 /* KARTIN KAHRAMANI. Öncesinde kartta fiyat HİÇ YOKTU — bir fiyat
    karşılaştırma uygulamasının ana sayfasında ürünün fiyatı görünmüyordu;
    yerine yalnızca birim fiyat vardı. Veri zaten mevcuttu: en_dusuk_fiyat

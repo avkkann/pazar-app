@@ -646,15 +646,24 @@ const KAT_EMOJI = {
   meyve:'🍎', sebze:'🥦', et:'🥩', sut:'🧀',
   gida:'🥫', icecek:'🥤', temizlik:'🧴', atistirmalik:'🍫', dondurulmus:'🧊', diger:'📦'
 };
+// `ikon` = _LUCIDE_PATHS anahtari. Onceki `emoji` alani kaldirildi: kategori
+// izgarasi artik markanin SVG dilini kullaniyor (isletim sistemi emojisi
+// iOS'ta Apple, Windows'ta Segoe ciziyordu -- marka kendi en buyuk gorsel
+// ogesini kontrol edemiyordu). `img` alani da kaldirildi: static/cat/*.png
+// bekliyordu ama o klasor hic var olmadi ve alan HICBIR yerde okunmuyordu
+// (olculdu: k.img 0 kullanim, k.emoji yalnizca renderCatGrid'de 1).
+//
+// DIKKAT: serit/urun kartlarinin foto yedegindeki emoji AYRI bir kaynaktan
+// geliyor (placeholderRenk'in kendi haritasi) -- ona dokunulmadi.
 const KATEGORILER = [
-  { slug:'meyve-sebze', label:'Meyve & Sebze', emoji:'🍎', img:'static/cat/meyve-sebze.png', file:'urunler_meyve' },
-  { slug:'et',          label:'Et & Tavuk',    emoji:'🥩', img:'static/cat/et.png',          file:'urunler_et'    },
-  { slug:'sut',         label:'Süt & Kahvaltı',emoji:'🧀', img:'static/cat/sut.png',         file:'urunler_sut'   },
-  { slug:'gida',        label:'Temel Gıda',    emoji:'🥫', img:'static/cat/gida.png',        file:'urunler_gida'  },
-  { slug:'icecek',      label:'İçecek',        emoji:'🥤', img:'static/cat/icecek.png',      file:'urunler_icecek'},
-  { slug:'temizlik',    label:'Temizlik',       emoji:'🧴', img:'static/cat/temizlik.png',    file:'urunler_temizlik'},
-  { slug:'atistirmalik',label:'Atıştırmalık',   emoji:'🍫', img:'static/cat/atistirmalik.png',file:'urunler_atistirmalik'},
-  { slug:'dondurulmus', label:'Dondurulmuş',    emoji:'🧊', img:'static/cat/dondurulmus.png', file:'urunler_dondurulmus'},
+  { slug:'meyve-sebze', label:'Meyve & Sebze', ikon:'apple',      file:'urunler_meyve' },
+  { slug:'et',          label:'Et & Tavuk',    ikon:'drumstick',  file:'urunler_et'    },
+  { slug:'sut',         label:'Süt & Kahvaltı',ikon:'milk',       file:'urunler_sut'   },
+  { slug:'gida',        label:'Temel Gıda',    ikon:'wheat',      file:'urunler_gida'  },
+  { slug:'icecek',      label:'İçecek',        ikon:'cup-soda',   file:'urunler_icecek'},
+  { slug:'temizlik',    label:'Temizlik',      ikon:'spray-can',  file:'urunler_temizlik'},
+  { slug:'atistirmalik',label:'Atıştırmalık',  ikon:'cookie',     file:'urunler_atistirmalik'},
+  { slug:'dondurulmus', label:'Dondurulmuş',   ikon:'snowflake',  file:'urunler_dondurulmus'},
 ];
 const PAGE_SIZE = 48;
 
@@ -2214,6 +2223,18 @@ function fiyatGecmisiBlogu(urun) {
 }
 
 // Lucide SVG icon helpers — inline (kütüphane yüklemeden)
+//
+// KATEGORI IKONLARI (apple…snowflake) buraya eklendi, ayrı SVG dosyası olarak
+// DEĞİL. Ölçüldü ve üç alternatif elendi:
+//   • <img src="static/cat/*.svg">  → <img> içindeki SVG ayrı belgedir,
+//     currentColor'ı ALMAZ; tema değişince ikon değişmezdi. Emojiden kurtulma
+//     sebebimizin yarısı buydu, o yüzden eledim. (Ayrıca 8 ek istek.)
+//   • CSS mask-image → tema çalışırdı ama yine 8 ek istek.
+//   • sprite + <use> → 1 istek, ama ek cache/CSP yüzeyi, kazanç yok.
+// Satır içi seçildi: currentColor bedava geliyor, ek istek yok ve satır içi
+// SVG *markup*'tır — hiçbir CSP direktifine tabi değil, canlıdaki 9 direktif
+// aynen kalıyor. Maliyet ölçüldü: 8 path = 2.126 bayt ham / 806 bayt gzip,
+// app.js'in %0,83'ü.
 const _LUCIDE_PATHS = {
   'alert-triangle': '<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/>',
   // .tazelik-chip zaten bu cizimi satir ici SVG olarak tasiyordu; ana sayfa
@@ -2221,6 +2242,25 @@ const _LUCIDE_PATHS = {
   // projenin ikon sistemine tasindi.
   'clock': '<circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/>',
   'trending-down': '<polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/>',
+
+  // ── KATEGORİ İKONLARI (8) ───────────────────────────────────────────
+  // Hepsi Lucide'ın KENDİ setinden alındı, elle çizilmedi: stroke/cap/join
+  // sapması riski böylece sıfır. lcIcon() zaten viewBox 0 0 24 24, fill:none,
+  // stroke:currentColor, width 2, round/round ve aria-hidden veriyor.
+  // Metaforlar: elma=taze ürün · but=et+tavuk'u BİRLİKTE karşılayan tek şekil
+  // (biftek kırmızı ete kayardı) · süt kutusu=kahvaltı · buğday=temel gıda
+  // (un/pirinç/makarna/bakliyat; konserve dar kalırdı) · pipetli bardak=içecek
+  // (sıcak/soğuk ayırmıyor) · sprey=temizlik · kurabiye=atıştırmalık ·
+  // kar tanesi=dondurulmuş.
+  'apple': '<path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/><path d="M10 2c1 .5 2 2 2 5"/>',
+  'drumstick': '<path d="M15.45 15.4c-2.13.65-4.3.32-5.7-1.1-2.29-2.27-1.76-6.5 1.17-9.42 2.93-2.93 7.15-3.46 9.43-1.18 1.41 1.41 1.74 3.57 1.1 5.71-1.4-.51-3.26-.02-4.64 1.36-1.38 1.38-1.87 3.23-1.36 4.63z"/><path d="m11.25 15.6-2.16 2.16a2.5 2.5 0 1 1-4.56 1.73 2.49 2.49 0 0 1-1.41-4.24 2.5 2.5 0 0 1 3.14-.32l2.16-2.16"/>',
+  'milk': '<path d="M8 2h8"/><path d="M9 2v2.789a4 4 0 0 1-.672 2.219l-.656.984A4 4 0 0 0 7 10.212V20a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-9.789a4 4 0 0 0-.672-2.219l-.656-.984A4 4 0 0 1 15 4.788V2"/><path d="M7 15a6.472 6.472 0 0 1 5 0 6.47 6.47 0 0 0 5 0"/>',
+  'wheat': '<path d="M2 22 16 8"/><path d="M3.47 12.53 5 11l1.53 1.53a3.5 3.5 0 0 1 0 4.94L5 19l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M7.47 8.53 9 7l1.53 1.53a3.5 3.5 0 0 1 0 4.94L9 15l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M11.47 4.53 13 3l1.53 1.53a3.5 3.5 0 0 1 0 4.94L13 11l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/>',
+  'cup-soda': '<path d="m6 8 1.75 12.28a2 2 0 0 0 2 1.72h4.54a2 2 0 0 0 2-1.72L18 8"/><path d="M5 8h14"/><path d="M7 15a6.47 6.47 0 0 1 5 0 6.47 6.47 0 0 0 5 0"/><path d="m12 8 1-6h2"/>',
+  'spray-can': '<path d="M3 3h.01"/><path d="M7 5h.01"/><path d="M11 7h.01"/><path d="M3 7h.01"/><path d="M7 9h.01"/><path d="M3 11h.01"/><rect width="4" height="4" x="15" y="5"/><path d="m19 9 2 7h-8l2-7"/><path d="M13 16a3 3 0 0 0-3 3v3h8v-3a3 3 0 0 0-3-3z"/>',
+  'cookie': '<path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"/><path d="M8.5 8.5v.01"/><path d="M16 15.5v.01"/><path d="M12 12v.01"/><path d="M11 17v.01"/><path d="M7 14v.01"/>',
+  'snowflake': '<line x1="2" x2="22" y1="12" y2="12"/><line x1="12" x2="12" y1="2" y2="22"/><path d="m20 16-4-4 4-4"/><path d="m4 8 4 4-4 4"/><path d="m16 4-4 4-4-4"/><path d="m8 20 4-4 4 4"/>',
+
   'flame': '<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>',
   'leaf': '<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19.2 2.96a1 1 0 0 1 1.8.66c0 4.49-1.05 8.74-6.41 11.59a7 7 0 0 1-3.59.79z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/>',
   'coins': '<circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/>',
@@ -3504,7 +3544,7 @@ async function renderMevsimSeridi() {
 function renderCatGrid() {
   document.getElementById('home-cats').innerHTML = KATEGORILER.map(k =>
     `<div class="cat-card" tabindex="0" role="button" aria-label="${k.label}" onclick="openCategory('${k.slug}')" onkeydown="_satirTus(event, function(){openCategory('${k.slug}')})">
-      <span class="cat-emoji">${k.emoji}</span>
+      ${lcIcon(k.ikon, 'cat-ikon')}
       <div class="cat-card-name">${k.label}</div>
     </div>`
   ).join('');
