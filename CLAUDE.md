@@ -1,6 +1,6 @@
 # Pazar App — Proje Handoff (Claude için)
 
-**Son güncelleme:** 2026-08-19 oturumu (Faz 3 kategori ikonları, yerel — push edilmedi). Bu dosya her oturum başında okunur, sohbete asla ham metin olarak yapıştırılmaz.
+**Son güncelleme:** 2026-08-19 oturumu (Faz 3 kategori ikonları canlı). Bu dosya her oturum başında okunur, sohbete asla ham metin olarak yapıştırılmaz.
 
 ---
 
@@ -20,9 +20,9 @@ Mustafa (GitHub: avkkann), **Pazar App**'in tek geliştiricisi — Türk market 
 
 ## Mevcut durum (2026-08-17 itibarıyla)
 
-### 2026-08-19 — Faz 3: kategori emojisi marka SVG diline çevrildi (YEREL, PUSH EDİLMEDİ)
+### 2026-08-19 — Faz 3: kategori emojisi marka SVG diline çevrildi (CANLI, DOĞRULANDI)
 
-**Durum: kod bitti, 38/38 test yeşil, CANLIYA ÇIKMADI.** `sw.js` **v213**.
+**Durum: yayında.** `13501f7` push edildi, deploy yeşil. `sw.js` **v213**, 38/38 test yeşil.
 Ana sayfanın en büyük görsel bloğu (ızgara, dikey alanın ~%20'si) 56px **işletim
 sistemi emojisiyle** çiziliyordu: iOS'ta Apple, Windows'ta Segoe, Android'de Noto —
 marka en büyük görsel öğesini kontrol etmiyordu. Seçenek C uygulandı (foto/illüstrasyon
@@ -68,6 +68,18 @@ indi (`--glif-foto-yedek`).
 **sessiz boş üretim** (`lcIcon` tanımsız isimde `''` döndürür, kart ikonsuz kalır ve kimse
 fark etmez), emoji temizliği, foto yedeğinin korunması, token bağlantısı, ölü kod.
 Koruma doğrulandı: bir kategori olmayan ikona bağlanınca test kırılıyor.
+
+**Canlı doğrulama (uzantısız temiz profil + CDP, 390/1440, iki tema, iki tur):**
+ızgarada emoji **0** · SVG ikon **8/8**, hepsi 32×32, boş çizim 0 · dil imzası **tek**
+(`0 0 24 24|none|currentColor|2|round|round|true`) · ikon rengi açık `rgb(26,26,46)` →
+koyu `rgb(229,231,235)` **otomatik** · `sw.js` **v213**, önbellek tam `[v213]`,
+**v212 temizliği ölçüldü** (`[v213,v212]` → `[v213]`) · 5 şerit `[6,6,12,10,7]` ·
+yatay taşma **0** · CSP **9 direktif**, negatif kontrol engellendi · konsol gerçek
+hata **0** (yalnızca 2 bilinen Cloudflare beacon ihlali).
+
+> **Foto yedeği MEKANİZMA olarak sınandı, "bugün görünüyor mu" diye değil.** Canlıda bir
+> ürün görselinin `src`'si bozulup `onerror` tetiklendi: `.strip-card-img-ph` 6 → 7 arttı,
+> yeni öğe 🍎 emojisini 32px'te bastı. Yani emoji temizliği yedeği bozmadı — iki temada da.
 
 > **AÇIK BORÇ — arama kutusundaki büyüteç dilin dışında.** `index.html`'de satır içi,
 > `stroke="#0E4938"` sabit hex (token değil), `butt`/`miter` (dil `round`/`round`),
@@ -521,7 +533,7 @@ Uygulama teknik olarak çalışıyor ama **pratikte hâlâ dağıtılmamış dur
 
 ## Yaklaşım & desenler
 
-- **SW cache version** her anlamlı `index.html`/`app.js`/`style.css`/`sw.js` değişikliğinde artırılır (şu an **v213** yerelde; canlıda v212, 2026-08-18). Backend-only değişikliklerde (scraper, sync) bump edilmez. Akış: `git add` → `git commit` → `git pull --rebase` → `git push`. Not: `sw.js` yalnızca `data/hal.json` + `data/anasayfa.json`'ı önbelleğe alıyor ve `fetch`'i yalnızca o iki URL için yakalıyor — HTML/CSS/JS'i tutmuyor, onlar Cloudflare'den `Cache-Control: public, max-age=0, must-revalidate` ile geliyor (ölçüldü; eski GitHub Pages `max-age=600` notu bayattı). Bump proje kuralı ve tutarlılık için, HTML dağıtımını hızlandırmıyor.
+- **SW cache version** her anlamlı `index.html`/`app.js`/`style.css`/`sw.js` değişikliğinde artırılır (şu an **v213**, canlıda doğrulandı 2026-08-19). Backend-only değişikliklerde (scraper, sync) bump edilmez. Akış: `git add` → `git commit` → `git pull --rebase` → `git push`. Not: `sw.js` yalnızca `data/hal.json` + `data/anasayfa.json`'ı önbelleğe alıyor ve `fetch`'i yalnızca o iki URL için yakalıyor — HTML/CSS/JS'i tutmuyor, onlar Cloudflare'den `Cache-Control: public, max-age=0, must-revalidate` ile geliyor (ölçüldü; eski GitHub Pages `max-age=600` notu bayattı). Bump proje kuralı ve tutarlılık için, HTML dağıtımını hızlandırmıyor.
 - **Doğrulama:** Push sonrası `gh run watch` ile deploy'un koştuğu doğrulanır, sonra canlıda (Browser MCP) gerçek fonksiyonel test yapılır — "dosyada var mı" değil, "gerçekten çalışıyor mu". Layout değişikliklerinde ekran görüntüsü yetmez: değişiklikten ÖNCE geometri parmak izi (`getBoundingClientRect`) alınıp sonra sayısal karşılaştırılır.
 - **Kapsam disiplini:** İstenmeyen ekleme/çıkarma sessizce yapılmaz, not düşülür. Doküman/analiz önerileri körü körüne uygulanmaz — önce kodda geçerli mi diye bakılır.
 - **Büyük ürün/mimari kararları** (hosting migration, nav yapısı, tuzak'ın geleceği) Mustafa'nın onayı olmadan koda dökülmez.
