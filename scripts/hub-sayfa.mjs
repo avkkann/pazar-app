@@ -214,3 +214,182 @@ export function sayfaKarari(model) {
 
   return { durum: 'atlandi', sebep: sebepler.join('; '), satir, kelime };
 }
+
+// ── kacir ─────────────────────────────────────────────────────────────
+// Projede merkezi bir HTML-kacis fonksiyonu YOK (79 innerHTML kullanimi
+// acik borc olarak duruyor -- bkz. teknik borc notlari). Hub tarafi bunu
+// bastan dogru yapiyor: modelden gelen HER metin (urun adi, market adi,
+// serbest metin) buradan gecmeden HTML'e yazilmiyor. Sira onemli: & once
+// kacirilmali, yoksa sonraki kacislarin urettigi '&lt;' gibi diziler
+// ikinci kez kacirilip '&amp;lt;' olur.
+export function kacir(metin) {
+  return String(metin == null ? '' : metin)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+}
+
+// ── sayfaHTML ─────────────────────────────────────────────────────────
+// Model -> tam HTML belgesi. Gorev 2'de sabitlenen model sozlesmesini
+// DOGRULAR ve ihlalde throw eder (bozuk sayfayi sessizce yayinlamaktansa
+// build kirilsin). Dogrulama gectikten sonra saf dize birlestirmeyle
+// belge kurulur -- node:fs/node:vm/ag/app.js YOK, bu modul saf kalmaya
+// devam ediyor.
+const GECERLI_HUB_TIPLERI = ['zam', 'market', 'kategori', 'hal'];
+// W3C Datetime: 'yyyy-aa-ggThh:mm:ss' + ('Z' ya da '+hh:mm'/'-hh:mm').
+// Saniye kesirleri de kabul edilir. Bu proje icin gunDamgasi() hep
+// '+03:00' ve kaynak veri damgalari genelde 'Z' uretir; ikisi de gecerli.
+const W3C_DATETIME_DESENI = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$/;
+
+function w3cDatetimeMi(deger) {
+  return typeof deger === 'string' && W3C_DATETIME_DESENI.test(deger);
+}
+
+function sayfaModelDogrula(model) {
+  const on = '[hub-sayfa] sayfaHTML: ';
+  if (!model || typeof model !== 'object') {
+    throw new Error(on + 'model bir nesne olmali: ' + JSON.stringify(model));
+  }
+  if (!GECERLI_HUB_TIPLERI.includes(model.tip)) {
+    throw new Error(on + 'tip gecerli degil (zam|market|kategori|hal bekleniyor): ' + JSON.stringify(model.tip));
+  }
+  if (typeof model.yol !== 'string' || !model.yol.startsWith('/') || !model.yol.endsWith('/')) {
+    throw new Error(on + "yol '/' ile baslayip '/' ile bitmeli: " + JSON.stringify(model.yol));
+  }
+  if (typeof model.titleEtiketi !== 'string' || model.titleEtiketi.length > 60) {
+    throw new Error(on + 'titleEtiketi 60 karakteri asamaz (Google basligi kesiyor): ' +
+      JSON.stringify(model.titleEtiketi) + ' (' + (model.titleEtiketi && model.titleEtiketi.length) + ' krk)');
+  }
+  if (typeof model.aciklama !== 'string' || model.aciklama.length < 140 || model.aciklama.length > 155) {
+    throw new Error(on + 'aciklama 140-155 karakter araliginda olmali: ' +
+      (model.aciklama && model.aciklama.length) + ' karakter');
+  }
+  if (!w3cDatetimeMi(model.veriDamgasi)) {
+    throw new Error(on + 'veriDamgasi W3C Datetime degil: ' + JSON.stringify(model.veriDamgasi));
+  }
+  if (!w3cDatetimeMi(model.sonVeri)) {
+    throw new Error(on + 'sonVeri W3C Datetime degil: ' + JSON.stringify(model.sonVeri));
+  }
+  if (!Array.isArray(model.bolumler) || model.bolumler.length === 0) {
+    throw new Error(on + 'bolumler bos olamaz');
+  }
+  const karar = sayfaKarari(model);
+  if (karar.durum !== 'uretildi') {
+    throw new Error(on + `esik altindaki sayfa HTML'e cevrilmez (${karar.sebep})`);
+  }
+  return karar;
+}
+
+function bolumHTML(bolum) {
+  const on = '[hub-sayfa] sayfaHTML: ';
+  const baslikHTML = `<h2>${kacir(bolum && bolum.baslik)}</h2>`;
+  if (bolum.tur === 'tablo') {
+    const sutunlar = Array.isArray(bolum.sutunlar) ? bolum.sutunlar : [];
+    const satirlar = Array.isArray(bolum.satirlar) ? bolum.satirlar : [];
+    const theadSatir = '<tr>' + sutunlar.map((s) => `<th>${kacir(s)}</th>`).join('') + '</tr>';
+    const govdeSatirlari = satirlar
+      .map((satir) => '<tr>' + satir.map((hucre) => `<td>${kacir(hucre)}</td>`).join('') + '</tr>')
+      .join('');
+    const notHTML = bolum.not ? `<p class="kirpma-notu">${kacir(bolum.not)}</p>` : '';
+    return `${baslikHTML}\n<div class="tablo-sarmalayici"><table><thead>${theadSatir}</thead><tbody>${govdeSatirlari}</tbody></table></div>\n${notHTML}`;
+  }
+  if (bolum.tur === 'metin') {
+    return `${baslikHTML}\n<p>${kacir(bolum.metin)}</p>`;
+  }
+  if (bolum.tur === 'liste') {
+    const ogeler = Array.isArray(bolum.ogeler) ? bolum.ogeler : [];
+    return `${baslikHTML}\n<ul>${ogeler.map((oge) => `<li>${kacir(oge)}</li>`).join('')}</ul>`;
+  }
+  throw new Error(on + 'bilinmeyen bolum turu: ' + JSON.stringify(bolum && bolum.tur));
+}
+
+function linkHTML(link) {
+  return `<a href="${kacir(link.yol)}">${kacir(link.metin)}</a>`;
+}
+
+// ~2 KB, satir ici. index.html / style.css'teki --primary (#0E4938) ve
+// krem (#E8DCC4) paletinden. Dis font/CDN YOK -- sistem yigini.
+const HUB_STIL = `
+    :root {
+      --bg: #F8F9FA; --card-bg: #FFFFFF; --text: #1A1A2E; --text-muted: #6B7280;
+      --border: #E5E7EB; --primary: #0E4938; --link: #0E4938; --accent: #E8DCC4;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #14181B; --card-bg: #1C2226; --text: #E8DCC4; --text-muted: #9CA3AF;
+        --border: #2A3236; --primary: #1D9E75; --link: #4FD8A6; --accent: #E8DCC4;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font: 16px/1.6 system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    }
+    header, main, footer { max-width: 860px; margin: 0 auto; padding: 16px 20px; }
+    header { border-bottom: 1px solid var(--border); }
+    header a { color: var(--primary); font-weight: 700; text-decoration: none; font-size: 1.1em; }
+    h1 { font-size: 1.6em; line-height: 1.35; margin: 8px 0 12px; }
+    h2 { font-size: 1.2em; margin: 28px 0 10px; color: var(--primary); }
+    p, li { color: var(--text); }
+    .tablo-sarmalayici { overflow-x: auto; border: 1px solid var(--border); border-radius: 8px; }
+    table { border-collapse: collapse; width: 100%; min-width: 480px; }
+    th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+    th { background: var(--accent); color: var(--primary); }
+    tbody tr:last-child td { border-bottom: none; }
+    .kirpma-notu { color: var(--text-muted); font-size: 0.9em; margin-top: 6px; }
+    footer { border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.95em; }
+    footer nav a, footer p a { color: var(--link); }
+    footer ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 12px 20px; }
+`;
+
+export function sayfaHTML(model) {
+  const karar = sayfaModelDogrula(model);
+  const kanonikYol = 'https://pazarapp.net' + model.yol;
+  const ogGorsel = 'https://pazarapp.net/static/og-image.png';
+
+  const bolumlerHTML = model.bolumler.map(bolumHTML).join('\n');
+  const icLinkler = Array.isArray(model.icLinkler) ? model.icLinkler : [];
+  const icLinklerHTML = icLinkler.length
+    ? `<ul>${icLinkler.map((l) => `<li>${linkHTML(l)}</li>`).join('')}</ul>`
+    : '';
+  const uygulamaLinkiHTML = model.uygulamaLinki ? `<p>${linkHTML(model.uygulamaLinki)}</p>` : '';
+
+  return `<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${kacir(model.titleEtiketi)}</title>
+  <meta name="description" content="${kacir(model.aciklama)}">
+  <link rel="canonical" href="${kanonikYol}">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="${kanonikYol}">
+  <meta property="og:title" content="${kacir(model.baslik)}">
+  <meta property="og:description" content="${kacir(model.aciklama)}">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:site_name" content="Pazar">
+  <meta property="og:image" content="${ogGorsel}">
+  <meta name="robots" content="index, follow">
+  <meta name="pazar-veri-damgasi" content="${kacir(model.veriDamgasi)}">
+  <meta name="pazar-hub-tipi" content="${kacir(model.tip)}">
+  <meta name="pazar-satir" content="${karar.satir}">
+  <style>${HUB_STIL}</style>
+</head>
+<body>
+  <header><a href="/">Pazar</a></header>
+  <main>
+    <h1>${kacir(model.baslik)}</h1>
+    <p>${kacir(model.ozet)}</p>
+    ${bolumlerHTML}
+  </main>
+  <footer>
+    <p>Bu sayfa <time datetime="${kacir(model.veriDamgasi)}">${kacir(model.veriDamgasi)}</time> itibarıyla güncel.</p>
+    ${uygulamaLinkiHTML}
+    ${icLinklerHTML}
+  </footer>
+</body>
+</html>
+`;
+}
