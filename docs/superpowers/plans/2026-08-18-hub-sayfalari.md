@@ -200,9 +200,25 @@ hal tablosu "ince" görünür; sadece satır sayarsan boş başlıklı bir iskel
 
 | Eşik | Değer | Ölçüm |
 |---|---|---|
-| `ESIK_SATIR` | **12** | `<main>` içindeki `<tbody><tr>` sayısı |
-| `ESIK_KELIME` | **300** | `<main>`'in metni (etiketler sökülmüş), ortak header/footer **hariç** |
+| `ESIK_SATIR` | **12** | modeldeki `tur:'tablo'` bölümlerinin `satirlar` uzunlukları toplamı |
+| `ESIK_KELIME` | **300** | modelin metin alanlarındaki kelime toplamı: `baslik` + `ozet` + bölüm başlıkları + `metin` gövdeleri + `liste` öğeleri + tablo hücreleri |
 | `ESIK_AY_BASLANGIC` | **3 gün** | ay sayfası: verinin o aydaki ilk gözlem günü ayın 1'i + 3 günü geçiyorsa ay temsil edilmiyor |
+
+**ÖLÇÜM MODELDEN YAPILIR, HTML'DEN DEĞİL — ve yalnızca tek yerde.** Sayaç
+`hub-sayfa.mjs`'teki `sayfaKarari(model)`; başka hiçbir katman satır/kelime saymaz:
+
+| Katman | Ne yapar |
+|---|---|
+| `hub-sayfa.mjs` → `sayfaKarari(model)` | **tek sayaç.** `{ durum, sebep, satir, kelime }` üretir |
+| `hub-sayfa.mjs` → `sayfaHTML(model)` | sayfayı çizer; `pazar-satir` meta'sına `sayfaKarari`'nin **satir** değerini basar, yeniden saymaz |
+| `hub-uret.mjs` | kararı manifest'e yazar; `atlandi` olanı diske hiç yazmaz |
+| `prepare-public.mjs` (sitemap) | manifest'teki `durum`'a bakar; **kendi eşiğini uygulamaz** |
+| `veri_tazelik_kontrol.py --hub` | `pazar-satir` meta'sını manifest'teki `satir` ile karşılaştırır; **kendi saymaz** |
+
+Ortak header/footer modelde zaten yok, o yüzden "hariç tutma" ayrı bir kural değil —
+modelin şeklinden geliyor. HTML'den saymak ikinci bir sayaç doğururdu ve iki sayaç
+kaçınılmaz olarak ayrışır (bu projenin `urunler.json` ve `marketfiyati.json` ile iki kez
+yediği desen). Tazelik kontrolünün karşılaştırması tam da bu ayrışmayı yakalamak için var.
 
 **Eşiğin altında kalan sayfa ÜRETİLMEZ.** Ve:
 1. `.hub/manifest.json` içine `{ yol, durum: "atlandi", sebep, satir, kelime }` olarak yazılır,
@@ -364,6 +380,8 @@ küçük fixture'larla (gerçek 17 MB veri okunmaz):
 - sayfa başına **tek `h1`**, `h2` sırası atlamasız, tablo başlıkları `th`
 - **hiçbir göreli yol yok**: `href="./`, `src="./`, `href="static/` deseni **0 eşleşme**
 - `pazar-veri-damgasi` meta'sı var ve W3C Datetime
+- **`pazar-satir` meta'sı `sayfaKarari(model).satir` ile birebir aynı** — HTML katmanı
+  ikinci bir sayaç kurmuyor (modele bir satır eklendiğinde meta da değişiyor, sabit değil)
 - `canonical` mutlak ve `/` ile bitiyor; `og:url` ile aynı
 - `title` ≤ 60 karakter, `description` 140–155 karakter (mevcut SEO testiyle aynı ölçüt)
 - `<script` **hiç geçmiyor** (CSP `default-src 'self'` + JS'siz sayfa sözü)
@@ -376,6 +394,8 @@ küçük fixture'larla (gerçek 17 MB veri okunmaz):
 - manifest'te `uretildi` yazan bir sayfa dosya olarak **yoksa** → `exit 1` ve adı çıktıda
 - manifest'te hiç görünmeyen beklenen sayfa (ne `uretildi` ne `atlandi`) → `exit 1`
 - `atlandi` + sebep dolu → **yeşil**, sebep boş → `exit 1`
+- sayfadaki `pazar-satir` meta'sı manifest'teki `satir` ile **uyuşmuyorsa** → `exit 1`
+  (kontrol kendi saymaz, iki kaydın ayrışmasını yakalar — tek sayaç kuralının bekçisi)
 - damgası 3 gün eski sayfa → `exit 1`; 1 gün eski → yeşil (eşik `ESIK_GUN` ile **aynı sabit**)
 - `/hal/` için gevşetilmiş eşik (`ESIK_GUN_HAL = 5`) uygulanıyor, diğerlerine uygulanmıyor
 - damgası hiç olmayan sayfa → `exit 1`
