@@ -1013,11 +1013,13 @@ function openDetay(urunId) {
 
 
 
+  const { fiyatlarFarkli, durumlar } = _mktRowDurumu(mktler);
+
   const mktRows = mktler.map((f, i) => {
-    const isFirst = i === 0, isLast = i === mktler.length - 1 && mktler.length > 1;
-    return `<div class="detay-mkt-row${isFirst ? ' best' : isLast ? ' worst' : ''}">
+    const { isFirst, isWorst } = durumlar[i];
+    return `<div class="detay-mkt-row${isFirst ? ' best' : isWorst ? ' worst' : ''}">
       <span class="m-tag m-${f.market || 'default'}">${MARKET_NAMES[f.market] || f.market || '?'}</span>
-      <span class="detay-mkt-price">${listeFiyatHTML(f)}${tlHTML(f.fiyat)}${isLast ? '<span class="detay-mkt-badge">en pahalı</span>' : ''}</span>
+      <span class="detay-mkt-price">${listeFiyatHTML(f)}${tlHTML(f.fiyat)}${isWorst ? '<span class="detay-mkt-badge">en pahalı</span>' : ''}</span>
     </div>${bildirimUyariHTML(u._sid, f.market)}`;
   }).join('');
 
@@ -1049,6 +1051,7 @@ function openDetay(urunId) {
       <div class="detay-mkt-list">
         ${mktRows || '<div style="padding:12px 14px;font-size:.82rem;color:var(--text-muted)">Market verisi yok</div>'}
       </div>
+      ${_esitFiyatBilgiHTML(mktler, fiyatlarFarkli)}
       ${_gizlenenFiyatHTML(temiz)}
     </div>
     </div>
@@ -2275,9 +2278,11 @@ function enIyiBirimIdleri(liste) {
   });
   Object.values(gruplar).forEach(g => {
     if (g.length < 2) return;
-    let en = g[0];
-    g.forEach(x => { if (x.deger < en.deger) en = x; });
-    if (en.id != null) sonuc.add(en.id);
+    // Eşit birim fiyata sahip TÜM ürünler işaretlenir -- yalnızca ilk
+    // rastlanan değil. Aksi halde aynı birim fiyata sahip iki üründen
+    // biri "en ucuz" alır, diğeri almaz: yanlış değil ama yanıltıcı.
+    const enDeger = Math.min(...g.map(x => x.deger));
+    g.forEach(x => { if (x.deger === enDeger && x.id != null) sonuc.add(x.id); });
   });
   return sonuc;
 }
@@ -2361,6 +2366,46 @@ function tazelikChipHTML(u) {
     sinif = 'eski'; metin = `${gun} gün önce güncellendi · Bu fiyat eski olabilir`;
   }
   return `<div class="tazelik-chip ${sinif}"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>${metin}</div>`;
+}
+
+// ── DETAY MARKET SATIRI DURUMU (best/worst/rozet) ───────────────────
+// Salt hesap -- DOM'a dokunmaz, testte doğrudan çağrılabilir. "en pahalı"
+// GERÇEKTEN farklı fiyat varsa iddia edilir. Bütün marketler aynı fiyatı
+// veriyorsa (mktler.length>1 ama hepsi eşit) ne best ne worst ne rozet
+// işaretlenir -- satırlar nötr kalır (bkz. test_esit_fiyat.mjs).
+// Fiyatların en yükseği birden çok markette EŞİTSE (ör. 3 market, 2'si aynı
+// en yüksek fiyatta) o eşit-en-yüksek marketlerin HEPSİ işaretlenir --
+// yalnızca sıralamada son sıraya düşen tek satır değil. Aksi halde tekil
+// ("en pahalı" TEK marketmiş) yanlış iddiası, tam bu projenin bilinen hata
+// desenine (kod bir şey ölçer, metin başkasını iddia eder) girerdi.
+function _mktRowDurumu(mktler) {
+  if (!mktler || !mktler.length) return { fiyatlarFarkli: false, durumlar: [] };
+  const enDusukFiy  = mktler[0].fiyat;
+  const enYuksekFiy = mktler[mktler.length - 1].fiyat;
+  const fiyatlarFarkli = mktler.length > 1 && enYuksekFiy !== enDusukFiy;
+  const durumlar = mktler.map((f, i) => ({
+    isFirst: fiyatlarFarkli && i === 0,
+    isWorst: fiyatlarFarkli && f.fiyat === enYuksekFiy,
+  }));
+  return { fiyatlarFarkli, durumlar };
+}
+
+// ── TÜRKÇE "VE" BAĞLAÇLI LİSTE ─────────────────────────────────────
+// ["A"] -> "A" · ["A","B"] -> "A ve B" · ["A","B","C"] -> "A, B ve C"
+function _veBaglacliListe(adlar) {
+  if (!adlar || !adlar.length) return '';
+  if (adlar.length === 1) return adlar[0];
+  return adlar.slice(0, -1).join(', ') + ' ve ' + adlar[adlar.length - 1];
+}
+
+// ── EŞİT FİYAT BİLGİ SATIRI ─────────────────────────────────────────
+// Bütün marketler AYNI fiyatı veriyorsa (detay ekranındaki "en pahalı"
+// rozetinin bilerek basılmadığı durum) kullanıcıya hangi marketlerin eşit
+// olduğu söylenir -- sayı değil, isim: "kaç market" onun işine yaramaz.
+function _esitFiyatBilgiHTML(mktler, fiyatlarFarkli) {
+  if (fiyatlarFarkli || !mktler || mktler.length < 2) return '';
+  const adlar = mktler.map(f => MARKET_NAMES[f.market] || f.market || '?');
+  return `<div class="fg-ozet">${_veBaglacliListe(adlar)} aynı fiyatı veriyor</div>`;
 }
 
 // ── GİZLENEN FİYAT SATIRI ─────────────────────────────────────────
