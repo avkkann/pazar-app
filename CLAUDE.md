@@ -1,6 +1,6 @@
 # Pazar App — Proje Handoff (Claude için)
 
-**Son güncelleme:** 2026-08-17 oturumu sonunda. Bu dosya her oturum başında okunur, sohbete asla ham metin olarak yapıştırılmaz.
+**Son güncelleme:** 2026-08-18 oturumu sonunda (Görev 9 canlı doğrulaması). Bu dosya her oturum başında okunur, sohbete asla ham metin olarak yapıştırılmaz.
 
 ---
 
@@ -20,11 +20,37 @@ Mustafa (GitHub: avkkann), **Pazar App**'in tek geliştiricisi — Türk market 
 
 ## Mevcut durum (2026-08-17 itibarıyla)
 
-### 2026-08-18 — Görev 8: hub sayfaları uygulamadan keşfedilebilir (YEREL, PUSH EDİLMEDİ)
+### 2026-08-18 — Görev 8+9: hub sayfaları uygulamadan keşfedilebilir (CANLI, DOĞRULANDI)
 
-**Durum: kod bitti, testler yeşil, CANLIYA ÇIKMADI.** Bir sonraki push üç şeyi birlikte
-yayına alır: (a) damga düzeltmesi `272f862`, (b) hub keşfedilebilirliği, (c) `?screen=kategori`
-rotası. Push sonrası plandaki Görev 9 (canlı doğrulama) koşulur.
+**Durum: yayında.** `63d8566` push edildi (deploy 34 sn, yeşil), üç şey birlikte canlıya çıktı:
+(a) damga düzeltmesi `272f862`, (b) hub keşfedilebilirliği, (c) `?screen=kategori` rotası.
+Görev 9 canlı doğrulaması koşuldu — **uzantısız temiz profil + CDP** (`--headless=new`,
+`--disable-extensions`, taze `--user-data-dir`, `Runtime.evaluate` ana dünyada). Ölçümler:
+
+- **18 footer linki 18/18 = 200, kırık 0** — iki tur (ikincisi cache buster'lı). 18 hub
+  sayfasının İÇİNDEKİ 28 benzersiz iç linkin de hepsi 200.
+- **`?screen=kategori&kat=<slug>`** — `et` (791 ürün) · `sut` (2326) · `temizlik` (3792) ·
+  `meyve-sebze` (148) hepsi `screen-cat`'e düşüyor, `cat-title` doğru. `kat=yokboyle` →
+  `screen-home` (sessiz düşüş çalışıyor). Rota `kat`'ı lowercase'e çevirdiği için `kat=ET` de
+  `et`'i açıyor — kusur değil, büyük/küçük harfe duyarsızlık bedava geliyor.
+- **`pazar-veri-damgasi` artık veriden** — 17 sayfa `2026-08-18T00:00:00+03:00` (bağımsız
+  hesaplanan en yeni gözlem tarihiyle eşleşiyor), `/hal/` kendi `cekme_tarihi`'yle
+  `2026-08-18T04:07:28+03:00`. Aynı anda canlı `anasayfa.json` `uretim` = **`16:47:48Z`**,
+  yani build anı — damga onunla artık AYNI DEĞİL. Kusur kapandı, kapı görebilir hale geldi.
+- **`sw.js` v210** kayıtlı, `active`, scope `/`, önbellek tam 2 kayıt (`hal.json`,
+  `anasayfa.json`). **v209 temizliği ölçüldü** — aşağıdaki öğrenmeye bak.
+- **Regresyon yok** — beş şerit dolu (6/6/12/10/7), konsol yalnızca Cloudflare beacon
+  ihlalini basıyor (bilinen, hariç tutuluyor), `/zam/2026-08/` yerel üretimle **birebir aynı
+  bayt** ve Loacker satırı yerinde (CarrefourSA 141,99 → 289,90, +%104).
+- **CSP 9 direktif** — Görev 9 metni 10 bekliyordu, ama `src/worker.js` **her commit'inde 9**
+  (`540d417`/`c2b1679`/`925893f`), CLAUDE.md de 9 diyor. Regresyon değil, beklenti yanlıştı.
+  Ölçüm **negatif kontrollü**: `example.com`'dan görsel istendi, `img-src` ihlaliyle
+  engellendi — yani başlık gerçekten uygulanıyor, sıyrılmıyor.
+
+> **Uzantısız profilde bile yerel antivirüs CSP'ye ekleme yapıyor.** Sayfanın *uygulanan*
+> politikasında `https://gc.kis.v2.scr.kaspersky-labs.com wss:` görünüyor — Kaspersky
+> enjekte ediyor. `fetch()` ile okunan **yanıt başlığı** temiz 9 direktif. Yani ihlal
+> mesajındaki politika metnine değil, yanıt başlığına bak.
 
 18 hub sayfası canlıya çıkmıştı ama uygulamadan onlara giden **hiçbir `<a href>` yoktu** —
 keşif yalnızca sitemap'e kalıyordu. İki uç birleştirildi:
@@ -369,13 +395,14 @@ Uygulama teknik olarak çalışıyor ama **pratikte hâlâ dağıtılmamış dur
 - **Statik tarama bir CSP ihlalini yakalayamaz — kaynak host, isteyen host değildir.** Her font sağlayıcısı CSS'i bir hosttan, font DOSYALARINI başka hosttan veriyor: `fonts.googleapis.com`→`fonts.gstatic.com`, `api.fontshare.com`→**`cdn.fontshare.com`**. İkincisi repoda **hiçbir yerde geçmiyor**; CSS'in içinde ve **protokol-göreli** (`//cdn.fontshare.com/...`). Repo taraması temiz dedi, canlı ölçüm 6 ihlal buldu ve Cabinet Grotesk hiç yüklenmiyordu. Aynı sınıf: **Cloudflare beacon'ı** HTML'e *sonradan* ve **UA'ya koşullu** enjekte ediliyor — curl varsayılan UA'sıyla görünmüyor, tarayıcı UA'sıyla görünüyor (34.570 vs 34.929 bayt). **CSP'yi repo grep'iyle doğrulama; canlı sayfada, gerçek tarayıcıda ölç.**
 - **Supabase redirect allowlist'i CALLBACK'te uygulanıyor, authorize'da değil.** `/auth/v1/authorize?redirect_to=...` uydurma bir alan adına bile aynı 302'yi veriyor — orada bakmak hiçbir şey ayırt etmiyor. Doğrusu: authorize'dan `state`'i al, `/auth/v1/callback?state=...&error=access_denied` ile dön ve **nereye yönlendirdiğine** bak. Ama hedef alan adına bakmak da yetmez — Site URL zaten o alan adıysa izinli/izinsiz aynı yere düşer. **`redirect_to`'ya ayırt edici bir yol izi koy** (`/olcum-izi`): allowlist eşleşirse yol aynen korunur, eşleşmezse çıplak Site URL'e düşer. Kimlik bilgisi girmeden ölçülebilir.
 - **Kullanılmayan bir hedefin varsayılan kalması sessiz 404 tuzağıdır.** `vite.config.js` `base` varsayılanı geçişten sonra da `/pazar-app/` idi; `DEPLOY_TARGET` set edilmeyen her build (yerel, ya da env satırı düşerse CI) sessizce yanlış önekli yollar üretip Cloudflare'de tüm varlıkları 404 yapardı. Bir hedef terk edildiğinde **varsayılanı da taşı**, eskisini opt-in yap.
+- **Service worker `activate`'i "unregister + hemen register" ile ateşleyemezsin — yanlış NEGATİF verir.** 2026-08-18, v209 temizliğini ölçerken: sahte `pazar-cache-v209` kuruldu, kayıt `unregister()` edildi, aynı sayfada `/sw.js` yeniden register edildi → **v209 silinmedi**, "temizlik çalışmıyor" gibi göründü. Sebep kodda değil yöntemde: script baytı aynı ve sayfa hâlâ o SW tarafından kontrol ediliyorken Chrome kaydı diriltiyor, `install`/`activate` **hiç koşmuyor**. Çalışan yol: `unregister()` → **`about:blank`'e git** (kontrol edilen istemci kalmasın) → siteye geri dön. O zaman taze `install`+`activate` koşuyor ve `activate` `CACHE_NAME` dışındaki her anahtarı siliyor (ölçüldü: `[v210, v209]` → `[v210]`). **Kural: SW yaşam döngüsü iddiasını tek turda kapatma — beklenen sonuç çıkmazsa önce yöntemin o kod yolunu gerçekten çalıştırdığını kanıtla.**
 - **Commit ile test koşusunu aynı komut zincirine bağlama.** `for ... done; echo; git commit` şeklinde zincirlediğim için kırmızı test varken commit geçti (`test_hakmar.mjs` 2 FAIL). Testi **ayrı** koştur, çıktısını gör, sonra commit et.
 
 ---
 
 ## Yaklaşım & desenler
 
-- **SW cache version** her anlamlı `index.html`/`app.js`/`style.css`/`sw.js` değişikliğinde artırılır (şu an **v207**). Backend-only değişikliklerde (scraper, sync) bump edilmez. Akış: `git add` → `git commit` → `git pull --rebase` → `git push`. Not: `sw.js` yalnızca `data/hal.json` + `data/anasayfa.json`'ı önbelleğe alıyor ve `fetch`'i yalnızca o iki URL için yakalıyor — HTML/CSS/JS'i tutmuyor, onlar GitHub Pages'in `max-age=600`'üyle gelir. Bump proje kuralı ve tutarlılık için, HTML dağıtımını hızlandırmıyor.
+- **SW cache version** her anlamlı `index.html`/`app.js`/`style.css`/`sw.js` değişikliğinde artırılır (şu an **v210**, canlıda doğrulandı 2026-08-18). Backend-only değişikliklerde (scraper, sync) bump edilmez. Akış: `git add` → `git commit` → `git pull --rebase` → `git push`. Not: `sw.js` yalnızca `data/hal.json` + `data/anasayfa.json`'ı önbelleğe alıyor ve `fetch`'i yalnızca o iki URL için yakalıyor — HTML/CSS/JS'i tutmuyor, onlar Cloudflare'den `Cache-Control: public, max-age=0, must-revalidate` ile geliyor (ölçüldü; eski GitHub Pages `max-age=600` notu bayattı). Bump proje kuralı ve tutarlılık için, HTML dağıtımını hızlandırmıyor.
 - **Doğrulama:** Push sonrası `gh run watch` ile deploy'un koştuğu doğrulanır, sonra canlıda (Browser MCP) gerçek fonksiyonel test yapılır — "dosyada var mı" değil, "gerçekten çalışıyor mu". Layout değişikliklerinde ekran görüntüsü yetmez: değişiklikten ÖNCE geometri parmak izi (`getBoundingClientRect`) alınıp sonra sayısal karşılaştırılır.
 - **Kapsam disiplini:** İstenmeyen ekleme/çıkarma sessizce yapılmaz, not düşülür. Doküman/analiz önerileri körü körüne uygulanmaz — önce kodda geçerli mi diye bakılır.
 - **Büyük ürün/mimari kararları** (hosting migration, nav yapısı, tuzak'ın geleceği) Mustafa'nın onayı olmadan koda dökülmez.
