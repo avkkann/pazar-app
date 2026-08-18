@@ -1,6 +1,6 @@
 # Pazar App — Proje Handoff (Claude için)
 
-**Son güncelleme:** 2026-08-18 oturumu sonunda (Görev 9 canlı doğrulaması). Bu dosya her oturum başında okunur, sohbete asla ham metin olarak yapıştırılmaz.
+**Son güncelleme:** 2026-08-18 oturumu sonunda (ana sayfa tasarımı Faz 1+2 canlı). Bu dosya her oturum başında okunur, sohbete asla ham metin olarak yapıştırılmaz.
 
 ---
 
@@ -19,6 +19,65 @@ Mustafa (GitHub: avkkann), **Pazar App**'in tek geliştiricisi — Türk market 
 ---
 
 ## Mevcut durum (2026-08-17 itibarıyla)
+
+### 2026-08-18 — Ana sayfa tasarımı: token sistemi + hiyerarşi (CANLI, DOĞRULANDI)
+
+**Durum: yayında.** `34f0c8b` (Faz 1) + `dbdec46` (Faz 2), deploy 43 sn yeşil. `sw.js` **v212**.
+Teşhis "AI yapmış" değil **"kimse karar vermemiş"**ti: mor gradyan/cam efekti yoktu, yıkacak
+bir şey de yoktu — hiyerarşi ve token yoktu. İki faz sırayla koşuldu (token önce, hiyerarşi
+sonra; tersi iki kez iş demekti).
+
+**Envanterin kanıtı:** 266 font-size bildirimi 56 farklı px değerine dağılıyordu, 139'u px
+136'sı rem — iki ayrı sistem yan yana. Ana sayfada 12 metin boyutu, 11'i 10–15px bandında,
+ardışık adımlar %1–4 (gözle ayırt edilemeyen fark hiyerarşi değil gürültüdür). Spacing gridi
+tanımlıydı ama **%4,7** kullanılıyordu; fiili grid 6/10/14 ile 2px'ti. Rozet renkleri
+`:root`'ta değil, 8 ayrı yerde elle hex'ti.
+
+**FAZ 1 — token.** `--fs-1..6` = 12/14/16/20/24/32, **tek birim (px)**. Ana sayfadaki 31
+bildirim ROL ile eşlendi (en yakın değerle değil): ürün adı gövde, birim fiyat ikincil, rozet
+etiket. Emoji/glif boyutları ayrı isim alanında (`--glif-*`) — onlar metin değil, Faz 3'e ait.
+Spacing 605 parça token'a taşındı (**%4,7 → %95,8**), 6/10/14 → 8/12/16. Rozet renkleri 25
+kuralda anlamsal token'a geçti (`--rozet-zam-*` vb.), koyu tema karşılıkları **ayrı isimle**
+(`--*-koyu`) çünkü `.strip-card-rozet`in koyu tema override'ı hiç yazılmamış — token'ı tema
+bloğunda ezseydim o rozetler sessizce değişirdi.
+
+> **`--fs-3` = 16px pazarlık konusu değil.** Kullanıcıların **%64'ü iOS Safari** ve iOS,
+> 16px'ten küçük bir `<input>`'a odaklanınca sayfayı otomatik yakınlaştırır. Arama kutusu
+> 14px'ti — her aramada zoom sıçraması. Ölçekten çıkan bedava kazanç; canlıda doğrulandı
+> (3 input, üçü de 16px, 16px altı **0**).
+
+**FAZ 2 — hiyerarşi.** Kart yeniden kuruldu: **görsel → FİYAT → rozet → ad → birim fiyat**.
+Öncesinde kartın en büyük öğesi 56px emoji (bilgisiz), en küçüğü 10px zam oranıydı (en
+değerli bilgi). Şimdi fiyat 24px/800 Cabinet Grotesk, ad 16px/500 — **ad küçültülmedi**,
+hiyerarşi boyut+ağırlık karşıtlığıyla kuruldu, Faz 1'in iOS kazanımı korundu.
+
+- **Fiyat karta girdi.** Bir fiyat karşılaştırma uygulamasının ana sayfasında ürünün fiyatı
+  HİÇ YOKTU. Veri uydurulmadı: `en_dusuk_fiyat` katalogdaki **16.813 ürünün %100'ünde** dolu.
+- **Kart 150 → 164px** (`--kart-genislik`, tek kaynak). 390px'te dört seçenek ölçüldü, Mustafa
+  seçti: 164 **yapısal eşik** — altında zam rozeti ikiye bölünüyor ve birim fiyatın `₺`
+  işareti tek başına alt satıra düşüyor. Bedeli ekrana sığan kart 2,48 → 2,28.
+- **Cabinet Grotesk seçimi de ölçüm:** en uzun fiyat "1.849,95 ₺" 24px'te Cabinet Grotesk 800
+  ile **109px**, Inter 800 ile **127px**. Kartın 138px iç genişliğine Inter sığmazdı.
+- **Şerit önceliği:** ayrım BOŞLUKLA (24 → 32px), ağır ayraç çizgisi yok. Öncelikli iki şerit
+  (tuzaklar, zam — slogan tam olarak bu ikisi) başlıkta bir ölçek adımı büyük ve bir kesim
+  ağır (20/700 → 24/800). Vurgu ikiyle sınırlı: üçe bölmek vurguyu bitirir.
+- **Tazelik göstergesi:** "Fiyatlar 18 Ağustos 2026 verisi" + `<time datetime>`. Kaynak
+  `anasayfa.json`'un YENİ `veri_tarihi` alanı; `uretim` **bilerek kullanılmadı** (build anı).
+  Hesap `scripts/veri-tarihi.mjs`'e çıkarıldı ve `hub-uret.mjs` de oradan besleniyor — iki
+  üretici aynı günü söylemek zorunda. Maliyet 150 ms.
+
+**Canlı doğrulama (uzantısız temiz profil + CDP, 390/1440, iki tema, iki tur):** fiyat
+**41/41** kartta 24px Cabinet Grotesk · kartın en büyük öğesi 12/12 kartta fiyat · tazelik
+"18 Ağustos 2026", `veri_tarihi` (`…T00:00:00+03:00`) ≠ `uretim` (`20:35:20Z`) · `sw.js`
+**v212**, önbellek tam `[v212]`, **v211 temizliği ölçüldü** (`[v212,v211]` → `[v212]`) ·
+5 şerit `[6,6,12,10,7]` · yatay taşma **0** · input 16px altı **0** · CSP **9 direktif**,
+negatif kontrol engellendi · konsol hatası **0**.
+
+> **Sayfanın en büyük öğesi hâlâ 56px `cat-emoji`** — bilerek. Kart hiyerarşisi çözüldü,
+> emoji ızgarası Faz 3 (gerçek görsel üretme maliyeti var, ayrı karar).
+
+**Yeni dosyalar:** `scripts/veri-tarihi.mjs`, `scripts/css-token.mjs`, `test_kart_fiyat.mjs`
+(43 iddia). Kökteki `PROMPT_TASARIM.md` bu turun görev metni (commit edilmedi).
 
 ### 2026-08-18 — Görev 8+9: hub sayfaları uygulamadan keşfedilebilir (CANLI, DOĞRULANDI)
 
@@ -396,13 +455,18 @@ Uygulama teknik olarak çalışıyor ama **pratikte hâlâ dağıtılmamış dur
 - **Supabase redirect allowlist'i CALLBACK'te uygulanıyor, authorize'da değil.** `/auth/v1/authorize?redirect_to=...` uydurma bir alan adına bile aynı 302'yi veriyor — orada bakmak hiçbir şey ayırt etmiyor. Doğrusu: authorize'dan `state`'i al, `/auth/v1/callback?state=...&error=access_denied` ile dön ve **nereye yönlendirdiğine** bak. Ama hedef alan adına bakmak da yetmez — Site URL zaten o alan adıysa izinli/izinsiz aynı yere düşer. **`redirect_to`'ya ayırt edici bir yol izi koy** (`/olcum-izi`): allowlist eşleşirse yol aynen korunur, eşleşmezse çıplak Site URL'e düşer. Kimlik bilgisi girmeden ölçülebilir.
 - **Kullanılmayan bir hedefin varsayılan kalması sessiz 404 tuzağıdır.** `vite.config.js` `base` varsayılanı geçişten sonra da `/pazar-app/` idi; `DEPLOY_TARGET` set edilmeyen her build (yerel, ya da env satırı düşerse CI) sessizce yanlış önekli yollar üretip Cloudflare'de tüm varlıkları 404 yapardı. Bir hedef terk edildiğinde **varsayılanı da taşı**, eskisini opt-in yap.
 - **Service worker `activate`'i "unregister + hemen register" ile ateşleyemezsin — yanlış NEGATİF verir.** 2026-08-18, v209 temizliğini ölçerken: sahte `pazar-cache-v209` kuruldu, kayıt `unregister()` edildi, aynı sayfada `/sw.js` yeniden register edildi → **v209 silinmedi**, "temizlik çalışmıyor" gibi göründü. Sebep kodda değil yöntemde: script baytı aynı ve sayfa hâlâ o SW tarafından kontrol ediliyorken Chrome kaydı diriltiyor, `install`/`activate` **hiç koşmuyor**. Çalışan yol: `unregister()` → **`about:blank`'e git** (kontrol edilen istemci kalmasın) → siteye geri dön. O zaman taze `install`+`activate` koşuyor ve `activate` `CACHE_NAME` dışındaki her anahtarı siliyor (ölçüldü: `[v210, v209]` → `[v210]`). **Kural: SW yaşam döngüsü iddiasını tek turda kapatma — beklenen sonuç çıkmazsa önce yöntemin o kod yolunu gerçekten çalıştırdığını kanıtla.**
+- **Flex öğesinin `min-width` varsayılanı `auto`dur ve `flex-basis`'i EZER.** 2026-08-18: rozet yazısı 11→12px olunca "+%137 CarrefourSA" 131px istedi, kartın iç genişliği 124px'ti — kart `flex:0 0 150px` olmasına rağmen **158px'e büyüdü** ve şerit boyunca kart genişliği tekdüzeliğini kaybetti. Görünür bir "hata" yok, geometri sessizce kayıyor. **Sabit genişlikli her flex kartına `min-width:0` yaz.** Ayrıca genişliği ezen İKİNCİ bir kural olabilir: `.detay-bolum-liste-strip .strip-card` 150px'e pinliyordu, ana sayfa 164'e geçince ürün detayı geride kaldı — testteki "hiçbir kural genişliği ham px ile ezmiyor" iddiası yakaladı.
+- **Renk/boyut KORUMA testleri değer token'a taşınınca kırılır — testi zayıflatma, token'ı ÇÖZ.** `test_zam`/`test_supheli` kural gövdesinde ham hex arıyordu; renkler `:root`'a taşınınca kırmızıya döndü. **Anlam değil YÖNTEM bayatlamıştı.** `scripts/css-token.mjs` ile `var(--x)` çözülüp sınanıyor: iddia korundu, üstüne "token gerçekten doğru renge çözülüyor mu" eklendi (test_zam 66 → 68 iddia). **Kural: bir koruma testini yeşile döndürmek için iddiayı gevşetme; iddianın baktığı yeri güncelle, sonra kasten bozup hâlâ koruduğunu KANITLA** (`--rozet-zam-fg` `#DC2626` yapılınca test kırılıyor — denendi).
+- **Kaynak taraması kendi uyarı yorumunu yakalayabilir.** `veriTazelikCiz` içindeki "toISOString().slice() YASAK" yorumu, testin `/toISOString\(\)\.slice/` aramasıyla eşleşip yanlış alarm verdi. Kaynakta yasak desen ararken **önce yorumları soy**.
+- **Bir tasarım sayısı zevk değil EŞİK olabilir.** Kart genişliğinde 150/164/176/190 ölçüldü: 164, rozetin ikiye bölünmeyi bıraktığı nokta (sarma 8 → 0). Altı sıkışık, üstü sadece görünürlük yiyor (190'da ekrana 2 kart bile sığmıyor, "yandaki kart görünüyor" ipucu kayboluyor). **Genişlik/boşluk kararında "hangisi daha güzel" diye sorma; neyin kırıldığını ölç.**
+- **Rozetin ne dediğini KODDAN doğrula.** "%100 pahalı" tuzak rozetini marketler arası fark sandım; `tuzakRozetiHesapla` → `digerPaketleriBul` okununca **aynı ürünün başka paket boyuna göre birim fiyat** farkı olduğu çıktı. Fark önemliydi: "birim fiyat = fiyat ise satırı gizle" kuralım tam da rozetin dayandığı satırı gizliyordu. **Karttan bir bilgiyi kaldırmadan önce, kalan öğelerden hangisinin ona dayandığına bak.**
 - **Commit ile test koşusunu aynı komut zincirine bağlama.** `for ... done; echo; git commit` şeklinde zincirlediğim için kırmızı test varken commit geçti (`test_hakmar.mjs` 2 FAIL). Testi **ayrı** koştur, çıktısını gör, sonra commit et.
 
 ---
 
 ## Yaklaşım & desenler
 
-- **SW cache version** her anlamlı `index.html`/`app.js`/`style.css`/`sw.js` değişikliğinde artırılır (şu an **v210**, canlıda doğrulandı 2026-08-18). Backend-only değişikliklerde (scraper, sync) bump edilmez. Akış: `git add` → `git commit` → `git pull --rebase` → `git push`. Not: `sw.js` yalnızca `data/hal.json` + `data/anasayfa.json`'ı önbelleğe alıyor ve `fetch`'i yalnızca o iki URL için yakalıyor — HTML/CSS/JS'i tutmuyor, onlar Cloudflare'den `Cache-Control: public, max-age=0, must-revalidate` ile geliyor (ölçüldü; eski GitHub Pages `max-age=600` notu bayattı). Bump proje kuralı ve tutarlılık için, HTML dağıtımını hızlandırmıyor.
+- **SW cache version** her anlamlı `index.html`/`app.js`/`style.css`/`sw.js` değişikliğinde artırılır (şu an **v212**, canlıda doğrulandı 2026-08-18). Backend-only değişikliklerde (scraper, sync) bump edilmez. Akış: `git add` → `git commit` → `git pull --rebase` → `git push`. Not: `sw.js` yalnızca `data/hal.json` + `data/anasayfa.json`'ı önbelleğe alıyor ve `fetch`'i yalnızca o iki URL için yakalıyor — HTML/CSS/JS'i tutmuyor, onlar Cloudflare'den `Cache-Control: public, max-age=0, must-revalidate` ile geliyor (ölçüldü; eski GitHub Pages `max-age=600` notu bayattı). Bump proje kuralı ve tutarlılık için, HTML dağıtımını hızlandırmıyor.
 - **Doğrulama:** Push sonrası `gh run watch` ile deploy'un koştuğu doğrulanır, sonra canlıda (Browser MCP) gerçek fonksiyonel test yapılır — "dosyada var mı" değil, "gerçekten çalışıyor mu". Layout değişikliklerinde ekran görüntüsü yetmez: değişiklikten ÖNCE geometri parmak izi (`getBoundingClientRect`) alınıp sonra sayısal karşılaştırılır.
 - **Kapsam disiplini:** İstenmeyen ekleme/çıkarma sessizce yapılmaz, not düşülür. Doküman/analiz önerileri körü körüne uygulanmaz — önce kodda geçerli mi diye bakılır.
 - **Büyük ürün/mimari kararları** (hosting migration, nav yapısı, tuzak'ın geleceği) Mustafa'nın onayı olmadan koda dökülmez.
