@@ -6,7 +6,7 @@
 > doğrulama komutları var. Kod, uygulama turunda yazılacak.
 
 **Amaç:** Ürün sayfası açmadan, ince içerik üretmeden, veriden doğal olarak dolu
-çıkan **19 hub sayfası** üretmek ve bayat sayfa yayınlamayı imkânsız kılmak.
+çıkan **hub sayfaları** üretmek ve bayat sayfa yayınlamayı imkânsız kılmak.
 
 **Mimari:** `anasayfa.json` deseninin aynısı — üretim build zamanında, mantık
 `app.js`'ten `node:vm` ile çağrılarak. Sayfalar `.hub/` ara dizinine yazılır,
@@ -36,7 +36,7 @@ Her görevin gereksinimleri bunları örtük olarak içerir.
   kaç kayıttan kaç tanesinin gösterildiği yazar; atlanan sayfa manifest'e **gerekçesiyle** düşer.
 - **Türkçe metin taşıyan dosyalar `Edit`/`Write` ile yazılır**, `Set-Content`/`Out-File` ile **değil**
   (üç kez bozuldu).
-- **Test canlı veriye sabit sayı pinlemez.** "19 sayfa" testte sabit yazılmaz; beklenen sayı
+- **Test canlı veriye sabit sayı pinlemez.** Sayfa sayısı testte sabit yazılmaz; beklenen sayı
   `MARKET_NAMES` + `KATEGORILER` + veri içindeki ay sayısı + 1'den **türetilir**.
 - **Yeni HTML sayfaları JS içermez.** CSP `default-src 'self'` + `style-src 'unsafe-inline'`;
   hub sayfaları satır içi `<style>` kullanır, harici script kullanmaz, `app.js` yüklemez.
@@ -55,14 +55,18 @@ Plan bu sayılara dayanıyor; hepsi bu turda `data/` üzerinde ölçüldü.
 | ≥2 market fiyatı olan | 2.747 (%16,3) |
 | `gecmis_fiyatlar.json` seri sayısı | 21.158, toplam 82.032 nokta (ort. 3,88 nokta/seri) |
 | Veride bulunan aylar | 2026-05 (kısmi, 25 Mayıs'ta başlıyor), 2026-06, 2026-07, 2026-08 |
-| Aylık ≥%15 artış (salınım elenmiş) | 06: **1.907** satır / 1.798 ürün · 07: **1.727** / 1.629 · 08: **2.315** / 2.191 |
+| Aylık ≥%15 artış (salınım elenmiş) — **YANLIŞ ÖLÇÜT, Görev 4'te düzeltildi** | 06: 1.907 · 07: 1.727 · 08: 2.315 — ay başı→ay sonu karşılaştırması. Ağustos'ta bu satırların **%74,9'u** app.js ölçütüyle düşüyor (son fiyat ay öncesinde zaten görülmüş). |
 | Market başına ürün | carrefour 6.575 · migros 5.283 · a101 2.377 · sok 1.897 · bim 1.794 · tarim_kredi 1.417 · hakmar 1.338 |
 | Market başına "en ucuz olduğu ürün" (≥2 marketli) | carrefour 1.216 · migros 851 · sok 307 · a101 292 · bim 289 · tarim_kredi 239 · hakmar 102 |
 | Market başına il (`il_marketler.json`) | a101/bim/migros/sok 81 · tarim_kredi 61 · carrefour 34 · hakmar 9 |
 | Kategori başına ürün / ≥2 marketli / alt kategori | atistirmalik 3.856/747/9 · temizlik 3.788/491/20 · gida 3.487/569/15 · sut 2.325/389/11 · icecek 2.130/403/8 · et 795/75/6 · dondurulmus 295/28/1 · meyve 149/45/2 |
 | `hal.json` | 142 kalem, bülten 17.08.2026 |
 
-**Sonuç: bugün 19 sayfa.** 3 ay + 7 market + 8 kategori + 1 hal.
+**Sonuç: bugün 18 sayfa.** 2 ay + 7 market + 8 kategori + 1 hal.
+> **GÜNCELLEME (Görev 4, ölçümle):** ay sayfası ay ÖNCESİNDE en az 30 günlük geçmiş istiyor
+> (app.js'in 30 günlük penceresinden türedi) — "önceki zirve" ölçütü daha kısa bir pencereye
+> dayanamaz. 2026-06 öncesinde 7 günlük veri var, o yüzden düştü. Eylül'den itibaren her ay
+> bu şartı kendiliğinden sağlıyor.
 2026-05 **elenir** (veri ayın 25'inde başlıyor, ay temsil edilmiyor) — manifest'e gerekçeyle yazılır.
 Her ay başında liste kendiliğinden 1 artar.
 
@@ -116,15 +120,15 @@ Ortak iskelet (dört tip için de aynı, `hub-sayfa.mjs` tek yerden üretir):
 Başlık kuralı: **sayfa başına tek `h1`**, bölümler `h2`, tablo başlığı `th`. `h3` yok
 (seviye atlaması riski). `index.html`'deki tek-h1 kuralıyla aynı disiplin.
 
-### 1. `/zam/<yyyy-aa>/` — aylık zam listesi (bugün 3 sayfa)
+### 1. `/zam/<yyyy-aa>/` — aylık zam listesi (bugün 2 sayfa: Temmuz, Ağustos)
 
 - **h1:** `Ağustos 2026'da zamlanan ürünler`
 - **Özet paragrafı (üretilen sayılarla):** o ay ≥%15 artış gözlenen ürün-market çifti sayısı,
   ayrı ürün sayısı, kaç zincirde, kaç kategoride, kapsanan gün aralığı.
-  Örn. Ağustos: 2.315 çift / 2.191 ürün / 7 zincir / 8 kategori / 1–18 Ağustos.
-- **h2 "Ayın en çok zamlanan 50 ürünü"** — tablo, **50 satır**:
+  Örn. Ağustos: 205 çift / 198 ürün / 7 zincir / 1–18 Ağustos (Temmuz 363 çift).
+- **h2 "Ayın en çok zamlanan N ürünü"** — başlık gerçek satır sayısını söyler, en çok 50 satır:
   `Ürün · Market · Ay başı ₺ · Son ₺ · Artış % · Kategori (→ /kategori/<slug>/)`.
-  Kırpma sayfada yazılı: "eşiği geçen 2.315 çiftin artış sırasına göre ilk 50'si".
+  Kırpma sayfada yazılı (gerçek sayılarla, `kirpmaNotu` üretir).
 - **h2 "Zincir bazında dağılım"** — **7 satır**: `Market (→ /market/<slug>/) · zam sayısı · medyan artış %`.
 - **h2 "Kategori bazında dağılım"** — **8 satır**: `Kategori (→ /kategori/<slug>/) · zam sayısı · medyan artış %`.
 - **h2 "Bu liste nasıl hesaplandı"** — yöntem paragrafı: %15 eşiği, salınım elemesi
@@ -230,7 +234,7 @@ yediği desen). Tazelik kontrolünün karşılaştırması tam da bu ayrışmay�
 tazelik kontrolü türetilmiş beklenen kümeyle manifest'i karşılaştırır, manifest'te ne
 `uretildi` ne `atlandi` olarak görünen bir sayfa varsa **kırmızı**.
 
-Bugünkü ölçüme göre 19 sayfanın hiçbiri eşiğin altında değil; en dar sayfa
+Bugünkü ölçüme göre üretilen sayfaların hiçbiri eşiğin altında değil; en dar sayfa
 `/kategori/dondurulmus/` (~68 satır) ve o da eşiğin 5 katı. Eşik gelecekteki
 çürümeyi yakalamak için var, bugünü kısıtlamak için değil.
 
@@ -390,7 +394,7 @@ küçük fixture'larla (gerçek 17 MB veri okunmaz):
 - her sayfada en az 3 iç link ve **atlanmış sayfaya link yok**
 
 **3. `test_hub_tazelik.py`** — `scripts/veri_tazelik_kontrol.py`'yi import eder (kopya mantık yok):
-- geçici dizine kurulan sahte `dist/`: 19 sayfa + manifest → `exit 0`
+- geçici dizine kurulan sahte `dist/`: üretilen sayfalar + manifest → `exit 0`
 - manifest'te `uretildi` yazan bir sayfa dosya olarak **yoksa** → `exit 1` ve adı çıktıda
 - manifest'te hiç görünmeyen beklenen sayfa (ne `uretildi` ne `atlandi`) → `exit 1`
 - `atlandi` + sebep dolu → **yeşil**, sebep boş → `exit 1`
@@ -517,7 +521,7 @@ Her görev bağımsız test edilebilir bir çıktı bırakır. Kod, uygulama tur
 **Dosyalar:** Oluştur `scripts/hub-uret.mjs` · Değiştir `.gitignore`
 - [ ] Veriyi oku, `app-vm` ile `app.js` sabitlerini/fonksiyonlarını al, dört tip modeli kur
 - [ ] `.hub/**` + `.hub/manifest.json` yaz; atlananları `[hub] ATLANDI` ile bas
-- [ ] Koştur: **19 sayfa** üretildiğini, 2026-05'in gerekçeyle atlandığını, sürenin < 30 sn
+- [ ] Koştur: beklenen sayfaların üretildiğini, 2026-05 ve 2026-06'nın gerekçeyle atlandığını, sürenin < 30 sn
       olduğunu çıktıdan doğrula
 - [ ] Commit
 
@@ -525,7 +529,7 @@ Her görev bağımsız test edilebilir bir çıktı bırakır. Kod, uygulama tur
 **Dosyalar:** `scripts/sitemap.mjs`, `test_sitemap.mjs` (5. bölüm), `scripts/prepare-public.mjs`
 - [ ] Test bölümünü yaz (f-4), kırmızı gör
 - [ ] `sitemapEkle` + `prepare-public` bağlantısı, yeşile çevir
-- [ ] `node scripts/prepare-public.mjs` sonrası `public/sitemap.xml`'de 20 `<url>` say
+- [ ] `node scripts/prepare-public.mjs` sonrası `public/sitemap.xml`'de `1 + üretilen sayfa` kadar `<url>` say (bugün 19)
 - [ ] Commit
 
 ### Görev 6 — tazelik kontrolü `--hub` kipi (TDD, ÖN KOŞUL)
@@ -558,7 +562,7 @@ Her görev bağımsız test edilebilir bir çıktı bırakır. Kod, uygulama tur
 - [ ] Deploy sonrası `curl -sI https://pazarapp.net/zam/2026-08/` → **200** (Risk 1'in kapanışı;
       tarayıcı uzantısı header sıyırdığı için ölçüm `curl` ile, MCP tarayıcısıyla değil)
 - [ ] 19 URL'nin hepsi için durum kodu tablosu çıkar; 404 varsa `html_handling` yaz ve tekrar
-- [ ] `sitemap.xml` canlıda 20 `<url>` içeriyor mu
+- [ ] `sitemap.xml` canlıda `1 + üretilen sayfa` kadar `<url>` içeriyor mu (bugün 19)
 - [ ] Bir hub sayfasını canlı tarayıcıda aç: göreli yol 404'ü var mı (Ağ sekmesi)
 - [ ] `CLAUDE.md`'ye durum notu: ne üretiliyor, nerede duruyor, hangi kapı kırmızıya çeviriyor,
       Search Console ölçüm penceresi (8-12 hafta) ve ürün sayfalarının **açılmadığı** kararı
