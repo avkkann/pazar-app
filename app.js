@@ -611,6 +611,37 @@ function _kacir(metin) {
     .replace(/'/g, '&#39;');
 }
 
+// ── MARKET SINIFI (class özniteliği için BEYAZ LİSTE) ────────────────
+// Bu, İKİNCİ tekrar: bir tur önce m-tag'in METNİ kaçırıldı (_kacir eklendi)
+// ama CLASS özniteliği unutuldu -- sonuç ham geçiyordu:
+//   <span class="m-tag m-<img src=x onerror=alert(1)>">...
+// f.market marketfiyati.org.tr API -> scraper.py -> data/urunler_*.json
+// üzerinden gelen ÜÇÜNCÜ TARAF dize. Öznitelik (class="...") bağlamında
+// _kacir (kaçış) YETERSİZ: değer kaçırılsa bile class'ın KENDİSİ (öznitelik
+// sınırı) kırılabilir. Doğru savunma kaçış değil BEYAZ LİSTEdir -- yalnızca
+// [a-z0-9_-] karakterleri class adı olarak anlamlı olabilir, gerisi risktir.
+// style.css'teki .m-a101/.m-bim/.m-carrefour/.m-migros/.m-sok/.m-tarim_kredi/
+// .m-hakmar/.m-default AYNEN korunmalı -- bu yüzden tanınan kodlar bu
+// süzgeçten DEĞİŞMEDEN geçer (bkz. test_esit_fiyat.mjs). (DENETIM.md 1.5
+// hâlâ kapalı: 79 innerHTML borcu duruyor, bu fonksiyon o borcu KAPATMIYOR,
+// yalnızca market etiketi üretimini tek yerden geçirip aynı hatanın ÜÇÜNCÜ
+// kez tekrarlanmasını engelliyor.)
+function _marketSinifi(kod) {
+  const slug = String(kod === null || kod === undefined ? '' : kod)
+    .toLowerCase()
+    .replace(/[^a-z0-9_-]/g, '');
+  return slug || 'default';
+}
+
+// Tam <span class="m-tag m-SLUG">Etiket</span> üretir. Çağıran ne class'ı
+// ne metni kendi kurmasın diye METİN ve ÖZNİTELİK bağlamlarını BİRLİKTE ele
+// alan TEK yardımcı budur -- ikisini ayrı ayrı elde etme hatası (bkz. yukarı)
+// böylece tekrarlanamaz.
+function _marketEtiketiHTML(kod) {
+  const etiket = MARKET_NAMES[kod] || _kacir(kod) || '?';
+  return `<span class="m-tag m-${_marketSinifi(kod)}">${etiket}</span>`;
+}
+
 const KAT_EMOJI = {
   meyve:'🍎', sebze:'🥦', et:'🥩', sut:'🧀',
   gida:'🥫', icecek:'🥤', temizlik:'🧴', atistirmalik:'🍫', dondurulmus:'🧊', diger:'📦'
@@ -1038,7 +1069,7 @@ function openDetay(urunId) {
   const mktRows = mktler.map((f, i) => {
     const { isBest, isWorst } = durumlar[i];
     return `<div class="detay-mkt-row${isBest ? ' best' : isWorst ? ' worst' : ''}">
-      <span class="m-tag m-${f.market || 'default'}">${MARKET_NAMES[f.market] || _kacir(f.market) || '?'}</span>
+      ${_marketEtiketiHTML(f.market)}
       <span class="detay-mkt-price">${listeFiyatHTML(f)}${tlHTML(f.fiyat)}${isWorst ? '<span class="detay-mkt-badge">en pahalı</span>' : ''}</span>
     </div>${bildirimUyariHTML(u._sid, f.market)}`;
   }).join('');
@@ -2478,7 +2509,7 @@ function _gizlenenFiyatHTML(temiz) {
   const med = f.length ? (f.length % 2 ? f[o] : (f[o - 1] + f[o]) / 2) : 0;
   const kat = med > 0 ? Math.round(g[0].fiyat / med) : 0;
   const satirlar = g.map(x => `<div class="detay-mkt-row gizli">
-      <span class="m-tag m-${x.market || 'default'}">${MARKET_NAMES[x.market] || x.market || '?'}</span>
+      ${_marketEtiketiHTML(x.market)}
       <span class="detay-mkt-price">${tlHTML(x.fiyat)}</span>
     </div>`).join('');
   return `<button type="button" class="gizli-fiyat-ozet" aria-expanded="false" onclick="gizlenenFiyatToggle(this)">
@@ -4485,7 +4516,7 @@ function hesaplaSecili(seciliMarketler) {
   const blocks = seciliMarketler.filter(k => atama[k]).map(k => {
     const g = atama[k];
     return `<div class="cmp-mkt-block">
-      <div class="cmp-mkt-name"><span class="cmp-mkt-dot m-${k}"></span>${MFROM[k] || g.name + "'den"} alacakların:</div>
+      <div class="cmp-mkt-name"><span class="cmp-mkt-dot m-${_marketSinifi(k)}"></span>${MFROM[k] || g.name + "'den"} alacakların:</div>
       ${g.items.map(_cmpItemHTML).join('')}
       <div class="cmp-mkt-subtotal"><span>Toplam</span><span class="cmp-mkt-subtotal-val">${tl(g.total)}</span></div>
     </div>`;

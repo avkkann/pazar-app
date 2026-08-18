@@ -390,5 +390,77 @@ console.log('\n=== 14. Grafik gun secimi -- esitlikte EN GEC gun isaretleniyor (
   }
 }
 
+// _marketSinifi / _marketEtiketiHTML / _gizlenenFiyatHTML -- bu UCUNCU
+// tekrar: m-tag METNI once kacirildi (_kacir), sonra CLASS oznitelig
+// unutuldu (class="m-tag m-<img ...>"), sonra ikinci bir yer
+// (_gizlenenFiyatHTML) hic dokunulmamisti. Tek yardimciya gecis: class icin
+// BEYAZ LISTE (_marketSinifi), tam etiket icin TEK fonksiyon (_marketEtiketiHTML).
+console.log('\n=== 15. _marketSinifi -- class ozniteligi icin BEYAZ LISTE (GUVENLIK) ===');
+{
+  const ctx15 = { console };
+  vm.createContext(ctx15);
+  vm.runInContext(fnKaynak('_marketSinifi'), ctx15);
+  const c15 = (kod) => vm.runInContext('_marketSinifi', ctx15)(kod);
+
+  ok('zararli kod -> zararsiz slug (ozel karakterler atilir)',
+    c15('<img src=x onerror=alert(1)>') === 'imgsrcxonerroralert1',
+    c15('<img src=x onerror=alert(1)>'));
+  ok("a'b -> ab (tirnak atilir)", c15("a'b") === 'ab', c15("a'b"));
+  ok("bos dize -> 'default'", c15('') === 'default');
+  ok("null -> 'default'", c15(null) === 'default');
+  ok("undefined -> 'default'", c15(undefined) === 'default');
+  ok("taninan kod (tarim_kredi) BOZULMADAN geciyor (style.css .m-tarim_kredi)",
+    c15('tarim_kredi') === 'tarim_kredi', c15('tarim_kredi'));
+  for (const k of ['bim', 'a101', 'carrefour', 'migros', 'sok', 'hakmar']) {
+    ok(`taninan kod (${k}) BOZULMADAN geciyor (style.css .m-${k})`, c15(k) === k, c15(k));
+  }
+  ok('buyuk harf -> kucuk harfe cevrilir (BIM -> bim)', c15('BIM') === 'bim', c15('BIM'));
+}
+
+console.log('\n=== 16. _marketEtiketiHTML -- METIN ve CLASS birlikte guvenli (GUVENLIK) ===');
+{
+  const ctx16 = { console };
+  vm.createContext(ctx16);
+  vm.runInContext('const MARKET_NAMES = ' + APP.match(/const MARKET_NAMES = (\{[\s\S]*?\n\};)/)[1], ctx16);
+  vm.runInContext(fnKaynak('_kacir'), ctx16);
+  vm.runInContext(fnKaynak('_marketSinifi'), ctx16);
+  vm.runInContext(fnKaynak('_marketEtiketiHTML'), ctx16);
+  const h16 = (kod) => vm.runInContext('_marketEtiketiHTML', ctx16)(kod);
+
+  const zararli = h16('<img src=x onerror=alert(1)>');
+  ok('zararli kodda class icinde ham < YOK', !/class="[^"]*</.test(zararli), zararli);
+  ok('zararli kodda metinde ham <img YOK', !/>\s*<img/.test(zararli) && !zararli.includes('><img'), zararli);
+  ok('zararli kodda ham <img hic gecmiyor', !/<img/.test(zararli), zararli);
+  ok('zararli kodda kacirilmis &lt;img goruluyor (metin kacirildi)', /&lt;img/.test(zararli), zararli);
+
+  const bilinen = h16('bim');
+  ok("taninan kod (bim) -> <span class=\"m-tag m-bim\">BİM</span>",
+    bilinen === '<span class="m-tag m-bim">BİM</span>', bilinen);
+}
+
+console.log('\n=== 17. _gizlenenFiyatHTML -- zararli market kodunda ham <img YOK (GUVENLIK) ===');
+{
+  const ctx17 = { console };
+  vm.createContext(ctx17);
+  vm.runInContext('const MARKET_NAMES = ' + APP.match(/const MARKET_NAMES = (\{[\s\S]*?\n\};)/)[1], ctx17);
+  vm.runInContext(fnKaynak('_kacir'), ctx17);
+  vm.runInContext(fnKaynak('_marketSinifi'), ctx17);
+  vm.runInContext(fnKaynak('_marketEtiketiHTML'), ctx17);
+  vm.runInContext(fnKaynak('tlHTML'), ctx17);
+  vm.runInContext(fnKaynak('_gizlenenFiyatHTML'), ctx17);
+
+  const temiz = {
+    gecerli: [{ market: 'bim', fiyat: 5 }],
+    gizlenen: [{ market: '<img src=x onerror=alert(1)>', fiyat: 500 }],
+  };
+  ctx17._temiz = temiz;
+  const g17 = vm.runInContext('_gizlenenFiyatHTML(_temiz)', ctx17);
+  ok('ham <img hic gecmiyor (once kirmizi gorulup dogrulandi, simdi yesil)', !/<img/.test(g17), g17);
+  ok('class icinde ham < YOK', !/class="[^"]*</.test(g17), g17);
+  ok('kacirilmis &lt;img metinde goruluyor', /&lt;img/.test(g17), g17);
+  ok('_marketEtiketiHTML kullaniyor (tekil kaynak -- kopya mantik degil)',
+    /_marketEtiketiHTML\(x\.market\)/.test(fnKaynak('_gizlenenFiyatHTML')));
+}
+
 console.log('\nPASS=' + pass + '  FAIL=' + fail);
 process.exit(fail ? 1 : 0);
