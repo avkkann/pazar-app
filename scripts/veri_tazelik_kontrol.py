@@ -244,12 +244,22 @@ def _meta_oku(html, isim):
     return eslesme.group(1) if eslesme else None
 
 
-def hub_kontrolu(hub_dir, app_js_yolu=None, simdi=None):
+def hub_kontrolu(hub_dir, app_js_yolu=None, simdi=None, manifest_yolu=None):
     """--hub kipinin cekirdegi.
 
-    hub_dir: denetlenecek dizin -- uretim .hub/ ya da yayina giden dist/ ile
-    AYNI SEKLE sahip olmali: <hub_dir>/manifest.json + her manifest kaydinin
-    yolu icin <hub_dir><yol>index.html.
+    hub_dir: denetlenecek dizin -- sayfalarin KENDISI buradan okunur. Uretim
+    kullaniminda bu YAYINA GIDEN dist/ olmali (ara urun .hub/ DEGIL) --
+    prepare-public.mjs'in kopyalama adimi bir sayfayi duserse/yarim
+    kopyalarsa/bozarsa bu kontrolun onu yakalayabilmesi icin. Her manifest
+    kaydinin yolu icin <hub_dir><yol>index.html aranir.
+
+    manifest_yolu: manifest.json'un okunacagi TAM DOSYA YOLU. None ise
+    ESKI/VARSAYILAN davranis korunur: <hub_dir>/manifest.json. Ayri
+    verilebilmesinin sebebi isim cakismasi -- dist/manifest.json UYGULAMANIN
+    PWA manifest'i (bir nesne, hub manifest'i gibi bir liste DEGIL); hub
+    manifest'i .hub/manifest.json'da kaliyor ve BILEREK dist/'e
+    kopyalanmiyor (bkz. prepare-public.mjs, deploy.yml). Yani uretimde:
+    sayfalar dist'ten (yayina giden), kayit .hub'dan (--manifest ile) okunur.
 
     app_js_yolu/simdi TEST ICIN enjekte edilebilir: testte gercek app.js
     yerine kucuk bir sahte dosya, gercek 'simdi' yerine sabit bir zaman
@@ -260,11 +270,13 @@ def hub_kontrolu(hub_dir, app_js_yolu=None, simdi=None):
         app_js_yolu = os.path.join(_BASE_DIR, "app.js")
     if simdi is None:
         simdi = datetime.now(timezone.utc)
+    if manifest_yolu is None:
+        manifest_yolu = os.path.join(hub_dir, "manifest.json")
 
     print(f"Hub tazelik kontrolu - dizin: {hub_dir}")
+    print(f"  manifest: {manifest_yolu}")
     print("-" * 64)
 
-    manifest_yolu = os.path.join(hub_dir, "manifest.json")
     if not os.path.exists(manifest_yolu):
         print(f"HUB HATASI: manifest bulunamadi: {manifest_yolu}")
         return 1
@@ -374,8 +386,23 @@ if __name__ == "__main__":
     if "--hub" in sys.argv:
         _idx = sys.argv.index("--hub")
         if _idx + 1 >= len(sys.argv):
-            print("KULLANIM: python veri_tazelik_kontrol.py --hub <dizin>")
+            print("KULLANIM: python veri_tazelik_kontrol.py --hub <dizin> [--manifest <yol>]")
             sys.exit(1)
-        sys.exit(hub_kontrolu(sys.argv[_idx + 1]))
+        _hub_dir = sys.argv[_idx + 1]
+
+        # --manifest OPSIYONEL: verilmezse ESKI davranis (manifest, denetlenen
+        # hub_dir'in icinden okunur) AYNEN korunur. Verilirse manifest baska
+        # bir dizinden (orn. .hub/) okunur, sayfalarin kendisi yine hub_dir'den
+        # (orn. dist/) -- isim cakismasinin (dist/manifest.json = PWA
+        # manifest'i) cozumu budur.
+        _manifest_yolu = None
+        if "--manifest" in sys.argv:
+            _midx = sys.argv.index("--manifest")
+            if _midx + 1 >= len(sys.argv):
+                print("KULLANIM: python veri_tazelik_kontrol.py --hub <dizin> [--manifest <yol>]")
+                sys.exit(1)
+            _manifest_yolu = sys.argv[_midx + 1]
+
+        sys.exit(hub_kontrolu(_hub_dir, manifest_yolu=_manifest_yolu))
     else:
         sys.exit(main())

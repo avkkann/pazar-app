@@ -56,21 +56,24 @@ jobs:
         # deploy'u engellemek. Sessizce bayat sayfa yayinlamak bu projenin
         # dort kez yedigi tuzak (bkz. veri_tazelik_kontrol.py dosya basi notu).
         #
-        # Hedef dizin .hub/, dist/ DEGIL: npm run build hem .hub/ (hub-uret.mjs
-        # ciktisi, kok dizininde manifest.json + hal/kategori/market/zam/
-        # sayfalari) hem de dist/'i (nihai yayin ciktisi) uretiyor ve
-        # prepare-public.mjs .hub/'daki sayfa dizinlerini dist/'e OLDUGU GIBI
-        # (byte-byte) kopyaliyor. Ama .hub/manifest.json BILEREK dist/'e
-        # kopyalanmiyor (bkz. prepare-public.mjs) cunku dist/manifest.json
-        # zaten uygulamanin PWA manifest'i icin ayrilmis -- ikisi ayni isimde
-        # cakisirdi. Bu yuzden 'python veri_tazelik_kontrol.py --hub dist'
-        # HER ZAMAN "manifest.json bir dizi (liste) olmali" hatasiyla exit 1
-        # dondurur (denendi, gorev-7-report.md'de kanit var) -- tazeligi
-        # DEGIL, bu isim cakismasini yakalar, bu sahte bir kirmizi olur.
-        # .hub/'i hedeflemek dogru: sayfalarin ICERIGI (ve pazar-veri-damgasi
-        # damgalari) dist/'dekiyle birebir ayni, sadece kopyalanmadan ONCEKI
-        # konumu. Runner'da 'py' yok (Windows'a ozgu), 'python' kullaniliyor.
-        run: python scripts/veri_tazelik_kontrol.py --hub .hub
+        # Sayfalar dist/'ten okunur (--hub dist): kapinin butun anlami YAYINA
+        # GIDEN seyin denetlenmesi. .hub/'i denetlemek sadece ARA URUNU
+        # dogrulardi -- prepare-public.mjs'in kopyalama adimi bir sayfayi
+        # duserse, yarim kopyalarsa ya da bozarsa kapi yesil kalirdi ve bozuk
+        # dist/ yayina giderdi; bu tam olarak bu kapinin engellemesi gereken
+        # ariza sinifi.
+        #
+        # Kayit .hub/manifest.json'dan okunur (--manifest .hub/manifest.json):
+        # dist/manifest.json BASKA BIR SEY -- uygulamanin PWA manifest'i (bir
+        # nesne, hub manifest'i gibi bir liste DEGIL). hub-uret.mjs'in urettigi
+        # hub manifest'i (kok dizininde, sayfa basina durum/tip/damga kaydi)
+        # BILEREK dist/'e kopyalanmiyor (bkz. prepare-public.mjs) cunku isim
+        # cakisirdi. --manifest bu isim cakismasini kayit (nereden okunur) ile
+        # denetlenen dizini (sayfalar nereden okunur) ayirarak cozuyor;
+        # manifestteki 'yol' alanlari yine <hub_dir><yol>index.html olarak,
+        # yani --hub ile verilen dist/'e gore cozuluyor. Runner'da 'py' yok
+        # (Windows'a ozgu), 'python' kullaniliyor.
+        run: python scripts/veri_tazelik_kontrol.py --hub dist --manifest .hub/manifest.json
       - name: Cloudflare Workers Deploy
         uses: cloudflare/wrangler-action@v3
         with:
