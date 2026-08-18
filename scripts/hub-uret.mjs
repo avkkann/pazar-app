@@ -127,9 +127,6 @@ const halGecmis = JSON.parse(fs.readFileSync(D('data/hal_gecmis.json'), 'utf8'))
 const gecmisFiyatlar = JSON.parse(fs.readFileSync(D('data/gecmis_fiyatlar.json'), 'utf8'));
 console.log(`[hub] veri okundu: anasayfa.zam=${(anasayfa.zam || []).length}, il_marketler=${ilMarketler.il_sayisi} il, hal=${hal.urunler.length} kalem, gecmis=${Object.keys(gecmisFiyatlar).length} seri`);
 
-// veriDamgasi TUM sayfalar icin (hal disinda) anasayfa.json'un uretim
-// alanindan gelir -- kaynak verinin damgasi budur, W3C Datetime zaten.
-const VERI_DAMGASI = anasayfa.uretim;
 const BUGUN = yerelTarihTR(anasayfa.uretim);
 console.log(`[hub] BUGUN=${BUGUN}`);
 
@@ -143,6 +140,39 @@ for (const kat of KATEGORILER) {
 }
 const tumUrunler = KATEGORILER.flatMap((k) => catCache[k.slug] || []);
 console.log(`[hub] katalog: ${tumUrunler.length} urun, ${sidSlug.size} sid eslendi`);
+
+// ── veriDamgasi (hal DISINDA tum sayfalar icin) ─────────────────────────
+// KRITIK: anasayfa.json'un uretim alanindan GELMIYOR. O alan BUILD ANINI
+// yansitir -- build zinciri her kosuda ONCE anasayfa-uret.mjs'i calistirir
+// ve o alani "simdi"ye esitler; bu yuzden damga her deploy'da taze doğar ve
+// veri_tazelik_kontrol.py --hub kapisinin damga-yasi kontrolu HICBIR ZAMAN
+// kirmiziya donemez -- kapi var ama koruyamiyor (gorev-8). Bunun yerine
+// damga VERI KUMESININ KENDI en yeni gozlem tarihinden turer:
+// gecmis_fiyatlar.json'daki TUM kayitlarin t alaninin maksimumu ile
+// tumUrunler'deki (urunler_*.json'dan, catCache uzerinden) fiyat_gecmisi
+// dizilerinin maksimum tarihinin BUYUK OLANI. Scraper durursa bu deger
+// ilerlemeyi keser ve damga otomatik yaslanir -- kapi bunu YAKALAYABILIR.
+// Tek bir yerde BIR KEZ hesaplanir, TUM zam/market/kategori sayfalarina
+// AYNI deger verilir (BUGUN'den ayri tutuluyor: BUGUN "su an ne zaman"
+// sorusuna, VERI_DAMGASI "veri ne kadar taze" sorusuna cevap veriyor --
+// ikisi karistirilirsa build zamani veriye sizar, tam da bu kusur).
+let enYeniGenelGozlem = null;
+for (const sid of Object.keys(gecmisFiyatlar)) {
+  for (const k of gecmisFiyatlar[sid]) {
+    if (k && k.t && (!enYeniGenelGozlem || k.t > enYeniGenelGozlem)) enYeniGenelGozlem = k.t;
+  }
+}
+for (const u of tumUrunler) {
+  for (const kayit of u.fiyat_gecmisi || []) {
+    const tarih = kayit && kayit[0];
+    if (tarih && (!enYeniGenelGozlem || tarih > enYeniGenelGozlem)) enYeniGenelGozlem = tarih;
+  }
+}
+if (!enYeniGenelGozlem) {
+  throw new Error('[hub] en yeni gozlem tarihi bulunamadi -- gecmis_fiyatlar.json ve urunler_*.json fiyat_gecmisi bos mu?');
+}
+const VERI_DAMGASI = gunDamgasi(enYeniGenelGozlem);
+console.log(`[hub] VERI_DAMGASI (en yeni gozlem): ${enYeniGenelGozlem} -> ${VERI_DAMGASI}`);
 
 // ── urun analiz onbellegi: her urun icin fiyatlariTemizle SONUCU BIR KEZ
 //    hesaplanip TUM bolumlerde (kategori fark tablosu, market en-ucuz
