@@ -35,3 +35,47 @@ export function sitemapDoldur(xml, damga) {
   if (!xml.includes('__LASTMOD__')) throw new Error('[sitemap] kaynakta __LASTMOD__ yer tutucusu yok');
   return xml.replace(/__LASTMOD__/g, damga);
 }
+
+// ── HUB GIRDILERI ────────────────────────────────────────────────────
+// NEDEN AYRI FONKSIYON (sitemapDoldur'a KARISTIRILMADI):
+//   sitemapDoldur tek bir yer tutucuyu tek bir damgayla degistiren saf bir
+//   string islemi. sitemapEkle ise DEGISKEN SAYIDA girdiden <url> bloklari
+//   KURUYOR ve her birini DOGRULUYOR — bozuk bir girdi (goreli adres,
+//   gecersiz tarih, yinelenen sayfa) sessizce yayina cikip Google'a
+//   yalan sitemap sunmasin diye burada throw ediliyor. Cagiran
+//   (prepare-public.mjs) manifest'teki "durum" alanina bakip hangi
+//   girisleri gonderecegine kendi karar veriyor; bu fonksiyon yalnizca
+//   kendisine verilen girisleri XML'e cevirip DOGRULUYOR — esik/karar
+//   mantigi burada YOK.
+/**
+ * xml icindeki </urlset> etiketinden hemen once, girisler dizisinden
+ * <url> bloklari ekler. girisler[i] = { loc, lastmod }.
+ * Saf fonksiyon: xml ve girisler degistirilmez, yeni bir string doner.
+ * Gecersiz girdide (goreli/yanlis-sonlu loc, gecersiz lastmod, yinelenen
+ * loc, </urlset> eksik) build'i sessizce bozuk XML'le devam ettirmemek
+ * icin throw eder.
+ */
+export function sitemapEkle(xml, girisler) {
+  if (!xml.includes('</urlset>')) throw new Error('[sitemap] xml icinde </urlset> yok');
+  const gorulenler = new Set();
+  const bloklar = [];
+  for (const giris of girisler) {
+    const { loc, lastmod } = giris || {};
+    if (typeof loc !== 'string' || !loc.startsWith('https://pazarapp.net')) {
+      throw new Error('[sitemap] loc mutlak olmali (https://pazarapp.net ile baslamali): ' + loc);
+    }
+    if (!loc.endsWith('/')) {
+      throw new Error('[sitemap] loc "/" ile bitmeli: ' + loc);
+    }
+    if (!W3C.test(lastmod)) {
+      throw new Error('[sitemap] gecersiz lastmod damgasi (' + loc + '): ' + lastmod);
+    }
+    if (gorulenler.has(loc)) {
+      throw new Error('[sitemap] yinelenen loc: ' + loc);
+    }
+    gorulenler.add(loc);
+    bloklar.push(`  <url><loc>${loc}</loc><lastmod>${lastmod}</lastmod></url>`);
+  }
+  if (!bloklar.length) return xml;
+  return xml.replace('</urlset>', bloklar.join('\n') + '\n</urlset>');
+}

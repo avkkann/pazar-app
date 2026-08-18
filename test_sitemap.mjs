@@ -15,7 +15,7 @@
 // sonra bu proje icin ANLAMSIZ — Google artik pazarapp.net/robots.txt'i
 // okuyacak. O dosya bu depodan uretiliyor.
 import fs from 'fs';
-import { lastmodDamgasi, sitemapDoldur } from './scripts/sitemap.mjs';
+import { lastmodDamgasi, sitemapDoldur, sitemapEkle } from './scripts/sitemap.mjs';
 
 let pass = 0, fail = 0;
 const ok = (ad, k, d = '') => { if (k) { pass++; console.log('  PASS  ' + ad); } else { fail++; console.log('  FAIL  ' + ad + (d ? '  -> ' + d : '')); } };
@@ -78,7 +78,84 @@ console.log('\n=== 4. GERCEK VERIYLE UCTAN UCA ===');
   ok('  cikan XML tam', /<\?xml/.test(c) && /<\/urlset>/.test(c) && !c.includes('__LASTMOD__'));
 }
 
-console.log('\n=== 5. BUILD BUNU KULLANIYOR ===');
+console.log('\n=== 5. HUB GIRDILERI (sitemapEkle) ===');
+{
+  // Fixture'lar elle kuruluyor — .hub/manifest.json OKUNMUYOR, boylece bu
+  // test uretim kosusuna bagli olmuyor (hub-uret.mjs hic calismamis olsa
+  // da bu bolum kirmizi/yesil calisir).
+  const KOK_DAMGA = '2026-08-18T04:16:49Z';
+  const KOK_DOLU = sitemapDoldur(KAYNAK, KOK_DAMGA);
+
+  const GECMIS_AY_LASTMOD = '2026-07-31T00:00:00+03:00';
+  const manifestOrnek = [
+    { yol: '/zam/2026-05/', durum: 'atlandi', son_veri: null },
+    { yol: '/zam/2026-06/', durum: 'atlandi', son_veri: null },
+    { yol: '/zam/2026-07/', durum: 'uretildi', son_veri: GECMIS_AY_LASTMOD },
+    { yol: '/zam/2026-08/', durum: 'uretildi', son_veri: '2026-08-18T00:00:00+03:00' },
+    { yol: '/market/a101/', durum: 'uretildi', son_veri: '2026-08-18T00:00:00+03:00' },
+    { yol: '/hal/', durum: 'uretildi', son_veri: '2026-08-17T00:00:00+03:00' },
+  ];
+  const uretilenler = manifestOrnek.filter((g) => g.durum === 'uretildi');
+  const girisler = uretilenler.map((g) => ({ loc: 'https://pazarapp.net' + g.yol, lastmod: g.son_veri }));
+
+  // -- saflik --
+  const oncekiKok = KOK_DOLU;
+  const c = sitemapEkle(KOK_DOLU, girisler);
+  ok('sitemapEkle girdi xml\'i degistirmiyor (saf)', KOK_DOLU === oncekiKok, '');
+  ok('  kok girdi (/) yerinde kaliyor', c.includes('<loc>https://pazarapp.net/</loc>'), '');
+  ok('  kok girdinin lastmod\'u aynen duruyor',
+    c.includes(`<url><loc>https://pazarapp.net/</loc><lastmod>${KOK_DAMGA}</lastmod><priority>1.0</priority></url>`), '');
+
+  // -- sayim: 1 (kok) + uretildi sayisi; atlandi YOK --
+  const urlSayisi = (c.match(/<url>/g) || []).length;
+  ok('<url> sayisi = 1 (kok) + uretildi sayisi', urlSayisi === 1 + uretilenler.length,
+    `urlSayisi=${urlSayisi} beklenen=${1 + uretilenler.length}`);
+  ok('  atlandi olan /zam/2026-05/ sitemap\'te YOK', !c.includes('/zam/2026-05/'), '');
+  ok('  atlandi olan /zam/2026-06/ sitemap\'te YOK', !c.includes('/zam/2026-06/'), '');
+  ok('  uretildi olan /zam/2026-07/ sitemap\'te VAR', c.includes('/zam/2026-07/'), '');
+  ok('  uretildi olan /hal/ sitemap\'te VAR', c.includes('/hal/'), '');
+
+  // -- gecmis ay dondu kaniti --
+  ok('gecmis ay sayfasinin lastmod\'u kok damgasindan FARKLI',
+    GECMIS_AY_LASTMOD !== KOK_DAMGA, GECMIS_AY_LASTMOD + ' vs ' + KOK_DAMGA);
+  ok('  gecmis ay lastmod\'u XML\'de aynen goruluyor',
+    c.includes(`<loc>https://pazarapp.net/zam/2026-07/</loc><lastmod>${GECMIS_AY_LASTMOD}</lastmod>`), '');
+
+  // -- iyi bicimli XML --
+  const acilis = (c.match(/<url>/g) || []).length;
+  const kapanis = (c.match(/<\/url>/g) || []).length;
+  ok('<url> ve </url> sayilari esit', acilis === kapanis, `${acilis} vs ${kapanis}`);
+  const locSayisi = (c.match(/<loc>/g) || []).length;
+  const lastmodSayisi = (c.match(/<lastmod>/g) || []).length;
+  ok('her blokta bir <loc>', locSayisi === urlSayisi, `${locSayisi} vs ${urlSayisi}`);
+  ok('her blokta bir <lastmod>', lastmodSayisi === urlSayisi, `${lastmodSayisi} vs ${urlSayisi}`);
+  ok('  urlset kapaniyor', c.trim().endsWith('</urlset>'), '');
+
+  // -- dogrulama: throw senaryolari --
+  ok('yinelenen loc -> throw', (() => {
+    try { sitemapEkle(KOK_DOLU, [...girisler, girisler[0]]); return false; }
+    catch (e) { return true; }
+  })());
+  ok('"/" ile bitmeyen loc -> throw', (() => {
+    try { sitemapEkle(KOK_DOLU, [{ loc: 'https://pazarapp.net/zam/2026-07', lastmod: GECMIS_AY_LASTMOD }]); return false; }
+    catch (e) { return true; }
+  })());
+  ok('mutlak olmayan loc -> throw', (() => {
+    try { sitemapEkle(KOK_DOLU, [{ loc: '/zam/2026-07/', lastmod: GECMIS_AY_LASTMOD }]); return false; }
+    catch (e) { return true; }
+  })());
+  ok('gecersiz lastmod -> throw', (() => {
+    try { sitemapEkle(KOK_DOLU, [{ loc: 'https://pazarapp.net/zam/2026-07/', lastmod: 'yarin' }]); return false; }
+    catch (e) { return true; }
+  })());
+  ok('</urlset> olmayan xml -> throw', (() => {
+    try { sitemapEkle('<urlset><url><loc>https://pazarapp.net/</loc></url>', girisler); return false; }
+    catch (e) { return true; }
+  })());
+  ok('  bos girisler xml\'i aynen birakir', sitemapEkle(KOK_DOLU, []) === KOK_DOLU, '');
+}
+
+console.log('\n=== 6. BUILD BUNU KULLANIYOR ===');
 {
   const pp = fs.readFileSync('scripts/prepare-public.mjs', 'utf8');
   ok('prepare-public sitemap.mjs\'i cagiriyor', /from '\.\/sitemap\.mjs'/.test(pp), '');
@@ -86,11 +163,13 @@ console.log('\n=== 5. BUILD BUNU KULLANIYOR ===');
     /lastmodDamgasi/.test(pp) && /sitemapDoldur/.test(pp), '');
   ok('  sitemap artik duz copyFileSync ile KOPYALANMIYOR', !/copyFileSync\('sitemap\.xml'/.test(pp), '');
   ok('  anasayfa.json okunuyor', /anasayfa\.json/.test(pp), '');
+  ok('  sitemapEkle .hub/manifest.json ile baglaniyor',
+    /sitemapEkle/.test(pp) && /\.hub\/manifest\.json/.test(pp), '');
   ok('build zinciri prepare-public\'i cagiriyor',
     /prepare-public\.mjs/.test(JSON.parse(fs.readFileSync('package.json', 'utf8')).scripts.build), '');
 }
 
-console.log('\n=== 6. BUILD CIKTISI (varsa) ===');
+console.log('\n=== 7. BUILD CIKTISI (varsa) ===');
 if (fs.existsSync('public/sitemap.xml')) {
   const c = fs.readFileSync('public/sitemap.xml', 'utf8');
   const d = (c.match(/<lastmod>([^<]*)<\/lastmod>/) || [])[1];
