@@ -2488,3 +2488,51 @@
     }
     .nojs p + p { margin-top: 12px; }
     .nojs a { color: #E8DCC4; text-decoration: underline; }
+
+    /* ═══ HUB İÇ LİNK BLOĞU (ana ekran altı) ═══════════════════════
+       2026-08-18: 18 hub sayfası (/zam/, /market/, /kategori/, /hal/)
+       canlıya çıktı ama uygulamadan onlara giden hiçbir <a href> yoktu.
+       Blok BUILD'de üretiliyor (vite.config.js -> hubFooterEkle), burada
+       yalnızca sunumu var.
+       Renkler yalnızca tema değişkenlerinden: koyu tema [data-theme="dark"]
+       bloğunda --card-bg/--text/--border zaten yeniden tanımlı, ayrı bir
+       koyu tema kuralı GEREKMİYOR (sabit renk yazılsaydı gerekirdi).
+       Dokunma hedefi 44x44 (WCAG 2.5.5) — chip metni kısa olduğunda bile
+       min-width/min-height ile korunuyor. */
+    .hub-nav {
+      margin: 28px 16px 8px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+    }
+    .hub-nav-ust {
+      display: block; margin-bottom: 14px;
+      font-size: .74rem; font-weight: 700; letter-spacing: .04em;
+      text-transform: uppercase; color: var(--text-muted);
+    }
+    .hub-grup + .hub-grup { margin-top: 14px; }
+    .hub-grup-baslik {
+      display: block; margin-bottom: 6px;
+      font-size: .72rem; font-weight: 600; color: var(--text-muted);
+    }
+    .hub-liste {
+      list-style: none; margin: 0; padding: 0;
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .hub-link {
+      display: inline-flex; align-items: center; justify-content: center;
+      /* 44x44: parmak hedefi. Yazı .8rem ama kutu küçülmüyor. */
+      min-height: 44px; min-width: 44px;
+      padding: 0 14px;
+      border: 1px solid var(--border); border-radius: 22px;
+      background: var(--card-bg); color: var(--text);
+      font-size: .8rem; font-weight: 500; line-height: 1.2;
+      text-decoration: none; cursor: pointer;
+      /* Yalnızca renk geçişi: transform/scale kullanılmıyor, hover'da
+         satır kaymıyor (kartların yanındaki blok zıplamasın). */
+      transition: background-color .18s ease, border-color .18s ease, color .18s ease;
+    }
+    .hub-link:hover { background: var(--bg); border-color: var(--primary); color: var(--primary); }
+    .hub-link:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+    @media (prefers-reduced-motion: reduce) {
+      .hub-link { transition: none; }
+    }

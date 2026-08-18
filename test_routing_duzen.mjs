@@ -26,6 +26,11 @@ function fnKaynak(ad) {
   return null;
 }
 
+// app.js'teki KATEGORILER dizisinin KAYNAGI (yeniden yazilmiyor, kesiliyor).
+const KAT_BAS = APP.indexOf('const KATEGORILER = [');
+const KAT_KAYNAK = KAT_BAS < 0 ? '' : APP.slice(KAT_BAS, APP.indexOf('];', KAT_BAS) + 2);
+const KAT_SLUGLARI = [...KAT_KAYNAK.matchAll(/slug:\s*'([^']+)'/g)].map(m => m[1]);
+
 console.log('\n=== 1. ?screen= ROUTING ===');
 const varFn = !!fnKaynak('ekranRotasiUygula');
 ok('function ekranRotasiUygula tanimli', varFn);
@@ -45,10 +50,15 @@ if (varFn) {
       goFirsatlar: () => cagrilan.push('goFirsatlar'),
       goProfil: () => cagrilan.push('goProfil'),
       openHalScreen: () => cagrilan.push('openHalScreen'),
+      openCategory: slug => cagrilan.push('openCategory:' + slug),
       window: { openFavoriler: () => cagrilan.push('openFavoriler'), pazarAuth: { ready: authHazir, user: authHazir ? { id: 'u' } : null } },
       _hata: null,
     };
     vm.createContext(ctx);
+    // KATEGORILER app.js'ten AYNEN alinip baglama konuyor (kopya liste yok):
+    // kategori rotasinin taniyacagi slug kumesi ile uygulamanin kategori
+    // izgarasinin slug kumesi TEK kaynak olmali.
+    try { vm.runInContext(KAT_KAYNAK, ctx); } catch (e) { ctx._hata = String(e.message); }
     try { vm.runInContext(fnKaynak('ekranRotasiUygula') + '\nekranRotasiUygula();', ctx); }
     catch (e) { ctx._hata = String(e.message); }
     return {
@@ -96,6 +106,57 @@ if (varFn) {
     const r = calistir('?screen=hal', { authHazir: false });
     ok('oturumsuz ekran auth beklemiyor (hal)', r.cagrilan.includes('openHalScreen'), JSON.stringify(r.cagrilan));
   }
+  // ── KATEGORI DERIN BAGLANTISI (hub /kategori/<slug>/ -> uygulama) ──────
+  // Hub kategori sayfalarinin footer'indaki "Uygulamada aç" linki buraya
+  // dusuyor. TEK GERCEK RISK slug bicimi: hub sayfalari tireli slug kullaniyor
+  // (meyve-sebze, tarim-kredi). Iki taraf FARKLI normallestirme yaparsa link
+  // calisir GORUNUR ama YANLIS ekrana duser -- bu, Gorev 4'teki alt cizgi/tire
+  // sorununun ikizi. Asagida slug listesi app.js'ten TURETILIYOR, teste
+  // sabitlenmiyor; yeni kategori eklenirse test kendiliginden onu da kapsiyor.
+  console.log('  --- ?screen=kategori&kat=<slug> ---');
+  {
+    ok('KATEGORILER kaynagi app.js\'ten okunabildi', KAT_SLUGLARI.length > 0, 'adet=' + KAT_SLUGLARI.length);
+    console.log('    app.js slug\'lari: ' + KAT_SLUGLARI.join(' '));
+    for (const s of KAT_SLUGLARI) {
+      const r = calistir('?screen=kategori&kat=' + s);
+      ok(('kat=' + s).padEnd(24) + ' -> openCategory:' + s,
+         r.cagrilan.join(',') === 'openCategory:' + s && !r.hata, JSON.stringify(r));
+    }
+    console.log('  --- bilinmeyen/eksik kat: Ana Sayfa (bilinmeyen screen ile AYNI davranis) ---');
+    for (const qs of ['?screen=kategori&kat=yokboyle', '?screen=kategori&kat=', '?screen=kategori',
+                      '?screen=kategori&kat=meyve_sebze', '?screen=kategori&kat=/kategori/sut/']) {
+      const r = calistir(qs);
+      ok(qs.padEnd(38) + ' -> Ana Sayfa, hata YOK',
+         r.cagrilan.join(',') === 'showScreen:screen-home' && !r.hata, JSON.stringify(r));
+    }
+    // openCategory tanimsiz slug'da kat.label okurken patlar; kapinin rotada
+    // olmasi gerekiyor -- "sessizce ana sayfaya dus" sozunun tek dayanagi bu.
+    const src = fnKaynak('ekranRotasiUygula') || '';
+    ok('rota kat degerini KATEGORILER\'e karsi dogruluyor', /KATEGORILER/.test(src),
+       src.split('\n').filter(l => /kategori|kat/.test(l)).join(' | ').slice(0, 200));
+    ok('  rotada elle yazilmis kategori slug listesi YOK (tek kaynak KATEGORILER)',
+       !KAT_SLUGLARI.some(s => new RegExp("['\"]" + s + "['\"]").test(src)), src.slice(0, 200));
+  }
+
+  console.log('  --- HUB SLUG PARITESI (olcum, iddia degil) ---');
+  {
+    const MYOL = '.hub/manifest.json';
+    if (!fs.existsSync(MYOL)) {
+      console.log('    ATLANDI: .hub/manifest.json yok (turetilmis, repoda durmuyor) — "node scripts/hub-uret.mjs" sonrasi kosulur');
+    } else {
+      const hubSluglari = JSON.parse(fs.readFileSync(MYOL, 'utf8'))
+        .filter(k => k.tip === 'kategori' && k.durum === 'uretildi')
+        .map(k => k.yol.replace(/^\/kategori\//, '').replace(/\/$/, ''));
+      console.log('    hub slug\'lari: ' + hubSluglari.join(' '));
+      ok('hub kategori slug\'lari app.js KATEGORILER slug\'lariyla BIREBIR ayni',
+         JSON.stringify([...hubSluglari].sort()) === JSON.stringify([...KAT_SLUGLARI].sort()),
+         'hub=' + hubSluglari.join(',') + ' app=' + KAT_SLUGLARI.join(','));
+      // Asil kanit: her hub yolu, rotadan gecince O kategoriyi aciyor.
+      const yanlis = hubSluglari.filter(s => calistir('?screen=kategori&kat=' + s).cagrilan.join(',') !== 'openCategory:' + s);
+      ok('  her hub kategori sayfasi DOGRU ekrani aciyor (yanlis ekran = 0)', yanlis.length === 0, yanlis.join(' '));
+    }
+  }
+
   console.log('  --- manifest kisayollari BOZULMADI ---');
   for (const s of (MANIFEST.shortcuts || [])) {
     const q = '?' + s.url.split('?')[1];

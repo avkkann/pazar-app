@@ -20,6 +20,38 @@ Mustafa (GitHub: avkkann), **Pazar App**'in tek geliştiricisi — Türk market 
 
 ## Mevcut durum (2026-08-17 itibarıyla)
 
+### 2026-08-18 — Görev 8: hub sayfaları uygulamadan keşfedilebilir (YEREL, PUSH EDİLMEDİ)
+
+**Durum: kod bitti, testler yeşil, CANLIYA ÇIKMADI.** Bir sonraki push üç şeyi birlikte
+yayına alır: (a) damga düzeltmesi `272f862`, (b) hub keşfedilebilirliği, (c) `?screen=kategori`
+rotası. Push sonrası plandaki Görev 9 (canlı doğrulama) koşulur.
+
+18 hub sayfası canlıya çıkmıştı ama uygulamadan onlara giden **hiçbir `<a href>` yoktu** —
+keşif yalnızca sitemap'e kalıyordu. İki uç birleştirildi:
+
+- **Uygulama → hub:** ana ekranın altında `<nav class="hub-nav">`. **Build'de üretiliyor**
+  (`vite.config.js` → `hubFooterEnjekte` → `scripts/hub-footer.mjs` → `hubFooterEkle`), kaynak
+  `.hub/manifest.json`'daki **`durum === "uretildi"`** kayıtları. `index.html` yalnızca
+  `<!--HUB-LINKLERI-->` yer tutucusunu taşıyor. **SABİT LİSTE YASAK:** bugün 2 ay atlandı
+  (`/zam/2026-05/`, `/zam/2026-06/`) ve elle yazılmış liste canlıda iki 404 üretirdi; Eylül
+  sayfası üretildiğinde footer'a elle dokunulmadan giriyor. `test_hub_footer.mjs` bunu hem
+  davranışta (manifeste sahte atlanan/üretilen kayıt enjekte ederek) hem **kaynak düzeyinde**
+  (modül gövdesinde somut hub yolu ve market adı yok) ölçüyor.
+- **Hub → uygulama:** `app.js`'e `?screen=kategori&kat=<slug>` rotası; kategori hub sayfasının
+  "Uygulamada aç" linki artık oraya gidiyor. **Normalleştirme yazılmadı, çünkü gerekmiyor:**
+  hub yolları `KATEGORILER`'in `slug` alanından kuruluyor (`hub-uret.mjs` onu `app.js`'ten
+  `ic()` ile okuyor), 8 slug birebir aynı — ölçüldü, `test_routing_duzen.mjs` "HUB SLUG
+  PARITESI". Tanınmayan `kat` sessizce Ana Sayfa'ya düşüyor; kapı **rotada**, çünkü
+  `openCategory` tanımsız slug'da `kat.label` okurken patlar.
+- **Manifest yeni alan: `kisa_ad`** — footer link metni. Sayfanın `h1`'i footer'a sığmıyor, ama
+  etiketi footer tarafında yeniden üretmek `MARKET_NAMES`/`KATEGORILER`/`ZAM_AYLAR`'ın ikinci
+  kopyası olurdu (bu depo o desenden iki kez yandı). Etiket sayfayı üreten yerde bir kez üretiliyor.
+- **`sw.js` v209 → v210** (`app.js` + `index.html` + `style.css` değişti).
+
+Yeni dosyalar: `scripts/hub-footer.mjs`, `test_hub_footer.mjs`. Kök dizindeki `PROMPT_G8.md`
+bu turun görev metni (commit edilmedi). Ölçümler: `dist/`te 18 link, kırık link 0, dokunma
+hedeflerinin en küçüğü 44px, yatay taşma yok, koyu temada kutu `#1C2823` / metin `#E5E7EB`.
+
 ### 2026-08-17 (akşam) — barındırma Cloudflare Workers'a taşındı, pazarapp.net canlı
 
 **Site artık `https://pazarapp.net`, Cloudflare Workers üzerinde.** GitHub Pages bırakıldı. `sw.js` **v207**.

@@ -5420,7 +5420,8 @@ loadData();
 // açıcı fonksiyon varsa o çağrılır. Bilinmeyen değer sessizce Ana Sayfa'ya düşer.
 // manifest.json kısayolları list/firsat/hal kullanıyor, o adlar KORUNDU.
 function ekranRotasiUygula() {
-  var ekran = String(new URLSearchParams(location.search).get('screen') || '').toLowerCase().trim();
+  var sorgu = new URLSearchParams(location.search);
+  var ekran = String(sorgu.get('screen') || '').toLowerCase().trim();
   var rota = {
     'home':      function () { showScreen('screen-home'); },
     'anasayfa':  function () { showScreen('screen-home'); },
@@ -5432,7 +5433,24 @@ function ekranRotasiUygula() {
     'profil':    function () { goProfil(); },
     'favori':    function () { window.openFavoriler(); },
     'favoriler': function () { window.openFavoriler(); },
-    'hal':       function () { openHalScreen(); }
+    'hal':       function () { openHalScreen(); },
+    // Hub kategori sayfasından (/kategori/<slug>/) uygulamaya dönüş yolu.
+    // SLUG NORMALLEŞTİRME YOK — ve bu bilinçli. Hub sayfalarını üreten
+    // scripts/hub-uret.mjs, yolları TAM OLARAK bu KATEGORILER dizisinin slug
+    // alanından kuruyor (/kategori/${k.slug}/), yani iki taraf aynı kaynaktan
+    // besleniyor ve ölçümle doğrulandı: 8 slug birebir aynı (test_routing_
+    // duzen.mjs "HUB SLUG PARITESI"). Burada kendi başına bir dönüştürme
+    // (alt çizgi↔tire gibi) yazmak o tekliği bozar ve linki "çalışır görünüp
+    // yanlış ekrana düşen" hale getirir — Görev 4'te bir kez yaşandı.
+    // Tanınmayan kat, bilinmeyen screen ile AYNI davranışa düşüyor: sessizce
+    // Ana Sayfa. Kapının burada olması şart, çünkü openCategory tanımsız
+    // slug'da kat.label okurken hata atar.
+    'kategori':  function () {
+      var kat = String(sorgu.get('kat') || '').toLowerCase().trim();
+      var bulundu = KATEGORILER.some(function (k) { return k.slug === kat; });
+      if (!bulundu) { showScreen('screen-home'); return; }
+      openCategory(kat);
+    }
   };
   var hedef = rota[ekran];
   if (!hedef) { showScreen('screen-home'); return; }

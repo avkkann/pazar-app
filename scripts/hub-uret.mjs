@@ -236,8 +236,16 @@ function tabloBolumEkle(bolumler, atlananlar, { baslik, sutunlar, satirlar, not 
 }
 function sayfaYazVeKaydet(model) {
   const karar = sayfaKarari(model);
+  if (!model.kisaAd) throw new Error(`[hub] ${model.yol} modelinde kisaAd yok — ic link blogu metinsiz link uretemez`);
   manifest.push({
     yol: model.yol, tip: model.tip, durum: karar.durum, sebep: karar.sebep,
+    // kisa_ad: uygulamanin ana ekranindaki ic link blogunun (scripts/hub-footer.mjs)
+    // link METNI. Sayfanin h1'i (baslik) oraya sigmiyor ("CarrefourSA fiyatları —
+    // 6.575 ürün, 34 ilde"), ama etiketi footer tarafinda YENIDEN URETMEK
+    // MARKET_NAMES/KATEGORILER/ZAM_AYLAR'in ikinci bir kopyasi demek olurdu; bu
+    // depo ayni turetilmis degerin iki kaynagi yuzunden daha once iki kez yandi.
+    // Etiket sayfayi ureten yerde, app.js sabitlerinden BIR KEZ uretiliyor.
+    kisa_ad: model.kisaAd,
     satir: karar.satir, kelime: karar.kelime,
     son_veri: model.sonVeri, veri_damgasi: model.veriDamgasi,
     atlanan_bolumler: model._atlananBolumler || [],
@@ -442,6 +450,7 @@ function zamSayfaModeliKur(ay) {
     tip: 'zam', yol: `/zam/${ay}/`,
     baslik: `${ayAdi} ${yil}'da zamlanan ürünler`,
     titleEtiketi: `${ayAdi} ${yil} Zamları | Pazar`,
+    kisaAd: `${ayAdi} ${yil} zamları`,
     aciklama, ozet,
     veriDamgasi: VERI_DAMGASI, sonVeri: gunDamgasi(enYeniGozlem),
     bolumler, icLinkler,
@@ -454,6 +463,10 @@ for (const { ay, karar } of ayKararlari) {
   if (!karar.uygun) {
     manifest.push({
       yol: `/zam/${ay}/`, tip: 'zam', durum: 'atlandi', sebep: karar.sebep,
+      // Atlanan kayitta da kisa_ad duruyor (sema tek bicimli kalsin diye);
+      // ic link blogu yalnizca durum === 'uretildi' kayitlarina bakiyor,
+      // bu satir footer'a HICBIR sekilde link uretmiyor.
+      kisa_ad: `${ZAM_AYLAR[Number(ay.slice(5, 7)) - 1]} ${ay.slice(0, 4)} zamları`,
       satir: 0, kelime: 0, son_veri: null, veri_damgasi: VERI_DAMGASI, atlanan_bolumler: [],
     });
     console.log(`[hub] ATLANDI /zam/${ay}/ — ${karar.sebep}`);
@@ -568,6 +581,7 @@ function marketSayfaModeliKur(marketKod) {
     tip: 'market', yol: `/market/${slug(marketKod)}/`,
     baslik: `${marketAdi} fiyatları — ${sayiTR(genel.urunSayisi)} ürün, ${sayiTR(iller.length)} ilde`,
     titleEtiketi: `${marketAdi} Fiyatları | Pazar`,
+    kisaAd: marketAdi,
     aciklama, ozet,
     veriDamgasi: VERI_DAMGASI, sonVeri: gunDamgasi(BUGUN),
     bolumler, icLinkler,
@@ -691,10 +705,14 @@ function kategoriSayfaModeliKur(kat) {
     tip: 'kategori', yol: `/kategori/${kat.slug}/`,
     baslik: `${kat.label} fiyatları — ${sayiTR(urunler.length)} ürün, ${sayiTR(MARKET_KODLARI.length)} markette karşılaştırma`,
     titleEtiketi: `${kat.label} Fiyatları | Pazar`,
+    kisaAd: kat.label,
     aciklama, ozet,
     veriDamgasi: VERI_DAMGASI, sonVeri: gunDamgasi(BUGUN),
     bolumler, icLinkler,
-    uygulamaLinki: { yol: '/', metin: 'Uygulamada aç' },
+    // Kategori sayfasindan uygulamada AYNI kategoriyi acar (app.js
+    // ekranRotasiUygula -> openCategory). Slug burada da kat.slug'dan geliyor;
+    // rota onu KATEGORILER'e karsi dogruluyor, iki taraf da tek kaynaktan.
+    uygulamaLinki: { yol: `/?screen=kategori&kat=${kat.slug}`, metin: `Uygulamada ${kat.label} kategorisini aç` },
     _atlananBolumler: atlananBolumler,
   };
 }
@@ -764,6 +782,7 @@ function halModeliKur() {
     tip: 'hal', yol: '/hal/',
     baslik: `Hal fiyatları — ${sayiTR(toplam)} kalem (${hal.bulten_tarihi} bülteni)`,
     titleEtiketi: `Hal Fiyatları (${hal.bulten_tarihi}) | Pazar`,
+    kisaAd: 'Hal fiyatları',
     aciklama, ozet,
     veriDamgasi: veriDamga, sonVeri: sonVeriDamga,
     bolumler,

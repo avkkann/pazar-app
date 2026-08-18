@@ -52,7 +52,8 @@ function gecerliModel(ekAlanlar = {}) {
       { yol: '/zam/2026-08/', metin: 'Ağustos 2026 zamları' },
       { yol: '/hal/', metin: 'Hal fiyatları' },
     ],
-    uygulamaLinki: { yol: '/?screen=kategori&kategori=sut', metin: 'Uygulamada aç' },
+    // Parametre adi 'kat' — app.js'teki rota (ekranRotasiUygula) bu adi okuyor.
+    uygulamaLinki: { yol: '/?screen=kategori&kat=sut', metin: 'Uygulamada aç' },
     ...ekAlanlar,
   };
 }
