@@ -96,15 +96,23 @@ console.log('\n=== 3. KELIME ESIGI ORTAK HEADER/FOOTER SAYMIYOR ===');
 
 console.log('\n=== 4. KIRPMA METNI SATIR SAYISIYLA TUTARLI ===');
 {
-  const not = kirpmaNotu(2315, 50, 'ciftin');
-  ok('sayilar sayiTR ile binlik ayracli', not.includes(sayiTR(2315)) && not.includes(sayiTR(50)), not);
-  ok('  metin ornekteki bicimle eslesiyor', not === `eşiği geçen ${sayiTR(2315)} ciftin ilk ${sayiTR(50)}'si`, not);
+  const kalip = 'Eşiği geçen {toplam} çiftin ilk {gosterilen} satırı gösteriliyor.';
+  const not = kirpmaNotu(2315, 50, kalip);
+  ok('yer tutucular sayiTR bicimiyle degisiyor (binlik ayracli)', not.includes(sayiTR(2315)) && not.includes(sayiTR(50)), not);
+  ok('  metin ornekteki bicimle eslesiyor', not === `Eşiği geçen ${sayiTR(2315)} çiftin ilk ${sayiTR(50)} satırı gösteriliyor.`, not);
+  ok('  sayidan hemen sonra kesme+ek gelmiyor (kusurun tekrarini engelleyen koruma)', !/\d['’]\w/.test(not), not);
+
+  ok('gosterilen === toplam -> bos dize (kirpma yok)', kirpmaNotu(142, 142, kalip) === '', JSON.stringify(kirpmaNotu(142, 142, kalip)));
+
+  ok('gosterilen > toplam -> throw', (() => { try { kirpmaNotu(10, 20, kalip); return false; } catch (e) { return true; } })());
+
+  ok('yer tutucusuz kalip -> throw', (() => { try { kirpmaNotu(10, 5, 'sabit metin, yer tutucu yok'); return false; } catch (e) { return true; } })());
 
   // model uzerinden: gosterilen sayi tabloya konan satir sayisiyla tutarli olmali
   const gosterilenSatir = 50;
   const toplamAday = 2315;
   const bolum = tabloBolumu(gosterilenSatir, 1, 'Ayin en cok zamlanan urunleri');
-  bolum.not = kirpmaNotu(toplamAday, gosterilenSatir, 'ciftin');
+  bolum.not = kirpmaNotu(toplamAday, gosterilenSatir, kalip);
   const model = temelModel([bolum], { ozet: kelimeUret(ESIK_KELIME + 10) });
   const r = sayfaKarari(model);
   ok('kirpma notundaki gosterilen sayi modeldeki satir sayisiyla ayni', bolum.not.includes(sayiTR(gosterilenSatir)), bolum.not);

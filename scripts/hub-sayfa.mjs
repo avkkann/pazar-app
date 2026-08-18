@@ -100,11 +100,34 @@ export function sayiTR(n) {
 
 // ── kirpmaNotu ────────────────────────────────────────────────────────
 // Bu proje "sessiz kirpma yok" kuraliyla calisiyor: bir liste kirpiliyorsa
-// kac kayittan kacinin gosterildigi sayfanin kendi metninde yazar. Sayilar
-// sayiTR'den gecirilmis olarak verilmeli; `birim` zaten cekimli gelir
-// (orn. 'ciftin', 'urunun').
-export function kirpmaNotu(toplam, gosterilen, birim) {
-  return `eşiği geçen ${sayiTR(toplam)} ${birim} ilk ${sayiTR(gosterilen)}'si`;
+// kac kayittan kacinin gosterildigi sayfanin kendi metninde yazar. `kalip`
+// cagiranin yazdigi TAM cumle sablonudur, icinde {toplam} ve/veya
+// {gosterilen} yer tutuculari gecer; bu fonksiyon onlari sayiTR'den
+// gecirilmis sayilarla degistirir. Sayfaya ozgu soz dizimi (esik var mi,
+// "ilk N" mi "en cok N" mi) kalipta, cagiranda kalir -- burada sabitlenmez.
+//
+// NEDEN sayidan sonra Turkce cekim eki YOK: "ilk 50'si" gibi yapilar sayinin
+// okunusuna gore degisir (50->'si, 40->'ı, 30->'u, 20->'si, 10->'u, 100->'ü);
+// sabit bir ek sadece bazi sayilar icin doğru cikar. Doğru cozum eki hesaplamak
+// degil, eke hic ihtiyac duymayan cumle kurmaktir (orn. "ilk 50 satır
+// gösteriliyor"); bu yuzden kaliplar boyle yazilir ve fonksiyon kendisi ek
+// uretmez.
+//
+// Yer tutucusuz kalipta (ne {toplam} ne {gosterilen} varsa) throw edilir:
+// sayiyi tasimayan bir kirpma notu "sessiz kirpma yok" kuralinin sessizce
+// delinmesi demektir.
+export function kirpmaNotu(toplam, gosterilen, kalip) {
+  if (typeof kalip !== 'string' || (!kalip.includes('{toplam}') && !kalip.includes('{gosterilen}'))) {
+    throw new Error('[hub-sayfa] kirpmaNotu: kalipta {toplam} ya da {gosterilen} yer tutucusu yok: ' + JSON.stringify(kalip));
+  }
+  if (gosterilen > toplam) {
+    throw new Error('[hub-sayfa] kirpmaNotu: gosterilen (' + gosterilen + ') toplamdan (' + toplam + ') buyuk olamaz');
+  }
+  if (gosterilen >= toplam) return '';
+
+  return kalip
+    .replaceAll('{toplam}', sayiTR(toplam))
+    .replaceAll('{gosterilen}', sayiTR(gosterilen));
 }
 
 // ── ayKarari ──────────────────────────────────────────────────────────
