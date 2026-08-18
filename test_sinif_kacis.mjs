@@ -11,8 +11,8 @@
 //   (a) yalnizca dize LITERALLERI ureten bir ternary olmali (nested olabilir,
 //       kosul kismi serbest -- sadece SONUCA veri sizmiyor mu diye bakiyoruz), ya da
 //   (b) _marketSinifi(...) cagrisi olmali, ya da
-//   (c) asagidaki ISTISNALAR listesinde (satir+ham deger eslesmesiyle) adiyla
-//       ve KAYNAGI izlenmis gerekceyle kayitli olmali.
+//   (c) asagidaki ISTISNALAR tablosunda (ham class deger METNIYLE, satir
+//       numarasiyla DEGIL) KAYNAGI izlenmis gerekceyle kayitli olmali.
 // Bunlarin disindaki HER interpolasyon ihlal sayilir.
 import fs from 'fs';
 
@@ -109,49 +109,60 @@ function marketSinifiCagrisiMi(ifade) {
   return /^_marketSinifi\(.*\)$/.test(ifade.trim());
 }
 
-// ── ISTISNALAR ────────────────────────────────────────────────────────
-// Her biri (satir, ham class degeri) eslesmesiyle kilitli -- baska bir
-// satirda ayni degisken adiyla YENI bir data-kaynakli kullanim gelirse
-// eslesmez ve ihlal olarak yakalanir. Gerekce: kaynagin NEREDEN geldigi.
-const ISTISNALAR = [
-  {
-    satir: null, degerIcerir: 'svg class="${c}"',
-    // asagida gercek arama satir bazli yapiliyor, bu obje sadece dokuman.
-  },
-];
-
-// Satir bazli, ozel gerekceli istisna tablosu: anahtar = satir numarasi,
-// deger = { deger: ham class degeri (dogrulama), gerekce: string }
-const SATIR_ISTISNALARI = {
+// ── ISTISNALAR (metin anahtarli) ────────────────────────────────────────
+// Anahtar = ham class="..." DEGERININ TAM METNI (ör. 'profil-enflasyon
+// ${r.yon}') -- SATIR NUMARASI DEGIL.
+//
+// NEDEN: bu tablo daha once satir numarasiyla anahtarliydi
+// (SATIR_ISTISNALARI[2237], [2458], [2728]/[2728b], [4994]). Bu tur app.js'e
+// zamOlcutu() eklenince ilgisiz bir duzenleme yuzunden istisnanin satiri
+// 4967 -> 4994 kaydi ve tablo ELLE guncellenmek zorunda kaldi (bkz.
+// gorev-4-report.md, YAPILACAK 1). Bu, koruma testlerinin OLME bicimidir:
+// gercek bir ihlal olmadigi halde, sirf ondan onceki satir sayisi
+// degistigi icin SATIR_ISTISNALARI[satir] eslesmesi kaybolup test
+// kirmiziya donebiliyordu -- boyle bir "yalan soyleyen test" er ya da
+// gec kapatilir, ve bu testin var olma sebebi (market verisinin class
+// ozniteligine ham girmesini engellemek) o zaman kaybedilir.
+//
+// Ham deger metni, kod buyuyup satirlar kaysa bile DEGISMEDIGI icin
+// anahtar olarak satir numarasindan daha guvenilir.
+//
+// NOT (ayni ifade, farkli yerler): rozet.tip degiskeni ayni SATIRDA iki
+// FARKLI class metninde geciyor -- 'strip-card-rozet ${rozet.tip}' ve
+// 'lc-dot ${rozet.tip}'. Deger METNI farkli oldugundan bunlar iki AYRI
+// anahtar altinda tutuluyor (asagida), ama ikisinin de gerekcesi
+// AYNIDIR (ayni ifade = ayni gerekce, kaynak ayni tuzakRozetiHesapla()).
+// Metin-anahtarli tabloda bu artik DOGAL olarak kendi basina yeten birer
+// kural: eskideki "satir numarasini bul, zaten gorulduyse '<satir>b'
+// anahtarina bak" ozel-durum mantigina (gorulenSatirIkinci Set'i) hic
+// gerek kalmadi.
+const ISTISNALAR = {
   // lcIcon(name, klass): 25 cagri yeri tarandi (grep) -- her biri ya klass'i
   // hic vermiyor (varsayilan 'lc-icon' -- app.js kod SABITI) ya da sabit dize
   // literali geciyor ('lc-icon lc-icon-lg', 'lc-icon lc-icon-lg lc-amber' gibi).
   // Hicbir cagri market/urun/kullanici verisi gecirmiyor -- kaynagi TAMAMEN
   // kod icinde yazilmis sabitler, f.market/marketfiyati.org.tr veya baska
   // ucuncu taraf/kullanici girdisiyle hic temas etmiyor.
-  2237: { deger: '${c}', gerekce: "lcIcon() klass parametresi: tum cagri yerlerinde sabit dize literali veya varsayilan 'lc-icon' -- veri gecmiyor" },
+  '${c}': { gerekce: "lcIcon() klass parametresi: tum cagri yerlerinde sabit dize literali veya varsayilan 'lc-icon' -- veri gecmiyor" },
   // tazelikChipHTML: `sinif` degiskeni yalnizca if/else zincirinde 'taze' |
   // 'orta' | 'eski' SABIT dize literallerinden biri atanir (gun sayisina
   // gore secilir). u.son_senkron bir TARIH (Date uzerinden isleniyor), class
   // olarak DOGRUDAN kullanilan sey degil -- yalnizca hangi sabitin secilecegini
   // belirliyor. Kaynak kapali kume, veri gecisi yok.
-  2458: { deger: 'tazelik-chip ${sinif}', gerekce: "sinif degiskeni yalnizca 'taze'|'orta'|'eski' sabit dize literallerinden biri olabilir (if/else zinciri), veri gecmiyor" },
+  'tazelik-chip ${sinif}': { gerekce: "sinif degiskeni yalnizca 'taze'|'orta'|'eski' sabit dize literallerinden biri olabilir (if/else zinciri), veri gecmiyor" },
   // _stripKartHTML(u, rozet): rozet.tip TEK kaynaktan geliyor:
   // tuzakRozetiHesapla(u) -- ve bu fonksiyon SADECE {tip:'kirmizi',...} veya
   // {tip:'sari',...} donuyor (app.js icinde 2 return, ikisi de sabit dize
   // literali). scripts/anasayfa-uret.mjs de AYNI fonksiyonu cagirip ayni
   // kapali kumeyi uretiyor. Kaynak kapali kume, veri gecisi yok.
-  2728: { deger: 'strip-card-rozet ${rozet.tip}', gerekce: "rozet.tip SADECE tuzakRozetiHesapla()'nin dondugu 'kirmizi'|'sari' sabit literallerinden biri olabilir" },
+  'strip-card-rozet ${rozet.tip}': { gerekce: "rozet.tip SADECE tuzakRozetiHesapla()'nin dondugu 'kirmizi'|'sari' sabit literallerinden biri olabilir" },
   // ayni satirda ikinci kullanim (lc-dot), ayni kaynak/gerekce.
-  '2728b': { deger: 'lc-dot ${rozet.tip}', gerekce: "rozet.tip SADECE tuzakRozetiHesapla()'nin dondugu 'kirmizi'|'sari' sabit literallerinden biri olabilir (ayni satir, ikinci kullanim)" },
+  'lc-dot ${rozet.tip}': { gerekce: "rozet.tip SADECE tuzakRozetiHesapla()'nin dondugu 'kirmizi'|'sari' sabit literallerinden biri olabilir (ayni satir, ikinci kullanim)" },
   // profilEnflasyonHTML: r.yon TEK kaynaktan geliyor: sepetEnflasyonuHesapla()
   // -- bu fonksiyon SADECE 'artis' | 'dusus' | 'sabit' sabit dize
   // literallerinden birini donuyor (ternary + erken return, hepsi literal).
   // Kaynak kapali kume, veri gecisi yok.
-  // NOT: satir numarasi app.js'e zamOlcutu() eklenince (bkz. YAPILACAK 1,
-  // gorev-4-report.md) 4967 -> 4994 kaydi -- ISTISNA satir+deger eslesmesiyle
-  // kilitli oldugu icin numara guncellenmezse bu ihlal olarak yakalanirdi.
-  4994: { deger: 'profil-enflasyon ${r.yon}', gerekce: "r.yon SADECE sepetEnflasyonuHesapla()'nin dondugu 'artis'|'dusus'|'sabit' sabit literallerinden biri olabilir" },
+  'profil-enflasyon ${r.yon}': { gerekce: "r.yon SADECE sepetEnflasyonuHesapla()'nin dondugu 'artis'|'dusus'|'sabit' sabit literallerinden biri olabilir" },
 };
 
 console.log('\n=== 1. class="..." ICINDE ${...} INTERPOLASYONU TARANIYOR ===');
@@ -160,21 +171,19 @@ console.log('  toplam class="..." + interpolasyon iceren yer: ' + tumu.length);
 
 const ihlaller = [];
 const kabulEdilenIstisnalar = [];
-const gorulenSatirIkinci = new Set();
+const kullanilanIstisnalar = new Set();
 
 for (const { satir, deger } of tumu) {
   const parcalar = interpolasyonlariCikar(deger);
   for (const ifade of parcalar) {
     if (guvenliTernaryMi(ifade)) continue;
     if (marketSinifiCagrisiMi(ifade)) continue;
-    // istisna tablosu: aynı satirda birden fazla ${} varsa (2728 gibi) ikinci
-    // kaydi '<satir>b' anahtariyla ariyoruz.
-    let anahtar = satir;
-    if (SATIR_ISTISNALARI[anahtar] && gorulenSatirIkinci.has(anahtar)) anahtar = satir + 'b';
-    const ist = SATIR_ISTISNALARI[anahtar];
-    if (ist && ist.deger === deger) {
+    // istisna tablosu artik ham deger METNIYLE anahtarli -- satir numarasi
+    // rapor icin ayrica tasiniyor (asagida), eslesme icin kullanilmiyor.
+    const ist = ISTISNALAR[deger];
+    if (ist) {
       kabulEdilenIstisnalar.push({ satir, deger, gerekce: ist.gerekce });
-      gorulenSatirIkinci.add(satir);
+      kullanilanIstisnalar.add(deger);
       continue;
     }
     ihlaller.push({ satir, fn: fnAdi(satir - 1), deger, ifade });
@@ -185,10 +194,17 @@ console.log('\n=== 2. GUVENLI TERNARY / _marketSinifi() DISINDA IHLAL YOK ===');
 ok('acik ihlal yok', ihlaller.length === 0,
   ihlaller.map(x => 'L' + x.satir + '  ' + x.fn + '  class="' + x.deger + '"  [ifade: ' + x.ifade + ']').join('\n        '));
 
-console.log('\n=== 3. ISTISNALAR -- kaynagi izlenmis, tek satir gerekceli ===');
+console.log('\n=== 3. ISTISNALAR -- kaynagi izlenmis, metin anahtarli gerekceli ===');
 ok('istisna sayisi beklenen (5 yer, 4 farkli degisken)', kabulEdilenIstisnalar.length === 5,
   'bulunan: ' + kabulEdilenIstisnalar.length + '\n        ' + kabulEdilenIstisnalar.map(x => 'L' + x.satir + ': ' + x.gerekce).join('\n        '));
 for (const x of kabulEdilenIstisnalar) console.log('  ISTISNA  L' + x.satir + '  ' + x.deger + '\n           -> ' + x.gerekce);
+
+// olu istisna kontrolu: tabloda tanimli ama kodda artik kullanilmayan bir
+// kayit SESSIZCE durmasin -- zamanla coplugüe donen, kimsenin fark etmedigi
+// bir tabloya donusmesin diye bu da FAIL sayilir.
+const oluIstisnalar = Object.keys(ISTISNALAR).filter((k) => !kullanilanIstisnalar.has(k));
+ok('olu istisna yok (tabloda var, kodda yok)', oluIstisnalar.length === 0,
+  oluIstisnalar.map((k) => '"' + k + '" -> ' + ISTISNALAR[k].gerekce).join('\n        '));
 
 console.log('\n=== 4. _marketSinifi TANIMLI VE TANINAN KODLARI BOZMUYOR ===');
 {

@@ -404,7 +404,7 @@ function zamSayfaModeliKur(ay) {
   icLinkler.push(...marketLinkleri());
   icLinkler.push({ yol: '/', metin: 'Pazar ana sayfa' });
 
-  const gunAraligi = buAyBugunMu ? `1–${sonGun} ${ayAdi}` : `1–${sonGun} ${ayAdi}`;
+  const gunAraligi = `1–${sonGun} ${ayAdi}`;
   const ozet = `${ayAdi} ${yil}'da ${sayiTR(ciftler.length)} ürün-market çiftinde %${sayiTR(ZAM_ESIK)}'in üzerinde fiyat artışı gözlendi; bu ${sayiTR(urunSeti.size)} ayrı ürüne, ${sayiTR(zincirSeti.size)} zincire ve ${sayiTR(kategoriSeti.size)} kategoriye yayılıyor (${gunAraligi} arası, salınımlı kayıtlar elendi).`;
   const aciklama = `${ayAdi} ${yil}'da %${ZAM_ESIK}+ zamlanan ${sayiTR(ciftler.length)} ürün-market çifti; zincir, kategori dağılımı ve hesaplama yöntemiyle Pazar'da, geçmişin bir değişim günlüğü olarak.`;
 
