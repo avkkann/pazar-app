@@ -39,3 +39,6 @@ data/a101_*.json
 node_modules/
 dist/
 /public/
+
+# superpowers ilerleme defteri (gecici calisma dosyasi)
+.superpowers/

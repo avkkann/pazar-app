@@ -397,13 +397,25 @@ Görev 9'da gerçek build sonrası `dist/` üzerinde bir kez elle koşulacak.
 
 ## g) Riskler ve şüphelendiğim yerler
 
-1. **Cloudflare dizin yolu davranışı — en büyük risk.** `/zam/2026-08/` isteğinin
-   `zam/2026-08/index.html`'e düşmesi `assets.html_handling` varsayılanına
-   (`auto-trailing-slash`) bağlı ve `wrangler.jsonc`'de **açıkça yazılmamış**.
-   `not_found_handling: "none"` olduğu için yanlış varsayım = **19 sayfanın hepsi 404**.
-   *Önlem:* Görev 9'da canlıda `curl -sI` ile ölçülür (repo grep'i bu soruyu cevaplamaz —
-   proje bu dersi CSP'de yedi). Düşerse `html_handling` açıkça yazılır; o da yetmezse
-   sayfalar `zam/2026-08.html` düz dosya olarak üretilir ve URL'lerden sondaki `/` düşer.
+1. ~~**Cloudflare dizin yolu davranışı**~~ — **KAPANDI, 2026-08-18 canlı ölçümle** (Görev 0).
+   `wrangler.jsonc`'de `html_handling` **yazılı değil**, varsayılan geçerli ve varsayılan
+   **doğru olanı yapıyor**. `pazarapp.net`'e geçici bir sonda deploy edilip `curl -sI` ile ölçüldü
+   (tarayıcı MCP'siyle değil — o profilde uzantı header sıyırıyor):
+
+   | İstek | Sonuç |
+   |---|---|
+   | `/zam/test-olcum/` | **200**, `Content-Type: text/html`, gövde doğru, CSP 9 direktif |
+   | `/zam/test-olcum` (eğik çizgisiz) | **307** → `/zam/test-olcum/` |
+   | `/zam/test-olcum/index.html` | **307** → `/zam/test-olcum/` |
+   | `/zam/` (index'i olmayan dizin) | **404** ← negatif kontrol |
+   | `/zam/olmayan-yol/` | **404** ← negatif kontrol |
+   | `/zam/test-olcum/olmayan.html` | **404** ← negatif kontrol |
+
+   Negatif kontroller 404 verdiği için ölçüm başarısızlığı görebiliyor — bulgu gerçek.
+   **Bağlayıcı sonuç: kanonik biçim sondaki eğik çizgili yol.** `index.html` ve çizgisiz
+   biçim 307 ile ona yönleniyor; `canonical`, `og:url`, sitemap `loc` ve iç linklerin
+   hepsi `/zam/2026-08/` biçiminde olmalı. Sonda ölçümden sonra revert edildi
+   (`c159f44`), canlıda 404 döndüğü doğrulandı, kök 200 ve `app.<hash>.js` yerinde.
 2. **Derin yolda göreli varlık yolu.** SPA fallback arızasıyla aynı sınıf hata: `./static/...`
    `/zam/2026-08/static/...`e çözülür. Testte 0-eşleşme iddiası var (f-2) ama asıl kanıt
    canlı sayfada 404 olmaması.
