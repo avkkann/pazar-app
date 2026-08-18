@@ -36,6 +36,13 @@ jobs:
           # yerel-CI majör farkindan cikti; ikisi ayni majörde olsun.
           # (Runner'in kendi varsayilani da 24; Node 20 kullanimdan kaldiriliyor.)
           node-version: '24'
+      - uses: actions/setup-python@v5
+        with:
+          # Hub tazelik kontrolu (asagida) bir Python betigi; bugune kadar bu
+          # is akisinda yalnizca Node vardi. python-version verilmiyor: runner
+          # varsayilanindan hoslaniyoruz, veri_tazelik_kontrol.py'nin gordugu
+          # tek surum bagimliligi standart kutuphane (json/re/datetime).
+          python-version: '3.x'
       - run: npm ci
       - run: npm run build
         env:
@@ -43,6 +50,27 @@ jobs:
           # Niyeti acik tutmak ve varsayilan ileride degisirse koruma saglamak icin
           # duruyor. Eski Pages duzeni icin deger 'ghpages' olurdu.
           DEPLOY_TARGET: cloudflare
+      - name: Hub Sayfalari Tazelik Kontrolu
+        # Wrangler'dan ONCE, bilerek: dusen bir kontrol yayini hic yaptirmamali.
+        # continue-on-error YOK -- amaci tam olarak isi kirmizi yapmak ve
+        # deploy'u engellemek. Sessizce bayat sayfa yayinlamak bu projenin
+        # dort kez yedigi tuzak (bkz. veri_tazelik_kontrol.py dosya basi notu).
+        #
+        # Hedef dizin .hub/, dist/ DEGIL: npm run build hem .hub/ (hub-uret.mjs
+        # ciktisi, kok dizininde manifest.json + hal/kategori/market/zam/
+        # sayfalari) hem de dist/'i (nihai yayin ciktisi) uretiyor ve
+        # prepare-public.mjs .hub/'daki sayfa dizinlerini dist/'e OLDUGU GIBI
+        # (byte-byte) kopyaliyor. Ama .hub/manifest.json BILEREK dist/'e
+        # kopyalanmiyor (bkz. prepare-public.mjs) cunku dist/manifest.json
+        # zaten uygulamanin PWA manifest'i icin ayrilmis -- ikisi ayni isimde
+        # cakisirdi. Bu yuzden 'python veri_tazelik_kontrol.py --hub dist'
+        # HER ZAMAN "manifest.json bir dizi (liste) olmali" hatasiyla exit 1
+        # dondurur (denendi, gorev-7-report.md'de kanit var) -- tazeligi
+        # DEGIL, bu isim cakismasini yakalar, bu sahte bir kirmizi olur.
+        # .hub/'i hedeflemek dogru: sayfalarin ICERIGI (ve pazar-veri-damgasi
+        # damgalari) dist/'dekiyle birebir ayni, sadece kopyalanmadan ONCEKI
+        # konumu. Runner'da 'py' yok (Windows'a ozgu), 'python' kullaniliyor.
+        run: python scripts/veri_tazelik_kontrol.py --hub .hub
       - name: Cloudflare Workers Deploy
         uses: cloudflare/wrangler-action@v3
         with:

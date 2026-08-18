@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node scripts/anasayfa-uret.mjs && node scripts/prepare-public.mjs && vite build",
+    "build": "node scripts/anasayfa-uret.mjs && node scripts/hub-uret.mjs && node scripts/prepare-public.mjs && vite build",
     "anasayfa": "node scripts/anasayfa-uret.mjs"
   },
   "devDependencies": {

@@ -1,7 +1,7 @@
 // scripts/prepare-public.mjs
 // build oncesi calisir: public/ klasorunu static/, data/, manifest.json, robots.txt, sitemap.xml'den olusturur.
 // Bu dosyalarin GERCEK kaynagi hala repo kokunde (static/, data/) - burada sadece build icin GECICI bir kopya cikariliyor.
-import { cpSync, mkdirSync, existsSync, rmSync, copyFileSync, readFileSync, writeFileSync } from 'node:fs';
+import { cpSync, mkdirSync, existsSync, rmSync, copyFileSync, readFileSync, writeFileSync, readdirSync } from 'node:fs';
 import { lastmodDamgasi, sitemapDoldur, sitemapEkle, manifestGirisleri } from './sitemap.mjs';
 
 const PUB = 'public';
@@ -13,6 +13,33 @@ cpSync('data', `${PUB}/data`, { recursive: true });
 copyFileSync('manifest.json', `${PUB}/manifest.json`);
 copyFileSync('robots.txt', `${PUB}/robots.txt`);
 copyFileSync('sw.js', `${PUB}/sw.js`);
+
+// Hub sayfalari (.hub/, Gorev 4: scripts/hub-uret.mjs) public/'e kopyalanir.
+// Sayfa dizinleri (hal/, kategori/, market/, zam/) static/data/manifest.json
+// ile AYNI SEVIYEDE, public/ kokune duzlenir -- boylece Vite publicDir'i
+// oldugu gibi dist/'e tasiyinca sayfalar dist/zam/2026-08/index.html,
+// dist/market/bim/index.html ... olarak cikar.
+//
+// .hub/manifest.json BILEREK KOPYALANMIYOR: yayina gitmesi gereken bir
+// dosya degil, ic kayit (asagida sitemap icin OKUNUYOR ama public/'e
+// YAZILMIYOR). Ayrica public/manifest.json birazcik yukarida zaten
+// uygulamanin PWA manifest'i icin ayrildi -- ayni isimde iki farkli
+// icerikli dosya CAKISIRDI, biri digerini sessizce ezerdi.
+const HUB_DIR = '.hub';
+if (existsSync(HUB_DIR)) {
+  let hubKopyalanan = 0;
+  for (const giris of readdirSync(HUB_DIR, { withFileTypes: true })) {
+    if (giris.name === 'manifest.json' || !giris.isDirectory()) continue;
+    cpSync(`${HUB_DIR}/${giris.name}`, `${PUB}/${giris.name}`, { recursive: true });
+    hubKopyalanan++;
+  }
+  console.log(`[hub] ${hubKopyalanan} hub dizini public/'e kopyalandi (${HUB_DIR} -> ${PUB})`);
+} else {
+  // hub-uret.mjs hic kosmamis olabilir (Gorev 4). Mevcut sitemap uyarisiyla
+  // tutarli: build KIRILMIYOR, sadece gorunur bir uyari basiliyor. Asil
+  // kapi Gorev 6/7'deki veri_tazelik_kontrol.py --hub.
+  console.warn('[hub] ' + HUB_DIR + ' bulunamadi — hub sayfalari public/\'e kopyalanmiyor (scripts/hub-uret.mjs kosmamis olabilir).');
+}
 
 // sitemap.xml duz kopyalanmiyor: <lastmod> burada dolduruluyor. Damga
 // data/anasayfa.json'un "uretim" alanindan geliyor — her veri kosusunda

@@ -289,5 +289,43 @@ with tempfile.TemporaryDirectory() as tmp:
     ok("  /market/yenimarket/ eksikligi ciktida", "/market/yenimarket/" in cikti, cikti[-800:])
 
 
+print("\n=== 11. WORKFLOW: deploy.yml hub kapisi ===")
+# Gorev 7: hub sayfalari artik build zincirine giriyor ve deploy.yml,
+# wrangler'dan ONCE bu betigi --hub kipinde calistiriyor. Ayni desen
+# test_tazelik.py'nin "5. WORKFLOW" bolumunde: workflow YAML'i metin
+# olarak okunur, adimlarin GORECELI SIRASI index() ile dogrulanir.
+wf_yolu = os.path.join(_BASE, ".github", "workflows", "deploy.yml")
+wf = open(wf_yolu, encoding="utf-8").read()
+
+ok("deploy.yml --hub kontrolunu iceriyor",
+   "veri_tazelik_kontrol.py" in wf and "--hub" in wf, "")
+ok("  kontrol 'npm run build'den SONRA geliyor",
+   wf.index("npm run build") < wf.index("--hub"), "")
+ok("  kontrol wrangler-action'dan ONCE geliyor",
+   wf.index("--hub") < wf.index("wrangler-action"), "")
+
+# continue-on-error YOK: bu kapinin TEK amaci isi kirmizi yapip deploy'u
+# durdurmak. Genel bir "dosyada hic gecmiyor" kontrolu yetmez -- adimi
+# "- name: ...Tazelik Kontrolu" basligindan bir sonraki "- name:"/"- uses:"a
+# kadar dilimleyip SADECE o blokta ariyoruz. YAML DIREKTIFI araniyor
+# ("continue-on-error:", ikinokta ile) -- yoksa adim ustundeki aciklayici
+# yorum satirlari ("... continue-on-error YOK ...") kendi kendini FAIL ettirir.
+_hub_adim_basi = wf.index("Hub Sayfalari Tazelik Kontrolu")
+_sonraki_adim = wf.find("\n      - ", _hub_adim_basi)
+_hub_adim_blogu = wf[_hub_adim_basi:_sonraki_adim if _sonraki_adim != -1 else len(wf)]
+ok("  kontrol ADIMINDA continue-on-error YOK",
+   "continue-on-error:" not in _hub_adim_blogu, _hub_adim_blogu)
+
+ok("setup-python var", "setup-python" in wf, "")
+
+print("\n=== 12. package.json BUILD ZINCIRI SIRASI ===")
+pkg = open(os.path.join(_BASE, "package.json"), encoding="utf-8").read()
+ok("build zincirinde hub-uret.mjs var", "hub-uret.mjs" in pkg, "")
+ok("  hub-uret.mjs, anasayfa-uret.mjs'ten SONRA",
+   pkg.index("anasayfa-uret.mjs") < pkg.index("hub-uret.mjs"), "")
+ok("  hub-uret.mjs, prepare-public.mjs'ten ONCE",
+   pkg.index("hub-uret.mjs") < pkg.index("prepare-public.mjs"), "")
+
+
 print("\n%d gecti, %d basarisiz" % (gecti, basarisiz))
 sys.exit(1 if basarisiz else 0)
