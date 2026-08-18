@@ -40,5 +40,8 @@ node_modules/
 dist/
 /public/
 
+# 2026-08 - hub sayfalari (zam/market/kategori/hal), turetilmis cikti
+.hub/
+
 # superpowers ilerleme defteri (gecici calisma dosyasi)
 .superpowers/
