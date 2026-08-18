@@ -54,7 +54,7 @@ function kur(gecmis, urunler) {
     rakam ? rakam[0] : '',
     fnKaynak('_yerelGunISO'), fnKaynak('_salinimVarSeri'), fnKaynak('_seriKur'), fnKaynak('otuzGunlukSeri'), fnKaynak('otuzGunlukSeriTemiz'), fnKaynak('otuzGunMinFiyatTemiz'), fnKaynak('zamOncekiZirve'),
     fnKaynak('_zamGunISO'), fnKaynak('_zamTarihYazi'), fnKaynak('_trBulunma'),
-    fnKaynak('zamMarketSerisi'), fnKaynak('zamMarketArtisi'), fnKaynak('zamDurumu'),
+    fnKaynak('zamOlcutu'), fnKaynak('zamMarketSerisi'), fnKaynak('zamMarketArtisi'), fnKaynak('zamDurumu'),
     ...GEREKEN.map(fnKaynak)].join('\n'), ctx);
   return ctx;
 }
@@ -275,7 +275,7 @@ console.log('\n=== 5b. YIGIN: ZAM VARKEN AL/BEKLE SUSUYOR ===');
       .map(s => { const m = APP.match(new RegExp('const ' + s + '\\s*=\\s*([0-9.]+)')); return m ? 'const ' + s + ' = ' + m[1] + ';' : ''; }).join('\n');
     vm.runInContext([sb, (APP.match(/let _seriCache[^\n]*\n/) || [''])[0],
       fnKaynak('_yerelGunISO'), fnKaynak('_salinimVarSeri'), fnKaynak('_seriKur'), fnKaynak('otuzGunlukSeri'), fnKaynak('otuzGunlukSeriTemiz'), fnKaynak('otuzGunMinFiyatTemiz'), fnKaynak('_zamGunISO'), fnKaynak('zamMarketSerisi'),
-      fnKaynak('zamMarketArtisi'), fnKaynak('zamDurumu'), fnKaynak('alZamaniDurumu')].join('\n'), c);
+      fnKaynak('zamOlcutu'), fnKaynak('zamMarketArtisi'), fnKaynak('zamDurumu'), fnKaynak('alZamaniDurumu')].join('\n'), c);
     return c;
   })();
   const zamliUrun = { _sid: 's', ad: 'Sprite', en_dusuk_fiyat: 159,

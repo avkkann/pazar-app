@@ -16,7 +16,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { appOrtamiKur } from './app-vm.mjs';
-import { gunDamgasi, sayiTR, kirpmaNotu, ayKarari, sayfaKarari, sayfaHTML } from './hub-sayfa.mjs';
+import { gunDamgasi, sayiTR, kirpmaNotu, ayKarari, sayfaKarari, sayfaHTML, slug } from './hub-sayfa.mjs';
 
 const KOK = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const D = (p) => path.join(KOK, p);
@@ -44,9 +44,10 @@ const MARKET_NAMES = ic('MARKET_NAMES');
 const MARKET_KODLARI = Object.keys(MARKET_NAMES);
 const KATEGORILER = ic('KATEGORILER');
 const ZAM_ESIK = ic('ZAM_ESIK');
+const ZAM_MIN_KAYIT = ic('ZAM_MIN_KAYIT');
 const ZAM_AYLAR = ic('ZAM_AYLAR');
 const catCache = ic('catCache');
-console.log(`[hub] app.js hazir: ${MARKET_KODLARI.length} market, ${KATEGORILER.length} kategori, ZAM_ESIK=${ZAM_ESIK}`);
+console.log(`[hub] app.js hazir: ${MARKET_KODLARI.length} market, ${KATEGORILER.length} kategori, ZAM_ESIK=${ZAM_ESIK}, ZAM_MIN_KAYIT=${ZAM_MIN_KAYIT}`);
 
 // ── app.js pure fonksiyonlarina vm sinirindan cagri sarmalayicilari ────
 function fiyatlariTemizleIc(marketFiyatlari) {
@@ -64,6 +65,14 @@ function veBaglacliListeIc(adlar) {
 function salinimVarMi(seri) {
   ctx.__seri = seri;
   return ic('_salinimVarSeri(__seri)') !== null;
+}
+// Zam ölçütü — YENİDEN YAZILMIYOR: app.js'teki zamOlcutu() çağrılıyor. Pencere
+// takvim ayı (ayZamHesapla ayarlar), çekirdek (zirve/kayıt eşiği/artış) app.js'in
+// KENDİ kodu. Bkz. YAPILACAK 1 (gorev-4-report.md) — iki ayrı "zam nedir" tanımı
+// olmasın diye zamMarketArtisi (app.js) ile burası AYNI fonksiyonu paylaşıyor.
+function zamOlcutuIc(kayitlar, pencereBas, pencereSon) {
+  ctx.__zk = kayitlar; ctx.__zb = pencereBas; ctx.__zs = pencereSon;
+  return ic('zamOlcutu(__zk, __zb, __zs)');
 }
 
 // ── bicimleme yardimcilari (is mantigi degil, sadece gorunum) ──────────
@@ -122,6 +131,7 @@ console.log(`[hub] veri okundu: anasayfa.zam=${(anasayfa.zam || []).length}, il_
 // alanindan gelir -- kaynak verinin damgasi budur, W3C Datetime zaten.
 const VERI_DAMGASI = anasayfa.uretim;
 const BUGUN = yerelTarihTR(anasayfa.uretim);
+console.log(`[hub] BUGUN=${BUGUN}`);
 
 // ── sid -> kategori slug / urun haritasi (tum katalog, 8 dosya) ────────
 const sidSlug = new Map();
@@ -216,40 +226,74 @@ function kategoriLinkleri(haricSlug) {
   return KATEGORILER.filter((k) => k.slug !== haricSlug).map((k) => ({ yol: `/kategori/${k.slug}/`, metin: `${k.label} fiyatları` }));
 }
 function marketLinkleri(haricKod) {
-  return MARKET_KODLARI.filter((mk) => mk !== haricKod).map((mk) => ({ yol: `/market/${mk}/`, metin: `${MARKET_NAMES[mk]} fiyatları` }));
+  return MARKET_KODLARI.filter((mk) => mk !== haricKod).map((mk) => ({ yol: `/market/${slug(mk)}/`, metin: `${MARKET_NAMES[mk]} fiyatları` }));
 }
 
 // ═══════════════════════════════════════════════════════════════════════
 // 1) AY TESPITI + AYLIK ZAM HESABI
 // ═══════════════════════════════════════════════════════════════════════
 const ayIlkGozlem = new Map();
+let enErkenGozlem = null;
 for (const sid of Object.keys(gecmisFiyatlar)) {
   for (const k of gecmisFiyatlar[sid]) {
     if (!k || !k.t) continue;
     const ay = k.t.slice(0, 7);
     const mevcut = ayIlkGozlem.get(ay);
     if (!mevcut || k.t < mevcut) ayIlkGozlem.set(ay, k.t);
+    if (!enErkenGozlem || k.t < enErkenGozlem) enErkenGozlem = k.t;
   }
 }
 const tumAylar = [...ayIlkGozlem.keys()].sort();
-const ayKararlari = tumAylar.map((ay) => ({ ay, karar: ayKarari(ay, ayIlkGozlem.get(ay)) }));
+
+// İki ISO tarih ('yyyy-aa-gg') arasındaki GÜN FARKI. Saf aritmetik -- "şimdi"
+// TÜRETMİYOR (girdiler zaten sabit ISO dizeleri), bu yüzden projenin
+// yasakladığı yerel-saat/"new Date()"-turetme tuzağına girmiyor.
+function gunFarkiHesapla(erkenISO, gecISO) {
+  const [y1, a1, g1] = erkenISO.split('-').map(Number);
+  const [y2, a2, g2] = gecISO.split('-').map(Number);
+  return Math.round((Date.UTC(y2, a2 - 1, g2) - Date.UTC(y1, a1 - 1, g1)) / 86400000);
+}
+// AY ÖNCESİNDE EN AZ 30 GÜNLÜK GEÇMİŞ KAPISI (YAPILACAK 2). Yeni eşik icat
+// edilmedi: 30, app.js'in KENDİ zam penceresinin uzunluğu (_zamGunISO(29) ->
+// bugün dahil 30 gün, bkz. app.js zamMarketArtisi/zamOlcutu). "Önceki zirve"
+// ölçütü bu kadarlık bir pencereye dayanamayan bir ay için KURULAMAZ -- ayın
+// az satır üretmesi "sakin geçti" DEĞİL, ölçütün çapası yok demektir.
+const AY_ONCESI_GEREKEN_GUN = 30;
+function ayGecmisYeterliMi(ay) {
+  const gun = gunFarkiHesapla(enErkenGozlem, `${ay}-01`);
+  if (gun < AY_ONCESI_GEREKEN_GUN) {
+    return { yeterli: false, gun, sebep: `${ay} ayı öncesinde yalnızca ${gun} günlük geçmiş var (gerekli: ${AY_ONCESI_GEREKEN_GUN}) — "önceki zirve" ölçütü bu kadar kısa bir pencereye dayanamaz` };
+  }
+  return { yeterli: true, gun, sebep: `${ay} ayı öncesinde ${gun} günlük geçmiş var (gerekli: ${AY_ONCESI_GEREKEN_GUN})` };
+}
+const ayKararlari = tumAylar.map((ay) => {
+  const temelKarar = ayKarari(ay, ayIlkGozlem.get(ay));
+  if (!temelKarar.uygun) return { ay, karar: temelKarar };
+  const gecmisKarari = ayGecmisYeterliMi(ay);
+  if (!gecmisKarari.yeterli) return { ay, karar: { uygun: false, sebep: gecmisKarari.sebep } };
+  return { ay, karar: { uygun: true, sebep: `${temelKarar.sebep}; ${gecmisKarari.sebep}` } };
+});
 const uygunAylar = ayKararlari.filter((x) => x.karar.uygun).map((x) => x.ay);
-console.log(`[hub] aylar: ${tumAylar.join(', ')} — uygun: ${uygunAylar.join(', ')}`);
+console.log(`[hub] aylar: ${tumAylar.join(', ')} — uygun: ${uygunAylar.join(', ')} — en erken gözlem: ${enErkenGozlem}`);
 for (const { ay, karar } of ayKararlari) {
   if (!karar.uygun) console.log(`[hub] AY ATLANDI ${ay} — ${karar.sebep}`);
 }
 const guncelAy = uygunAylar[uygunAylar.length - 1];
 
 // Bir takvim ayi icin: ay basi -> ay sonu (ya da bugune kadar, mevcut ay
-// icin) karsilastirmasi. Esik ZAM_ESIK'ten, salinim elemesi
-// _salinimVarSeri'den geliyor -- ikisi de app.js'in KENDI kodu. Pencere
-// SADECE gun araligi -- bu, "mantik yeniden yazilmiyor" kuralinin BILINCLI
-// istisnasi (bkz. dosya basi yorumu): zamHavuzu() takvim ayina gore
-// parametreleştirilemiyor.
+// icin) karsilastirmasi. ZAM OLCUTU app.js'teki zamOlcutu()'DAN GELIYOR --
+// zirve/kayit-esigi/artis hesabinin TEK kaynagi orasi (bkz. zamOlcutuIc,
+// YAPILACAK 1). Esik ZAM_ESIK'ten, salinim elemesi _salinimVarSeri'den
+// geliyor -- ikisi de app.js'in KENDI kodu. Pencere SADECE takvim ayi --
+// bu, "mantik yeniden yazilmiyor" kuralinin BILINCLI istisnasi (bkz. dosya
+// basi yorumu): zamHavuzu() takvim ayina gore parametreleştirilemiyor.
 function ayZamHesapla(ay, sonGun) {
   const [yilS, ayS] = ay.split('-');
   const gunler = [];
   for (let g = 1; g <= sonGun; g++) gunler.push(`${yilS}-${ayS}-${String(g).padStart(2, '0')}`);
+  const pencereBas = gunler[0];
+  const pencereSon = gunler[gunler.length - 1];
+  console.log(`[hub] zam penceresi ${ay}: ${pencereBas}..${pencereSon} (${gunler.length} gün)`);
 
   const ciftler = [];
   let salinimElenen = 0;
@@ -271,19 +315,18 @@ function ayZamHesapla(ay, sonGun) {
     for (const m of Object.keys(marketler)) {
       if (!MARKET_NAMES[m]) continue;
       const a = marketler[m].slice().sort((x, y) => (x.t < y.t ? -1 : (x.t > y.t ? 1 : 0)));
+      // Salinim testi TAM gun izgarali seri istiyor -- bu kisim degismedi.
       const seri = new Array(gunler.length).fill(null);
       let j = 0, son = null;
       for (let i = 0; i < gunler.length; i++) {
         while (j < a.length && a[j].t <= gunler[i]) { son = a[j]; j++; }
         seri[i] = son ? son.f : null;
       }
-      const ayBasi = seri[0];
-      const aySonu = seri[seri.length - 1];
-      if (ayBasi == null || aySonu == null) continue;
-      const artis = ((aySonu - ayBasi) / ayBasi) * 100;
-      if (artis < ZAM_ESIK) continue;
+      // ZAM OLCUTU: onceki zirveye gore, app.js'in KENDI fonksiyonuyla.
+      const r = zamOlcutuIc(a, pencereBas, pencereSon);
+      if (!r || !(r.artis >= ZAM_ESIK)) continue;
       if (salinimVarMi(seri)) { salinimElenen++; continue; }
-      ciftler.push({ sid, market: m, ad: urun ? urun.ad : sid, kategoriSlug, ayBasi, aySonu, artis, sonGozlemTarihi: son.t });
+      ciftler.push({ sid, market: m, ad: urun ? urun.ad : sid, kategoriSlug, zirve: r.zirve, sonDeger: r.sonDeger, artis: r.artis, sonGozlemTarihi: son.t });
     }
   }
   return { ciftler, salinimElenen };
@@ -313,7 +356,7 @@ function zamSayfaModeliKur(ay) {
   const satirlar1 = gosterilenler.map((c) => {
     const kat = KATEGORILER.find((k) => k.slug === c.kategoriSlug);
     return [
-      c.ad, MARKET_NAMES[c.market] || c.market, paraTR(c.ayBasi), paraTR(c.aySonu),
+      c.ad, MARKET_NAMES[c.market] || c.market, paraTR(c.zirve), paraTR(c.sonDeger),
       yuzdeIsaretli(c.artis),
       { metin: kat ? kat.label : c.kategoriSlug, yol: `/kategori/${c.kategoriSlug}/` },
     ];
@@ -323,7 +366,7 @@ function zamSayfaModeliKur(ay) {
     : '';
   tabloBolumEkle(bolumler, atlananBolumler, {
     baslik: `Ayın en çok zamlanan ${sayiTR(gosterilenler.length)} ürünü`,
-    sutunlar: ['Ürün', 'Market', 'Ay başı ₺', 'Son ₺', 'Artış %', 'Kategori'],
+    sutunlar: ['Ürün', 'Market', 'Zirve ₺', 'Son ₺', 'Artış %', 'Kategori'],
     satirlar: satirlar1, not: not1,
   });
 
@@ -334,7 +377,7 @@ function zamSayfaModeliKur(ay) {
   tabloBolumEkle(bolumler, atlananBolumler, {
     baslik: 'Zincir bazında dağılım',
     sutunlar: ['Market', 'Zam sayısı', 'Medyan artış %'],
-    satirlar: zincirVeri.map((v) => [{ metin: MARKET_NAMES[v.mk], yol: `/market/${v.mk}/` }, sayiTR(v.sayi), v.med == null ? '—' : yuzdeIsaretli(v.med)]),
+    satirlar: zincirVeri.map((v) => [{ metin: MARKET_NAMES[v.mk], yol: `/market/${slug(v.mk)}/` }, sayiTR(v.sayi), v.med == null ? '—' : yuzdeIsaretli(v.med)]),
   });
 
   const katVeri = KATEGORILER.map((k) => {
@@ -350,7 +393,7 @@ function zamSayfaModeliKur(ay) {
   bolumler.push({
     baslik: 'Bu liste nasıl hesaplandı',
     tur: 'metin',
-    metin: `Bu listeye ${ayAdi} ${yil} ayı başındaki fiyatına göre en az %${sayiTR(ZAM_ESIK)} artan ürün-market çiftleri giriyor; artış, ayın ilk günündeki fiyatla ${sayiTR(sonGun)}. gündeki (bu ay hâlâ sürüyorsa bugüne kadarki) fiyat karşılaştırılarak hesaplanıyor. Aynı marketin serisinde bir seviyeden ayrılıp eski seviyeye geri dönen salınımlı ${sayiTR(salinimElenen)} kayıt listeden elendi — API her zincir için tek bir temsilci mağaza döndürüyor ve bu mağaza zaman zaman değişiyor, bu da geçici bir sıçrama gibi görünebiliyor. Taze meyve ve sebze mevsimsel fiyat dalgalanması gösterdiği için listenin dışında tutuluyor. Bu sayfa geçmişin bir değişim günlüğüdür; güncel karşılaştırma için market ve kategori sayfalarına bakın. Her market zinciri için veride tek bir temsilci mağaza bulunduğundan gerçek raf fiyatı şehre göre değişebilir.`,
+    metin: `Bu listeye, ${ayAdi} ${yil} ayı başlamadan ÖNCE gözlenmiş en yüksek fiyata (zirveye) göre en az %${sayiTR(ZAM_ESIK)} artan ürün-market çiftleri giriyor — karşılaştırma ayın ilk günündeki fiyatla DEĞİL, önceki zirveyle yapılıyor: fiyat geçici bir kampanya sonrası eski seviyesine geri dönüyorsa bu zam sayılmıyor, yalnızca DAHA ÖNCE HİÇ GÖRÜLMEMİŞ bir seviyeye çıkan fiyatlar zam sayılıyor. Zirve en az ${sayiTR(ZAM_MIN_KAYIT)} kayda dayanmıyorsa (çapa kırılgansa) o çift hiç ölçülmüyor. "Son ₺" ${sayiTR(sonGun)}. gündeki (bu ay hâlâ sürüyorsa bugüne kadarki) taşınan fiyat. Aynı marketin serisinde bir seviyeden ayrılıp eski seviyeye geri dönen salınımlı ${sayiTR(salinimElenen)} kayıt listeden elendi — API her zincir için tek bir temsilci mağaza döndürüyor ve bu mağaza zaman zaman değişiyor, bu da geçici bir sıçrama gibi görünebiliyor. Taze meyve ve sebze mevsimsel fiyat dalgalanması gösterdiği için listenin dışında tutuluyor. Bu sayfa geçmişin bir değişim günlüğüdür; güncel karşılaştırma için market ve kategori sayfalarına bakın. Her market zinciri için veride tek bir temsilci mağaza bulunduğundan gerçek raf fiyatı şehre göre değişebilir.`,
   });
 
   const icLinkler = [];
@@ -492,7 +535,7 @@ function marketSayfaModeliKur(marketKod) {
   const aciklama = `${marketAdi} fiyat listesi: ${sayiTR(genel.urunSayisi)} ürün, ${sayiTR(iller.length)} ilde mağaza kapsamı, en ucuz olduğu ürünler ve son 30 günde zamlananlar — Pazar'da market karşılaştırması.`;
 
   return {
-    tip: 'market', yol: `/market/${marketKod}/`,
+    tip: 'market', yol: `/market/${slug(marketKod)}/`,
     baslik: `${marketAdi} fiyatları — ${sayiTR(genel.urunSayisi)} ürün, ${sayiTR(iller.length)} ilde`,
     titleEtiketi: `${marketAdi} Fiyatları | Pazar`,
     aciklama, ozet,
@@ -593,7 +636,7 @@ function kategoriSayfaModeliKur(kat) {
   tabloBolumEkle(bolumler, atlananBolumler, {
     baslik: 'Market kapsamı',
     sutunlar: ['Market', 'Bu kategoride ürün', 'En ucuz olduğu ürün'],
-    satirlar: marketKapsamVeri.map((v) => [{ metin: MARKET_NAMES[v.mk], yol: `/market/${v.mk}/` }, sayiTR(v.ist.urunSayisi), sayiTR(v.ist.enUcuzSayisi)]),
+    satirlar: marketKapsamVeri.map((v) => [{ metin: MARKET_NAMES[v.mk], yol: `/market/${slug(v.mk)}/` }, sayiTR(v.ist.urunSayisi), sayiTR(v.ist.enUcuzSayisi)]),
   });
 
   bolumler.push({

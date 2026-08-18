@@ -62,7 +62,7 @@ function kur(gecmis, urunler = []) {
     fnKaynak('otuzGunMinFiyat'), fnKaynak('otuzGunMinFiyatTemiz'), fnKaynak('enDusukFiyat'),
     fnKaynak('supheliDurum'), fnKaynak('indirimRozetiHesapla'), fnKaynak('gercekIndirimRozetiHesapla'),
     fnKaynak('alarmOnerisi'), fnKaynak('_zamGunISO'), fnKaynak('zamMarketSerisi'),
-    fnKaynak('zamMarketArtisi'), fnKaynak('zamSalinimVar'), fnKaynak('zamDurumu'),
+    fnKaynak('zamOlcutu'), fnKaynak('zamMarketArtisi'), fnKaynak('zamSalinimVar'), fnKaynak('zamDurumu'),
     fnKaynak('alZamaniDurumu'), fnKaynak('_zamMarka'), fnKaynak('zamOncekiZirve'),
     fnKaynak('zamAdaylari'),
   ].filter(Boolean).join('\n'), ctx);

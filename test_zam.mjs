@@ -57,7 +57,7 @@ function kur(gecmis, urunler, opts = {}) {
   vm.runInContext([
     sabitler, seriCache ? seriCache[0] : '',
     fnKaynak('_yerelGunISO'), fnKaynak('_salinimVarSeri'), fnKaynak('_seriKur'), fnKaynak('otuzGunlukSeri'), fnKaynak('otuzGunlukSeriTemiz'), fnKaynak('otuzGunMinFiyatTemiz'), fnKaynak('_zamGunISO'),
-    fnKaynak('zamMarketSerisi'), fnKaynak('zamMarketArtisi'), fnKaynak('zamSalinimVar'),
+    fnKaynak('zamOlcutu'), fnKaynak('zamMarketSerisi'), fnKaynak('zamMarketArtisi'), fnKaynak('zamSalinimVar'),
     fnKaynak('zamOncekiZirve'), fnKaynak('_zamMarka'), fnKaynak('zamHavuzu'), fnKaynak('zamSecHavuzdan'), fnKaynak('zamAdaylari'),
   ].join('\n'), ctx);
   return ctx;
@@ -292,6 +292,46 @@ console.log('\n=== 10. URUN DETAYI DEGISMEDI ===');
 {
   const od = APP.slice(APP.indexOf('function openDetay'), APP.indexOf('function openDetay') + 4500);
   ok('detay render zam koduna dokunmuyor', !/zamAdaylari|zamRozet|renderZamSeridi/.test(od), '');
+}
+
+console.log('\n=== 11. PENCERE DOGRULAMA: zamMarketArtisi zamOlcutu\'ya DOGRU PENCEREYI GECIRIYOR MU ===');
+// Fonksiyonun kendisi dogru olsa bile CAGIRAN yanlis pencere gecirebilir
+// (sinir kaydirma, yanlis gun vb.) -- bu hicbir baska testle yakalanmaz.
+// zamOlcutu'yu bir CASUS ile degistirip zamMarketArtisi'nin GERCEKTEN hangi
+// pencereyi gectigini GOZLEMLEYEREK sinuyoruz (kod icinde dize aramiyoruz).
+{
+  const g = { p: [{ t: gun(40), m: 'migros', f: 100 }, { t: gun(2), m: 'migros', f: 120 }, { t: gun(2), m: 'bim', f: 999 }] };
+  const ctx = { console, Math, Date, JSON, Array, Object, Number, String, isNaN, Set, Map, _gecmisCache: g };
+  vm.createContext(ctx);
+  // CASUS: gercek zamOlcutu YERINE geciyor, aldigi pencereyi kaydediyor.
+  vm.runInContext(`
+    var __casusCagrilar = [];
+    function zamOlcutu(kayitlar, pencereBas, pencereSon) {
+      __casusCagrilar.push({ pencereBas: pencereBas, pencereSon: pencereSon, kayitlar: kayitlar });
+      return { artis: 999, zirve: 1, sonDeger: 1, kayit: kayitlar.length };
+    }
+  `, ctx);
+  const seriCache2 = APP.match(/let _seriCache[^\n]*\n/);
+  // zamOlcutu'nun GERCEK kaynagi BILEREK yuklenmiyor -- casus onun yerini aliyor.
+  vm.runInContext([
+    seriCache2 ? seriCache2[0] : '',
+    fnKaynak('_yerelGunISO'), fnKaynak('_salinimVarSeri'), fnKaynak('_seriKur'), fnKaynak('_zamGunISO'),
+    fnKaynak('zamMarketSerisi'), fnKaynak('zamMarketArtisi'),
+  ].join('\n'), ctx);
+  const r = calis(ctx, 'zamMarketArtisi("p", "migros")');
+  const beklenenBas = calis(ctx, '_zamGunISO(29)');
+  const beklenenSon = calis(ctx, '_zamGunISO(0)');
+  const cagrilar = calis(ctx, '__casusCagrilar');
+  ok('zamOlcutu TAM OLARAK 1 kez cagriliyor', cagrilar.length === 1, JSON.stringify(cagrilar));
+  ok('pencereBas 30 gunluk pencerenin basi (_zamGunISO(29), bugune cakili DEGIL sabit)',
+     cagrilar[0] && cagrilar[0].pencereBas === beklenenBas, JSON.stringify(cagrilar[0]) + ' beklenen=' + beklenenBas);
+  ok('pencereSon BUGUN (_zamGunISO(0)) -- pencere bugunde bitiyor',
+     cagrilar[0] && cagrilar[0].pencereSon === beklenenSon, JSON.stringify(cagrilar[0]) + ' beklenen=' + beklenenSon);
+  ok('yalnizca ISTENEN marketin (migros) kayitlari gonderiliyor, bim DEGIL',
+     cagrilar[0] && cagrilar[0].kayitlar.length === 2 && cagrilar[0].kayitlar.every(k => k.m === 'migros'),
+     JSON.stringify(cagrilar[0] && cagrilar[0].kayitlar));
+  ok('sonuc casustan geliyor (zirve=1 -- gercek zamOlcutu YUKLENMEDI, cagiran gercekten casusu kullaniyor)',
+     r && r.zirve === 1, JSON.stringify(r));
 }
 
 console.log('\nPASS=' + pass + '  FAIL=' + fail);

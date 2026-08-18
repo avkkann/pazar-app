@@ -148,7 +148,10 @@ const SATIR_ISTISNALARI = {
   // -- bu fonksiyon SADECE 'artis' | 'dusus' | 'sabit' sabit dize
   // literallerinden birini donuyor (ternary + erken return, hepsi literal).
   // Kaynak kapali kume, veri gecisi yok.
-  4967: { deger: 'profil-enflasyon ${r.yon}', gerekce: "r.yon SADECE sepetEnflasyonuHesapla()'nin dondugu 'artis'|'dusus'|'sabit' sabit literallerinden biri olabilir" },
+  // NOT: satir numarasi app.js'e zamOlcutu() eklenince (bkz. YAPILACAK 1,
+  // gorev-4-report.md) 4967 -> 4994 kaydi -- ISTISNA satir+deger eslesmesiyle
+  // kilitli oldugu icin numara guncellenmezse bu ihlal olarak yakalanirdi.
+  4994: { deger: 'profil-enflasyon ${r.yon}', gerekce: "r.yon SADECE sepetEnflasyonuHesapla()'nin dondugu 'artis'|'dusus'|'sabit' sabit literallerinden biri olabilir" },
 };
 
 console.log('\n=== 1. class="..." ICINDE ${...} INTERPOLASYONU TARANIYOR ===');

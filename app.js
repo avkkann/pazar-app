@@ -2970,19 +2970,46 @@ function zamMarketSerisi(sid, market) {
   return seri;
 }
 
-// Olcut TEK SERIDEKIYLE AYNI, yalnizca kapsam market: son 7 gun ortalamasi,
-// o marketin pencere oncesi tepesiyle karsilastiriliyor.
+// ═══ SAF ZAM ÖLÇÜTÜ (PENCEREDEN BAĞIMSIZ) ═══════════════════════════════
+// "Zam nedir" tanımı TEK YERDE: bu fonksiyon. zamMarketArtisi (30 günlük
+// sabit pencere, bugüne çakılı) ve scripts/hub-uret.mjs (takvim ayı
+// penceresi, node:vm üzerinden BU fonksiyonu çağırır) AYNI ölçütü kullanır.
+// İKİ AYRI "zam nedir" TANIMI OLMASIN diye çekirdek buraya çıkarıldı —
+// ikisi olsaydı ileride biri değişince sessizce çelişirlerdi.
+//
+// kayitlar: TEK market için [{t, f}] (t: 'yyyy-aa-gg', f: fiyat), sırasız olabilir.
+// pencereBas / pencereSon: 'yyyy-aa-gg' — karşılaştırma aralığı [pencereBas, pencereSon].
+// zirve  = pencereBas ÖNCESİ (t < pencereBas) kayıtların en yüksek fiyatı —
+//          çapa pencere İÇİ veriye dayanmasın diye (bkz. zamOncekiZirve).
+// sonDeger = pencereSon gününe KADAR taşınan (carry-forward) en son fiyat.
+// Pencere öncesi kayıt sayısı ZAM_MIN_KAYIT'in altındaysa null (çapa kırılgan).
+function zamOlcutu(kayitlar, pencereBas, pencereSon) {
+  if (!Array.isArray(kayitlar) || !pencereBas || !pencereSon) return null;
+  const gecerli = kayitlar.filter(k => k && k.t && k.f > 0);
+  const eski = gecerli.filter(k => k.t < pencereBas);
+  if (eski.length < ZAM_MIN_KAYIT) return null;
+  const zirve = Math.max.apply(null, eski.map(k => k.f));
+  if (!(zirve > 0)) return null;
+  const icinde = gecerli.filter(k => k.t <= pencereSon).sort((a, b) => a.t < b.t ? -1 : (a.t > b.t ? 1 : 0));
+  if (!icinde.length) return null;
+  const sonDeger = icinde[icinde.length - 1].f;
+  return { artis: ((sonDeger - zirve) / zirve) * 100, zirve: zirve, sonDeger: sonDeger, kayit: eski.length };
+}
+
+// Ölçüt TEK SERIDEKIYLE AYNI, yalnizca kapsam market: son 7 gun ortalamasi,
+// o marketin pencere oncesi tepesiyle karsilastiriliyor. ZIRVE ve KAYIT
+// SAYISI ESIGI zamOlcutu'ndan geliyor (paylasilan kisim); ORTALAMA mantigi
+// (son 7 gunun ortalamasi) burada, degismeden kaliyor — davranis birebir ayni.
 function zamMarketArtisi(sid, market) {
   const seri = zamMarketSerisi(sid, market);
   if (!seri) return null;
   const sonHafta = seri.slice(23, 30).reduce((a, b) => a + b, 0) / 7;
   const pencereBas = _zamGunISO(29);
-  const eski = (_gecmisCache[sid] || [])
-    .filter(k => k && k.m === market && k.t && k.f > 0 && k.t < pencereBas);
-  if (eski.length < ZAM_MIN_KAYIT) return null;
-  const zirve = Math.max.apply(null, eski.map(k => k.f));
-  if (!(zirve > 0)) return null;
-  return { artis: ((sonHafta - zirve) / zirve) * 100, zirve: zirve, sonHafta: sonHafta, kayit: eski.length };
+  const pencereSon = _zamGunISO(0);
+  const kayitlar = (_gecmisCache[sid] || []).filter(k => k && k.m === market);
+  const olcut = zamOlcutu(kayitlar, pencereBas, pencereSon);
+  if (!olcut) return null;
+  return { artis: ((sonHafta - olcut.zirve) / olcut.zirve) * 100, zirve: olcut.zirve, sonHafta: sonHafta, kayit: olcut.kayit };
 }
 
 // ═══ SALINIM ELEMESİ ════════════════════════════════════
