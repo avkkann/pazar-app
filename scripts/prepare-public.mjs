@@ -2,7 +2,7 @@
 // build oncesi calisir: public/ klasorunu static/, data/, manifest.json, robots.txt, sitemap.xml'den olusturur.
 // Bu dosyalarin GERCEK kaynagi hala repo kokunde (static/, data/) - burada sadece build icin GECICI bir kopya cikariliyor.
 import { cpSync, mkdirSync, existsSync, rmSync, copyFileSync, readFileSync, writeFileSync } from 'node:fs';
-import { lastmodDamgasi, sitemapDoldur, sitemapEkle } from './sitemap.mjs';
+import { lastmodDamgasi, sitemapDoldur, sitemapEkle, manifestGirisleri } from './sitemap.mjs';
 
 const PUB = 'public';
 if (existsSync(PUB)) rmSync(PUB, { recursive: true, force: true });
@@ -30,16 +30,23 @@ let sitemapXml = sitemapDoldur(readFileSync('sitemap.xml', 'utf8'), damga);
 // Doluluk/esik KARARI burada verilmiyor: o karar zaten hub-sayfa.mjs'teki
 // sayfaKarari'nda alinmis, .hub/manifest.json'a "durum" olarak yazilmis.
 // Burasi yalnizca o karari OKUYOR.
+//
+// Taninmayan bir `durum` (ne "uretildi" ne "atlandi") ONCEDEN sessizce
+// dusuyordu: ozet satiri "15 / 20 (durum=uretildi)" gibi payda TUM
+// kayitlari sayiyordu, beklenen 18 hic gorunmuyordu, ve tek uyari yalnizca
+// manifest dosyasinin kendisi eksikse basiliyordu. Kova sayimi ve uyari
+// artik manifestGirisleri()'nde (bkz. scripts/sitemap.mjs): taninmayan
+// durum VARSA console.warn ile GORUNUR olur. Bu, tazelik kapisini
+// GUCLENDIRMIYOR — build hala KIRILMIYOR (asil kapi Gorev 6'daki
+// veri_tazelik_kontrol.py --hub), sadece artik sessiz kalmiyor.
 const HUB_MANIFEST = '.hub/manifest.json';
 if (existsSync(HUB_MANIFEST)) {
   let hubManifest = [];
   try { hubManifest = JSON.parse(readFileSync(HUB_MANIFEST, 'utf8')); }
   catch (e) { console.warn('[sitemap] ' + HUB_MANIFEST + ' okunamadi/ayristirilamadi: ' + e.message); }
-  const girisler = hubManifest
-    .filter((g) => g && g.durum === 'uretildi')
-    .map((g) => ({ loc: 'https://pazarapp.net' + g.yol, lastmod: g.son_veri }));
+  const { girisler, uretildi, atlandi, taninmayan } = manifestGirisleri(hubManifest);
   sitemapXml = sitemapEkle(sitemapXml, girisler);
-  console.log(`[sitemap] hub girdileri eklendi: ${girisler.length} / ${hubManifest.length} (durum=uretildi)`);
+  console.log(`[sitemap] hub: ${uretildi} uretildi, ${atlandi} atlandi, ${taninmayan} taninmayan — ${girisler.length} girdi eklendi`);
 } else {
   // Manifest yok demek Gorev 4 (hub-uret.mjs) hic kosmamis olabilir — bu
   // build'i KIRMIYOR. Asil kapi Gorev 6'daki tazelik kontrolu; burasi

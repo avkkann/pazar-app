@@ -79,3 +79,53 @@ export function sitemapEkle(xml, girisler) {
   if (!bloklar.length) return xml;
   return xml.replace('</urlset>', bloklar.join('\n') + '\n</urlset>');
 }
+
+// ── MANIFEST KAYITLARINI UC KOVAYA AYIRMA ───────────────────────────
+// NEDEN BURADA (prepare-public.mjs'te DEGIL):
+//   Bu fonksiyon dosya okumuyor/yazmiyor — girdisi zaten ayristirilmis
+//   manifest dizisi, ciktisi sitemapEkle'nin bekledigi { loc, lastmod }
+//   girisleri + kova sayaclari. "Manifest kaydini sitemapEkle'nin
+//   anladigi bicime nasil cevirirm" sorusu sitemapEkle ile ayni
+//   sorumluluk alaninda (sitemap.xml uretim mantigi); prepare-public.mjs
+//   ise orkestratordur (dosya oku/yaz, PUB klasoru kur) — is mantigini
+//   orada birikmeye birakmamak icin burada, dogrudan import edilip test
+//   edilebilir saf bir fonksiyon olarak tutuluyor (bkz. test_sitemap.mjs
+//   "6. MANIFESTGIRISLERI").
+//
+// Bilinen `durum` degerleri: "uretildi" (sitemap'e girer) ve "atlandi"
+// (sayfaKarari'nin BILEREK disarida biraktigi sayfa — bu UYARI GEREKTIRMEZ,
+// yanlis alarm olur). Bu ikisi DISINDAKI her deger "taninmayan": sessizce
+// dusmesin diye console.warn ile GORUNUR yapiliyor. Bu, "bos sonuc ile
+// hatayi ayni dala dusurme" dersinin (bkz. CLAUDE.md, temizlik kategorisi
+// olayi) bir versiyonu — beklenmeyen bir `durum` degeri de sessiz kalirsa
+// ayni sekilde bayat/eksik veriyi taze gibi gosterir.
+/**
+ * Hub manifest kayitlarini (.hub/manifest.json) uc kovaya ayirir ve
+ * sitemapEkle'ye verilecek girisleri uretir. Dosya G/C yapmaz.
+ * Donus: { girisler, uretildi, atlandi, taninmayan }.
+ * Taninmayan `durum` degeri VARSA console.warn ile GORUNUR uyari basar —
+ * build'i KIRMAZ (throw etmez), yalnizca o kaydi sitemap'e ALMAZ.
+ */
+export function manifestGirisleri(kayitlar) {
+  const liste = Array.isArray(kayitlar) ? kayitlar : [];
+  const girisler = [];
+  let uretildi = 0, atlandi = 0, taninmayan = 0;
+  const taninmayanDegerler = new Set();
+  for (const kayit of liste) {
+    const durum = kayit && kayit.durum;
+    if (durum === 'uretildi') {
+      uretildi++;
+      girisler.push({ loc: 'https://pazarapp.net' + kayit.yol, lastmod: kayit.son_veri });
+    } else if (durum === 'atlandi') {
+      atlandi++;
+    } else {
+      taninmayan++;
+      taninmayanDegerler.add(JSON.stringify(durum));
+    }
+  }
+  if (taninmayan > 0) {
+    console.warn('[sitemap] UYARI: ' + taninmayan + ' kayitta taninmayan durum: ' +
+      [...taninmayanDegerler].join(', ') + ' — sitemap\'e ALINMADI');
+  }
+  return { girisler, uretildi, atlandi, taninmayan };
+}
