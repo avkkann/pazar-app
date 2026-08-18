@@ -65,15 +65,65 @@
     if (overlay) overlay.style.display = 'none';
   }
 
+  // ── SPLASH: sabit sure DEGIL, GERCEK hazir sinyali ──────────────────
+  // Oncesi olculdu: setTimeout(600) + 250 ms gecis => splash 1179 ms'de
+  // kalkiyordu, oysa uygulama 379 ms'de kullanilabilirdi. 800 ms'yi kullanici
+  // HAZIR bir ekranin ustundeki opak katmana bakarak geciriyordu; sicak
+  // acilista (327 ms'de hazir) ceza daha da buyuktu -- yani gunde birkac kez
+  // acan kullanici en cok odeyen taraftl.
+  //
+  // Artik splash `pazar:hazir` olayini bekliyor (bkz. _anaEkraniCiz).
+  // TAVAN yok. Iki koruma var:
+  //   TABAN  — splash GORULDUKTEN sonra en az bu kadar kalir; cok hizli
+  //            acilista bir kare gorunup kaybolmasin (flas onleme).
+  //   KILIT  — hazir sinyali hic gelmezse kullanici opak katmanin altinda
+  //            kalmasin. Bu bir "sure ayari" degil, KILITLENME korumasi:
+  //            devreye girerse SESSIZ kalmaz, konsola uyari basar.
   (function(){
-    setTimeout(function(){
-      var s = document.getElementById('splash');
-      if (s) {
+    // TARAYICI DISINDA CIK. Build betikleri app.js'i node:vm icinde kosturuyor
+    // (scripts/app-vm.mjs) ve orada getComputedStyle/requestAnimationFrame yok;
+    // KILIT zamanlayicisi build sirasinda atesleyip "getComputedStyle is not
+    // defined" ile TUM BUILD'i dusuruyordu. Splash zaten tarayiciya ozgu.
+    if (typeof getComputedStyle !== 'function' || typeof requestAnimationFrame !== 'function') return;
+    var s = document.getElementById('splash');
+    if (!s) return;
+    var TABAN_MS = 200;
+    var KILIT_MS = 4000;
+    var gorulduT = null;
+    var bitti = false;
+
+    // Splash'in gercekten boyandigi an (ilk kare) — TABAN bundan sayilir.
+    // Navigasyon anindan saymak yanlis olurdu: splash ~290 ms'de boyaniyor.
+    requestAnimationFrame(function () { gorulduT = performance.now(); });
+
+    function kaldir() {
+      if (bitti) return;
+      bitti = true;
+      var gecen = gorulduT == null ? 0 : performance.now() - gorulduT;
+      setTimeout(function () {
         s.classList.add('gizle');
-        setTimeout(function(){ if (s) s.style.display = 'none'; }, 250);
-      }
-      setTimeout(onboardingBaslat, 250);
-    }, 600);
+        // Sonme suresi CSS tokeninden okunuyor (--splash-cikis) — iki yerde
+        // ayri sayi tutmayalim. Hareket azaltmada gecis yok, aninda kaldir.
+        var azalt = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var sure = 0;
+        if (!azalt) {
+          var ham = getComputedStyle(document.documentElement).getPropertyValue('--splash-cikis');
+          sure = parseFloat(ham) || 200;
+          if (/\ds\s*$/.test(ham.trim()) && !/ms/.test(ham)) sure *= 1000;
+        }
+        setTimeout(function () {
+          s.style.display = 'none';
+          onboardingBaslat();
+        }, sure);
+      }, Math.max(0, TABAN_MS - gecen));
+    }
+
+    document.addEventListener('pazar:hazir', kaldir, { once: true });
+    setTimeout(function () {
+      if (bitti) return;
+      console.warn('[splash] hazir sinyali ' + KILIT_MS + ' ms icinde gelmedi; kilitlenme korumasi devreye girdi. loadData zinciri sonuclanmadi mi?');
+      kaldir();
+    }, KILIT_MS);
   })();
   // ===== AUTH UI =====
   let authTabMode = 'login';
@@ -4715,20 +4765,49 @@ function loadData() {
     // Acik olan hal ekrani veri hazir olunca bir kez yenilenir.
     const _halEkran = document.getElementById('screen-hal');
     if (_halEkran && _halEkran.style.display !== 'none') renderHalScreen();
-    renderCatGrid();
-    saveSepet();
-    renderMevsimSeridi();
-    // Dört şerit artık tek küçük dosyadan (25,9 KB gzip) besleniyor; 16.790
-    // ürün taraması build'e taşındı. idle callback'i beklemelerine gerek yok.
-    renderDusenlerSeridi();
-    renderSupheliSeridi();
-    renderTuzaklarSeridi();
-    renderZamSeridi();
+    return _anaEkraniCiz();
   }).catch((e) => {
     console.error('[loadData] hal.json yuklenemedi veya render zinciri kirildi; kategori izgarasi ve seritler yine cizilecek:', e && e.message, e);
-    renderCatGrid(); saveSepet(); renderMevsimSeridi();
-    renderDusenlerSeridi(); renderSupheliSeridi(); renderTuzaklarSeridi(); renderZamSeridi();
-  });
+    return _anaEkraniCiz();
+  }).then(_hazirBildir);
+}
+
+// Ana ekranin ILK cizim gecisi. Donen soz, dort seridin hepsi SONUCLANINCA
+// (dolu ya da bos) settle olur -- splash'i kaldiran sinyal bu.
+//
+// NEDEN DOM'a bakmiyoruz: "ilk serit doldu mu" diye yoklamak cevrimdisiyken
+// HIC gerceklesmiyor (olculdu: veri istekleri bloklandiginda kategori izgarasi
+// 325 ms'de ciziliyor ama seritler hic dolmuyor) -- splash sonsuza kadar asili
+// kalirdi. Render fonksiyonlari ise her durumda cozuluyor: veri yoksa bolumu
+// gizleyip donuyorlar. Yani "settle" hem dogru hem kilitlenmez.
+function _anaEkraniCiz() {
+  renderCatGrid();
+  saveSepet();
+  // Mevsim seridi AYRI bir kategori dosyasi indiriyor (olculdu: 477 ms, digerleri
+  // 429 ms) ve ekranin cok altinda kaliyor — splash onu BEKLEMIYOR.
+  renderMevsimSeridi();
+  // Dört şerit tek küçük dosyadan (25,9 KB gzip) besleniyor; 16.790 ürün
+  // taraması build'e taşındı. idle callback'i beklemelerine gerek yok.
+  return Promise.allSettled([
+    renderDusenlerSeridi(),
+    renderSupheliSeridi(),
+    renderTuzaklarSeridi(),
+    renderZamSeridi(),
+  ]);
+}
+
+// Hazir sinyali TEK KEZ. loadData iki daldan da (basari/hata) buraya varir.
+let _hazirBildirildi = false;
+function _hazirBildir() {
+  if (_hazirBildirildi) return;
+  _hazirBildirildi = true;
+  // Build betikleri (scripts/anasayfa-uret.mjs, hub-uret.mjs) app.js'i
+  // node:vm icinde kosturuyor; orada Event/dispatchEvent YOK ve bu satir
+  // "ReferenceError: Event is not defined" ile TUM BUILD'i dusuruyordu.
+  // Tarayici disinda sinyal zaten kimseyi ilgilendirmiyor.
+  if (typeof Event !== 'function' || typeof document === 'undefined' ||
+      typeof document.dispatchEvent !== 'function') return;
+  document.dispatchEvent(new Event('pazar:hazir'));
 }
 
 function openHalScreen() {

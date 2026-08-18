@@ -247,7 +247,13 @@ console.log('\n=== 7. YER: "Bu indirimlere dikkat"in HEMEN ALTI ===');
   ok('kategori gridinin USTUNDE', iZ < iC, 'zam=' + iZ + ' cats=' + iC);
   ok('baslik dogru', /Bu ay en çok zamlananlar/.test(HTML), '');
   ok('alt baslik dogru', /Son 30 günde fiyatı en çok artan ürünler/.test(HTML), '');
-  ok('loadData renderZamSeridi cagiriyor', /renderZamSeridi\s*\(/.test(fnKaynak('loadData') || ''), '');
+  // Cizim cagrilari loadData'dan _anaEkraniCiz'e TASINDI (splash artik sabit
+  // sure yerine bu zincirin sonuclanmasini bekliyor). Iddia gevsetilmedi,
+  // ZINCIRIN TAMAMI dogrulaniyor: loadData → _anaEkraniCiz → renderZamSeridi.
+  ok('loadData acilis cizim zincirini cagiriyor', /_anaEkraniCiz\s*\(/.test(fnKaynak('loadData') || ''), '');
+  ok('  zincir renderZamSeridi cagiriyor', /renderZamSeridi\s*\(/.test(fnKaynak('_anaEkraniCiz') || ''), '');
+  ok('  zam seridi splash\'in bekledigi kumede (allSettled)',
+     /allSettled\(\[[\s\S]*renderZamSeridi\(\)[\s\S]*\]\)/.test(fnKaynak('_anaEkraniCiz') || ''), '');
   // catCache LAZY: loadData icinde dogrudan cagrilirsa havuz bos olur ve bolum
   // sessizce gizli kalir. Canlida tam bunu yasadik.
   const rz2 = fnKaynak('renderZamSeridi') || '';

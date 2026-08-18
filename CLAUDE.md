@@ -1,6 +1,6 @@
 # Pazar App — Proje Handoff (Claude için)
 
-**Son güncelleme:** 2026-08-19 oturumu (Faz 3 kategori ikonları canlı). Bu dosya her oturum başında okunur, sohbete asla ham metin olarak yapıştırılmaz.
+**Son güncelleme:** 2026-08-19 oturumu (splash düzeltmesi, yerel — push edilmedi). Bu dosya her oturum başında okunur, sohbete asla ham metin olarak yapıştırılmaz.
 
 ---
 
@@ -19,6 +19,75 @@ Mustafa (GitHub: avkkann), **Pazar App**'in tek geliştiricisi — Türk market 
 ---
 
 ## Mevcut durum (2026-08-17 itibarıyla)
+
+### 2026-08-19 — Splash: sabit bekleme kalktı, tema-duyarlı zemin (YEREL, PUSH EDİLMEDİ)
+
+**Durum: kod bitti, 39/39 test yeşil, CANLIYA ÇIKMADI.** `sw.js` **v214**.
+Ölçüm üç hata bulmuştu, üçü de düzeldi.
+
+**A — 800 ms boşa bekleme.** Splash `setTimeout(600)` + 250 ms zinciriyle kalkıyordu ve
+**hiçbir şeyi beklemiyordu** (blokta `await`/`then`/`fetch` sıfır). Artık `pazar:hazir`
+olayını bekliyor. Aynı yerel sunucuda, 3 tur medyan:
+
+| | öncesi | sonrası |
+|---|---:|---:|
+| soğuk | **785 ms** | **370 ms** |
+| koyu tema | 769 ms | 341 ms |
+| reduced-motion | 796 ms | **153 ms** |
+
+> **Sinyal DOM'a bakmıyor, render zincirinin SETTLE olmasına bakıyor.** "İlk şerit doldu mu"
+> diye yoklamak çevrimdışında **hiç gerçekleşmiyor** (ölçüldü: `data/*.json` bloklanınca
+> kategori ızgarası 325 ms'de çiziliyor ama şeritler hiç dolmuyor) — splash sonsuza kadar
+> asılı kalırdı. `_anaEkraniCiz()` dört şeridi `Promise.allSettled` ile bekliyor; render
+> fonksiyonları veri yoksa bölümü gizleyip **çözülüyor**. Çevrimdışı ölçüldü: splash
+> 828 ms'de kalkıyor ve kilit koruması **hiç devreye girmiyor**.
+
+İki koruma var, ikisi de tavan değil: **TABAN** (200 ms, splash ilk KAREden sonra en az bu
+kadar kalır — flaş önleme; `requestAnimationFrame` ile ölçülüyor, navigasyondan değil) ve
+**KİLİT** (4000 ms, kilitlenme koruması — devreye girerse `console.warn` basıyor, sessiz
+kalmıyor). Mevsim şeridi bilerek beklenmiyor: ayrı dosya indiriyor (477 ms vs 429) ve
+ekranın çok altında.
+
+**B — koyu temada beyaz çakma.** Splash zemini `#ffffff` sabitti; koyu temada
+yeşil→BEYAZ→siyah diye 1,5 sn'de üç zemin çakıyordu. Artık `background: var(--bg)`.
+Ölçüldü: koyu temada splash zemini `rgb(15,26,20)`, 129 ms'lik karede ekran **koyu**.
+`index.html`'deki tema script'i stylesheet'ten önce koştuğu için `--bg` ilk boyamada doğru.
+
+> **Bootstrap rengi zorunlu bir kopya — testle kilitlendi.** CSS henüz yokken token
+> okunamıyor, bu yüzden `index.html` açılış zeminini ham hex yazmak zorunda
+> (`dark ? '#0F1A14' : '#F8F9FA'`). `test_splash.mjs` bu iki değeri `style.css`'teki `--bg`
+> tokenlarına karşı doğruluyor; token değişip burası unutulursa test kırılıyor (kasten
+> bozup denendi).
+
+**C — token + easing.** Splash'in renk/boyut/süre/easing'i tamamen hamdı; hepsi token'a
+bağlandı (`--splash-logo`, `--splash-giris`, `--splash-cikis`, zemin `--bg`). JS sönme
+süresini CSS tokeninden okuyor, ikinci bir sayı tutmuyor.
+
+> **Easing "tutarsızlığı" aslında YAZILMAMIŞ İKİ ROLLÜ SİSTEMMİŞ.** Ölçüldü:
+> `--ease-out` 9 kullanım (ağırlıklı `transition`), ham `cubic-bezier(0.22,1,0.36,1)`
+> **7 kullanım ve 7'sinin 7'si de `animation`**. Yani biri durum geçişi, diğeri giriş
+> animasyonu. Birini silmek iki farklı işi tek eğriye bağlamak olurdu; doğru düzeltme
+> ikincisini **adlandırmaktı**: `--ease-giris`. Artık hiçbir kuralda ham eğri yok.
+
+**Regresyon yok:** 5 şerit `[6,6,12,10,7]` · yatay taşma 0 (6 ekran) · konsol hatası 0 ·
+onboarding tetikleniyor (ölçüldü: splash bitince 500 ms'de açılıyor) · iki tema da açılıyor.
+
+**Yeni test:** `test_splash.mjs` (46 iddia). Korumalar kasten bozularak doğrulandı.
+
+> **AÇIK BORÇ — iOS `apple-touch-startup-image` yok.** Standalone PWA'da iOS'un kendi
+> açılış ekranı için başlangıç görseli tanımlı değil; **temaya bağlı splash bunu TAM
+> çözmez** çünkü bizim splash'imiz iOS'un launch ekranından SONRA geliyor. Masaüstü
+> Chrome/CDP ile iOS standalone launch taklit edilemez — **Mustafa iOS'ta test edecek.**
+> `manifest background_color` hâlâ `#0E4938` (marka yeşili) ve tema-duyarlı olamaz;
+> koyu temada yeşil→koyu geçişi artık yumuşak, açık temada yeşil→açık farkı duruyor.
+
+> **AÇIK BORÇ — ikon yazısı sloganla ayrışıyor.** `/static/icon-192.png` içinde
+> "HAL FİYATLARI" yazıyor; uygulamanın sloganı "Marketteki gizli zamları gör" ve hal
+> fiyatları bir özellik, tamamı değil. İkon dosyası değişimi — ayrı iş.
+
+> **KÜÇÜK BORÇ — `modalSlideUp` rol uyumsuzluğu.** Bir GİRİŞ animasyonu ama `--ease-out`
+> (durum geçişi) eğrisiyle yazılmış. Ham literal tokene bağlandı, **değer DEĞİŞTİRİLMEDİ** —
+> eğriyi değiştirmek modalin hissini değiştirirdi. Rol uyumu ayrı karar.
 
 ### 2026-08-19 — Faz 3: kategori emojisi marka SVG diline çevrildi (CANLI, DOĞRULANDI)
 
@@ -533,7 +602,7 @@ Uygulama teknik olarak çalışıyor ama **pratikte hâlâ dağıtılmamış dur
 
 ## Yaklaşım & desenler
 
-- **SW cache version** her anlamlı `index.html`/`app.js`/`style.css`/`sw.js` değişikliğinde artırılır (şu an **v213**, canlıda doğrulandı 2026-08-19). Backend-only değişikliklerde (scraper, sync) bump edilmez. Akış: `git add` → `git commit` → `git pull --rebase` → `git push`. Not: `sw.js` yalnızca `data/hal.json` + `data/anasayfa.json`'ı önbelleğe alıyor ve `fetch`'i yalnızca o iki URL için yakalıyor — HTML/CSS/JS'i tutmuyor, onlar Cloudflare'den `Cache-Control: public, max-age=0, must-revalidate` ile geliyor (ölçüldü; eski GitHub Pages `max-age=600` notu bayattı). Bump proje kuralı ve tutarlılık için, HTML dağıtımını hızlandırmıyor.
+- **SW cache version** her anlamlı `index.html`/`app.js`/`style.css`/`sw.js` değişikliğinde artırılır (şu an **v214** yerelde; canlıda v213). Backend-only değişikliklerde (scraper, sync) bump edilmez. Akış: `git add` → `git commit` → `git pull --rebase` → `git push`. Not: `sw.js` yalnızca `data/hal.json` + `data/anasayfa.json`'ı önbelleğe alıyor ve `fetch`'i yalnızca o iki URL için yakalıyor — HTML/CSS/JS'i tutmuyor, onlar Cloudflare'den `Cache-Control: public, max-age=0, must-revalidate` ile geliyor (ölçüldü; eski GitHub Pages `max-age=600` notu bayattı). Bump proje kuralı ve tutarlılık için, HTML dağıtımını hızlandırmıyor.
 - **Doğrulama:** Push sonrası `gh run watch` ile deploy'un koştuğu doğrulanır, sonra canlıda (Browser MCP) gerçek fonksiyonel test yapılır — "dosyada var mı" değil, "gerçekten çalışıyor mu". Layout değişikliklerinde ekran görüntüsü yetmez: değişiklikten ÖNCE geometri parmak izi (`getBoundingClientRect`) alınıp sonra sayısal karşılaştırılır.
 - **Kapsam disiplini:** İstenmeyen ekleme/çıkarma sessizce yapılmaz, not düşülür. Doküman/analiz önerileri körü körüne uygulanmaz — önce kodda geçerli mi diye bakılır.
 - **Büyük ürün/mimari kararları** (hosting migration, nav yapısı, tuzak'ın geleceği) Mustafa'nın onayı olmadan koda dökülmez.

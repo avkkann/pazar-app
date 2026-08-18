@@ -7,7 +7,24 @@
       --text: #1A1A2E;
       --text-muted: #6B7280;
       --border: #E5E7EB;
-      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      /* ══ HAREKET EĞRİLERİ ═══════════════════════════════════════════
+         İKİ eğri var ve bu bir tutarsızlık DEĞİL — ölçüldü, rol ayrımı net:
+           --ease-out    9 kullanım, ağırlıklı `transition`
+           --ease-giris  7 kullanım, 7'sinin 7'si de `animation`
+         Biri DURUM GEÇİŞİ (hover, renk, basma), diğeri GİRİŞ (splash,
+         onboarding, ekran kaydırma, nav vuruşu). Ham yazılan eğriyi silip
+         tek tokene indirmek iki farklı işi aynı eğriye bağlamak olurdu;
+         doğru düzeltme ikincisini de ADLANDIRMAKTI. */
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);    /* durum geçişi     */
+      --ease-giris: cubic-bezier(0.22, 1, 0.36, 1); /* giriş animasyonu */
+
+      /* ══ SPLASH ════════════════════════════════════════════════════
+         Zemin TEMA DEĞİŞKENİNE bağlı (--bg). Önceden #ffffff sabitti ve
+         koyu temada yeşil→BEYAZ→siyah diye 1,5 sn'de üç zemin çakıyordu. */
+      --splash-logo: 120px;
+      --splash-giris: 400ms;  /* logonun belirmesi */
+      --splash-cikis: 200ms;  /* splash'in sönmesi */
+
       --skel-base: #E8E8E5;
       --skel-hi: #F5F5F2;
 
@@ -1253,7 +1270,11 @@
       max-width: 340px;
       width: 100%;
       box-shadow: 0 20px 50px rgba(0,0,0,0.25);
-      animation: modalSlideUp 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      /* Bu bir GİRİŞ animasyonu ama --ease-out eğrisiyle yazılmış (rol
+         ayrımına göre --ease-giris beklenirdi). Değeri DEĞİŞTİRMEDİM —
+         eğriyi değiştirmek modalin hissini değiştirirdi; yalnızca ham
+         literal tokene bağlandı. Rol uyumu ayrı bir karar. */
+      animation: modalSlideUp 0.22s var(--ease-out);
       font-family: 'Inter', sans-serif;
     }
     .app-modal-title {
@@ -1750,20 +1771,29 @@
       top: 0;
       z-index: 50;
     }
+    /* Zemin uygulamanın kendi zemini — sabit beyaz DEĞİL. Koyu temada
+       yeşil→beyaz→siyah çakması bu satırla bitiyor. */
     #splash {
       position: fixed; inset: 0; z-index: 9999;
-      background: #ffffff;
+      background: var(--bg);
       display: flex; align-items: center; justify-content: center;
-      transition: opacity 200ms ease-out;
+      transition: opacity var(--splash-cikis) var(--ease-out);
     }
     #splash.gizle { opacity: 0; pointer-events: none; }
     #splash img {
-      width: 120px; height: 120px;
-      animation: splashIn 400ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      width: var(--splash-logo); height: var(--splash-logo);
+      animation: splashIn var(--splash-giris) var(--ease-giris) forwards;
     }
     @keyframes splashIn {
       0% { transform: scale(0.85); opacity: 0; }
       100% { transform: scale(1); opacity: 1; }
+    }
+    /* Hareket azaltmada logo ANINDA görünür; splash yine erken kalkar
+       (kalkma süresini CSS değil app.js'teki hazır sinyali belirliyor —
+       önceden reduced-motion'da bile 778 ms boşa bekleniyordu). */
+    @media (prefers-reduced-motion: reduce) {
+      #splash img { animation: none; opacity: 1; transform: none; }
+      #splash { transition: none; }
     }
     .onboarding-overlay {
       position: fixed; inset: 0; z-index: 9998; overflow: hidden;
@@ -1807,9 +1837,9 @@
     .onboarding-slide .onboarding-icon-wrap,
     .onboarding-slide h2,
     .onboarding-slide p { opacity: 0; }
-    .onboarding-slide.enter .onboarding-icon-wrap { opacity: 1; animation: onboardingFadeUp 550ms cubic-bezier(0.22, 1, 0.36, 1) forwards; }
-    .onboarding-slide.enter h2 { opacity: 1; animation: onboardingFadeUp 550ms cubic-bezier(0.22, 1, 0.36, 1) 90ms forwards; }
-    .onboarding-slide.enter p { opacity: 1; animation: onboardingFadeUp 550ms cubic-bezier(0.22, 1, 0.36, 1) 170ms forwards; }
+    .onboarding-slide.enter .onboarding-icon-wrap { opacity: 1; animation: onboardingFadeUp 550ms var(--ease-giris) forwards; }
+    .onboarding-slide.enter h2 { opacity: 1; animation: onboardingFadeUp 550ms var(--ease-giris) 90ms forwards; }
+    .onboarding-slide.enter p { opacity: 1; animation: onboardingFadeUp 550ms var(--ease-giris) 170ms forwards; }
     .onboarding-dots { display: flex; justify-content: center; gap: var(--space-2); padding: var(--space-4); position: relative; z-index: 1; }
     .onboarding-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.35); transition: all 0.3s ease; }
     .onboarding-dot.active { width: 22px; border-radius: 4px; background: #fff; }
@@ -1838,7 +1868,7 @@
     .nav-btn .nav-icon.pulsing,
     .nav-btn svg.pulsing,
     .nav-btn img.pulsing {
-      animation: navPulse 300ms cubic-bezier(0.22, 1, 0.36, 1);
+      animation: navPulse 300ms var(--ease-giris);
     }
     @keyframes animSlideInRight {
       from { transform: translateX(100%); opacity: 0.6; }
@@ -1848,8 +1878,8 @@
       from { transform: translateX(-100%); opacity: 0.6; }
       to   { transform: translateX(0);     opacity: 1; }
     }
-    .screen.anim-slide-in   { animation: animSlideInRight 260ms cubic-bezier(0.22, 1, 0.36, 1); }
-    .screen.anim-slide-back { animation: animSlideInLeft  260ms cubic-bezier(0.22, 1, 0.36, 1); }
+    .screen.anim-slide-in   { animation: animSlideInRight 260ms var(--ease-giris); }
+    .screen.anim-slide-back { animation: animSlideInLeft  260ms var(--ease-giris); }
 
     .theme-switch { display:flex; gap: var(--space-2); padding: 0 var(--space-1); }
     .theme-opt { flex:1; padding: var(--space-3); border:1px solid var(--border); background:var(--card-bg); border-radius:10px; font-size:13px; font-weight:500; color:var(--text); cursor:pointer; transition: background-color 150ms var(--ease-out), color 150ms var(--ease-out); }
