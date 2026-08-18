@@ -273,6 +273,11 @@ function sayfaModelDogrula(model) {
   if (!w3cDatetimeMi(model.veriDamgasi)) {
     throw new Error(on + 'veriDamgasi W3C Datetime degil: ' + JSON.stringify(model.veriDamgasi));
   }
+  // sonVeri burada dogrulanir ama HTML'e YAZILMAZ -- bu kasitli. sonVeri
+  // sitemap'in lastmod degeri; sonraki bir gorevde (Gorev 4/5) .hub/manifest.json'a
+  // yazilacak, HTML gövdesine ya da meta'sina degil. Guard burada duruyor
+  // cunku sonVeri yine de model sozlesmesinin parcasi ve o gorev onu dogru
+  // uretmek zorunda -- olu kod SANIP SILME.
   if (!w3cDatetimeMi(model.sonVeri)) {
     throw new Error(on + 'sonVeri W3C Datetime degil: ' + JSON.stringify(model.sonVeri));
   }
@@ -299,13 +304,28 @@ function sayfaModelDogrula(model) {
 // yolu ve index.html bicimini 307 ile egik cizgili yola yonlendiriyor,
 // goreli ya da egik cizgisiz ic link uretmek gereksiz yonlendirme zinciri
 // kurar.
+//
+// Bu dogrulama TEK yardimci fonksiyonda toplanir (yolDogrula) ve hem tablo
+// hucresi linkleri hem de footer linkleri (icLinkler, uygulamaLinki) onu
+// cagirir -- iki ayri kopya kacinilmaz olarak ayrisir.
+//
+// ISTISNA: uygulamaLinki sorgu dizesi tasiyabilir (orn.
+// '/?screen=kategori&kat=dondurulmus'). Sorgu dizeli bir yol egik cizgiyle
+// BITEMEZ, dolayisiyla kural sorgu dizesi varsa sondaki '/' sartini
+// dusurur; yol kismi yine de '/' ile baslamak ZORUNDADIR.
+function yolDogrula(yol, baglam) {
+  if (typeof yol !== 'string' || !yol.startsWith('/')) {
+    throw new Error(`[hub-sayfa] sayfaHTML: ${baglam} yolu '/' ile baslamali: ` + JSON.stringify(yol));
+  }
+  if (!yol.includes('?') && !yol.endsWith('/')) {
+    throw new Error(`[hub-sayfa] sayfaHTML: ${baglam} yolu '/' ile bitmeli: ` + JSON.stringify(yol));
+  }
+}
+
 function tabloHucreHTML(hucre) {
   if (hucre && typeof hucre === 'object') {
-    const yol = hucre.yol;
-    if (typeof yol !== 'string' || !yol.startsWith('/') || !yol.endsWith('/')) {
-      throw new Error("[hub-sayfa] sayfaHTML: tablo hucre yolu '/' ile baslayip '/' ile bitmeli: " + JSON.stringify(yol));
-    }
-    return `<td><a href="${kacir(yol)}">${kacir(hucre.metin)}</a></td>`;
+    yolDogrula(hucre.yol, 'tablo hucre');
+    return `<td><a href="${kacir(hucre.yol)}">${kacir(hucre.metin)}</a></td>`;
   }
   return `<td>${kacir(hucre)}</td>`;
 }
@@ -333,7 +353,8 @@ function bolumHTML(bolum) {
   throw new Error(on + 'bilinmeyen bolum turu: ' + JSON.stringify(bolum && bolum.tur));
 }
 
-function linkHTML(link) {
+function linkHTML(link, baglam) {
+  yolDogrula(link.yol, baglam);
   return `<a href="${kacir(link.yol)}">${kacir(link.metin)}</a>`;
 }
 
@@ -374,15 +395,19 @@ const HUB_STIL = `
 
 export function sayfaHTML(model) {
   const karar = sayfaModelDogrula(model);
-  const kanonikYol = 'https://pazarapp.net' + model.yol;
+  // model.yol '/' ile baslayip '/' ile bitmesi disinda serbest -- ozel
+  // karakter (orn. '"', '<') icerebilir. kacir() olmadan basilirsa canonical/
+  // og:url uzerinden HTML enjeksiyonu acilir; bu yuzden burada da kacir'den
+  // geciriliyor.
+  const kanonikYol = kacir('https://pazarapp.net' + model.yol);
   const ogGorsel = 'https://pazarapp.net/static/og-image.png';
 
   const bolumlerHTML = model.bolumler.map(bolumHTML).join('\n');
   const icLinkler = Array.isArray(model.icLinkler) ? model.icLinkler : [];
   const icLinklerHTML = icLinkler.length
-    ? `<ul>${icLinkler.map((l) => `<li>${linkHTML(l)}</li>`).join('')}</ul>`
+    ? `<ul>${icLinkler.map((l) => `<li>${linkHTML(l, 'ic link')}</li>`).join('')}</ul>`
     : '';
-  const uygulamaLinkiHTML = model.uygulamaLinki ? `<p>${linkHTML(model.uygulamaLinki)}</p>` : '';
+  const uygulamaLinkiHTML = model.uygulamaLinki ? `<p>${linkHTML(model.uygulamaLinki, 'uygulama linki')}</p>` : '';
 
   return `<!doctype html>
 <html lang="tr">

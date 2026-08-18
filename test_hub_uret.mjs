@@ -154,14 +154,20 @@ console.log('\n=== 6. ESIKLER TEK YERDE TANIMLI ===');
 {
   const kaynak = fs.readFileSync('scripts/hub-sayfa.mjs', 'utf8');
 
-  // Esigin elle koda gomulmesi demek, esik degerinin KARSILASTIRMA ya da
-  // ATAMA baglaminda literal olarak kullanilmasi demek (orn. `satir >= 12`,
-  // `if (gun > 3)`, `const x = 300`). CSS'teki `1.35`, `padding: 3px` ya da
-  // metin icindeki bir sayi bu degil -- bu kontrolun amaci "esik degeri
-  // koda elle gomulmesin", "bu rakam dosyada gecmesin" degil. Bu yuzden
-  // kontrol operator komsulugu arayan bir desenle sinirlaniyor.
+  // Esigin elle koda gomulmesi demek, esik degerinin KARSILASTIRMA, ATAMA ya
+  // da ARITMETIK baglamda literal olarak kullanilmasi demek (orn.
+  // `satir >= 12`, `if (gun > 3)`, `const x = 300`, `1 + 3`). CSS'teki
+  // `1.35`, `padding: 3px` ya da metin icindeki bir sayi bu degil -- bu
+  // kontrolun amaci "esik degeri koda elle gomulmesin", "bu rakam dosyada
+  // gecmesin" degil. Bu yuzden kontrol operator komsulugu arayan bir
+  // desenle sinirlaniyor; operator sinifi karsilastirma/atama
+  // (`<>=!`) YANI SIRA aritmetik (`+ - * /`) de kapsiyor -- `1 +
+  // ESIK_AY_BASLANGIC` gibi bir ifade `1 + 3` yapilirsa yakalanmali.
+  // `\b` sinirlari sayesinde `3px`, `1.35` gibi bitisik alfanumerik/nokta
+  // komsulugu olan sayilar (CSS) hala YAKALANMIYOR -- `\b` digit-digit ya
+  // da digit-harf gecisinde sinir OLUSTURMUYOR.
   const esikGomulmuMu = (kaynakParcasi, deger) => {
-    const desen = new RegExp(`[<>=!]=?=?\\s*\\b${deger}\\b|\\b${deger}\\b\\s*[<>=!]=?=?`, 'g');
+    const desen = new RegExp(`[<>=!+*/-]=?=?\\s*\\b${deger}\\b|\\b${deger}\\b\\s*[<>=!+*/-]=?=?`, 'g');
     return kaynakParcasi.match(desen) || [];
   };
 
@@ -195,6 +201,22 @@ console.log('\n=== 6. ESIKLER TEK YERDE TANIMLI ===');
   const sahteKaynakTemiz = 'function sayfaKarari(model) {\n  const satirTamam = satir >= ESIK_SATIR;\n  return satirTamam;\n}\n// CSS notu: line-height 1.35, padding: 12px, 12'; // '12' burada karsilastirma/atama baglaminda DEGIL
   ok('  isim uzerinden karsilastirma (ESIK_SATIR) ve ilgisiz CSS/metin sayilari YANLIS POZITIF uretmiyor',
     esikGomulmuMu(sahteKaynakTemiz, 12).length === 0, JSON.stringify(esikGomulmuMu(sahteKaynakTemiz, 12)));
+
+  // ARITMETIK komsuluk da yakalanmali: `1 + ESIK_AY_BASLANGIC` -> `1 + 3`
+  // gibi bir kacak, sadece karsilastirma/atama operatorlerine bakan eski
+  // desende yesil kaliyordu.
+  const sahteKaynakAritmetik = 'function ayKarari(ay, ilkGozlemTarihi) {\n  const sinirGunu = 1 + 3;\n  return sinirGunu;\n}\n';
+  ok('  sentetik "1 + 3" aritmetik gommesi de yakalaniyor (ESIK_AY_BASLANGIC kacagi)',
+    esikGomulmuMu(sahteKaynakAritmetik, 3).length > 0, JSON.stringify(esikGomulmuMu(sahteKaynakAritmetik, 3)));
+
+  // Ayni aritmetik genisleme CSS'teki ilgisiz sayilarda yanlis pozitif
+  // URETMEMELI: 'line-height: 1.35' (deger 3 icin) ve 'padding: 3px' (bitisik
+  // birim, sayi kelime siniri olusturmuyor).
+  const sahteKaynakCSS = 'h1 { font-size: 1.6em; line-height: 1.35; margin: 8px 0 12px; padding: 3px; }';
+  ok('  CSS "line-height: 1.35" degeri 3 icin YANLIS POZITIF uretmiyor',
+    esikGomulmuMu(sahteKaynakCSS, 3).length === 0, JSON.stringify(esikGomulmuMu(sahteKaynakCSS, 3)));
+  ok('  CSS "padding: 3px" degeri 3 icin YANLIS POZITIF uretmiyor (bitisik birim, kelime siniri yok)',
+    esikGomulmuMu(sahteKaynakCSS, 3).length === 0, JSON.stringify(esikGomulmuMu(sahteKaynakCSS, 3)));
 }
 
 console.log('\n=== 7. SLUG URETIMI ===');

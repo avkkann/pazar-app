@@ -71,11 +71,17 @@ console.log('\n=== 1. TEK h1, h2 SIRASI, TH, h3 YOK ===');
 
 console.log('\n=== 2. GORELI YOL YOK ===');
 {
+  // Bu test Duzeltme 1'den sonra ikinci savunma hatti: yolDogrula zaten
+  // goreli/egik-cizgisiz yollarda throw ediyor, ama tarama genis tutulur
+  // (../ dahil) ki baska bir uretim yolu ayni hatayi tekrar actiginda da
+  // yakalansin.
   const html = sayfaHTML(gecerliModel());
   ok('href="./ deseni yok', !html.includes('href="./'));
   ok('  src="./ deseni yok', !html.includes('src="./'));
   ok('  href="static/ deseni yok', !html.includes('href="static/'));
   ok('  src="static/ deseni yok', !html.includes('src="static/'));
+  ok('  href="../ deseni yok', !html.includes('href="../'));
+  ok('  src="../ deseni yok', !html.includes('src="../'));
 }
 
 console.log('\n=== 3. pazar-veri-damgasi META W3C DATETIME ===');
@@ -284,6 +290,50 @@ console.log('\n=== 15. TABLO HUCRESI LINK: GECERSIZ YOL -> THROW ===');
       ...gecerliModel().bolumler,
     ],
   }))));
+}
+
+console.log('\n=== 16. IC LINK / UYGULAMA LINKI: GECERSIZ YOL -> THROW (ONEMLI 1) ===');
+{
+  const throwEtti = (fn) => { try { fn(); return false; } catch (e) { return true; } };
+
+  ok("icLinkler yolu '/' ile baslamiyor -> throw", throwEtti(() => sayfaHTML(gecerliModel({
+    icLinkler: [{ yol: 'market/a101/', metin: 'A101' }],
+  }))));
+
+  ok("icLinkler yolu sorgu dizesi TASIMADAN '/' ile bitmiyor -> throw", throwEtti(() => sayfaHTML(gecerliModel({
+    icLinkler: [{ yol: '/market/a101', metin: 'A101' }],
+  }))));
+
+  ok("uygulamaLinki yolu '/' ile baslamiyor -> throw", throwEtti(() => sayfaHTML(gecerliModel({
+    uygulamaLinki: { yol: '?screen=kategori', metin: 'Uygulamada aç' },
+  }))));
+
+  // Sorgu dizeli uygulamaLinki yolu GECERLI olmali (istisna): '/' ile
+  // basliyor, '?' tasiyor, sondaki '/' zorunlu degil.
+  ok('sorgu dizeli uygulamaLinki yolu ("/?screen=...") throw ETMIYOR (istisna gecerli)',
+    !throwEtti(() => sayfaHTML(gecerliModel({
+      uygulamaLinki: { yol: '/?screen=kategori&kat=dondurulmus', metin: 'Uygulamada aç' },
+    }))));
+  {
+    const htmlSorgulu = sayfaHTML(gecerliModel({
+      uygulamaLinki: { yol: '/?screen=kategori&kat=dondurulmus', metin: 'Uygulamada aç' },
+    }));
+    ok('  sorgu dizeli uygulamaLinki dogru kacirilmis halde render edildi',
+      htmlSorgulu.includes(`<a href="${kacir('/?screen=kategori&kat=dondurulmus')}">Uygulamada aç</a>`), htmlSorgulu);
+  }
+}
+
+console.log('\n=== 17. KANONIK/OG:URL KACISI (ONEMLI 2) ===');
+{
+  const zehirliYol = '/kategori/"><script>alert(1)</script>/';
+  const model = gecerliModel({ yol: zehirliYol });
+  const html = sayfaHTML(model);
+  ok('ham <script>alert(1)</script> canonical/og:url icinde YOK', !html.includes('"><script>alert(1)</script>'));
+  ok('  kacirilmis hali canonical href icinde VAR',
+    html.includes(`<link rel="canonical" href="${kacir('https://pazarapp.net' + zehirliYol)}">`), html.slice(0, 400));
+  ok('  kacirilmis hali og:url content icinde VAR',
+    html.includes(`<meta property="og:url" content="${kacir('https://pazarapp.net' + zehirliYol)}">`));
+  ok('  <script hic gecmiyor (genel kontrol)', !/<script/i.test(html));
 }
 
 console.log('\nPASS=' + pass + '  FAIL=' + fail);
