@@ -130,5 +130,72 @@ console.log('\n=== 5. KANIT: korumayı bilerek boz, tarama KIRMIZIYA dönüyor =
   ok('yorum içindeki ${u.ad} tarama tarafından SOYULUYOR (yanlış alarm yok)', !/\$\{u\.ad\}/.test(yass(yorumlu)), yass(yorumlu));
 }
 
+// ══════════════════════════════════════════════════════════════════════
+// PARTİ 2 — S2/S4 (dış API/DB kaynaklı sink'ler). Yardımcılar Parti 1'den:
+// _kacir (metin+öznitelik), _guvenliUrl (URL şema beyaz listesi).
+// Kapsam DIŞI (bu testte de serbest bırakılır): satır içi olay
+// (onclick/onkeydown/onerror içindeki ${u._id}) ve navigator.share metni
+// (paylasSepet/paylasZamlar `• ${u.ad}`). CSP dokunulmadı.
+// ══════════════════════════════════════════════════════════════════════
+console.log('\n=== 6. S4 sink\'leri doğru yardımcıdan geçiyor (kaynak, yorumsuz+düz) ===');
+{
+  const card = yass(fnKaynak('cardHTML'));
+  const strip = yass(fnKaynak('_stripKartHTML'));
+  const detay = yass(fnKaynak('openDetay'));
+  const firsat = yass(fnKaynak('_firsatKartHtml'));
+
+  // Aynı veriyi iki yerde basan cardHTML ve _stripKartHTML AYNI deseni kullanmalı
+  ok('cardHTML: src _guvenliUrl(u.resim)', /src="\$\{_guvenliUrl\(u\.resim\)\}"/.test(card), card.slice(0,120));
+  ok('cardHTML: aria-label _kacir(u.ad)', /aria-label="\$\{_kacir\(u\.ad\)\}"/.test(card));
+  ok('cardHTML: product-name _kacir(u.ad)', /product-name">\$\{_kacir\(u\.ad\)\}</.test(card));
+  ok('_stripKartHTML: src _guvenliUrl(u.resim)  (aynı desen)', /src="\$\{_guvenliUrl\(u\.resim\)\}"/.test(strip));
+  ok('_stripKartHTML: strip-card-name _kacir(u.ad)  (aynı desen)', /strip-card-name">\$\{_kacir\(u\.ad\)\}</.test(strip));
+  ok('detay: detay-name _kacir(u.ad)', /detay-name">\$\{_kacir\(u\.ad\)\}</.test(detay));
+  ok('detay: src _guvenliUrl(u.resim)', /src="\$\{_guvenliUrl\(u\.resim\)\}"/.test(detay));
+  ok('firsat: _guvenliUrl(u.resim) + _kacir(u.ad) + _kacir(altText)',
+     /_guvenliUrl\(u\.resim\)/.test(firsat) && /_kacir\(u\.ad\|\|''\)/.test(firsat) && /_kacir\(altText\)/.test(firsat));
+
+  // Tüm dosyada geçen kritik S4 yardımcı sarmaları (mf/ms/cmp/zam/sepetÖzet)
+  const A = yass(APP);
+  ok('hal: _guvenliUrl(u.gorsel) + alt _kacir(u.ad)', /src="\$\{_guvenliUrl\(u\.gorsel\)\}" alt="\$\{_kacir\(u\.ad\)\}"/.test(A));
+  ok('compare: _guvenliUrl(it.resim) + _kacir(it.ad)', /_guvenliUrl\(it\.resim\)/.test(A) && /cmp-mkt-item-name">\$\{_kacir\(it\.ad\)\}</.test(A));
+  ok('mf: _kacir(title) + _guvenliUrl(url)', /mf-card-title">\$\{_kacir\(title\)\}</.test(A) && /src="\$\{_guvenliUrl\(url\)\}"/.test(A));
+  ok('ms satır: _kacir(m.name) + _kacir(m.key)', /ms-market-name">\$\{_kacir\(m\.name\)\}</.test(A) && /data-mkt="\$\{_kacir\(m\.key\)\}"/.test(A));
+  ok('sepetÖzet: _kacir(m.ad) + _kacir(o.tekMarket.ad)', /sepet-mkt-ad">\$\{_kacir\(m\.ad\)\}</.test(A) && /_kacir\(o\.tekMarket\.ad\)/.test(A));
+  ok('zam: _kacir(metin) + _kacir(MARKET_NAMES...)', /zam-yayginlik">\$\{_kacir\(metin\)\}</.test(A) && /_kacir\(MARKET_NAMES\[market\] \|\| market\)/.test(A));
+}
+
+console.log('\n=== 7. TARAMA: yeni KAÇIŞSIZ S4 sink\'i eklenirse kırmızı (tüm dosya) ===');
+{
+  const A = yass(APP);
+  // URL bağlamı: hiçbir ham src="${...}" kalmamalı (u.resim/u.gorsel/it.resim/url)
+  ok('çıplak src="${u.resim/u.gorsel/it.resim/url}" YOK', !/src="\$\{(u\.resim|u\.gorsel|it\.resim|url)\}"/.test(A), 'ham src interpolasyonu bulundu');
+  ok('çıplak birleştirme src="'+"'+u.resim+'"+'" YOK (fırsat)', !/src="'\+u\.resim\+'"/.test(A));
+  // Metin/öznitelik: bu alanların ÇIPLAK ${...} biçimi kalmamalı
+  for (const alan of ['u.gorsel','it.ad','it.resim','m.name','m.ad','marketAdi','depotName','title']) {
+    const re = new RegExp('\\$\\{' + alan.replace('.', '\\.') + '\\}');
+    ok('çıplak ${' + alan + '} YOK', !re.test(A), 'kaçışsız ' + alan + ' interpolasyonu');
+  }
+  // ${u.ad} yalnız paylaşım metninde (• ...) serbest; DOM sink olarak çıplağı kalmamalı
+  const uAdKalan = A.replace(/•\s*\$\{u\.ad\}/g, '');
+  ok('DOM sink olarak çıplak ${u.ad} YOK (yalnız paylaşım metni serbest)', !/\$\{u\.ad\}/.test(uAdKalan), 'kaçışsız DOM ${u.ad} bulundu');
+  // aria-label / alt öznitelikte ham u.ad kalmamalı
+  ok('çıplak aria-label/alt="${u.ad}" YOK', !/(aria-label|alt)="\$\{u\.ad\}"/.test(A));
+}
+
+console.log('\n=== 8. KANIT: S4 korumasını bilerek boz, tarama KIRMIZIYA dönüyor ===');
+{
+  const gercek = yass(fnKaynak('cardHTML'));
+  const bozuk = gercek
+    .replace(/\$\{_guvenliUrl\(u\.resim\)\}/g, '${u.resim}')
+    .replace(/product-name">\$\{_kacir\(u\.ad\)\}/g, 'product-name">${u.ad}');
+  ok('gerçek cardHTML: çıplak src="${u.resim}" yok', !/src="\$\{u\.resim\}"/.test(gercek));
+  ok('bozuk cardHTML: çıplak src="${u.resim}" VAR (mutasyon)', /src="\$\{u\.resim\}"/.test(bozuk));
+  ok('bozuk cardHTML: çıplak product-name ${u.ad} VAR (mutasyon)', /product-name">\$\{u\.ad\}/.test(bozuk));
+  // Yorum tuzağı: yorumdaki ham sink yanlış alarm üretmemeli
+  const yorumlu = 'function t(){ /* örnek: src="${u.resim}" */ return `<img src="${_guvenliUrl(u.resim)}">`; }';
+  ok('yorum içindeki ham src taramada SOYULUYOR', !/src="\$\{u\.resim\}"/.test(yass(yorumlu)));
+}
+
 console.log(`\nPASS=${pass}  FAIL=${fail}`);
 process.exit(fail ? 1 : 0);

@@ -1140,7 +1140,7 @@ function openDetay(urunId) {
   const mktler   = temiz.gecerli.slice().sort((a, b) => a.fiyat - b.fiyat);
   const emoji    = KAT_EMOJI[ustKategori(u.ana_kategori)] || '📦';
   const imgHtml  = u.resim
-    ? `<img src="${u.resim}" alt="" loading="lazy" onerror="this.onerror=null;this.parentElement.innerHTML='<div style=\'width:100%;height:120px;background:#f8f8f8;display:flex;align-items:center;justify-content:center;font-size:3rem\'>${emoji}</div>'">`
+    ? `<img src="${_guvenliUrl(u.resim)}" alt="" loading="lazy" onerror="this.onerror=null;this.parentElement.innerHTML='<div style=\'width:100%;height:120px;background:#f8f8f8;display:flex;align-items:center;justify-content:center;font-size:3rem\'>${emoji}</div>'">`
     : emoji;
 
 
@@ -1169,8 +1169,8 @@ function openDetay(urunId) {
     <div class="detay-sol">
     <div class="detay-img-wrap">${imgHtml}</div>
     <div class="detay-info">
-      <div class="detay-name">${u.ad}</div>
-      ${u.agirlik_hacim ? `<div class="detay-unit">${u.agirlik_hacim}</div>` : ''}
+      <div class="detay-name">${_kacir(u.ad)}</div>
+      ${u.agirlik_hacim ? `<div class="detay-unit">${_kacir(u.agirlik_hacim)}</div>` : ''}
       ${tazelikChipHTML(u)}
     </div>
     ${(() => { const bf = birimFiyatHesapla(u); return bf ? `<div class="detay-birim-fiyat">${birimFiyatYazi(bf)}</div>` : ''; })()}
@@ -2834,7 +2834,7 @@ function cardHTML(u) {
     // gorseli yuklenemedigi her seferde yedek HIC cizilmiyordu, kullanici bos
     // beyaz kutu goruyordu. (Ayni satirin serit karti surumu \\' ile dogruydu;
     // olculdu: kategori ekraninda 4 kategori gezisinde 12 SyntaxError.)
-    ? `<img class="product-card-img" src="${u.resim}" alt="" loading="lazy" onerror="this.outerHTML='<div class=\\'product-card-img-ph\\'>${ph.emoji}</div>'">`
+    ? `<img class="product-card-img" src="${_guvenliUrl(u.resim)}" alt="" loading="lazy" onerror="this.outerHTML='<div class=\\'product-card-img-ph\\'>${ph.emoji}</div>'">`
     : `<div class="product-card-img-ph">${ph.emoji}</div>`;
 
   const inCart = sepet.some(s => s._id === u._id);
@@ -2852,14 +2852,14 @@ function cardHTML(u) {
     }
   }
   const marketLbl = gosterilenMarket ? MARKET_NAMES[gosterilenMarket] || gosterilenMarket : '';
-  return `<div class="product-card" tabindex="0" role="button" aria-label="${u.ad}" data-urun-id="${u._id}" data-sid="${u._sid || ''}" data-markets="${(u.market_fiyatlari||[]).map(f=>f.market).join(',')}" onclick="openDetay('${u._id}')" onkeydown="_kartTus(event, '${u._id}')" style="cursor:pointer">
+  return `<div class="product-card" tabindex="0" role="button" aria-label="${_kacir(u.ad)}" data-urun-id="${_kacir(u._id)}" data-sid="${_kacir(u._sid || '')}" data-markets="${_kacir((u.market_fiyatlari||[]).map(f=>f.market).join(','))}" onclick="openDetay('${u._id}')" onkeydown="_kartTus(event, '${u._id}')" style="cursor:pointer">
     ${favBtnHTML(u._sid)}
     ${img}
     <div class="product-card-body">
-      <div class="product-name">${u.ad}</div>
-      ${u.agirlik_hacim ? `<div class="product-unit">${u.agirlik_hacim}</div>` : ''}
+      <div class="product-name">${_kacir(u.ad)}</div>
+      ${u.agirlik_hacim ? `<div class="product-unit">${_kacir(u.agirlik_hacim)}</div>` : ''}
       ${gosterilenFiyat != null
-        ? `<div class="product-price">${tlHTML(gosterilenFiyat)}${marketLbl ? `<span class="product-market-lbl"> · ${marketLbl}</span>` : ''}</div>`
+        ? `<div class="product-price">${tlHTML(gosterilenFiyat)}${marketLbl ? `<span class="product-market-lbl"> · ${_kacir(marketLbl)}</span>` : ''}</div>`
         : `<div class="kart-market-yok">Seçili markette yok</div>`}
       ${(() => {
         const bf = birimFiyatHesapla(u);
@@ -2871,7 +2871,7 @@ function cardHTML(u) {
       ${(() => { const rz = tuzakRozetiHesapla(u); return rz ? tuzakRozetiHTML(rz, true) : ''; })()}
       ${urunRozetleriHTML(u, true)}
     </div>
-    <button class="add-btn" data-pid="${u._id}" onclick="event.stopPropagation(); toggleSepet('${u._id}')" style="${inCart ? 'background:#059669' : ''}">${inCart ? '✓' : '+'}</button>
+    <button class="add-btn" data-pid="${_kacir(u._id)}" onclick="event.stopPropagation(); toggleSepet('${u._id}')" style="${inCart ? 'background:#059669' : ''}">${inCart ? '✓' : '+'}</button>
   </div>`;
 }
 
@@ -2908,7 +2908,7 @@ function _kartTus(e, id) {
 function _stripKartHTML(u, rozet) {
   const ph = placeholderRenk(ustKategori(u.ana_kategori));
   const img = u.resim
-    ? `<img class="strip-card-img" src="${u.resim}" alt="" loading="lazy" onerror="this.outerHTML='<div class=\\'strip-card-img-ph\\'>${ph.emoji}</div>'">`
+    ? `<img class="strip-card-img" src="${_guvenliUrl(u.resim)}" alt="" loading="lazy" onerror="this.outerHTML='<div class=\\'strip-card-img-ph\\'>${ph.emoji}</div>'">`
     : `<div class="strip-card-img-ph">${ph.emoji}</div>`;
   // FIYAT kartin kahramani. Once buradaki tek kapidan gecer (enDusukFiyat,
   // market_fiyatlari uzerinden), o veremezse onceden hesaplanmis alana duser.
@@ -2933,11 +2933,11 @@ function _stripKartHTML(u, rozet) {
   // Rozet yuvasi ISARETCI ile aciliyor; cagiranlarin ekledigi rozetler
   // (dusenler/supheli) _kartaRozetEkle ile TAM BURAYA giriyor. Oncesinde
   // kartin sonuna ekleniyorlardi ve yeni sirada en altta kalirlardi.
-  return `<div class="strip-card" tabindex="0" role="button" aria-label="${u.ad}" onclick="openDetay('${u._id}')" onkeydown="_kartTus(event, '${u._id}')">
+  return `<div class="strip-card" tabindex="0" role="button" aria-label="${_kacir(u.ad)}" onclick="openDetay('${u._id}')" onkeydown="_kartTus(event, '${u._id}')">
     ${img}
     ${fiyat != null ? `<div class="strip-card-fiyat">${tl(fiyat)}</div>` : ''}
     ${rozetHTML}<!--ROZET-->
-    <div class="strip-card-name">${u.ad}</div>
+    <div class="strip-card-name">${_kacir(u.ad)}</div>
     ${bfYazi ? `<div class="strip-card-sub">${bfYazi}</div>` : ''}
   </div>`;
 }
@@ -3393,7 +3393,7 @@ function zamAdaylari() {
 }
 
 function zamRozetHTML(artis, market) {
-  const mk = market ? ` <span class="zam-rozet-mkt">${MARKET_NAMES[market] || market}</span>` : '';
+  const mk = market ? ` <span class="zam-rozet-mkt">${_kacir(MARKET_NAMES[market] || market)}</span>` : '';
   return `<span class="zam-rozet">+%${Math.round(artis)}${mk}</span>`;
 }
 
@@ -3524,7 +3524,7 @@ function zamYayginlikHTML(u, marketArtis) {
   } else {
     return '';
   }
-  return `<div class="zam-yayginlik">${metin}</div>`;
+  return `<div class="zam-yayginlik">${_kacir(metin)}</div>`;
 }
 
 // DETAY: tarih, kademeler, kategori bağlamı.
@@ -3567,10 +3567,10 @@ function zamDetayHTML(u) {
     // "%-0,4 degisim var" garip okunuyor; yon kelimeyle veriliyor.
     const yon = v >= 0.05 ? `ortalama %${mutlak} zam var`
               : (v <= -0.05 ? `fiyatlar ortalama %${mutlak} düştü` : 'fiyatlar ortalama değişmedi');
-    katSatir = `<div class="zam-detay-kat">${u.ana_kategori} kategorisinde bu ay ${yon}</div>`;
+    katSatir = `<div class="zam-detay-kat">${_kacir(u.ana_kategori)} kategorisinde bu ay ${yon}</div>`;
   }
   return `<div class="zam-detay">
-      <div class="zam-detay-baslik">${MARKET_NAMES[durum.market] || durum.market} bu zammı ne zaman yaptı</div>
+      <div class="zam-detay-baslik">${_kacir(MARKET_NAMES[durum.market] || durum.market)} bu zammı ne zaman yaptı</div>
       <div class="zam-detay-govde">${satirlar.join(' · ')}</div>
       ${katSatir}
     </div>`;
@@ -3738,13 +3738,13 @@ function renderUrunler(liste) {
       list.innerHTML = `<div class="empty-state">
         <div class="empty-icon">${lcIcon('search-x')}</div>
         <div class="empty-title">Sonuç bulunamadı</div>
-        <div class="empty-desc">${marketAdi ? `${marketAdi} için bu aramaya uyan ürün yok` : 'Farklı kelimelerle dene'}</div>
+        <div class="empty-desc">${marketAdi ? `${_kacir(marketAdi)} için bu aramaya uyan ürün yok` : 'Farklı kelimelerle dene'}</div>
       </div>`;
     } else if (marketAdi) {
       list.innerHTML = `<div class="empty-state">
         <div class="empty-icon">${lcIcon('filter-x')}</div>
         <div class="empty-title">Bu markette ürün yok</div>
-        <div class="empty-desc">${marketAdi} için bu kategoride ürün bulunamadı</div>
+        <div class="empty-desc">${_kacir(marketAdi)} için bu kategoride ürün bulunamadı</div>
         <button class="empty-cta" onclick="resetCatFilters()">Filtreleri sıfırla</button>
       </div>`;
     } else {
@@ -4161,12 +4161,12 @@ function mfRenderResults(list) {
     return `<div class="mf-card" tabindex="0" role="button" onclick="mfSheetAc(${idx})" onkeydown="_satirTus(event, function(){mfSheetAc(${idx})})">
       <div class="mf-market-avatar">${initial}</div>
       <div class="mf-card-info">
-        <div class="mf-card-title">${title}</div>
-        <div class="mf-card-meta">${meta || (depotName || '')}</div>
+        <div class="mf-card-title">${_kacir(title)}</div>
+        <div class="mf-card-meta">${_kacir(meta || (depotName || ''))}</div>
       </div>
       <div class="mf-card-right">
         <div class="mf-card-price">${isFinite(price) ? mfTl(price) : ''}</div>
-        <div class="mf-card-market">${marketAdi}</div>
+        <div class="mf-card-market">${_kacir(marketAdi)}</div>
         <div class="mf-card-markets">${marketCount} markette</div>
       </div>
     </div>`;
@@ -4191,7 +4191,7 @@ function mfSheetAc(idx) {
     if (it.id) {
       mfUrunGorseliBul(it.id, title).then(url => {
         if (url) {
-          imgContainer.innerHTML = `<img src="${url}" alt="" loading="lazy" onerror="this.parentNode.classList.add('fallback'); this.parentNode.innerHTML='${initial || '?'}'">`;
+          imgContainer.innerHTML = `<img src="${_guvenliUrl(url)}" alt="" loading="lazy" onerror="this.parentNode.classList.add('fallback'); this.parentNode.innerHTML='${initial || '?'}'">`;
         } else {
           imgContainer.classList.add('fallback');
           imgContainer.textContent = initial || '?';
@@ -4207,8 +4207,8 @@ function mfSheetAc(idx) {
     const unitPrice = d.unitPrice || '';
     return `<div class="mf-depot-row ${isBest ? 'best' : ''}">
       <div class="mf-depot-info">
-        <div class="mf-depot-market">${marketAdi}</div>
-        <div class="mf-depot-meta">${depotName}</div>
+        <div class="mf-depot-market">${_kacir(marketAdi)}</div>
+        <div class="mf-depot-meta">${_kacir(depotName)}</div>
       </div>
       <div class="mf-depot-right">
         <div class="mf-depot-price">${isFinite(p) ? mfTl(p) : ''}</div>
@@ -4373,7 +4373,7 @@ function renderSepet() {
     const mktF = (u.market_fiyatlari || []).filter(f => f.fiyat != null).sort((a,b) => a.fiyat - b.fiyat)[0];
     const fiyatStr = mktF
       ? `<div style="text-align:right;color:var(--primary);font-size:.82rem;font-weight:700;flex-shrink:0;margin-right:6px;line-height:1.4">
-           ${tlHTML(mktF.fiyat)}<br><span style="font-size:.65rem;font-weight:500">${MARKET_NAMES[mktF.market]||mktF.market||'?'}</span>
+           ${tlHTML(mktF.fiyat)}<br><span style="font-size:.65rem;font-weight:500">${_kacir(MARKET_NAMES[mktF.market]||mktF.market||'?')}</span>
          </div>` : '';
     return `<div class="cart-item" tabindex="0" role="button" aria-label="${_kacir(u.ad)}" onclick="openDetay('${u._id}')" onkeydown="_kartTus(event, '${u._id}')" style="cursor:pointer">
       <div class="cart-item-img">${img}</div>
@@ -4542,7 +4542,7 @@ function sepetMarketOzetiHTML() {
   const toplamlar = marketToplamlari();
   if (!toplamlar.length) return '';
   const satirlar = toplamlar.slice(0, 5).map(m => `<div class="sepet-mkt-satir">
-      <span class="sepet-mkt-ad">${m.ad}</span>
+      <span class="sepet-mkt-ad">${_kacir(m.ad)}</span>
       <span class="sepet-mkt-tutar">${tl(m.toplam)}</span>
       ${m.eksik ? `<span class="sepet-mkt-eksik">${m.eksik} ürün yok — tutar onlar olmadan, eksik</span>` : ''}
     </div>`).join('');
@@ -4552,11 +4552,11 @@ function sepetMarketOzetiHTML() {
   if (o.oner && o.ikili) {
     oneri = `<div class="sepet-mkt-oneri">
         ${o.ikili.adlar.join(' + ')} olarak iki markete bölersen ${tl(o.kazanc)} kazanırsın
-        <span class="sepet-mkt-oneri-alt">tek market ${o.tekMarket.ad} ${tl(o.tekMarket.toplam)} · iki market ${tl(o.ikili.toplam)}</span>
+        <span class="sepet-mkt-oneri-alt">tek market ${_kacir(o.tekMarket.ad)} ${tl(o.tekMarket.toplam)} · iki market ${tl(o.ikili.toplam)}</span>
       </div>`;
   } else if (o.tekMarket) {
     oneri = `<div class="sepet-mkt-oneri">
-        Tek markette almak mantıklı — ${o.tekMarket.ad}
+        Tek markette almak mantıklı — ${_kacir(o.tekMarket.ad)}
         ${o.kazanc > 0 ? `<span class="sepet-mkt-oneri-alt">bölmek sadece ${tl(o.kazanc)} kazandırır</span>` : ''}
       </div>`;
   }
@@ -4642,10 +4642,10 @@ function msSheetAc(mktList) {
   const listEl = document.getElementById('msList');
   listEl.innerHTML = _msMarkets.map(m => {
     const harf = (m.name || '?').trim().charAt(0).toUpperCase();
-    return `<div class="ms-market-row selected" data-mkt="${m.key}" tabindex="0" role="button" aria-pressed="true" aria-label="${m.name}" onclick="msSheetToggle('${m.key}', this)" onkeydown="_satirTus(event, function(){msSheetToggle('${m.key}', document.querySelector(&quot;[data-mkt=\'${m.key}\']&quot;))})">
+    return `<div class="ms-market-row selected" data-mkt="${_kacir(m.key)}" tabindex="0" role="button" aria-pressed="true" aria-label="${_kacir(m.name)}" onclick="msSheetToggle('${m.key}', this)" onkeydown="_satirTus(event, function(){msSheetToggle('${m.key}', document.querySelector(&quot;[data-mkt=\'${m.key}\']&quot;))})">
       <div class="ms-market-avatar">${harf}</div>
       <div class="ms-market-info">
-        <div class="ms-market-name">${m.name}</div>
+        <div class="ms-market-name">${_kacir(m.name)}</div>
         <div class="ms-market-meta">${msMarketMetaHTML(m)}</div>
       </div>
       <div class="ms-tick">✓</div>
@@ -4768,7 +4768,7 @@ function hesaplaSecili(seciliMarketler) {
   const _cmpItemHTML = (it) => {
     const ph = placeholderRenk(ustKategori(it.ana_kategori));
     const img = it.resim
-      ? `<img class="cmp-mkt-item-img" src="${it.resim}" alt="" loading="lazy" onerror="this.outerHTML='<div class=\\'cmp-mkt-item-img-ph\\'>${ph.emoji}</div>'">`
+      ? `<img class="cmp-mkt-item-img" src="${_guvenliUrl(it.resim)}" alt="" loading="lazy" onerror="this.outerHTML='<div class=\\'cmp-mkt-item-img-ph\\'>${ph.emoji}</div>'">`
       : `<div class="cmp-mkt-item-img-ph">${ph.emoji}</div>`;
     // İkinci satır: gramaj + birim fiyat. Birim fiyat bu satıra ATANAN
     // marketin fiyatından hesaplanıyor (ürünün global minimumundan DEĞİL) —
@@ -4783,7 +4783,7 @@ function hesaplaSecili(seciliMarketler) {
     return `<div class="cmp-mkt-item">
       ${img}
       <div class="cmp-mkt-item-main">
-        <div class="cmp-mkt-item-name">${it.ad}</div>
+        <div class="cmp-mkt-item-name">${_kacir(it.ad)}</div>
         ${meta}
       </div>
       <span class="cmp-mkt-item-price">${it.fiyat != null ? tl(it.fiyat) : '<span class="cmp-mkt-item-yok">—</span>'}</span>
@@ -4935,12 +4935,12 @@ function renderHalScreen() {
   const cards = products.map(u => {
     const kat = getHalKat(u.ad);
     const gorselHtml = u.gorsel
-      ? `<img src="${u.gorsel}" alt="${u.ad}" loading="lazy" style="width:100%;height:80px;object-fit:cover;border-radius:12px 12px 0 0" onerror="this.outerHTML='<div style=&quot;height:80px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;background:${halRenkler[kat]};border-radius:12px 12px 0 0&quot;>${halEmojiler[kat]}</div>'">`
+      ? `<img src="${_guvenliUrl(u.gorsel)}" alt="${_kacir(u.ad)}" loading="lazy" style="width:100%;height:80px;object-fit:cover;border-radius:12px 12px 0 0" onerror="this.outerHTML='<div style=&quot;height:80px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;background:${halRenkler[kat]};border-radius:12px 12px 0 0&quot;>${halEmojiler[kat]}</div>'">`
       : `<div style="height:80px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;background:${halRenkler[kat]};border-radius:12px 12px 0 0">${halEmojiler[kat]}</div>`;
     return `<div class="hal-grid-card" data-kat="${kat}">
       ${gorselHtml}
       <div style="padding:8px">
-        <div style="font-size:11px;font-weight:500;color:var(--text);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:26px">${u.ad}</div>
+        <div style="font-size:11px;font-weight:500;color:var(--text);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:26px">${_kacir(u.ad)}</div>
         <div style="font-size:13px;font-weight:700;color:var(--primary);margin-top:4px">${tl(u.fiyat)} <span style="font-size:10px;font-weight:400">₺/kg</span></div>
         ${dateStr ? `<div style="font-size:9px;color:var(--text-muted);margin-top:2px">${dateStr}</div>` : ''}
       </div>
@@ -5042,14 +5042,14 @@ function _firsatKartHtml(u, badge, badgeClass, altText) {
   const emoji = KAT_EMOJI[ustKategori(u.ana_kategori||'')] || '📦';
   const fiyat = u.en_dusuk_fiyat != null ? tlHTML(u.en_dusuk_fiyat) : '<span class="fp"><span class="fp-l">—</span></span>';
   const imgHtml = u.resim
-    ? '<img class="firsat-card-img" src="'+u.resim+'" alt="" loading="lazy" onerror="this.className=\'firsat-card-img-ph\';this.outerHTML=\'<div class=&quot;firsat-card-img-ph&quot;>'+emoji+'</div>\'">'
+    ? '<img class="firsat-card-img" src="'+_guvenliUrl(u.resim)+'" alt="" loading="lazy" onerror="this.className=\'firsat-card-img-ph\';this.outerHTML=\'<div class=&quot;firsat-card-img-ph&quot;>'+emoji+'</div>\'">'
     : '<div class="firsat-card-img-ph">'+emoji+'</div>';
   const inCart = window.sepet && window.sepet.some(function(s){return s._id===u._id;});
   return '<div class="firsat-card">'
     + imgHtml
     + '<div class="firsat-card-body">'
-    + '<div class="firsat-card-name">'+(u.ad||'')+'</div>'
-    + '<div class="firsat-card-sub">'+altText+'</div>'
+    + '<div class="firsat-card-name">'+_kacir(u.ad||'')+'</div>'
+    + '<div class="firsat-card-sub">'+_kacir(altText)+'</div>'
     // Şüpheli ürün listeden çıkarılmaz, rozetiyle görünür — kararı kullanıcı verir.
     + (supheliDurum(u) ? supheliRozetHTML() : '')
     + '</div>'

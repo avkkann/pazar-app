@@ -1,6 +1,6 @@
 # Pazar App — Proje Handoff (Claude için)
 
-**Son güncelleme:** 2026-08-19 oturumu (güvenlik denetimi + fiyat_bildirim yazma açığı kapatıldı, sw v216; ardından **B1 XSS Parti 1** — çıktı kaçışı sertleştirmesi başladı, sw v217). Bu dosya her oturum başında okunur, sohbete asla ham metin olarak yapıştırılmaz.
+**Son güncelleme:** 2026-08-19 oturumu (güvenlik denetimi + fiyat_bildirim yazma açığı kapatıldı, sw v216; ardından **B1 XSS Parti 1+2** — çıktı kaçışı sertleştirmesi render yollarına yayıldı, sw v218). Bu dosya her oturum başında okunur, sohbete asla ham metin olarak yapıştırılmaz.
 
 ---
 
@@ -698,12 +698,12 @@ Uygulama teknik olarak çalışıyor ama **pratikte hâlâ dağıtılmamış dur
 - **`update-data.yml` hâlâ Node 20, `deploy.yml` Node 24 — AÇIK BORÇ.** Somut sonucu: `data/anasayfa.json` **iki farklı Node majöründe** üretiliyor — gece koşusu onu Node 20'de üretip repoya commit'liyor, deploy build'i aynı script'i Node 24'te yeniden koşturup `dist/`e onu koyuyor. Yani commit'lenen dosya ile yayına giden dosya farklı motorlarda doğuyor. Mantık aynı olduğu için çıktının da aynı olması beklenir ama **doğrulanmadı**; "aynı türetilmiş dosyanın iki kaynağı" bu dosyanın tuzak diye işaretlediği desen. `update-data.yml` wrangler kullanmadığı için geçiş turunda bilerek dokunulmadı. Kapatılırken iki koşunun çıktısı bayt bayt karşılaştırılmalı.
 - **`style.css`'te iki adet birebir aynı ölü `@media` bloğu** (`CENTER-FIX-TAMAM` ×2) — temizlenmedi.
 - **Ölü `.cmp-mkt-item-img` kuralı** — `style.css:650`'de eski 30px tanımı duruyor, dosyanın sonundaki yeniden tasarım bloğu 56px'le eziyor. Zararsız ama yanıltıcı.
-- **B1 XSS — çıktı kaçışı (DENETIM 1.5). Kaçış sertleştirmesi sürüyor.**
-  Merkezî kaçış yardımcıları mevcut; localStorage kaynaklı render yolları bunlara
-  geçirildi (bkz. `test_kacis.mjs` — gerçek tarayıcı DOM ölçümü + negatif kontrol +
-  regresyon; `&` çift-kaçışa gitmiyor, Türkçe bozulmuyor). Kalan kapsam ayrı
-  turlarda kapatılacak; ayrıntılı bulgu listesi repo dışındaki denetim notlarında
-  tutuluyor. `sw.js` **v217**.
+- **B1 XSS — çıktı kaçışı (DENETIM 1.5). Kaçış sertleştirmesi büyük ölçüde tamamlandı.**
+  Merkezî kaçış yardımcıları mevcut; hem localStorage hem dış API/DB kaynaklı render
+  yolları bunlara geçirildi (bkz. `test_kacis.mjs` — gerçek tarayıcı DOM ölçümü +
+  negatif kontrol + regresyon: `&` çift-kaçışa gitmiyor, Türkçe/görsel bozulmuyor).
+  Kalan bir render bağlamı ayrı projede ele alınacak; ayrıntılı bulgu listesi repo
+  dışındaki denetim notlarında tutuluyor. `sw.js` **v218**.
 - **`'Makyaj'` kategorisi (70 ürün) `app.js` beyaz listesi dışında** — Temizlik sekmesi yerine "diger"e düşüyor. Kategori bölünmesinden önce de böyleydi. (`/api/v2/search` ucu bu tür artıkları yakalamak için değerlendirilebilir.)
 - **`marketfiyati.json`** — bayat/farklı kaynak, hâlâ `marketfiyatiYukle()`/productMap fallback'inde. `urunler.json` gibi bir sonraki temizlik adayı.
 - **`kesif_*`/`migrate_*`/`a101_pilot_*` dosyaları** — gitignore'da ama diskte, silme kararı Mustafa'da.
