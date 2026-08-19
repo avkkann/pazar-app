@@ -1,6 +1,6 @@
 # Pazar App — Proje Handoff (Claude için)
 
-**Son güncelleme:** 2026-08-19 oturumu (splash düzeltmesi, yerel — push edilmedi). Bu dosya her oturum başında okunur, sohbete asla ham metin olarak yapıştırılmaz.
+**Son güncelleme:** 2026-08-19 oturumu (splash düzeltmesi canlı). Bu dosya her oturum başında okunur, sohbete asla ham metin olarak yapıştırılmaz.
 
 ---
 
@@ -20,9 +20,9 @@ Mustafa (GitHub: avkkann), **Pazar App**'in tek geliştiricisi — Türk market 
 
 ## Mevcut durum (2026-08-17 itibarıyla)
 
-### 2026-08-19 — Splash: sabit bekleme kalktı, tema-duyarlı zemin (YEREL, PUSH EDİLMEDİ)
+### 2026-08-19 — Splash: sabit bekleme kalktı, tema-duyarlı zemin (CANLI, DOĞRULANDI)
 
-**Durum: kod bitti, 39/39 test yeşil, CANLIYA ÇIKMADI.** `sw.js` **v214**.
+**Durum: yayında.** `8503f6f` push edildi, deploy yeşil. `sw.js` **v214**, 39/39 test yeşil.
 Ölçüm üç hata bulmuştu, üçü de düzeldi.
 
 **A — 800 ms boşa bekleme.** Splash `setTimeout(600)` + 250 ms zinciriyle kalkıyordu ve
@@ -73,6 +73,25 @@ süresini CSS tokeninden okuyor, ikinci bir sayı tutmuyor.
 onboarding tetikleniyor (ölçüldü: splash bitince 500 ms'de açılıyor) · iki tema da açılıyor.
 
 **Yeni test:** `test_splash.mjs` (46 iddia). Korumalar kasten bozularak doğrulandı.
+
+**Canlı doğrulama (uzantısız temiz profil + CDP, 390px, 3 tur medyan, iki tur):**
+
+| senaryo | boşa bekleme (canlı) |
+|---|---:|
+| soğuk | **390 ms** (2. tur, cache buster: 362 ms) |
+| koyu tema | **347 ms** |
+| reduced-motion | **139 ms** — sönme anında (soluyor 489 = gitti 489) |
+| onboarding | 366 ms; overlay splash bitince 726 ms'de açılıyor |
+
+`sw.js` **v214**, önbellek tam `[v214]`, **v213 temizliği ölçüldü** (`[v214,v213]` → `[v214]`) ·
+5 şerit `[6,6,12,10,7]` · yatay taşma 0 · CSP 9 direktif · kilit koruması hiç devreye
+girmedi · konsol **gerçek hata 0** (3 yüklemede yalnızca bilinen Cloudflare beacon blokları).
+
+> **Renk iddiası GERÇEK PİKSELDEN kapatıldı.** `getComputedStyle` sondam CSS uygulanmadan
+> önceki ilk okumayı önbelleğe alıp `rgba(0,0,0,0)` diyordu — hesaplanan stille "beyaz yok"
+> demek yanlış olurdu. Splash kareye alınıp PNG'nin sol-üst pikseli okundu: koyu temada
+> **[15,26,20]** (`#0F1A14`), açık temada **[248,249,250]** (`#F8F9FA`). Hesaplanan stil ve
+> boyanmış piksel birbirini doğruluyor.
 
 > **AÇIK BORÇ — iOS `apple-touch-startup-image` yok.** Standalone PWA'da iOS'un kendi
 > açılış ekranı için başlangıç görseli tanımlı değil; **temaya bağlı splash bunu TAM
@@ -602,7 +621,7 @@ Uygulama teknik olarak çalışıyor ama **pratikte hâlâ dağıtılmamış dur
 
 ## Yaklaşım & desenler
 
-- **SW cache version** her anlamlı `index.html`/`app.js`/`style.css`/`sw.js` değişikliğinde artırılır (şu an **v214** yerelde; canlıda v213). Backend-only değişikliklerde (scraper, sync) bump edilmez. Akış: `git add` → `git commit` → `git pull --rebase` → `git push`. Not: `sw.js` yalnızca `data/hal.json` + `data/anasayfa.json`'ı önbelleğe alıyor ve `fetch`'i yalnızca o iki URL için yakalıyor — HTML/CSS/JS'i tutmuyor, onlar Cloudflare'den `Cache-Control: public, max-age=0, must-revalidate` ile geliyor (ölçüldü; eski GitHub Pages `max-age=600` notu bayattı). Bump proje kuralı ve tutarlılık için, HTML dağıtımını hızlandırmıyor.
+- **SW cache version** her anlamlı `index.html`/`app.js`/`style.css`/`sw.js` değişikliğinde artırılır (şu an **v214**, canlıda doğrulandı 2026-08-19). Backend-only değişikliklerde (scraper, sync) bump edilmez. Akış: `git add` → `git commit` → `git pull --rebase` → `git push`. Not: `sw.js` yalnızca `data/hal.json` + `data/anasayfa.json`'ı önbelleğe alıyor ve `fetch`'i yalnızca o iki URL için yakalıyor — HTML/CSS/JS'i tutmuyor, onlar Cloudflare'den `Cache-Control: public, max-age=0, must-revalidate` ile geliyor (ölçüldü; eski GitHub Pages `max-age=600` notu bayattı). Bump proje kuralı ve tutarlılık için, HTML dağıtımını hızlandırmıyor.
 - **Doğrulama:** Push sonrası `gh run watch` ile deploy'un koştuğu doğrulanır, sonra canlıda (Browser MCP) gerçek fonksiyonel test yapılır — "dosyada var mı" değil, "gerçekten çalışıyor mu". Layout değişikliklerinde ekran görüntüsü yetmez: değişiklikten ÖNCE geometri parmak izi (`getBoundingClientRect`) alınıp sonra sayısal karşılaştırılır.
 - **Kapsam disiplini:** İstenmeyen ekleme/çıkarma sessizce yapılmaz, not düşülür. Doküman/analiz önerileri körü körüne uygulanmaz — önce kodda geçerli mi diye bakılır.
 - **Büyük ürün/mimari kararları** (hosting migration, nav yapısı, tuzak'ın geleceği) Mustafa'nın onayı olmadan koda dökülmez.
