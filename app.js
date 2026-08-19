@@ -1169,7 +1169,7 @@ function openDetay(urunId) {
     ${fiyatGecmisiBlogu(u)}
     ${fiyatAlarmiBlogu(u)}
     ${btnHtml}
-    ${_bildirimYetkiVar ? `<button type="button" class="fiyat-bildir-btn" onclick="fiyatBildirAc('${u._id}')"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>Bu fiyat tutmadı</button>` : ''}
+    ${_bildirimYetkiVarMi() ? `<button type="button" class="fiyat-bildir-btn" onclick="fiyatBildirAc('${u._id}')"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>Bu fiyat tutmadı</button>` : ''}
     </div>
     ${(() => {
   const digerler = digerPaketleriBul(u);
@@ -2630,22 +2630,48 @@ function gizlenenFiyatToggle(btn) {
 }
 
 // ── BİLDİRİM UYARILARI ────────────────────────────────────────────
-// Açılışta TEK sefer çekilir. RPC yetki hatası verirse (_bildirimYetkiVar
-// false kalır) "Bu fiyat tutmadı" butonu hiç gösterilmez — kırık buton yok.
+// Bu harita YALNIZCA rozet sayilarini besliyor ("N kişi bu fiyatın tutmadığını
+// bildirdi") — okuma. get_fiyat_bildirimleri anon'a 200 [] donuyor, o yuzden
+// oturumsuzda harita bos kalir ve rozet cizilmez; bu dogru, buradan yetki
+// TURETILMEZ.
 let _fiyatBildirimMap = new Map();
-let _bildirimYetkiVar = false;
+
+// ── BILDIRIM YAZMA YETKISI ────────────────────────────────────────────
+// GUVENLIK: yazma yetkisi = OTURUM VARLIGI, "RPC hata verdi mi" DEGIL.
+// Eski kapi (get_fiyat_bildirimleri hata vermezse _bildirimYetkiVar=true)
+// KIRIKTI: RPC anon'a 200 [] donduruyor, hata olmuyor, bayrak true oluyordu ve
+// "Bu fiyat tutmadı" butonu oturumsuz kullaniciya da cikiyordu. DB tarafi artik
+// yalnizca authenticated'a acik (policy: with check kullanici_id = auth.uid()),
+// istemci de ona uyduruldu. Canli okuma: kullanici oturum acip kapatirsa da
+// dogru sonuc verir (acilista yakalanan boolean degil).
+function _bildirimYetkiVarMi() {
+  return !!(window.pazarAuth && window.pazarAuth.user);
+}
 
 async function fiyatBildirimleriYukle() {
+  let data, error;
   try {
-    const { data, error } = await window.supabaseClient.rpc('get_fiyat_bildirimleri');
-    if (error) return;
-    (data || []).forEach(r => {
-      const sid = r._sid || r.sid;
-      const adet = r.adet != null ? r.adet : (r.sayi != null ? r.sayi : r.count);
-      if (sid && r.market) _fiyatBildirimMap.set(sid + '|' + r.market, Number(adet) || 0);
-    });
-    _bildirimYetkiVar = true;
-  } catch (e) { console.warn('[bildirim] fiyat bildirim sayilari alinamadi, rozetler hic cikmayacak:', e && e.message); }
+    ({ data, error } = await window.supabaseClient.rpc('get_fiyat_bildirimleri'));
+  } catch (e) {
+    // AG/ISTEK HATASI — bos sonuctan AYRI dal. Rozetler cizilmez ama bu bir hata.
+    console.warn('[bildirim] fiyat bildirim sayilari alinamadi, istek hatasi, rozetler cikmayacak:', e && e.message);
+    return;
+  }
+  if (error) {
+    // RPC HATASI — yine bos sonuctan AYRI dal, ayni davranisi URETMEZ.
+    console.warn('[bildirim] fiyat bildirim RPC hatasi, rozetler cikmayacak:', error.message);
+    return;
+  }
+  if (!data || !data.length) {
+    // BOS SONUC — hata DEGIL (anon'a normal, girisli kullanicinin hic bildirimi
+    // olmayabilir). Sessiz gec; yetki buradan TURETILMIYOR.
+    return;
+  }
+  data.forEach(r => {
+    const sid = r._sid || r.sid;
+    const adet = r.adet != null ? r.adet : (r.sayi != null ? r.sayi : r.count);
+    if (sid && r.market) _fiyatBildirimMap.set(sid + '|' + r.market, Number(adet) || 0);
+  });
 }
 document.addEventListener('DOMContentLoaded', fiyatBildirimleriYukle);
 
@@ -2681,6 +2707,23 @@ function _bildirimMarketSec(el) {
 }
 
 async function fiyatBildirAc(urunId) {
+  // OTURUM KAPISI — asil koruma DB'de (policy: to authenticated, with check
+  // kullanici_id = auth.uid(); anon INSERT reddediliyor). Istemci buna uyuyor:
+  // oturumsuz kullanici INSERT'e HIC gitmesin. kullanici_id istemciden
+  // gonderildigi icin (asagida), session yoksa gonderilecek gecerli bir kimlik
+  // de yok. Ham hata degil, anlasilir yonlendirme: modalAc dili (native
+  // alert/confirm YOK). favToggle'daki (app.js:355) desenle ayni aile.
+  if (!_bildirimYetkiVarMi()) {
+    // NOT: modalAc cancelText okumuyor, iptal butonu statik "İptal" (index.html:640).
+    const gir = await modalAc({
+      title: 'Giriş gerekiyor',
+      msg: 'Fiyat bildirimi için giriş yapman gerekiyor. Böylece bildirimin sana bağlanır ve tekrarları önleriz.',
+      okText: 'Giriş yap'
+    });
+    if (gir === true && typeof window.openAuthSheet === 'function') window.openAuthSheet('login');
+    return;
+  }
+
   const u = productMap[urunId];
   if (!u) return;
   const mktler = fiyatlariTemizle(u.market_fiyatlari).gecerli;
@@ -2706,6 +2749,11 @@ async function fiyatBildirAc(urunId) {
   if (sonuc === false) return;
 
   const market = _bildirimSecilenMarket;
+  // 24 saatlik localStorage sogumasi — SPAM'i azaltir ama ARTIK TEK KORUMA
+  // DEGIL ve guvenlik siniri de degil: yalnizca bu tarayicida, silinebilir,
+  // istemci tarafi. Asil kimlik/yetki siniri DB policy'sinde (authenticated +
+  // kullanici_id = auth.uid()). Bu kontrol UX icin (ayni kullaniciyi ayni
+  // urunde gunde bir kez atmaya tesvik), guvenlik icin degil.
   const anahtar = 'fb_' + (u._sid || '') + '_' + market;
   const onceki = Number(localStorage.getItem(anahtar) || 0);
   if (onceki && Date.now() - onceki < 86400000) {
@@ -2720,13 +2768,23 @@ async function fiyatBildirAc(urunId) {
     if (!isNaN(n)) bildirilen = n;
   }
 
+  // IKINCI SAVUNMA: modal aciktayken oturum dusmus olabilir (token suresi,
+  // baska sekmede cikis). Session yoksa INSERT'i HIC atma — kullanici_id
+  // istemciden gidiyor ve oturumsuz gecerli kimlik yok; ustelik DB zaten
+  // reddederdi ama bos istek atmaya gerek yok.
+  const _user = window.pazarAuth && window.pazarAuth.user;
+  if (!_user) {
+    toastGoster('Oturumun kapanmış görünüyor, tekrar giriş yap');
+    return;
+  }
+
   try {
     const { error } = await window.supabaseClient.from('fiyat_bildirim').insert({
       _sid: u._sid || null,
       market: market,
       gosterilen_fiyat: eslesen ? eslesen.fiyat : null,
       bildirilen_fiyat: bildirilen,
-      kullanici_id: (window.pazarAuth && window.pazarAuth.user) ? window.pazarAuth.user.id : null
+      kullanici_id: _user.id
     });
     if (error) { toastGoster('Bildirim gönderilemedi'); return; }
   } catch (e) { console.warn('[bildirim] fiyat bildirim penceresi acilamadi:', e && e.message);

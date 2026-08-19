@@ -1,4 +1,4 @@
-﻿const CACHE_NAME = 'pazar-cache-v215';
+﻿const CACHE_NAME = 'pazar-cache-v216';
 const DATA_URLS = [
   new URL('./data/hal.json', self.location).href,
   // Ana sayfanin dort seridi buradan besleniyor (25,9 KB gzip). Ilk boyamada

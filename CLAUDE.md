@@ -1,6 +1,6 @@
 # Pazar App — Proje Handoff (Claude için)
 
-**Son güncelleme:** 2026-08-19 oturumu (üç mobil sorun canlı, sw v215). Bu dosya her oturum başında okunur, sohbete asla ham metin olarak yapıştırılmaz.
+**Son güncelleme:** 2026-08-19 oturumu (güvenlik denetimi + fiyat_bildirim yazma açığı kapatıldı, sw v216). Bu dosya her oturum başında okunur, sohbete asla ham metin olarak yapıştırılmaz.
 
 ---
 
@@ -19,6 +19,30 @@ Mustafa (GitHub: avkkann), **Pazar App**'in tek geliştiricisi — Türk market 
 ---
 
 ## Mevcut durum (2026-08-17 itibarıyla)
+
+### 2026-08-19 — Güvenlik denetimi + fiyat_bildirim yazma açığı kapatıldı (CANLI)
+
+**Salt-okunur güvenlik denetimi** yapıldı → [`DENETIM_GUVENLIK.md`](DENETIM_GUVENLIK.md)
+(10 bulgu: 1 KRİTİK XSS, 2 YÜKSEK, 3 ORTA, 4 DÜŞÜK; sır sızıntısı ve git geçmişi temiz).
+İlk düzeltme koşuldu: **`fiyat_bildirim` kimlik-doğrulamasız yazma açığı (B2)**.
+
+**Neydi:** INSERT anon'a açıktı — hız sınırı değil, yazmanın kendisi. Anon `{"_sid":"x",…}`
+→ 201, satır oluşuyordu. **DB düzeltmesi** (Mustafa çalıştırdı): policy `to authenticated,
+with check kullanici_id = auth.uid()`. **İstemci düzeltmesi** (`app.js`, `sw.js` v216):
+- Kapı artık **oturuma** bağlı (`_bildirimYetkiVarMi()`), "RPC hatası"na değil. Eski kapı
+  kırıktı: `get_fiyat_bildirimleri` anon'a `200 []` döndüğü için hata olmuyor, bayrak `true`
+  oluyor ve "Bu fiyat tutmadı" butonu oturumsuz kullanıcıya da çıkıyordu.
+- `fiyatBildirimleriYukle`'de **boş sonuç / hata / veri** ayrı dallar; yetki buradan
+  türetilmiyor (yalnızca rozet sayıları).
+- `fiyatBildirAc` oturumsuz kullanıcıya `modalAc` yönlendirmesi (native alert yok), INSERT'e
+  **hiç gitmiyor**. INSERT öncesi ikinci savunma; `kullanici_id` artık `null` değil session
+  `user.id`. 24 saatlik localStorage soğuması UX için kaldı, **güvenlik sınırı olmadığı**
+  koda not düşüldü.
+
+**Canlı doğrulandı:** girişli 201, girişsiz reddediliyor; yerel derlemede oturumsuz kullanıcıda
+buton **görünmüyor** (ölçüldü). Yeni test `test_bildirim_yetki.mjs` (18 iddia); kapı
+RPC-mantığına geri bağlanınca **kırmızıya dönüyor** (mutasyonla kanıtlandı). 41/41 test yeşil.
+
 
 ### 2026-08-19 — Üç mobil sorun + bir yan bulgu (CANLI)
 
@@ -589,7 +613,8 @@ Frontend'in ağır noktaları (8 kategori JSON dosyasını client'ta indirip tar
 - `ilan_indirim_gecmisi` JSONB (2026-08-08'de eklendi, `NOT NULL DEFAULT '[]'`; `sync_db.py` yazar, ilk dolu koşu 2026-08-09)
 - `market_fiyatlari` kayıtlarında `liste_fiyat` (API'nin `discountlessPrice`'ı; şema değişikliği değil, JSONB içinde alan)
 
-`fiyat_bildirim` tablosu (2026-08-06): kullanıcı fiyat bildirimleri. **Yetkiler:** `authenticated` INSERT edebilir, SELECT/DELETE **edemez**; `anon` hiçbir şey yapamaz. Okuma yalnızca `get_fiyat_bildirimleri()` RPC'si üzerinden (security definer). RPC'nin içinde bir eşik var — tek bildirimde boş dönüyor.
+`fiyat_bildirim` tablosu (2026-08-06): kullanıcı fiyat bildirimleri. **Yetkiler:** `authenticated` INSERT edebilir (policy `with check kullanici_id = auth.uid()`), SELECT/DELETE **edemez**; `anon` hiçbir şey yapamaz. Okuma yalnızca `get_fiyat_bildirimleri()` RPC'si üzerinden (security definer). RPC'nin içinde bir eşik var — tek bildirimde boş dönüyor.
+> **DÜZELTME (2026-08-19):** "`anon` hiçbir şey yapamaz" **2026-08-19 öncesinde YANLIŞTI** — anon SELECT `42501` ile kapalıydı ama **INSERT AÇIKTI** (güvenlik denetimi B2; anon `{"_sid":"x","market":"bim"}` → 201). O tarihte DB policy'siyle (`to authenticated, with check kullanici_id = auth.uid()`) ve istemci tarafı kapıyla (`_bildirimYetkiVarMi()`, `app.js`) kapatıldı; canlı doğrulandı (girişli 201, girişsiz reddediliyor). Şimdi ifade gerçekten doğru.
 
 RPC fonksiyonları: `get_fiyat_dusenler(p_limit)`, `indirim_puan_toplu_guncelle(guncellemeler jsonb)`, `get_fiyat_bildirimleri()`, `get_kendi_bildirim_sayim()` (2026-08-08, security definer; anon'a kapalı — profil "Katkılarım" bölümü bunu kullanır).
 
@@ -720,6 +745,8 @@ Uygulama teknik olarak çalışıyor ama **pratikte hâlâ dağıtılmamış dur
 - **Satır içi olay özniteliğinde tırnak kaçışı: şablon dizesinde ÇİFT ters bölü gerekir.** `onerror="this.outerHTML='<div class=\'x\'>'"` yazınca JS `\'` → `'` çevirip HTML'e basıyor, öznitelik orada **kapanıyor** ve tarayıcı `SyntaxError` atıyor. Doğrusu `class=\\'x\\'`. Ürün kartında tek, şerit kartında çift yazılmıştı; **görsel yüklenemeyen her kartta yedek HİÇ çizilmiyordu** (kullanıcı boş beyaz kutu görüyordu) ve hata yalnızca `onerror` tetiklendiğinde çıktığı için normal koşulda görünmüyordu. **Aynı işi yapan iki yerin kaçış desenini test karşılaştırsın** — `test_mobil_dokunma` artık bunu yapıyor.
 - **Flex öğesinin `min-width` varsayılanı `auto`dur ve `flex-basis`'i EZER.** 2026-08-18: rozet yazısı 11→12px olunca "+%137 CarrefourSA" 131px istedi, kartın iç genişliği 124px'ti — kart `flex:0 0 150px` olmasına rağmen **158px'e büyüdü** ve şerit boyunca kart genişliği tekdüzeliğini kaybetti. Görünür bir "hata" yok, geometri sessizce kayıyor. **Sabit genişlikli her flex kartına `min-width:0` yaz.** Ayrıca genişliği ezen İKİNCİ bir kural olabilir: `.detay-bolum-liste-strip .strip-card` 150px'e pinliyordu, ana sayfa 164'e geçince ürün detayı geride kaldı — testteki "hiçbir kural genişliği ham px ile ezmiyor" iddiası yakaladı.
 - **Renk/boyut KORUMA testleri değer token'a taşınınca kırılır — testi zayıflatma, token'ı ÇÖZ.** `test_zam`/`test_supheli` kural gövdesinde ham hex arıyordu; renkler `:root`'a taşınınca kırmızıya döndü. **Anlam değil YÖNTEM bayatlamıştı.** `scripts/css-token.mjs` ile `var(--x)` çözülüp sınanıyor: iddia korundu, üstüne "token gerçekten doğru renge çözülüyor mu" eklendi (test_zam 66 → 68 iddia). **Kural: bir koruma testini yeşile döndürmek için iddiayı gevşetme; iddianın baktığı yeri güncelle, sonra kasten bozup hâlâ koruduğunu KANITLA** (`--rozet-zam-fg` `#DC2626` yapılınca test kırılıyor — denendi).
+- **"Okuma kapalı" ≠ "yazma kapalı" — her fiili AYRI ölç.** `fiyat_bildirim`'de anon SELECT `42501` ile kapalıydı ve CLAUDE.md "`anon` hiçbir şey yapamaz" diyordu; oysa **INSERT açıktı** (anon `{"_sid":"x",…}` → 201, satır oluştu). SELECT reddini görüp "kapalı" demek yazmayı hiç sınamamaktı. Bir tabloda güven ölçerken SELECT/INSERT/UPDATE/DELETE + RPC'lerin **her biri** ayrı denenmeli; biri kapalı diğerini garanti etmez. (Denetimin ilk hâli bunu "hız sınırı yok" diye yanlış çerçeveledi — asıl mesele hız değil, kimlik-doğrulamasız yazmaydı.)
+- **İstemci `yetki` bayrağını RPC'nin başarı/başarısızlığından TÜRETME.** `_bildirimYetkiVar`, `get_fiyat_bildirimleri` hata vermezse `true` oluyordu; RPC anon'a `200 []` döndüğü için oturumsuz kullanıcıda da `true` olup yazma butonunu açtı. Yetki = **oturum varlığı** (`window.pazarAuth.user`), "sunucu bu okuma isteğine hata verdi mi" değil. Ve boş sonuç ile hata **ayrı dallara** düşmeli — ikisi aynı davranışı üretirse "hata yoksa yetki var" gibi sessiz bir yanlış çıkar. Bir yazma yetkisi kararı yalnızca istemci bayrağına bırakılamaz; **DB policy'si (`with check … = auth.uid()`) asıl sınır**, istemci sadece UX.
 - **Koruma testi yazarken YORUMLARI KODDAN AYIR — bu tuzağa İKİ KEZ düşüldü.** (1) `veriTazelikCiz` içindeki "toISOString().slice() YASAK" yorumu, testin `/toISOString\(\)\.slice/` aramasıyla eşleşti. (2) `position:relative` taraması, kuralın üstündeki "`.add-btn` bu listede değil" **açıklama yorumunu** seçicinin parçası sanıp yanlış alarm verdi. Desen ikisinde de aynı: **testin aradığı yasak şeyi, o şeyin neden yasak olduğunu anlatan yorum içeriyor.** Bu depoda yorumlar bilerek uzun, yani risk yapısal. **Kural: kaynakta desen ararken önce `/\*…\*/` ve `//…` soyulacak** (`CSS.replace(/\/\*[\s\S]*?\*\//g,'')`), sonra aranacak. Bir koruma testi ilk yazışta kırmızı veriyorsa, **önce testin kendi metnine bakılacak** — üründe olmayan bir hatayı kovalamadan.
 - **Bir tasarım sayısı zevk değil EŞİK olabilir.** Kart genişliğinde 150/164/176/190 ölçüldü: 164, rozetin ikiye bölünmeyi bıraktığı nokta (sarma 8 → 0). Altı sıkışık, üstü sadece görünürlük yiyor (190'da ekrana 2 kart bile sığmıyor, "yandaki kart görünüyor" ipucu kayboluyor). **Genişlik/boşluk kararında "hangisi daha güzel" diye sorma; neyin kırıldığını ölç.**
 - **Rozetin ne dediğini KODDAN doğrula.** "%100 pahalı" tuzak rozetini marketler arası fark sandım; `tuzakRozetiHesapla` → `digerPaketleriBul` okununca **aynı ürünün başka paket boyuna göre birim fiyat** farkı olduğu çıktı. Fark önemliydi: "birim fiyat = fiyat ise satırı gizle" kuralım tam da rozetin dayandığı satırı gizliyordu. **Karttan bir bilgiyi kaldırmadan önce, kalan öğelerden hangisinin ona dayandığına bak.**
