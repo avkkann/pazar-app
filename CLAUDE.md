@@ -1,6 +1,6 @@
 # Pazar App — Proje Handoff (Claude için)
 
-**Son güncelleme:** 2026-08-19 oturumu (üç mobil sorun, yerel — push edilmedi). Bu dosya her oturum başında okunur, sohbete asla ham metin olarak yapıştırılmaz.
+**Son güncelleme:** 2026-08-19 oturumu (üç mobil sorun canlı, sw v215). Bu dosya her oturum başında okunur, sohbete asla ham metin olarak yapıştırılmaz.
 
 ---
 
@@ -20,16 +20,18 @@ Mustafa (GitHub: avkkann), **Pazar App**'in tek geliştiricisi — Türk market 
 
 ## Mevcut durum (2026-08-17 itibarıyla)
 
-### 2026-08-19 — Üç mobil sorun + bir yan bulgu (YEREL, PUSH EDİLMEDİ)
+### 2026-08-19 — Üç mobil sorun + bir yan bulgu (CANLI)
 
-**Durum: kod bitti, 40/40 test yeşil, CANLIYA ÇIKMADI.** `sw.js` **v215**.
+**Durum: yayında.** `b48ecd9` push edildi, deploy yeşil. `sw.js` **v215**, 40/40 test yeşil.
 
-> **ORTAM NOTU — Kaspersky canlıyı bu makineden ENGELLİYOR.** Oturum ortasında
-> `pazarapp.net` HTTP **499 "Request has been forbidden by antivirus"** dönmeye başladı;
-> sayfa yerine sertifika uyarı ekranı geliyor, `curl` bile 000/403. Site sağlam (deploy
-> yeşildi, dakikalar önce çalışıyordu) — **yerel güvenlik katmanı**. Bu turun tüm ölçümleri
-> HEAD'den derlenen **yerel yapıda** yapıldı. Deploy sonrası canlı doğrulamanın nasıl
-> yapılacağı ayrıca konuşulacak.
+> **ORTAM — Kaspersky bu MAKİNEDEN canlıyı engelledi, kalıcı çözüm uygulandı.**
+> Oturum ortasında `pazarapp.net` HTTP **499 "Request has been forbidden by antivirus"**
+> dönmeye başladı (otomatik istek hacmi tetikledi); `curl` **`SEC_E_UNTRUSTED_ROOT`**
+> veriyordu — yani TLS'i Kaspersky kendi köküyle açıp yeniden imzalıyordu, `-k` ile bile 403.
+> **Site sağlamdı**, deploy yeşildi. Çözüm: `pazarapp.net` Kaspersky **güvenilir URL
+> istisnasına** eklendi. Bu **yalnızca bu makineyi** ilgilendirir, siteyi/kullanıcıları
+> etkilemez. Bu turun ölçümleri o yüzden HEAD'den derlenen **yerel yapıda** yapıldı.
+> (Aynı yazılımın CSP'ye enjeksiyonu için aşağıdaki öğrenmeye bak — bu ikinci kez.)
 
 **1+2 — çift tık zoom (ve "geçişte zoom" sanılan hâli).** Ölçüldü: viewport **doğru**
 (`maximum-scale` yok, denetimde bilerek kaldırılmıştı) ama **tüm CSS'te tek bir
@@ -42,6 +44,12 @@ double-tap-to-zoom'u her yerde açık.
 > splash/navPulse. Kullanıcının gördüğü şey çift tıkla zoomlanan sayfanın ekran değişince
 > de zoomlu kalması. Yan ölçüm: çift dokunuş **iki tık** üretiyor ve ürün detayını açıyor —
 > iOS'ta aynı anda zoom + gezinme demek.
+>
+> **TEORİ HENÜZ KAPANMADI.** Deploy sonrası Mustafa belirtiyi canlıda bir kez daha gördü;
+> **yeni `sw` yüklenince geçti** (eski sürüm önbellekteydi). Yani gözlem düzeltmeyle
+> tutarlı ama teoriyi bağımsız doğrulamıyor. **Tekrar ederse "geçiş = translateX, scale yok"
+> iddiası yeniden ölçülecek** — o zaman gerçek bir ölçek animasyonu aranacak, sayfanın
+> zoom durumu değil.
 
 Çözüm: `html, body` + etkileşimli öğelere **`touch-action: manipulation`**. Bu değer
 kaydırmayı ve **PINCH zoom'u serbest bırakır**, yalnızca double-tap zoom'u kapatır.
@@ -330,6 +338,14 @@ Görev 9 canlı doğrulaması koşuldu — **uzantısız temiz profil + CDP** (`
 > politikasında `https://gc.kis.v2.scr.kaspersky-labs.com wss:` görünüyor — Kaspersky
 > enjekte ediyor. `fetch()` ile okunan **yanıt başlığı** temiz 9 direktif. Yani ihlal
 > mesajındaki politika metnine değil, yanıt başlığına bak.
+>
+> **AYNI YAZILIM 2026-08-19'da SİTEYİ TAMAMEN ENGELLEDİ (ikinci vaka).** Otomatik ölçüm
+> istek hacmi tetikledi: `pazarapp.net` HTTP **499 "forbidden by antivirus"**, `curl`
+> **`SEC_E_UNTRUSTED_ROOT`** (TLS Kaspersky köküyle yeniden imzalanıyor), `-k` ile 403.
+> **Kalıcı çözüm: alan adı Kaspersky güvenilir URL istisnasına eklendi** — yalnızca bu
+> makine, siteyi/kullanıcıları etkilemez. **Ders: canlı doğrulama aniden çökerse önce
+> "site mi öldü yoksa yerel katman mı araya girdi" diye ayır** — sertifikayı kimin
+> verdiğine bak. `localhost` bu taramaya girmiyor; yerel derleme her zaman kaçış yolu.
 
 18 hub sayfası canlıya çıkmıştı ama uygulamadan onlara giden **hiçbir `<a href>` yoktu** —
 keşif yalnızca sitemap'e kalıyordu. İki uç birleştirildi:
@@ -396,6 +412,14 @@ Bu aralık `DENETIM.md`'nin (2026-08-11) bulgularını kapatmakla geçti. Sürü
 **Koyu tema kontrastı (`d87b286` + `cf83c5f`, v202).** Denetim: koyu tema açık temadan **kötü** durumdaydı (10 AA ihlali vs 7). **Kök neden değişken mimarisi DEĞİLDİ** — `[data-theme="dark"] { --card-bg:#1C2823 }` doğru kuruluydu ve elemanda doğru çözülüyordu. Gerçek kök neden: **auth modalinin koyu tema override'ı hiç yazılmamıştı** (grep: 0 kural), modal koyu temada açık zeminde açık gri metinle çiziliyordu → "veya" ayracı 2,54, `.auth-tab` 4,39. İki nokta daha: `.nav-btn.active` parlak yeşil zeminde beyaz metin 2,54 → koyu metin (#0F1A14); `.profil-item-icon` pastel çip zeminini koruyup metnini `--text`'e çeviriyordu 1,01 → ön plan koyu bırakıldı. Düzeltmelerin hepsi mevcut koyu tema paletinden. Yanlış pozitif olarak **dokunulmayanlar:** `.auth-submit` (gradient zemin, beyaz metin doğru), `.sr-only` (görsel olarak gizli).
 
 **Dokunma hedefleri (`cf83c5f` v202, ölçüm `3937aae`).** 15 sınıfa **görünmez `::after` katmanı** (min-width/height 44px, ortalanmış): görsel boyut, padding, font, radius ve yerleşim aynı, yalnızca basılabilir alan büyüyor. Kaydırılabilir şeritlerde komşu hedefler üst üste binmesin diye `.firsat-tab` ve `.tazelik-chip` yalnızca dikey tamamlanıyor. Geometri parmak izi ilk turda ALINMAMIŞTI; iframe yöntemiyle 390px ve 1440px'te ölçüldü: ölçülebilen **8 sınıfın hepsi 44×44 geçiyor, altında kalan 0**, geometri değişmedi (`.add-btn` 30×30 → 44×44, `.filter-pill` 59×26 → 57×44, `.siralama-btn` 142×32 → 140×44).
+
+> ⚠️ **DÜZELTME (2026-08-19): yukarıdaki `.add-btn` 44×44 iddiası GERÇEKTE TUTMUYORDU.**
+> Aynı commit, `::after` katmanını demirlemek için bir `position: relative` listesi
+> ekledi ve o liste `.add-btn`'in kendi `position: absolute`'ını **ezdi**. Buton kartın
+> dışına kayıp `overflow:hidden` ile kırpıldı; etkin dokunma hedefi **30×44** oldu ve
+> 48/48 kartta butonun üçte biri görünmez kaldı — **10 gün boyunca**, kullanıcı bildirene
+> kadar. **Ölçüm `::after` KUTUSUNU ölçmüştü, kırpıldıktan sonra GERİYE KALANI değil.**
+> Ders aşağıda ("bir ata `overflow:hidden`…"). Düzeltme: `b48ecd9`.
 
 **`.cat-card` koyu tema "hatası" YOKMUŞ (`17d6123`).** Kalıcı bir kusur değil, stil yeniden hesaplaması oturmadan alınan ölçümün **yanlış negatifi**ydi. Reflow zorlanınca `.cat-card` koyu temada `rgb(28,40,35)` okuyor — düzeltme baştan çalışıyordu. `.zam-yayginlik` ve `.ms-subtitle` de aynı sebeple "düzelmemiş" görünüyordu. Ayrıntı Araçlar bölümündeki `getComputedStyle` maddesinde.
 
@@ -527,8 +551,24 @@ Bu aralık `DENETIM.md`'nin (2026-08-11) bulgularını kapatmakla geçti. Sürü
 | `test_depot.py` | 19 | `depot_id`/`depot_ad` additive kaydı, boş alan taşınmaması |
 | `test_tazelik.py` | 18 | Tazelik kontrolü kapsamı, `anasayfa.json` + `indirim_analiz_son.json` |
 | `test_sessiz_catch.mjs` | 9 | Çıplak `catch(e){}` yasağı — yeni sessiz catch eklenirse kırılır |
+| `test_esit_fiyat.mjs` | 105 | Eşit fiyat durumları, "en ucuz" iddiasının çoklu markette davranışı |
+| `test_hub_html.mjs` | 73 | Hub sayfası HTML iskeleti, meta/damga alanları |
+| `test_hub_uret.mjs` | 68 | `hub-sayfa.mjs` saf fonksiyonları (fs/vm/ağ YOK) |
+| `test_splash.mjs` | 46 | Splash: sabit süre yerine `pazar:hazir`, tema-duyarlı zemin, easing tokenları |
+| `test_kart_fiyat.mjs` | 43 | Şerit kartı hiyerarşisi, fiyat satırı, rozet yuvası, genişlik tek kaynağı |
+| `test_kategori_ikon.mjs` | 31 | 8 kategori ikonu, marka SVG diline uyum, sessiz boş üretim yasağı |
+| `test_zam_olcut.mjs` | 25 | Zam ölçütünün market bazlı serisi, eşik davranışı |
+| `test_mobil_dokunma.mjs` | 23 | Çift-tık zoom kapalı / PINCH açık, `.add-btn` konumu, kaçış deseni |
+| `test_hub_veri_damgasi.mjs` | 17 | Damganın build anından değil veriden türemesi (regresyon kilidi) |
+| `test_hub_zam_pencere.mjs` | 10 | Hub zam penceresi — gerçek script koşturulup stdout gözleniyor |
+| `test_sinif_kacis.mjs` | 5 | Market etiketinde sınıf kaçışı beyaz listesi |
+| `test_hub_footer.mjs` | 53 | Footer hub linkleri: sabit liste yasağı, `kisa_ad`, kaynak düzeyi kontrol |
+| `test_hub_tazelik.py` | — | Hub tazelik kapısı (Python) |
 
-**Toplam 33 dosya, hepsi yeşil (2026-08-17).** `test_debug.py` / `test_resim_mini.py` / `test_searlo.py` regresyon testi DEĞİL — `.gitignore`'daki tek seferlik Searlo denemeleri, kredi bittiği için hata basarlar.
+**Toplam 46 takipli dosya (40 `.mjs` + 6 `.py`), `.mjs` paketi 40/40 yeşil (2026-08-19).**
+Bu tablo 2026-08-17'de **33 dosyada donmuştu**; hub turu ve tasarım turlarında eklenen
+13 dosya listelenmemişti. Sayılar `PASS=` / `SONUC:` çıktısından yeniden ölçüldü, tahmin
+değil. (Diskte 3 takipsiz `.py` daha var — aşağıdaki Searlo denemeleri.) `test_debug.py` / `test_resim_mini.py` / `test_searlo.py` regresyon testi DEĞİL — `.gitignore`'daki tek seferlik Searlo denemeleri, kredi bittiği için hata basarlar.
 
 ### Backend / DB — 2026-07-08 geçişi (hâlâ geçerli)
 Frontend'in ağır noktaları (8 kategori JSON dosyasını client'ta indirip tarama) tek tek DB sorgusuna taşındı:
@@ -675,9 +715,12 @@ Uygulama teknik olarak çalışıyor ama **pratikte hâlâ dağıtılmamış dur
 - **Supabase redirect allowlist'i CALLBACK'te uygulanıyor, authorize'da değil.** `/auth/v1/authorize?redirect_to=...` uydurma bir alan adına bile aynı 302'yi veriyor — orada bakmak hiçbir şey ayırt etmiyor. Doğrusu: authorize'dan `state`'i al, `/auth/v1/callback?state=...&error=access_denied` ile dön ve **nereye yönlendirdiğine** bak. Ama hedef alan adına bakmak da yetmez — Site URL zaten o alan adıysa izinli/izinsiz aynı yere düşer. **`redirect_to`'ya ayırt edici bir yol izi koy** (`/olcum-izi`): allowlist eşleşirse yol aynen korunur, eşleşmezse çıplak Site URL'e düşer. Kimlik bilgisi girmeden ölçülebilir.
 - **Kullanılmayan bir hedefin varsayılan kalması sessiz 404 tuzağıdır.** `vite.config.js` `base` varsayılanı geçişten sonra da `/pazar-app/` idi; `DEPLOY_TARGET` set edilmeyen her build (yerel, ya da env satırı düşerse CI) sessizce yanlış önekli yollar üretip Cloudflare'de tüm varlıkları 404 yapardı. Bir hedef terk edildiğinde **varsayılanı da taşı**, eskisini opt-in yap.
 - **Service worker `activate`'i "unregister + hemen register" ile ateşleyemezsin — yanlış NEGATİF verir.** 2026-08-18, v209 temizliğini ölçerken: sahte `pazar-cache-v209` kuruldu, kayıt `unregister()` edildi, aynı sayfada `/sw.js` yeniden register edildi → **v209 silinmedi**, "temizlik çalışmıyor" gibi göründü. Sebep kodda değil yöntemde: script baytı aynı ve sayfa hâlâ o SW tarafından kontrol ediliyorken Chrome kaydı diriltiyor, `install`/`activate` **hiç koşmuyor**. Çalışan yol: `unregister()` → **`about:blank`'e git** (kontrol edilen istemci kalmasın) → siteye geri dön. O zaman taze `install`+`activate` koşuyor ve `activate` `CACHE_NAME` dışındaki her anahtarı siliyor (ölçüldü: `[v210, v209]` → `[v210]`). **Kural: SW yaşam döngüsü iddiasını tek turda kapatma — beklenen sonuç çıkmazsa önce yöntemin o kod yolunu gerçekten çalıştırdığını kanıtla.**
+- **Bir ata `overflow:hidden` ise, dokunma hedefini KUTUSUYLA DEĞİL KIRPILDIKTAN SONRAKİ HÂLİYLE ölç.** v202'de `.add-btn`'in 44×44 geçtiği "ölçüldü" ve yazıldı; oysa `::after` katmanının kutusu 44×44 olsa da kartın `overflow:hidden`'ı onu kesiyordu — gerçek hedef **30×44**'tü ve buton görünür şekilde ikiye bölünmüştü. **10 gün** kimse fark etmedi, kullanıcı bildirdi. Doğru ölçüt: `min(hedef.sag, ata.sag) − max(hedef.sol, ata.sol)`. Aynı mantık görünürlük için de geçerli — "öğe var ve boyutu doğru" ≠ "öğe görünüyor".
+- **CSS'te `position` ezmesi sessizdir ve YÖNÜ TERSİNE ÇEVİRİR.** `.add-btn { position:absolute; right:8px; bottom:8px }` sonradan gelen bir `position: relative` listesiyle ezilince `right:8px` öğeyi 8px **SOLA**, `bottom:8px` 8px **YUKARI** kaydırdı (relative ofsetler adı verilen kenarın tersine iter). Hata mesajı yok, uyarı yok, yalnızca yanlış yerde bir düğme. **Ortak bir yardımcı kural (`position: relative` listesi gibi) yazarken, listedeki hiçbir öğenin KENDİ konumlandırması olmadığını doğrula** — burada 15 sınıftan yalnızca `.add-btn`'in vardı ve tek kurban oydu.
+- **Satır içi olay özniteliğinde tırnak kaçışı: şablon dizesinde ÇİFT ters bölü gerekir.** `onerror="this.outerHTML='<div class=\'x\'>'"` yazınca JS `\'` → `'` çevirip HTML'e basıyor, öznitelik orada **kapanıyor** ve tarayıcı `SyntaxError` atıyor. Doğrusu `class=\\'x\\'`. Ürün kartında tek, şerit kartında çift yazılmıştı; **görsel yüklenemeyen her kartta yedek HİÇ çizilmiyordu** (kullanıcı boş beyaz kutu görüyordu) ve hata yalnızca `onerror` tetiklendiğinde çıktığı için normal koşulda görünmüyordu. **Aynı işi yapan iki yerin kaçış desenini test karşılaştırsın** — `test_mobil_dokunma` artık bunu yapıyor.
 - **Flex öğesinin `min-width` varsayılanı `auto`dur ve `flex-basis`'i EZER.** 2026-08-18: rozet yazısı 11→12px olunca "+%137 CarrefourSA" 131px istedi, kartın iç genişliği 124px'ti — kart `flex:0 0 150px` olmasına rağmen **158px'e büyüdü** ve şerit boyunca kart genişliği tekdüzeliğini kaybetti. Görünür bir "hata" yok, geometri sessizce kayıyor. **Sabit genişlikli her flex kartına `min-width:0` yaz.** Ayrıca genişliği ezen İKİNCİ bir kural olabilir: `.detay-bolum-liste-strip .strip-card` 150px'e pinliyordu, ana sayfa 164'e geçince ürün detayı geride kaldı — testteki "hiçbir kural genişliği ham px ile ezmiyor" iddiası yakaladı.
 - **Renk/boyut KORUMA testleri değer token'a taşınınca kırılır — testi zayıflatma, token'ı ÇÖZ.** `test_zam`/`test_supheli` kural gövdesinde ham hex arıyordu; renkler `:root`'a taşınınca kırmızıya döndü. **Anlam değil YÖNTEM bayatlamıştı.** `scripts/css-token.mjs` ile `var(--x)` çözülüp sınanıyor: iddia korundu, üstüne "token gerçekten doğru renge çözülüyor mu" eklendi (test_zam 66 → 68 iddia). **Kural: bir koruma testini yeşile döndürmek için iddiayı gevşetme; iddianın baktığı yeri güncelle, sonra kasten bozup hâlâ koruduğunu KANITLA** (`--rozet-zam-fg` `#DC2626` yapılınca test kırılıyor — denendi).
-- **Kaynak taraması kendi uyarı yorumunu yakalayabilir.** `veriTazelikCiz` içindeki "toISOString().slice() YASAK" yorumu, testin `/toISOString\(\)\.slice/` aramasıyla eşleşip yanlış alarm verdi. Kaynakta yasak desen ararken **önce yorumları soy**.
+- **Koruma testi yazarken YORUMLARI KODDAN AYIR — bu tuzağa İKİ KEZ düşüldü.** (1) `veriTazelikCiz` içindeki "toISOString().slice() YASAK" yorumu, testin `/toISOString\(\)\.slice/` aramasıyla eşleşti. (2) `position:relative` taraması, kuralın üstündeki "`.add-btn` bu listede değil" **açıklama yorumunu** seçicinin parçası sanıp yanlış alarm verdi. Desen ikisinde de aynı: **testin aradığı yasak şeyi, o şeyin neden yasak olduğunu anlatan yorum içeriyor.** Bu depoda yorumlar bilerek uzun, yani risk yapısal. **Kural: kaynakta desen ararken önce `/\*…\*/` ve `//…` soyulacak** (`CSS.replace(/\/\*[\s\S]*?\*\//g,'')`), sonra aranacak. Bir koruma testi ilk yazışta kırmızı veriyorsa, **önce testin kendi metnine bakılacak** — üründe olmayan bir hatayı kovalamadan.
 - **Bir tasarım sayısı zevk değil EŞİK olabilir.** Kart genişliğinde 150/164/176/190 ölçüldü: 164, rozetin ikiye bölünmeyi bıraktığı nokta (sarma 8 → 0). Altı sıkışık, üstü sadece görünürlük yiyor (190'da ekrana 2 kart bile sığmıyor, "yandaki kart görünüyor" ipucu kayboluyor). **Genişlik/boşluk kararında "hangisi daha güzel" diye sorma; neyin kırıldığını ölç.**
 - **Rozetin ne dediğini KODDAN doğrula.** "%100 pahalı" tuzak rozetini marketler arası fark sandım; `tuzakRozetiHesapla` → `digerPaketleriBul` okununca **aynı ürünün başka paket boyuna göre birim fiyat** farkı olduğu çıktı. Fark önemliydi: "birim fiyat = fiyat ise satırı gizle" kuralım tam da rozetin dayandığı satırı gizliyordu. **Karttan bir bilgiyi kaldırmadan önce, kalan öğelerden hangisinin ona dayandığına bak.**
 - **Commit ile test koşusunu aynı komut zincirine bağlama.** `for ... done; echo; git commit` şeklinde zincirlediğim için kırmızı test varken commit geçti (`test_hakmar.mjs` 2 FAIL). Testi **ayrı** koştur, çıktısını gör, sonra commit et.
@@ -686,7 +729,7 @@ Uygulama teknik olarak çalışıyor ama **pratikte hâlâ dağıtılmamış dur
 
 ## Yaklaşım & desenler
 
-- **SW cache version** her anlamlı `index.html`/`app.js`/`style.css`/`sw.js` değişikliğinde artırılır (şu an **v215** yerelde; canlıda v214). Backend-only değişikliklerde (scraper, sync) bump edilmez. Akış: `git add` → `git commit` → `git pull --rebase` → `git push`. Not: `sw.js` yalnızca `data/hal.json` + `data/anasayfa.json`'ı önbelleğe alıyor ve `fetch`'i yalnızca o iki URL için yakalıyor — HTML/CSS/JS'i tutmuyor, onlar Cloudflare'den `Cache-Control: public, max-age=0, must-revalidate` ile geliyor (ölçüldü; eski GitHub Pages `max-age=600` notu bayattı). Bump proje kuralı ve tutarlılık için, HTML dağıtımını hızlandırmıyor.
+- **SW cache version** her anlamlı `index.html`/`app.js`/`style.css`/`sw.js` değişikliğinde artırılır (şu an **v215**, canlıda 2026-08-19). Backend-only değişikliklerde (scraper, sync) bump edilmez. Akış: `git add` → `git commit` → `git pull --rebase` → `git push`. Not: `sw.js` yalnızca `data/hal.json` + `data/anasayfa.json`'ı önbelleğe alıyor ve `fetch`'i yalnızca o iki URL için yakalıyor — HTML/CSS/JS'i tutmuyor, onlar Cloudflare'den `Cache-Control: public, max-age=0, must-revalidate` ile geliyor (ölçüldü; eski GitHub Pages `max-age=600` notu bayattı). Bump proje kuralı ve tutarlılık için, HTML dağıtımını hızlandırmıyor.
 - **Doğrulama:** Push sonrası `gh run watch` ile deploy'un koştuğu doğrulanır, sonra canlıda (Browser MCP) gerçek fonksiyonel test yapılır — "dosyada var mı" değil, "gerçekten çalışıyor mu". Layout değişikliklerinde ekran görüntüsü yetmez: değişiklikten ÖNCE geometri parmak izi (`getBoundingClientRect`) alınıp sonra sayısal karşılaştırılır.
 - **Kapsam disiplini:** İstenmeyen ekleme/çıkarma sessizce yapılmaz, not düşülür. Doküman/analiz önerileri körü körüne uygulanmaz — önce kodda geçerli mi diye bakılır.
 - **Büyük ürün/mimari kararları** (hosting migration, nav yapısı, tuzak'ın geleceği) Mustafa'nın onayı olmadan koda dökülmez.
