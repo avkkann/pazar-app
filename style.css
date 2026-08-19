@@ -124,6 +124,9 @@
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--bg); color: var(--text);
       -webkit-font-smoothing: antialiased;
+      /* iOS/mobil tarayıcı metin boyutunu kendiliğinden ölçeklemesin. */
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
       /* ══ ÇİFT TIK ZOOM'U KAPAT — PINCH ZOOM'U KORU ═══════════════
          iOS Safari her dokunulabilir öğede varsayılan olarak
          double-tap-to-zoom uygular; ölçüldü: 83 tıklanabilir öğenin
@@ -144,6 +147,23 @@
          hem açık/test edilebilir hem de iOS'ta büyük bloklarda
          tek başına köke güvenmek yeterli olmuyor. */
       touch-action: manipulation;
+    }
+
+    /* ══ YATAY TAŞMAYI KIRP — sekme geçişindeki translateX(100%) slide ═══
+       Ekran geçişi .screen'i x=100%'e öteliyor (animSlideInRight/Left).
+       Kırpma yoksa gelen ekran viewport'un sağına taşıyor; iOS Safari
+       layout viewport'u geniş içeriğe SIĞDIRIP geri dönüyor → "zoom" hissi
+       + her geçişte çift relayout (ölçüldü: innerWidth 390→780→390).
+       `overflow-x: clip` KIRPAR ama `hidden`in aksine kaydırma bağlamı
+       YARATMAZ — bu yüzden position:sticky başlıklar/özet ve dikey kaydırma
+       bozulmaz. `html, body` BİRLİKTE: ölçüldü — yalnız body yetmiyor, sağ
+       taşma layout viewport'u yöneten html'e (kök) sızıp innerWidth'i
+       büyütüyor; kırpma kökte de olmalı (screen'leri saran ayrı kapsayıcı
+       yok). Safari <16 için @supports yedeği `hidden`a düşer (nadir; iOS 16
+       yaygın). */
+    html, body { overflow-x: clip; }
+    @supports not (overflow: clip) {
+      html, body { overflow-x: hidden; }
     }
 
     /* Etkileşimli öğelerde AÇIKÇA — köke ek olarak, belt-and-braces.
@@ -933,7 +953,7 @@
     }
     .filter-wrap::-webkit-scrollbar { display: none; }
     .cat-search-wrap { padding: var(--space-2) var(--space-3) 0; }
-    .cat-search-wrap input { width: 100%; box-sizing: border-box; padding: var(--space-3) var(--space-4); border-radius: 20px; border: 1.5px solid var(--border); background: var(--bg); color: var(--text); font-size: 14px; outline: none; }
+    .cat-search-wrap input { width: 100%; box-sizing: border-box; padding: var(--space-3) var(--space-4); border-radius: 20px; border: 1.5px solid var(--border); background: var(--bg); color: var(--text); font-size: 16px; outline: none; }
     .cat-search-wrap input:focus { border-color: var(--primary); }
     .filter-pill {
       flex-shrink: 0; padding: var(--space-1) var(--space-3); border-radius: 999px;
@@ -1024,7 +1044,7 @@
 .firsat-badge-tasarruf { background: #EDE9FE; color: #1D9E75; }
 .firsat-loading { text-align: center; padding: var(--space-10); color: var(--text-muted); font-size: .88rem; }
 .firsat-arabar { padding: var(--space-3) var(--space-4) 0; }
-.firsat-arabar input { width: 100%; box-sizing: border-box; padding: var(--space-3) var(--space-4); border-radius: 20px; border: 1.5px solid var(--border); background: var(--bg); color: var(--text); font-size: 14px; outline: none; font-family: inherit; }
+.firsat-arabar input { width: 100%; box-sizing: border-box; padding: var(--space-3) var(--space-4); border-radius: 20px; border: 1.5px solid var(--border); background: var(--bg); color: var(--text); font-size: 16px; outline: none; font-family: inherit; }
 .firsat-arabar input:focus { border-color: #0E4938; }
 .firsat-ozet { display: flex; gap: var(--space-2); padding: var(--space-3) var(--space-4) var(--space-1); }
 .firsat-ozet-chip { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: var(--space-2) var(--space-3); text-align: center; flex: 1; }
@@ -2120,7 +2140,7 @@
 }
 .alarm-input {
   flex: 1; min-width: 0; border: 1px solid var(--border); border-radius: 10px;
-  padding: var(--space-3) var(--space-3); font-size: .9rem; font-family: 'Inter', sans-serif;
+  padding: var(--space-3) var(--space-3); font-size: 16px; font-family: 'Inter', sans-serif;
   background: var(--bg); color: var(--text);
 }
 .alarm-input:focus { outline: none; border-color: var(--primary); }

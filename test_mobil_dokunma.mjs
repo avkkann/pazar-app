@@ -82,5 +82,38 @@ console.log('\n=== 4. URUN GORSELI YEDEGI: KACIS DOGRU ===');
      'urun=' + desen(urun) + ' serit=' + desen(serit));
 }
 
+console.log('\n=== 5. iOS SEKME-GECIS ZOOM + ODAK ZOOM ===');
+{
+  const CSS_KODU = CSS.replace(/\/\*[\s\S]*?\*\//g, '');
+  // (a) Sekme gecisi .screen'i translateX(100%) ile oteliyor (animSlideInRight).
+  //     Kirpma yoksa gelen ekran viewport'un sagina tasip iOS'ta layout
+  //     viewport'u genisletip daraltiyor -> "zoom" hissi + cift relayout.
+  //     Olculdu (mobil emulasyon): kirpma YOK -> innerWidth 390->780->390;
+  //     html,body overflow-x:clip -> 390 sabit. Yalniz body YETMIYOR (sag
+  //     tasma koke sizip innerWidth'i buyutuyor), kok de kirpilmali.
+  ok('html, body overflow-x: clip (sekme-gecis tasmasi kirpiliyor)',
+     /html,\s*body\s*\{\s*overflow-x:\s*clip;?\s*\}/.test(CSS_KODU), 'clip kurali yok -> gecis zoom regresyonu geri gelir');
+  ok('  kirpma KOKTE de var (html) — yalniz body yetmiyordu',
+     /html,\s*body[^{]*\{[^}]*overflow-x:\s*clip/.test(CSS_KODU), '');
+  ok('  Safari <16 yedegi: @supports not (overflow: clip) -> hidden',
+     /@supports\s+not\s*\(overflow:\s*clip\)\s*\{[^}]*overflow-x:\s*hidden/.test(CSS_KODU), '');
+  // clip KULLANILIYOR (hidden DEGIL) — hidden kaydirma baglami yaratip sticky'yi bozardi
+  ok('  ana kural clip (hidden degil — sticky/dikey kaydirma korunur)',
+     !/html,\s*body\s*\{\s*overflow-x:\s*hidden;?\s*\}/.test(CSS_KODU.replace(/@supports[^{]*\{[^}]*\{[^}]*\}[^}]*\}/g, '')), '');
+
+  // (b) 16px alti input iOS'ta ODAKTA yakinlastirir ve zoom KALICI kalir.
+  for (const sel of ['.cat-search-wrap input', '.firsat-arabar input', '.alarm-input']) {
+    const re = new RegExp(sel.replace(/[.[\]]/g, '\\$&') + '\\s*\\{[^}]*\\}');
+    const kural = (CSS_KODU.match(re) || [''])[0];
+    const m = /font-size:\s*([\d.]+)(px|rem)/.exec(kural);
+    const px = m ? (m[2] === 'rem' ? parseFloat(m[1]) * 16 : parseFloat(m[1])) : null;
+    ok(`  ${sel} font-size >= 16px (odak zoom yok)`, px !== null && px >= 16,
+       'font-size=' + (m ? m[0] : 'YOK') + (px !== null ? ' (' + px + 'px)' : ''));
+  }
+
+  // (c) Tarayici metin boyutunu kendiligiden olceklemesin
+  ok('  text-size-adjust: 100%', /(-webkit-)?text-size-adjust:\s*100%/.test(CSS_KODU), '');
+}
+
 console.log(`\nPASS=${pass}  FAIL=${fail}`);
 process.exit(fail ? 1 : 0);
