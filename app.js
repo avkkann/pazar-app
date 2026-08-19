@@ -661,6 +661,28 @@ function _kacir(metin) {
     .replace(/'/g, '&#39;');
 }
 
+// ── URL BAĞLAMI (href/src için ŞEMA BEYAZ LİSTESİ) ───────────────────
+// _kacir metin/öznitelik bağlamını kapatır ama URL bağlamını KAPATMAZ:
+// src="${_kacir(u)}" tırnak kırılmasını önler, fakat u="javascript:alert(1)"
+// _kacir'den DEĞİŞMEDEN geçer (: < > " ' içermiyor) ve href/src'ye
+// yerleşince tıklamada/yüklemede script çalışır. unsafe-inline yayında
+// olduğu için (src/worker.js) bu artık teorik değil.
+//   NE YAPAR: yalnızca http(s), protokol-göreli (//) ve aynı-origin göreli
+//     yollara (/, ./, ../) izin verir; sonucu _kacir'den geçirir (öznitelik
+//     tırnağı da güvenli). Şema tanınmazsa (javascript:, data:, vbscript:,
+//     file:, blob:) BOŞ dize döner -> href/src etkisiz kalır, onerror yedeği
+//     devreye girer.
+//   NE YAPMAZ: URL'nin nereye gittiğini (açık yönlendirme / SSRF) denetlemez;
+//     yalnızca ŞEMAyı sınırlar. Satır içi olay özniteliği (onclick=) üretmez;
+//     o bağlam bu turda kapsam dışı (unsafe-inline göçü ayrı proje).
+function _guvenliUrl(url) {
+  const s = String(url === null || url === undefined ? '' : url).trim();
+  if (!s) return '';
+  // http:// https:// //host  |  /yol  ./yol  ../yol  -> güvenli kabul
+  if (/^(https?:)?\/\//i.test(s) || /^\.{0,2}\//.test(s)) return _kacir(s);
+  return '';
+}
+
 // ── MARKET SINIFI (class özniteliği için BEYAZ LİSTE) ────────────────
 // Bu, İKİNCİ tekrar: bir tur önce m-tag'in METNİ kaçırıldı (_kacir eklendi)
 // ama CLASS özniteliği unutuldu -- sonuç ham geçiyordu:
@@ -866,7 +888,7 @@ function renderSablonBar() {
   let html = '<button class="sablon-chip add" onclick="sablonKaydetUI()">+ Şablon kaydet</button>';
   sablonlar.forEach(s => {
     const sid = s.id.replace(/'/g, "\\'");
-    const adSafe = (_sablonDisplayAd(s.ad) || 'Şablon').replace(/</g,'&lt;').replace(/"/g,'&quot;');
+    const adSafe = _kacir(_sablonDisplayAd(s.ad) || 'Şablon');  // S3: localStorage şablon adı, metin bağlamı
     html += '<span class="sablon-chip" '
          + 'onclick="sablonYukleUI(\'' + sid + '\')" '
          + 'oncontextmenu="event.preventDefault();sablonDuzenleUI(\'' + sid + '\');return false;" '
@@ -4346,18 +4368,18 @@ function renderSepet() {
   const items = sepet.map(u => {
     const emoji = KAT_EMOJI[ustKategori(u.ana_kategori)] || '📦';
     const img   = u.resim
-      ? `<img src="${u.resim}" alt="" loading="lazy" onerror="this.onerror=null;this.parentElement.innerHTML='<div style=\'width:100%;height:120px;background:#f8f8f8;display:flex;align-items:center;justify-content:center;font-size:3rem\'>${emoji}</div>'">`
+      ? `<img src="${_guvenliUrl(u.resim)}" alt="" loading="lazy" onerror="this.onerror=null;this.parentElement.innerHTML='<div style=\'width:100%;height:120px;background:#f8f8f8;display:flex;align-items:center;justify-content:center;font-size:3rem\'>${emoji}</div>'">`
       : emoji;
     const mktF = (u.market_fiyatlari || []).filter(f => f.fiyat != null).sort((a,b) => a.fiyat - b.fiyat)[0];
     const fiyatStr = mktF
       ? `<div style="text-align:right;color:var(--primary);font-size:.82rem;font-weight:700;flex-shrink:0;margin-right:6px;line-height:1.4">
            ${tlHTML(mktF.fiyat)}<br><span style="font-size:.65rem;font-weight:500">${MARKET_NAMES[mktF.market]||mktF.market||'?'}</span>
          </div>` : '';
-    return `<div class="cart-item" tabindex="0" role="button" aria-label="${u.ad}" onclick="openDetay('${u._id}')" onkeydown="_kartTus(event, '${u._id}')" style="cursor:pointer">
+    return `<div class="cart-item" tabindex="0" role="button" aria-label="${_kacir(u.ad)}" onclick="openDetay('${u._id}')" onkeydown="_kartTus(event, '${u._id}')" style="cursor:pointer">
       <div class="cart-item-img">${img}</div>
       <div class="cart-item-info">
-        <div class="cart-item-name">${u.ad}</div>
-        ${u.agirlik_hacim ? `<div class="cart-item-sub">${u.agirlik_hacim}</div>` : ''}
+        <div class="cart-item-name">${_kacir(u.ad)}</div>
+        ${u.agirlik_hacim ? `<div class="cart-item-sub">${_kacir(u.agirlik_hacim)}</div>` : ''}
       </div>
       ${fiyatStr}
       <button class="cart-del" onclick="event.stopPropagation(); removeFromSepet('${u._id}')">
@@ -5280,7 +5302,7 @@ function profilSablonlarHTML() {
   }
   return liste.map(s => {
     const idSafe = String(s.id).replace(/'/g, "\\'");
-    const adSafe = String(_sablonDisplayAd(s.ad) || 'Şablon').replace(/</g, '&lt;');
+    const adSafe = _kacir(_sablonDisplayAd(s.ad) || 'Şablon');  // S3: metin + aria-label özniteliği (tırnak kırılması dahil)
     const sidler = (s.urunIds || []).map(x => x && x.sid).filter(Boolean);
     let toplam = 0, bulunan = 0;
     sidler.forEach(sid => {

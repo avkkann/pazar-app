@@ -194,6 +194,16 @@ JS olarak gecerli mi: HAYIR — SyntaxError: missing ) after argument list
    marketfiyati API'si; ürün adına `<img onerror=...>` koyabilen biri script
    çalıştırabilir. Bugün aramızda kaçış YOK, tek engel kaynağın iyi niyeti.
 
+> **DÜZELTME (2026-08-19):** Yukarıdaki "bugün istismar edilebilir değil"
+> ifadesi ARTIK YANLIŞ. `src/worker.js` CSP'sine `script-src 'unsafe-inline'`
+> yayına çıktıktan sonra bu XSS'ler canlı-istismar edilebilir hale geldi —
+> enjekte edilen `onerror=`/`<script>` artık CSP tarafından engellenmiyor.
+> B1 Parti 1'de S3 (localStorage) sink'leri kapatıldı (şablon adı + sepet;
+> `_kacir` + yeni `_guvenliUrl`, bkz. `test_kacis.mjs`). S1 ölçümde SIFIR sink
+> çıktı (`?screen`/`?kat` whitelist'li). S2 (başka kullanıcı) ve S4 (dış API:
+> ürün adı/market/görsel — bu maddedeki `alt="${u.ad}"` vektörü dahil) HÂLÂ
+> AÇIK, ayrı partilerde kapatılacak. `unsafe-inline` göçü de ayrı proje.
+
 **Bugünkü fiili durum:** `data/anasayfa.json` içindeki 361 kartın **0**'ında `_id`
 tehlikeli karakter içeriyor — yani şu an kırık kart yok. Risk **gizli**, tetiği
 kategori dağılımının değişmesi. Ürün adlarının 31'inde `&` var (`Molped Pure&Soft`),
@@ -663,6 +673,9 @@ Canlı URL için **TestSprite CLI** gerekiyor.
     pencere, veya bir Edge Function önüne koy.
 11. **(#5) Kaçış fonksiyonu.** Tek bir `esc()` yaz, `${u.ad}` geçen ~15 yeri
     ondan geçir. Bugün istismar edilebilir değil ama tek savunma hattı yok.
+    _(2026-08-19: "bugün istismar edilebilir değil" ARTIK YANLIŞ — `unsafe-inline`
+    yayında, bkz. §1.5 düzeltme notu. Merkezî `_kacir` zaten var; B1 Parti 1'de
+    S3 sink'leri geçirildi, S4'ün ~15 yeri hâlâ açık.)_
 
 **En son — düşük etki:**
 12. (#13) `load` 7,6 sn — görsel boyutları / `decoding=async`.
