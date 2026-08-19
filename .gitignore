@@ -45,3 +45,8 @@ dist/
 
 # superpowers ilerleme defteri (gecici calisma dosyasi)
 .superpowers/
+
+
+# Guvenlik denetim raporu — kapatilmamis KRITIK XSS (B1) somuru haritasi iceriyor.
+# Repo PUBLIC; B1 duzeltilip yayina cikana kadar git'e GIRMEZ (kamuya acilmasin).
+DENETIM_GUVENLIK.md
