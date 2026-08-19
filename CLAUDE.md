@@ -1,6 +1,6 @@
 # Pazar App — Proje Handoff (Claude için)
 
-**Son güncelleme:** 2026-08-19 oturumu (splash düzeltmesi canlı). Bu dosya her oturum başında okunur, sohbete asla ham metin olarak yapıştırılmaz.
+**Son güncelleme:** 2026-08-19 oturumu (üç mobil sorun, yerel — push edilmedi). Bu dosya her oturum başında okunur, sohbete asla ham metin olarak yapıştırılmaz.
 
 ---
 
@@ -19,6 +19,71 @@ Mustafa (GitHub: avkkann), **Pazar App**'in tek geliştiricisi — Türk market 
 ---
 
 ## Mevcut durum (2026-08-17 itibarıyla)
+
+### 2026-08-19 — Üç mobil sorun + bir yan bulgu (YEREL, PUSH EDİLMEDİ)
+
+**Durum: kod bitti, 40/40 test yeşil, CANLIYA ÇIKMADI.** `sw.js` **v215**.
+
+> **ORTAM NOTU — Kaspersky canlıyı bu makineden ENGELLİYOR.** Oturum ortasında
+> `pazarapp.net` HTTP **499 "Request has been forbidden by antivirus"** dönmeye başladı;
+> sayfa yerine sertifika uyarı ekranı geliyor, `curl` bile 000/403. Site sağlam (deploy
+> yeşildi, dakikalar önce çalışıyordu) — **yerel güvenlik katmanı**. Bu turun tüm ölçümleri
+> HEAD'den derlenen **yerel yapıda** yapıldı. Deploy sonrası canlı doğrulamanın nasıl
+> yapılacağı ayrıca konuşulacak.
+
+**1+2 — çift tık zoom (ve "geçişte zoom" sanılan hâli).** Ölçüldü: viewport **doğru**
+(`maximum-scale` yok, denetimde bilerek kaldırılmıştı) ama **tüm CSS'te tek bir
+`touch-action` bildirimi yoktu** — 83 tıklanabilir öğenin 83'ü de `auto`, yani Safari'nin
+double-tap-to-zoom'u her yerde açık.
+
+> **"Ekran geçişinde zoom animasyonu" DİYE BİR ŞEY YOK — ikisi aynı kök.** Ölçüldü: geçiş
+> `translateX(100%)→0` (yatay kaydırma), 260 ms; geçiş kurallarında `scale()` **sıfır**.
+> Tüm CSS'teki 27 `scale()` kullanımı `:active` basma geri bildirimi (0,88–0,99) ya da
+> splash/navPulse. Kullanıcının gördüğü şey çift tıkla zoomlanan sayfanın ekran değişince
+> de zoomlu kalması. Yan ölçüm: çift dokunuş **iki tık** üretiyor ve ürün detayını açıyor —
+> iOS'ta aynı anda zoom + gezinme demek.
+
+Çözüm: `html, body` + etkileşimli öğelere **`touch-action: manipulation`**. Bu değer
+kaydırmayı ve **PINCH zoom'u serbest bırakır**, yalnızca double-tap zoom'u kapatır.
+`none`/`pan-x`/`pan-y` **kullanılmadı** — onlar pinch'i de öldürürdü. Viewport'a
+dokunulmadı.
+
+> **Erişilebilirlik KANITLANDI, iddia edilmedi.** Pinch jesti CDP ile gerçekten
+> uygulandı: `visualViewport.scale` **1 → 5**. Şerit yatay kaydırması da sınandı
+> (`scrollLeft` 0 → 200, çalışıyor).
+
+**3 — "+" butonunun yarısı görünmüyor.** Kök neden Faz 2 DEĞİL (o `.strip-card`'ı 164px
+yaptı; kategori kartı `.product-card` ve bir `1fr 1fr` grid). Gerçek sebep **44px dokunma
+hedefi çalışmasından (v202) kalma bir regresyon**: o tur eklenen `position: relative`
+listesi `.add-btn`'in kendi `position: absolute`'ını **eziyordu** (daha sonra geliyor, aynı
+özgüllük). `relative`de `right:8px` öğeyi 8px **sola**, `bottom:8px` 8px **yukarı** kaydırır
+→ buton kartın sol kenarından 7px dışarı taşıp `overflow:hidden` ile kırpılıyordu.
+
+| | önce | sonra |
+|---|---|---|
+| `position` | `relative` | **`absolute`** |
+| kırpık kart | **48/48**, 8 kategoride de | **0/48** |
+| görünen buton | 23px / 30px | **30px (tam)** |
+| etkin dokunma hedefi | **30×44** | **44×44** |
+| masaüstü | aynı şekilde kırpık | düzeldi |
+
+Düzeltme: `.add-btn` o listeden çıkarıldı. `absolute` de `::after` için kapsayıcı blok
+kurduğundan 44px katmanı listeye girmeden çalışıyor.
+
+**YAN BULGU — ürün görseli yedeği tamamen bozukmuş.** Ölçüm sırasında 12 adet
+`SyntaxError: Unexpected identifier 'product'` çıktı. Sebep tek karakter: şablon dizesinde
+`class=\'…\'` yazılmış (şerit kartında doğru olan `class=\\'…\'`). Tek ters bölü JS
+tarafından tek tırnağa çevrilip HTML'e gidiyor, `onerror` özniteliği orada **kapanıyor**.
+Sonuç: kategori ekranında ürün görseli yüklenemeyen her kartta yedek **hiç çizilmiyordu**,
+kullanıcı boş beyaz kutu görüyordu. Düzeltildi ve zorlanarak doğrulandı (yedek 3 → 9, 📦).
+
+**Yeni test:** `test_mobil_dokunma.mjs` (23 iddia) — pinch'i öldüren değerlerin yasaklığı,
+viewport'un kilitlenmemesi, `.add-btn`'in konum listesine geri girmemesi, iki kartın **aynı**
+kaçış desenini kullanması. Üçü de kasten bozularak doğrulandı.
+
+> **Test kendi açıklama yorumuyla eşleşti — ikinci kez.** `position:relative` taraması,
+> kuralın üstündeki "`.add-btn` bu listede değil" yorumunu seçicinin parçası sanıp yanlış
+> alarm verdi. Kaynakta desen ararken **önce yorumları soy** (bkz. `test_splash`).
 
 ### 2026-08-19 — Splash: sabit bekleme kalktı, tema-duyarlı zemin (CANLI, DOĞRULANDI)
 
@@ -621,7 +686,7 @@ Uygulama teknik olarak çalışıyor ama **pratikte hâlâ dağıtılmamış dur
 
 ## Yaklaşım & desenler
 
-- **SW cache version** her anlamlı `index.html`/`app.js`/`style.css`/`sw.js` değişikliğinde artırılır (şu an **v214**, canlıda doğrulandı 2026-08-19). Backend-only değişikliklerde (scraper, sync) bump edilmez. Akış: `git add` → `git commit` → `git pull --rebase` → `git push`. Not: `sw.js` yalnızca `data/hal.json` + `data/anasayfa.json`'ı önbelleğe alıyor ve `fetch`'i yalnızca o iki URL için yakalıyor — HTML/CSS/JS'i tutmuyor, onlar Cloudflare'den `Cache-Control: public, max-age=0, must-revalidate` ile geliyor (ölçüldü; eski GitHub Pages `max-age=600` notu bayattı). Bump proje kuralı ve tutarlılık için, HTML dağıtımını hızlandırmıyor.
+- **SW cache version** her anlamlı `index.html`/`app.js`/`style.css`/`sw.js` değişikliğinde artırılır (şu an **v215** yerelde; canlıda v214). Backend-only değişikliklerde (scraper, sync) bump edilmez. Akış: `git add` → `git commit` → `git pull --rebase` → `git push`. Not: `sw.js` yalnızca `data/hal.json` + `data/anasayfa.json`'ı önbelleğe alıyor ve `fetch`'i yalnızca o iki URL için yakalıyor — HTML/CSS/JS'i tutmuyor, onlar Cloudflare'den `Cache-Control: public, max-age=0, must-revalidate` ile geliyor (ölçüldü; eski GitHub Pages `max-age=600` notu bayattı). Bump proje kuralı ve tutarlılık için, HTML dağıtımını hızlandırmıyor.
 - **Doğrulama:** Push sonrası `gh run watch` ile deploy'un koştuğu doğrulanır, sonra canlıda (Browser MCP) gerçek fonksiyonel test yapılır — "dosyada var mı" değil, "gerçekten çalışıyor mu". Layout değişikliklerinde ekran görüntüsü yetmez: değişiklikten ÖNCE geometri parmak izi (`getBoundingClientRect`) alınıp sonra sayısal karşılaştırılır.
 - **Kapsam disiplini:** İstenmeyen ekleme/çıkarma sessizce yapılmaz, not düşülür. Doküman/analiz önerileri körü körüne uygulanmaz — önce kodda geçerli mi diye bakılır.
 - **Büyük ürün/mimari kararları** (hosting migration, nav yapısı, tuzak'ın geleceği) Mustafa'nın onayı olmadan koda dökülmez.

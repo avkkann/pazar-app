@@ -124,6 +124,36 @@
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--bg); color: var(--text);
       -webkit-font-smoothing: antialiased;
+      /* ══ ÇİFT TIK ZOOM'U KAPAT — PINCH ZOOM'U KORU ═══════════════
+         iOS Safari her dokunulabilir öğede varsayılan olarak
+         double-tap-to-zoom uygular; ölçüldü: 83 tıklanabilir öğenin
+         83'ü de `touch-action: auto`, sayfada TEK BİR touch-action
+         bildirimi yoktu.
+
+         `manipulation` = kaydırma + PINCH zoom SERBEST, yalnızca
+         double-tap zoom kapalı. Erişilebilirlik zoom'u bozulmuyor.
+         Bu yüzden `none` ya da `pan-x/pan-y` KULLANILMIYOR — onlar
+         pinch'i de öldürürdü.
+
+         viewport'a DOKUNULMADI: `maximum-scale=1.0` denetimde bilerek
+         kaldırılmıştı (erişilebilirlik), geri getirmek yanlış çözüm.
+
+         Kök öğede: touch-action kalıtsal değildir ama etkin değer
+         atalarla KESİŞTİRİLİR — burada verilmesi tüm alt ağacı kapsar.
+         Yine de etkileşimli öğelerde AYRICA yazılıyor (aşağıda):
+         hem açık/test edilebilir hem de iOS'ta büyük bloklarda
+         tek başına köke güvenmek yeterli olmuyor. */
+      touch-action: manipulation;
+    }
+
+    /* Etkileşimli öğelerde AÇIKÇA — köke ek olarak, belt-and-braces.
+       Kaydırılabilir şeritler bilerek DIŞARIDA: onlarda `manipulation`
+       yatay kaydırmayı etkilemez ama listeyi dar tutmak, ileride
+       `pan-*` gerekirse çakışma riskini azaltır. */
+    button, a, [role="button"], [onclick],
+    .product-card, .cat-card, .strip-card, .nav-btn, .add-btn,
+    .filter-pill, .alt-kat-chip, .firsat-tab, .theme-opt {
+      touch-action: manipulation;
     }
 
     /* ═══ Cabinet Grotesk display font ═══ */
@@ -2555,7 +2585,17 @@
        öğeyi ortalayarak 44×44'e tamamlıyor — kart yükseklikleri, padding,
        font ve yerleşim aynı kalıyor, yalnızca basılabilir alan büyüyor.
        Ölçüm: mobil geometri parmak izinde kart yüksekliği değişmemeli. */
-    .add-btn, .filter-pill, .btn-ekle, .karsilastir-pill,
+    /* .add-btn BU LİSTEDE DEĞİL — bilerek. Kendi kuralında zaten
+       `position: absolute` var ve bu satır (daha sonra geldiği + aynı
+       özgüllükte olduğu için) onu EZİYORDU. `relative`de `right:8px`
+       öğeyi 8px SOLA, `bottom:8px` 8px YUKARI kaydırır (adı verilen
+       kenarın tersine); buton kartın sol kenarından 7px dışarı taşıp
+       `overflow:hidden` ile kırpılıyordu — ölçüldü: 8 kategoride
+       48/48 kartta, 30px butonun 23px'i görünüyordu ve dokunma hedefi
+       44×44 yerine 30×44'e düşüyordu.
+       `absolute` de ::after için kapsayıcı blok kurar, yani 44px
+       katmanı bu listeye girmeden de çalışır. */
+    .filter-pill, .btn-ekle, .karsilastir-pill,
     .hal-filter-btn, .siralama-btn, .tazelik-chip, .back-btn,
     .firsat-tab, .alarm-kur-btn, .alarm-kaldir-btn, .bildirim-pill,
     .fiyat-bildir-btn, .home-strip-paylas, .theme-opt {

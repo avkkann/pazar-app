@@ -1,0 +1,86 @@
+// Mobil dokunma: cift-tik zoom kapali ama PINCH acik, + butonu kirpilmiyor.
+// Kullanim: node test_mobil_dokunma.mjs
+import fs from 'fs';
+
+const APP = fs.readFileSync('app.js', 'utf8');
+const CSS = fs.readFileSync('style.css', 'utf8');
+const HTML = fs.readFileSync('index.html', 'utf8');
+
+let pass = 0, fail = 0;
+const ok = (ad, k, d = '') => { if (k) { pass++; console.log('  PASS  ' + ad); } else { fail++; console.log('  FAIL  ' + ad + (d ? '  -> ' + d : '')); } };
+
+console.log('\n=== 1. ERISILEBILIRLIK: PINCH ZOOM KORUNUYOR ===');
+{
+  const vp = (/<meta name="viewport" content="([^"]*)"/.exec(HTML) || [])[1] || '';
+  ok('viewport bulundu', !!vp, vp);
+  // Denetimde maximum-scale=1.0 BILEREK kaldirildi; geri gelirse zoom kilitlenir.
+  ok('  maximum-scale YOK (denetimde kaldirilmisti)', !/maximum-scale/.test(vp), vp);
+  ok('  user-scalable=no YOK', !/user-scalable\s*=\s*(no|0)/.test(vp), vp);
+  // PINCH'i olduren touch-action degerleri hicbir yerde olmamali
+  const olduren = (CSS.match(/touch-action:\s*(none|pan-x|pan-y)\s*;/g) || []);
+  ok('touch-action: none / pan-x / pan-y KULLANILMIYOR (pinch\'i oldururler)',
+     olduren.length === 0, olduren.join(' '));
+}
+
+console.log('\n=== 2. CIFT-TIK ZOOM KAPALI (manipulation) ===');
+{
+  ok('html/body\'de touch-action: manipulation',
+     /html,\s*body \{[^}]*touch-action:\s*manipulation/.test(CSS), '');
+  // Etkilesimli ogelerde de ACIKCA yazili olmali (iOS'ta koke guvenmek yetmiyor)
+  const blok = (CSS.match(/button, a, \[role="button"\][^{]*\{[^}]*\}/) || [''])[0];
+  ok('etkilesimli ogelerde ACIKCA yazili', /touch-action:\s*manipulation/.test(blok), blok.slice(0, 140));
+  for (const s of ['.product-card', '.cat-card', '.strip-card', '.add-btn', '.nav-btn']) {
+    ok(`  ${s} kapsamda`, blok.includes(s), blok.slice(0, 180));
+  }
+  const say = (CSS.match(/touch-action:\s*manipulation/g) || []).length;
+  ok('  en az iki yerde (kok + etkilesimli)', say >= 2, 'adet=' + say);
+}
+
+console.log('\n=== 3. + BUTONU: KONUM EZILMIYOR ===');
+{
+  // Kendi kuralinda absolute olmali
+  const kendi = (CSS.match(/\.add-btn \{[^}]*\}/) || [''])[0];
+  ok('.add-btn kurali bulundu', kendi.length > 20, kendi.slice(0, 90));
+  ok('  position: absolute', /position:\s*absolute/.test(kendi), kendi.slice(0, 120));
+
+  // 44px dokunma listesi .add-btn'i position:relative'e EZMEMELI.
+  // Secici listesine demirlemek yerine "position:relative veren TUM kurallar"
+  // taranıyor: aksi halde listeye .add-btn eklenince regex hic eslesmiyor ve
+  // test "liste bulunamadi" gibi YANLIS bir sebeple kiriliyordu.
+  // YORUMLARI SOY: aksi halde kuralin USTUNDEKI aciklama yorumu secicinin
+  // parcasi gibi yakalaniyor ve o yorumda gecen ".add-btn" yanlis alarm
+  // veriyor. (Bu tuzaga bu depoda ikinci kez dusuldu — bkz. test_splash.)
+  const CSS_KODU = CSS.replace(/\/\*[\s\S]*?\*\//g, '');
+  const relKurallar = (CSS_KODU.match(/[^{}]+\{\s*position:\s*relative;\s*\}/g) || []);
+  ok('position:relative veren kural(lar) bulundu', relKurallar.length > 0, 'adet=' + relKurallar.length);
+  const ezen = relKurallar.filter(k => /(^|,|\s)\.add-btn(,|\s|\{)/.test(k.split('{')[0]));
+  ok('  .add-btn hicbirinde YOK (absolute\'unu ezerdi)', ezen.length === 0,
+     ezen.map(k => k.split('{')[0].trim().slice(0, 90)).join(' | '));
+
+  // Ama 44px KATMANI hala .add-btn'i kapsamali
+  const afterListe = (CSS.match(/\.add-btn::after[^{]*\{[^}]*\}/) || [''])[0];
+  ok('44px katmani .add-btn\'i HALA kapsiyor', /\.add-btn::after/.test(CSS), '');
+  ok('  katman 44x44', /min-width:\s*44px/.test(afterListe) && /min-height:\s*44px/.test(afterListe),
+     afterListe.slice(0, 160));
+}
+
+console.log('\n=== 4. URUN GORSELI YEDEGI: KACIS DOGRU ===');
+{
+  // Sablon dizesinde \\' olmali. \' yazilirsa HTML'e ' gider, oznitelik
+  // kapanir ve tarayici SyntaxError atar -> yedek HIC cizilmez.
+  const urun = (APP.match(/<img class="product-card-img"[^`]*/) || [''])[0];
+  ok('urun karti onerror satiri bulundu', urun.length > 40, urun.slice(0, 80));
+  ok('  class kacisi CIFT ters bolu (\\\\\')', /class=\\\\'product-card-img-ph\\\\'/.test(urun), urun.slice(0, 200));
+  ok('  TEK ters bolu DEGIL (SyntaxError sebebi)', !/[^\\]\\'product-card-img-ph/.test(urun), urun.slice(0, 200));
+
+  const serit = (APP.match(/<img class="strip-card-img"[^`]*/) || [''])[0];
+  ok('serit karti kacisi bozulmadi', /class=\\\\'strip-card-img-ph\\\\'/.test(serit), serit.slice(0, 200));
+
+  // Ikisi AYNI deseni kullanmali -- biri digerinden sapmasin
+  const desen = (s) => (/class=(\\+)'/.exec(s) || [])[1];
+  ok('  iki kart AYNI kacis desenini kullaniyor', desen(urun) === desen(serit),
+     'urun=' + desen(urun) + ' serit=' + desen(serit));
+}
+
+console.log(`\nPASS=${pass}  FAIL=${fail}`);
+process.exit(fail ? 1 : 0);

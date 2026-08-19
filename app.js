@@ -2747,7 +2747,14 @@ function cardHTML(u) {
   const emoji   = KAT_EMOJI[anaKat] || '📦';
   const ph = placeholderRenk(anaKat);
   const img = u.resim
-    ? `<img class="product-card-img" src="${u.resim}" alt="" loading="lazy" onerror="this.outerHTML='<div class=\'product-card-img-ph\'>${ph.emoji}</div>'">`
+    // TERS BOLU IKI KEZ (\\') olmak ZORUNDA. Sablon dizesinde \' yazilirsa JS
+    // onu tek tirnaga cevirip HTML'e class='...' basiyor; oznitelik zaten tek
+    // tirnakli oldugu icin JS dizesi orada KAPANIYOR ve tarayici
+    // "SyntaxError: Unexpected identifier 'product'" atiyor. Sonuc: urun
+    // gorseli yuklenemedigi her seferde yedek HIC cizilmiyordu, kullanici bos
+    // beyaz kutu goruyordu. (Ayni satirin serit karti surumu \\' ile dogruydu;
+    // olculdu: kategori ekraninda 4 kategori gezisinde 12 SyntaxError.)
+    ? `<img class="product-card-img" src="${u.resim}" alt="" loading="lazy" onerror="this.outerHTML='<div class=\\'product-card-img-ph\\'>${ph.emoji}</div>'">`
     : `<div class="product-card-img-ph">${ph.emoji}</div>`;
 
   const inCart = sepet.some(s => s._id === u._id);
