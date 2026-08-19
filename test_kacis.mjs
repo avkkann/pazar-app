@@ -33,7 +33,10 @@ function fnKaynak(ad) {
   return null;
 }
 // Yorumları soy: /*…*/ ve //… (http:// içindeki // korunur: önündeki ':' ile).
-const soy = (s) => (s || '').replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:])\/\/[^\n]*/g, '$1');
+// Satır yorumlarını ÖNCE soy: bir `//` yorumu içindeki `/*` (örn. yol `cat/*.png`)
+// blok-soyucu önce çalışırsa sahte blok başı sanılıp sonraki `*/`'e kadar GERÇEK
+// kodu siler (bu depoda yaşandı). `://` URL'leri `[^:]` ile korunur.
+const soy = (s) => (s || '').replace(/(^|[^:])\/\/[^\n]*/g, '$1').replace(/\/\*[\s\S]*?\*\//g, '');
 // Düzleştir: yorumsuz kaynakta tüm boşluğu (satır sonları dahil) tek boşluğa indir.
 // Böylece çok satırlı şablon/birleştirme tek satır gibi taranır.
 const yass = (s) => soy(s).replace(/\s+/g, ' ');
@@ -195,6 +198,51 @@ console.log('\n=== 8. KANIT: S4 korumasını bilerek boz, tarama KIRMIZIYA dön�
   // Yorum tuzağı: yorumdaki ham sink yanlış alarm üretmemeli
   const yorumlu = 'function t(){ /* örnek: src="${u.resim}" */ return `<img src="${_guvenliUrl(u.resim)}">`; }';
   ok('yorum içindeki ham src taramada SOYULUYOR', !/src="\$\{u\.resim\}"/.test(yass(yorumlu)));
+}
+
+// ══════════════════════════════════════════════════════════════════════
+// PARTİ 3 — satır içi olay bağlamı. Değer artık handler'ın JS-string'ine
+// interpolasyon EDİLMİYOR; data-* özniteliğine (_kacir'li) yazılıp handler
+// this.dataset'ten okuyor. Böylece iki katlı bağlam (HTML özniteliği + JS
+// dizesi) tek kata iner. CSP'ye dokunulmadı; JS-string kaçış fonksiyonu YOK.
+// ══════════════════════════════════════════════════════════════════════
+console.log("\n=== 9. Satır içi olay: değer data-*'ta, handler this.dataset'ten okuyor ===");
+{
+  const A = yass(APP);
+  const card = yass(fnKaynak('cardHTML'));
+  ok('cardHTML: openDetay(this.dataset.id)', /onclick="openDetay\(this\.dataset\.id\)"/.test(card));
+  ok('cardHTML: onkeydown _kartTus(event, this.dataset.id)', /onkeydown="_kartTus\(event, this\.dataset\.id\)"/.test(card));
+  ok('cardHTML: toggleSepet(this.dataset.pid)', /toggleSepet\(this\.dataset\.pid\)/.test(card));
+  ok('_stripKartHTML: openDetay(this.dataset.id)', /onclick="openDetay\(this\.dataset\.id\)"/.test(yass(fnKaynak('_stripKartHTML'))));
+  ok('renderSepet: removeFromSepet(this.dataset.id)', /removeFromSepet\(this\.dataset\.id\)/.test(A));
+  ok('detay: toggleSepet(this.dataset.id) + fiyatBildirAc(this.dataset.id)', /toggleSepet\(this\.dataset\.id\); renderDetayBtn\(this\.dataset\.id\)/.test(A) && /fiyatBildirAc\(this\.dataset\.id\)/.test(A));
+  ok('favBtn: favToggle(this.dataset.sid, this) + data-sid _kacir', /favToggle\(this\.dataset\.sid, this\)/.test(A) && /data-sid="\$\{_kacir\(sid\)\}"/.test(A));
+  ok('ms satır: msSheetToggle(this.dataset.mkt, this)', /msSheetToggle\(this\.dataset\.mkt, this\)/.test(A));
+  ok('renderSablonBar: sablonYukleUI/sablonSilUI(this.dataset.id)', /sablonYukleUI\(this\.dataset\.id\)/.test(A) && /sablonSilUI\(this\.dataset\.id\)/.test(A));
+  ok('profil: profilSablonSil/profilAlarmKaldir(this.dataset.*)', /profilSablonSil\(this\.dataset\.id\)/.test(A) && /profilAlarmKaldir\(this\.dataset\.sid\)/.test(A));
+  ok('alarm: fiyatAlarmKur/Kaldir(this.dataset.sid)', /fiyatAlarmKur\(this\.dataset\.sid\)/.test(A) && /fiyatAlarmKaldir\(this\.dataset\.sid\)/.test(A));
+  ok('altKat: setAltKat(this.dataset.kat) + data-kat _kacir', /setAltKat\(this\.dataset\.kat\)/.test(A));
+  ok('cat-card: openCategory(this.dataset.slug)', /openCategory\(this\.dataset\.slug\)/.test(A));
+  ok('mf onerror: textContent=this.dataset.initial (innerHTML enjeksiyonu değil)', /textContent=this\.dataset\.initial/.test(A) && !/innerHTML='\$\{initial/.test(A));
+}
+
+console.log("\n=== 10. TARAMA: bir handler değeri JS-string'e enjekte ederse kırmızı (tüm dosya) ===");
+{
+  const A = yass(APP);
+  // Satır içi olay özniteliğinde '${...} = değer doğrudan JS dizesine giriyor = kırılgan.
+  // Migrasyon sonrası HİÇBİRİ kalmamalı (hepsi this.dataset okuyor).
+  ok("hiçbir satır içi olayda '${...} yok (JS-string enjeksiyonu)", !/on[a-z]+="[^"]*'\$\{/.test(A), "handler içine doğrudan interpolasyon bulundu");
+}
+
+console.log("\n=== 11. KANIT: bir handler'ı JS-string enjeksiyonuna geri sar, tarama KIRMIZI ===");
+{
+  const gercek = yass(fnKaynak('cardHTML'));
+  const bozuk = gercek.replace(/onclick="openDetay\(this\.dataset\.id\)"/, `onclick="openDetay('` + '${u._id}' + `')"`);
+  ok("gerçek cardHTML: handler'da '${ yok", !/on[a-z]+="[^"]*'\$\{/.test(gercek));
+  ok("bozuk cardHTML: handler'da '${ VAR (mutasyon oluştu)", /on[a-z]+="[^"]*'\$\{/.test(bozuk));
+  // Yorum tuzağı: yorumdaki enjeksiyon deseni yanlış alarm üretmemeli
+  const yorumlu = "function t(){ /* eski: onclick=\"f('${u._id}')\" */ return `<div onclick=\"f(this.dataset.id)\"></div>`; }";
+  ok('yorumdaki enjeksiyon taramada SOYULUYOR (yanlış alarm yok)', !/on[a-z]+="[^"]*'\$\{/.test(yass(yorumlu)));
 }
 
 console.log(`\nPASS=${pass}  FAIL=${fail}`);

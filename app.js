@@ -390,7 +390,7 @@
   window.favBtnHTML = function(sid) {
     if (!sid) return '';
     const isFav = window.pazarFavSet.has(sid);
-    return `<button class="fav-btn${isFav ? ' is-fav' : ''}" data-sid="${sid}" aria-pressed="${isFav ? 'true' : 'false'}" aria-label="Favoriye ekle" onclick="event.stopPropagation(); favToggle('${sid}', this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>`;
+    return `<button class="fav-btn${isFav ? ' is-fav' : ''}" data-sid="${_kacir(sid)}" aria-pressed="${isFav ? 'true' : 'false'}" aria-label="Favoriye ekle" onclick="event.stopPropagation(); favToggle(this.dataset.sid, this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>`;
   };
 
   document.addEventListener('pazarAuthReady', loadPazarFavoriler);
@@ -887,14 +887,14 @@ function renderSablonBar() {
   if (!bar) return;
   let html = '<button class="sablon-chip add" onclick="sablonKaydetUI()">+ Şablon kaydet</button>';
   sablonlar.forEach(s => {
-    const sid = s.id.replace(/'/g, "\\'");
+    const sidAttr = _kacir(s.id);  // öznitelik değeri; handler this.dataset.id'den okur
     const adSafe = _kacir(_sablonDisplayAd(s.ad) || 'Şablon');  // S3: localStorage şablon adı, metin bağlamı
-    html += '<span class="sablon-chip" '
-         + 'onclick="sablonYukleUI(\'' + sid + '\')" '
-         + 'oncontextmenu="event.preventDefault();sablonDuzenleUI(\'' + sid + '\');return false;" '
+    html += '<span class="sablon-chip" data-id="' + sidAttr + '" '
+         + 'onclick="sablonYukleUI(this.dataset.id)" '
+         + 'oncontextmenu="event.preventDefault();sablonDuzenleUI(this.dataset.id);return false;" '
          + 'title="Tıkla: yükle | Sağ tık / uzun bas: düzenle">'
          + adSafe
-         + ' <button class="sablon-chip-del" onclick="event.stopPropagation();sablonSilUI(\'' + sid + '\')" title="Sil">×</button>'
+         + ' <button class="sablon-chip-del" data-id="' + sidAttr + '" onclick="event.stopPropagation();sablonSilUI(this.dataset.id)" title="Sil">×</button>'
          + '</span>';
   });
   bar.innerHTML = html;
@@ -1156,8 +1156,8 @@ function openDetay(urunId) {
   }).join('');
 
   const inCart = sepet.some(s => s._id === urunId);
-  const btnHtml = `<button id="detayEkleBtn" class="detay-btn-ekle${inCart ? ' added' : ''}"
-    onclick="toggleSepet('${u._id}'); renderDetayBtn('${u._id}')">
+  const btnHtml = `<button id="detayEkleBtn" class="detay-btn-ekle${inCart ? ' added' : ''}" data-id="${_kacir(u._id)}"
+    onclick="toggleSepet(this.dataset.id); renderDetayBtn(this.dataset.id)">
     ${inCart
 ? `<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Listemde`
       : `<svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Listeme Ekle`}
@@ -1191,7 +1191,7 @@ function openDetay(urunId) {
     ${fiyatGecmisiBlogu(u)}
     ${fiyatAlarmiBlogu(u)}
     ${btnHtml}
-    ${_bildirimYetkiVarMi() ? `<button type="button" class="fiyat-bildir-btn" onclick="fiyatBildirAc('${u._id}')"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>Bu fiyat tutmadı</button>` : ''}
+    ${_bildirimYetkiVarMi() ? `<button type="button" class="fiyat-bildir-btn" data-id="${_kacir(u._id)}" onclick="fiyatBildirAc(this.dataset.id)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>Bu fiyat tutmadı</button>` : ''}
     </div>
     ${(() => {
   const digerler = digerPaketleriBul(u);
@@ -1460,7 +1460,7 @@ function alarmOnerisi(u) {
 function alarmOneriHTML(u) {
   const o = alarmOnerisi(u);
   if (!o) return '';
-  const sid = String(u._sid).replace(/'/g, "\\'");
+  const sidAttr = _kacir(String(u._sid));  // öznitelik değeri; handler this.dataset.sid'den okur
   // "Son ay X'ye kadar indi" HAM seriye ait bir iddia. Öneri salınımsız seriden
   // geldiği için X ham seride gözlenmemiş olabilir — o zaman CÜMLE KURULMAZ,
   // ama öneri butonu kalır (özellik susmuyor, yalnızca yanlış iddia susuyor).
@@ -1469,7 +1469,7 @@ function alarmOneriHTML(u) {
     : `<span class="alarm-oneri-metin">Önerilen hedef ${tl(o.deger)}</span>`;
   return `<div class="alarm-oneri">
       ${metin}
-      <button type="button" class="alarm-oneri-btn" onclick="alarmOneriUygula('${sid}', ${o.deger})">Bu fiyatı kullan</button>
+      <button type="button" class="alarm-oneri-btn" data-sid="${sidAttr}" onclick="alarmOneriUygula(this.dataset.sid, ${o.deger})">Bu fiyatı kullan</button>
     </div>`;
 }
 
@@ -1483,13 +1483,14 @@ function alarmOneriUygula(sid, deger) {
 function fiyatAlarmiBlogu(u) {
   const sid = u && u._sid;
   if (!sid) return '';
+  const sidAttr = _kacir(String(sid));  // öznitelik/id değeri; DOM entity'yi çözünce ham sid ile eşleşir
   const aktifHedef = window.pazarAlarmMap ? window.pazarAlarmMap.get(sid) : null;
   if (aktifHedef != null) {
-    return `<div class="detay-section detay-section--alarm" id="alarmBlogu-${sid}">
+    return `<div class="detay-section detay-section--alarm" id="alarmBlogu-${sidAttr}">
       <div class="detay-sec-label">Fiyat Alarmı</div>
       <div class="alarm-box alarm-active">
         <div class="alarm-active-text">${tl(aktifHedef)}'nin altına düşünce haber vereceğiz</div>
-        <button class="alarm-kaldir-btn" onclick="fiyatAlarmKaldir('${sid}')">Kaldır</button>
+        <button class="alarm-kaldir-btn" data-sid="${sidAttr}" onclick="fiyatAlarmKaldir(this.dataset.sid)">Kaldır</button>
       </div>
     </div>`;
   }
@@ -1498,11 +1499,11 @@ function fiyatAlarmiBlogu(u) {
   const gecmisOneri = alarmOnerisi(u);
   const enDusuk = enDusukFiyat(u);
   const oneri = gecmisOneri ? gecmisOneri.deger : (enDusuk ? (enDusuk * 0.95).toFixed(2) : '');
-  return `<div class="detay-section detay-section--alarm" id="alarmBlogu-${sid}">
+  return `<div class="detay-section detay-section--alarm" id="alarmBlogu-${sidAttr}">
     <div class="detay-sec-label">Fiyat Alarmı</div>
     <div class="alarm-box">
-      <input type="number" inputmode="decimal" step="0.01" min="0.01" class="alarm-input" id="alarmInput-${sid}" placeholder="Hedef fiyat (₺)" value="${oneri}">
-      <button class="alarm-kur-btn" onclick="fiyatAlarmKur('${sid}')">Alarm Kur</button>
+      <input type="number" inputmode="decimal" step="0.01" min="0.01" class="alarm-input" id="alarmInput-${sidAttr}" placeholder="Hedef fiyat (₺)" value="${oneri}">
+      <button class="alarm-kur-btn" data-sid="${sidAttr}" onclick="fiyatAlarmKur(this.dataset.sid)">Alarm Kur</button>
     </div>
     ${alarmOneriHTML(u)}
   </div>`;
@@ -2852,7 +2853,7 @@ function cardHTML(u) {
     }
   }
   const marketLbl = gosterilenMarket ? MARKET_NAMES[gosterilenMarket] || gosterilenMarket : '';
-  return `<div class="product-card" tabindex="0" role="button" aria-label="${_kacir(u.ad)}" data-urun-id="${_kacir(u._id)}" data-sid="${_kacir(u._sid || '')}" data-markets="${_kacir((u.market_fiyatlari||[]).map(f=>f.market).join(','))}" onclick="openDetay('${u._id}')" onkeydown="_kartTus(event, '${u._id}')" style="cursor:pointer">
+  return `<div class="product-card" tabindex="0" role="button" aria-label="${_kacir(u.ad)}" data-id="${_kacir(u._id)}" data-sid="${_kacir(u._sid || '')}" data-markets="${_kacir((u.market_fiyatlari||[]).map(f=>f.market).join(','))}" onclick="openDetay(this.dataset.id)" onkeydown="_kartTus(event, this.dataset.id)" style="cursor:pointer">
     ${favBtnHTML(u._sid)}
     ${img}
     <div class="product-card-body">
@@ -2871,7 +2872,7 @@ function cardHTML(u) {
       ${(() => { const rz = tuzakRozetiHesapla(u); return rz ? tuzakRozetiHTML(rz, true) : ''; })()}
       ${urunRozetleriHTML(u, true)}
     </div>
-    <button class="add-btn" data-pid="${_kacir(u._id)}" onclick="event.stopPropagation(); toggleSepet('${u._id}')" style="${inCart ? 'background:#059669' : ''}">${inCart ? '✓' : '+'}</button>
+    <button class="add-btn" data-pid="${_kacir(u._id)}" onclick="event.stopPropagation(); toggleSepet(this.dataset.pid)" style="${inCart ? 'background:#059669' : ''}">${inCart ? '✓' : '+'}</button>
   </div>`;
 }
 
@@ -2933,7 +2934,7 @@ function _stripKartHTML(u, rozet) {
   // Rozet yuvasi ISARETCI ile aciliyor; cagiranlarin ekledigi rozetler
   // (dusenler/supheli) _kartaRozetEkle ile TAM BURAYA giriyor. Oncesinde
   // kartin sonuna ekleniyorlardi ve yeni sirada en altta kalirlardi.
-  return `<div class="strip-card" tabindex="0" role="button" aria-label="${_kacir(u.ad)}" onclick="openDetay('${u._id}')" onkeydown="_kartTus(event, '${u._id}')">
+  return `<div class="strip-card" tabindex="0" role="button" aria-label="${_kacir(u.ad)}" data-id="${_kacir(u._id)}" onclick="openDetay(this.dataset.id)" onkeydown="_kartTus(event, this.dataset.id)">
     ${img}
     ${fiyat != null ? `<div class="strip-card-fiyat">${tl(fiyat)}</div>` : ''}
     ${rozetHTML}<!--ROZET-->
@@ -3680,7 +3681,7 @@ async function renderMevsimSeridi() {
 // ── KATEGORİ GRİD ─────────────────────────────────────
 function renderCatGrid() {
   document.getElementById('home-cats').innerHTML = KATEGORILER.map(k =>
-    `<div class="cat-card" tabindex="0" role="button" aria-label="${k.label}" onclick="openCategory('${k.slug}')" onkeydown="_satirTus(event, function(){openCategory('${k.slug}')})">
+    `<div class="cat-card" tabindex="0" role="button" aria-label="${k.label}" data-slug="${_kacir(k.slug)}" onclick="openCategory(this.dataset.slug)" onkeydown="_satirTus(event, () => openCategory(this.dataset.slug))">
       ${lcIcon(k.ikon, 'cat-ikon')}
       <div class="cat-card-name">${k.label}</div>
     </div>`
@@ -3795,10 +3796,9 @@ function renderAltKatBar() {
   let html = '<button class="alt-kat-chip ' + (aktif === 'tumu' ? 'active' : '')
            + '" onclick="setAltKat(\'tumu\')">Tümü</button>';
   liste.forEach(([ad]) => {
-    const adEscaped = ad.replace(/'/g, "\\'");
-    const adSafe = ad.replace(/</g, '&lt;');
+    const adAttr = _kacir(ad);  // hem data-kat özniteliği hem metin; handler this.dataset.kat'tan okur
     html += '<button class="alt-kat-chip ' + (aktif === ad ? 'active' : '')
-         + '" onclick="setAltKat(\'' + adEscaped + '\')">' + adSafe + '</button>';
+         + '" data-kat="' + adAttr + '" onclick="setAltKat(this.dataset.kat)">' + adAttr + '</button>';
   });
   bar.innerHTML = html;
 }
@@ -4159,7 +4159,7 @@ function mfRenderResults(list) {
     const meta = [it.refinedVolumeOrWeight, it.brand].filter(Boolean).join(' · ');
     const initial = mfMarketInitial(it);
     return `<div class="mf-card" tabindex="0" role="button" onclick="mfSheetAc(${idx})" onkeydown="_satirTus(event, function(){mfSheetAc(${idx})})">
-      <div class="mf-market-avatar">${initial}</div>
+      <div class="mf-market-avatar">${_kacir(initial)}</div>
       <div class="mf-card-info">
         <div class="mf-card-title">${_kacir(title)}</div>
         <div class="mf-card-meta">${_kacir(meta || (depotName || ''))}</div>
@@ -4191,7 +4191,7 @@ function mfSheetAc(idx) {
     if (it.id) {
       mfUrunGorseliBul(it.id, title).then(url => {
         if (url) {
-          imgContainer.innerHTML = `<img src="${_guvenliUrl(url)}" alt="" loading="lazy" onerror="this.parentNode.classList.add('fallback'); this.parentNode.innerHTML='${initial || '?'}'">`;
+          imgContainer.innerHTML = `<img src="${_guvenliUrl(url)}" alt="" loading="lazy" data-initial="${_kacir(initial || '?')}" onerror="this.parentNode.classList.add('fallback'); this.parentNode.textContent=this.dataset.initial">`;
         } else {
           imgContainer.classList.add('fallback');
           imgContainer.textContent = initial || '?';
@@ -4375,14 +4375,14 @@ function renderSepet() {
       ? `<div style="text-align:right;color:var(--primary);font-size:.82rem;font-weight:700;flex-shrink:0;margin-right:6px;line-height:1.4">
            ${tlHTML(mktF.fiyat)}<br><span style="font-size:.65rem;font-weight:500">${_kacir(MARKET_NAMES[mktF.market]||mktF.market||'?')}</span>
          </div>` : '';
-    return `<div class="cart-item" tabindex="0" role="button" aria-label="${_kacir(u.ad)}" onclick="openDetay('${u._id}')" onkeydown="_kartTus(event, '${u._id}')" style="cursor:pointer">
+    return `<div class="cart-item" tabindex="0" role="button" aria-label="${_kacir(u.ad)}" data-id="${_kacir(u._id)}" onclick="openDetay(this.dataset.id)" onkeydown="_kartTus(event, this.dataset.id)" style="cursor:pointer">
       <div class="cart-item-img">${img}</div>
       <div class="cart-item-info">
         <div class="cart-item-name">${_kacir(u.ad)}</div>
         ${u.agirlik_hacim ? `<div class="cart-item-sub">${_kacir(u.agirlik_hacim)}</div>` : ''}
       </div>
       ${fiyatStr}
-      <button class="cart-del" onclick="event.stopPropagation(); removeFromSepet('${u._id}')">
+      <button class="cart-del" data-id="${_kacir(u._id)}" onclick="event.stopPropagation(); removeFromSepet(this.dataset.id)">
         <svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>
       </button>
     </div>`;
@@ -4642,7 +4642,7 @@ function msSheetAc(mktList) {
   const listEl = document.getElementById('msList');
   listEl.innerHTML = _msMarkets.map(m => {
     const harf = (m.name || '?').trim().charAt(0).toUpperCase();
-    return `<div class="ms-market-row selected" data-mkt="${_kacir(m.key)}" tabindex="0" role="button" aria-pressed="true" aria-label="${_kacir(m.name)}" onclick="msSheetToggle('${m.key}', this)" onkeydown="_satirTus(event, function(){msSheetToggle('${m.key}', document.querySelector(&quot;[data-mkt=\'${m.key}\']&quot;))})">
+    return `<div class="ms-market-row selected" data-mkt="${_kacir(m.key)}" tabindex="0" role="button" aria-pressed="true" aria-label="${_kacir(m.name)}" onclick="msSheetToggle(this.dataset.mkt, this)" onkeydown="_satirTus(event, () => msSheetToggle(this.dataset.mkt, this))">
       <div class="ms-market-avatar">${harf}</div>
       <div class="ms-market-info">
         <div class="ms-market-name">${_kacir(m.name)}</div>
@@ -5301,7 +5301,7 @@ function profilSablonlarHTML() {
       <button type="button" class="profil-bos-btn" onclick="goSepet()">Listem</button></div>`;
   }
   return liste.map(s => {
-    const idSafe = String(s.id).replace(/'/g, "\\'");
+    const idAttr = _kacir(String(s.id));  // öznitelik değeri; handler this.dataset.id'den okur
     const adSafe = _kacir(_sablonDisplayAd(s.ad) || 'Şablon');  // S3: metin + aria-label özniteliği (tırnak kırılması dahil)
     const sidler = (s.urunIds || []).map(x => x && x.sid).filter(Boolean);
     let toplam = 0, bulunan = 0;
@@ -5312,11 +5312,11 @@ function profilSablonlarHTML() {
     });
     const tutar = bulunan ? ' · ' + tl(toplam) : '';
     return `<div class="profil-satir">
-        <button type="button" class="profil-satir-ana" onclick="sablonYukleUI('${idSafe}')">
+        <button type="button" class="profil-satir-ana" data-id="${idAttr}" onclick="sablonYukleUI(this.dataset.id)">
           <span class="profil-satir-ad">${adSafe}</span>
           <span class="profil-satir-alt">${sidler.length} ürün${tutar}</span>
         </button>
-        <button type="button" class="profil-satir-sil" aria-label="${adSafe} şablonunu sil" onclick="profilSablonSil('${idSafe}')">${lcIcon('trash-2')}</button>
+        <button type="button" class="profil-satir-sil" aria-label="${adSafe} şablonunu sil" data-id="${idAttr}" onclick="profilSablonSil(this.dataset.id)">${lcIcon('trash-2')}</button>
       </div>`;
   }).join('');
 }
@@ -5333,7 +5333,7 @@ function profilAlarmlarHTML() {
     const ad = u ? u.ad : sid;
     const f = u && _profilEnUcuz(u);
     const guncel = f ? f.fiyat : null;
-    const sidSafe = String(sid).replace(/'/g, "\\'");
+    const sidAttr = _kacir(String(sid));  // öznitelik değeri; handler this.dataset.sid'den okur
     let durum;
     if (guncel == null) durum = '<span class="profil-satir-alt">Hedef ' + tl(hedef) + ' · güncel fiyat yok</span>';
     else if (guncel <= hedef) durum = '<span class="profil-satir-alt basarili">Hedefe ulaştı · ' + tl(guncel) + '</span>';
@@ -5343,7 +5343,7 @@ function profilAlarmlarHTML() {
           <span class="profil-satir-ad">${String(ad).replace(/</g, '&lt;')}</span>
           ${durum}
         </div>
-        <button type="button" class="profil-satir-sil" aria-label="Alarmı kaldır" onclick="profilAlarmKaldir('${sidSafe}')">${lcIcon('trash-2')}</button>
+        <button type="button" class="profil-satir-sil" aria-label="Alarmı kaldır" data-sid="${sidAttr}" onclick="profilAlarmKaldir(this.dataset.sid)">${lcIcon('trash-2')}</button>
       </div>`);
   });
   return satirlar.join('');
@@ -5489,7 +5489,7 @@ function profilMarketTercihHTML() {
   const gorunur = Object.keys(MARKET_NAMES).filter(m => marketVarMi(m));
   const gizli = Object.keys(MARKET_NAMES).filter(m => !marketVarMi(m));
   const pills = gorunur.map(m =>
-    `<button type="button" class="profil-mkt-pill${secili.includes(m) ? ' active' : ''}" aria-pressed="${secili.includes(m)}" onclick="tercihMarketToggle('${m}')">${MARKET_NAMES[m]}</button>`
+    `<button type="button" class="profil-mkt-pill${secili.includes(m) ? ' active' : ''}" aria-pressed="${secili.includes(m)}" data-mkt="${_kacir(m)}" onclick="tercihMarketToggle(this.dataset.mkt)">${MARKET_NAMES[m]}</button>`
   ).join('');
   const not = secili.length
     ? `${secili.length} market seçili — kategori ekranı bunlarla açılır`
