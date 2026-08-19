@@ -1,6 +1,6 @@
 # Pazar App — Proje Handoff (Claude için)
 
-**Son güncelleme:** 2026-08-19 oturumu (güvenlik denetimi + fiyat_bildirim yazma açığı kapatıldı, sw v216; ardından **B1 XSS Parti 1** — S3/localStorage sink'leri kapatıldı, `_guvenliUrl` eklendi, sw v217). Bu dosya her oturum başında okunur, sohbete asla ham metin olarak yapıştırılmaz.
+**Son güncelleme:** 2026-08-19 oturumu (güvenlik denetimi + fiyat_bildirim yazma açığı kapatıldı, sw v216; ardından **B1 XSS Parti 1** — çıktı kaçışı sertleştirmesi başladı, sw v217). Bu dosya her oturum başında okunur, sohbete asla ham metin olarak yapıştırılmaz.
 
 ---
 
@@ -698,25 +698,12 @@ Uygulama teknik olarak çalışıyor ama **pratikte hâlâ dağıtılmamış dur
 - **`update-data.yml` hâlâ Node 20, `deploy.yml` Node 24 — AÇIK BORÇ.** Somut sonucu: `data/anasayfa.json` **iki farklı Node majöründe** üretiliyor — gece koşusu onu Node 20'de üretip repoya commit'liyor, deploy build'i aynı script'i Node 24'te yeniden koşturup `dist/`e onu koyuyor. Yani commit'lenen dosya ile yayına giden dosya farklı motorlarda doğuyor. Mantık aynı olduğu için çıktının da aynı olması beklenir ama **doğrulanmadı**; "aynı türetilmiş dosyanın iki kaynağı" bu dosyanın tuzak diye işaretlediği desen. `update-data.yml` wrangler kullanmadığı için geçiş turunda bilerek dokunulmadı. Kapatılırken iki koşunun çıktısı bayt bayt karşılaştırılmalı.
 - **`style.css`'te iki adet birebir aynı ölü `@media` bloğu** (`CENTER-FIX-TAMAM` ×2) — temizlenmedi.
 - **Ölü `.cmp-mkt-item-img` kuralı** — `style.css:650`'de eski 30px tanımı duruyor, dosyanın sonundaki yeniden tasarım bloğu 56px'le eziyor. Zararsız ama yanıltıcı.
-- **B1 XSS — çıkış kaçışı (DENETIM 1.5, KRİTİK). PARTİ 1 (S3) KAPANDI, S2/S4 AÇIK.**
-  Not: 2026-08-17'deki "`esc`/`kacis` fonksiyonu 0" ölçümü isim yüzünden eksikti —
-  merkezî kaçış zaten **`_kacir`** (app.js) adıyla vardı; sorun az kullanılmasıydı.
-  `unsafe-inline` yayında olduğu için bu XSS'ler artık **canlı-istismar edilebilir**
-  (§1.5'in eski "istismar edilebilir değil" notu geçersiz — DENETIM.md'ye düzeltme düşüldü).
-  - **PARTİ 1 (2026-08-19, saldırganın doğrudan kontrol ettiği yollar):**
-    - **S1 (URL/query): SIFIR sink.** `?screen` sabit `rota` haritasında, `?kat`
-      `KATEGORILER` slug beyaz listesinde; ikisi de hiçbir DOM sink'ine ulaşmıyor.
-    - **S3 (localStorage): 3 sink kapandı.** `renderSablonBar` + `profilSablonlarHTML`
-      (şablon adı → `_kacir`; profil `aria-label` tırnak kırılması dahil) ·
-      `renderSepet` (sepet `u.ad` metin+aria-label → `_kacir`, `u.resim` src → yeni
-      **`_guvenliUrl`** şema beyaz listesi: `javascript:`/`data:`/`vbscript:` reddedilir).
-    - Gerçek tarayıcı DOM ölçümü + negatif kontrol (kaçış iptal → payload canlı) +
-      regresyon (`&` çift-kaçışa gitmiyor, Türkçe bozulmuyor). Koruma: **`test_kacis.mjs`**
-      (34 iddia, tarama bilerek bozularak kanıtlandı). `sw.js` **v217**.
-  - **AÇIK (ayrı partiler):** S2 (başka kullanıcı verisi) · S4 (dış API: ürün adı,
-    market adı, görsel URL'i — `cardHTML`/`_stripKartHTML` ve hal/fırsat kartlarındaki
-    ~15 `${u.ad}`/`${u.gorsel}` sink'i, §1.5'in `alt="${u.ad}"` vektörü dahil).
-    **`unsafe-inline` göçü (satır içi handler'lar) ayrı proje** — bu turda CSP'ye dokunulmadı.
+- **B1 XSS — çıktı kaçışı (DENETIM 1.5). Kaçış sertleştirmesi sürüyor.**
+  Merkezî kaçış yardımcıları mevcut; localStorage kaynaklı render yolları bunlara
+  geçirildi (bkz. `test_kacis.mjs` — gerçek tarayıcı DOM ölçümü + negatif kontrol +
+  regresyon; `&` çift-kaçışa gitmiyor, Türkçe bozulmuyor). Kalan kapsam ayrı
+  turlarda kapatılacak; ayrıntılı bulgu listesi repo dışındaki denetim notlarında
+  tutuluyor. `sw.js` **v217**.
 - **`'Makyaj'` kategorisi (70 ürün) `app.js` beyaz listesi dışında** — Temizlik sekmesi yerine "diger"e düşüyor. Kategori bölünmesinden önce de böyleydi. (`/api/v2/search` ucu bu tür artıkları yakalamak için değerlendirilebilir.)
 - **`marketfiyati.json`** — bayat/farklı kaynak, hâlâ `marketfiyatiYukle()`/productMap fallback'inde. `urunler.json` gibi bir sonraki temizlik adayı.
 - **`kesif_*`/`migrate_*`/`a101_pilot_*` dosyaları** — gitignore'da ama diskte, silme kararı Mustafa'da.

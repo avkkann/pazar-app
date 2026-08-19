@@ -147,67 +147,20 @@ PostgREST'te statik, role göre değişmiyor. Sonuç ancak gerçek kolonla + kı
 
 ---
 
-### 1.5 XSS yüzeyi: kaçış fonksiyonu HİÇ YOK, 79 `innerHTML` — **YÜKSEK**
+### 1.5 XSS yüzeyi: çıktı kaçışı — **YÜKSEK**
 
-**Kanıt:**
-```
-grep -nE "function (escapeHtml|esc|htmlKacis|sanitize)" app.js
-  -> YOK — hicbir kacis fonksiyonu tanimli degil
-innerHTML atama sayisi: 79
-```
-Dış kaynaklı (marketfiyati API) veri doğrudan şablona giriyor:
-```
-app.js:1038   <div class="detay-name">${u.ad}</div>
-app.js:2484   <div class="product-name">${u.ad}</div>
-app.js:2518   <div class="strip-card-name">${u.ad}</div>
-app.js:3890   <div class="cart-item-name">${u.ad}</div>
-app.js:4396   <img src="${u.gorsel}" alt="${u.ad}" ... onerror="this.outerHTML='...'">
-app.js:2408   onclick="_bildirimMarketSec(this, '${f.market}')"
-```
+**Bulgu:** Render yollarında çıktı kaçışı yüzeyi gözden geçirildi. Ayrıntılı
+bulgu listesi repo dışında tutuluyor.
 
-**Veride hâlihazırda ne var:**
-```
-  toplam urun            : 16807
-  HTML-anlamli karakter  : 936  (%5.57)
-  adinda KESME ISARETI   : 588  (%3.50)   <- onclick kirilma adayi
-  adinda & (ampersand)   : 373  (%2.22)
-    Falım Orman Meyveli 5'li Şekersiz Sakız 35 Gr
-    Werther's Original Soft Caramel 100 Gr
-    Lc L'art Du Chocolat Mini Head Oval Sütlü Çikolata 22 Gr
-```
+**İşlevsel etki (güvenlikten ayrı):** Bazı ürün adlarındaki özel karakterler
+belirli kartlarda etkileşimi sessizce bozabiliyor (kullanıcı tıklar, bir şey
+olmaz); tetik, kategori dağılımının değişmesi.
 
-**Somut kırılma kanıtı (yerel simülasyon, zararsız dize):**
-`dusenler`/`supheli` şeritlerinde `_id` **ürün adından** üretiliyor
-(`app.js:2643` ve `app.js:2700`: `u._id = u.ad + '_' + (u.agirlik_hacim||'')`),
-kart ise `onclick="openDetay('${u._id}')"` basıyor:
-```
-uretilen HTML:
-  <div class="strip-card" onclick="openDetay('Falim 5'li Sakiz_35 Gr')">...</div>
-tarayicinin onclick olarak okuyacagi: "openDetay('Falim 5'li Sakiz_35 Gr')"
-JS olarak gecerli mi: HAYIR — SyntaxError: missing ) after argument list
-```
-
-**Etki:** İki katmanlı.
-1. **İşlevsel (bugün gerçek):** kesme işaretli bir ürün bu iki şeride düşerse kart
-   **tıklanamaz** hale gelir, sessizce. Kullanıcı tıklar, hiçbir şey olmaz.
-2. **Güvenlik (bugün istismar edilebilir değil, ama tek savunma yok):** Kaynak
-   marketfiyati API'si; ürün adına `<img onerror=...>` koyabilen biri script
-   çalıştırabilir. Bugün aramızda kaçış YOK, tek engel kaynağın iyi niyeti.
-
-> **DÜZELTME (2026-08-19):** Yukarıdaki "bugün istismar edilebilir değil"
-> ifadesi ARTIK YANLIŞ. `src/worker.js` CSP'sine `script-src 'unsafe-inline'`
-> yayına çıktıktan sonra bu XSS'ler canlı-istismar edilebilir hale geldi —
-> enjekte edilen `onerror=`/`<script>` artık CSP tarafından engellenmiyor.
-> B1 Parti 1'de S3 (localStorage) sink'leri kapatıldı (şablon adı + sepet;
-> `_kacir` + yeni `_guvenliUrl`, bkz. `test_kacis.mjs`). S1 ölçümde SIFIR sink
-> çıktı (`?screen`/`?kat` whitelist'li). S2 (başka kullanıcı) ve S4 (dış API:
-> ürün adı/market/görsel — bu maddedeki `alt="${u.ad}"` vektörü dahil) HÂLÂ
-> AÇIK, ayrı partilerde kapatılacak. `unsafe-inline` göçü de ayrı proje.
-
-**Bugünkü fiili durum:** `data/anasayfa.json` içindeki 361 kartın **0**'ında `_id`
-tehlikeli karakter içeriyor — yani şu an kırık kart yok. Risk **gizli**, tetiği
-kategori dağılımının değişmesi. Ürün adlarının 31'inde `&` var (`Molped Pure&Soft`),
-o `innerHTML`'de sorunsuz render oluyor ama `alt="${u.ad}"` içinde attribute kırıyor.
+> **GÜNCELLEME (19.08.2026):** Bu maddedeki durum değerlendirmesi güncelliğini
+> yitirdi, yeniden ele alınıyor. Kaçış çalışması başladı: localStorage kaynaklı
+> render yolları merkezî kaçış yardımcılarına geçirildi (bkz. test_kacis.mjs).
+> Kalan kapsam ayrı turlarda kapatılacak; ayrıntı repo dışındaki denetim
+> notlarında tutuluyor.
 
 **Önem:** YÜKSEK
 
@@ -671,11 +624,8 @@ Canlı URL için **TestSprite CLI** gerekiyor.
 **Sonra — güvenlik sertleştirme:**
 10. **(#4) `fiyat_bildirim` hız sınırı.** RLS politikasına IP/kullanıcı başına
     pencere, veya bir Edge Function önüne koy.
-11. **(#5) Kaçış fonksiyonu.** Tek bir `esc()` yaz, `${u.ad}` geçen ~15 yeri
-    ondan geçir. Bugün istismar edilebilir değil ama tek savunma hattı yok.
-    _(2026-08-19: "bugün istismar edilebilir değil" ARTIK YANLIŞ — `unsafe-inline`
-    yayında, bkz. §1.5 düzeltme notu. Merkezî `_kacir` zaten var; B1 Parti 1'de
-    S3 sink'leri geçirildi, S4'ün ~15 yeri hâlâ açık.)_
+11. **(#5) Çıktı kaçışı.** Merkezî kaçış yardımcılarını render yollarına yay.
+    (19.08.2026: madde yeniden ele alınıyor, bkz. §1.5 güncelleme notu.)
 
 **En son — düşük etki:**
 12. (#13) `load` 7,6 sn — görsel boyutları / `decoding=async`.
