@@ -15,8 +15,8 @@ Tek istisna: TestSprite kurulum denemesi.
 | 1 | "30 günün en düşüğü" rozeti **%6,1 yanlış** | 2 | `app.js:1686`, metin `:1565` | 1492 gösterim / 91 yanlış; en kötü %45,5 (Ülker Gofret 16,00 ₺ iddia, ham dip 11,00 ₺) | **KRİTİK** |
 | 2 | ~~Ürün kartlarının hiçbiri klavyeyle erişilemiyor~~ **KAPANDI 2026-08-17 (0 oge)** | 4 | `.strip-card`, 51 öğe | onclick var, tabindex/role/keydown yok; sayfada toplam 15 odaklanabilir öğe | **KRİTİK** |
 | 3 | Odaklanabilir 15 öğenin **15'inde odak göstergesi yok** | 4 | genel CSS | outline 0/none, telafi box-shadow yok — WCAG 2.4.7 | **KRİTİK** |
-| 4 | `fiyat_bildirim`'e **anon INSERT açık**, hız sınırı yok | 1 | Supabase, `app.js:2436` | POST `{"_sid":123}` → `23502 NOT NULL` = RLS/GRANT geçildi | **YÜKSEK** |
-| 5 | **Kaçış fonksiyonu hiç yok**, 79 `innerHTML` | 1 | `app.js` geneli | 588 ürün adında kesme işareti (%3,5); onclick `SyntaxError` üretiyor | **YÜKSEK** |
+| 4 | ~~`fiyat_bildirim`'e anon INSERT açık, hız sınırı yok~~ **KAPANDI 19.08.2026** | 1 | Supabase, `app.js:2436` | authenticated + `auth.uid()` şartı; istemci oturuma bağlı (hız sınırı kalemi ayrı) | **YÜKSEK** |
+| 5 | XSS / çıktı kaçışı yüzeyi — yeniden ele alınıyor (bkz. §1.5) | 1 | `app.js` | ayrıntı repo dışında | **YÜKSEK** |
 | 6 | "İyi zaman" gerçek dipten kopabiliyor | 2 | `app.js:1718` | 3654 gösterim / 17 çelişki; Hayat Su: bugün 32,90 · gösterilen min 85,00 · ham min 26,25 | **YÜKSEK** |
 | 7 | **40 sessiz `catch`**, 17'si tamamen boş | 5 | `app.js` | `2560`/`2602` düşenler+şüpheli şeritlerini izsiz gizliyor | **YÜKSEK** |
 | 8 | "Sahte İndirim Analizi" **sessizce atlanabiliyor** | 5 | `update-data.yml` | `continue-on-error: true`; ardından şerit eski puanla üretilir, iş YEŞİL geçer | **YÜKSEK** |
@@ -76,32 +76,33 @@ tasarım gereği herkese açık (deploy edilen bundle'ın içinde). `github-toke
 
 ---
 
-### 1.2 `fiyat_bildirim` tablosuna anon INSERT açık — hız sınırı YOK — **YÜKSEK**
+### 1.2 `fiyat_bildirim` tablosuna anon INSERT — **KAPANDI 19.08.2026**
+
+**KAPANDI (19.08.2026):** Anon INSERT kapatıldı. Veritabanı politikası artık
+`authenticated` + `auth.uid()` şartı taşıyor (`with check kullanici_id =
+auth.uid()`); istemci tarafındaki yazma kapısı da oturuma bağlandı. Aşağıdaki
+kanıt kapanıştan ÖNCEKİ durumu belgeliyor (tarihsel).
 
 **Nerede:** Supabase `public.fiyat_bildirim`; istemci tarafı `app.js:2436`
 
-**Kanıt (yazma yapılmadan, kasıtlı tip/kısıt hatasıyla):**
+**Kanıt (kapanış öncesi — yazma yapılmadan, kasıtlı tip/kısıt hatasıyla):**
 ```
 POST /rest/v1/fiyat_bildirim  body={"_sid":123}
 -> HTTP 400
    {"code":"23502","message":"null value in column \"market\" of relation
     \"fiyat_bildirim\" violates not-null constraint"}
 ```
-`23502` bir **veritabanı kısıt hatası**. Yani istek GRANT + RLS katmanlarını
-GEÇTİ ve gerçek `INSERT`'e ulaştı; yalnızca NOT NULL kısıdı iptal etti.
-Satır oluşmadı. Karşılaştırma — okuma tarafı düzgün kapalı:
+`23502` bir **veritabanı kısıt hatası**. Kapanıştan önce istek GRANT + RLS
+katmanlarını geçip gerçek `INSERT`'e ulaşıyordu; yalnızca NOT NULL kısıdı iptal
+etti, satır oluşmadı. Okuma tarafı zaten kapalıydı:
 ```
 GET /rest/v1/fiyat_bildirim -> 401  {"code":"42501" permission denied}
 ```
 
-**Etki:** Anon anahtarla (ki bundle'da açıkta) `_sid` + `market` + gerekli alanları
-doldurup sınırsız bildirim yazılabilir. Bildirimler `get_fiyat_bildirimleri`
-RPC'siyle kullanıcılara gösteriliyor → sahte fiyat bildirimleriyle ekran kirletilebilir
-veya "kullanıcı bildirimi" verisi çöpe çevrilebilir. İstemci kodunda hız sınırı yok
-(`app.js:2436` çevresinde debounce/throttle/captcha yok). Sunucu tarafında sınır olup
-olmadığı `service_role` olmadan doğrulanamadı — **doğrulanmamış**, varsayılmadı.
+**Kalan (ayrı kalem):** `authenticated` kullanıcı için hız sınırı hâlâ ayrı bir
+sertleştirme kalemi (bkz. bölüm 3 / #4); anon yazma bu maddede kapandı.
 
-**Önem:** YÜKSEK (veri bütünlüğü + kötüye kullanım; kimlik/gizlilik sızıntısı değil)
+**Önem:** ~~YÜKSEK~~ → KAPANDI (anon yazma); hız sınırı kalemi ayrı izleniyor.
 
 ---
 
@@ -152,9 +153,9 @@ PostgREST'te statik, role göre değişmiyor. Sonuç ancak gerçek kolonla + kı
 **Bulgu:** Render yollarında çıktı kaçışı yüzeyi gözden geçirildi. Ayrıntılı
 bulgu listesi repo dışında tutuluyor.
 
-**İşlevsel etki (güvenlikten ayrı):** Bazı ürün adlarındaki özel karakterler
-belirli kartlarda etkileşimi sessizce bozabiliyor (kullanıcı tıklar, bir şey
-olmaz); tetik, kategori dağılımının değişmesi.
+**İşlevsel etki (güvenlikten ayrı):** Bazı kartlarda etkileşim sorunları gözlendi;
+kaçış çalışmasıyla birlikte ele alınıyor. (Ayrıntı, kalan kapsam kapandığında geri
+yazılabilir.)
 
 > **GÜNCELLEME (19.08.2026):** Bu maddedeki durum değerlendirmesi güncelliğini
 > yitirdi, yeniden ele alınıyor. Kaçış çalışması başladı: localStorage kaynaklı
