@@ -70,7 +70,11 @@
     #splash { display: none !important; }
     .bottom-nav { display: none !important; }
   </style></noscript>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- B5: TAM surume pinlendi (@2 kayan degil) + SRI. Hash INDIRILEN dosyadan
+     uretildi (sha384). Surumu yukseltirken integrity'yi de yeni dosyadan
+     yeniden uret; yoksa tarayici betigi reddeder. crossorigin=anonymous SRI
+     icin sart. Self-host ayri asama. -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.112.3" integrity="sha384-l8ah+VgaWtk1mvOe9VC+OirC6qHFF4yH7l7mKRidV9MSti3E9F463bMp6ZVN4kuC" crossorigin="anonymous"></script>
 <script data-goatcounter="https://pazar-app.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
