@@ -54,3 +54,10 @@ dist/
 # Guvenlik denetim raporu — kapatilmamis KRITIK XSS (B1) somuru haritasi iceriyor.
 # Repo PUBLIC; B1 duzeltilip yayina cikana kadar git'e GIRMEZ (kamuya acilmasin).
 DENETIM_GUVENLIK.md
+
+# 2026-08 - Supabase CLI yerel durumu (org id, pooler host, surum meta). Sir
+# DEGIL ama repoya girmemeli. NOT: Edge Function KAYNAGI supabase/functions/**
+# commit EDILIR; yalnizca .temp/ ve yerel gizli dosyalar haric tutulur.
+supabase/.temp/
+supabase/.env
+supabase/.branches/
