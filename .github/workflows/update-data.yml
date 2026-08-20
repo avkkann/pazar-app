@@ -37,12 +37,13 @@ jobs:
         run: python indirim_analiz.py
         env:
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-      - name: Fiyat Alarmi Taramasi
-        run: |
-          curl -sf -X POST "https://gbgxxahhbfnulmyecxia.supabase.co/functions/v1/fiyat-alarm-scan" \
-            -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}" \
-            -H "x-cron-secret: ${{ secrets.CRON_SECRET }}" \
-            -H "Content-Type: application/json"
+
+      # NOT: "Fiyat Alarmi Taramasi" bu job'dan CIKARILDI, ayri 'fiyat-alarm'
+      # job'una tasindi (needs: update). Gerekce: bu bir YAN IS (push bildirimi),
+      # yayin yolunu (veri commit + ana sayfa + tazelik) bloke ETMEMELI; ama
+      # ayri job HARD-FAIL kaldigi icin sessizce de yutulmaz (cokerse workflow
+      # kirmizi -> bildirim). needs: update, veri commit+push tamamlandiktan
+      # SONRA kosmayi garanti eder.
 
       # Ana sayfanin dort seridi. "Sahte Indirim Analizi"nden SONRA kosmali:
       # supheli serit indirim_supheli_* kolonlarini okuyor.
@@ -72,3 +73,20 @@ jobs:
       # continue-on-error YOK - amaci tam olarak isi kirmizi yapmak.
       - name: Veri Tazelik Kontrolu
         run: python scripts/veri_tazelik_kontrol.py
+
+  # Yan is: fiyat alarmi taramasi. AYRI job -> yayin yolunu (update) bloke
+  # etmez; HARD-FAIL kaldigindan cokerse workflow kirmizi olur (sessiz yutma
+  # yok). needs: update -> update'in TUM adimlari (veri commit+push dahil)
+  # basariyla bittikten SONRA kosar; boylece fonksiyonun raw.githubusercontent'ten
+  # cektigi data guncel olur. Checkout GEREKMEZ: yalnizca Edge Function'a curl
+  # atiyor, repo dosyasi okumuyor.
+  fiyat-alarm:
+    needs: update
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fiyat Alarmi Taramasi
+        run: |
+          curl -sf -X POST "https://gbgxxahhbfnulmyecxia.supabase.co/functions/v1/fiyat-alarm-scan" \
+            -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}" \
+            -H "x-cron-secret: ${{ secrets.CRON_SECRET }}" \
+            -H "Content-Type: application/json"
