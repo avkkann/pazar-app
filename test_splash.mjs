@@ -149,6 +149,9 @@ console.log('\n=== 8. YENI ANIMASYON: markup + tema token bagi ===');
   ok('ad rengi tokenden (--text)', /\.splash-ad \{[^}]*color:\s*var\(--text\)/.test(CSS), '');
   ok('slogan rengi tokenden (--text-muted)', /\.splash-slogan \{[^}]*var\(--text-muted\)/.test(CSS), '');
   ok('zam rozeti tokenden (--rozet-pahali)', /\.splash-rozet \{[\s\S]*?var\(--rozet-pahali-bg\)/.test(CSS), '');
+  // Rozet boyutu tip olcegine bagli (okunur alt sinir --fs-1=12px); ham .3em degil.
+  // Sadece token bagi dogrulanir — piksel/konum degeri iddia edilmez (kirilgan olur).
+  ok('zam rozeti boyutu tokenden (--fs-1)', /\.splash-rozet \{[^}]*?font-size:\s*var\(--fs-1\)/.test(CSS), '');
   // Cok asamali giris tokenleri tanimli
   for (const t of ['--splash-ad-gec', '--splash-ad-sure', '--splash-slogan-gec', '--splash-slogan-adim', '--splash-halka-sure']) {
     ok(`  ${t} tanimli`, new RegExp(t + ':\\s*[^;]+;').test(CSS), '');

@@ -1889,11 +1889,17 @@
 
     /* ZAM ROZETI: kırmızı, STATIK %27 (sayaç YOK — startup'ı ağırlaştırmasın) */
     .splash-rozet {
-      position: absolute; left: 76%; top: -6%;
+      /* Boyut: --fs-1 (12px) = tip ölçeğinin "rozet, etiket, en küçük meta"
+         basamağı; okunur alt sınır (eski .3em ~6px iPhone'da fark edilmiyordu).
+         padding/gap/svg em olduğu için font ile birlikte ölçeklenir.
+         Konum: mührün (120px) sağ-üst köşesine yakın; % geometrik çapa — spacing
+         token'ı köşe konumu için uygun değil (bildirildi). Büyüyünce mühre
+         yaklaştırıldı, çakışma/taşma yok. */
+      position: absolute; left: 62%; top: -14%;
       display: inline-flex; align-items: center; gap: .28em;
       padding: .3em .55em; border-radius: 999px;
       background: var(--rozet-pahali-bg); color: var(--rozet-pahali-fg);
-      font-weight: 700; font-size: .3em; line-height: 1; white-space: nowrap;
+      font-weight: 700; font-size: var(--fs-1); line-height: 1; white-space: nowrap;
       opacity: 0; transform: scale(.6);
       animation: splashRozet var(--splash-ad-sure) var(--ease-giris) var(--splash-zam-gec) both;
     }
