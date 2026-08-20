@@ -41,6 +41,7 @@ jobs:
         run: |
           curl -sf -X POST "https://gbgxxahhbfnulmyecxia.supabase.co/functions/v1/fiyat-alarm-scan" \
             -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}" \
+            -H "x-cron-secret: ${{ secrets.CRON_SECRET }}" \
             -H "Content-Type: application/json"
 
       # Ana sayfanin dort seridi. "Sahte Indirim Analizi"nden SONRA kosmali:

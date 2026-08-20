@@ -1,0 +1,27 @@
+name: Haftalik Bulten
+# haftalik-bulten Edge Function'ini tetikler (aboneler'e haftalik ozet e-postasi).
+# Fonksiyon paylasilan gizli baslikla korunuyor: x-cron-secret == CRON_SECRET.
+# Verisi (RPC'ler + bulten_aboneler) gunluk "Veri Guncelle" kosusundan sonra
+# taze; bu is Pazartesi 06:30 UTC'de (gunluk kosu ~03:20'de bittikten sonra)
+# kosar. Elle de tetiklenebilir (workflow_dispatch).
+on:
+  schedule:
+    - cron: '30 6 * * 1'
+  workflow_dispatch:
+jobs:
+  gonder:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Haftalik bulteni gonder
+        run: |
+          KOD=$(curl -s -o /tmp/yanit.txt -w "%{http_code}" -X POST \
+            "https://gbgxxahhbfnulmyecxia.supabase.co/functions/v1/haftalik-bulten" \
+            -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}" \
+            -H "x-cron-secret: ${{ secrets.CRON_SECRET }}" \
+            -H "Content-Type: application/json")
+          echo "HTTP=$KOD"
+          echo "yanit: $(cat /tmp/yanit.txt)"
+          if [ "$KOD" != "200" ]; then
+            echo "::error::haftalik-bulten HTTP $KOD dondu (200 bekleniyordu) - e-posta gonderilmemis olabilir"
+            exit 1
+          fi
