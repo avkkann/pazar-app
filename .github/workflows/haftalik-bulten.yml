@@ -1,16 +1,19 @@
-name: Haftalik Bulten
+name: haftalik-bulten
+# NOT: name = dosya adi (benzersiz). Eski 'Haftalik Bulten' adi bulten.yml ile
+# CAKISIYORDU; bulten.yml silindi, isim dosya adina sabitlendi ki tekrar olmasin.
 # haftalik-bulten Edge Function'ini tetikler (aboneler'e haftalik ozet e-postasi).
 # Fonksiyon paylasilan gizli baslikla korunuyor: x-cron-secret == CRON_SECRET.
 # Verisi (RPC'ler + bulten_aboneler) gunluk "Veri Guncelle" kosusundan sonra
-# taze; bu is Pazartesi 06:30 UTC'de (gunluk kosu ~03:20'de bittikten sonra)
-# kosar. Elle de tetiklenebilir (workflow_dispatch).
+# taze. Cuma 15:00 UTC (18:00 TR) -- hafta sonu alisverisinden once (eski
+# bulten.yml'in niyeti). Elle de tetiklenebilir (workflow_dispatch).
 on:
   schedule:
-    - cron: '30 6 * * 1'
+    - cron: '0 15 * * 5'
   workflow_dispatch:
 jobs:
   gonder:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Haftalik bulteni gonder
         run: |
