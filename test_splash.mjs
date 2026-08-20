@@ -24,12 +24,16 @@ console.log('\n=== 1. BOSA BEKLEME: sabit sure YOK, gercek sinyal VAR ===');
   ok('splash blogu bulundu', splashBlok.length > 200, 'uzunluk=' + splashBlok.length);
   ok('`pazar:hazir` olayini dinliyor', /addEventListener\('pazar:hazir'/.test(splashBlok), '');
   ok('  olay TEK KEZ baglanmis (once:true)', /\{\s*once:\s*true\s*\}/.test(splashBlok), '');
-  // Eski hâl: setTimeout(..., 600) TAVAN idi. Artik tek setTimeout'lar
-  // TABAN (flas onleme) ve KILIT (kilitlenme korumasi) icin.
+  // Eski hâl: setTimeout(..., 600) TAVAN idi. Kalkti.
   ok('eski 600 ms sabit bekleme KALKTI', !/setTimeout\([^)]*,\s*600\s*\)/.test(splashBlok), '');
   ok('  eski 250 ms zinciri KALKTI', !/setTimeout\([^)]*,\s*250\s*\)/.test(splashBlok), '');
-  ok('TABAN (flas onleme) tanimli', /TABAN_MS\s*=\s*\d+/.test(splashBlok), '');
-  ok('  TABAN 150-300 ms araliginda', (() => { const m = /TABAN_MS\s*=\s*(\d+)/.exec(splashBlok); return m && +m[1] >= 150 && +m[1] <= 300; })(), '');
+  // Kapanma = max(animasyon bitti, veri hazir). TABAN artik SABIT SAYI DEGIL:
+  // animasyon suresine (token --splash-toplam) bagli -> animasyon yarida kesilmez.
+  ok('TABAN animasyon suresine bagli (token --splash-toplam okunuyor)',
+     /getPropertyValue\('--splash-toplam'\)/.test(splashBlok) || /_splashMs\('--splash-toplam'/.test(splashBlok), splashBlok.slice(0, 200));
+  ok('  sabit TABAN_MS sayisi KALMADI', !/TABAN_MS\s*=\s*\d+/.test(splashBlok), '');
+  ok('  reduced-motion\'da TABAN = 0 (bekleme yok)',
+     /azalt\s*\?\s*0\s*:\s*_splashMs\('--splash-toplam'/.test(splashBlok), splashBlok.slice(0, 400));
   ok('  TABAN ilk KAREden sayiliyor (navigasyondan degil)', /requestAnimationFrame/.test(splashBlok), '');
 }
 
@@ -98,7 +102,8 @@ console.log('\n=== 5. TOKEN BAGI (ham deger yok) ===');
   ok('  sonme suresi tokenden (--splash-cikis)', /var\(--splash-cikis\)/.test(kural), kural);
   ok('  giris suresi tokenden (--splash-giris)', /var\(--splash-giris\)/.test(markKural), markKural);
   // JS sonme suresini CSS'ten okumali, ikinci bir sayi tutmamali
-  ok('JS sonme suresini CSS tokeninden okuyor', /getPropertyValue\('--splash-cikis'\)/.test(splashBlok), '');
+  ok('JS sonme suresini CSS tokeninden okuyor (_splashMs --splash-cikis)',
+     /_splashMs\('--splash-cikis'/.test(splashBlok) && /getPropertyValue\(ad\)/.test(splashBlok), '');
 }
 
 console.log('\n=== 6. EASING: TEK KAYNAK, IKI ROL ===');
@@ -151,6 +156,26 @@ console.log('\n=== 8. YENI ANIMASYON: markup + tema token bagi ===');
   // Kademe: slogan kelimeleri token adimiyla gecikiyor (ham ms degil)
   ok('slogan kademesi token adimindan (calc + --splash-slogan-adim)',
      /nth-child\(2\)[^}]*calc\(var\(--splash-slogan-gec\) \+ 1 \* var\(--splash-slogan-adim\)\)/.test(CSS), '');
+}
+
+console.log('\n=== 9. CIZELGE ~1.2s\'ye SIKISTIRILDI + --splash-toplam tutarli ===');
+{
+  const ms = (n) => { const m = new RegExp('--' + n + ':\\s*([0-9.]+)ms').exec(CSS); return m ? +m[1] : null; };
+  const giris = ms('splash-giris'), halka = ms('splash-halka-sure'),
+        adGec = ms('splash-ad-gec'), adSure = ms('splash-ad-sure'),
+        cizgiGec = ms('splash-cizgi-gec'), zamGec = ms('splash-zam-gec'),
+        sloGec = ms('splash-slogan-gec'), sloSure = ms('splash-slogan-sure'),
+        sloAdim = ms('splash-slogan-adim'), toplam = ms('splash-toplam');
+  ok('--splash-toplam tanimli', toplam != null, String(toplam));
+  // Son adim = slogan son kelimesi (gec + 3*adim + sure) — --splash-toplam ONUNLA esit olmali
+  const sonSlogan = sloGec + 3 * sloAdim + sloSure;
+  ok('  --splash-toplam = son slogan bitisi (animasyon gercekten bitiyor)',
+     toplam === sonSlogan, `toplam=${toplam} sonSlogan=${sonSlogan}`);
+  // Tum adimlarin bitisi <= toplam (hicbiri toplamdan sonra bitmiyor)
+  const bitisler = [giris, giris + halka, adGec + adSure, cizgiGec + adSure, zamGec + adSure, sonSlogan];
+  ok('  hicbir adim --splash-toplam\'dan sonra bitmiyor', Math.max(...bitisler) <= toplam, 'max=' + Math.max(...bitisler));
+  // SIKISMA hedefi: toplam ~1.2s (900-1300ms araligi kabul)
+  ok('  toplam ~1.2s (900-1300ms) — animasyon yarida kesilmesin diye kisa', toplam >= 900 && toplam <= 1300, String(toplam));
 }
 
 console.log(`\nPASS=${pass}  FAIL=${fail}`);

@@ -22,20 +22,25 @@
          Zemin TEMA DEĞİŞKENİNE bağlı (--bg). Önceden #ffffff sabitti ve
          koyu temada yeşil→BEYAZ→siyah diye 1,5 sn'de üç zemin çakıyordu. */
       --splash-logo: 120px;
-      --splash-giris: 400ms;  /* mührün (mark) belirmesi */
+      --splash-giris: 320ms;  /* mührün (mark) belirmesi */
       --splash-cikis: 200ms;  /* splash'in sönmesi */
-      /* Çok aşamalı giriş — tasarım zaman çizelgesinin (Mühür→İsim→Zam→
-         Slogan) cue gecikmeleri. Splash `pazar:hazir` gelince söndüğü için
-         (normalde ~380 ms) sonraki aşamalar yalnız YAVAS acilista görünür;
-         animasyon açılışı GECIKTIRMEZ (ambient). */
-      --splash-ad-gec: 650ms;       /* İsim cue */
-      --splash-ad-sure: 460ms;
-      --splash-cizgi-gec: 840ms;    /* yeşil alt-çizgi */
-      --splash-zam-gec: 1100ms;     /* Zam rozeti (statik pop) */
-      --splash-slogan-gec: 1650ms;  /* Slogan cue */
-      --splash-slogan-sure: 440ms;
-      --splash-slogan-adim: 90ms;   /* kelime kademesi */
-      --splash-halka-sure: 520ms;   /* büyüteç halkası çizimi */
+      /* Çok aşamalı giriş — tasarım çizelgesi (Mühür→İsim→Zam→Slogan) ~1.2s'ye
+         SIKIŞTIRILDI (önce 2.36s'ydi, veri ~850ms'de gelince yarıda kesiliyordu).
+         Sıra/karakter korundu, yalnız hızlandı. Son adım (slogan) --splash-toplam
+         anında biter; app.js splash'ı EN ERKEN o anda kapatır (bkz. --splash-toplam).
+         Bitişler (ms): mark 320 · halka 700 · ad 770 · çizgi/nokta 880 · rozet
+         1020 · slogan 1185. */
+      --splash-ad-gec: 430ms;       /* İsim cue */
+      --splash-ad-sure: 340ms;
+      --splash-cizgi-gec: 540ms;    /* yeşil alt-çizgi + nokta */
+      --splash-zam-gec: 680ms;      /* Zam rozeti (statik pop) */
+      --splash-slogan-gec: 720ms;   /* Slogan cue */
+      --splash-slogan-sure: 300ms;
+      --splash-slogan-adim: 55ms;   /* kelime kademesi */
+      --splash-halka-sure: 380ms;   /* büyüteç halkası çizimi */
+      /* Animasyonun BİTTİĞİ an (son slogan kelimesi = 720 + 3*55 + 300 = 1185).
+         app.js splash kapanma TABANI'nı buradan okur (tek kaynak). */
+      --splash-toplam: 1185ms;
 
       --skel-base: #E8E8E5;
       --skel-hi: #F5F5F2;
@@ -1847,9 +1852,10 @@
     }
     /* ══ SPLASH (uygulama girişi) ═══════════════════════════════════════
        Zemin uygulamanın kendi zemini (var(--bg)) — sabit beyaz DEĞİL (koyu
-       temada çakma biter). Yaşam döngüsü app.js'te: pazar:hazir bekler,
-       TABAN 200ms flaş-önleme. Animasyon AMBIENT — hemen başlar, hazır
-       sinyaliyle söner, açılışı GECIKTIRMEZ; yavaş açılışta daha çoğu görülür.
+       temada çakma biter). Yaşam döngüsü app.js'te: kapanma = max(animasyon
+       bitti [--splash-toplam ~1185ms], veri hazır). Yani animasyon YARIDA
+       KESİLMEZ; veri erkense animasyon bitene kadar (kısa) beklenir, geç
+       gelirse hiç beklenmez. reduced-motion'da bekleme yok (animasyon atlanır).
        Süre/renk/easing token'a bağlı; token karşılığı olmayanlar işaretli.
        Görsel: inline SVG mühür (icon fetch'i YOK) + "Pazar" + çizgi + slogan. */
     #splash {

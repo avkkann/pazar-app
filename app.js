@@ -73,12 +73,21 @@
   // acan kullanici en cok odeyen taraftl.
   //
   // Artik splash `pazar:hazir` olayini bekliyor (bkz. _anaEkraniCiz).
-  // TAVAN yok. Iki koruma var:
-  //   TABAN  — splash GORULDUKTEN sonra en az bu kadar kalir; cok hizli
-  //            acilista bir kare gorunup kaybolmasin (flas onleme).
+  // Kapanma = max(ANIMASYON BITTI, VERI HAZIR) — ikisinin GEC olani. Iki koruma:
+  //   TABAN  — animasyonun BITMESI garanti olsun diye splash en az animasyon
+  //            suresi kadar gorulur (CSS token --splash-toplam); veri daha erken
+  //            hazirsa fark kadar bekler, GEC gelirse hic beklemez.
+  //            reduced-motion'da animasyon atlandigi icin TABAN = 0.
+  //            !! GERILEME DEGIL !!: 8503f6f'te "sabit 600ms bekleme" BILEREK
+  //            kaldirilmisti (hazir ekranin ustundeki opak katmanda bosa beklenmesin).
+  //            Bu onu geri GETIRMEZ: sabit sure degil, TABAN'i ANIMASYON SURESINE
+  //            baglar. Sebep: yeni splash cok asamali (mark->ad->slogan ~1185ms);
+  //            veri ~850ms'de gelince animasyon yarida kesiliyordu. Yani "bosa
+  //            bekleme" degil, "baslayan animasyonu bitir". Sure buyurse (token)
+  //            burasi kendiliginden uyar.
   //   KILIT  — hazir sinyali hic gelmezse kullanici opak katmanin altinda
-  //            kalmasin. Bu bir "sure ayari" degil, KILITLENME korumasi:
-  //            devreye girerse SESSIZ kalmaz, konsola uyari basar.
+  //            kalmasin. "Sure ayari" degil, KILITLENME korumasi: devreye girerse
+  //            SESSIZ kalmaz, konsola uyari basar (4000 ms KALIR).
   (function(){
     // TARAYICI DISINDA CIK. Build betikleri app.js'i node:vm icinde kosturuyor
     // (scripts/app-vm.mjs) ve orada getComputedStyle/requestAnimationFrame yok;
@@ -87,10 +96,18 @@
     if (typeof getComputedStyle !== 'function' || typeof requestAnimationFrame !== 'function') return;
     var s = document.getElementById('splash');
     if (!s) return;
-    var TABAN_MS = 200;
     var KILIT_MS = 4000;
     var gorulduT = null;
     var bitti = false;
+
+    // CSS zaman tokenini ms'e cevirir (ms ya da s kabul eder). Iki yerde
+    // (--splash-toplam, --splash-cikis) ayri sayi tutmayalim.
+    function _splashMs(ad, def) {
+      var ham = getComputedStyle(document.documentElement).getPropertyValue(ad);
+      var v = parseFloat(ham) || def;
+      if (/\ds\s*$/.test(ham.trim()) && !/ms/.test(ham)) v *= 1000;
+      return v;
+    }
 
     // Splash'in gercekten boyandigi an (ilk kare) — TABAN bundan sayilir.
     // Navigasyon anindan saymak yanlis olurdu: splash ~290 ms'de boyaniyor.
@@ -100,22 +117,20 @@
       if (bitti) return;
       bitti = true;
       var gecen = gorulduT == null ? 0 : performance.now() - gorulduT;
+      var azalt = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+      // TABAN = animasyonun bitisi (token --splash-toplam) ki animasyon yarida
+      // kesilmesin; veri daha erken hazirsa fark kadar bekler (max mantigi).
+      // reduced-motion'da animasyon yok -> TABAN 0, hic bekleme.
+      var taban = azalt ? 0 : _splashMs('--splash-toplam', 0);
       setTimeout(function () {
         s.classList.add('gizle');
-        // Sonme suresi CSS tokeninden okunuyor (--splash-cikis) — iki yerde
-        // ayri sayi tutmayalim. Hareket azaltmada gecis yok, aninda kaldir.
-        var azalt = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-        var sure = 0;
-        if (!azalt) {
-          var ham = getComputedStyle(document.documentElement).getPropertyValue('--splash-cikis');
-          sure = parseFloat(ham) || 200;
-          if (/\ds\s*$/.test(ham.trim()) && !/ms/.test(ham)) sure *= 1000;
-        }
+        // Sonme suresi de CSS tokeninden; reduced-motion'da aninda (0).
+        var sure = azalt ? 0 : _splashMs('--splash-cikis', 200);
         setTimeout(function () {
           s.style.display = 'none';
           onboardingBaslat();
         }, sure);
-      }, Math.max(0, TABAN_MS - gecen));
+      }, Math.max(0, taban - gecen));
     }
 
     document.addEventListener('pazar:hazir', kaldir, { once: true });
