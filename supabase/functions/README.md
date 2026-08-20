@@ -51,3 +51,10 @@ Her iki fonksiyon da **asıl iş başlamadan önce** şu kapıdan geçer:
 > Not: `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `RESEND_API_KEY`,
 > `VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY` de Supabase secret'ları olarak tanımlı
 > olmalıdır. Hiçbir gerçek secret değeri bu repoya yazılmaz (repo PUBLIC).
+
+## Değişiklik notu
+
+- **2026-08-20:** Kapı canlıda doğrulanırken `CRON_SECRET` yeni rastgele bir
+  değerle **yeniden üretildi** (`supabase secrets set`). Değeri hiçbir yere
+  kaydedilmedi. Zamanlayıcı kurulurken `x-cron-secret` başlığı bu **güncel**
+  değeri taşımalıdır; eski bir değer artık geçersizdir.
