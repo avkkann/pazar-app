@@ -1575,6 +1575,29 @@
   line-height: 1;
 }
 .sablon-chip-del:hover { color: #c00; }
+/* ═══ Sablon chip DOKUNMA HEDEFI 44px — gorsel boyut DEGISMEZ ══════════
+   Chip (yukle) ic ice bir 'sil' butonu tasidigindan paylasilan ::after
+   kuralina EKLENMEDI (o, del'i de kaplayip tiklamayi yukle'ye cevirirdi).
+   Cozum: chip'in gorunmez ::after'i dikey 44 verir; .sablon-chip-del
+   position:relative + z-index ile o ::after'in USTUNDE kalir ve kendi
+   44'luk ::after'iyla bagimsiz tiklanir. .sablon-chip.add (yaprak buton)
+   da ayni .sablon-chip selektorunden 44 aliyor. */
+.sablon-chip { position: relative; }
+.sablon-chip::after {
+  content: ''; position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%; height: 100%; min-height: 44px;
+  pointer-events: auto;
+}
+.sablon-chip-del { position: relative; z-index: 1; }
+.sablon-chip-del::after {
+  content: ''; position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%; height: 100%; min-width: 32px; min-height: 44px;
+  pointer-events: auto;
+}
+/* Klavye odagi gorunur olsun (focus-visible) — chip role=button+tabindex */
+.sablon-chip:focus-visible { outline: 2px solid var(--primary, #0E4938); outline-offset: 2px; }
 .alt-kat-bar {
   display: flex;
   gap: var(--space-2);

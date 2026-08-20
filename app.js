@@ -905,9 +905,10 @@ function renderSablonBar() {
     const sidAttr = _kacir(s.id);  // öznitelik değeri; handler this.dataset.id'den okur
     const adSafe = _kacir(_sablonDisplayAd(s.ad) || 'Şablon');  // S3: localStorage şablon adı, metin bağlamı
     html += '<span class="sablon-chip" data-id="' + sidAttr + '" '
+         + 'role="button" tabindex="0" aria-label="' + adSafe + ' şablonunu yükle" '
          + 'onclick="sablonYukleUI(this.dataset.id)" '
          + 'oncontextmenu="event.preventDefault();sablonDuzenleUI(this.dataset.id);return false;" '
-         + 'title="Tıkla: yükle | Sağ tık / uzun bas: düzenle">'
+         + 'title="Tıkla/Enter: yükle | Sağ tık / uzun bas: düzenle">'
          + adSafe
          + ' <button class="sablon-chip-del" data-id="' + sidAttr + '" onclick="event.stopPropagation();sablonSilUI(this.dataset.id)" title="Sil">×</button>'
          + '</span>';
@@ -923,6 +924,15 @@ function renderSablonBar() {
     }, { passive: true });
     chip.addEventListener('touchend', () => { if (timer) clearTimeout(timer); });
     chip.addEventListener('touchmove', () => { if (timer) { clearTimeout(timer); timer = null; } });
+    // Klavye: Enter/Space -> birincil eylem (yukle). Duzenleme (uzun-bas/sag-tik)
+    // klavye karsiligi yok; istek: en azindan birincil eylem erisilebilir olsun.
+    // Not: sil butonu native <button> -> zaten Tab+Enter ile erisiliyor.
+    chip.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+        e.preventDefault();
+        sablonYukleUI(chip.dataset.id);
+      }
+    });
   });
 }
 

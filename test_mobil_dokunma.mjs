@@ -141,5 +141,39 @@ console.log('\n=== 6. ANA SAYFA ARAMA: sonuc ilk ekranda (aradaki bolumler gizli
   ok('  arama handler\'inda scrollIntoView YOK (her tusta ziplama yok)', idx >= 0 && !/scrollIntoView/.test(civar), '');
 }
 
+console.log('\n=== 7. SABLON-CHIP: 44px dokunma hedefi + KLAVYE ERISIMI ===');
+{
+  // renderSablonBar kaynagini izole et (markup + keydown burada)
+  const bi = APP.indexOf('function renderSablonBar(');
+  const src = bi >= 0 ? APP.slice(bi, APP.indexOf('\n}', bi) + 2) : '';
+  ok('renderSablonBar bulundu', !!src, '');
+
+  // --- DOKUNMA HEDEFI (::after 44) — gorsel boyut degismeden ---
+  ok('CSS .sablon-chip::after min-height 44px (chip 44 dikey)',
+     /\.sablon-chip::after \{[^}]*min-height:\s*44px/.test(CSS), '');
+  ok('CSS .sablon-chip-del::after min-height 44px (sil butonu 44)',
+     /\.sablon-chip-del::after \{[^}]*min-height:\s*44px/.test(CSS), '');
+  // del, chip ::after'in USTUNDE kalmali (yoksa chip ::after del'i yutar -> tik yukle olur)
+  ok('CSS .sablon-chip-del z-index (chip ::after ustunde, del tiklanir kalir)',
+     /\.sablon-chip-del \{[^}]*z-index:/.test(CSS), '');
+  ok('CSS .sablon-chip:focus-visible odak halkasi kurali',
+     /\.sablon-chip:focus-visible/.test(CSS), '');
+
+  // --- KLAVYE ERISIMI ---
+  // Chip span'i odaklanabilir + rol tasimali (markup birlestirilmis -> kaynakta izole string)
+  ok('markup: sablon-chip span role="button" tabindex="0" tasiyor',
+     /role="button" tabindex="0"/.test(src), '');
+  ok('markup: sablon-chip aria-label var (SR icin ne yaptigi belli)',
+     /aria-label="/.test(src), '');
+  // Birincil eylem (yukle) Enter/Space ile calismali — addEventListener (satir-ici handler EKLENMEDI)
+  ok('keydown dinleyicisi var (Enter/Space -> sablonYukleUI)',
+     /addEventListener\('keydown'[\s\S]*?sablonYukleUI\(chip\.dataset\.id\)/.test(src), '');
+  ok('  keydown Enter VE Space kapsiyor',
+     /keydown[\s\S]*?e\.key === 'Enter'[\s\S]*?e\.key === ' '/.test(src), '');
+  // sil butonu native <button> (Tab+Enter ile zaten erisilir)
+  ok('sil butonu native <button> (klavye ile erisilir)',
+     /<button class="sablon-chip-del"/.test(src), '');
+}
+
 console.log(`\nPASS=${pass}  FAIL=${fail}`);
 process.exit(fail ? 1 : 0);
