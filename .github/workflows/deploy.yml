@@ -42,6 +42,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
+      - name: Python bagimliliklari
+        # test_depot/hal/liste_fiyat scraper modullerini import ediyor
+        # (hal_scraper vb.), o moduller modul seviyesinde 'requests' cekiyor ->
+        # yoksa ModuleNotFoundError. update-data.yml ile ayni bagimliliklar.
+        run: pip install requests beautifulsoup4
       - name: JS testleri (test_*.mjs)
         run: |
           fail=0
