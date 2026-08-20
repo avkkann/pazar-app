@@ -4354,7 +4354,7 @@ function toggleSepet(id) {
     const u = productMap[id] || urunler.find(u => u._id === id);
     if (!u) return;
     sepet.push({
-      _id: u._id, ad: u.ad, resim: u.resim,
+      _id: u._id, _sid: u._sid, ad: u.ad, resim: u.resim,
       agirlik_hacim: u.agirlik_hacim, ana_kategori: u.ana_kategori,
       market_fiyatlari: u.market_fiyatlari
     });
@@ -4393,6 +4393,18 @@ function removeFromSepet(id) {
   renderSepet();
 }
 
+// Sepet ogesinde _sid TEMBEL backfill: eski (_sid'siz) sepetler icin _id'den
+// productMap uzerinden cozer ve ogeye YAZAR (additive; bir sonraki saveSepet'te
+// kalicilasir). productMap yuklenmemisse ya da urun kataloğdan cikmissa null
+// doner -> cagiran taraf rozeti CIZMEZ (ayri dal; sessiz catch YOK).
+function _sepetSid(item) {
+  if (item && item._sid) return item._sid;
+  const p = item && productMap[item._id];
+  if (p && p._sid) { item._sid = p._sid; return item._sid; }
+  return null;
+}
+let _sepetRozetYuklemeBasladi = false;
+
 function renderSepet() {
   document.getElementById('sepetCount').textContent = sepet.length;
   renderSablonBar();
@@ -4415,11 +4427,22 @@ function renderSepet() {
       ? `<div style="text-align:right;color:var(--primary);font-size:.82rem;font-weight:700;flex-shrink:0;margin-right:6px;line-height:1.4">
            ${tlHTML(mktF.fiyat)}<br><span style="font-size:.65rem;font-weight:500">${_kacir(MARKET_NAMES[mktF.market]||mktF.market||'?')}</span>
          </div>` : '';
+    // Rozet: TEK KAYNAK urunRozetleriHTML (mantik yeniden yazilmaz). CANLI
+    // urunden hesaplanir (productMap[u._id]) -- rozet fonksiyonlari en_dusuk_fiyat
+    // + 30g seriye bakiyor; bunlar gunluk degisir, sepetteki eski snapshot DEGIL.
+    // _sepetSid ayrica _sid'i sepet ogesine YAZAR (borc: sepet semasina _sid).
+    // Urun kataloğdan cikmissa canliUrun null -> rozet yok (ayri dal). Cift-cache
+    // sarti: _puanCache olmadan supheli/gercek ayirt edilemez, plain "indirim"
+    // gostermek sahteyi olumlu etiketleyebilir -> hepsini gizle.
+    _sepetSid(u);
+    const _canliUrun = productMap[u._id] || null;
+    const rozetHTML = (_canliUrun && _gecmisCache && _puanCache) ? urunRozetleriHTML(_canliUrun, true) : '';
     return `<div class="cart-item" tabindex="0" role="button" aria-label="${_kacir(u.ad)}" data-id="${_kacir(u._id)}" onclick="openDetay(this.dataset.id)" onkeydown="_kartTus(event, this.dataset.id)" style="cursor:pointer">
       <div class="cart-item-img">${img}</div>
       <div class="cart-item-info">
         <div class="cart-item-name">${_kacir(u.ad)}</div>
         ${u.agirlik_hacim ? `<div class="cart-item-sub">${_kacir(u.agirlik_hacim)}</div>` : ''}
+        ${rozetHTML ? `<div class="cart-item-rozet">${rozetHTML}</div>` : ''}
       </div>
       ${fiyatStr}
       <button class="cart-del" data-id="${_kacir(u._id)}" onclick="event.stopPropagation(); removeFromSepet(this.dataset.id)">
@@ -4453,6 +4476,18 @@ function renderSepet() {
     <button class="btn-compare" onclick="paylasSepet()" style="background:#25D366;margin-top:4px;display:flex;align-items:center;justify-content:center;gap:6px"><svg class="lc-share" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg> Listeyi Paylaş</button>
     <div id="compareOut"></div>
     </div>`;
+
+  // Rozetler icin cache'ler (30g seri + supheli puan) yuklu degilse (kullanici
+  // dogrudan sepete geldi) BIR KEZ yukle, gelince yeniden ciz -> rozetler
+  // beliriverir. Ilk render'i BLOKLAMAZ. gecmisVeriGetir/supheliPuanlariYukle
+  // kendi hatalarini yonetip resolve ediyor (throw yok) -> catch gerekmiyor;
+  // yukleme basarisizsa _puanCache null kalir, cift-cache sarti rozeti gizler.
+  if ((!_gecmisCache || !_puanCache) && !_sepetRozetYuklemeBasladi) {
+    _sepetRozetYuklemeBasladi = true;
+    Promise.all([gecmisVeriGetir(), supheliPuanlariYukle()]).then(function () {
+      if (_ekranGorunur('screen-sepet')) renderSepet();
+    });
+  }
 }
 
 function paylasSepet() {
@@ -5712,7 +5747,7 @@ function firsatSepetEkle(btn, id) {
     btn.style.background = '';
   } else {
     sepet.push({
-      _id: u._id, ad: u.ad, resim: u.resim,
+      _id: u._id, _sid: u._sid, ad: u.ad, resim: u.resim,
       agirlik_hacim: u.agirlik_hacim, ana_kategori: u.ana_kategori,
       market_fiyatlari: u.market_fiyatlari
     });
