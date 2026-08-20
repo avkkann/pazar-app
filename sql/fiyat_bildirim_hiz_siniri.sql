@@ -1,83 +1,142 @@
 -- ═══════════════════════════════════════════════════════════════════════
 -- fiyat_bildirim — SUNUCU TARAFI HIZ SINIRI
--- Hazirlayan: denetim 2026-08-11.  BU DOSYAYI BEN CALISTIRMADIM.
--- Supabase SQL Editor'de sirayla calistir; her blogun basindaki notu oku.
+-- Taslak: denetim 2026-08-11.  Sema/mantik duzeltmesi: 2026-08-20.
+-- BU DOSYA HENUZ CALISTIRILMADI. Supabase SQL Editor'de sirayla kosur;
+-- once tani bloklarini (0,1) oku, sonra trigger'i (3) uygula.
+--
+-- GERCEK SEMA (2026-08-20 dogrulandi):
+--   public.fiyat_bildirim(
+--     id               bigint,
+--     _sid             text,
+--     market           text,
+--     gosterilen_fiyat numeric,
+--     bildirilen_fiyat numeric,
+--     kullanici_id     uuid,
+--     olusturma        timestamptz default now())
+-- Mevcut yetki: policy "kendi bildirimini ekler" — TO authenticated,
+--   WITH CHECK (kullanici_id = auth.uid()); anon'un hicbir yetkisi yok;
+--   authenticated yalnizca INSERT (SELECT policy YOK).
+--
+-- 11.08 TASLAGINA GORE DUZELTMELER:
+--   - created_at -> olusturma          (dogru kolon adi)
+--   - fiyat_tl (PGRST204'te "yok" sanilan) -> gercekte gosterilen_fiyat +
+--     bildirilen_fiyat (numeric); ayrica kullanici_id (uuid), id (bigint).
+--   - ip kolonu YOK -> ip'ye dayali tani sorgusu kaldirildi.
+--   - anahtar _sid+market -> kullanici_id+_sid+market (PER-USER). Eski hali
+--     iki FARKLI kullanicinin ayni urun+market'i bildirmesini engelliyordu,
+--     bu YANLISTI. kullanici_id artik auth.uid()'e bagli oldugu icin
+--     per-user sinir hem anlamli hem dogru.
+--   - ikinci katman "global gunluk tavan" -> PER-USER gunluk tavan.
+--   - trigger SET search_path = '' (en siki; tam-nitelikli referanslar).
 -- ═══════════════════════════════════════════════════════════════════════
 
--- ───────────────────────────────────────────────────────────────────────
--- 0) ONCE TEMIZLIK — DENETIM SIRASINDA YANLISLIKLA YAZILAN SATIR
--- ───────────────────────────────────────────────────────────────────────
--- Izin sondasi yaparken {"_sid":"x","market":"bim"} yuku 201 ile gecti ve
--- muhtemelen BIR SATIR olustu. anon rolunun DELETE yetkisi yok (401), bu
--- yuzden temizleyemedim. Once bak, sonra sil:
-
-SELECT * FROM public.fiyat_bildirim WHERE _sid = 'x';
-
--- Yukaridaki sorgu satir donduruyorsa:
--- DELETE FROM public.fiyat_bildirim WHERE _sid = 'x' AND market = 'bim';
-
 
 -- ───────────────────────────────────────────────────────────────────────
--- 1) MEVCUT DURUM — esigi VERIYE bakarak secmek icin
+-- 0) ONCE TEMIZLIK — denetim/test sirasinda olusmus olabilecek satirlar
 -- ───────────────────────────────────────────────────────────────────────
--- Denetimde bu sayilari OKUYAMADIM (anon GET 401, RPC suzulmus sonuc
--- donuyor). Asagidaki esik onerisi bu yuzden gozlemden DEGIL, uygulamanin
--- KENDI mevcut kuralindan turetildi (bkz. 2. blok). Once bunlari kosur ve
--- sayilar farkli cikarsa esigi ona gore ayarla:
+SELECT id, _sid, market, kullanici_id, olusturma
+FROM public.fiyat_bildirim
+WHERE _sid IN ('x', '__test__');
 
+-- Yukaridaki satir donduruyorsa:
+-- DELETE FROM public.fiyat_bildirim WHERE _sid IN ('x', '__test__');
+
+
+-- ───────────────────────────────────────────────────────────────────────
+-- 1) MEVCUT DURUM — esikleri VERIYE bakarak dogrula (uydurma degil)
+-- ───────────────────────────────────────────────────────────────────────
 SELECT count(*) AS toplam_satir FROM public.fiyat_bildirim;
 
-SELECT date_trunc('day', created_at) AS gun, count(*) AS adet
+-- Gunluk hacim:
+SELECT date_trunc('day', olusturma) AS gun, count(*) AS adet
 FROM public.fiyat_bildirim
 GROUP BY 1 ORDER BY 1 DESC LIMIT 30;
 
--- Ayni _sid+market icin gunde birden fazla bildirim gelmis mi (supheli desen):
-SELECT _sid, market, date_trunc('day', created_at) AS gun, count(*) AS adet
+-- Ayni kullanici gunde kac bildirim atmis? (Layer 2 tavani icin EN KRITIK
+-- sayi budur — 30 onerisini buna gore ayarla):
+SELECT kullanici_id, date_trunc('day', olusturma) AS gun, count(*) AS adet
 FROM public.fiyat_bildirim
-GROUP BY 1,2,3 HAVING count(*) > 1
+GROUP BY 1, 2 HAVING count(*) > 5
 ORDER BY adet DESC LIMIT 50;
 
--- Tek gunde cok bildirim atan kaynak var mi (IP kolonu varsa):
--- SELECT ip, count(*) FROM public.fiyat_bildirim
--- WHERE created_at > now() - interval '1 day' GROUP BY 1 ORDER BY 2 DESC LIMIT 20;
+-- Ayni kullanici+urun+market gunde birden fazla mi? (Layer 1 ihlali adayi):
+SELECT kullanici_id, _sid, market, date_trunc('day', olusturma) AS gun, count(*) AS adet
+FROM public.fiyat_bildirim
+GROUP BY 1, 2, 3, 4 HAVING count(*) > 1
+ORDER BY adet DESC LIMIT 50;
 
 
 -- ───────────────────────────────────────────────────────────────────────
--- 2) ESIK — NEREDEN GELIYOR (uydurulmadi)
+-- 2) SINIR MANTIGI — ne, neden, hangi pencere (net)
 -- ───────────────────────────────────────────────────────────────────────
--- app.js:2451-2456 zaten sunu yapiyor:
---     const anahtar = 'fb_' + u._sid + '_' + market;
---     if (Date.now() - onceki < 86400000) -> "Bu urun icin bildirimin zaten alindi"
--- Yani uygulamanin KENDI kurali: ayni _sid+market icin 24 saatte 1 bildirim.
--- Ama bu localStorage'da, yani gercek bir sinir degil — temizle, gec.
--- Asagidaki trigger AYNI KURALI sunucuda uygular. Yeni bir politika
--- icat etmiyor, var olani zorunlu kiliyor.
+-- Layer 1 — (kullanici_id, _sid, market) icin SON 24 SAATTE 1 bildirim.
+--   app.js zaten localStorage'da 'fb_<sid>_<market>' 24s sogumasi yapiyor,
+--   ama o istemci tarafi (temizlenebilir / baska cihaz). Bu, ayni kurali
+--   sunucuda PER-USER zorunlu kilar. Anahtar kullanici_id ICERIR: iki farkli
+--   kullanici ayni urun+market'i bildirebilir; ayni kullanici gunde 1 kez.
 --
--- Ikinci sinir (gunluk toplam) icin 1. bloktaki sayilara bak. Bugunku
--- hacmi bilmeden sayi yazmadim; asagida GUNLUK_TAVAN'i sen doldur.
+-- Layer 2 — bir kullanici SON 24 SAATTE en fazla PER_USER_GUNLUK_TAVAN kayit.
+--   ONERI = 30/gun/kullanici.
+--   Gerekce: mesru kullanici bir alisveriste birkac urunun fiyatinin
+--   tutmadigini bildirebilir; 30 bol bir tavan (tipik kullanici 1-3).
+--   Etki: bir hesabi 30/gun ile sinirlar (ONCE SINIRSIZDI). Katalog 16.807
+--   urun; eskiden tek authenticated hesap 16.807 satir yazabiliyordu, artik
+--   30. 16.807'ye ulasmak icin ~560 dogrulanmis hesap gerekir.
+--   AYAR: 1. bloktaki "ayni kullanici gunde kac" gercek sayisi 30'u asiyorsa
+--   tavani yukselt (mesru kullaniciyi engelleme); cok altindaysa 15-20'ye
+--   dusur. Deger asagida tek yerde (constant) — SANA BIRAKIYORUM, tartisalim.
 
 
 -- ───────────────────────────────────────────────────────────────────────
--- 3) TRIGGER — ayni _sid+market icin 24 saatte 1 bildirim
+-- 3) TRIGGER — Layer 1 + Layer 2 tek fonksiyonda
 -- ───────────────────────────────────────────────────────────────────────
+-- SECURITY DEFINER ZORUNLU: authenticated rolunun SELECT policy'si YOK, yani
+--   RLS altinda trigger mevcut satirlari GOREMEZ (count 0 doner, sinir hic
+--   tetiklenmez). Definer, tabloyu owner haklariyla okuyup dogru sayar.
+-- SET search_path = '' : en siki. Tum tablo referanslari tam-nitelikli
+--   (public.fiyat_bildirim); now()/count()/interval pg_catalog'dan ortuk
+--   gelir. Boylece SECURITY DEFINER'da sema-kacirma (public.now() vb.) yuzeyi
+--   yok.
 CREATE OR REPLACE FUNCTION public.fiyat_bildirim_hiz_siniri()
 RETURNS trigger
 LANGUAGE plpgsql
 SECURITY DEFINER
-SET search_path = public
+SET search_path = ''
 AS $$
 DECLARE
-  son_kayit timestamptz;
+  PER_USER_GUNLUK_TAVAN constant int := 30;   -- Layer 2 (bkz. blok 2)
+  ayni_var  boolean;
+  bugun_adet int;
 BEGIN
-  SELECT max(created_at) INTO son_kayit
-  FROM public.fiyat_bildirim
-  WHERE _sid = NEW._sid
-    AND market = NEW.market
-    AND created_at > now() - interval '24 hours';
+  -- Policy kullanici_id = auth.uid() zorunlu kiliyor; yine de savunma:
+  IF NEW.kullanici_id IS NULL THEN
+    RAISE EXCEPTION 'kullanici_id zorunlu'
+      USING ERRCODE = 'not_null_violation';
+  END IF;
 
-  IF son_kayit IS NOT NULL THEN
-    RAISE EXCEPTION
-      'Bu urun ve market icin son 24 saatte zaten bildirim alindi'
+  -- Layer 1: ayni kullanici + urun + market, son 24 saatte var mi?
+  -- (_sid NULL olabilir; IS NOT DISTINCT FROM NULL=NULL'i eslestirir.)
+  SELECT EXISTS (
+    SELECT 1 FROM public.fiyat_bildirim
+    WHERE kullanici_id = NEW.kullanici_id
+      AND _sid IS NOT DISTINCT FROM NEW._sid
+      AND market = NEW.market
+      AND olusturma > now() - interval '24 hours'
+  ) INTO ayni_var;
+
+  IF ayni_var THEN
+    RAISE EXCEPTION 'Bu urun ve market icin son 24 saatte zaten bildirim aldik'
+      USING ERRCODE = 'check_violation';
+  END IF;
+
+  -- Layer 2: kullanicinin son 24 saatteki toplam kayit sayisi
+  SELECT count(*) INTO bugun_adet
+  FROM public.fiyat_bildirim
+  WHERE kullanici_id = NEW.kullanici_id
+    AND olusturma > now() - interval '24 hours';
+
+  IF bugun_adet >= PER_USER_GUNLUK_TAVAN THEN
+    RAISE EXCEPTION 'Gunluk bildirim sinirina ulastin (24 saat sonra tekrar dene)'
       USING ERRCODE = 'check_violation';
   END IF;
 
@@ -92,53 +151,44 @@ CREATE TRIGGER trg_fiyat_bildirim_hiz
 
 
 -- ───────────────────────────────────────────────────────────────────────
--- 4) IKINCI KATMAN — genel gunluk tavan (ISTEGE BAGLI)
+-- 4) ISTEMCI HATA GOSTERIMI — olculdu (app.js fiyatBildirAc)
 -- ───────────────────────────────────────────────────────────────────────
--- 3. blok tek bir _sid+market'i korur ama saldirgan 16.807 farkli _sid ile
--- yine 16.807 satir yazabilir. Toplam tavan icin:
--- GUNLUK_TAVAN degerini 1. bloktaki gercek hacme bakarak doldur
--- (ornegin normal gunluk hacmin 10 kati).
-
--- CREATE OR REPLACE FUNCTION public.fiyat_bildirim_gunluk_tavan()
--- RETURNS trigger LANGUAGE plpgsql SECURITY DEFINER SET search_path = public AS $$
--- DECLARE
---   bugun_adet int;
---   GUNLUK_TAVAN constant int := <<BURAYA_SAYI>>;
--- BEGIN
---   SELECT count(*) INTO bugun_adet FROM public.fiyat_bildirim
---   WHERE created_at > now() - interval '24 hours';
---   IF bugun_adet >= GUNLUK_TAVAN THEN
---     RAISE EXCEPTION 'Gunluk bildirim tavani asildi' USING ERRCODE = 'check_violation';
---   END IF;
---   RETURN NEW;
--- END; $$;
---
--- DROP TRIGGER IF EXISTS trg_fiyat_bildirim_tavan ON public.fiyat_bildirim;
--- CREATE TRIGGER trg_fiyat_bildirim_tavan
---   BEFORE INSERT ON public.fiyat_bildirim
---   FOR EACH ROW EXECUTE FUNCTION public.fiyat_bildirim_gunluk_tavan();
+-- INSERT payload'i sema ile birebir: _sid, market, gosterilen_fiyat,
+--   bildirilen_fiyat, kullanici_id (= _user.id). olusturma gonderilmiyor
+--   (DB default now()).
+-- Hata dali JENERIK: `if (error) toastGoster('Bildirim gonderilemedi')`.
+--   Yani trigger'in ozel mesaji (yukaridaki RAISE metinleri) kullaniciya
+--   AYNEN gosterilmiyor; kullanici "Bildirim gonderilemedi" gorur.
+-- Ama normal yolda: app.js INSERT'ten ONCE localStorage 24s sogumasini
+--   kontrol edip "Bu urun icin bildirimin zaten alindi" (dostca) gosteriyor;
+--   trigger yalniz o kontrol bypass edilince (baska cihaz / dogrudan API)
+--   devreye girer. O durumda jenerik mesaj kabul edilebilir.
+-- ISTEGE BAGLI IYILESTIRME (bu dosyanin disinda, app.js degisikligi):
+--   error.code === '23514' ise dostca mesaj goster (ornegin duplicate icin
+--   "zaten alindi", tavan icin "gunluk sinira ulastin"). Simdilik SART DEGIL.
 
 
 -- ───────────────────────────────────────────────────────────────────────
--- 5) KOLON DOGRULAMA — sema sondasindan cikan
+-- 5) KOLON DOGRULAMA (uygulamadan once bir kez kosur, semayi teyit et)
 -- ───────────────────────────────────────────────────────────────────────
--- Denetimde kisit hatalarindan sunlar dogrulandi:
---   _sid    : var
---   market  : var, NOT NULL
---   fiyat_tl: YOK (PGRST204)
--- created_at kolonunun ADI farkliysa 3. ve 4. bloklarda degistir:
--- SELECT column_name, data_type, is_nullable
--- FROM information_schema.columns
--- WHERE table_schema='public' AND table_name='fiyat_bildirim' ORDER BY ordinal_position;
+SELECT column_name, data_type, is_nullable, column_default
+FROM information_schema.columns
+WHERE table_schema = 'public' AND table_name = 'fiyat_bildirim'
+ORDER BY ordinal_position;
+-- Beklenen: id bigint, _sid text, market text, gosterilen_fiyat numeric,
+--   bildirilen_fiyat numeric, kullanici_id uuid, olusturma timestamptz.
 
 
 -- ───────────────────────────────────────────────────────────────────────
--- 6) TRIGGER SONRASI DOGRULAMA
+-- 6) TRIGGER SONRASI DOGRULAMA — GERCEK oturumla (anon INSERT edemez)
 -- ───────────────────────────────────────────────────────────────────────
--- Ayni yuku iki kez gonderirsen ikincisi 'check_violation' ile reddedilmeli:
---   curl -X POST "$SUPABASE_URL/rest/v1/fiyat_bildirim" \
---     -H "apikey: $ANON" -H "Authorization: Bearer $ANON" \
---     -H "Content-Type: application/json" -H "Prefer: return=minimal" \
---     -d '{"_sid":"__test__","market":"bim"}'
+-- Bu trigger'i anon anahtarla test EDEMEZSIN (INSERT policy authenticated).
+-- Uygulamada oturum acip ayni urun+market'e iki kez "Bu fiyat tutmadi"
+-- dokun: ikincisi reddedilmeli. Ya da SQL Editor'de kendi uid'inle bir
+-- satir ekleyip ikinciyi dene (check_violation beklenir):
+--   INSERT INTO public.fiyat_bildirim (_sid, market, gosterilen_fiyat,
+--     bildirilen_fiyat, kullanici_id)
+--   VALUES ('__test__', 'bim', 10, 8, '<KENDI_AUTH_UID>');
+--   -- ayni satiri tekrar calistir -> check_violation
 -- Sonra temizle:
 --   DELETE FROM public.fiyat_bildirim WHERE _sid = '__test__';
