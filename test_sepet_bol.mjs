@@ -29,6 +29,7 @@ if (eksik.length) { console.log('\n  Eksik: ' + eksik.join(', ')); console.log('
 
 function kur(sepet) {
   const ctx = {
+  _kacir: (s) => (s == null ? '' : String(s)),
     console, Math, JSON, Array, Object, Number, String, isNaN, Set,
     sepet,
     MARKET_NAMES: { a101: 'A101', bim: 'BİM', migros: 'Migros', sok: 'ŞOK', carrefour: 'CarrefourSA' },

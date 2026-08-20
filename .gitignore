@@ -16,15 +16,18 @@ __pycache__/
 .idea/
 
 # Test dosyaları
-# KURAL: test_<özellik>.py / test_<özellik>.mjs = KALICI regresyon testi, repoda durur.
+# KURAL: test_<özellik>.py / test_<özellik>.mjs = KALICI regresyon testi, repoda durur
+#        ve CI kapısına girer (bkz. deploy.yml test job).
 #        Tek seferlik keşif script'i yazacaksan kesif_* önekini kullan (aşağıda ignore'lu).
-# Aşağıdaki üçü bu kural konmadan önce yazılmış tek seferlik denemeler; ayrıca
-# test_searlo.py içinde gömülü bir API anahtarı var (hiç commit edilmedi, öyle kalsın).
+# Searlo API sondaları sonda_* önekine taşındı (2026-08-21): "test" DEĞİL, canlı
+# api.searlo.tech'e istek atıyorlar (kredi tükendi) — CI test_* glob'una SIZMASINLAR
+# diye hem yeniden adlandırıldı hem burada ignore'lu. sonda_searlo.py içinde gömülü
+# bir API anahtarı var (hiç commit edilmedi, öyle kalsın).
 firsat_kod.txt
 test_export.xlsx
-test_debug.py
-test_resim_mini.py
-test_searlo.py
+sonda_debug.py
+sonda_resim_mini.py
+sonda_searlo.py
 *.test.py
 supabasepas.txt
 *.secret

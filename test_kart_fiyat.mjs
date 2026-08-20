@@ -28,6 +28,7 @@ function fnKaynak(ad) {
 
 // ── ortam ──────────────────────────────────────────────────────────────
 const ctx = {
+  _kacir: (s) => (s == null ? '' : String(s)),
   console, Math, String, Number, parseFloat, parseInt, isNaN, Array, Object, Set, Map, JSON,
   placeholderRenk: () => ({ emoji: '🥤' }),
   ustKategori: (x) => x,

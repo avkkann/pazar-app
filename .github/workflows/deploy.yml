@@ -17,7 +17,66 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  # ─── TEST KAPISI ───────────────────────────────────────────────────────
+  # Ayri job; deploy 'needs: test' ile buna bagli -> KIRMIZI test yayini durdurur.
+  # continue-on-error YOK (bilerek): bu depoda en sik hata sessiz basarisizlik;
+  # test hatti sessiz kalirsa hic yokmus gibi olur. Ciktilari ::group:: ile
+  # ayrildi ve her kirmizi ::error file=... ile isaretlendi -> hangi dosya/iddia
+  # bir bakista gorunur. Node ve Python AYRI ADIM -> hangisinin kirdigi belli.
+  # npm ci YOK: test_*.mjs yalniz Node builtin + yerel scripts/*.mjs okuyor,
+  # test_*.py yalniz stdlib -> agsiz/paketsiz.
+  # UYARI (bilincli tercih): deploy workflow_run("Veri Guncelle") ile de tetikleniyor;
+  # veriye bagli bir test gecelik veri yuzunden kirmizi olursa site eski veriyle
+  # DONAR. Bu kapinin amaci tam olarak bozuk seyi yayinlamamak. Mustafa haberdar
+  # olur: ci_activity bildirimleri hesabina ulasiyor (2026-08-21 olcumu: inbox'ta
+  # 16 ci_activity kaydi).
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: JS testleri (test_*.mjs)
+        run: |
+          fail=0
+          for t in test_*.mjs; do
+            echo "::group::$t"
+            if node "$t"; then
+              echo "  -> gecti"
+            else
+              echo "::error file=$t::$t KIRMIZI — yukaridaki 'FAIL' satirlarina bak (hangi iddia, beklenen/gercek deger)"
+              fail=1
+            fi
+            echo "::endgroup::"
+          done
+          if [ "$fail" -ne 0 ]; then echo "::error::JS testlerinden en az biri KIRMIZI -> deploy engellendi"; exit 1; fi
+      - name: Python testleri (test_*.py, standalone)
+        run: |
+          # test_resim.py BILEREK DISLANDI: gercek test ama canli api.searlo.tech'e
+          # istek atiyor (Searlo kredisi tukendi) -> CI'da her deploy'u kirardi.
+          # Searlo SONDALARI (sonda_*.py) gitignore'lu -> CI checkout'unda zaten yok.
+          fail=0
+          for t in test_*.py; do
+            if [ "$t" = "test_resim.py" ]; then echo "  $t ATLANDI (canli Searlo API — CI'da kredi/limit)"; continue; fi
+            echo "::group::$t"
+            if python "$t"; then
+              echo "  -> gecti"
+            else
+              echo "::error file=$t::$t KIRMIZI — yukaridaki cikti hangi iddianin dustugunu gosterir"
+              fail=1
+            fi
+            echo "::endgroup::"
+          done
+          if [ "$fail" -ne 0 ]; then echo "::error::Python testlerinden en az biri KIRMIZI -> deploy engellendi"; exit 1; fi
+
   deploy:
+    needs: test
     runs-on: ubuntu-latest
     # "Veri Guncelle" basarisiz bittiyse deploy etme. Diger tetikleyicilerde
     # (push, workflow_dispatch) kosul yok. Bu kapi Pages'e ozgu DEGILDI, aynen duruyor.

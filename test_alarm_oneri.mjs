@@ -33,6 +33,7 @@ const gun = n => { const d = new Date(); d.setDate(d.getDate() - n); return d.to
 
 function kur(gecmis, alarmMap) {
   const ctx = {
+  _kacir: (s) => (s == null ? '' : String(s)),
     console, Math, Date, JSON, Array, Object, Number, String, isNaN, Set, parseFloat,
     _gecmisCache: gecmis,
     tl: v => Number(v).toFixed(2).replace('.', ',') + ' ₺',

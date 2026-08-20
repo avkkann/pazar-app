@@ -43,6 +43,7 @@ if (eksik.length) {
 function kur({ sepet = [], sablon = [], alarm = [], katki = null, tercih = [], urunler = [] } = {}) {
   const store = { pazar_tercih_marketler: JSON.stringify(tercih) };
   const ctx = {
+  _kacir: (s) => (s == null ? '' : String(s)),
     console, Math, JSON, Date, Array, Object, Number, String, isNaN, parseFloat,
     sepet, sablonlar: sablon,
     localStorage: {

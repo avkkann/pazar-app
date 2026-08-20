@@ -33,6 +33,7 @@ const gun = n => { const d = new Date(); d.setDate(d.getDate() - n); return d.to
 
 function kur(gecmis, urunler) {
   const ctx = {
+  _kacir: (s) => (s == null ? '' : String(s)),
     console, Math, Date, JSON, Array, Object, Number, String, isNaN, Set, Map,
     _gecmisCache: gecmis, catCache: { t: urunler || [] },
     MARKET_NAMES: { a101: 'A101', bim: 'BİM', migros: 'Migros', carrefour: 'CarrefourSA', sok: 'ŞOK' },

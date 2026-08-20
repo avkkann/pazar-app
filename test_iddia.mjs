@@ -36,6 +36,7 @@ const H = (m, c) => c.map(([n, f]) => ({ m, t: gun(n), f }));
 
 function kur(gecmis, urunler = []) {
   const ctx = {
+  _kacir: (s) => (s == null ? '' : String(s)),
     console, Math, Date, JSON, Array, Object, Number, String, isNaN, Set, Map, parseFloat,
     _gecmisCache: gecmis, catCache: { t: urunler }, _puanCache: new Map(),
     MARKET_NAMES: { migros: 'Migros', carrefour: 'CarrefourSA', bim: 'BIM' },
