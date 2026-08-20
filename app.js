@@ -2824,7 +2824,27 @@ async function fiyatBildirAc(urunId) {
       bildirilen_fiyat: bildirilen,
       kullanici_id: _user.id
     });
-    if (error) { toastGoster('Bildirim gönderilemedi'); return; }
+    if (error) {
+      // Sunucu hiz siniri (DB trigger -> PostgREST). SQL'den gelen Ingilizce
+      // RAISE metnini KULLANICIYA GOSTERME; istemcide sabit, dostane metin.
+      if (error.code === 'PT409') {
+        // Ayni urun+market 24s icinde zaten bildirilmis. Bu bir HATA degil,
+        // normal durum -> suclamayan ton, notr toast (kirmizi gorunum yok).
+        // TUTARLILIK: localStorage sogumasi temizlenmis olabilir ama sunucu
+        // hala engelliyor; istemci sogumasini da guncelle ki kullanici bosuna
+        // tekrar denemesin (yerel kontrol bir sonraki sefer erkenden yakalar).
+        localStorage.setItem(anahtar, String(Date.now()));
+        toastGoster('Bu ürünü bugün zaten bildirdin, teşekkürler');
+        return;
+      }
+      if (error.code === 'PT429') {
+        // Gunluk bildirim tavani (kullanici basina) asildi. Urun bazli degil,
+        // o yuzden localStorage sogumasina dokunma.
+        toastGoster('Bugünlük bildirim hakkın doldu, yarın devam edebilirsin');
+        return;
+      }
+      toastGoster('Bildirim gönderilemedi'); return;
+    }
   } catch (e) { console.warn('[bildirim] fiyat bildirim penceresi acilamadi:', e && e.message);
     toastGoster('Bildirim gönderilemedi');
     return;

@@ -27,8 +27,9 @@ function fnKaynak(ad) {
 const soy = (s) => (s || '').replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:])\/\/[^\n]*/g, '$1');
 
 // ── ortam: modalAc / openAuthSheet / toast / RPC hepsi casus ──────────
-function ortamKur(oturum) {
-  const cagri = { modalAc: 0, openAuthSheet: 0, insert: 0, insertPayload: null, toast: [] };
+function ortamKur(oturum, insertError = null) {
+  const cagri = { modalAc: 0, openAuthSheet: 0, insert: 0, insertPayload: null, toast: [], lsSet: [] };
+  const ls = {};   // localStorage arka deposu — setItem izlenebilsin diye disari acildi
   const ctx = {
     console, Number, String, parseFloat, isNaN, Date, Map, Object,
     window: {
@@ -36,14 +37,14 @@ function ortamKur(oturum) {
       openAuthSheet: () => { cagri.openAuthSheet++; },
       supabaseClient: {
         rpc: async () => ({ data: [], error: null }),   // anon'a 200 [] taklidi
-        from: () => ({ insert: async (p) => { cagri.insert++; cagri.insertPayload = p; return { error: null }; } }),
+        from: () => ({ insert: async (p) => { cagri.insert++; cagri.insertPayload = p; return { error: insertError }; } }),
       },
     },
     productMap: { 'p1': { _id: 'p1', _sid: 'sut_1', market_fiyatlari: [{ market: 'bim', fiyat: 10 }] } },
     fiyatlariTemizle: (mf) => ({ gecerli: mf || [] }),
     MARKET_NAMES: { bim: 'BİM' },
     _kacir: (s) => s,
-    localStorage: (() => { const m = {}; return { getItem: k => m[k] ?? null, setItem: (k, v) => { m[k] = v; } }; })(),
+    localStorage: { getItem: k => ls[k] ?? null, setItem: (k, v) => { ls[k] = v; cagri.lsSet.push(k); } },
     modalAc: async () => { cagri.modalAc++; return true; },   // "Giriş yap"a bas
     toastGoster: (t) => cagri.toast.push(t),
     _bildirimMarketSec: () => {},
@@ -116,6 +117,48 @@ console.log('\n=== 6. 24 SAAT SOĞUMASI KORUNDU + "tek koruma değil" NOTU ===')
   // İstek: koda not düşülsün ki soğuma artık tek koruma değil
   ok('  soğumanın tek koruma OLMADIĞI koda not düşülmüş',
      /ARTIK TEK KORUMA\s*\n?\s*(?:\/\/\s*)?DEGIL|artık tek koruma değil|tek koruma DEGIL/i.test(fnKaynak('fiyatBildirAc')), '');
+}
+
+console.log('\n=== 7. HIZ SINIRI: PT409/PT429 -> dogru mesaj + tutarli soguma ===');
+{
+  // Sunucu ayni urun+market'i 24s icinde reddediyor (PostgREST error.code PT409).
+  const { cagri, calis } = ortamKur(true, { code: 'PT409', message: 'duplicate report within 24h' });
+  await calis('fiyatBildirAc("p1")');
+  ok('PT409 -> dostane "bugun zaten bildirdin" mesaji',
+     cagri.toast.some(t => /zaten bildirdin/i.test(t)), JSON.stringify(cagri.toast));
+  ok('  PT409 jenerik "gonderilemedi" GOSTERMEDI (hata gorunumu yok)',
+     !cagri.toast.some(t => /gönderilemedi/i.test(t)), JSON.stringify(cagri.toast));
+  ok('  PT409 SQL\'in Ingilizce RAISE metnini GOSTERMEDI',
+     !cagri.toast.some(t => /duplicate report within 24h/.test(t)), JSON.stringify(cagri.toast));
+  // TUTARLILIK: sunucu engelledi -> istemci sogumasi da guncellensin (fb_..._market)
+  ok('  PT409 istemci sogumasini guncelledi (localStorage.setItem fb_)',
+     cagri.lsSet.some(k => /^fb_/.test(k)), JSON.stringify(cagri.lsSet));
+}
+{
+  // Gunluk tavan (kullanici basina) asildi -> PT429.
+  const { cagri, calis } = ortamKur(true, { code: 'PT429', message: 'daily cap exceeded' });
+  await calis('fiyatBildirAc("p1")');
+  ok('PT429 -> "bugunluk hakkin doldu" mesaji',
+     cagri.toast.some(t => /bugünlük.*doldu|hakkın doldu/i.test(t)), JSON.stringify(cagri.toast));
+  ok('  PT429 jenerik "gonderilemedi" GOSTERMEDI',
+     !cagri.toast.some(t => /gönderilemedi/i.test(t)), JSON.stringify(cagri.toast));
+  ok('  PT429 urun-bazli sogumaya DOKUNMADI (tavan urun bazli degil)',
+     cagri.lsSet.length === 0, JSON.stringify(cagri.lsSet));
+}
+{
+  // Bilinmeyen hata -> mevcut jenerik mesaj korunur.
+  const { cagri, calis } = ortamKur(true, { code: '23505', message: 'some other error' });
+  await calis('fiyatBildirAc("p1")');
+  ok('diger hata kodu -> jenerik "Bildirim gönderilemedi" korundu',
+     cagri.toast.some(t => /Bildirim gönderilemedi/.test(t)), JSON.stringify(cagri.toast));
+}
+{
+  // Kaynak taramasi: RAISE metni asla toastGoster'a bagli DEGIL (regresyon kapisi).
+  const src = soy(fnKaynak('fiyatBildirAc'));
+  ok('kaynak: toastGoster(error.message/hint/details) YOK',
+     !/toastGoster\(\s*error\.(message|hint|details)/.test(src), src.slice(src.indexOf('PT409') - 40, src.indexOf('PT409') + 300));
+  ok('  kaynak: PT409 dalinda localStorage.setItem var (tutarlilik)',
+     /error\.code\s*===\s*'PT409'[^}]*?localStorage\.setItem/.test(src), '');
 }
 
 console.log(`\nPASS=${pass}  FAIL=${fail}`);
