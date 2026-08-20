@@ -85,8 +85,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Fiyat Alarmi Taramasi
+        # TESHIS EDILEBILIR hard-fail: -f (statuyu/govdeyi yutar) YERINE durum
+        # kodunu YAKALA, kodu+govdeyi logla, 200 degilse exit 1. Boylece cokerse
+        # HANGI kod oldugu koomu loglarinda gorunur (sessiz yutma yok). -v veya
+        # istek basliklari BASILMAZ (secret sizmasin); govde bizim fonksiyondan.
         run: |
-          curl -sf -X POST "https://gbgxxahhbfnulmyecxia.supabase.co/functions/v1/fiyat-alarm-scan" \
+          KOD=$(curl -s -o /tmp/yanit.txt -w "%{http_code}" -X POST \
+            "https://gbgxxahhbfnulmyecxia.supabase.co/functions/v1/fiyat-alarm-scan" \
             -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}" \
             -H "x-cron-secret: ${{ secrets.CRON_SECRET }}" \
-            -H "Content-Type: application/json"
+            -H "Content-Type: application/json")
+          echo "HTTP=$KOD"
+          echo "yanit: $(cat /tmp/yanit.txt)"
+          if [ "$KOD" != "200" ]; then
+            echo "::error::fiyat-alarm-scan HTTP $KOD dondu (200 bekleniyordu)"
+            exit 1
+          fi
