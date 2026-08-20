@@ -4120,7 +4120,7 @@ async function marketfiyatiCanliAra() {
   const out = document.getElementById('mf-results');
   btn.disabled = true;
   btn.innerText = 'Aranıyor...';
-  out.innerHTML = `<div class="mf-results-title">marketfiyati.org.tr'den canlı sonuçlar</div><div class="mf-results-empty">Aranıyor: <b>${q}</b></div>`;
+  out.innerHTML = `<div class="mf-results-title">marketfiyati.org.tr'den canlı sonuçlar</div><div class="mf-results-empty">Aranıyor: <b>${_kacir(q)}</b></div>`;
   try {
     const data = await marketfiyatiAra(q);
     if (!data) {

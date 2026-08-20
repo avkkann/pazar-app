@@ -184,6 +184,11 @@ console.log('\n=== 7. TARAMA: yeni KAÇIŞSIZ S4 sink\'i eklenirse kırmızı (t
   ok('DOM sink olarak çıplak ${u.ad} YOK (yalnız paylaşım metni serbest)', !/\$\{u\.ad\}/.test(uAdKalan), 'kaçışsız DOM ${u.ad} bulundu');
   // aria-label / alt öznitelikte ham u.ad kalmamalı
   ok('çıplak aria-label/alt="${u.ad}" YOK', !/(aria-label|alt)="\$\{u\.ad\}"/.test(A));
+  // Kullanıcı arama sorgusu (marketfiyati "Aranıyor" echo'su) kaçırılmalı.
+  // Kör-nokta avında bulundu: guard yalnız bilinen alan desenlerine bakıyordu,
+  // ${q} echo'su (self-XSS) atlanmıştı.
+  ok('mf "Aranıyor" arama sorgusu _kacir(q) ile', /Aran[iı]yor: <b>\$\{_kacir\(q\)\}<\/b>/.test(A), 'arama sorgusu kaçışsız echo ediliyor');
+  ok('  çıplak <b>${q}</b> (kaçışsız sorgu) YOK', !/<b>\$\{q\}<\/b>/.test(A), 'ham ${q} innerHTML echo bulundu');
 }
 
 console.log('\n=== 8. KANIT: S4 korumasını bilerek boz, tarama KIRMIZIYA dönüyor ===');
