@@ -1,6 +1,6 @@
 # Pazar App — Proje Handoff (Claude için)
 
-**Son güncelleme:** 2026-08-19 oturumu (güvenlik denetimi + fiyat_bildirim yazma açığı kapatıldı, sw v216; ardından **B1 XSS Parti 1+2+3** — çıktı kaçışı sertleştirmesi tamamlandı, sw v219). Bu dosya her oturum başında okunur, sohbete asla ham metin olarak yapıştırılmaz.
+**Son güncelleme:** 2026-08-20 oturumu (**B1/B2/B5 güvenlik kapanışları** — kaçış tam yeniden tarama, fiyat_bildirim hız sınırı canlı, SDK sürüm pin + SRI; **Edge Function'lar repoya alındı + `x-cron-secret` kapısı deploy edildi + workflow zamanlayıcıları**; splash yenileme + mobil düzeltmeler; **sw v228**). Ayrıntı için aşağıdaki "2026-08-20" bloğu. Bu dosya her oturum başında okunur, sohbete asla ham metin olarak yapıştırılmaz.
 
 ---
 
@@ -18,7 +18,37 @@ Mustafa (GitHub: avkkann), **Pazar App**'in tek geliştiricisi — Türk market 
 
 ---
 
-## Mevcut durum (2026-08-17 itibarıyla)
+## Mevcut durum (2026-08-20 itibarıyla)
+
+### 2026-08-20 — Güvenlik kapanışları (B1/B2/B5) + Edge Function zamanlayıcıları + splash (CANLI)
+
+**sw v228.** Bu oturumda üç güvenlik hattı kapandı, Edge Function altyapısı kuruldu, splash/mobil düzeltildi. (Repo PUBLIC — kapanmış zafiyetler "kapandı" diye yazılı; açık kapsam ayrıntısı yok.)
+
+**B1 (XSS — çıktı kaçışı): tam yeniden tarama, kaçış tarafı KAPANDI.** Düzeltilmiş yorum-soyucuyla (satır-yorumları önce) üç parti yeniden tarandı; kalan tek DOM sink (arama sorgusu echo'su) merkezî kaçış yardımcısına alındı. `test_kacis.mjs` **86 iddia** (q echo guard dahil), kasten bozularak doğrulandı.
+
+**B2 (fiyat_bildirim): TAMAMEN KAPANDI.** DB policy + istemci kapısı (önceki oturum) + **hız sınırı trigger'ı canlıda kurulu ve doğrulandı** (`sql/fiyat_bildirim_hiz_siniri.sql`): aynı ürün+market 24s içinde tekrar → HTTP 409/`PT409`; kullanıcı-günlük tavan (30) aşılınca → HTTP 429/`PT429` (SECURITY DEFINER, `search_path=''`). İstemci (`app.js`) PT409/PT429'u ayırt edip **dostane** mesaj gösteriyor (hata görünümü yok), İngilizce RAISE metni kullanıcıya gösterilmiyor; PT409'da localStorage soğuması da güncelleniyor. `test_bildirim_yetki.mjs` eşlemeyi kanıtlıyor.
+
+**B5 (CDN tedarik zinciri): sürüm pin + SRI, tedarik zinciri saldırısı KAPANDI.** `index.html` Supabase SDK `<script>`: `@2` (kayan) → **`@2.112.3`** (tam sürüm) + `integrity` sha384 (indirilen dosyadan) + `crossorigin`. CDP ile doğrulandı; **negatif kontrol:** hash bozulunca tarayıcı betiği reddediyor. `test_cdn_pin.mjs` kayan sürüme/eksik integrity'ye dönerse kırmızı. Self-host artık güvenlik değil erişilebilirlik işi.
+
+**Edge Function'lar (repoya alındı + güvenli + deploy edildi).** `supabase/functions/` (`.temp/` gitignore'lu; gömülü sır yok, hepsi `Deno.env.get`). `haftalik-bulten` (Resend e-posta; alıcı+içerik DB/sunucu tarafı) ve `fiyat-alarm-scan` (Web Push; fiyatı `raw.githubusercontent`'ten okur). Her ikisine **paylaşılan gizli başlık kapısı**: `x-cron-secret == CRON_SECRET`, sabit-zamanlı karşılaştırma, tanımsızsa da 401 (güvenli varsayılan), asıl iş başlamadan. **Deploy + canlı doğrulandı** (başlıksız/yanlış → 401; doğru → 200, yan etki yok). Tetikleyiciler: `fiyat-alarm-scan` → `update-data.yml` içinde **ayrı `fiyat-alarm` job'u** (`needs: update`); `haftalik-bulten` → **`haftalik-bulten.yml`** (cron `0 15 * * 5` = Cuma 15:00 UTC + `workflow_dispatch`). Eski çakışan `bulten.yml` **silindi** (iki workflow aynı `name` + aynı fonksiyon). Curl'ler artık teşhis edilebilir (kod+gövde loglanıyor). GitHub `CRON_SECRET` secret'ı **Supabase'deki değerle aynı olmalı**.
+
+**Splash + mobil.** Claude Design splash → vanilla (token-bağlı, reduced-motion, `_tasarim_taslak/` gitignore'lu); çizelge ~2.36s → ~1.2s, kapanma = max(animasyon bitti, veri hazır), KİLİT 4000ms; rozet `--fs-1` (12px), mühre yaklaştırıldı. iPhone çift-tık zoom (`overflow-x: clip`) ve arama sonucu below-fold konumu düzeltildi.
+
+**Kalan işler (sıralı, gerekçeli):**
+1. **YARIN KONTROL (2026-08-21):** 03:00 UTC gecelik koşusunda **`fiyat-alarm` job'u yeşil mi** — bu yol hiç gerçek zamanlanmış koşuda doğrulanmadı (yalnız elle curl + haftalik-bulten dispatch). Actions log'unda `HTTP=200` olmalı. Kırmızıysa GitHub `CRON_SECRET` ≠ Supabase değeri (log artık kodu açıkça basıyor).
+2. **Giriş yönlendirme (H4)** — hiç ölçülemedi; sonraki güvenlik turunda bakılmalı.
+3. **Font + GoatCounter kaynakları pinsiz/SRI'siz** (`fonts.googleapis.com`/`api.fontshare.com` CSS, `gc.zgo.at/count.js`) — B5'in sıradaki adımı.
+4. **`unsafe-inline` kaldırma** — satır içi handler göçü gerektirir; B1 kapandığı için artık kritik değil.
+5. **SDK sürümü elle güncelleme** — pinli olduğundan otomatik yama yok; periyodik `@2.x.y` + yeni SRI (integrity'yi yeni dosyadan üret).
+6. **KVKK: hesap silinince `profiles` satırı kalıyor** — DELETE policy yok, veri kalıntısı.
+7. **CI hiç test koşturmuyor** (eski borç, "Teknik borç" bölümünde ayrıntı) — kırmızı testle deploy mümkün.
+
+**Bu oturumun öğrenmeleri:**
+> **Tetikleyici ararken desen taraması İKİ KEZ yanlış "yok" dedi.** `.github/workflows/` tek tek listelenip her dosya okunmalı — `update-data.yml` içindeki alarm adımı (ayrı dosya değil, bir step) ve `bulten.yml` (grep `haftalik-bulten` yakalamadı) böyle kaçtı.
+> **Tarama araçları kendi kör noktalarıyla test edilmeli.** Yorum-soyucusundaki hata (blok-yorum önce) **2287 satırı** taramadan gizledi; düzeltmeden önce bir XSS sink'i kaçmıştı. Soyucu prove-by-breaking ile doğrulanmalı.
+> **`verify_jwt` tek başına yetmez:** anon anahtar geçerli bir JWT'dir, gateway'i geçer. Gerçek kapı kod içi paylaşılan gizli başlıkla kurulur.
+> **`curl -sf` hatayı yutar** (statü+gövde görünmez, yalnız exit≠0). Zamanlanmış işlerde `-o -w %{http_code}` ile kod+gövde loglanmalı; `-v`/istek başlıkları basılmamalı (secret sızmasın).
+> **Supabase CLI fonksiyon deploy'unda entrypoint dosya adı `index.ts` olmalı** — indirince başka adla gelse de deploy `index.ts` bekler; ikiz dosya oluşabilir (bu oturumda oldu, temizlendi).
 
 ### 2026-08-19 — Güvenlik denetimi + fiyat_bildirim yazma açığı kapatıldı (CANLI)
 
@@ -645,7 +675,7 @@ Uygulama teknik olarak çalışıyor ama **pratikte hâlâ dağıtılmamış dur
 - **GoatCounter (1 Tem – 17 Ağu): 59 ziyaret.** Kaynakların **%90'ı doğrudan/bilinmeyen**, **arama trafiği sıfır**. %97 Türkiye, **%68 telefon**, **%64 iOS/Safari**. İki sonuç: (a) tek dağıtım kanalı doğrudan link paylaşımı — o yüzden `og:image` en öncelikli SEO maddesiydi; (b) **kullanıcıların üçte ikisi Safari'de ve uygulama Safari'de hiç test edilmedi.**
 - **Google'da hiç indekslenmemiş** (`site:` sorgusu 0 sonuç, eski adres için). 2026-08-17 zemin taraması: robots engellemiyor, `noindex` yok, `X-Robots-Tag` yok, canonical doğru, cloaking yok, sitemap geçerli ve erişilebilir, indekslenebilir metin var. **Teknik engel yok** — sebep Search Console'a hiç eklenmemiş olması ve dışarıdan bağlantı olmaması. Alan adı geçişi bittiği için **artık yapılabilir** ve sıradaki işlerin 1. maddesi.
 - **Cloudflare Web Analytics beacon'ı bloklu ve öyle KALACAK.** Cloudflare `static.cloudflareinsights.com/beacon.min.js`'i HTML'e sonradan enjekte ediyor; `script-src` izin vermediği için çalışmıyor. **Karar: CSP'ye eklenmeyecek** — analitik zaten GoatCounter'dan geliyor, ikinci bir izleyici gereksiz. Konsolda bu tek ihlal görünür, uygulamayı etkilemiyor. (Kapatmak istenirse pano → Web Analytics.)
-- **`fiyat_bildirim` tablosunda 1 kayıt var, o da test** (2026-08-11 denetiminde yanlışlıkla eklenen `{"_sid":"x","market":"bim"}`). **Gerçek kullanıcı bildirimi yok.** anon DELETE kapalı olduğu için Claude silemedi; temizlik SQL'i `sql/fiyat_bildirim_hiz_siniri.sql`'in başında, hız sınırıyla birlikte bekliyor.
+- **`fiyat_bildirim` hız sınırı CANLI (2026-08-20).** `sql/fiyat_bildirim_hiz_siniri.sql` kuruldu ve doğrulandı (PT409/PT429 — bkz. 2026-08-20 bloğu). Eski test kaydı (`{"_sid":"x"}`) temizlendi (ölçüldü: `_sid='x'` = 0). Tabloda şu an 1 kayıt var (kaynağı test/doğrulama, gerçek kullanıcı bildirimi değil).
 - **TÜBİTAK BİLGEM'e veri kullanımı için e-posta başvurusu yapıldı, cevap bekleniyor.** Cevap gelmezse CİMER'den tekrarlanacak. Veri kaynağı attribution footer'da zaten duruyor (`marketfiyati.org.tr` + `hal.gov.tr`).
 
 ### Repo hijyeni
@@ -663,9 +693,9 @@ Uygulama teknik olarak çalışıyor ama **pratikte hâlâ dağıtılmamış dur
 > **2026-08-17 itibarıyla kapananlar** (commit'lerle doğrulandı): rozet/sayısal iddialar
 > (2.1–2.3), klavye erişimi (4.1) ve odak göstergesi (4.2), yakınlaştırma engeli (4.3),
 > koyu tema kontrastı (4.4), dokunma hedefleri (4.5), sessiz catch'ler, analiz adımının
-> sessizce atlanması. **Açık kalanlar:** `fiyat_bildirim` hız sınırı (1.2 — SQL
-> `sql/fiyat_bildirim_hiz_siniri.sql`'de hazır, **çalıştırılmadı**), kaçış fonksiyonu +
-> 79 `innerHTML` (1.5), `load` olayı 7,6 sn (3.1), SW sürüm/veri ayrışması (3.4).
+> sessizce atlanması. **2026-08-20'de kapandı:** `fiyat_bildirim` hız sınırı (1.2 —
+> trigger canlı) ve çıktı kaçışı (1.5 — B1, kaçış tarafı; bkz. 2026-08-20 bloğu).
+> **Açık kalanlar:** `load` olayı 7,6 sn (3.1), SW sürüm/veri ayrışması (3.4).
 > **DENETIM.md'nin kendi durum işaretleri geride** — yalnızca 4 madde `KAPANDI` diye
 > işaretli, gerçekte daha fazlası kapandı. Durum için bu dosyayı esas al.
 
@@ -694,7 +724,7 @@ Uygulama teknik olarak çalışıyor ama **pratikte hâlâ dağıtılmamış dur
 - **Hal'de iki kırılgan kalem** — `Tamarind(demirhindi)` (tek satır, 5 kg hacim) ve `Isırgan (yaş-taze)` (tek satır, 2 kg hacim). Fiyatları absürt değil ve `URUN_MAX_FIYAT`'ı geçmiyorlar, ama doğrulanacak ikinci kayıt yok — tek bir hatalı bültende sessizce yanlış değer gösterebilirler.
 - **`app.js`'te çağrılmayan 4 fonksiyon + 1 ölü değişken** (2026-08-10 taraması, 177 fonksiyon içinde): `filterUrunler` (2660), `mfGorsel` (2924, boş stub), `mfPlaceholderEmoji` (2926, boş stub), `temaToggle` (4291); `activeMarket` (616) yalnızca `null` atanıyor, hiç okunmuyor. Ayrıca `halMap` (611) artık **yalnızca yazılıyor** — tek okuyucusu silinen `halEsles`'ti; `loadData` hâlâ dolduruyor. Hiçbiri silinmedi, karar Mustafa'da.
 - **`.sablon-chip` klavyeye kapalı — üç klavye turunun hepsi kaçırdı.** Listem'deki kayıtlı şablon çipleri `<span class="sablon-chip" onclick="sablonYukleUI(...)">`; `tabindex`/`role`/`onkeydown` yok, JS yalnızca `touchstart/end/move` (uzun bas → düzenle) bağlıyor. **Neden kaçtı:** üç tur da tek satırlık markup'a baktı, bu öğe `'` + `'` ile çok satırlı birleştirmeyle üretiliyor, `class="sablon-chip" ... onclick=` deseni hiçbir satırda yan yana çıkmıyor. Hiçbir test de kapsamıyor. **Tarama yapacaksan önce birleştirmeleri düzleştir.** Doğrulandı 2026-08-17: düzleştirilmiş taramada onclick taşıyan 20 blok/inline öğeden `tabindex` taşımayan 5 tane — 4'ü bilerek dışarıda bırakılan modal arka planı, 5.'si bu.
-- **Sürüm numarası tek kaynaktan gelmiyor** — `index.html:528`'de `v1.0` elle yazılı, `sw.js`'teki `CACHE_NAME` (`v207`) ile hiçbir bağı yok.
+- **Sürüm numarası tek kaynaktan gelmiyor** — `index.html:528`'de `v1.0` elle yazılı, `sw.js`'teki `CACHE_NAME` (şu an `v228`) ile hiçbir bağı yok.
 - **`update-data.yml` hâlâ Node 20, `deploy.yml` Node 24 — AÇIK BORÇ.** Somut sonucu: `data/anasayfa.json` **iki farklı Node majöründe** üretiliyor — gece koşusu onu Node 20'de üretip repoya commit'liyor, deploy build'i aynı script'i Node 24'te yeniden koşturup `dist/`e onu koyuyor. Yani commit'lenen dosya ile yayına giden dosya farklı motorlarda doğuyor. Mantık aynı olduğu için çıktının da aynı olması beklenir ama **doğrulanmadı**; "aynı türetilmiş dosyanın iki kaynağı" bu dosyanın tuzak diye işaretlediği desen. `update-data.yml` wrangler kullanmadığı için geçiş turunda bilerek dokunulmadı. Kapatılırken iki koşunun çıktısı bayt bayt karşılaştırılmalı.
 - **`style.css`'te iki adet birebir aynı ölü `@media` bloğu** (`CENTER-FIX-TAMAM` ×2) — temizlenmedi.
 - **Ölü `.cmp-mkt-item-img` kuralı** — `style.css:650`'de eski 30px tanımı duruyor, dosyanın sonundaki yeniden tasarım bloğu 56px'le eziyor. Zararsız ama yanıltıcı.
@@ -702,10 +732,11 @@ Uygulama teknik olarak çalışıyor ama **pratikte hâlâ dağıtılmamış dur
   Merkezî kaçış yardımcıları mevcut; localStorage, dış API/DB kaynaklı render yolları
   ve satır içi olay bağlamı bunlara geçirildi — dinamik değerler artık olay
   handler'ına doğrudan yazılmıyor, `data-*` özniteliğinden okunuyor (bkz.
-  `test_kacis.mjs` — 84 iddia, gerçek tarayıcı DOM ölçümü + negatif kontrol +
-  regresyon + işlevsel tıkla/klavye/sepet). `&` çift-kaçışa gitmiyor, Türkçe/görsel
-  bozulmuyor. CSP bu iş boyunca değişmedi. Ayrıntılı bulgu listesi repo dışındaki
-  denetim notlarında tutuluyor. `sw.js` **v219**.
+  `test_kacis.mjs` — **86 iddia** (2026-08-20 tam yeniden taramada arama sorgusu
+  echo sink'i bulunup kapatıldı, q echo guard eklendi), gerçek tarayıcı DOM ölçümü
+  + negatif kontrol + regresyon + işlevsel tıkla/klavye/sepet). `&` çift-kaçışa
+  gitmiyor, Türkçe/görsel bozulmuyor. CSP bu iş boyunca değişmedi. Ayrıntılı bulgu
+  listesi repo dışındaki denetim notlarında tutuluyor. `sw.js` **v228**.
 - **`'Makyaj'` kategorisi (70 ürün) `app.js` beyaz listesi dışında** — Temizlik sekmesi yerine "diger"e düşüyor. Kategori bölünmesinden önce de böyleydi. (`/api/v2/search` ucu bu tür artıkları yakalamak için değerlendirilebilir.)
 - **`marketfiyati.json`** — bayat/farklı kaynak, hâlâ `marketfiyatiYukle()`/productMap fallback'inde. `urunler.json` gibi bir sonraki temizlik adayı.
 - **`kesif_*`/`migrate_*`/`a101_pilot_*` dosyaları** — gitignore'da ama diskte, silme kararı Mustafa'da.
