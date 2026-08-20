@@ -1881,7 +1881,7 @@
       animation: splashNokta var(--splash-ad-sure) var(--ease-giris) var(--splash-cizgi-gec) both;
     }
 
-    /* ZAM ROZETI: kırmızı, STATIK %137 (sayaç YOK — startup'ı ağırlaştırmasın) */
+    /* ZAM ROZETI: kırmızı, STATIK %27 (sayaç YOK — startup'ı ağırlaştırmasın) */
     .splash-rozet {
       position: absolute; left: 76%; top: -6%;
       display: inline-flex; align-items: center; gap: .28em;
