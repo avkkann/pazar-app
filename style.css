@@ -1388,6 +1388,18 @@
    Ayrım BOŞLUKLA kuruldu, çizgiyle değil: şeritler arası 24 → 32px.
    Ağır ayraç çizgileri sayfayı bölerdi; boşluk aynı işi sessizce yapıyor. */
 .home-strip { padding: var(--space-2) 0 var(--space-1); margin-bottom: var(--space-8); }
+
+/* ══ ARAMA AKTİF: arama-dışı bölümleri gizle ═══════════════════════════
+   #search'e yazınca (app.js #screen-home'a .arama-aktif ekler) şeritler,
+   kategori grid, mevsim, hal ve tazelik gizlenir; #home-search kutunun
+   HEMEN altına gelir → sonuç ilk ekranda, elle kaydırma gerekmez.
+   `!important`: şeritler dolduğunda JS satır-içi display veriyor, onu ezer.
+   Arama boşalınca sınıf kalkar, bölümler kendi durumuna döner (temiz→eski hal).
+   .home-strip #home-mevsim'i de kapsar (o da .home-strip). */
+#screen-home.arama-aktif .home-strip,
+#screen-home.arama-aktif #home-cats,
+#screen-home.arama-aktif #home-hal,
+#screen-home.arama-aktif #veri-tazelik { display: none !important; }
 /* Öncelikli şeritler ürünün ASIL İDDİASINI taşıyanlar: bugün yakalanan
    fiyat tuzakları ve bu ayın zamları — uygulamanın sloganı ("Marketteki
    gizli zamları gör") tam olarak bu ikisi. Ayrıcalık iki şeyle veriliyor:

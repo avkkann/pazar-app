@@ -115,5 +115,31 @@ console.log('\n=== 5. iOS SEKME-GECIS ZOOM + ODAK ZOOM ===');
   ok('  text-size-adjust: 100%', /(-webkit-)?text-size-adjust:\s*100%/.test(CSS_KODU), '');
 }
 
+console.log('\n=== 6. ANA SAYFA ARAMA: sonuc ilk ekranda (aradaki bolumler gizli) ===');
+{
+  const CSS_KODU = CSS.replace(/\/\*[\s\S]*?\*\//g, '');
+  // Sorun: #search en ustte ama sonuc #home-search en altta; aradaki seritler
+  // + kategori grid + mevsim + hal duruyordu -> sonuc katlamanin altinda
+  // (olculdu: y=2031, viewport 844). Cozum: arama aktifken aradaki bolumleri
+  // CSS ile gizle (#screen-home.arama-aktif) -> sonuc kutunun hemen altina gelir.
+  // (a) JS: #search handler'i q'ya gore arama-aktif sinifini ekliyor
+  ok('arama: #search handler screen-home\'a arama-aktif sinifini q ile ekliyor',
+     /getElementById\('screen-home'\)\.classList\.toggle\('arama-aktif',\s*!!q\)/.test(APP),
+     'toggle yok -> sonuc yine katlamanin altinda kalir');
+  // (b) CSS: arama-aktifken aradaki bolumler display:none !important
+  const kural = (CSS_KODU.match(/#screen-home\.arama-aktif[\s\S]*?\{[^}]*\}/) || [''])[0];
+  ok('CSS: #screen-home.arama-aktif kurali var', kural.length > 20, kural.slice(0, 80));
+  ok('  display: none !important (satir-ici display\'i ezer)', /display:\s*none\s*!important/.test(kural), kural.slice(0, 120));
+  for (const s of ['.home-strip', '#home-cats', '#home-hal', '#veri-tazelik']) {
+    ok(`  ${s} arama sirasinda gizleniyor`, kural.includes(s), kural.slice(0, 180));
+  }
+  // (c) Sonuc kabi #home-search GIZLENMEMELI
+  ok('  #home-search gizlenenler arasinda DEGIL (sonuc gorunur kalir)', !kural.includes('#home-search'), kural);
+  // (d) Her tusa scrollIntoView YAPMA (ziplama tuzagi) — gizleme ile cozuldu
+  const idx = APP.indexOf("classList.toggle('arama-aktif'");
+  const civar = idx >= 0 ? APP.slice(idx, idx + 900) : '';
+  ok('  arama handler\'inda scrollIntoView YOK (her tusta ziplama yok)', idx >= 0 && !/scrollIntoView/.test(civar), '');
+}
+
 console.log(`\nPASS=${pass}  FAIL=${fail}`);
 process.exit(fail ? 1 : 0);

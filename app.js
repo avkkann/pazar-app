@@ -4230,7 +4230,12 @@ function mfSheetKapat() {
 
 document.getElementById('search').addEventListener('input', function() {
   const q = this.value.trim();
-  document.getElementById('home-cats').style.display   = q ? 'none' : '';
+  // Arama aktifken ana sayfanın arama-dışı bölümlerini (şeritler, kategori
+  // grid, mevsim, hal, tazelik) gizle: sonuç kutunun HEMEN altında görünür,
+  // kullanıcı elle kaydırmak zorunda kalmaz. Gizleme CSS ile (#screen-home
+  // .arama-aktif) — scrollIntoView YOK: her tuş vuruşunda ekran zıplamasın.
+  // Boşalınca sınıf kalkar, gizlenen bölümler kendi (JS/inline) durumuna döner.
+  document.getElementById('screen-home').classList.toggle('arama-aktif', !!q);
   document.getElementById('home-search').style.display = q ? 'block' : 'none';
   if (!q) {
     document.getElementById('mf-ara-btn').style.display = 'none';
