@@ -71,7 +71,5 @@ console.log('\n=== 3. renderSepet rozeti CANLI urunden + CIFT-cache sarti ===');
   ok('  rozet yoksa kap cizilmez (kosullu)', /rozetHTML \? [`'"].*cart-item-rozet/.test(rs), '');
 }
 
-ok('KANIT: kasitli kirma — HEMEN geri alinacak (test kapisi ispati)', false, 'beklenen: test job KIRMIZI + deploy SKIPPED');
-
 console.log(`\nPASS=${pass}  FAIL=${fail}`);
 process.exit(fail ? 1 : 0);
