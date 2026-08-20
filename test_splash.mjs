@@ -89,15 +89,14 @@ console.log('\n=== 4. KOYU TEMADA BEYAZ CAKMA YOK ===');
 console.log('\n=== 5. TOKEN BAGI (ham deger yok) ===');
 {
   const kural = (CSS.match(/#splash \{[^}]*\}/) || [''])[0];
-  const imgKural = (CSS.match(/#splash img \{[^}]*\}/) || [''])[0];
+  const markKural = (CSS.match(/\.splash-mark \{[^}]*\}/) || [''])[0];
   ok('#splash kuralinda ham px/ms YOK', !/\b\d+(px|ms)\b/.test(kural), kural);
-  ok('#splash img kuralinda ham px/ms YOK', !/\b\d+(px|ms)\b/.test(imgKural), imgKural);
   for (const t of ['--splash-logo', '--splash-giris', '--splash-cikis']) {
     ok(`  ${t} tanimli`, new RegExp(t + ':\\s*[^;]+;').test(CSS), '');
   }
-  ok('  logo boyutu tokenden', /var\(--splash-logo\)/.test(imgKural), imgKural);
-  ok('  sonme suresi tokenden', /var\(--splash-cikis\)/.test(kural), kural);
-  ok('  giris suresi tokenden', /var\(--splash-giris\)/.test(imgKural), imgKural);
+  ok('  mark boyutu tokenden (--splash-logo)', /var\(--splash-logo\)/.test(markKural), markKural);
+  ok('  sonme suresi tokenden (--splash-cikis)', /var\(--splash-cikis\)/.test(kural), kural);
+  ok('  giris suresi tokenden (--splash-giris)', /var\(--splash-giris\)/.test(markKural), markKural);
   // JS sonme suresini CSS'ten okumali, ikinci bir sayi tutmamali
   ok('JS sonme suresini CSS tokeninden okuyor', /getPropertyValue\('--splash-cikis'\)/.test(splashBlok), '');
 }
@@ -113,17 +112,45 @@ console.log('\n=== 6. EASING: TEK KAYNAK, IKI ROL ===');
      (tanimsiz.match(/cubic-bezier\(0\.22[^)]*\)/g) || []).join(' '));
   const kalanHam = (tanimsiz.match(/cubic-bezier\([^)]*\)/g) || []);
   ok('  hicbir kuralda ham egri kalmadi', kalanHam.length === 0, kalanHam.join(' | '));
-  ok('splash giris animasyonu --ease-giris kullaniyor',
-     /animation:\s*splashIn[^;]*var\(--ease-giris\)/.test(CSS), '');
+  ok('splash mark girisi --ease-giris kullaniyor',
+     /animation:\s*splashMuhur[^;]*var\(--ease-giris\)/.test(CSS), '');
 }
 
-console.log('\n=== 7. HAREKET AZALTMA ===');
+console.log('\n=== 7. HAREKET AZALTMA (yeni ogeler dahil) ===');
 {
-  const azalt = (CSS.match(/@media \(prefers-reduced-motion: reduce\) \{\s*#splash[\s\S]*?\n\s*\}/) || [''])[0];
-  ok('splash icin reduced-motion kurali var', azalt.length > 20, azalt.slice(0, 160));
-  ok('  logo animasyonu kapali', /#splash img \{[^}]*animation:\s*none/.test(azalt), azalt);
-  ok('  sonme gecisi kapali (aninda)', /#splash \{[^}]*transition:\s*none/.test(azalt), azalt);
+  // Splash'e ait reduced-motion blogu (#splash transition:none + splash-* animation:none)
+  const azalt = (CSS.match(/@media \(prefers-reduced-motion: reduce\) \{\s*#splash \{ transition: none; \}[\s\S]*?\}\s*\}/) || [''])[0];
+  ok('splash icin reduced-motion kurali var', azalt.length > 20, azalt.slice(0, 120));
+  ok('  sonme gecisi kapali (aninda)', /#splash \{ transition: none; \}/.test(azalt), azalt.slice(0, 120));
+  ok('  yeni ogelerin (mark/ad/cizgi/slogan) animasyonu kapali',
+     /\.splash-mark,[\s\S]*\.splash-slogan span[\s\S]*animation:\s*none/.test(azalt), azalt.slice(0, 260));
+  ok('  halka/nokta stroke-dashoffset sifirlaniyor (halka tam cizili)',
+     /stroke-dashoffset:\s*0/.test(azalt), azalt.slice(0, 260));
   ok('JS de reduced-motion\'da beklemiyor', /prefers-reduced-motion: reduce/.test(splashBlok), '');
+}
+
+console.log('\n=== 8. YENI ANIMASYON: markup + tema token bagi ===');
+{
+  // Yeni gorsel ogeler index.html'de, eski img/icon fetch kalkti
+  ok('splash markı (inline SVG damla) var', /class="splash-mark"/.test(HTML) && /splash-damla-yol/.test(HTML), '');
+  ok('  eski icon-192 <img> fetch\'i splash\'ten kalkti', !/id="splash"[^>]*>\s*<img[^>]*icon-192/.test(HTML) && !/splash[\s\S]{0,80}<img[^>]*icon-192/.test(HTML), '');
+  ok('  ad + cizgi + slogan ogeleri var',
+     /class="splash-ad"/.test(HTML) && /class="splash-cizgi"/.test(HTML) && /class="splash-slogan"/.test(HTML), '');
+  // Renkler TOKEN'a bagli (ham hex yok bu ogelerde — beyaz lens haric, bilerek)
+  ok('yesil gradyan tokenden (--primary-light / --primary)',
+     /\.splash-stop-1\s*\{[^}]*var\(--primary-light\)/.test(CSS) && /\.splash-stop-2\s*\{[^}]*var\(--primary\)/.test(CSS), '');
+  ok('cizgi rengi tokenden (--primary-light)',
+     /\.splash-cizgi \{[^}]*background:\s*var\(--primary-light\)/.test(CSS), '');
+  ok('ad rengi tokenden (--text)', /\.splash-ad \{[^}]*color:\s*var\(--text\)/.test(CSS), '');
+  ok('slogan rengi tokenden (--text-muted)', /\.splash-slogan \{[^}]*var\(--text-muted\)/.test(CSS), '');
+  ok('zam rozeti tokenden (--rozet-pahali)', /\.splash-rozet \{[\s\S]*?var\(--rozet-pahali-bg\)/.test(CSS), '');
+  // Cok asamali giris tokenleri tanimli
+  for (const t of ['--splash-ad-gec', '--splash-ad-sure', '--splash-slogan-gec', '--splash-slogan-adim', '--splash-halka-sure']) {
+    ok(`  ${t} tanimli`, new RegExp(t + ':\\s*[^;]+;').test(CSS), '');
+  }
+  // Kademe: slogan kelimeleri token adimiyla gecikiyor (ham ms degil)
+  ok('slogan kademesi token adimindan (calc + --splash-slogan-adim)',
+     /nth-child\(2\)[^}]*calc\(var\(--splash-slogan-gec\) \+ 1 \* var\(--splash-slogan-adim\)\)/.test(CSS), '');
 }
 
 console.log(`\nPASS=${pass}  FAIL=${fail}`);

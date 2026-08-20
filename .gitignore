@@ -1,6 +1,10 @@
 # Scraper ham çıktısı
 urunler_raw.json
 
+# Claude Design splash animasyon kaynakları (React JSX + editör araçları).
+# Vanilla'ya çevrildi (index.html/style.css); React kaynakları repoya GİRMEZ.
+_tasarim_taslak/
+
 # Python
 __pycache__/
 *.pyc

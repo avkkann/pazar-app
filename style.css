@@ -22,8 +22,20 @@
          Zemin TEMA DEĞİŞKENİNE bağlı (--bg). Önceden #ffffff sabitti ve
          koyu temada yeşil→BEYAZ→siyah diye 1,5 sn'de üç zemin çakıyordu. */
       --splash-logo: 120px;
-      --splash-giris: 400ms;  /* logonun belirmesi */
+      --splash-giris: 400ms;  /* mührün (mark) belirmesi */
       --splash-cikis: 200ms;  /* splash'in sönmesi */
+      /* Çok aşamalı giriş — tasarım zaman çizelgesinin (Mühür→İsim→Zam→
+         Slogan) cue gecikmeleri. Splash `pazar:hazir` gelince söndüğü için
+         (normalde ~380 ms) sonraki aşamalar yalnız YAVAS acilista görünür;
+         animasyon açılışı GECIKTIRMEZ (ambient). */
+      --splash-ad-gec: 650ms;       /* İsim cue */
+      --splash-ad-sure: 460ms;
+      --splash-cizgi-gec: 840ms;    /* yeşil alt-çizgi */
+      --splash-zam-gec: 1100ms;     /* Zam rozeti (statik pop) */
+      --splash-slogan-gec: 1650ms;  /* Slogan cue */
+      --splash-slogan-sure: 440ms;
+      --splash-slogan-adim: 90ms;   /* kelime kademesi */
+      --splash-halka-sure: 520ms;   /* büyüteç halkası çizimi */
 
       --skel-base: #E8E8E5;
       --skel-hi: #F5F5F2;
@@ -1833,8 +1845,13 @@
       top: 0;
       z-index: 50;
     }
-    /* Zemin uygulamanın kendi zemini — sabit beyaz DEĞİL. Koyu temada
-       yeşil→beyaz→siyah çakması bu satırla bitiyor. */
+    /* ══ SPLASH (uygulama girişi) ═══════════════════════════════════════
+       Zemin uygulamanın kendi zemini (var(--bg)) — sabit beyaz DEĞİL (koyu
+       temada çakma biter). Yaşam döngüsü app.js'te: pazar:hazir bekler,
+       TABAN 200ms flaş-önleme. Animasyon AMBIENT — hemen başlar, hazır
+       sinyaliyle söner, açılışı GECIKTIRMEZ; yavaş açılışta daha çoğu görülür.
+       Süre/renk/easing token'a bağlı; token karşılığı olmayanlar işaretli.
+       Görsel: inline SVG mühür (icon fetch'i YOK) + "Pazar" + çizgi + slogan. */
     #splash {
       position: fixed; inset: 0; z-index: 9999;
       background: var(--bg);
@@ -1842,20 +1859,86 @@
       transition: opacity var(--splash-cikis) var(--ease-out);
     }
     #splash.gizle { opacity: 0; pointer-events: none; }
-    #splash img {
-      width: var(--splash-logo); height: var(--splash-logo);
-      animation: splashIn var(--splash-giris) var(--ease-giris) forwards;
+
+    .splash-govde { display: flex; flex-direction: column; align-items: center; gap: 1.1rem; }
+
+    /* MÜHÜR: yeşil damla + büyüteç halkası + nokta */
+    .splash-mark {
+      position: relative; width: var(--splash-logo); height: var(--splash-logo);
+      animation: splashMuhur var(--splash-giris) var(--ease-giris) both;
     }
-    @keyframes splashIn {
-      0% { transform: scale(0.85); opacity: 0; }
+    .splash-mark > svg { width: 100%; height: 100%; display: block; overflow: visible; }
+    .splash-stop-1 { stop-color: var(--primary-light); }  /* yeşil gradyan üst */
+    .splash-stop-2 { stop-color: var(--primary); }         /* yeşil gradyan alt */
+    /* Halka + nokta: mark içindeki "lens" — iki temada da açık; TEK TOKEN YOK,
+       bilerek beyaz (yeşil damla üstünde okunur). */
+    .splash-halka {
+      stroke: #FFFFFF; stroke-dasharray: 22.62; stroke-dashoffset: 22.62;
+      animation: splashHalka var(--splash-halka-sure) var(--ease-out) var(--splash-giris) forwards;
+    }
+    .splash-nokta {
+      fill: #FFFFFF; opacity: 0; transform-origin: 12px 13.7px;
+      animation: splashNokta var(--splash-ad-sure) var(--ease-giris) var(--splash-cizgi-gec) both;
+    }
+
+    /* ZAM ROZETI: kırmızı, STATIK %137 (sayaç YOK — startup'ı ağırlaştırmasın) */
+    .splash-rozet {
+      position: absolute; left: 76%; top: -6%;
+      display: inline-flex; align-items: center; gap: .28em;
+      padding: .3em .55em; border-radius: 999px;
+      background: var(--rozet-pahali-bg); color: var(--rozet-pahali-fg);
+      font-weight: 700; font-size: .3em; line-height: 1; white-space: nowrap;
+      opacity: 0; transform: scale(.6);
+      animation: splashRozet var(--splash-ad-sure) var(--ease-giris) var(--splash-zam-gec) both;
+    }
+    .splash-rozet > svg { width: 1.05em; height: 1.05em; }
+
+    /* AD "Pazar": TEK TOKEN YOK — --text (koyu tema ~beyaz eşleşir; açık temada
+       tasarımın koyu-yeşili yerine metin rengi). Marka yeşili çizgide/mühürde. */
+    .splash-ad {
+      font-family: 'Cabinet Grotesk', 'Inter', sans-serif;
+      font-weight: 800; font-size: 2.7rem; letter-spacing: -.04em;
+      color: var(--text); line-height: .9;
+      opacity: 0; transform: translate3d(0, 1.8rem, 0);
+      animation: splashYukari var(--splash-ad-sure) var(--ease-giris) var(--splash-ad-gec) both;
+    }
+    .splash-cizgi {
+      width: 3.4rem; height: .34rem; background: var(--primary-light);
+      transform: scaleX(0); transform-origin: left center;
+      animation: splashCizgi var(--splash-ad-sure) var(--ease-out) var(--splash-cizgi-gec) both;
+    }
+    .splash-slogan {
+      display: flex; gap: .35em; color: var(--text-muted);  /* tasarım kremi tokensiz -> muted */
+      font-size: .95rem; font-weight: 500; letter-spacing: -.01em;
+    }
+    .splash-slogan span {
+      opacity: 0; transform: translate3d(0, 1rem, 0);
+      animation: splashYukari var(--splash-slogan-sure) var(--ease-giris) both;
+    }
+    .splash-slogan span:nth-child(1) { animation-delay: var(--splash-slogan-gec); }
+    .splash-slogan span:nth-child(2) { animation-delay: calc(var(--splash-slogan-gec) + 1 * var(--splash-slogan-adim)); }
+    .splash-slogan span:nth-child(3) { animation-delay: calc(var(--splash-slogan-gec) + 2 * var(--splash-slogan-adim)); }
+    .splash-slogan span:nth-child(4) { animation-delay: calc(var(--splash-slogan-gec) + 3 * var(--splash-slogan-adim)); }
+
+    @keyframes splashMuhur {
+      0% { transform: scale(.74); opacity: 0; }
+      55% { transform: scale(1.06); opacity: 1; }
       100% { transform: scale(1); opacity: 1; }
     }
-    /* Hareket azaltmada logo ANINDA görünür; splash yine erken kalkar
-       (kalkma süresini CSS değil app.js'teki hazır sinyali belirliyor —
-       önceden reduced-motion'da bile 778 ms boşa bekleniyordu). */
+    @keyframes splashHalka { to { stroke-dashoffset: 0; } }
+    @keyframes splashNokta { 0% { opacity: 0; transform: scale(.2); } 100% { opacity: 1; transform: scale(1); } }
+    @keyframes splashRozet { 0% { opacity: 0; transform: scale(.6) translate3d(-.4em,-.2em,0); } 100% { opacity: 1; transform: scale(1) translate3d(0,0,0); } }
+    @keyframes splashYukari { to { opacity: 1; transform: translate3d(0,0,0); } }
+    @keyframes splashCizgi { to { transform: scaleX(1); } }
+
+    /* Hareket azaltma: her şey ANINDA görünür, animasyon/geçiş YOK. Splash yine
+       erken kalkar (kalkma app.js hazır sinyalinden). */
     @media (prefers-reduced-motion: reduce) {
-      #splash img { animation: none; opacity: 1; transform: none; }
       #splash { transition: none; }
+      .splash-mark, .splash-ad, .splash-cizgi, .splash-slogan span, .splash-rozet,
+      .splash-halka, .splash-nokta {
+        animation: none; opacity: 1; transform: none; stroke-dashoffset: 0;
+      }
     }
     .onboarding-overlay {
       position: fixed; inset: 0; z-index: 9998; overflow: hidden;
