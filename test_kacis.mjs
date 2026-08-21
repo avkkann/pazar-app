@@ -32,6 +32,19 @@ function fnKaynak(ad) {
   }
   return null;
 }
+// const NAME = (arg) => { ... } biçimli ok fonksiyonlarının kaynağı (ör. _cmpItemHTML)
+function arrowKaynak(ad) {
+  const m = 'const ' + ad + ' = (it) => {';
+  let b = APP.indexOf(m);
+  if (b < 0) return null;
+  let dd = 0;
+  for (let j = APP.indexOf('{', b); j < APP.length; j++) {
+    const c = APP[j];
+    if (c === '{') dd++;
+    else if (c === '}') { dd--; if (dd === 0) return APP.slice(b, j + 1); }
+  }
+  return null;
+}
 // Yorumları soy: /*…*/ ve //… (http:// içindeki // korunur: önündeki ':' ile).
 // Satır yorumlarını ÖNCE soy: bir `//` yorumu içindeki `/*` (örn. yol `cat/*.png`)
 // blok-soyucu önce çalışırsa sahte blok başı sanılıp sonraki `*/`'e kadar GERÇEK
@@ -248,6 +261,52 @@ console.log("\n=== 11. KANIT: bir handler'ı JS-string enjeksiyonuna geri sar, t
   // Yorum tuzağı: yorumdaki enjeksiyon deseni yanlış alarm üretmemeli
   const yorumlu = "function t(){ /* eski: onclick=\"f('${u._id}')\" */ return `<div onclick=\"f(this.dataset.id)\"></div>`; }";
   ok('yorumdaki enjeksiyon taramada SOYULUYOR (yanlış alarm yok)', !/on[a-z]+="[^"]*'\$\{/.test(yass(yorumlu)));
+}
+
+console.log('\n=== S4 DIŞ-API RENDER YOLLARI: GERÇEK _kacir ile kaçış (4639/4630/5428/4867/4932) ===');
+// B1 son partisi (2026-08-21): CI kapısı kurulurken bu yolların testlerine
+// passthrough _kacir stub'ı konmuştu -> gerçek kaçış görünmüyordu. Burada GERÇEK
+// _kacir vm'e yükleniyor; iddialar üretim çıktısını doğruluyor (stub YOK).
+{
+  const PAY = '<img src=x onerror=1>';
+  function kur(extra) {
+    const c = Object.assign({ console, tl: (n) => String(n), birimFiyatYazi: () => '',
+      _birimFiyatHam: () => ({}), placeholderRenk: () => ({ emoji: 'X' }),
+      ustKategori: (x) => x, lcIcon: () => '' }, extra || {});
+    vm.createContext(c);
+    vm.runInContext([fnKaynak('_kacir'), fnKaynak('_guvenliUrl')].filter(Boolean).join('\n'), c);
+    return c;
+  }
+  // 4639 + 4630 (kontrol grubu): sepetMarketOzetiHTML
+  {
+    const c = kur({
+      marketToplamlari: () => [{ ad: PAY, toplam: 100, eksik: 0 }],
+      sepetBolmeOnerisi: () => ({ oner: true, ikili: { adlar: [PAY, 'A101'], toplam: 90 }, kazanc: 10, tekMarket: { ad: 'BIM', toplam: 100 } }),
+    });
+    vm.runInContext(fnKaynak('sepetMarketOzetiHTML'), c);
+    const h = c.sepetMarketOzetiHTML();
+    ok('4639 sepetMarketOzetiHTML: o.ikili.adlar market adları KAÇILIYOR', !h.includes(PAY) && h.includes('&lt;img src=x'), h.slice(0, 160));
+    ok('  4630 kontrol grubu (m.ad) da kaçılıyor (>=2 kaçışlı)', (h.match(/&lt;img src=x/g) || []).length >= 2, '');
+    ok('  " + " ayırıcısı literal kalıyor (görünüm bozulmaz)', h.includes(' + A101'), h.slice(0, 160));
+  }
+  // 5428: profilAlarmlarHTML (eski manuel replace(/</g) -> _kacir)
+  {
+    const c = kur({ _profilUrunBul: () => ({ ad: PAY }), _profilEnUcuz: () => ({ fiyat: 10 }) });
+    c.window = vm.runInContext('({ pazarAlarmMap: new Map([["sid1", 20]]) })', c);
+    vm.runInContext(fnKaynak('profilAlarmlarHTML'), c);
+    const h = c.profilAlarmlarHTML();
+    ok('5428 profilAlarmlarHTML: ürün adı _kacir (& dahil, kısmi replace GİTTİ)', h.includes('&lt;img src=x') && !h.includes('<img src=x'), h.slice(0, 200));
+  }
+  // 4867 + kontrol (it.ad): _cmpItemHTML gramaj
+  {
+    const src = arrowKaynak('_cmpItemHTML').replace('const _cmpItemHTML', 'globalThis._cmpItemHTML');
+    const c = kur(); vm.runInContext(src, c);
+    const h = c._cmpItemHTML({ ad: PAY, agirlik_hacim: PAY, resim: null, fiyat: 10 });
+    ok('4867 _cmpItemHTML: gramaj (it.agirlik_hacim) KAÇILIYOR', !h.includes(PAY) && h.includes('&lt;img src=x'), h.slice(0, 160));
+    ok('  kontrol: it.ad da kaçılıyor (cmp-mkt-item-name)', /cmp-mkt-item-name">&lt;img/.test(h), '');
+  }
+  // 4932: hal-badge bt.slice — tek satır (fonksiyon değil) -> kaynak taraması
+  ok('4932 hal-badge: bt.slice(0,10) _kacir\'li', /Hal:\s*\$\{_kacir\(bt\.slice\(0, 10\)\)\}/.test(APP), '');
 }
 
 console.log(`\nPASS=${pass}  FAIL=${fail}`);

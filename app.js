@@ -4636,7 +4636,7 @@ function sepetMarketOzetiHTML() {
   let oneri = '';
   if (o.oner && o.ikili) {
     oneri = `<div class="sepet-mkt-oneri">
-        ${o.ikili.adlar.join(' + ')} olarak iki markete bölersen ${tl(o.kazanc)} kazanırsın
+        ${o.ikili.adlar.map(a => _kacir(a)).join(' + ')} olarak iki markete bölersen ${tl(o.kazanc)} kazanırsın
         <span class="sepet-mkt-oneri-alt">tek market ${_kacir(o.tekMarket.ad)} ${tl(o.tekMarket.toplam)} · iki market ${tl(o.ikili.toplam)}</span>
       </div>`;
   } else if (o.tekMarket) {
@@ -4861,7 +4861,7 @@ function hesaplaSecili(seciliMarketler) {
     // fiyatına dayanan bir ₺/kg yazardı.
     const bf = it.fiyat != null ? _birimFiyatHam(it.agirlik_hacim, it.fiyat, it.ad) : null;
     const parcalar = [];
-    if (it.agirlik_hacim) parcalar.push(it.agirlik_hacim);
+    if (it.agirlik_hacim) parcalar.push(_kacir(it.agirlik_hacim));
     if (bf) parcalar.push(birimFiyatYazi(bf));
     const meta = parcalar.length
       ? `<div class="cmp-mkt-item-meta">${parcalar.join(' · ')}</div>` : '';
@@ -4929,7 +4929,7 @@ function loadData() {
       const bt = halData.bulten_tarihi || '';
       const _halDate = document.getElementById('halDate');
       if (bt && _halDate) _halDate.innerHTML =
-        `<span class="hal-badge">Hal: ${bt.slice(0, 10)}</span>`;
+        `<span class="hal-badge">Hal: ${_kacir(bt.slice(0, 10))}</span>`;
     }
     // ?screen=hal derin baglantisi script sonunda SENKRON kosuyor, hal.json ise
     // asenkron geliyor. openHalScreen() renderHalScreen()'i hemen cagirdigi icin
@@ -5425,7 +5425,7 @@ function profilAlarmlarHTML() {
     else durum = '<span class="profil-satir-alt">Hedef ' + tl(hedef) + ' · güncel ' + tl(guncel) + ' · ' + tl(guncel - hedef) + ' uzakta</span>';
     satirlar.push(`<div class="profil-satir">
         <div class="profil-satir-ana profil-satir-ana--statik">
-          <span class="profil-satir-ad">${String(ad).replace(/</g, '&lt;')}</span>
+          <span class="profil-satir-ad">${_kacir(ad)}</span>
           ${durum}
         </div>
         <button type="button" class="profil-satir-sil" aria-label="Alarmı kaldır" data-sid="${sidAttr}" onclick="profilAlarmKaldir(this.dataset.sid)">${lcIcon('trash-2')}</button>

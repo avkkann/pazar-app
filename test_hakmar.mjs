@@ -59,7 +59,7 @@ function calistir(urunlerVeri, aktifMarketler, altKat = 'tumu', arama = '') {
   const win = { yuklenenUrunler: urunlerVeri, aktifMarketler, _aktifAltKat: altKat,
                 _catAramaTermi: arama, _catSiralama: 'populer' };
   const ctx = {
-  _kacir: (s) => (s == null ? '' : String(s)), window: win, document: dom.document, console,
+  _kacir: (s) => (s == null ? '' : String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')), window: win, document: dom.document, console,
     sepet: [], currentKategori: 'meyve', currentSayfa: 1, toplamSayfa: 1, urunler: [], PAGE_SIZE,
     MARKET_NAMES,
     popScore: () => 0, birimFiyatHesapla: () => null, lcIcon: () => '',

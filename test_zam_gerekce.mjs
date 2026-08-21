@@ -33,7 +33,7 @@ const gun = n => { const d = new Date(); d.setDate(d.getDate() - n); return d.to
 
 function kur(gecmis, urunler) {
   const ctx = {
-  _kacir: (s) => (s == null ? '' : String(s)),
+  _kacir: (s) => (s == null ? '' : String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')),
     console, Math, Date, JSON, Array, Object, Number, String, isNaN, Set, Map,
     _gecmisCache: gecmis, catCache: { t: urunler || [] },
     MARKET_NAMES: { a101: 'A101', bim: 'BİM', migros: 'Migros', carrefour: 'CarrefourSA', sok: 'ŞOK' },
@@ -141,7 +141,9 @@ console.log('\n=== 2. YAYGINLIK ===');
   const dz = calis(c, 'zamYayginlikHTML(' + JSON.stringify(u) + ')').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
   ok('  "aynı" iddiasi KURULMUYOR', !/aynı/.test(dz), dz);
   ok('  bos market adi yazilmiyor', !/·\s*aynı/.test(dz) && !/,\s*aynı/.test(dz), dz);
-  ok('  yalnizca olgu: "Migros\'ta zamlandı"', /Migros'ta zamlandı/.test(dz), dz);
+  // GERCEK cikti dogrulanir: zamYayginlikHTML tumunu _kacir'liyor -> apostrof &#39;.
+  // Entity DECODE etme (passthrough korlugunu geri getirir); kacis bozulursa kirmizi olsun.
+  ok('  yalnizca olgu: "Migros&#39;ta zamlandı" (uretimde kacisli)', /Migros&#39;ta zamlandı/.test(dz), dz);
 }
 
 console.log('\n=== 3. KATEGORI BAGLAMI ===');
