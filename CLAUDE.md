@@ -20,14 +20,14 @@ Mustafa (GitHub: avkkann), **Pazar App**'in tek geliştiricisi — Türk market 
 
 ## Mevcut durum (2026-08-21 itibarıyla)
 
-### 2026-08-21 — Grup 1: dört küçük düşük-riskli iş (M1/M3/M4 CANLI; M2 ÖLÇÜLDÜ, hizalama onay bekliyor)
+### 2026-08-21 — Grup 1: dört küçük düşük-riskli iş (M1/M3/M4 + M2 hepsi CANLI/DOĞRULANDI)
 
 Her madde AYRI commit (biri bozulursa tek revert). superpowers + tasarım maddelerinde ui-ux-pro-max kullanıldı.
 
 - **M1 — tanınmayan market kodu uyarısı** (`e51937f`). `scraper.py parse_product`: market kodu `BILINEN_MARKET_KODLARI` (app.js:654 MARKET_NAMES ile aynı: a101/bim/carrefour/migros/sok/tarim_kredi/hakmar) dışındaysa gece koşusu log'una tek satır `[UYARI] taninmayan market kodu: <kod>`. Dedup: kod ilk görülüşünde. Sessiz yutma yok. Kaçış birincil savunma; bu erken uyarı.
 - **M3 — üç tasarım borcu, tek commit** (`f962b51`). (a) `.search-box svg` ikon diline alındı: `stroke-linecap/linejoin: round` (büyüteç sapı köşeli→yuvarlak). (b) og-image alt metninden `· hal fiyatı` çıkarıldı → "7 zincir market · günlük fiyat"; PNG yeniden üretildi (uygulama hal/market karşılaştırmasını bilerek öne çıkarmıyor). (c) `modalSlideUp` easing `--ease-out` → `--ease-giris` (rol ayrımı; ikisi de ease-out ailesi). sw.js bump YOK (og-image/style.css precache'te değil). Öncesi/sonrası görsel Mustafa'ya iletildi.
 - **M4 — apple-touch-startup-image** (`8592856`). iOS ana ekrana eklenince açılış görseli yoktu. `scripts/splash-uret.mjs` (Chrome headless, og ile aynı desen) 11 iPhone çözünürlüğünde marka splash üretiyor (koyu yeşil + krem "Pazar"); index.html'e cihaz-eşlemeli 11 `<link rel="apple-touch-startup-image">`. Medya sorgusu eşleşmezse iOS göstermez (regresyon yok). sw.js bump YOK (iOS natif yükler). **iPhone'da test edilecek.**
-- **M2 — Node sürüm hizalama: ÖLÇÜLDÜ, DURULDU.** update-data.yml Node 20, deploy.yml Node 24. ÖLÇÜM (yerelde, aynı girdi, `uretim` normalize): Node 20.20.2 vs 24.18.0 → `anasayfa.json` **bayt bayt AYNI** (SHA256 eşit, 153.838 B). Node sürümü çıktıyı değiştirmiyor (ICU/localeCompare dahil). **Hizalama (update-data → node 24) güvenli ama Mustafa'nın "DUR ve raporla" talimatı gereği onay bekliyor.** Onaylanınca: `node-version: '20'`→`'24'`, sonra çıktı değişmezliği zaten kanıtlı.
+- **M2 — Node sürüm hizalama: HİZALANDI + DOĞRULANDI** (`844183f`). update-data.yml `node-version: '20'`→`'24'` (deploy.yml zaten 24; artık `anasayfa.json` tek Node majöründe üretiliyor). ÖLÇÜM (yerelde, aynı girdi, `uretim` normalize): Node 20.20.2 vs 24.18.0 → **bayt bayt AYNI** (SHA256 `310c843e…`, 153.838 B); ICU/localeCompare dahil çıktı Node-sürümünden bağımsız. Hizalama sonrası doğrulama (gece koşusu beklemeden, mevcut mekanizmayla): (1) canlı deploy koşusunun `setup-node@v4 '24'` adımı **node v24.19.0** kurdu ([run 32477517505]) — aynı aksiyon/sürüm update-data'da da; (2) yerelde Node 24 çıktısı Node 20 ile yine bayt bayt aynı. "Aynı türetilmiş dosyanın iki motoru" borcu kapandı.
 
 ### 2026-08-21 — GITHUB_TOKEN yetkileri kısıldı: workflow başına açık permissions (KISMI — varsayılan read'e çekme YARIN, sıra kritik)
 
