@@ -433,6 +433,18 @@ def fetch_page(session, keyword, page_num):
     return None
 
 
+# app.js:654 MARKET_NAMES anahtar kumesiyle AYNI liste. Kaynak orada; market
+# kodlari nadiren degisir (7 zincir) ve frontend lookup'i (MARKET_NAMES[f.market])
+# calistigi icin scraper'in yazdigi kodlarla birebir ortusuyor. Yeni bir zincir ya
+# da anormal bir kod gece kosusunun log'unda ERKEN gorunsun diye burada da tutulur.
+BILINEN_MARKET_KODLARI = frozenset({
+    "a101", "bim", "carrefour", "migros", "sok", "tarim_kredi", "hakmar",
+})
+# Ayni taninmayan kodu her urunde tekrar tekrar loglamamak icin (bir kod ilk
+# gorulusunde tek satir uyari); modul seviyesinde, kosu boyunca birikir.
+_uyarilan_market_kodlari = set()
+
+
 def parse_product(item, kategori_adi, slug_kisa="urun"):
     market_fiyatlari = []
     for depot in item.get("productDepotInfoList") or []:
@@ -442,6 +454,14 @@ def parse_product(item, kategori_adi, slug_kisa="urun"):
                 "market": depot.get("marketAdi"),
                 "fiyat":  fiyat,
             }
+            # ERKEN UYARI (sessiz yutma yok): MARKET_NAMES'te olmayan bir market
+            # kodu -> yeni zincir mi, anormal kod mu? Kacis birincil savunma; bu
+            # yalnizca gece kosusu log'unda gorunen tek satirlik uyari. Ayni kod
+            # yalnizca ILK gorulusunde loglanir (yukaridaki dedup seti).
+            _kod = kayit["market"]
+            if _kod and _kod not in BILINEN_MARKET_KODLARI and _kod not in _uyarilan_market_kodlari:
+                _uyarilan_market_kodlari.add(_kod)
+                print(f"[UYARI] taninmayan market kodu: {_kod}", flush=True)
             # discountlessPrice = marketin ILAN ETTIGI liste fiyati. Kayitlarin
             # ~%14'unde dolu (migros/carrefour/bim). Sadece gercek bir indirim
             # ifade ediyorsa ekle; bos alani 15 bin urunde tasimayalim.
