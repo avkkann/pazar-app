@@ -20,6 +20,25 @@ Mustafa (GitHub: avkkann), **Pazar App**'in tek geliştiricisi — Türk market 
 
 ## Mevcut durum (2026-08-21 itibarıyla)
 
+### 2026-08-21 — GITHUB_TOKEN yetkileri kısıldı: workflow başına açık permissions (KISMI — varsayılan read'e çekme YARIN, sıra kritik)
+
+Depo varsayılanı `default_workflow_permissions: write` idi; açık blok yazmayan 3 workflow bunu (write-all) miras alıyordu. Her workflow'a gerçek ihtiyacı kadar yetki (commit `9169e66`):
+- `deploy.yml` → `contents: read` (zaten vardı; deploy commit atmıyor)
+- `update-data.yml` → `contents: write` (data/ + anasayfa.json commit+push)
+- `il-marketler.yml` → `contents: write` (il_marketler.json commit+push)
+- `haftalik-bulten.yml` → `permissions: {}` (yalnızca Edge Function'a curl; GITHUB_TOKEN kullanmıyor, secret'lar bağımsız)
+
+Açık bloklar depo varsayılanını **EZER** → varsayılan read'e çekilse de gecelik hat kırılmaz.
+
+**Doğrulama (yeşil ekran yetmez):**
+- `deploy.yml` `contents: read` → push sonrası deploy YEŞİL ([run 32473793545](https://github.com/avkkann/pazar-app/actions/runs/32473793545)).
+- `il-marketler` elle tetiklendi → GERÇEK commit düştü (`4b179b8` "Il market haritasi guncellendi", GitHub Actions, 10:50Z, [run 32473932125](https://github.com/avkkann/pazar-app/actions/runs/32473932125)) → `contents: write` commit+push'a **yetiyor**. ✅
+
+**AÇIK KALAN (bilinçli — sıra kritik, ters yapılırsa gecelik hat kırılır):**
+- `haftalik-bulten` **elle tetiklenMEDİ**: fonksiyon her yetkili çağrıda `bulten_aboneler`'deki HER aboneye Resend ile e-posta yolluyor (tarih/dedup guard'ı yok) → program dışı bülten spam'i riski. `permissions: {}` curl'ü bozamaz (GITHUB_TOKEN kullanılmıyor); ampirik tetikleme için Mustafa'nın onayı bekleniyor.
+- `update-data` **elle tetiklenMEDİ**: ~2 saatlik scrape + DB yazımı + `fiyat-alarm` job'u ile gerçek kullanıcılara program dışı PUSH bildirimi → orantısız. Karar (Mustafa'nın talimatı): gecelik koşuyu (03:00 UTC) bekle, YARIN `update-data`'nın commit+push'unu doğrula.
+- **Depo varsayılanı HÂLÂ `write` — bilerek.** `update-data` doğrulanana kadar read'e ÇEKİLMEYECEK ("kırık bir hatla geceyi geçirmeyelim"). update-data bu gece GÜVENLİ: kendi `contents: write` bloğu var + varsayılan da hâlâ write.
+
 ### 2026-08-21 — İş 3: CSP başlıkları — font-src 'self' + frame-ancestors 'none' + nosniff (CANLI, BAŞLIK DOĞRULANDI; gizli-sekme konsol onayı Mustafa'da)
 
 `src/worker.js`'e üç değişiklik (tek deploy, [run 32467193580](https://github.com/avkkann/pazar-app/actions/runs/32467193580)):
