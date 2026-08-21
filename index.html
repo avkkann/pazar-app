@@ -75,7 +75,13 @@
      yeniden uret; yoksa tarayici betigi reddeder. crossorigin=anonymous SRI
      icin sart. Self-host ayri asama. -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.112.3" integrity="sha384-l8ah+VgaWtk1mvOe9VC+OirC6qHFF4yH7l7mKRidV9MSti3E9F463bMp6ZVN4kuC" crossorigin="anonymous"></script>
-<script data-goatcounter="https://pazar-app.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- B5: GoatCounter ucuncu-taraf JS -> surumlu (frozen) count.v5.js + SRI + crossorigin.
+     Kayan count.js yerine v5 (GoatCounter surumlu URL'leri SRI icin donduruyor,
+     Cache-Control 1 yil). Hash INDIRILEN dosyadan uretildi. GoatCounter surum
+     yukseltirsen (count.v6.js) integrity'yi yeni dosyadan yeniden uret, yoksa
+     tarayici betigi reddeder ve analitik SESSIZCE durur. crossorigin=anonymous
+     SRI icin sart. //  -> https:// (protokol-goreli birakilmadi). -->
+<script data-goatcounter="https://pazar-app.goatcounter.com/count" async src="https://gc.zgo.at/count.v5.js" integrity="sha384-atnOLvQb9t+jTSipvd75X2yginT4PjVbqDdlJAmxMm+wYElFmeR6EmLP5bYeoRVQ" crossorigin="anonymous"></script>
 </head>
 <body>
 <noscript>

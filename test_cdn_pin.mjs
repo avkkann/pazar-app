@@ -43,5 +43,23 @@ console.log('\n=== GENEL: jsdelivr npm <script> KAYAN surum tasimasin ===');
   }
 }
 
+console.log('\n=== GOATCOUNTER: ucuncu-taraf JS surumlu + SRI ===');
+{
+  // GoatCounter script'ini bul (gc.zgo.at)
+  const tag = (HTML.match(/<script\b[^>]*gc\.zgo\.at[^>]*><\/script>/) || [])[0] || '';
+  ok('GoatCounter <script> bulundu', !!tag, '');
+  // Kayan count.js DEGIL, surumlu count.vN.js olmali (frozen -> SRI stabil)
+  const src = (tag.match(/src="([^"]+)"/) || [])[1] || '';
+  ok(`  surumlu count.vN.js (kayan count.js degil)  [src: ${src.slice(0, 60)}]`,
+     /gc\.zgo\.at\/count\.v\d+\.js/.test(src) && !/\/count\.js/.test(src), src);
+  ok('  integrity="sha384-..." mevcut',
+     /integrity="sha384-[A-Za-z0-9+/=]+"/.test(tag), tag.slice(0, 160));
+  ok('  crossorigin mevcut (SRI icin sart)',
+     /\bcrossorigin\b/.test(tag), tag.slice(0, 160));
+  // protokol-goreli // birakilmamis (https:// acik)
+  ok('  https:// acik (protokol-goreli // degil)',
+     /src="https:\/\/gc\.zgo\.at/.test(tag), src);
+}
+
 console.log(`\nPASS=${pass}  FAIL=${fail}`);
 process.exit(fail ? 1 : 0);
