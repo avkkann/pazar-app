@@ -758,6 +758,7 @@ Uygulama teknik olarak çalışıyor ama **pratikte hâlâ dağıtılmamış dur
 - **`kesif_*`/`migrate_*`/`a101_pilot_*` dosyaları** — gitignore'da ama diskte, silme kararı Mustafa'da.
 
 **Diğer:**
+- **Cloudflare Insights beacon'ı — panelden KAPATILACAK (Mustafa'nın işi, pano işi).** `static.cloudflareinsights.com/beacon.min.js` her sayfa yüklemesinde `script-src` ihlaliyle bloklanıyor (gizli sekme konsolunda kırmızı + konsol kirliliği). **Karar sabit: CF Web Analytics CSP'ye EKLENMEYECEK, GoatCounter yeterli — beacon'ı CSP'ye asla ekleme.** Boşuna bloklanmayı kaynakta durdurmanın yolu **Cloudflare panel → Speed → Optimization → Web Analytics'i kapatmak**. Kod tarafında yapılacak bir şey yok.
 - **A101 Kapıda entegrasyonu** — pilot scraper hazır, DB'ye nasıl ekleneceği kararı bekliyor.
 - **P1-B1 (tuzak landing), P1-U1/U2/B2, P2** — tartışılmadı. (P1-T2 CSP 2026-08-17'de kapandı.)
 - **Safari'de hiç test edilmedi** — kullanıcıların **%64'ü** iOS/Safari (aşağıdaki dağıtım durumuna bak). Test hep masaüstü Chrome ve Claude in Chrome ile yapıldı.

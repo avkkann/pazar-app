@@ -15,7 +15,11 @@ const CSP = [
   // yuklenmiyordu — .header-text h1, .hdr-left h2, .home-strip-title,
   // .detay-name, .detay-mkt-price, .product-price, .profil-istat-sayi
   // sessizce Inter'e dusuyordu.
-  "font-src https://fonts.gstatic.com https://api.fontshare.com https://cdn.fontshare.com",
+  // 'self': fontlar self-host (static/fonts/inter-latin.woff2, index.html:50 preload).
+  // 'self' YOKKEN o woff2 CSP'ce bloklaniyordu — gizli sekmede olculdu 2026-08-21
+  // ("Loading the font violates font-src ... blocked"). Inter self-host'a gecince
+  // (v232) font-src'ye 'self' eklenmesi atlanmisti; bu satir o gercek blogu aciyor.
+  "font-src 'self' https://fonts.gstatic.com https://api.fontshare.com https://cdn.fontshare.com",
   // cdn.marketfiyati.org.tr  : urun resimleri (data/ icinde 14.336 urunun resmi
   //                            bu host'tan geliyor — olculdu 2026-08-17)
   // lh3.googleusercontent.com: Google OAuth avatari. app.js:225 giris yapan
@@ -34,7 +38,13 @@ const CSP = [
   "connect-src 'self' https://gbgxxahhbfnulmyecxia.supabase.co https://api.marketfiyati.org.tr https://pazar-app.goatcounter.com",
   "manifest-src 'self'",
   "base-uri 'self'",
-  "form-action 'self'"
+  "form-action 'self'",
+  // Siteyi hicbir yere iframe'lemiyoruz -> en siki dogru: 'none' ('self' degil).
+  // Olculdu 2026-08-21: gercek uygulamada <iframe> yok, hub sayfalari/PWA iframe
+  // kullanmiyor, OAuth redirect tabanli (iframe degil). _tasarim_taslak/ (design
+  // taslagi) deploy EDILMIYOR. X-Frame-Options eklenmedi: frame-ancestors modern
+  // ve daha guclu esdegeri. Mesru bir iframe ihtiyaci dogarsa bu 'none' engeller.
+  "frame-ancestors 'none'"
 ].join('; ');
 
 export default {
@@ -42,6 +52,8 @@ export default {
     const response = await env.ASSETS.fetch(request);
     const newResponse = new Response(response.body, response);
     newResponse.headers.set('Content-Security-Policy', CSP);
+    // MIME-sniffing kapali: tarayici Content-Type'i tahmin etmesin (nosniff).
+    newResponse.headers.set('X-Content-Type-Options', 'nosniff');
     return newResponse;
   }
 };
