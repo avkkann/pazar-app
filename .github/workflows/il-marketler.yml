@@ -7,6 +7,12 @@ on:
     # Pazar 04:30 UTC — gecelik veri kosusu (03:00, ~2 saat) bittikten sonra
     - cron: '30 4 * * 0'
   workflow_dispatch:
+
+# GITHUB_TOKEN en az yetki: data/il_marketler.json COMMIT+PUSH ediyor
+# -> contents: write sart. Acik blok depo varsayilanini (read) ezer.
+permissions:
+  contents: write
+
 jobs:
   tara:
     runs-on: ubuntu-latest

@@ -3,6 +3,13 @@ on:
   schedule:
     - cron: '0 3 * * *'
   workflow_dispatch:
+
+# GITHUB_TOKEN en az yetki: bu workflow data/ (+ anasayfa.json) COMMIT+PUSH ediyor
+# -> contents: write sart. Diger scope'lar (packages/actions/id-token...) gereksiz.
+# Acik blok, depo varsayilanini (read'e cekilecek) EZER; gecelik hat kirilmaz.
+permissions:
+  contents: write
+
 jobs:
   update:
     runs-on: ubuntu-latest

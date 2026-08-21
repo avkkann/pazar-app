@@ -10,6 +10,12 @@ on:
   schedule:
     - cron: '0 15 * * 5'
   workflow_dispatch:
+
+# GITHUB_TOKEN yetkisi YOK: bu workflow yalnizca Edge Function'a curl atiyor
+# (checkout yok, git yok, repo dosyasi okumuyor). Secret'lar (SUPABASE_ANON_KEY,
+# CRON_SECRET) permissions'tan BAGIMSIZ -> {} curl'u bozmaz.
+permissions: {}
+
 jobs:
   gonder:
     runs-on: ubuntu-latest
