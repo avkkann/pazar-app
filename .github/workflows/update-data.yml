@@ -59,7 +59,11 @@ jobs:
       # tazelik kontrolu iki gunde YANLIS ALARM verir.
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          # deploy.yml (24) ile HIZALANDI. Eskiden '20' idi -> anasayfa.json iki
+          # farkli Node majorunde uretiliyordu (gece burada, build deploy'da).
+          # Olculdu 2026-08-21: ayni girdiyle Node 20.20.2 vs 24.18.0 ciktisi
+          # BAYT BAYT AYNI (SHA256 esit), yani hizalama ciktiyi degistirmez.
+          node-version: '24'
       - name: Ana Sayfa Seritleri
         run: node scripts/anasayfa-uret.mjs
       - name: Ana Sayfa Seritlerini Isle
