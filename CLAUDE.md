@@ -20,6 +20,14 @@ Mustafa (GitHub: avkkann), **Pazar App**'in tek geliştiricisi — Türk market 
 
 ## Mevcut durum (2026-08-21 itibarıyla)
 
+### 2026-08-21 — HSTS kademeli rollout, 1. BASAMAK: max-age=300 (CANLI, DOĞRULANDI)
+
+`src/worker.js`'e `Strict-Transport-Security: max-age=300` eklendi (`2f23925`). **SADECE max-age=300; includeSubDomains YOK, preload YOK** — bilinçli kademeli plan.
+- **Neden kademeli:** HSTS tarayıcıya "bu siteye artık SADECE HTTPS" der; yanlış giderse (bir subdomain HTTP'de, sertifika sorunu) kullanıcı siteye HİÇ giremez ve **geri alınamaz** — max-age dolana kadar tarayıcıda kilitli. 5 dk = risk 5 dakikaya iniyor. Sorunsuz görülünce ayrı turlarda 1 gün → 1 hafta → daha uzun.
+- **includeSubDomains neden yok:** `www.pazarapp.net` yönlendirmesi kurulmadı (bkz. Bekleyen → madde 6), tüm subdomain'ler HTTPS değil; eklersek kırılabilir. **preload neden yok:** preload listesi aylarca geri alınamaz, asla acele.
+- **Guard** (`test_cdn_pin.mjs`): HSTS var + `max-age=300` + includeSubDomains YOK + preload YOK. Prove-by-breaking doğrulandı (includeSubDomains/preload eklenirse ya da HSTS silinirse KIRMIZI) → erken kilitlenme yayına gitmeden yakalanır. İleride max-age artınca guard'ın o satırı bilerek güncellenecek.
+- **Doğrulama:** canlı başlık sunucu-taraflı okundu (`Server: cloudflare`, CF-RAY): `Strict-Transport-Security: max-age=300`, includeSubDomains/preload YOK. ✅ (Kaspersky yerelde 499/MITM ile kestiği için header inspector üzerinden.)
+
 ### 2026-08-21 — Grup 1: dört küçük düşük-riskli iş (M1/M3/M4 + M2 hepsi CANLI/DOĞRULANDI)
 
 Her madde AYRI commit (biri bozulursa tek revert). superpowers + tasarım maddelerinde ui-ux-pro-max kullanıldı.
