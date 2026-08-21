@@ -20,6 +20,18 @@ Mustafa (GitHub: avkkann), **Pazar App**'in tek geliştiricisi — Türk market 
 
 ## Mevcut durum (2026-08-21 itibarıyla)
 
+### 2026-08-21 — İş 3: CSP başlıkları — font-src 'self' + frame-ancestors 'none' + nosniff (CANLI, BAŞLIK DOĞRULANDI; gizli-sekme konsol onayı Mustafa'da)
+
+`src/worker.js`'e üç değişiklik (tek deploy, [run 32467193580](https://github.com/avkkann/pazar-app/actions/runs/32467193580)):
+- **`font-src 'self'` eklendi — GERÇEK blok açıldı.** Inter self-host'a geçince (v232) `font-src`'ye `'self'` eklenmesi atlanmıştı; `index.html:50` `/static/fonts/inter-latin.woff2`'yi (aynı-origin) preload ediyor, `'self'` olmadan CSP bunu blokluyordu. Mustafa'nın gizli sekmesinde ölçüldü: "Loading the font violates font-src ... blocked" kırmızısı. Kozmetik değil.
+- **`frame-ancestors 'none'`** — clickjacking'e karşı sertleştirme. Ölçüldü: gerçek uygulamada `<iframe>` yok, hub sayfaları/PWA iframe kullanmıyor, OAuth redirect tabanlı; `_tasarim_taslak/` deploy edilmiyor. Meşru iframe kullanımı olmadığı için `'self'` değil `'none'` (en sıkı doğru). X-Frame-Options eklenmedi (frame-ancestors modern eşdeğeri).
+- **`X-Content-Type-Options: nosniff`** eklendi.
+- **HSTS bilerek DIŞARIDA** — geri alması zor; ayrı, kademeli turda konuşulacak.
+
+**Ölçüm dersi (kök neden — ilk ÖLÇÜM 3'ün kör noktası):** İlk CSP ölçümü `worker.js` kaynağını canlı başlıkla karşılaştırdı ve HSTS/frame-ancestors/nosniff eksiklerini yakaladı, ama **self-host edilen varlıkların `'self'` gerektirdiğini çapraz kontrol etmedi** → `font-src 'self'` eksiğini kaçırdı. Mustafa gizli-sekme konsolundan yakaladı. **Ders: CSP denetiminde her direktifi yalnızca "canlıda var mı" diye değil, "uygulamanın gerçekten yüklediği kaynak bu direktifçe izinli mi" diye de ölç — özellikle self-host font/script/img.**
+
+**Doğrulama:** Canlı başlıklar sunucu-taraflı header inspector ile teyit edildi (`Server: cloudflare`, `CF-RAY`): `font-src 'self' …`, `frame-ancestors 'none'`, `X-Content-Type-Options: nosniff` hepsi canlı; HSTS yok. **AÇIK KALAN adım (Mustafa):** gizli sekmede (SW yok) pazarapp.net aç, konsol TEMİZ olmalı — font-src ihlali KAYBOLMALI. (Claude yerelden ölçemiyor: Kaspersky pazarapp.net'i 499/MITM ile kesiyor; başlık sunucu-taraflı teyit edildi ama tarayıcı-konsol onayı Mustafa'da.) **CF Insights beacon ihlali panel değişikliğine kadar konsolda kalabilir** (bkz. Bekleyen işler → beacon notu); font ihlaliyle karıştırma.
+
 ### 2026-08-21 — Şablon kaydetme "Bağlantı hatası" bug'ı: yanlış slug kaynağı + yalan hata mesajı (DÜZELTİLDİ)
 
 **Belirti:** Ana sayfa şeritlerinden (düşenler/zam/mevsim) eklenen bir ürünü şablona kaydederken "Bağlantı hatası — Ürün verileri yüklenemedi. İnternet bağlantınızı kontrol edin." çıkıyordu. Kategori ekranından eklenen ürünlerde sorun yoktu.
