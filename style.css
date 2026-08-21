@@ -375,7 +375,10 @@
       background: #fff;
       box-shadow: 0 0 0 3px rgba(15,81,50,.08);
     }
-    .search-box svg { width: 16px; height: 16px; stroke: var(--primary); fill: none; stroke-width: 2; flex-shrink: 0; }
+    /* İkon dili: diğer çizgi ikonlar (tazelik/şüpheli/fiyat-bildir) gibi yuvarlak
+       uç ve köşe. Bu ikon o iki özelliği taşımıyordu; büyütecin sap ucu köşeli
+       kalıp diğer ikonlarla uyumsuzdu. */
+    .search-box svg { width: 16px; height: 16px; stroke: var(--primary); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
     .search-box input {
       flex: 1; border: none; outline: none; background: transparent;
       font-size: var(--fs-3); color: var(--text); font-family: 'Inter', sans-serif; font-weight: 400;
@@ -1379,11 +1382,11 @@
       max-width: 340px;
       width: 100%;
       box-shadow: 0 20px 50px rgba(0,0,0,0.25);
-      /* Bu bir GİRİŞ animasyonu ama --ease-out eğrisiyle yazılmış (rol
-         ayrımına göre --ease-giris beklenirdi). Değeri DEĞİŞTİRMEDİM —
-         eğriyi değiştirmek modalin hissini değiştirirdi; yalnızca ham
-         literal tokene bağlandı. Rol uyumu ayrı bir karar. */
-      animation: modalSlideUp 0.22s var(--ease-out);
+      /* GİRİŞ animasyonu → rol ayrımına uygun --ease-giris (giriş eğrisi).
+         Önce --ease-out (durum geçişi eğrisi) kullanılıyordu; rol uyumsuzdu.
+         İkisi de ease-out ailesinden (yumuşak yavaşlama) ama --ease-giris bu
+         projede giriş animasyonları için ayrılmış token. */
+      animation: modalSlideUp 0.22s var(--ease-giris);
       font-family: 'Inter', sans-serif;
     }
     .app-modal-title {
