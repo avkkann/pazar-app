@@ -39,10 +39,15 @@
   <link rel="apple-touch-icon" href="/static/icon-192.png">
   <link rel="apple-touch-icon" sizes="512x512" href="/static/icon-512.png">
   <meta name="darkreader-lock">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,700&display=swap" rel="stylesheet">
+  <!-- Fontlar self-host: static/fonts/ (bkz. style.css @font-face). Google Fonts
+       + Fontshare (preconnect/gstatic/api.fontshare dahil) KALDIRILDI — dis font
+       host'una hicbir istek yok. GERI EKLEME: test_cdn_pin.mjs kirmiziya doner.
+       Preload YALNIZ inter-latin (birincil govde fontu): olculdu -> 4G'de
+       preload'suz FCP'ye kadar istenmiyor (FOUT); preload FCP'den ~1.9s once
+       hazir ediyor. crossorigin SART (font fetch'i anonim CORS; yoksa cift
+       indirir). latin-ext BILEREK preload EDILMEDI (daha buyuk, her sayfada
+       kritik degil). -->
+  <link rel="preload" href="/static/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <script>
     (function(){
       // Tema, style.css'ten ONCE belirleniyor (bu <script> stylesheet link'inin

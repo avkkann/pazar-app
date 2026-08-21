@@ -1,4 +1,4 @@
-﻿const CACHE_NAME = 'pazar-cache-v231';
+﻿const CACHE_NAME = 'pazar-cache-v232';
 const DATA_URLS = [
   new URL('./data/hal.json', self.location).href,
   // Ana sayfanin dort seridi buradan besleniyor (25,9 KB gzip). Ilk boyamada
@@ -6,8 +6,17 @@ const DATA_URLS = [
   // artik ana sayfa icin GEREKMIYOR, tembel yukleniyorlar.
   new URL('./data/anasayfa.json', self.location).href,
 ];
+// Self-host fontlar (2026-08-21). Immutable -> cacheFirst; CACHE_NAME bump'i
+// eski surumu (ve eski Google/Fontshare referanslarini) temizler. Lisans .txt
+// dosyalari cache'e ALINMAZ (yalniz woff2).
+const FONT_URLS = [
+  new URL('./static/fonts/inter-latin.woff2', self.location).href,
+  new URL('./static/fonts/inter-latin-ext.woff2', self.location).href,
+  new URL('./static/fonts/cabinet-grotesk-700.woff2', self.location).href,
+  new URL('./static/fonts/cabinet-grotesk-800.woff2', self.location).href,
+];
 self.addEventListener('install', event => {
-  event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(DATA_URLS)));
+  event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(DATA_URLS.concat(FONT_URLS))));
   self.skipWaiting();
 });
 self.addEventListener('activate', event => {
@@ -18,6 +27,9 @@ self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
   if (DATA_URLS.includes(url.href)) {
     event.respondWith(staleWhileRevalidate(event.request));
+  } else if (FONT_URLS.includes(url.href)) {
+    // Fontlar immutable -> cacheFirst (revalidate yok). Yeni surum icin CACHE_NAME bump.
+    event.respondWith(cacheFirst(event.request));
   }
 });
 async function cacheFirst(r) { const c = await caches.open(CACHE_NAME); const h = await c.match(r); if (h) return h; const n = await fetch(r); if (n.ok) await c.put(r, n.clone()); return n; }

@@ -6,6 +6,7 @@
 import fs from 'fs';
 
 const HTML = fs.readFileSync('index.html', 'utf8');
+const CSS = fs.readFileSync('style.css', 'utf8');
 let pass = 0, fail = 0;
 const ok = (ad, k, d = '') => { if (k) { pass++; console.log('  PASS  ' + ad); } else { fail++; console.log('  FAIL  ' + ad + (d ? '  -> ' + d : '')); } };
 
@@ -59,6 +60,23 @@ console.log('\n=== GOATCOUNTER: ucuncu-taraf JS surumlu + SRI ===');
   // protokol-goreli // birakilmamis (https:// acik)
   ok('  https:// acik (protokol-goreli // degil)',
      /src="https:\/\/gc\.zgo\.at/.test(tag), src);
+}
+
+console.log('\n=== FONTLAR SELF-HOST: dis font host referansi OLMAMALI ===');
+{
+  // Google Fonts + Fontshare kaldirildi (2026-08-21). Biri geri eklerse (link,
+  // preconnect, dns-prefetch, @import, preload) bu test KIRMIZI olur.
+  for (const host of ['fonts.googleapis.com', 'fonts.gstatic.com', 'api.fontshare.com', 'cdn.fontshare.com']) {
+    const hit = HTML.includes(host);
+    ok(`index.html'de ${host} YOK`, !hit, hit ? `hala referans var: ${host}` : '');
+  }
+  // Self-host font en az bir @font-face ile style.css'te tanimli olmali (yerine kondu mu)
+  ok('style.css self-host @font-face (static/fonts) iceriyor',
+     /@font-face[\s\S]*?url\(['"]?\/static\/fonts\//.test(CSS), '');
+  // inter-latin preload var (olculmus fayda)
+  ok('inter-latin.woff2 preload edilmis (crossorigin ile)',
+     /<link[^>]*rel="preload"[^>]*inter-latin\.woff2[^>]*crossorigin/.test(HTML) ||
+     /<link[^>]*inter-latin\.woff2[^>]*rel="preload"/.test(HTML), '');
 }
 
 console.log(`\nPASS=${pass}  FAIL=${fail}`);
