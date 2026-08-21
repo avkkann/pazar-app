@@ -775,6 +775,65 @@ let sepet = _rawSepet;
 let _rawSablonlar = JSON.parse(localStorage.getItem('pazar_sablonlar') || '[]');
 let sablonlar = Array.isArray(_rawSablonlar) ? _rawSablonlar : [];
 
+// Bir ürünün ait olduğu KATEGORİ slug'ını güvenilir biçimde bulur.
+// Ölçüldü (2026-08): ana sayfa şerit ürünlerinin _id'si <ad>_<gramaj> biçiminde,
+// yani _id'den türetilen "slug" bir kategori DEĞİL, ürün adının parçası. Buna
+// karşın _sid <kategoriSlug>_<normalAd> biçiminde ve ölçülen 218 şerit ürününün
+// 218'inde dolu. Bu yüzden birincil kaynak _sid. Eskiden slug _id'den türetiliyordu
+// (sablonKaydet + sablonKaydetUI, iki kopya); ana sayfa ürününde geçersiz slug
+// üretip loadCat'i çökertiyor, hata "Bağlantı hatası" diye yanlış etiketleniyordu.
+// Fallback zinciri: _sid → _id(zaten slug_index ise) → ana_kategori(ustKategori ile).
+// Hiçbiri geçerli bir KATEGORİLER slug'ı vermezse null döner; çağıran dürüst hata verir.
+function urunKategoriSlugu(u) {
+  if (!u) return null;
+  const gecerli = s => !!s && KATEGORILER.some(k => k.slug === s);
+  // 1) _sid (birincil, %100 doluluk) — ürünün üstünde ya da productMap'te
+  const sid = u._sid || (productMap[u._id] && productMap[u._id]._sid);
+  if (sid) {
+    const s = String(sid).split('_')[0];
+    if (gecerli(s)) return s;
+  }
+  // 2) _id YALNIZCA zaten slug_index biçimindeyse (kategori ekranı ürünleri).
+  //    Ana sayfa ürününde bu adım geçerli(...) elemesine takılıp atlanır.
+  const parc = String(u._id || '').split('_');
+  if (parc.length >= 2) {
+    const s = parc.slice(0, -1).join('_');
+    if (gecerli(s)) return s;
+  }
+  // 3) ana_kategori görünen adını ustKategori() ile slug'a çevir
+  if (u.ana_kategori) {
+    const s = ustKategori(u.ana_kategori);
+    if (gecerli(s)) return s;
+  }
+  return null;
+}
+
+// loadCat/_loadCatGetir'den gelen hatayı GERÇEK sınıfına göre dürüst bir modala
+// çevirir. "Bağlantı hatası / internetinizi kontrol edin" yalnızca gerçek ağ
+// hatasında çıkar; geçersiz kategori ve diğer hatalar için ayrı, doğru mesaj.
+function _yuklemeHataModali(e) {
+  if (e && e.kod === 'GECERSIZ_KATEGORI') {
+    return {
+      title: 'Ürün kategorisi belirlenemedi',
+      msg: 'Listedeki bazı ürünlerin kategorisi çözülemedi. Bu ürünleri kaldırıp yeniden ekleyin.',
+      okText: 'Tamam'
+    };
+  }
+  const agHatasi = (e instanceof TypeError) && /fetch|network|failed|load/i.test((e && e.message) || '');
+  if (agHatasi) {
+    return {
+      title: 'Bağlantı hatası',
+      msg: 'Ürün verileri yüklenemedi. İnternet bağlantınızı kontrol edin.',
+      okText: 'Tamam'
+    };
+  }
+  return {
+    title: 'Ürün verileri yüklenemedi',
+    msg: 'Ürün verileri yüklenirken bir sorun oluştu. Lütfen tekrar deneyin.',
+    okText: 'Tamam'
+  };
+}
+
 function sablonKaydet(ad) {
   if (!ad || !ad.trim()) return null;
   if (!sepet.length) return null;
@@ -783,8 +842,7 @@ function sablonKaydet(ad) {
     ad: ad.trim().slice(0, 40),
     urunIds: sepet.map(u => {
       const sid = u._sid || (productMap[u._id] && productMap[u._id]._sid) || null;
-      const parcalar = (u._id || '').split('_');
-      const slug = parcalar.length >= 2 ? parcalar.slice(0, -1).join('_') : '';
+      const slug = urunKategoriSlugu(u);
       return { sid: sid, slug: slug };
     }).filter(o => o.sid && o.slug),
     olusturma: Date.now()
@@ -953,8 +1011,8 @@ async function sablonKaydetUI() {
 
   const gerekliSluglar = new Set();
   sepet.forEach(u => {
-    const parc = (u._id || '').split('_');
-    if (parc.length >= 2) gerekliSluglar.add(parc.slice(0, -1).join('_'));
+    const slug = urunKategoriSlugu(u);
+    if (slug) gerekliSluglar.add(slug);
   });
   const yuklenecekler = [];
   gerekliSluglar.forEach(slug => {
@@ -963,12 +1021,8 @@ async function sablonKaydetUI() {
   if (yuklenecekler.length) {
     try {
       await Promise.all(yuklenecekler.map(slug => loadCat(slug)));
-    } catch (e) { console.warn('[sablon] liste kaydedilemedi, kullanicinin listesi kayboldu:', e && e.message);
-      await modalAc({
-        title: 'Bağlantı hatası',
-        msg: 'Ürün verileri yüklenemedi. İnternet bağlantınızı kontrol edin.',
-        okText: 'Tamam'
-      });
+    } catch (e) { console.warn('[sablon] liste kaydedilemedi:', e && (e.kod || e.message));
+      await modalAc(_yuklemeHataModali(e));
       return;
     }
   }
@@ -1019,12 +1073,8 @@ async function sablonYukleUI(id) {
   if (yuklenecekler.length) {
     try {
       await Promise.all(yuklenecekler.map(slug => loadCat(slug)));
-    } catch (e) { console.warn('[sablon] kayitli liste yuklenemedi:', e && e.message);
-      await modalAc({
-        title: 'Bağlantı hatası',
-        msg: 'Ürün verileri yüklenirken hata oluştu. Lütfen internet bağlantınızı kontrol edin.',
-        okText: 'Tamam'
-      });
+    } catch (e) { console.warn('[sablon] kayitli liste yuklenemedi:', e && (e.kod || e.message));
+      await modalAc(_yuklemeHataModali(e));
       return;
     }
   }
@@ -1349,6 +1399,14 @@ async function loadCat(slug) {
 
 async function _loadCatGetir(slug) {
   const kat = KATEGORILER.find(k => k.slug === slug);
+  if (!kat) {
+    // Geçersiz slug. SESSİZCE boş dizi DÖNMÜYORUZ — bu deponun bilinen "sessiz
+    // yutma" tuzağı; çağıran hatayı ağ hatası sanardı. Ayırt edilebilir bir hata
+    // fırlatıyoruz (e.kod), çağıran ağ hatasından ayırıp doğru mesajı gösteriyor.
+    const err = new Error('Geçersiz kategori slug: ' + slug);
+    err.kod = 'GECERSIZ_KATEGORI';
+    throw err;
+  }
   let products = [];
   try {
     const resp = await fetch('./data/' + kat.file + '.json');

@@ -18,7 +18,22 @@ Mustafa (GitHub: avkkann), **Pazar App**'in tek geliştiricisi — Türk market 
 
 ---
 
-## Mevcut durum (2026-08-20 itibarıyla)
+## Mevcut durum (2026-08-21 itibarıyla)
+
+### 2026-08-21 — Şablon kaydetme "Bağlantı hatası" bug'ı: yanlış slug kaynağı + yalan hata mesajı (DÜZELTİLDİ)
+
+**Belirti:** Ana sayfa şeritlerinden (düşenler/zam/mevsim) eklenen bir ürünü şablona kaydederken "Bağlantı hatası — Ürün verileri yüklenemedi. İnternet bağlantınızı kontrol edin." çıkıyordu. Kategori ekranından eklenen ürünlerde sorun yoktu.
+
+**Kök neden (ölçüldü, ağ DEĞİL):** Şablon slug'ı `_id`'den türetiliyordu (`_id.split('_').slice(0,-1)`). Ama `_id` biçimi tutarsız: kategori ürünlerinde `<slug>_<index>` (geçerli slug verir), ana sayfa şerit ürünlerinde `<ad>_<gramaj>` (geçerli slug DEĞİL, ürün adı). Geçersiz slug → `KATEGORILER.find` `undefined` → `_loadCatGetir` içindeki `catch` bloğu `kat.file`'a **ikinci kez** dokunup `TypeError` fırlatıyor → çağıran bunu "Bağlantı hatası" diye **yanlış etiketliyordu** (bu depoda 5. kez görülen "yanlış sebep gösterme" deseni).
+
+**Ölçüm (yerelde — Kaspersky canlıyı 499 ile engelliyor):** Ana sayfa 218 şerit ürününün **218'inde `_sid` dolu** ve `_sid.split('_')[0]` **218/218 geçerli** KATEGORİLER slug'ı veriyor. `ana_kategori` ise görünen ad ("Çikolata", "Ağız Bakım"…), slug'la eşleşmiyor — doğrudan kullanılamaz (ancak `ustKategori()` ile çevrilebilir).
+
+**Düzeltme:**
+1. Tek `urunKategoriSlugu(u)` yardımcısı — fallback zinciri `_sid` (birincil) → `_id` (yalnızca zaten `slug_index` ise) → `ana_kategori`+`ustKategori()`, her adım `KATEGORILER.some` ile doğrulanır, çözülemezse `null`. İki kopya (`sablonKaydet` + `sablonKaydetUI`) bu tek fonksiyona indirildi (üçüncü kopya doğamaz).
+2. `_loadCatGetir` geçersiz slug'da **ayırt edilebilir** hata fırlatıyor (`err.kod='GECERSIZ_KATEGORI'`) — sessiz boş dönmüyor.
+3. `_yuklemeHataModali(e)` mesajı gerçek hata sınıfıyla eşliyor: "Bağlantı hatası / internetinizi kontrol edin" **yalnızca** gerçek ağ hatasında (`TypeError` + fetch); geçersiz kategori ve diğer hatalar ayrı mesaj.
+
+**CI boşluğu (ders):** 49 test yeşilken canlıda kırıktı çünkü `test_tembel.mjs` `KATEGORILER`'i **stub'lıyor** ve `loadCat`'i yalnızca geçerli slug ("et") ile çağırıyordu — geçersiz-slug → TypeError yolu hiç test edilmiyordu. Yeni `test_sablon_slug.mjs` boşluğu kapatır: **gerçek** `KATEGORILER` (app.js'ten çıkarılır) + gerçek slug türetme + gerçek `loadCat`, ana sayfa biçimli `_id` VE kategori biçimli `_id` ile. Üç düzeltmenin her biri prove-by-breaking ile doğrulandı (kaldır → kırmızı). **Genel kural: bir birimi stub'larken, o stub tam da bug'ın yaşadığı yeri maskeliyorsa test kördür — gerçek veriyi kullan.**
 
 ### 2026-08-20 — Güvenlik kapanışları (B1/B2/B5) + Edge Function zamanlayıcıları + splash (CANLI)
 
@@ -591,6 +606,7 @@ Bu aralık `DENETIM.md`'nin (2026-08-11) bulgularını kapatmakla geçti. Sürü
 | `test_alarm_oneri.mjs` | 34 | Alarm hedef önerisi (30 günün gerçek dibi) |
 | `test_sepet_bol.mjs` | 33 | Dürüst toplam, bölme önerisi, "ikiden fazla market yok" |
 | `test_tembel.mjs` | 30 | Tembel geçmiş, uçuşta tekilleştirme, `_ekranGorunur` |
+| `test_sablon_slug.mjs` | 30 | Şablon kategori slug türetme (gerçek `KATEGORILER`), `_loadCatGetir` guard, dürüst hata mesajı — ana sayfa `_id` bug'ı koruması |
 | `test_liste_fiyat.mjs` | 30 | `liste_fiyat` UI gösterimi (yalnızca detayda) |
 | `test_baslik_hiyerarsi.mjs` | 29 | Sayfada tek h1, seviye atlaması yok, CSS seçicilerinin taşınması |
 | `test_tek_kaynak.mjs` | 26 | 30 günlük serinin TEK kaynak olması, `_seriKur` önbelleği |
