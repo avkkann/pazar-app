@@ -37,7 +37,7 @@ Her madde AYRI commit (biri bozulursa tek revert). superpowers + tasarım maddel
 - **M4 — apple-touch-startup-image** (`8592856`). iOS ana ekrana eklenince açılış görseli yoktu. `scripts/splash-uret.mjs` (Chrome headless, og ile aynı desen) 11 iPhone çözünürlüğünde marka splash üretiyor (koyu yeşil + krem "Pazar"); index.html'e cihaz-eşlemeli 11 `<link rel="apple-touch-startup-image">`. Medya sorgusu eşleşmezse iOS göstermez (regresyon yok). sw.js bump YOK (iOS natif yükler). **iPhone'da test edilecek.**
 - **M2 — Node sürüm hizalama: HİZALANDI + DOĞRULANDI** (`844183f`). update-data.yml `node-version: '20'`→`'24'` (deploy.yml zaten 24; artık `anasayfa.json` tek Node majöründe üretiliyor). ÖLÇÜM (yerelde, aynı girdi, `uretim` normalize): Node 20.20.2 vs 24.18.0 → **bayt bayt AYNI** (SHA256 `310c843e…`, 153.838 B); ICU/localeCompare dahil çıktı Node-sürümünden bağımsız. Hizalama sonrası doğrulama (gece koşusu beklemeden, mevcut mekanizmayla): (1) canlı deploy koşusunun `setup-node@v4 '24'` adımı **node v24.19.0** kurdu ([run 32477517505]) — aynı aksiyon/sürüm update-data'da da; (2) yerelde Node 24 çıktısı Node 20 ile yine bayt bayt aynı. "Aynı türetilmiş dosyanın iki motoru" borcu kapandı.
 
-### 2026-08-21 — GITHUB_TOKEN yetkileri kısıldı: workflow başına açık permissions (KISMI — varsayılan read'e çekme YARIN, sıra kritik)
+### 2026-08-21 — GITHUB_TOKEN yetkileri kısıldı: workflow başına açık permissions + varsayılan READ (TAM KAPANDI, canlı kanıtlı)
 
 Depo varsayılanı `default_workflow_permissions: write` idi; açık blok yazmayan 3 workflow bunu (write-all) miras alıyordu. Her workflow'a gerçek ihtiyacı kadar yetki (commit `9169e66`):
 - `deploy.yml` → `contents: read` (zaten vardı; deploy commit atmıyor)
@@ -51,10 +51,11 @@ Açık bloklar depo varsayılanını **EZER** → varsayılan read'e çekilse de
 - `deploy.yml` `contents: read` → push sonrası deploy YEŞİL ([run 32473793545](https://github.com/avkkann/pazar-app/actions/runs/32473793545)).
 - `il-marketler` elle tetiklendi → GERÇEK commit düştü (`4b179b8` "Il market haritasi guncellendi", GitHub Actions, 10:50Z, [run 32473932125](https://github.com/avkkann/pazar-app/actions/runs/32473932125)) → `contents: write` commit+push'a **yetiyor**. ✅
 
-**AÇIK KALAN (bilinçli — sıra kritik, ters yapılırsa gecelik hat kırılır):**
-- `haftalik-bulten` **elle tetiklenMEDİ**: fonksiyon her yetkili çağrıda `bulten_aboneler`'deki HER aboneye Resend ile e-posta yolluyor (tarih/dedup guard'ı yok) → program dışı bülten spam'i riski. `permissions: {}` curl'ü bozamaz (GITHUB_TOKEN kullanılmıyor); ampirik tetikleme için Mustafa'nın onayı bekleniyor.
-- `update-data` **elle tetiklenMEDİ**: ~2 saatlik scrape + DB yazımı + `fiyat-alarm` job'u ile gerçek kullanıcılara program dışı PUSH bildirimi → orantısız. Karar (Mustafa'nın talimatı): gecelik koşuyu (03:00 UTC) bekle, YARIN `update-data`'nın commit+push'unu doğrula.
-- **Depo varsayılanı HÂLÂ `write` — bilerek.** `update-data` doğrulanana kadar read'e ÇEKİLMEYECEK ("kırık bir hatla geceyi geçirmeyelim"). update-data bu gece GÜVENLİ: kendi `contents: write` bloğu var + varsayılan da hâlâ write.
+**Depo varsayılanı READ'e çekildi + override CANLI KANITLANDI (2026-08-21, TAM KAPANDI):**
+- `gh api -X PUT … default_workflow_permissions=read` → okundu, `read` döndü. Artık açık blok yazmayan gelecekteki bir workflow write-all miras alamaz.
+- **Kanıt (açık `contents: write` bloğu, varsayılan READ iken de push ediyor):** (1) `il-marketler` varsayılan read'e çekildikten SONRA elle tetiklendi ([run 32483142391], 12:42Z), gerçek commit pushladı → **`a0e2796`** "Il market haritasi guncellendi" (12:49Z, GitHub Actions). (2) Ek/bağımsız teyit: geçici `perm-probe` workflow'u (açık contents:write) throwaway dala boş commit pushladı; sonra workflow + dal silindi. → "açık blok varsayılanı EZER" kararı canlı doğrulandı.
+- **Not (zamanlama):** bugünkü `update-data` nightly'si (03:54Z) permissions commit'inden (`9169e66`, 10:41Z) ÖNCE koştuğu için eski write-all default'unu kullandı; yeni blok kanıtı yukarıdaki il-marketler + probe'dan geldi. Yarınki nightly yeni blok + default read altında çalışacak (ilk üretim koşusu).
+- `haftalik-bulten` **hiç elle tetiklenmedi** (bilinçli): fonksiyon her yetkili çağrıda `bulten_aboneler`'deki HER aboneye Resend ile e-posta yolluyor → program dışı spam riski. `permissions: {}` curl'ü etkilemez (GITHUB_TOKEN kullanmıyor, secret'lar bağımsız), YAML geçerli/deploy parse etti — ampirik tetikleme gereksiz, yapılmadı.
 
 ### 2026-08-21 — İş 3: CSP başlıkları — font-src 'self' + frame-ancestors 'none' + nosniff (CANLI, BAŞLIK DOĞRULANDI; gizli-sekme konsol onayı Mustafa'da)
 
