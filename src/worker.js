@@ -54,6 +54,14 @@ export default {
     newResponse.headers.set('Content-Security-Policy', CSP);
     // MIME-sniffing kapali: tarayici Content-Type'i tahmin etmesin (nosniff).
     newResponse.headers.set('X-Content-Type-Options', 'nosniff');
+    // HSTS — KADEMELI ROLLOUT, 1. BASAMAK: SADECE max-age=300 (5 dk).
+    // includeSubDomains YOK: www.pazarapp.net yonlendirmesi henuz kurulmadi ve
+    //   tum subdomain'ler HTTPS degil; eklersek erisim kirilabilir.
+    // preload YOK: preload listesine girmek aylarca geri ALINAMAZ, asla acele.
+    // Kisa max-age bilincli: yanlis giderse (bir subdomain HTTP'de, sertifika
+    // sorunu) tarayici kilidi 5 dakikada kendiliginden cozulur. Sorunsuz calisinca
+    // ayri turlarda 1 gun -> 1 hafta -> daha uzun artirilacak.
+    newResponse.headers.set('Strict-Transport-Security', 'max-age=300');
     return newResponse;
   }
 };
