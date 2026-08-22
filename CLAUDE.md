@@ -81,7 +81,7 @@ Bu iki iş 2026-08-20 bloğu yazıldıktan **sonra** girdi, 2026-08-21 hattıyla
 - **TDD:** guard önce yazıldı → **KIRMIZI** (8 iddia, `hala su direktifte: style-src` gibi), sonra worker daraltıldı → **YEŞİL (45/45)**.
 - **Prove-by-breaking (5 kırılma, hepsi kırmızı):** (1) `fonts.googleapis.com` style-src'e geri geldi; (2) `cdn.fontshare.com` font-src'e geri geldi; (3) **`api.fontshare.com` BAŞKA bir direktife (img-src) gizlendi** — "hiçbir direktifte yok" iddiası bunu da yakaladı; (4) kalan bir host (`api.marketfiyati`) silindi → "KALDI" iddiası kırmızı, yani guard iki yönlü; (5) `frame-ancestors` düşürüldü → kırmızı.
 
-**Ölçüm kirletici notu:** tarayıcı ölçümünde `gc.kis.v2.scr.kaspersky-labs.com` origin'i göründü — Kaspersky sayfaya kendi script'ini enjekte ediyor (yerel AV MITM'i, sitenin kodu değil). Konsol ihlali ararken bu kaynak ayırt edilmeli.
+**Ölçüm kirletici notu:** tarayıcı ölçümünde `gc.kis.v2.scr.kaspersky-labs.com` origin'i göründü — Kaspersky sayfaya kendi script'ini enjekte ediyor (yerel AV MITM'i, sitenin kodu değil). Aynı tur sonunda daha kötüsü ölçüldü: **CSP başlığı seçici olarak sıyrılıyor** → tarayıcı-taraflı CSP ölçümü bu makinede geçersiz. Tam kayıt ve kontrol grubu reçetesi: **Araçlar & kaynaklar → "ORTAM — Kaspersky bu makinede araya giriyor"**.
 
 **Geri dönülürse:** dışarıdan font yüklemeye dönülürse **çiftin iki yarısı da** eklenmeli (CSS host'u + woff2 host'u: `googleapis`→`gstatic`, `api.fontshare`→`cdn.fontshare`). 2026-08-17'de ikinci yarı atlandığı için Cabinet Grotesk sessizce Inter'e düşmüştü.
 
@@ -263,7 +263,7 @@ RPC-mantığına geri bağlanınca **kırmızıya dönüyor** (mutasyonla kanıt
 > **Site sağlamdı**, deploy yeşildi. Çözüm: `pazarapp.net` Kaspersky **güvenilir URL
 > istisnasına** eklendi. Bu **yalnızca bu makineyi** ilgilendirir, siteyi/kullanıcıları
 > etkilemez. Bu turun ölçümleri o yüzden HEAD'den derlenen **yerel yapıda** yapıldı.
-> (Aynı yazılımın CSP'ye enjeksiyonu için aşağıdaki öğrenmeye bak — bu ikinci kez.)
+> (Bu, üç vakadan biri. **Tek kayıt: Araçlar & kaynaklar → "ORTAM — Kaspersky bu makinede araya giriyor"** — enjeksiyon ve CSP başlığını seçici sıyırma dahil.)
 
 **1+2 — çift tık zoom (ve "geçişte zoom" sanılan hâli).** Ölçüldü: viewport **doğru**
 (`maximum-scale` yok, denetimde bilerek kaldırılmıştı) ama **tüm CSS'te tek bir
@@ -578,6 +578,8 @@ Görev 9 canlı doğrulaması koşuldu — **uzantısız temiz profil + CDP** (`
 > makine, siteyi/kullanıcıları etkilemez. **Ders: canlı doğrulama aniden çökerse önce
 > "site mi öldü yoksa yerel katman mı araya girdi" diye ayır** — sertifikayı kimin
 > verdiğine bak. `localhost` bu taramaya girmiyor; yerel derleme her zaman kaçış yolu.
+>
+> **(Bu iki vaka ve 2026-08-22'deki üçüncüsü — CSP başlığının seçici sıyrılması — artık tek yerde toplandı: Araçlar & kaynaklar → "ORTAM — Kaspersky bu makinede araya giriyor". Yeni tarayıcı ölçümünden önce oradaki kontrol grubu reçetesini koş.)**
 
 18 hub sayfası canlıya çıkmıştı ama uygulamadan onlara giden **hiçbir `<a href>` yoktu** —
 keşif yalnızca sitemap'e kalıyordu. İki uç birleştirildi:
@@ -941,6 +943,7 @@ Uygulama teknik olarak çalışıyor ama **pratikte hâlâ dağıtılmamış dur
 
 ## Kritik öğrenmeler
 
+- **"Sıfır istek" ≠ "ölü" — bir izni/host'u silmeden önce İKİ ŞEY BİRDEN gösterilmeli.** (a) Çalışma anında o origin'e sıfır istek **VE** (b) o host'a çıkabilecek bir kod yolunun bulunmadığı. Tek başına gözlem yeterli değil, çünkü **koşullu yollar gözlemle çürütülemez**: giriş gerektiren (`lh3.googleusercontent.com` — yalnız Google ile girmiş kullanıcının avatarı, `app.js:287`), butona bağlı (`api.marketfiyati.org.tr` — `#mf-ara-btn` → `marketfiyatiCanliAra()`, ancak buton tıklanınca istek çıkıyor), ya da beacon gibi ölçüm aracında **hiç görünmeyen** yollar (`pazar-app.goatcounter.com` — `sendBeacon` Resource Timing'e düşmez). 2026-08-22 CSP daraltmasında ilk ikisi "0 istek" diye silinseydi canlı arama kırılacak, girişli kullanıcıların avatarı bloklanacaktı. **Reçete:** ölçüm + kaynak taraması + tetiklenebiliyorsa özelliği gerçekten tetikle; üçü de aynı yöne işaret etmeden silme.
 - **GitHub Actions, varsayılan `GITHUB_TOKEN` ile atılan push'lardan yeni workflow TETİKLEMEZ** (sonsuz döngü koruması). İstisnası `workflow_run` ve `workflow_dispatch` — PAT/secret gerekmez. Bir workflow'un commit'i başka bir workflow'u tetiklemeli diyorsan `workflow_run` kullan. Bu tam olarak 21 gün fark edilmeden yayının durmasına yol açtı.
 - **Kaynak sitedeki kategori/isim değişiklikleri sessizce gelir; API hata değil BOŞ SONUÇ döner.** Boş sonuç ile ağ hatasını asla aynı dala düşürme — biri retry ister, diğeri insan müdahalesi. Boş sonuç sesli olsun (`[KRITIK]`) ve mümkünse hattı görünür şekilde kırmızıya çevirsin. Sessiz `[ATLA]` + "dosyayı hiç yazma" kombinasyonu bayat veriyi 12 gün taze gösterdi.
 - **`showScreen()` inline `display` yazıyor — bu tuzağa ÜÇ kez düşüldü.** (1) Aktif ekrana inline `display: block` yazdığı için `#screen-*` seçicisine CSS'ten `display: grid`/`flex` vermek ÇALIŞMAZ (inline stil stil sayfasını ezer); düzeni her zaman bir iç sarmalayıcıya ver (`.profil-kartlar` gibi). (2) Diğer ekranlara `display: none` yazdığı için `style.display !== 'none'` kontrolü ancak *showScreen bir kez koştuktan sonra* doğrudur. (3) **showScreen İLK KEZ koşana kadar TÜM ekranların inline `display`'i BOŞ (`""`), gizlilik yalnızca CSS'ten geliyor** — 2026-08-11 ölçümü: `screen-profil` → `inline=""`, `hesaplanan="none"`, `offsetParent=null`. Yani `style.display !== 'none'` açılışta gizli ekranı GÖRÜNÜR sanıyor. Somut zarar: `profilBolumleriCiz()` açılışta da çağrılıyor, oraya konan tembel-yükleme tetikleyicisi ateşlendi ve **4,2 MB geçmiş her sayfa açılışında indi** (üç deploy sürdü, her adımda canlı ölçümle yakalandı). **Görünürlük kontrolü inline stile değil `getComputedStyle`'a bakmalı** — `_ekranGorunur(id)` bunun için var, yeni kontrol yazma, onu kullan.
@@ -1010,6 +1013,27 @@ Uygulama teknik olarak çalışıyor ama **pratikte hâlâ dağıtılmamış dur
 - **`getComputedStyle` bu araçta ÖNCEDEN VAR OLAN düğümlerde BAYAT değer döndürebiliyor — üç tur boyunca olmayan bir hatayı kovaladık.** 2026-08-12: `.cat-card` koyu temada `rgb(255,255,255)` okuyordu, kontrast 1,24 çıkıyordu. Kanıt zinciri: (a) CSS kaynağında `--card-bg` yalnızca iki yerde tanımlı (`:root` beyaz, `[data-theme="dark"]` koyu), build çıktısında sıra doğru; (b) 826 kural tarandı, 0 seçici hatası, elemana uyan **yalnızca iki** background kuralı ve ikisi de `var(--card-bg)`; (c) elemanın **kendi üzerinde** `--card-bg` = `#1C2823`; (d) **elemana doğrudan inline `background-color:#1C2823` yazıldı, okuma yine beyaz döndü** — canlı bir eleman için imkânsız; (e) yanı başına eklenen klon ve `renderCatGrid()` sonrası yeni kartlar `rgb(28,40,35)` veriyor; (f) **ekran görüntüsü kartları koyu ve okunur gösteriyor.** Yani kod doğruydu, ölçüm yanlıştı. **KURAL: renk/geometri iddiasını yalnızca `getComputedStyle` ile kapatma — ekran görüntüsüyle veya taze oluşturulmuş bir düğümle çapraz doğrula.** Bir okumanın gerçek olup olmadığını sınamanın en hızlı yolu: elemana inline stil yaz, değişmiyorsa okuma bayattır.
 - **TestSprite — DENENDİ, UYMADI (2026-08-11), tekrar deneme.** MCP sunucusu *yerel* sunucuyu tünelliyor; canlı URL'yi (`avkkann.github.io/pazar-app`) test EDEMİYOR — kendi açıklaması "use the TestSprite CLI instead" diyor. `dist/` yerelde sunulup denendi: `testsprite_bootstrap` 48100'de **etkileşimli bir kurulum arayüzü** açıp insan onayı bekledi, 1800 sn sessizlik sonrası düştü (`status` hep `"init"`, 0 kredi harcandı). Ayrıca **12 yetim süreç** bıraktı (3/5/7 Ağustos oturumlarından, günlerdir çalışıyorlardı) ve `Desktop/.mcp.json`'da API anahtarını **düz metin** tutuyordu. Hepsi temizlendi. Canlı URL denenecekse **MCP değil CLI**.
 - **gh CLI** — `gh run list/watch/view --log`, deploy ve veri koşusu doğrulaması
+
+### ORTAM — Kaspersky bu makinede araya giriyor (TEK KAYIT, üç vaka)
+
+**Bu bölüm tek doğru kaynaktır.** Aynı yazılım üç ayrı turda üç farklı şekilde ölçümü bozdu ve her seferinde sıfırdan keşfedildi. Yeni bir tarayıcı ölçümü yapmadan önce burayı oku.
+
+**Vaka 1 — siteyi tamamen engelledi (2026-08-19).** Otomatik istek hacmi tetikledi: `pazarapp.net` → HTTP **499 "Request has been forbidden by antivirus"**; `curl` → **`SEC_E_UNTRUSTED_ROOT`**, yani TLS Kaspersky'nin kendi köküyle açılıp yeniden imzalanıyor (`-k` ile bile 403). **Site sağlamdı**, deploy yeşildi. Çözüm: `pazarapp.net` Kaspersky **güvenilir URL istisnasına** eklendi — kalıcı, yalnızca bu makine.
+
+**Vaka 2 — CSP'ye enjeksiyon.** Uzantısız temiz profilde bile, sayfanın *uygulanan* politikasında `https://gc.kis.v2.scr.kaspersky-labs.com wss:` görünüyor. `fetch()` ile okunan **yanıt başlığı** temizdi. Ders: ihlal mesajındaki politika metnine değil, yanıt başlığına bak.
+
+**Vaka 3 — CSP başlığını SEÇİCİ SIYIRMA (2026-08-22, en sinsisi).** Aynı sayfada `Strict-Transport-Security` **okunabiliyor**, ama `Content-Security-Policy` **boş dönüyor**; sayfada `gc.kis.v2.scr.kaspersky-labs.com` kaynağı mevcut. Yani başlık seçici olarak düşürülüyor — "başlık okunamıyor" gibi genel bir kısıt değil.
+
+> **SONUÇ — BU MAKİNEDE "tarayıcı konsolunda CSP ihlali yok" ÖLÇÜMÜ GEÇERSİZDİR.**
+> Uygulanan bir CSP olmadığı için ihlal *doğmaz*; sıfır görmek "temiz" değil, **"ölçecek bir şey yok"** demektir. Bu sonucu "doğrulandı" diye yazmak yanlış olur.
+>
+> **Doğru iş bölümü:** CSP **sunucu taraflı** doğrulanır (`curl -s -o /dev/null -D - https://pazarapp.net/ | grep -i content-security-policy` — Kaspersky bunu bozmuyor, başlık doğru geliyor). **Tarayıcı teyidi Kaspersky'siz bir makinede** yapılır (Mustafa'nın gizli sekmesi bu koşulu sağlıyorsa orada).
+
+**KONTROL GRUBU REÇETESİ — ölçüme başlamadan önce koş.** Bir tarayıcı ölçümünün geçerli olup olmadığı ancak böyle anlaşılır:
+1. **Dış stylesheet enjekte et:** CSP'ce bloklu olması gereken bir host'tan `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter">` ekle. **İhlal düşmüyorsa CSP uygulanmıyordur** — ölçüm geçersiz, dur. (`link.sheet` dolu geliyorsa stylesheet gerçekten yüklenmiş demektir.)
+2. **Başlığı sayfadan oku:** `(await fetch(location.href, {cache:'no-store'})).headers.get('content-security-policy')` → `null`/boş ise başlık tarayıcıya ulaşmıyordur. Aynı çağrıda `strict-transport-security` dolu geliyorsa bu **seçici sıyırmadır** (Vaka 3).
+
+**Genel ders:** canlı doğrulama aniden çökerse veya "şüpheli temiz" çıkarsa, önce **"site mi bozuldu yoksa yerel katman mı araya girdi"** diye ayır — sertifikayı kimin verdiğine ve başlığın sunucudan mı tarayıcıdan mı okunduğuna bak. `localhost` bu taramaya girmiyor; yerel derleme her zaman kaçış yolu.
 
 ---
 
