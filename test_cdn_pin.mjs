@@ -4,6 +4,8 @@
 // bagimlilik yukseltmesi/geri-alma sessizce tedarik zinciri riskini geri
 // getiremez. Kullanim: node test_cdn_pin.mjs
 import fs from 'fs';
+import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 const HTML = fs.readFileSync('index.html', 'utf8');
 const CSS = fs.readFileSync('style.css', 'utf8');
@@ -95,6 +97,80 @@ console.log('\n=== HSTS: kademeli rollout 2. basamak (max-age=86400 = 1 gun, bas
      !/includeSubDomains/i.test(hsts || ''), String(hsts));
   ok('  preload YOK (asla acele — preload listesi aylarca geri alinamaz)',
      !/preload/i.test(hsts || ''), String(hsts));
+}
+
+console.log('\n=== CSP DAVRANISI: worker GERCEKTEN kosturulup URETTIGI baslik olculuyor ===');
+{
+  // KAYNAK GREP DEGIL. worker'in default.fetch'i sahte bir ASSETS ile CALISTIRILIP
+  // gonderdigi Content-Security-Policy basligi okunuyor. CSP nasil kurulursa
+  // kurulsun (dizi, birlestirme, kosul) iddia SON CIKTIYA bakar.
+  // (Onceki turda tam bu kor noktaya dusmustuk: kaynakta desen aramak, dallardan
+  //  biri degisince yesil kalabiliyor.)
+  const mod = await import(pathToFileURL(path.resolve('src/worker.js')).href);
+  const res = await mod.default.fetch(new Request('https://pazarapp.net/'), {
+    ASSETS: { fetch: async () => new Response('ok', { status: 200, headers: { 'content-type': 'text/html' } }) },
+  });
+  const csp = res.headers.get('content-security-policy') || '';
+  ok('worker gercek bir CSP basligi uretiyor', csp.length > 0, '(baslik bos)');
+
+  // Direktif -> kaynak listesi
+  const dir = {};
+  for (const parca of csp.split(';')) {
+    const t = parca.trim().split(/\s+/).filter(Boolean);
+    if (t[0]) dir[t[0]] = t.slice(1);
+  }
+  const ORIGIN = 'https://pazarapp.net';
+  // "Bu URL bu direktifce izinli mi": 'self' ayni origin, https://host tam eslesme,
+  // data: sema eslesmesi. Joker kullanilmiyor -> bilerek desteklenmiyor.
+  const izinli = (direktif, url) => {
+    const kaynaklar = dir[direktif] || dir['default-src'] || [];
+    if (url.startsWith('data:')) return kaynaklar.includes('data:');
+    const u = new URL(url);
+    return kaynaklar.some(k => (k === "'self'" && u.origin === ORIGIN) || k === u.origin);
+  };
+  // Host HERHANGI bir direktifte gecmemeli (geri gelirse nereye eklenirse eklensin yakalanir).
+  const hicbirDirektifte = (host) => !Object.values(dir).some(ks => ks.some(k => k.includes(host)));
+  // Kirmizida tum CSP'yi basmak yerine SUCLU direktifi goster.
+  const nerelerde = (host) => Object.entries(dir).filter(([, ks]) => ks.some(k => k.includes(host))).map(([d]) => d).join(',');
+
+  // --- SILINEN HOST'LAR: self-host sonrasi hicbir isteğe cikilmiyor (2026-08-22
+  //     canli olcumu: dis font host'una 0 istek, 4 woff2 de pazarapp.net'ten).
+  //     Biri CSP'ye GERI GELIRSE bu blok KIRMIZI olur.
+  const SILINEN = [
+    ['https://fonts.googleapis.com/css2?family=Inter', 'fonts.googleapis.com'],
+    ['https://fonts.gstatic.com/s/inter/x.woff2',      'fonts.gstatic.com'],
+    ['https://api.fontshare.com/v2/css?f[]=cabinet',   'api.fontshare.com'],
+    ['https://cdn.fontshare.com/wf/x.woff2',           'cdn.fontshare.com'],
+  ];
+  for (const [ornekUrl, host] of SILINEN) {
+    ok(`  SILINDI: ${host} hicbir direktifte YOK`, hicbirDirektifte(host), `hala su direktifte: ${nerelerde(host)}`);
+    // Davranissal: o host'a giden ornek bir URL style-src/font-src/script-src'nin
+    // HICBIRINDE izinli olmamali.
+    const nerede = ['style-src', 'font-src', 'script-src', 'img-src', 'connect-src'].filter(d => izinli(d, ornekUrl));
+    ok(`    ...ve ornek URL hicbir direktifce IZINLI degil  [${host}]`, nerede.length === 0, nerede.join(','));
+  }
+
+  // --- KALAN HOST'LAR: her biri GERCEKTEN kullaniliyor (2026-08-22'de calisma
+  //     aninda olculdu). Yanlislikla silinirse bu blok KIRMIZI olur.
+  const KALAN = [
+    ['script-src',  'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.112.3', 'Supabase SDK (1 istek olculdu)'],
+    ['script-src',  'https://gc.zgo.at/count.v5.js',                              'GoatCounter (1 istek olculdu)'],
+    ['connect-src', 'https://gbgxxahhbfnulmyecxia.supabase.co/rest/v1/urunler',   'Supabase (15 istek olculdu)'],
+    ['connect-src', 'https://api.marketfiyati.org.tr/api/v2/search',              'canli arama butonu (tiklanip olculdu)'],
+    ['connect-src', 'https://pazar-app.goatcounter.com/count',                    'GoatCounter beacon'],
+    ['img-src',     'https://cdn.marketfiyati.org.tr/a101/19000886.jpg',          'urun gorselleri (olculdu)'],
+    ['img-src',     'https://lh3.googleusercontent.com/a/x',                      'Google avatar (kosullu: girisli kullanici)'],
+    ['img-src',     'https://pazar-app.goatcounter.com/count',                    'GoatCounter img fallback'],
+    ['font-src',    'https://pazarapp.net/static/fonts/inter-latin.woff2',        'self-host font'],
+    ['img-src',     'data:image/png;base64,AA',                                   'data: gorseller'],
+  ];
+  for (const [direktif, url, neden] of KALAN) {
+    ok(`  KALDI: ${direktif} izin veriyor  [${neden}]`, izinli(direktif, url), `${direktif}: ${(dir[direktif]||[]).join(' ')}`);
+  }
+
+  // Kilit direktifler yerinde mi (daraltma sirasinda kazara dusmesin)
+  for (const d of ['default-src', 'base-uri', 'form-action', 'frame-ancestors', 'manifest-src'])
+    ok(`  ${d} hala tanimli`, Array.isArray(dir[d]), Object.keys(dir).join(','));
 }
 
 console.log(`\nPASS=${pass}  FAIL=${fail}`);

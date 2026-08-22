@@ -1,25 +1,27 @@
 const CSP = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://gc.zgo.at",
-  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://api.fontshare.com",
-  // IKI HOSTLU DESEN — her font saglayicisi CSS'i bir hosttan, font
-  // DOSYALARINI baska bir hosttan veriyor:
-  //   fonts.googleapis.com (CSS)  -> fonts.gstatic.com   (woff2)   [Inter]
-  //   api.fontshare.com    (CSS)  -> cdn.fontshare.com   (woff2)   [Cabinet Grotesk]
-  // Googleapis cifti bastan dogru yazilmisti, fontshare ciftinin ikinci
-  // yarisi atlanmisti: CSS icindeki src'ler PROTOKOL-GORELI (//cdn.fontshare.com/wf/...)
-  // ve o host repoda hicbir yerde gecmiyor, yalnizca indirilen CSS'in icinde.
-  // Sonuc: 2026-08-17'de canli olculdu, uzantisiz temiz profilde 6 ihlal
-  // ("Loading the font 'https://cdn.fontshare.com/...woff2' violates ...
-  //   font-src ... The action has been blocked") ve Cabinet Grotesk hic
-  // yuklenmiyordu — .header-text h1, .hdr-left h2, .home-strip-title,
-  // .detay-name, .detay-mkt-price, .product-price, .profil-istat-sayi
-  // sessizce Inter'e dusuyordu.
+  // DARALTILDI 2026-08-22: dis font host'lari CIKARILDI.
+  //   Cikanlar: fonts.googleapis.com, fonts.gstatic.com (style-src/font-src),
+  //             api.fontshare.com, cdn.fontshare.com.
+  //   Neden: fontlar bfbfa8f ile SELF-HOST'a alindi (style.css'teki dort
+  //   @font-face de /static/fonts/*.woff2). CANLI OLCUM 2026-08-22: uygulama
+  //   gezilirken (anasayfa + kategori + firsat + hal + sepet + profil) dort
+  //   woff2'nin dordu de pazarapp.net'ten geldi, dort font yuzu de "loaded",
+  //   ve bu dort host'a giden istek sayisi SIFIR (Resource Timing).
+  //   Yani bu izinler yalnizca CSP'yi genisletiyordu, hicbir sey yuklemiyordu.
+  //   TARIHCE (silinmeden once neden vardilar): her font saglayicisi CSS'i bir
+  //   hosttan, woff2'yi BASKA hosttan verir (googleapis->gstatic,
+  //   api.fontshare->cdn.fontshare). Self-host'tan onceki donemde ciftin ikinci
+  //   yarisi atlaninca Cabinet Grotesk sessizce Inter'e dusuyordu (2026-08-17).
+  //   Self-host bu tuzagi komple ortadan kaldirdi. Geri eklemek GEREKMEZ; disaridan
+  //   font yuklemeye donulurse CIFTIN IKI YARISI da eklenmelidir.
+  "style-src 'self' 'unsafe-inline'",
   // 'self': fontlar self-host (static/fonts/inter-latin.woff2, index.html:50 preload).
-  // 'self' YOKKEN o woff2 CSP'ce bloklaniyordu — gizli sekmede olculdu 2026-08-21
-  // ("Loading the font violates font-src ... blocked"). Inter self-host'a gecince
-  // (v232) font-src'ye 'self' eklenmesi atlanmisti; bu satir o gercek blogu aciyor.
-  "font-src 'self' https://fonts.gstatic.com https://api.fontshare.com https://cdn.fontshare.com",
+  // 'self' YOKKEN o woff2 CSP'ce bloklaniyordu — gizli sekmede olculdu 2026-08-21.
+  // Guard: test_cdn_pin.mjs worker'i KOSTURUP ciktiyi olcuyor; silinen dort host
+  // herhangi bir direktife geri eklenirse KIRMIZI.
+  "font-src 'self'",
   // cdn.marketfiyati.org.tr  : urun resimleri (data/ icinde 14.336 urunun resmi
   //                            bu host'tan geliyor — olculdu 2026-08-17)
   // lh3.googleusercontent.com: Google OAuth avatari. app.js:225 giris yapan

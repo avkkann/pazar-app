@@ -58,6 +58,33 @@ Bu iki iş 2026-08-20 bloğu yazıldıktan **sonra** girdi, 2026-08-21 hattıyla
 - **Sepet şemasına `_sid` (additive) + sepet ekranında rozet** (`2524839`, sw v228 → **v229**). Borç yanlış ifade edilmişti: "karşılaştırma ekranında rozetler çalışmıyor" iddiası **çürütüldü** — o ekranlarda rozet hiç yoktu. `_sid` sepet öğesine additive eklendi; eski (`_sid`'siz) öğeler `_id → productMap` ile **tembel backfill** ediliyor ve öğeye yazılıyor, katalogdan çıkmış üründe `null` (rozet çizilmez, sessiz catch yok). Rozet **canlı** üründen hesaplanıyor (sepetteki eski snapshot'tan değil); çift-cache şartı (`_gecmisCache && _puanCache`) — `_puanCache` olmadan şüpheli/gerçek ayırt edilemeyeceği için plain "indirim" gizleniyor. Karşılaştırma ekranı **kapsam dışı**. `test_sepet_rozet.mjs` (12 iddia, prove-by-breaking).
 - **`.sablon-chip` klavye erişimi + 44px dokunma hedefi** (`64d93a2`, sw v229 → **v230**). `role="button" tabindex="0" aria-label` + `keydown` (Enter/Space, `addEventListener` — satır içi handler eklenmedi); chip'e kendi `::after` (dikey 44), `.sablon-chip-del`'e ayrı `::after` (32×44) → görsel boyut değişmedi, gerçek hit-test doğrulandı (del merkezi → SİL, chip solu → YÜKLE). A ve C premisleri **bayat çıktı** (zaten kapalıydı) — ayrıntı Teknik borç bölümünde.
 
+### 2026-08-22 — CSP daraltma: dört ölü font host'u çıkarıldı (ÖNCE ÖLÇÜLDÜ)
+
+`style-src` → **`'self' 'unsafe-inline'`**, `font-src` → **`'self'`**. Çıkanlar: `fonts.googleapis.com`, `fonts.gstatic.com`, `api.fontshare.com`, `cdn.fontshare.com`. Supabase, GoatCounter ve marketfiyati host'larına **dokunulmadı**.
+
+**Yöntem: host listesi CANLI BAŞLIKTAN çıkarıldı, varsayılmadı.** Sunucu taraflı okunan CSP'de 11 dış origin vardı; her biri için "bugün bu origin'e gerçekten istek gidiyor mu" ayrı ayrı ölçüldü (temiz zemin: SW `unregister` + `caches.delete`, sonra uygulama gezildi — anasayfa, kategori, fırsatlar, hal, sepet, profil; ölçüm `performance.getEntriesByType('resource')`).
+
+| Host | Direktif | Ölçüm | Karar |
+|---|---|---|---|
+| `cdn.jsdelivr.net` | script-src | 1 istek (SDK) | kaldı |
+| `gc.zgo.at` | script-src | 1 istek (`count.v5.js`) | kaldı |
+| `…supabase.co` | connect-src | 15 istek | kaldı |
+| `cdn.marketfiyati.org.tr` | img-src | 3 istek (lazy görseller zorlanınca) | kaldı |
+| `pazar-app.goatcounter.com` | img-src + connect-src | beacon `sendBeacon` ile gider, Resource Timing'de **görünmez** → yokluğu kanıt değil | kaldı |
+| **`api.marketfiyati.org.tr`** | connect-src | ilk bakışta 0 istek — **ama canlı kod yolu**: `#mf-ara-btn` → `marketfiyatiCanliAra()` → `POST /api/v2/search`. **Buton gerçekten tıklandı, istek gitti, sonuç döndü.** | **kaldı** |
+| **`lh3.googleusercontent.com`** | img-src | 0 istek — **ama koşullu**: Google ile girmiş kullanıcının avatarı (`app.js:287`, `user_metadata.avatar_url/picture`). Giriş yapılmadan tetiklenemez. | **kaldı** |
+| `fonts.googleapis.com` / `fonts.gstatic.com` / `api.fontshare.com` / `cdn.fontshare.com` | style-src / font-src | **0 istek.** Dört `@font-face`'in dördü de `/static/fonts/*.woff2`; dört woff2 de `pazarapp.net`'ten geldi, dört yüz de `loaded`. | **ÇIKARILDI** |
+
+**En önemli ders — "sıfır istek" ≠ "ölü".** `api.marketfiyati.org.tr` yalnız gözlemle silinseydi canlı arama özelliği kırılacaktı; `lh3.googleusercontent.com` silinseydi girişli kullanıcıların avatarı bloklanacaktı. **Kural: bir host'u silmeden önce (a) çalışma anında sıfır istek VE (b) o host'a çıkabilecek bir kod yolunun olmadığı — ikisi birden gösterilmeli.** Koşullu yollar (giriş gerektiren, butona bağlı) gözlemle asla çürütülemez.
+
+**Guard davranışsal (`test_cdn_pin.mjs`, kaynak grep'i DEĞİL).** Worker'ın `default.fetch`'i sahte bir `ASSETS` ile **gerçekten çalıştırılıp ürettiği `Content-Security-Policy` başlığı** okunuyor, direktiflere ayrıştırılıyor ve "şu URL bu direktifçe izinli mi" diye sorgulanıyor. Böylece CSP nasıl kurulursa kurulsun iddia son çıktıya bakıyor. (Bir önceki turda tam bu kör noktaya düşülmüştü: kaynakta desen aramak, dallardan biri değişince yeşil kalabiliyor.)
+- **TDD:** guard önce yazıldı → **KIRMIZI** (8 iddia, `hala su direktifte: style-src` gibi), sonra worker daraltıldı → **YEŞİL (45/45)**.
+- **Prove-by-breaking (5 kırılma, hepsi kırmızı):** (1) `fonts.googleapis.com` style-src'e geri geldi; (2) `cdn.fontshare.com` font-src'e geri geldi; (3) **`api.fontshare.com` BAŞKA bir direktife (img-src) gizlendi** — "hiçbir direktifte yok" iddiası bunu da yakaladı; (4) kalan bir host (`api.marketfiyati`) silindi → "KALDI" iddiası kırmızı, yani guard iki yönlü; (5) `frame-ancestors` düşürüldü → kırmızı.
+
+**Ölçüm kirletici notu:** tarayıcı ölçümünde `gc.kis.v2.scr.kaspersky-labs.com` origin'i göründü — Kaspersky sayfaya kendi script'ini enjekte ediyor (yerel AV MITM'i, sitenin kodu değil). Konsol ihlali ararken bu kaynak ayırt edilmeli.
+
+**Geri dönülürse:** dışarıdan font yüklemeye dönülürse **çiftin iki yarısı da** eklenmeli (CSS host'u + woff2 host'u: `googleapis`→`gstatic`, `api.fontshare`→`cdn.fontshare`). 2026-08-17'de ikinci yarı atlandığı için Cabinet Grotesk sessizce Inter'e düşmüştü.
+
 ### 2026-08-22 — H4 giriş açık-yönlendirme denetimi: **TEMİZ**, madde KAPANDI
 
 Denetimde hiç ölçülememiş maddeydi. Ölçüldü: **açık yönlendirme yok.** (Bu depoda dört borçtan üçü ölçümde çürümüştü; bu dördüncüsü.)
@@ -154,7 +181,7 @@ Açık bloklar depo varsayılanını **EZER** → varsayılan read'e çekilse de
 
 **Doğrulama:** Canlı başlıklar sunucu-taraflı header inspector ile teyit edildi (`Server: cloudflare`, `CF-RAY`): `font-src 'self' …`, `frame-ancestors 'none'`, `X-Content-Type-Options: nosniff` hepsi canlı; bu deploy anında HSTS yoktu (aynı gün ayrı turda `2f23925` ile eklendi, yukarı bak). **AÇIK KALAN adım (Mustafa):** gizli sekmede (SW yok) pazarapp.net aç, konsol TEMİZ olmalı — font-src ihlali KAYBOLMALI. (Claude yerelden ölçemiyor: Kaspersky pazarapp.net'i 499/MITM ile kesiyor; başlık sunucu-taraflı teyit edildi ama tarayıcı-konsol onayı Mustafa'da.) **Beacon notu artık geçersiz:** CF Web Analytics aynı gün panelden kapatıldı → beacon sayfaya hiç enjekte edilmiyor, konsolda o ihlal **beklenmiyor**. Konsolda hâlâ bir ihlal görünüyorsa mazeret değil, bulgudur.
 
-**AÇIK — CSP daraltma YAPILMADI (ölçüldü 2026-08-21).** Fontlar `bfbfa8f` ile self-host'a alındı (dış font host'una sıfır istek) ama `src/worker.js` CSP'sinde eski font host'ları **hâlâ izinli**: `style-src` içinde `https://fonts.googleapis.com https://api.fontshare.com`, `font-src` içinde `https://fonts.gstatic.com https://api.fontshare.com https://cdn.fontshare.com`. `49fd871` yalnızca `'self'` **EKLEDİ**, hiçbir host **çıkarmadı** (commit diff'i ile doğrulandı; HEAD `5f5f84d` ve `origin/main` aynı içerikte). Zarar vermiyor ama CSP gereğinden geniş — daraltma ayrı bir tur, ölçümle: önce hiçbir isteğin o host'lara çıkmadığı CDP ile teyit, sonra host'lar çıkarılıp gizli sekmede regresyon.
+~~**AÇIK — CSP daraltma YAPILMADI (ölçüldü 2026-08-21).**~~ **2026-08-22'de KAPANDI** — `49fd871` yalnızca `'self'` eklemiş, hiçbir host çıkarmamıştı; daraltma ayrı tur olarak yapıldı. Ayrıntı: aşağıdaki "CSP daraltma" bloğu.
 
 ### 2026-08-21 — Şablon kaydetme "Bağlantı hatası" bug'ı: yanlış slug kaynağı + yalan hata mesajı (DÜZELTİLDİ)
 
@@ -772,7 +799,7 @@ Bu aralık `DENETIM.md`'nin (2026-08-11) bulgularını kapatmakla geçti. Sürü
 | `test_hub_tazelik.py` | — | Hub tazelik kapısı (Python) |
 | `test_kacis.mjs` | 93 | Çıktı kaçışı (B1): gerçek `_kacir` vm'inde render yolları, metot-zincirli interpolasyonlar, q echo guard |
 | `test_bildirim_yetki.mjs` | 28 | `fiyat_bildirim` istemci kapısı + PT409/PT429 kod→mesaj eşlemesi |
-| `test_cdn_pin.mjs` | 21 | SDK/GoatCounter sürüm pini + SRI, HSTS basamağı `max-age=86400` (includeSubDomains/preload YOK) |
+| `test_cdn_pin.mjs` | 45 | SDK/GoatCounter sürüm pini + SRI, HSTS basamağı `max-age=86400` (includeSubDomains/preload YOK), **CSP davranışı** — worker koşturulup üretilen başlık ölçülüyor: silinen dört font host'u hiçbir direktifte olmamalı, kalan host'lar izinli kalmalı |
 | `test_sepet_rozet.mjs` | 12 | Sepet `_sid` backfill'i, canlı rozet hesabı, çift-cache şartı |
 | `test_sw_origin.mjs` | 28 | `sw.js` `notificationclick` origin kapısı — gerçek kaynak `node:vm`'de koşturulup handler çağrılıyor; dış origin/protokol-göreli/sonek hilesi reddi, meşru url'in bozulmaması, sessiz yutma yasağı (davranışsal, kontrol gruplu) |
 
@@ -885,7 +912,7 @@ Uygulama teknik olarak çalışıyor ama **pratikte hâlâ dağıtılmamış dur
 - ~~**`update-data.yml` hâlâ Node 20, `deploy.yml` Node 24 — AÇIK BORÇ.**~~ **KAPANDI (2026-08-21, `844183f`).** `update-data.yml` `node-version: '20'` → `'24'`; artık `data/anasayfa.json` tek Node majöründe üretiliyor. Kapatma şartı (aşağıda "iki koşunun çıktısı bayt bayt karşılaştırılmalı" deniyordu) **yerine getirildi**: aynı girdiyle Node 20.20.2 ve 24.18.0 çıktıları bayt bayt aynı (SHA256 `310c843e…`, 153.838 B) ve canlı deploy koşusu `setup-node '24'` ile node v24.19.0 kurdu. Aşağıdaki metin borcun neden açıldığını anlatmak için duruyor. Somut sonucu: `data/anasayfa.json` **iki farklı Node majöründe** üretiliyor — gece koşusu onu Node 20'de üretip repoya commit'liyor, deploy build'i aynı script'i Node 24'te yeniden koşturup `dist/`e onu koyuyor. Yani commit'lenen dosya ile yayına giden dosya farklı motorlarda doğuyor. Mantık aynı olduğu için çıktının da aynı olması beklenir ama **doğrulanmadı**; "aynı türetilmiş dosyanın iki kaynağı" bu dosyanın tuzak diye işaretlediği desen. `update-data.yml` wrangler kullanmadığı için geçiş turunda bilerek dokunulmadı. Kapatılırken iki koşunun çıktısı bayt bayt karşılaştırılmalı.
 - **`style.css`'te iki adet birebir aynı ölü `@media` bloğu** (`CENTER-FIX-TAMAM` ×2) — temizlenmedi.
 - **Ölü `.cmp-mkt-item-img` kuralı** — `style.css:650`'de eski 30px tanımı duruyor, dosyanın sonundaki yeniden tasarım bloğu 56px'le eziyor. Zararsız ama yanıltıcı.
-- **CSP'de kullanılmayan font host'ları — DARALTMA YAPILMADI (ölçüldü 2026-08-21).** Fontlar self-host'a alındı (`bfbfa8f`, dış font host'una sıfır istek) ama `src/worker.js` CSP'sinde `style-src` → `https://fonts.googleapis.com https://api.fontshare.com` ve `font-src` → `https://fonts.gstatic.com https://api.fontshare.com https://cdn.fontshare.com` **hâlâ izinli**. `49fd871` yalnızca `'self'` ekledi, host çıkarmadı (diff'le doğrulandı; HEAD `5f5f84d` = `origin/main`). Zararsız ama CSP gereğinden geniş. Kapatma sırası: önce CDP ile o host'lara hiç istek çıkmadığını ölç, sonra çıkar, sonra gizli sekmede regresyon (font kırılırsa hemen görülür).
+- ~~**CSP'de kullanılmayan font host'ları — DARALTMA YAPILMADI**~~ **KAPANDI (2026-08-22).** Dört host çıkarıldı: `style-src` → `'self' 'unsafe-inline'`, `font-src` → `'self'`. Ölçüm ve guard için yukarıdaki "CSP daraltma" bloğuna bak.
 - **B1 XSS — çıktı kaçışı (DENETIM 1.5). Kaçış sertleştirmesi TAMAMLANDI.**
   Merkezî kaçış yardımcıları mevcut; localStorage, dış API/DB kaynaklı render yolları
   ve satır içi olay bağlamı bunlara geçirildi — dinamik değerler artık olay
