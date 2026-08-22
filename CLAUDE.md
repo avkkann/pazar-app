@@ -1,6 +1,6 @@
 # Pazar App — Proje Handoff (Claude için)
 
-**Son güncelleme:** 2026-08-21 oturumu (**güvenlik başlıkları** — `font-src 'self'` + `frame-ancestors 'none'` + nosniff, **HSTS 1. basamak `max-age=300`**; **CI test kapısı** — `deploy needs: test`, 50 test (glob), kasıtlı FAIL ile kanıtlandı; **B1 kaçış** dört kaçışsız nokta kapatıldı (`test_kacis` 93 iddia); GITHUB_TOKEN varsayılanı read + workflow başına açık `permissions`; Grup 1 (M1/M2/M3/M4); **`www` → apex 301 kuruldu**, CF beacon panelden kapatıldı; fontlar self-host + GoatCounter pin; **KVKK / hesap silme DEVAM EDİYOR** — ölçüm bitti, taslaklar henüz çalıştırılmadı; **sw v232**). Ayrıntı için aşağıdaki "2026-08-21" blokları. Bu dosya her oturum başında okunur, sohbete asla ham metin olarak yapıştırılmaz.
+**Son güncelleme:** 2026-08-21 oturumu (**güvenlik başlıkları** — `font-src 'self'` + `frame-ancestors 'none'` + nosniff, **HSTS** 1. basamak `max-age=300` → **2026-08-22'de 2. basamak `max-age=86400`**; **CI test kapısı** — `deploy needs: test`, 50 test (glob), kasıtlı FAIL ile kanıtlandı; **B1 kaçış** dört kaçışsız nokta kapatıldı (`test_kacis` 93 iddia); GITHUB_TOKEN varsayılanı read + workflow başına açık `permissions`; Grup 1 (M1/M2/M3/M4); **`www` → apex 301 kuruldu**, CF beacon panelden kapatıldı; fontlar self-host + GoatCounter pin; **KVKK / hesap silme DEVAM EDİYOR** — ölçüm bitti, taslaklar henüz çalıştırılmadı; **sw v232**). Ayrıntı için aşağıdaki "2026-08-21" blokları. Bu dosya her oturum başında okunur, sohbete asla ham metin olarak yapıştırılmaz.
 
 ---
 
@@ -58,12 +58,21 @@ Bu iki iş 2026-08-20 bloğu yazıldıktan **sonra** girdi, 2026-08-21 hattıyla
 - **Sepet şemasına `_sid` (additive) + sepet ekranında rozet** (`2524839`, sw v228 → **v229**). Borç yanlış ifade edilmişti: "karşılaştırma ekranında rozetler çalışmıyor" iddiası **çürütüldü** — o ekranlarda rozet hiç yoktu. `_sid` sepet öğesine additive eklendi; eski (`_sid`'siz) öğeler `_id → productMap` ile **tembel backfill** ediliyor ve öğeye yazılıyor, katalogdan çıkmış üründe `null` (rozet çizilmez, sessiz catch yok). Rozet **canlı** üründen hesaplanıyor (sepetteki eski snapshot'tan değil); çift-cache şartı (`_gecmisCache && _puanCache`) — `_puanCache` olmadan şüpheli/gerçek ayırt edilemeyeceği için plain "indirim" gizleniyor. Karşılaştırma ekranı **kapsam dışı**. `test_sepet_rozet.mjs` (12 iddia, prove-by-breaking).
 - **`.sablon-chip` klavye erişimi + 44px dokunma hedefi** (`64d93a2`, sw v229 → **v230**). `role="button" tabindex="0" aria-label` + `keydown` (Enter/Space, `addEventListener` — satır içi handler eklenmedi); chip'e kendi `::after` (dikey 44), `.sablon-chip-del`'e ayrı `::after` (32×44) → görsel boyut değişmedi, gerçek hit-test doğrulandı (del merkezi → SİL, chip solu → YÜKLE). A ve C premisleri **bayat çıktı** (zaten kapalıydı) — ayrıntı Teknik borç bölümünde.
 
-### 2026-08-21 — HSTS kademeli rollout, 1. BASAMAK: max-age=300 (CANLI, DOĞRULANDI)
+### 2026-08-22 — HSTS kademeli rollout, 2. BASAMAK: max-age=86400 (1 gün)
+
+`src/worker.js`: `max-age=300` → **`max-age=86400`**. **includeSubDomains ve preload YİNE EKLENMEDİ** — kademeli plan bozulmadı.
+- **Neden şimdi:** 1. basamak (300 sn) 2026-08-21'de canlıya çıktı ve sorunsuz çalıştı. Sıra: 5 dk → **1 gün** → 1 hafta → daha uzun.
+- **includeSubDomains neden hâlâ yok:** `www` yönlendirmesi artık kurulu ama **subdomain envanteri tek tek ölçülmedi**. Bu bayrak bugün var olmayan, yarın açılacak subdomain'leri de HTTPS'e kilitler ve `max-age` dolana kadar geri alınamaz. Önce max-age basamakları, sonra envanter ölçümü, en son bu bayrak. **preload neden yok:** listeye girmek aylarca geri alınamaz.
+- **Neden 1 gün hâlâ güvenli:** yanlış giderse tarayıcı kilidi `max-age` kadar sürer. 1 gün kurtarılabilir bir pencere; 1 yıl değil.
+- **Guard** (`test_cdn_pin.mjs`): basamak değeri **tek yerde** sabitli (`max-age=86400`), includeSubDomains/preload YOK iddiaları aynen duruyor. **TDD ile yapıldı:** önce guard 86400'e çekildi → KIRMIZI (`gelen: "max-age=300"`), sonra worker.js değişti → YEŞİL (21/21).
+- **Prove-by-breaking (4 kırılma, hepsi kırmızı verdi, sonra geri alındı):** (1) yanlış basamak `3600` → kırmızı; (2) `includeSubDomains` eklendi → kırmızı; (3) `preload` eklendi → kırmızı; (4) HSTS satırı komple silindi → kırmızı. Yani guard hem değeri hem de iki yasak bayrağı gerçekten koruyor.
+
+### 2026-08-21 — HSTS kademeli rollout, 1. BASAMAK: max-age=300 (CANLI, DOĞRULANDI) — *2026-08-22'de 2. basamağa geçildi, yukarı bak*
 
 `src/worker.js`'e `Strict-Transport-Security: max-age=300` eklendi (`2f23925`). **SADECE max-age=300; includeSubDomains YOK, preload YOK** — bilinçli kademeli plan.
 - **Neden kademeli:** HSTS tarayıcıya "bu siteye artık SADECE HTTPS" der; yanlış giderse (bir subdomain HTTP'de, sertifika sorunu) kullanıcı siteye HİÇ giremez ve **geri alınamaz** — max-age dolana kadar tarayıcıda kilitli. 5 dk = risk 5 dakikaya iniyor. Sorunsuz görülünce ayrı turlarda 1 gün → 1 hafta → daha uzun.
 - **includeSubDomains neden yok:** yazıldığı anda `www.pazarapp.net` yönlendirmesi yoktu ve tüm subdomain'lerin HTTPS olduğu doğrulanmamıştı. **GÜNCELLEME (aynı gün, sonra):** `www → apex` 301 kuruldu (yukarıdaki `www` bloğuna bak), ama `includeSubDomains` **yine de eklenmedi** — `max-age` hâlâ 1. basamakta (300 sn) ve subdomain envanteri tek tek ölçülmedi. Kademeli plan sırasını bozma: önce `max-age` basamakları, sonra ölçüm, en son `includeSubDomains`. **preload neden yok:** preload listesi aylarca geri alınamaz, asla acele.
-- **Guard** (`test_cdn_pin.mjs`): HSTS var + `max-age=300` + includeSubDomains YOK + preload YOK. Prove-by-breaking doğrulandı (includeSubDomains/preload eklenirse ya da HSTS silinirse KIRMIZI) → erken kilitlenme yayına gitmeden yakalanır. İleride max-age artınca guard'ın o satırı bilerek güncellenecek.
+- **Guard** (`test_cdn_pin.mjs`): HSTS var + `max-age=300` + includeSubDomains YOK + preload YOK. Prove-by-breaking doğrulandı (includeSubDomains/preload eklenirse ya da HSTS silinirse KIRMIZI) → erken kilitlenme yayına gitmeden yakalanır. İleride max-age artınca guard'ın o satırı bilerek güncellenecek. **(Öyle oldu: 2026-08-22'de guard `max-age=86400`'e çekildi — güncel değer için yukarıdaki 2. basamak bloğu esas.)**
 - **Doğrulama:** canlı başlık sunucu-taraflı okundu (`Server: cloudflare`, CF-RAY): `Strict-Transport-Security: max-age=300`, includeSubDomains/preload YOK. ✅ (Kaspersky yerelde 499/MITM ile kestiği için header inspector üzerinden.)
 
 ### 2026-08-21 — Grup 1: dört küçük düşük-riskli iş (M1/M3/M4 + M2 hepsi CANLI/DOĞRULANDI)
@@ -725,7 +734,7 @@ Bu aralık `DENETIM.md`'nin (2026-08-11) bulgularını kapatmakla geçti. Sürü
 | `test_hub_tazelik.py` | — | Hub tazelik kapısı (Python) |
 | `test_kacis.mjs` | 93 | Çıktı kaçışı (B1): gerçek `_kacir` vm'inde render yolları, metot-zincirli interpolasyonlar, q echo guard |
 | `test_bildirim_yetki.mjs` | 28 | `fiyat_bildirim` istemci kapısı + PT409/PT429 kod→mesaj eşlemesi |
-| `test_cdn_pin.mjs` | 21 | SDK/GoatCounter sürüm pini + SRI, HSTS `max-age=300` (includeSubDomains/preload YOK) |
+| `test_cdn_pin.mjs` | 21 | SDK/GoatCounter sürüm pini + SRI, HSTS basamağı `max-age=86400` (includeSubDomains/preload YOK) |
 | `test_sepet_rozet.mjs` | 12 | Sepet `_sid` backfill'i, canlı rozet hesabı, çift-cache şartı |
 
 **Toplam 51 takipli dosya (45 `.mjs` + 6 `.py`) — `git ls-files` ile sayıldı, 2026-08-21. CI kapısından geçen 50 (45 `.mjs` + 5 `.py`).** Her iki CI adımı da **glob** ile çalışıyor (`for t in test_*.mjs` / `test_*.py`) → yeni test eklenince kapıya kendiliğinden giriyor, elle liste yok. Tek açık dışlama `test_resim.py` (canlı Searlo API'sine çıkıyor). Sayı gün içinde 49→50 oldu: `test_sablon_slug.mjs` kapı kurulduktan sonra eklendi.

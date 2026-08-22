@@ -80,12 +80,14 @@ console.log('\n=== FONTLAR SELF-HOST: dis font host referansi OLMAMALI ===');
      /<link[^>]*inter-latin\.woff2[^>]*rel="preload"/.test(HTML), '');
 }
 
-console.log('\n=== HSTS: kademeli rollout 1. basamak (max-age=300, baska HICBIR SEY) ===');
+console.log('\n=== HSTS: kademeli rollout 2. basamak (max-age=86400 = 1 gun, baska HICBIR SEY) ===');
 {
   // worker.js'te Strict-Transport-Security baslik degerini cek.
   const hsts = (WORKER.match(/Strict-Transport-Security['"]\s*,\s*['"]([^'"]*)['"]/) || [])[1];
   ok('HSTS basligi worker.js\'te set ediliyor', hsts !== undefined, 'set satiri yok');
-  ok(`  max-age=300  [gelen: "${hsts}"]`, /(^|[;\s])max-age=300\b/.test(hsts || ''), String(hsts));
+  // 2. BASAMAK: 300 (5 dk) -> 86400 (1 gun). Basamak degeri BU SATIRDA tek yerde;
+  // bir sonraki basamakta (1 hafta) yalniz burasi ve worker.js degisir.
+  ok(`  max-age=86400  [gelen: "${hsts}"]`, /(^|[;\s])max-age=86400\b/.test(hsts || ''), String(hsts));
   // ERKEN KILITLENME EMNIYETI: bu iki deger su asamada OLMAMALI. Biri (ileride
   // yanlislikla) eklenirse test KIRMIZI -> subdomain/preload kaynakli kalici
   // erisim kaybi yayina gitmeden yakalanir. Kademeli plan bilincli.

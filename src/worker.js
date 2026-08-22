@@ -54,14 +54,20 @@ export default {
     newResponse.headers.set('Content-Security-Policy', CSP);
     // MIME-sniffing kapali: tarayici Content-Type'i tahmin etmesin (nosniff).
     newResponse.headers.set('X-Content-Type-Options', 'nosniff');
-    // HSTS — KADEMELI ROLLOUT, 1. BASAMAK: SADECE max-age=300 (5 dk).
-    // includeSubDomains YOK: www.pazarapp.net yonlendirmesi henuz kurulmadi ve
-    //   tum subdomain'ler HTTPS degil; eklersek erisim kirilabilir.
+    // HSTS — KADEMELI ROLLOUT, 2. BASAMAK: SADECE max-age=86400 (1 gun).
+    // 1. basamak (300 = 5 dk) 2026-08-21'de canliya cikti ve sorunsuz calisti;
+    //   bu tur onu 1 gune cikariyor. Sonraki basamaklar: 1 hafta -> daha uzun.
+    // includeSubDomains HALA YOK: www yonlendirmesi artik kurulu ama subdomain
+    //   envanteri tek tek OLCULMEDI. Bu bayrak TUM subdomain'leri (bugun var
+    //   olmayan, yarin acilacak olan dahil) HTTPS'e kilitler ve max-age dolana
+    //   kadar geri ALINAMAZ. Once max-age basamaklari, sonra envanter olcumu,
+    //   en son bu. Sirayi bozma.
     // preload YOK: preload listesine girmek aylarca geri ALINAMAZ, asla acele.
-    // Kisa max-age bilincli: yanlis giderse (bir subdomain HTTP'de, sertifika
-    // sorunu) tarayici kilidi 5 dakikada kendiliginden cozulur. Sorunsuz calisinca
-    // ayri turlarda 1 gun -> 1 hafta -> daha uzun artirilacak.
-    newResponse.headers.set('Strict-Transport-Security', 'max-age=300');
+    // Kademeli olmanin sebebi: yanlis giderse (bir subdomain HTTP'de, sertifika
+    //   sorunu) tarayici kilidi max-age kadar surer. 1 gun hala kurtarilabilir
+    //   bir pencere; 1 yil degil.
+    // Deger test_cdn_pin.mjs'te sabitli — burasi degisip test degismezse KIRMIZI.
+    newResponse.headers.set('Strict-Transport-Security', 'max-age=86400');
     return newResponse;
   }
 };
