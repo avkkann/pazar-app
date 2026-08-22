@@ -50,7 +50,25 @@ self.addEventListener('push', event => {
 
 self.addEventListener('notificationclick', event => {
   event.notification.close();
-  const url = (event.notification.data && event.notification.data.url) || './';
+  // ORIGIN KAPISI: push yukundeki url'e GUVENILMEZ. Bugun sunucu sabit "./"
+  // yolluyor (fiyat-alarm-scan) ve push VAPID ozel anahtari ister, ama dogrulama
+  // olmadan yuke dinamik bir url konursa dis origin'e pencere acilirdi.
+  // Yalniz AYNI ORIGIN acilir; degilse guvenli varsayilan "./".
+  // SESSIZ YUTMA YOK: red ve ayristirma hatasi AYRI dallarda ve her biri
+  // console.warn ile iz birakiyor (bu depoda en sik hata sinifi sessiz basarisizlik).
+  const ham = (event.notification.data && event.notification.data.url) || './';
+  let url = './';
+  try {
+    const cozulen = new URL(ham, self.location.origin);
+    if (cozulen.origin === self.location.origin) {
+      url = ham;
+    } else {
+      // javascript:/data: gibi semalar burada origin "null" verir -> yine reddedilir.
+      console.warn('[sw] notificationclick: dis origin reddedildi, ana sayfa acildi:', cozulen.origin);
+    }
+  } catch (e) {
+    console.warn('[sw] notificationclick: url ayristirilamadi, ana sayfa acildi:', ham, e && e.message);
+  }
   event.waitUntil(
     self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then(clientList => {
       for (const client of clientList) {
