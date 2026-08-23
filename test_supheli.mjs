@@ -287,7 +287,23 @@ const HTML2 = fs.readFileSync('index.html', 'utf8');
 
 function seritKur({ rpcData, tableData, tableHata }) {
   const el = {};
-  const yap = id => (el[id] = el[id] || { style: {}, innerHTML: '' });
+  // classList GERCEK davranisla taklit ediliyor: seritler artik .gizli sinifiyla
+  // gizleniyor (2026-08-23, CSP style-src 'unsafe-inline' kaldirildi), style.display
+  // ile degil. Stub yalnizca {style:{}} verseydi kod TypeError atardi -- nitekim
+  // gocte attı ve bu test onu yakaladi.
+  const yap = id => (el[id] = el[id] || (() => {
+    const siniflar = new Set();
+    return {
+      style: {}, innerHTML: '',
+      classList: {
+        add: c => siniflar.add(c),
+        remove: c => siniflar.delete(c),
+        contains: c => siniflar.has(c),
+        toggle: (c, zorla) => (zorla === undefined ? (siniflar.has(c) ? siniflar.delete(c) : siniflar.add(c)) : (zorla ? siniflar.add(c) : siniflar.delete(c))),
+      },
+      _siniflar: siniflar,
+    };
+  })());
   const cagri = { rpcLimit: null, tableLimit: null, gte: null, order: null };
   const zincir = {
     select() { return this; },
@@ -347,14 +363,14 @@ if (varDusenler && varSupheli) {
     ok('dusenler: supheli rozetli kart YOK', !/supheli-rozet/.test(html), html.slice(0, 200));
     ok('dusenler: 6 kart ciziliyor (yarim birakilmadi)', kart === 6, 'kart=' + kart);
     ok('dusenler: RPC limiti 6dan buyuk (doldurmak icin)', cagri.rpcLimit > 6, 'p_limit=' + cagri.rpcLimit);
-    ok('dusenler: gorunur', el['home-dusenler'].style.display === '');
+    ok('dusenler: gorunur', !el['home-dusenler'].classList.contains('gizli'));
   }
   // 9b) hicbir temiz urun kalmazsa serit gizlenir
   {
     const rpc = Array.from({ length: 40 }, (_, i) => ({ _sid: 't' + i, ad: 'T' + i, dusus_yuzde: 50, _supheli: true, _yuzde: 50 }));
     const { ctx, el } = seritKur({ rpcData: rpc, tableData: [] });
     await vm.runInContext('renderDusenlerSeridi()', ctx);
-    ok('dusenler: hepsi supheliyse serit gizli', el['home-dusenler'].style.display === 'none');
+    ok('dusenler: hepsi supheliyse serit gizli', el['home-dusenler'].classList.contains('gizli'));
   }
 
   console.log('\n=== 10. YENI BOLUM: "Bu indirimlere dikkat" ===');
@@ -367,7 +383,7 @@ if (varDusenler && varSupheli) {
     ];
     const { ctx, el } = seritKur({ rpcData: [], tableData: t });
     await vm.runInContext('renderSupheliSeridi()', ctx);
-    ok('3ten az uygun urun -> bolum GIZLI', el['home-supheli'].style.display === 'none', String(el['home-supheli'].style.display));
+    ok('3ten az uygun urun -> bolum GIZLI', el['home-supheli'].classList.contains('gizli'), String([...el['home-supheli']._siniflar]));
     ok('3ten az uygun urun -> liste bos (baslik da cizilmedi)', !el['home-supheli-list'].innerHTML);
   }
   // 10b) >=3 -> render, en fazla 12, siralama puan sonra yuzde
@@ -379,7 +395,7 @@ if (varDusenler && varSupheli) {
     await vm.runInContext('renderSupheliSeridi()', ctx);
     const html = el['home-supheli-list'].innerHTML;
     const kart = (html.match(/strip-card/g) || []).length;
-    ok('bolum gorunur', el['home-supheli'].style.display === '');
+    ok('bolum gorunur', !el['home-supheli'].classList.contains('gizli'));
     ok('en fazla 12 kart', kart === 12, 'kart=' + kart);
     ok('indirim gostermeyen urun girmedi', !/INDIRIMSIZ/.test(html));
     ok('sorgu indirim_supheli_puan>=4', cagri.gte === 'indirim_supheli_puan>=4', String(cagri.gte));
@@ -400,7 +416,7 @@ if (varDusenler && varSupheli) {
   {
     const { ctx, el } = seritKur({ rpcData: [], tableData: null, tableHata: true });
     await vm.runInContext('renderSupheliSeridi()', ctx);
-    ok('sorgu hatasi -> bolum gizli', el['home-supheli'].style.display === 'none');
+    ok('sorgu hatasi -> bolum gizli', el['home-supheli'].classList.contains('gizli'));
     ok('sorgu hatasi -> liste bos', !el['home-supheli-list'].innerHTML);
     const src = fnKaynak('renderSupheliSeridi') || '';
     // Eski iddia "sessiz"di; ayni gerekceyle cevrildi (bkz. 6. bolum notu).
@@ -418,7 +434,7 @@ console.log('\n=== 11. HTML: bolum yeri ve basliklar ===');
   const blok = iS > -1 ? HTML2.slice(iS, iS + 400) : '';
   ok('baslik "Bu indirimlere dikkat"', /Bu indirimlere dikkat/.test(blok));
   ok('alt baslik "Gerçek görünmeyen fiyat düşüşleri"', /Gerçek görünmeyen fiyat düşüşleri/.test(blok));
-  ok('mevcut .home-strip bileseni kullanilmis', /class="home-strip"/.test(blok) && /home-strip-scroll/.test(blok));
+  ok('mevcut .home-strip bileseni kullanilmis', /class="home-strip(\s|")/.test(blok) && /home-strip-scroll/.test(blok));
   ok('baslik amber uyari BLOGU degil (supheli-kutu kullanilmamis)', !/supheli-kutu/.test(blok));
 }
 console.log('\n=== 12. TUZAK BOLUMUNE DOKUNULMADI ===');

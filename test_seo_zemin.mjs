@@ -56,8 +56,16 @@ console.log('\n=== 3. NOSCRIPT ===');
   ok('<noscript> var', bloklar.length > 0, 'adet=' + bloklar.length);
 
   const kafa = bloklar.find(b => b.head);
-  ok('head\'de <noscript><style> var', !!kafa && /<style>/.test(kafa.ic), (kafa?.ic || '(yok)').slice(0, 90));
-  ok('  splash overlay\'i kaldiriyor', /#splash[^}]*display:\s*none/.test(kafa?.ic || ''), (kafa?.ic || '').slice(0, 120));
+  // 2026-08-23: satir ici <style> DEGIL, harici CSS (CSP style-src 'unsafe-inline'
+  // kaldirildi). NIYET DEGISMEDI: JS kapaliyken splash kaldirilmali. Artik iki parca
+  // dogrulaniyor -- head'deki <noscript><link> VE hedef dosyadaki gercek kural.
+  // Yalniz link'e bakmak yeterli olmazdi: dosya bos olsa da test yesil kalirdi.
+  ok('head\'de <noscript><link> var (satir ici <style> degil)',
+     !!kafa && /<link[^>]+rel="stylesheet"[^>]+noscript\.css/.test(kafa.ic), (kafa?.ic || '(yok)').slice(0, 90));
+  ok('  satir ici <style> KALMADI (CSP)', !/<style>/.test(kafa?.ic || ''), (kafa?.ic || '').slice(0, 90));
+  const nosCss = fs.existsSync('static/noscript.css') ? fs.readFileSync('static/noscript.css', 'utf8') : '';
+  ok('  splash overlay\'i kaldiriyor (static/noscript.css)',
+     /#splash[^}]*display:\s*none/.test(nosCss), nosCss.slice(0, 120));
 
   const govde = bloklar.find(b => !b.head);
   ok('body\'de gorunur <noscript> icerigi var', !!govde);

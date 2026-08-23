@@ -137,6 +137,15 @@ function marketSinifiCagrisiMi(ifade) {
 // anahtarina bak" ozel-durum mantigina (gorulenSatirIkinci Set'i) hic
 // gerek kalmadi.
 const ISTISNALAR = {
+  // renderHalScreen (2026-08-23, CSP style-src 'unsafe-inline' gocu): hal karti
+  // gorsel yer tutucusunun ARKA PLANI eskiden satir ici style="background:${...}"
+  // idi; iki CSS sinifina (.hal-ph--sebze / .hal-ph--meyve) tasindi.
+  // `kat` TEK kaynaktan geliyor: getHalKat(u.ad) -- ve o fonksiyon SADECE
+  // 'sebze' | 'meyve' sabit dize literallerinden birini donuyor (bir erken
+  // return 'sebze' + kapanis ternary'si 'sebze':'meyve'). u.ad once Turkce
+  // harf sadelestirmesinden gecirilip yalnizca HANGI sabitin secilecegini
+  // belirliyor; class'a DOGRUDAN yazilan sey degil. Kaynak kapali kume.
+  'hal-gorsel-ph hal-ph--${kat}': { gerekce: "kat SADECE getHalKat()'in dondugu 'sebze'|'meyve' sabit literallerinden biri olabilir -- urun adi class'a gecmiyor" },
   // lcIcon(name, klass): 25 cagri yeri tarandi (grep) -- her biri ya klass'i
   // hic vermiyor (varsayilan 'lc-icon' -- app.js kod SABITI) ya da sabit dize
   // literali geciyor ('lc-icon lc-icon-lg', 'lc-icon lc-icon-lg lc-amber' gibi).
@@ -195,7 +204,10 @@ ok('acik ihlal yok', ihlaller.length === 0,
   ihlaller.map(x => 'L' + x.satir + '  ' + x.fn + '  class="' + x.deger + '"  [ifade: ' + x.ifade + ']').join('\n        '));
 
 console.log('\n=== 3. ISTISNALAR -- kaynagi izlenmis, metin anahtarli gerekceli ===');
-ok('istisna sayisi beklenen (5 yer, 4 farkli degisken)', kabulEdilenIstisnalar.length === 5,
+// 2026-08-23: 5 -> 6. Yeni istisna hal-ph--${kat} (CSP style-src gocunde satir ici
+// background yerine iki sinif geldi). Sayi SABIT tutuluyor ki yeni bir dinamik
+// class sessizce eklenemesin -- artarsa bu satir KIRMIZI olur ve gerekce istenir.
+ok('istisna sayisi beklenen (6 yer, 5 farkli degisken)', kabulEdilenIstisnalar.length === 6,
   'bulunan: ' + kabulEdilenIstisnalar.length + '\n        ' + kabulEdilenIstisnalar.map(x => 'L' + x.satir + ': ' + x.gerekce).join('\n        '));
 for (const x of kabulEdilenIstisnalar) console.log('  ISTISNA  L' + x.satir + '  ' + x.deger + '\n           -> ' + x.gerekce);
 

@@ -1215,7 +1215,7 @@ function openDetay(urunId) {
   const mktler   = temiz.gecerli.slice().sort((a, b) => a.fiyat - b.fiyat);
   const emoji    = KAT_EMOJI[ustKategori(u.ana_kategori)] || '📦';
   const imgHtml  = u.resim
-    ? `<img src="${_guvenliUrl(u.resim)}" alt="" loading="lazy" onerror="this.onerror=null;this.parentElement.innerHTML='<div style=\'width:100%;height:120px;background:#f8f8f8;display:flex;align-items:center;justify-content:center;font-size:3rem\'>${emoji}</div>'">`
+    ? `<img src="${_guvenliUrl(u.resim)}" alt="" loading="lazy" onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'urun-gorsel-ph\'>${emoji}</div>'">`
     : emoji;
 
 
@@ -1256,7 +1256,7 @@ function openDetay(urunId) {
     <div class="detay-section detay-section--market">
       <div class="detay-sec-label">Market Fiyatları</div>
       <div class="detay-mkt-list">
-        ${mktRows || '<div style="padding:12px 14px;font-size:.82rem;color:var(--text-muted)">Market verisi yok</div>'}
+        ${mktRows || '<div class="mkt-bos">Market verisi yok</div>'}
       </div>
       ${_esitFiyatBilgiHTML(mktler, fiyatlarFarkli)}
       ${_gizlenenFiyatHTML(temiz)}
@@ -2356,7 +2356,7 @@ function fiyatGecmisiBlogu(urun) {
 
   // Altyazı: outlier varsa not düş
   const altyaziText = outlierAktif
-    ? 'Bant: günün fiyat aralığı · Çizgi: ortalama · <span style="color:#DC2626">●</span> Olağandışı kayıt (' + outlierKayitlar.length + ')'
+    ? 'Bant: günün fiyat aralığı · Çizgi: ortalama · <span class="olagandisi-nokta">●</span> Olağandışı kayıt (' + outlierKayitlar.length + ')'
     : 'Bant: günün fiyat aralığı · Çizgi: ortalama';
 
   return '<div class="detay-section detay-section--gecmis">'
@@ -2956,7 +2956,7 @@ function cardHTML(u) {
     }
   }
   const marketLbl = gosterilenMarket ? MARKET_NAMES[gosterilenMarket] || gosterilenMarket : '';
-  return `<div class="product-card" tabindex="0" role="button" aria-label="${_kacir(u.ad)}" data-id="${_kacir(u._id)}" data-sid="${_kacir(u._sid || '')}" data-markets="${_kacir((u.market_fiyatlari||[]).map(f=>f.market).join(','))}" onclick="openDetay(this.dataset.id)" onkeydown="_kartTus(event, this.dataset.id)" style="cursor:pointer">
+  return `<div class="product-card" tabindex="0" role="button" aria-label="${_kacir(u.ad)}" data-id="${_kacir(u._id)}" data-sid="${_kacir(u._sid || '')}" data-markets="${_kacir((u.market_fiyatlari||[]).map(f=>f.market).join(','))}" onclick="openDetay(this.dataset.id)" onkeydown="_kartTus(event, this.dataset.id)">
     ${favBtnHTML(u._sid)}
     ${img}
     <div class="product-card-body">
@@ -2975,7 +2975,7 @@ function cardHTML(u) {
       ${(() => { const rz = tuzakRozetiHesapla(u); return rz ? tuzakRozetiHTML(rz, true) : ''; })()}
       ${urunRozetleriHTML(u, true)}
     </div>
-    <button class="add-btn" data-pid="${_kacir(u._id)}" onclick="event.stopPropagation(); toggleSepet(this.dataset.pid)" style="${inCart ? 'background:#059669' : ''}">${inCart ? '✓' : '+'}</button>
+    <button class="add-btn${inCart ? ' add-btn--ekli' : ''}" data-pid="${_kacir(u._id)}" onclick="event.stopPropagation(); toggleSepet(this.dataset.pid)">${inCart ? '✓' : '+'}</button>
   </div>`;
 }
 
@@ -3093,7 +3093,7 @@ async function renderTuzaklarSeridi() {
       [havuzOn[i], havuzOn[j]] = [havuzOn[j], havuzOn[i]];
     }
     list.innerHTML = havuzOn.slice(0, 6).map(x => _stripKartHTML(x.u, x.r)).join('');
-    wrap.style.display = '';
+    wrap.classList.remove('gizli');
     return;
   }
 
@@ -3106,7 +3106,7 @@ async function renderTuzaklarSeridi() {
         const urunler = obj.ids.map(id => productMap[id]).filter(Boolean);
         if (urunler.length >= 3) {
           list.innerHTML = urunler.map(u => _stripKartHTML(u, tuzakRozetiHesapla(u))).join('');
-          wrap.style.display = '';
+          wrap.classList.remove('gizli');
           return;
         }
       }
@@ -3137,7 +3137,7 @@ async function renderTuzaklarSeridi() {
 
   let havuz = kirmizi.slice();
   if (havuz.length < 6) havuz = havuz.concat(sari);
-  if (!havuz.length) { wrap.style.display = 'none'; return; }
+  if (!havuz.length) { wrap.classList.add('gizli'); return; }
 
   for (let i = havuz.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -3146,7 +3146,7 @@ async function renderTuzaklarSeridi() {
   const secililer = havuz.slice(0, 6);
 
   list.innerHTML = secililer.map(x => _stripKartHTML(x.u, x.r)).join('');
-  wrap.style.display = '';
+  wrap.classList.remove('gizli');
 
   try {
     sessionStorage.setItem(TUZAK_CACHE_KEY, JSON.stringify({
@@ -3197,7 +3197,7 @@ async function renderDusenlerSeridi() {
       _stripKartHTML(x.u, null),
       indirimRozetiHTML({ tip: x.dusus_yuzde >= 25 ? 'buyuk' : 'normal', yuzde: x.dusus_yuzde }, true)
     )).join('');
-    wrap.style.display = '';
+    wrap.classList.remove('gizli');
     return;
   }
 
@@ -3206,7 +3206,7 @@ async function renderDusenlerSeridi() {
     await supheliPuanlariYukle();
     await gecmisVeriGetir();
     const { data, error } = await window.supabaseClient.rpc('get_fiyat_dusenler', { p_limit: DUSENLER_RPC_LIMIT });
-    if (error || !data || !data.length) { wrap.style.display = 'none'; return; }
+    if (error || !data || !data.length) { wrap.classList.add('gizli'); return; }
     data.forEach(u => {
       if (!u._id) u._id = u.ad + '_' + (u.agirlik_hacim||'');
       productMap[u._id] = u;
@@ -3214,14 +3214,14 @@ async function renderDusenlerSeridi() {
     // Düşenler bir fırsat şeridi; şüpheli ürün burada iki mesajı da zayıflatıyor.
     // Onlar "Bu indirimlere dikkat" bölümünde gösteriliyor.
     const temiz = data.filter(u => !supheliDurum(u)).slice(0, DUSENLER_KART);
-    if (!temiz.length) { wrap.style.display = 'none'; return; }
+    if (!temiz.length) { wrap.classList.add('gizli'); return; }
     list.innerHTML = temiz.map(u => _kartaRozetEkle(
       _stripKartHTML(u, null),
       indirimRozetiHTML({ tip: u.dusus_yuzde >= 25 ? 'buyuk' : 'normal', yuzde: u.dusus_yuzde }, true)
     )).join('');
-    wrap.style.display = '';
+    wrap.classList.remove('gizli');
   } catch (e) { console.warn('[dusenler] serit cizilemedi, bolum gizlenecek:', e && e.message);
-    wrap.style.display = 'none';
+    wrap.classList.add('gizli');
   }
 }
 
@@ -3243,12 +3243,12 @@ async function renderSupheliSeridi() {
       const ad = on.supheli.slice();
       ad.sort((a, b) => (b.puan - a.puan) || (b.yuzde - a.yuzde));
       const sec = ad.slice(0, SUPHELI_SERIT_MAX);
-      if (sec.length < SUPHELI_SERIT_MIN) { wrap.style.display = 'none'; return; }
+      if (sec.length < SUPHELI_SERIT_MIN) { wrap.classList.add('gizli'); return; }
       _anasayfaKartlariKaydet(sec.map(x => x.u));
       list.innerHTML = sec.map(x => _kartaRozetEkle(
         _stripKartHTML(x.u, null), supheliRozetHTML()
       )).join('');
-      wrap.style.display = '';
+      wrap.classList.remove('gizli');
       return;
     }
 
@@ -3261,7 +3261,7 @@ async function renderSupheliSeridi() {
       .gte('indirim_supheli_puan', 4)
       .order('indirim_supheli_puan', { ascending: false })
       .limit(SUPHELI_SERIT_SORGU_LIMIT);
-    if (error || !data) { wrap.style.display = 'none'; return; }
+    if (error || !data) { wrap.classList.add('gizli'); return; }
 
     const adaylar = [];
     data.forEach(u => {
@@ -3273,15 +3273,15 @@ async function renderSupheliSeridi() {
     });
     adaylar.sort((a, b) => (b.puan - a.puan) || (b.yuzde - a.yuzde));
     const secilen = adaylar.slice(0, SUPHELI_SERIT_MAX);
-    if (secilen.length < SUPHELI_SERIT_MIN) { wrap.style.display = 'none'; return; }
+    if (secilen.length < SUPHELI_SERIT_MIN) { wrap.classList.add('gizli'); return; }
 
     secilen.forEach(x => { productMap[x.u._id] = x.u; });
     list.innerHTML = secilen.map(x => _kartaRozetEkle(
       _stripKartHTML(x.u, null), supheliRozetHTML()
     )).join('');
-    wrap.style.display = '';
+    wrap.classList.remove('gizli');
   } catch (e) { console.warn('[supheli] serit cizilemedi, bolum gizlenecek:', e && e.message);
-    wrap.style.display = 'none';
+    wrap.classList.add('gizli');
   }
 }
 
@@ -3701,7 +3701,7 @@ async function renderZamSeridi() {
       await gecmisVeriGetir();
       secilen = zamAdaylari();
     }
-    if (secilen.length < ZAM_MIN) { wrap.style.display = 'none'; return; }
+    if (secilen.length < ZAM_MIN) { wrap.classList.add('gizli'); return; }
     window._zamListesi = secilen;
     secilen.forEach(x => { productMap[x.u._id] = x.u; });
     // Kartta yer dar: rozet + EN GUCLU TEK bilgi (yayginlik). Tarih/kademe/
@@ -3712,10 +3712,10 @@ async function renderZamSeridi() {
       zamYayginlikHTML(x.u, havuzHarita ? havuzHarita[x.u._id] : null)
     )).join('');
     const btn = document.getElementById('home-zam-paylas');
-    if (btn) btn.style.display = '';
-    wrap.style.display = '';
+    if (btn) btn.classList.remove('gizli');
+    wrap.classList.remove('gizli');
   } catch (e) { console.warn('[zam] serit cizilemedi, bolum gizlenecek:', e && e.message);
-    wrap.style.display = 'none';
+    wrap.classList.add('gizli');
   }
 }
 
@@ -3753,11 +3753,11 @@ async function renderMevsimSeridi() {
   if (!wrap || !list) return;
   const ay = new Date().getMonth();
   const aranan = MEVSIM[ay] || [];
-  if (!aranan.length) { wrap.style.display = 'none'; return; }
+  if (!aranan.length) { wrap.classList.add('gizli'); return; }
 
   await loadCat('meyve-sebze');
   const urunler = catCache['meyve-sebze'] || [];
-  if (!urunler.length) { wrap.style.display = 'none'; return; }
+  if (!urunler.length) { wrap.classList.add('gizli'); return; }
 
   const norm = s => trNormalize(s || '');
   const bulundu = [];
@@ -3776,9 +3776,9 @@ async function renderMevsimSeridi() {
     }
   }
 
-  if (!bulundu.length) { wrap.style.display = 'none'; return; }
+  if (!bulundu.length) { wrap.classList.add('gizli'); return; }
   list.innerHTML = bulundu.slice(0, 8).map(u => _stripKartHTML(u, null)).join('');
-  wrap.style.display = '';
+  wrap.classList.remove('gizli');
 }
 
 // ── KATEGORİ GRİD ─────────────────────────────────────
@@ -4341,7 +4341,7 @@ document.getElementById('search').addEventListener('input', function() {
   document.getElementById('screen-home').classList.toggle('arama-aktif', !!q);
   document.getElementById('home-search').style.display = q ? 'block' : 'none';
   if (!q) {
-    document.getElementById('mf-ara-btn').style.display = 'none';
+    document.getElementById('mf-ara-btn').classList.add('gizli');
     document.getElementById('mf-results').innerHTML = '';
     return;
   }
@@ -4382,7 +4382,7 @@ document.getElementById('search').addEventListener('input', function() {
       : `<div class="state-msg"><span class="icon">🔍</span>Sonuç bulunamadı.</div>`;
     results.forEach(u => { if (!urunler.find(x => x._id === u._id)) urunler.push(u); });
     _mfLastQuery = q;
-    document.getElementById('mf-ara-btn').style.display = '';
+    document.getElementById('mf-ara-btn').classList.remove('gizli');
     document.getElementById('mf-ara-btn').disabled = false;
     document.getElementById('mf-ara-btn').innerHTML = lcIcon('search') + ' marketfiyati.org.tr\'de ara';
     document.getElementById('mf-results').innerHTML = '';
@@ -4488,12 +4488,12 @@ function renderSepet() {
   const items = sepet.map(u => {
     const emoji = KAT_EMOJI[ustKategori(u.ana_kategori)] || '📦';
     const img   = u.resim
-      ? `<img src="${_guvenliUrl(u.resim)}" alt="" loading="lazy" onerror="this.onerror=null;this.parentElement.innerHTML='<div style=\'width:100%;height:120px;background:#f8f8f8;display:flex;align-items:center;justify-content:center;font-size:3rem\'>${emoji}</div>'">`
+      ? `<img src="${_guvenliUrl(u.resim)}" alt="" loading="lazy" onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'urun-gorsel-ph\'>${emoji}</div>'">`
       : emoji;
     const mktF = (u.market_fiyatlari || []).filter(f => f.fiyat != null).sort((a,b) => a.fiyat - b.fiyat)[0];
     const fiyatStr = mktF
-      ? `<div style="text-align:right;color:var(--primary);font-size:.82rem;font-weight:700;flex-shrink:0;margin-right:6px;line-height:1.4">
-           ${tlHTML(mktF.fiyat)}<br><span style="font-size:.65rem;font-weight:500">${_kacir(MARKET_NAMES[mktF.market]||mktF.market||'?')}</span>
+      ? `<div class="cart-mkt-fiyat">
+           ${tlHTML(mktF.fiyat)}<br><span class="cart-mkt-ad">${_kacir(MARKET_NAMES[mktF.market]||mktF.market||'?')}</span>
          </div>` : '';
     // Rozet: TEK KAYNAK urunRozetleriHTML (mantik yeniden yazilmaz). CANLI
     // urunden hesaplanir (productMap[u._id]) -- rozet fonksiyonlari en_dusuk_fiyat
@@ -4505,7 +4505,7 @@ function renderSepet() {
     _sepetSid(u);
     const _canliUrun = productMap[u._id] || null;
     const rozetHTML = (_canliUrun && _gecmisCache && _puanCache) ? urunRozetleriHTML(_canliUrun, true) : '';
-    return `<div class="cart-item" tabindex="0" role="button" aria-label="${_kacir(u.ad)}" data-id="${_kacir(u._id)}" onclick="openDetay(this.dataset.id)" onkeydown="_kartTus(event, this.dataset.id)" style="cursor:pointer">
+    return `<div class="cart-item" tabindex="0" role="button" aria-label="${_kacir(u.ad)}" data-id="${_kacir(u._id)}" onclick="openDetay(this.dataset.id)" onkeydown="_kartTus(event, this.dataset.id)">
       <div class="cart-item-img">${img}</div>
       <div class="cart-item-info">
         <div class="cart-item-name">${_kacir(u.ad)}</div>
@@ -4535,13 +4535,13 @@ function renderSepet() {
     <div class="listem-toplam">
       <div class="listem-toplam-ust">
         <span class="listem-toplam-etiket">${marketSayisi} farklı markete giderek</span>
-        <span style="color:var(--price-color)">${tlHTML(toplam)}</span>
+        <span class="sepet-toplam-tutar">${tlHTML(toplam)}</span>
       </div>
       <div class="listem-toplam-aciklama">Her ürünü en ucuz olduğu marketten alırsan — tek markette ödeyeceğin tutar aşağıda</div>
     </div>
     ${sepetMarketOzetiHTML()}
     <button class="btn-compare" onclick="karsilastir()">Marketleri Karşılaştır →</button>
-    <button class="btn-compare" onclick="paylasSepet()" style="background:#25D366;margin-top:4px;display:flex;align-items:center;justify-content:center;gap:6px"><svg class="lc-share" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg> Listeyi Paylaş</button>
+    <button class="btn-compare btn-whatsapp" onclick="paylasSepet()"><svg class="lc-share" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg> Listeyi Paylaş</button>
     <div id="compareOut"></div>
     </div>`;
 
@@ -4833,7 +4833,7 @@ function msSheetGuncelle() {
     uyari.textContent = kapsam.eksik
       ? `${kapsam.eksik} ürün seçili marketlerde yok — tutar onlar olmadan`
       : '';
-    uyari.style.display = kapsam.eksik ? '' : 'none';
+    uyari.classList.toggle('gizli', !kapsam.eksik);
   }
   const n = _msSecili.length;
   const btn = document.getElementById('msSheetBtn');
@@ -4845,7 +4845,7 @@ function msSheetHesapla() {
   if (!_msSecili.length) return;
   msSheetKapat();
   if (!document.getElementById('compareOut').querySelector('#compareResult')) {
-    document.getElementById('compareOut').innerHTML = `<div id="compareResult" style="margin-top:16px"></div>`;
+    document.getElementById('compareOut').innerHTML = `<div id="compareResult" class="cmp-sonuc-wrap"></div>`;
   }
   hesaplaSecili(_msSecili);
   setTimeout(() => {
@@ -4943,7 +4943,7 @@ function hesaplaSecili(seciliMarketler) {
   }).join('');
 
   const atanamayanHtml = atanamayan.length ? `
-    <div class="cmp-mkt-block" style="margin-top:12px">
+    <div class="cmp-mkt-block cmp-mkt-block--aralikli">
       <div class="cmp-mkt-name">⚠️ Seçili marketlerde bulunmayan ürünler:</div>
       ${atanamayan.map(it => _cmpItemHTML({ ad: it.ad, resim: it.resim, ana_kategori: it.ana_kategori, agirlik_hacim: it.agirlik_hacim, fiyat: null })).join('')}
     </div>` : '';
@@ -5053,7 +5053,7 @@ function renderHalScreen() {
   }
   const data = window.halVerisi;
   const dateStr = data.bulten_tarihi || '';
-  const tarihDisplay = dateStr ? `<div style="padding:10px 14px;font-size:.75rem;color:var(--text-muted);border-bottom:1px solid var(--border);text-align:center">📅 ${dateStr}</div>` : '';
+  const tarihDisplay = dateStr ? `<div class="hal-tarih-bar">📅 ${dateStr}</div>` : '';
   const HAL_SEBZE = new Set(['acur','adacayi (yas-taze)','alabas(kohlrabi)','asma yapragi','bakla taze','balkabagi','bamya taze','barbunya taze','beyaz lahana','bezelye taze','biberiye','brokoli','bruksel lahanasi','deniz borulcesi(deniz otu ege otu)','dereotu (yas-taze)','domates','domates salcalik','ebegumeci','enginar','fasulye taze','fesleGen(reyhan)','hardal otu (yas-taze)','havuc','hindiba (cikori)','hindiba endivyen','hindiba radika','isirgan (yas-taze)','ispanak','kabak','kabak cerezlik','kabak cicegi','karalahana','karnabahar','kaya korugu','kekik (yas-taze)','kereviz','kereviz sap','kiris (ciris)','kisnis','kirmizi lahana','kuskonmaz','kuzukulagi','labada','madimak','mantar','marul gobokli','marul iceberg','marul kivircik','maydanoz','mercan kosk','misir taze','mizuna otu','nane','nohut taze','pakchoi','pancar','patates','patlican','pazi','pirasa','rakula','rezene (yas-taze)','roka','salatalik','salatalik tursuluk','sarimsak kuru','sarimsak taze','semizotu','sogan kuru','yesil sogan','soya filizi','salgam','sevketi bostan','tarhun','tatli patates','tere','turp','turp beyaz','turp otu','limon otu (limon grass)','zencefil','bi̇ber carli̇ston','bi̇ber dolmalik','bi̇ber salcalik (kapya)','bi̇ber si̇vri̇','bi̇beri̇ye','boruice taze','brokoli̇','bruksel lahanasi','deni̇z boruicesi̇(deni̇z otu ege otu)','ebeGumeci̇','engi̇nar','fesleGen(reyhan)','hardal otu','hi̇ndi̇ba (ci̇kori̇)','hi̇ndi̇ba endi̇vyen','hi̇ndi̇ba radi̇ka','keki̇k (yas-taze)','kerevi̇z','kerevi̇z sap','ki̇ri̇s (ci̇ri̇s)','ki̇sni̇s','ki̇rmizi lahana','kuskonmaz','marul gobokli̇','marul ki̇vi̇rci̇k','mi̇sir taze','mi̇zuna otu','pakchoi̇','pirasa','semi̇zotu','soya fi̇li̇zi̇','sevketi̇ bostan','zencefi̇l']);
   const getHalKat = ad => {
     const n = (ad||'').toLowerCase()
@@ -5070,7 +5070,7 @@ function renderHalScreen() {
     container.innerHTML = tarihDisplay + '<div class="state-msg"><span class="icon">' + lcIcon('building-2') + '</span>Hal verisi bulunamadı.</div>';
     return;
   }
-  const filtersHtml = `<div style="padding:8px 14px;display:flex;gap:8px">
+  const filtersHtml = `<div class="hal-filtre-bar">
     <button class="hal-filter-btn active" data-kat="tum" onclick="halFiltrele('tum',this)">Tümü</button>
     <button class="hal-filter-btn" data-kat="meyve" onclick="halFiltrele('meyve',this)">🍎 Meyve</button>
     <button class="hal-filter-btn" data-kat="sebze" onclick="halFiltrele('sebze',this)">🥦 Sebze</button>
@@ -5078,14 +5078,14 @@ function renderHalScreen() {
   const cards = products.map(u => {
     const kat = getHalKat(u.ad);
     const gorselHtml = u.gorsel
-      ? `<img src="${_guvenliUrl(u.gorsel)}" alt="${_kacir(u.ad)}" loading="lazy" style="width:100%;height:80px;object-fit:cover;border-radius:12px 12px 0 0" onerror="this.outerHTML='<div style=&quot;height:80px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;background:${halRenkler[kat]};border-radius:12px 12px 0 0&quot;>${halEmojiler[kat]}</div>'">`
-      : `<div style="height:80px;display:flex;align-items:center;justify-content:center;font-size:2.5rem;background:${halRenkler[kat]};border-radius:12px 12px 0 0">${halEmojiler[kat]}</div>`;
+      ? `<img src="${_guvenliUrl(u.gorsel)}" alt="${_kacir(u.ad)}" loading="lazy" class="hal-gorsel" onerror="this.outerHTML='<div class=&quot;hal-gorsel-ph hal-ph--${kat}&quot;>${halEmojiler[kat]}</div>'">`
+      : `<div class="hal-gorsel-ph hal-ph--${kat}">${halEmojiler[kat]}</div>`;
     return `<div class="hal-grid-card" data-kat="${kat}">
       ${gorselHtml}
-      <div style="padding:8px">
-        <div style="font-size:11px;font-weight:500;color:var(--text);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:26px">${_kacir(u.ad)}</div>
-        <div style="font-size:13px;font-weight:700;color:var(--primary);margin-top:4px">${tl(u.fiyat)} <span style="font-size:10px;font-weight:400">₺/kg</span></div>
-        ${dateStr ? `<div style="font-size:9px;color:var(--text-muted);margin-top:2px">${dateStr}</div>` : ''}
+      <div class="hal-govde">
+        <div class="hal-ad">${_kacir(u.ad)}</div>
+        <div class="hal-fiyat">${tl(u.fiyat)} <span class="hal-birim">₺/kg</span></div>
+        ${dateStr ? `<div class="hal-tarih-kucuk">${dateStr}</div>` : ''}
       </div>
     </div>`;
   }).join('');
@@ -5199,7 +5199,7 @@ function _firsatKartHtml(u, badge, badgeClass, altText) {
     + '<div class="firsat-card-right">'
     + '<div class="firsat-card-price">'+fiyat+'</div>'
     + '<span class="firsat-card-badge '+badgeClass+'">'+badge+'</span>'
-    + '<button class="firsat-card-add" onclick="event.stopPropagation();firsatSepetEkle(this,\''+btoa(unescape(encodeURIComponent(u._id)))+'\')" style="'+(inCart?'background:#059669':'')+'">'+( inCart?'✓':'+')+'</button>'
+    + '<button class="firsat-card-add'+(inCart?' firsat-card-add--ekli':'')+'" onclick="event.stopPropagation();firsatSepetEkle(this,\''+btoa(unescape(encodeURIComponent(u._id)))+'\')">'+( inCart?'✓':'+')+'</button>'
     + '</div></div>';
 }
 
@@ -5658,7 +5658,7 @@ function profilBolumleriCiz() {
     const bolum = document.getElementById(id);
     if (!govde || !bolum) return;
     govde.innerHTML = html || '';
-    bolum.style.display = html ? '' : 'none';
+    bolum.classList.toggle('gizli', !html);
   };
   yaz('profil-tasarruf', profilTasarrufHTML());
   yaz('profil-enflasyon', profilEnflasyonHTML());

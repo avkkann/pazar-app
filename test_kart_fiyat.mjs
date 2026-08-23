@@ -116,10 +116,13 @@ console.log('\n=== 5. TASARIM TOKENLARI ===');
 
 console.log('\n=== 6. SERIT ONCELIGI (2c) ===');
 {
-  const oncelikli = (HTML.match(/class="home-strip home-strip--oncelik"/g) || []).length;
+  // 2026-08-23: sinif listesine .gizli eklendi (CSP style-src gocu), yani oncelik
+  // sinifindan SONRA baska sinif gelebilir. Iddia yine "oncelik sinifi VAR" diyor,
+  // tam-dize esitligi degil.
+  const oncelikli = (HTML.match(/class="home-strip home-strip--oncelik(?:\s[^"]*)?"/g) || []).length;
   ok('iki serit oncelikli isaretli', oncelikli === 2, 'adet=' + oncelikli);
-  ok('  tuzaklar oncelikli', /id="home-tuzaklar" class="home-strip home-strip--oncelik"/.test(HTML));
-  ok('  zam oncelikli', /id="home-zam" class="home-strip home-strip--oncelik"/.test(HTML));
+  ok('  tuzaklar oncelikli', /id="home-tuzaklar" class="home-strip home-strip--oncelik(?:\s[^"]*)?"/.test(HTML));
+  ok('  zam oncelikli', /id="home-zam" class="home-strip home-strip--oncelik(?:\s[^"]*)?"/.test(HTML));
   const oncelikKural = tokenCoz(CSS, (CSS.match(/\.home-strip--oncelik \.home-strip-title \{[^}]*\}/) || [''])[0]);
   ok('oncelikli baslik bir olcek adimi buyuk (24px)', /font-size:\s*24px/.test(oncelikKural), oncelikKural);
   ok('  agirlik 800 (fontshare yalnizca 700/800 indiriyor)', /\.home-strip--oncelik \.home-strip-title,?\s*\n?\s*\.profil-istat-sayi \{ font-weight: 800/.test(CSS) || /home-strip--oncelik[^}]*font-weight: 800/.test(CSS.replace(/\n/g, ' ')), '');

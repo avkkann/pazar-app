@@ -133,6 +133,17 @@ console.log('\n=== CSP DAVRANISI: worker GERCEKTEN kosturulup URETTIGI baslik ol
   // Kirmizida tum CSP'yi basmak yerine SUCLU direktifi goster.
   const nerelerde = (host) => Object.entries(dir).filter(([, ks]) => ks.some(k => k.includes(host))).map(([d]) => d).join(',');
 
+  // --- 'unsafe-inline' DIREKTIF BAZINDA (2026-08-23) ---
+  // style-src: satir ici stiller CSS siniflarina tasindi -> 'unsafe-inline' KALKTI.
+  //   Geri gelirse KIRMIZI: gocun sessizce geri alinmasini engeller.
+  // script-src: 'unsafe-inline' BILEREK DURUYOR (satir ici olay ozniteligi gocu
+  //   ertelendi). Buradaki iddia "duruyor mu" diye bakar -> biri onu habersiz
+  //   kaldirirsa (117 handler olur) yine KIRMIZI olur. Iki yonlu kilit.
+  ok('  style-src: \'unsafe-inline\' YOK (satir ici stiller tasindi)',
+     !(dir['style-src'] || []).includes("'unsafe-inline'"), (dir['style-src'] || []).join(' '));
+  ok('  script-src: \'unsafe-inline\' HALA VAR (handler gocu bilincli ertelendi)',
+     (dir['script-src'] || []).includes("'unsafe-inline'"), (dir['script-src'] || []).join(' '));
+
   // --- SILINEN HOST'LAR: self-host sonrasi hicbir isteğe cikilmiyor (2026-08-22
   //     canli olcumu: dis font host'una 0 istek, 4 woff2 de pazarapp.net'ten).
   //     Biri CSP'ye GERI GELIRSE bu blok KIRMIZI olur.

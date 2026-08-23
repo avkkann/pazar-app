@@ -358,40 +358,11 @@ function linkHTML(link, baglam) {
   return `<a href="${kacir(link.yol)}">${kacir(link.metin)}</a>`;
 }
 
-// ~2 KB, satir ici. index.html / style.css'teki --primary (#0E4938) ve
-// krem (#E8DCC4) paletinden. Dis font/CDN YOK -- sistem yigini.
-const HUB_STIL = `
-    :root {
-      --bg: #F8F9FA; --card-bg: #FFFFFF; --text: #1A1A2E; --text-muted: #6B7280;
-      --border: #E5E7EB; --primary: #0E4938; --link: #0E4938; --accent: #E8DCC4;
-    }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #14181B; --card-bg: #1C2226; --text: #E8DCC4; --text-muted: #9CA3AF;
-        --border: #2A3236; --primary: #1D9E75; --link: #4FD8A6; --accent: #E8DCC4;
-      }
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0; background: var(--bg); color: var(--text);
-      font: 16px/1.6 system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-    }
-    header, main, footer { max-width: 860px; margin: 0 auto; padding: 16px 20px; }
-    header { border-bottom: 1px solid var(--border); }
-    header a { color: var(--primary); font-weight: 700; text-decoration: none; font-size: 1.1em; }
-    h1 { font-size: 1.6em; line-height: 1.35; margin: 8px 0 12px; }
-    h2 { font-size: 1.2em; margin: 28px 0 10px; color: var(--primary); }
-    p, li { color: var(--text); }
-    .tablo-sarmalayici { overflow-x: auto; border: 1px solid var(--border); border-radius: 8px; }
-    table { border-collapse: collapse; width: 100%; min-width: 480px; }
-    th, td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--border); white-space: nowrap; }
-    th { background: var(--accent); color: var(--primary); }
-    tbody tr:last-child td { border-bottom: none; }
-    .kirpma-notu { color: var(--text-muted); font-size: 0.9em; margin-top: 6px; }
-    footer { border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.95em; }
-    footer nav a, footer p a { color: var(--link); }
-    footer ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 12px 20px; }
-`;
+// HUB STILI ARTIK HARICI: static/hub.css
+// Onceden burada HUB_STIL sabiti vardi ve <style>${HUB_STIL}</style> ile gomuluyordu.
+// CSP style-src 'unsafe-inline' kaldirildigi icin (2026-08-23) dosyaya cikarildi.
+// HASH KULLANILMADI: bu dosya sablon uretiyor, hash her icerik degisiminde elle bakim olurdu.
+// Dis font/CDN YOK -- sistem yigini. Palet index.html/style.css ile ayni (#0E4938, #E8DCC4).
 
 export function sayfaHTML(model) {
   const karar = sayfaModelDogrula(model);
@@ -428,7 +399,7 @@ export function sayfaHTML(model) {
   <meta name="pazar-veri-damgasi" content="${kacir(model.veriDamgasi)}">
   <meta name="pazar-hub-tipi" content="${kacir(model.tip)}">
   <meta name="pazar-satir" content="${karar.satir}">
-  <style>${HUB_STIL}</style>
+  <link rel="stylesheet" href="/static/hub.css">
 </head>
 <body>
   <header><a href="/">Pazar</a></header>

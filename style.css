@@ -2962,3 +2962,48 @@
     @media (prefers-reduced-motion: reduce) {
       .hub-link { transition: none; }
     }
+
+/* ══ SATIR İÇİ STİL GÖÇÜ — CSP style-src 'unsafe-inline' kaldırıldı (2026-08-23) ══
+   58 adet style="..." özniteliği buraya taşındı. Dosyanın SONUNDA duruyor ki
+   eşit özgüllükteki önceki kurallara karşı kazansın.
+   .gizli'de !important YOK ve olmamalı: 8 öğe JS'ten style.display='block'/'flex'
+   ile gösteriliyor, satır içi değer bu sınıfı yenmek zorunda. !important eklenirse
+   o sekiz öğe kalıcı gizlenir. */
+.gizli { display: none; }
+
+/* index.html — ölçü/boşluk */
+#scroll-sentinel { height: 1px; margin-bottom: 8px; }
+.bosluk-24 { height: 24px; }
+
+/* index.html — profil satır ikonları (renkler birebir korundu) */
+.profil-item-icon.ikon-yesil   { background: #DCFCE7; }
+.profil-item-icon.ikon-kirmizi { background: #FEE2E2; }
+.profil-item-icon.ikon-sari    { background: #FEF3C7; }
+.profil-item-icon.ikon-mor     { background: #EDE9FE; }
+.profil-item-icon.ikon-mavi    { background: #DBEAFE; }
+
+/* app.js şablonları */
+.product-card, .cart-item { cursor: pointer; }
+.mkt-bos { padding: 12px 14px; font-size: .82rem; color: var(--text-muted); }
+.olagandisi-nokta { color: #DC2626; }
+.add-btn--ekli, .firsat-card-add--ekli { background: #059669; }
+.cart-mkt-fiyat { text-align: right; color: var(--primary); font-size: .82rem; font-weight: 700; flex-shrink: 0; margin-right: 6px; line-height: 1.4; }
+.cart-mkt-ad { font-size: .65rem; font-weight: 500; }
+.sepet-toplam-tutar { color: var(--price-color); }
+.btn-whatsapp { background: #25D366; margin-top: 4px; display: flex; align-items: center; justify-content: center; gap: 6px; }
+.cmp-sonuc-wrap { margin-top: 16px; }
+.cmp-mkt-block--aralikli { margin-top: 12px; }
+
+/* app.js — hal kartları */
+.hal-tarih-bar { padding: 10px 14px; font-size: .75rem; color: var(--text-muted); border-bottom: 1px solid var(--border); text-align: center; }
+.hal-filtre-bar { padding: 8px 14px; display: flex; gap: 8px; }
+.hal-gorsel { width: 100%; height: 80px; object-fit: cover; border-radius: 12px 12px 0 0; }
+.hal-gorsel-ph { height: 80px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; border-radius: 12px 12px 0 0; }
+.hal-ph--sebze { background: #E8F5E9; }
+.hal-ph--meyve { background: #FFF3E0; }
+.hal-govde { padding: 8px; }
+.hal-ad { font-size: 11px; font-weight: 500; color: var(--text); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 26px; }
+.hal-fiyat { font-size: 13px; font-weight: 700; color: var(--primary); margin-top: 4px; }
+.hal-birim { font-size: 10px; font-weight: 400; }
+.hal-tarih-kucuk { font-size: 9px; color: var(--text-muted); margin-top: 2px; }
+.urun-gorsel-ph { width: 100%; height: 120px; background: #f8f8f8; display: flex; align-items: center; justify-content: center; font-size: 3rem; }

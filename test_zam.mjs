@@ -231,7 +231,8 @@ console.log('\n=== 6. SERIT: 3\'TEN AZSA HIC CIZILMEZ ===');
 {
   const rz = fnKaynak('renderZamSeridi') || '';
   ok('ZAM_MIN esigi kullaniliyor', /ZAM_MIN/.test(rz), '');
-  ok('  az ise display none', /display\s*=\s*'none'/.test(rz), '');
+  // 2026-08-23: gizleme artik .gizli sinifiyla (CSP style-src 'unsafe-inline' kalkti).
+  ok('  az ise gizleniyor (.gizli sinifi)', /classList\.add\('gizli'\)/.test(rz), '');
   ok('mevcut kart deseni kullaniliyor (_stripKartHTML)', /_stripKartHTML\s*\(/.test(rz), '');
   ok('  yeni kart bileseni uydurulmadi', !/zam-kart|zamCard/.test(APP), '');
   ok('artis yuzdesi kartta gosteriliyor', /_kartaRozetEkle|zamRozetHTML/.test(rz), '');
@@ -281,7 +282,8 @@ console.log('\n=== 8. PAYLASIM ===');
   // Buton index.html'de duruyor (onclick), renderZamSeridi yalnizca gorunur yapiyor.
   ok('serit basliginda paylas butonu var', /id="home-zam-paylas"[^>]*onclick="paylasZamlar\(\)"/.test(HTML), '');
   ok('  varsayilan gizli, liste dolunca aciliyor',
-     /id="home-zam-paylas"[^>]*style="display:none"/.test(HTML) &&
+     /id="home-zam-paylas"|class="[^"]*gizli[^"]*"[^>]*id="home-zam-paylas"/.test(HTML) &&
+     /<button[^>]*class="[^"]*gizli[^"]*"[^>]*id="home-zam-paylas"/.test(HTML) &&
      /home-zam-paylas/.test(fnKaynak('renderZamSeridi') || ''), '');
 }
 

@@ -1,0 +1,14 @@
+/* JS KAPALIYKEN uygulanan kurallar. index.html'de <noscript><link> ile yuklenir.
+   ONCEDEN <noscript><style> blogu icindeydi; CSP style-src 'unsafe-inline'
+   kaldirilabilsin diye harici dosyaya alindi (2026-08-23).
+   HASH KULLANILMADI: hash her icerik degisiminde elle bakim demek.
+
+   Neden gerekli: #splash (position:fixed, inset:0, z-index:9999) tum ekrani
+   kapatiyor ve onu YALNIZCA app.js kaldiriyor -> JS kapaliyken kullanici bos
+   beyaz ekran goruyordu. Alt gezinme de tiklanamaz oldugu icin gizleniyor.
+   Onboarding overlay'i ele almak gerekmiyor (zaten display:none).
+
+   static/ altinda: prepare-public.mjs bu klasoru oldugu gibi kopyaliyor
+   (cpSync('static', ...)), yani vite islemeden yayina cikiyor - yol sabit kalir. */
+#splash { display: none !important; }
+.bottom-nav { display: none !important; }

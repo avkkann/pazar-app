@@ -1,5 +1,12 @@
 const CSP = [
   "default-src 'self'",
+  // script-src'de 'unsafe-inline' BILEREK DURUYOR. Kaldirmak 117 satir ici olay
+  // ozniteligini (onclick= vb.) delegasyona tasimayi gerektiriyor; o goc 4-6 turluk
+  // ayri bir is olarak ERTELENDI. TETIKLEYICI: kullanici girdisi ya da ucuncu taraf
+  // icerigi render eden YENI bir yuzey eklenirse one alinir.
+  // NOT: nonce/hash bu maddeyi COZMEZ -- ikisi de <script> BLOKLARINI kapsar, satir
+  // ici olay ozniteliklerini kapsamaz; kapsatmak icin 'unsafe-hashes' gerekir, o da
+  // korumayi geri acar. Yani handler gocu yapilmadan hash'in kazanci sifir.
   "script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://gc.zgo.at",
   // DARALTILDI 2026-08-22: dis font host'lari CIKARILDI.
   //   Cikanlar: fonts.googleapis.com, fonts.gstatic.com (style-src/font-src),
@@ -16,7 +23,11 @@ const CSP = [
   //   yarisi atlaninca Cabinet Grotesk sessizce Inter'e dusuyordu (2026-08-17).
   //   Self-host bu tuzagi komple ortadan kaldirdi. Geri eklemek GEREKMEZ; disaridan
   //   font yuklemeye donulurse CIFTIN IKI YARISI da eklenmelidir.
-  "style-src 'self' 'unsafe-inline'",
+  // 'unsafe-inline' KALDIRILDI 2026-08-23: 58 satir ici style="" ozniteligi CSS
+  // siniflarina, 2 <style> blogu harici dosyaya tasindi (static/noscript.css,
+  // static/hub.css). HASH KULLANILMADI (icerik degistikce elle bakim demek).
+  // element.style / cssText yazimlari (84 adet) CSP'ye TABI DEGIL, oldugu gibi kaldi.
+  "style-src 'self'",
   // 'self': fontlar self-host (static/fonts/inter-latin.woff2, index.html:50 preload).
   // 'self' YOKKEN o woff2 CSP'ce bloklaniyordu — gizli sekmede olculdu 2026-08-21.
   // Guard: test_cdn_pin.mjs worker'i KOSTURUP ciktiyi olcuyor; silinen dort host

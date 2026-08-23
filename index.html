@@ -86,10 +86,10 @@
        ekrani kapatiyor ve onu sadece app.js kaldiriyor — kullanici beyaz ekran
        goruyordu. Onboarding overlay'i de ayni sekilde ele almak gerekmiyor
        (zaten display:none), ama alt gezinme tiklanamaz oldugu icin gizleniyor. -->
-  <noscript><style>
-    #splash { display: none !important; }
-    .bottom-nav { display: none !important; }
-  </style></noscript>
+  <!-- Satir ici <style> DEGIL, harici dosya: CSP style-src 'unsafe-inline'
+       kaldirildi (2026-08-23). /static/ altinda cunku prepare-public.mjs o
+       klasoru oldugu gibi kopyaliyor -> vite islemez, yol sabit kalir. -->
+  <noscript><link rel="stylesheet" href="/static/noscript.css"></noscript>
 <!-- B5: TAM surume pinlendi (@2 kayan degil) + SRI. Hash INDIRILEN dosyadan
      uretildi (sha384). Surumu yukseltirken integrity'yi de yeni dosyadan
      yeniden uret; yoksa tarayici betigi reddeder. crossorigin=anonymous SRI
@@ -188,21 +188,21 @@
        veri gelmezse gizli kalir, bos kabuk gostermez. -->
   <div class="veri-tazelik" id="veri-tazelik" hidden></div>
 
-  <div id="home-tuzaklar" class="home-strip home-strip--oncelik" style="display:none">
+  <div id="home-tuzaklar" class="home-strip home-strip--oncelik gizli">
     <div class="home-strip-head">
       <span class="home-strip-title">🚨 Bugün yakaladığımız tuzaklar</span>
     </div>
     <div class="home-strip-scroll" id="home-tuzaklar-list"></div>
   </div>
 
-  <div id="home-dusenler" class="home-strip" style="display:none">
+  <div id="home-dusenler" class="home-strip gizli">
     <div class="home-strip-head">
       <span class="home-strip-title">🔻 Bu hafta düşenler</span>
     </div>
     <div class="home-strip-scroll" id="home-dusenler-list"></div>
   </div>
 
-  <div id="home-supheli" class="home-strip" style="display:none">
+  <div id="home-supheli" class="home-strip gizli">
     <div class="home-strip-head">
       <div class="home-strip-baslik-grup">
         <span class="home-strip-title">Bu indirimlere dikkat</span>
@@ -212,20 +212,20 @@
     <div class="home-strip-scroll" id="home-supheli-list"></div>
   </div>
 
-  <div id="home-zam" class="home-strip home-strip--oncelik" style="display:none">
+  <div id="home-zam" class="home-strip home-strip--oncelik gizli">
     <div class="home-strip-head">
       <div class="home-strip-baslik-grup">
         <span class="home-strip-title">Bu ay en çok zamlananlar</span>
         <span class="home-strip-sub">Son 30 günde fiyatı en çok artan ürünler</span>
       </div>
-      <button type="button" class="home-strip-paylas" id="home-zam-paylas" style="display:none" onclick="paylasZamlar()">Paylaş</button>
+      <button type="button" class="home-strip-paylas gizli" id="home-zam-paylas" onclick="paylasZamlar()">Paylaş</button>
     </div>
     <div class="home-strip-scroll" id="home-zam-list"></div>
   </div>
 
   <div id="home-cats" class="cat-grid"></div>
 
-  <div id="home-mevsim" class="home-strip" style="display:none">
+  <div id="home-mevsim" class="home-strip gizli">
     <div class="home-strip-head">
       <span class="home-strip-title">🌱 Bu hafta mevsiminde</span>
     </div>
@@ -240,10 +240,10 @@
     </div>
   </div>
 
-  <div id="home-search" style="display:none">
+  <div class="gizli" id="home-search">
     <div class="stats-row"><span><b id="searchCount">0</b> sonuç</span></div>
     <div class="product-list" id="searchList"></div>
-    <button id="mf-ara-btn" onclick="marketfiyatiCanliAra()" style="display:none">marketfiyati.org.tr'de ara</button>
+    <button class="gizli" id="mf-ara-btn" onclick="marketfiyatiCanliAra()">marketfiyati.org.tr'de ara</button>
     <div id="mf-results"></div>
   </div>
 
@@ -312,7 +312,7 @@
   </div>
 
   <div class="product-list" id="productList"></div>
-  <div id="scroll-sentinel" style="height:1px;margin-bottom:8px"></div>
+  <div id="scroll-sentinel"></div>
   <div class="data-attribution">Veri: <a href="https://marketfiyati.org.tr" target="_blank" rel="noopener">marketfiyati.org.tr</a> (TÜBİTAK) · <a href="https://hal.gov.tr" target="_blank" rel="noopener">hal.gov.tr</a> (T.C. Ticaret Bakanlığı)</div>
 
 </div>
@@ -427,13 +427,13 @@
     <div class="profil-isim" id="profilIsim" tabindex="0" role="button" onclick="duzenleKullaniciAdi()" onkeydown="_satirTus(event, duzenleKullaniciAdi)">Pazar Kullanıcısı <span class="profil-isim-edit">✏️</span></div>
     <div class="profil-alt" id="profilAlt">Fiyatları takip ediyorsun</div>
     <!-- AUTH CTA START -->
-    <div id="profil-auth-cta" class="profil-auth-cta" style="display:none;">
+    <div id="profil-auth-cta" class="profil-auth-cta gizli">
       <button type="button" class="profil-auth-btn profil-auth-btn--primary" onclick="openAuthSheet('login')">Giriş Yap</button>
       <button type="button" class="profil-auth-btn profil-auth-btn--ghost" onclick="openAuthSheet('signup')">Üye Ol</button>
     </div>
     <!-- AUTH CTA END -->
   </div>
-<div id="profil-auth-logout" class="profil-auth-logout" style="display:none;">
+<div id="profil-auth-logout" class="profil-auth-logout gizli">
   <button type="button" class="profil-logout-btn" onclick="confirmLogout()">Çıkış Yap</button>
 </div>
 
@@ -452,12 +452,12 @@
     </div>
   </div>
   <!-- Tasarruf özeti: grid dışında, tam genişlik. Liste boşsa JS gizler. -->
-  <div id="profil-tasarruf" class="profil-tasarruf-wrap" style="display:none">
+  <div id="profil-tasarruf" class="profil-tasarruf-wrap gizli">
     <div id="profil-tasarruf-govde"></div>
   </div>
 
   <!-- Senin enflasyonun: tasarruf kartının hemen altı, grid dışında. -->
-  <div id="profil-enflasyon" class="profil-tasarruf-wrap" style="display:none">
+  <div id="profil-enflasyon" class="profil-tasarruf-wrap gizli">
     <div id="profil-enflasyon-govde"></div>
   </div>
 
@@ -469,7 +469,7 @@
   <div class="profil-section">
     <div class="profil-section-title">Hızlı Erişim</div>
     <div class="profil-item" role="button" tabindex="0" onclick="goSepet()" onkeydown="_satirTus(event, function(){goSepet()})">
-      <div class="profil-item-icon" style="background:#DCFCE7" data-lc="shopping-cart">🛒</div>
+      <div class="profil-item-icon ikon-yesil" data-lc="shopping-cart">🛒</div>
       <div class="profil-item-body">
         <div class="profil-item-title">Listem</div>
         <div class="profil-item-sub" id="profilSepetOzet">Liste boş</div>
@@ -477,7 +477,7 @@
       <div class="profil-item-chevron">›</div>
     </div>
     <div class="profil-item" role="button" tabindex="0" onclick="openFavoriler()" onkeydown="_satirTus(event, function(){openFavoriler()})">
-      <div class="profil-item-icon" style="background:#FEE2E2" data-lc="heart">❤️</div>
+      <div class="profil-item-icon ikon-kirmizi" data-lc="heart">❤️</div>
       <div class="profil-item-body">
         <div class="profil-item-title">Favorilerim</div>
         <div class="profil-item-sub" id="profilFavoriOzet">Sık kullandığın ürünler burada</div>
@@ -485,7 +485,7 @@
       <div class="profil-item-chevron">›</div>
     </div>
     <div class="profil-item" role="button" tabindex="0" onclick="openHalScreen()" onkeydown="_satirTus(event, function(){openHalScreen()})">
-      <div class="profil-item-icon" style="background:#FEF3C7" data-lc="building-2">🏭</div>
+      <div class="profil-item-icon ikon-sari" data-lc="building-2">🏭</div>
       <div class="profil-item-body">
         <div class="profil-item-title">Hal Fiyatları</div>
         <div class="profil-item-sub">Türkiye geneli toptan hal fiyatları</div>
@@ -493,7 +493,7 @@
       <div class="profil-item-chevron">›</div>
     </div>
     <div class="profil-item" role="button" tabindex="0" onclick="goFirsatlar()" onkeydown="_satirTus(event, function(){goFirsatlar()})">
-      <div class="profil-item-icon" style="background:#EDE9FE" data-lc="zap">⚡</div>
+      <div class="profil-item-icon ikon-mor" data-lc="zap">⚡</div>
       <div class="profil-item-body">
         <div class="profil-item-title">Fırsatlar</div>
         <div class="profil-item-sub">En ucuz ürünler ve tasarruf fırsatları</div>
@@ -501,22 +501,22 @@
       <div class="profil-item-chevron">›</div>
     </div>
   </div>
-  <div class="profil-section" id="profil-sablonlar" style="display:none">
+  <div class="profil-section gizli" id="profil-sablonlar">
     <div class="profil-section-title">Kayıtlı Listelerim</div>
     <div id="profil-sablonlar-govde"></div>
   </div>
 
-  <div class="profil-section" id="profil-alarmlar" style="display:none">
+  <div class="profil-section gizli" id="profil-alarmlar">
     <div class="profil-section-title">Fiyat Alarmlarım</div>
     <div id="profil-alarmlar-govde"></div>
   </div>
 
-  <div class="profil-section" id="profil-sehir" style="display:none">
+  <div class="profil-section gizli" id="profil-sehir">
     <div class="profil-section-title">Şehrim</div>
     <div id="profil-sehir-govde"></div>
   </div>
 
-  <div class="profil-section" id="profil-market-tercih" style="display:none">
+  <div class="profil-section gizli" id="profil-market-tercih">
     <div class="profil-section-title">Tercih Ettiğim Marketler</div>
     <div id="profil-market-tercih-govde"></div>
   </div>
@@ -527,7 +527,7 @@
        Bölme noktası 1440px ölçümüyle seçildi: 342+103+167+158=770px vs
        94+75+190+503=862px (fark 92px). Göz kararı değil. -->
   <div class="profil-sutun">
-  <div class="profil-section" id="profil-katki" style="display:none">
+  <div class="profil-section gizli" id="profil-katki">
     <div class="profil-section-title">Katkılarım</div>
     <div id="profil-katki-govde"></div>
   </div>
@@ -543,14 +543,14 @@
   <div class="profil-section">
     <div class="profil-section-title">Bildirimler</div>
     <div class="profil-item" role="button" tabindex="0" onclick="bildirimAbonelikToggle()" onkeydown="_satirTus(event, function(){bildirimAbonelikToggle()})">
-      <div class="profil-item-icon" style="background:#FEF3C7" data-lc="bell">🔔</div>
+      <div class="profil-item-icon ikon-sari" data-lc="bell">🔔</div>
       <div class="profil-item-body">
         <div class="profil-item-title">Fiyat Bildirimleri</div>
         <div class="profil-item-sub" id="bildirimDurumYazi">Alarm kurduğun ürünler için haber al</div>
       </div>
     </div>
     <div class="profil-item" role="button" tabindex="0" onclick="bultenAbonelikToggle()" onkeydown="_satirTus(event, function(){bultenAbonelikToggle()})">
-      <div class="profil-item-icon" style="background:#DBEAFE">📧</div>
+      <div class="profil-item-icon ikon-mavi">📧</div>
       <div class="profil-item-body">
         <div class="profil-item-title">Haftalık Bülten</div>
         <div class="profil-item-sub" id="bultenDurumYazi">Düşen fiyatlar ve şüpheli indirimler, e-posta ile</div>
@@ -560,14 +560,14 @@
   <div class="profil-section">
     <div class="profil-section-title">Uygulama Hakkında</div>
     <div class="profil-item">
-      <div class="profil-item-icon" style="background:#DBEAFE" data-lc="database">📊</div>
+      <div class="profil-item-icon ikon-mavi" data-lc="database">📊</div>
       <div class="profil-item-body">
         <div class="profil-item-title">Veri Kaynakları</div>
         <div class="profil-item-sub">marketfiyati.org.tr · hal.gov.tr</div>
       </div>
     </div>
     <div class="profil-item">
-      <div class="profil-item-icon" style="background:#FEE2E2" data-lc="refresh-cw">🔄</div>
+      <div class="profil-item-icon ikon-kirmizi" data-lc="refresh-cw">🔄</div>
       <div class="profil-item-body">
         <div class="profil-item-title">Fiyat Güncelliği</div>
         <div class="profil-item-sub" id="profilVeriTazelik">Her gece 03:00’da güncellenir</div>
@@ -575,14 +575,14 @@
       </div>
     </div>
     <div class="profil-item">
-      <div class="profil-item-icon" style="background:#FEF3C7" data-lc="info">ℹ️</div>
+      <div class="profil-item-icon ikon-sari" data-lc="info">ℹ️</div>
       <div class="profil-item-body">
         <div class="profil-item-title">Fiyatlar mağazadan farklı olabilir</div>
         <div class="profil-item-sub">Kaynak günlük güncellenir, rafta anlık fark olabilir. Yanlış fiyat gördüysen ürün detayından “Bu fiyat tutmadı” ile bildir.</div>
       </div>
     </div>
     <div class="profil-item" role="button" tabindex="0" onclick="onbellekTemizle()" onkeydown="_satirTus(event, function(){onbellekTemizle()})">
-      <div class="profil-item-icon" style="background:#EDE9FE" data-lc="refresh-cw">🧹</div>
+      <div class="profil-item-icon ikon-mor" data-lc="refresh-cw">🧹</div>
       <div class="profil-item-body">
         <div class="profil-item-title">Önbelleği Temizle</div>
         <div class="profil-item-sub">Güncel veriyi yeniden indir</div>
@@ -590,7 +590,7 @@
       <div class="profil-item-chevron">›</div>
     </div>
     <div class="profil-item" role="button" tabindex="0" onclick="paylasUygulama()" onkeydown="_satirTus(event, function(){paylasUygulama()})">
-      <div class="profil-item-icon" style="background:#DCFCE7" data-lc="share-2">🔗</div>
+      <div class="profil-item-icon ikon-yesil" data-lc="share-2">🔗</div>
       <div class="profil-item-body">
         <div class="profil-item-title">Uygulamayı Paylaş</div>
         <div class="profil-item-sub">Pazar'ı arkadaşlarınla paylaş</div>
@@ -598,7 +598,7 @@
       <div class="profil-item-chevron">›</div>
     </div>
     <div class="profil-item">
-      <div class="profil-item-icon" style="background:#DCFCE7" data-lc="leaf">🌿</div>
+      <div class="profil-item-icon ikon-yesil" data-lc="leaf">🌿</div>
       <div class="profil-item-body">
         <div class="profil-item-title">Pazar Uygulaması</div>
         <div class="profil-item-sub" id="profilSurum">v1.0 · Marketteki gizli zamları gör</div>
@@ -607,7 +607,7 @@
   </div>
   </div><!-- /sütun 2 -->
   </div><!-- /profil-kartlar -->
-  <div style="height:24px"></div>
+  <div class="bosluk-24"></div>
 </div>
 
 <div id="install-banner">
@@ -665,8 +665,8 @@
       <label for="auth-password" class="sr-only">Şifre</label>
       <input type="password" id="auth-password" placeholder="Şifre (en az 6 karakter)" autocomplete="current-password">
       <label for="auth-password-confirm" class="sr-only">Şifre Tekrar</label>
-      <input type="password" id="auth-password-confirm" placeholder="Şifre Tekrar" autocomplete="new-password" style="display:none;">
-      <div id="auth-error" class="auth-error" style="display:none;"></div>
+      <input class="gizli" type="password" id="auth-password-confirm" placeholder="Şifre Tekrar" autocomplete="new-password">
+      <div id="auth-error" class="auth-error gizli"></div>
       <button type="submit" id="auth-submit" class="auth-submit">Giriş Yap</button>
     </form>
     <div class="auth-divider"><span>veya</span></div>
@@ -678,13 +678,13 @@
 </div>
 <!-- AUTH SHEET END -->
 </body>
-<div id="appModal" class="app-modal" style="display:none;">
+<div id="appModal" class="app-modal gizli">
   <div class="app-modal-backdrop" onclick="modalKapat()"></div>
   <div class="app-modal-box">
     <div class="app-modal-title" id="appModalTitle">Onay</div>
     <div class="app-modal-msg" id="appModalMsg"></div>
-    <div class="app-modal-body" id="appModalBody" style="display:none;"></div>
-    <input type="text" id="appModalInput" class="app-modal-input" style="display:none;" maxlength="40" />
+    <div class="app-modal-body gizli" id="appModalBody"></div>
+    <input type="text" id="appModalInput" class="app-modal-input gizli" maxlength="40" />
     <div class="app-modal-actions">
       <button class="app-modal-btn app-modal-cancel" onclick="modalKapat()">İptal</button>
       <button class="app-modal-btn app-modal-ok" id="appModalOk">Tamam</button>
@@ -708,7 +708,7 @@
       <span class="ms-sheet-total-label">Tahmini toplam</span>
       <span class="ms-sheet-total-value" id="msSheetTotal">0,00 ₺</span>
     </div>
-    <div class="ms-sheet-eksik" id="msSheetEksik" style="display:none"></div>
+    <div class="ms-sheet-eksik gizli" id="msSheetEksik"></div>
     <button class="ms-sheet-hesapla" id="msSheetBtn" onclick="msSheetHesapla()">Hesapla</button>
   </div>
 </div>
