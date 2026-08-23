@@ -435,6 +435,11 @@
   </div>
 <div id="profil-auth-logout" class="profil-auth-logout gizli">
   <button type="button" class="profil-logout-btn" onclick="confirmLogout()">Çıkış Yap</button>
+  <!-- KVKK "silme/unutulma hakki". Satir ici onclick YOK: satir ici handler
+       sayaci test_satirici_kilit.mjs ile 117'ye kilitli, artirmak CI'yi kirar.
+       Baglanti app.js'te addEventListener ile kuruluyor. -->
+  <button type="button" class="hesap-sil-btn" id="hesap-sil-btn"
+          aria-label="Hesabımı kalıcı olarak sil">Hesabımı sil</button>
 </div>
 
   <div class="profil-istat">

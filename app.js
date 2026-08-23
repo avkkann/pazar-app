@@ -321,6 +321,119 @@
     await window.handleLogout();
   };
 
+  // ===== HESABIMI SIL (KVKK silme/unutulma hakki) =====
+  // Silinecek/kalacak listesi KODDAN olculdu, tahminle yazilmadi. Her satirin
+  // karsiligi app.js'te o tabloya yazan yer:
+  //   profiles(267) · favoriler(352) · fiyat_alarmlari(486) ·
+  //   push_subscriptions(622) · fiyat_bildirim(2888) · bulten_abonelik(6041)
+  // Bu alti tablo cascade FK'lerin (2026-08-22'de kalici kuruldu) kapsamiyla
+  // birebir ayni. Sepet/sablon/tema/onboarding localStorage'da -> CIHAZDA KALIR.
+  const HESAP_SIL_SILINEN = [
+    'Profil bilgilerin (ad, e-posta)',
+    'Favorilerin',
+    'Fiyat alarmların',
+    'Bildirim (push) aboneliklerin',
+    'Gönderdiğin fiyat bildirimleri',
+    'Haftalık bülten aboneliğin',
+  ];
+  const HESAP_SIL_ONAY_KELIME = 'SİL';
+
+  async function hesabiSilAkisi() {
+    const btn = document.getElementById('hesap-sil-btn');
+
+    // ADIM 1 — NE KAYBEDECEGINI GOSTER. Tek tik yetmez; once bilgilendirme.
+    const liste = HESAP_SIL_SILINEN.map(x => '<li>' + _kacir(x) + '</li>').join('');
+    const devam = await modalAc({
+      title: 'Hesabımı sil',
+      msg: 'Bu işlem geri alınamaz. Hesabın ve ona bağlı kişisel verilerin kalıcı olarak silinir.',
+      bodyHtml:
+        '<p class="hesap-sil-baslik">Silinecekler</p>' +
+        '<ul class="hesap-sil-liste">' + liste + '</ul>' +
+        '<p class="hesap-sil-not">Listem, kayıtlı şablonların ve tema tercihin bu cihazda kalır — hesabına değil, tarayıcına kayıtlı.</p>',
+      okText: 'Devam et',
+      danger: true,
+    });
+    if (!devam) return;
+
+    // ADIM 2 — YAZARAK ONAY. Iki tik ust uste basilarak gecilemesin.
+    const yazilan = await modalAc({
+      title: 'Emin misin?',
+      msg: 'Onaylamak için ' + HESAP_SIL_ONAY_KELIME + ' yaz.',
+      input: true,
+      placeholder: HESAP_SIL_ONAY_KELIME,
+      okText: 'Hesabımı sil',
+      danger: true,
+    });
+    if (!yazilan) return; // iptal ya da bos birakildi
+    if (yazilan.toLocaleUpperCase('tr') !== HESAP_SIL_ONAY_KELIME) {
+      await modalAc({ title: 'Silinmedi', msg: 'Doğrulama kelimesi eşleşmedi. Hesabın olduğu gibi duruyor.', okText: 'Tamam' });
+      return;
+    }
+
+    // ADIM 3 — CAGRI. Buton islem boyunca kilitli (cift gonderim olmasin).
+    const eskiMetin = btn ? btn.textContent : '';
+    if (btn) { btn.disabled = true; btn.textContent = 'Siliniyor…'; }
+    try {
+      const { data: oturum } = await supabaseClient.auth.getSession();
+      const token = oturum && oturum.session && oturum.session.access_token;
+      if (!token) throw new Error('Oturum bulunamadı, yeniden giriş yapman gerekiyor.');
+
+      const yanit = await fetch(SUPABASE_URL + '/functions/v1/hesap-sil', {
+        method: 'POST',
+        headers: {
+          Authorization: 'Bearer ' + token,
+          apikey: SUPABASE_ANON_KEY,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      // BASARI SARTI KATI: 200 + govde okunabilir + ok === true.
+      // Govde okunamiyorsa BASARI SAYILMAZ -- "sildim deyip veri birakma"
+      // tuzagina dusmemek icin belirsizlik hata tarafina yazilir.
+      let govde = null;
+      try { govde = await yanit.json(); }
+      catch (e) { console.warn('[hesap-sil] yanit govdesi okunamadi:', e && e.message); }
+
+      if (yanit.status !== 200 || !govde || govde.ok !== true) {
+        const kod = (govde && (govde.error || govde.message)) || ('HTTP ' + yanit.status);
+        throw new Error('Sunucu silme işlemini onaylamadı (' + kod + ').');
+      }
+
+      // BASARI. Fonksiyon oturuma DOKUNMUYOR (index.ts L62) -> signOut BURADA
+      // ve ZORUNLU. Basarisiz olursa sessizce gecilmez, iz birakilir.
+      try {
+        await window.handleLogout();
+      } catch (e) {
+        console.warn('[hesap-sil] signOut basarisiz, oturum yerelde kalmis olabilir:', e && e.message);
+      }
+
+      await modalAc({
+        title: 'Hesabın silindi',
+        msg: 'Hesabın ve ona bağlı kişisel verilerin silindi. Uygulamayı üye olmadan kullanmaya devam edebilirsin.',
+        okText: 'Tamam',
+      });
+      if (typeof showScreen === 'function') showScreen('screen-home');
+      if (typeof toastGoster === 'function') toastGoster('Hesabın silindi');
+    } catch (e) {
+      // HATA: kullaniciya ACIKCA soyle. signOut YOK, "silindi" izlenimi YOK.
+      console.warn('[hesap-sil] silme basarisiz:', e && e.message);
+      await modalAc({
+        title: 'Hesap silinemedi',
+        msg: (e && e.message ? e.message : 'Beklenmeyen bir hata oluştu.') +
+             ' Hesabın ve verilerin SİLİNMEDİ, olduğu gibi duruyor. Tekrar deneyebilirsin.',
+        okText: 'Tamam',
+      });
+    } finally {
+      if (btn) { btn.disabled = false; btn.textContent = eskiMetin || 'Hesabımı sil'; }
+    }
+  }
+
+  // Satir ici onclick YOK (satir ici handler sayaci 117'ye kilitli).
+  {
+    const silBtn = document.getElementById('hesap-sil-btn');
+    if (silBtn) silBtn.addEventListener('click', hesabiSilAkisi);
+  }
+
   // Auth event listeners
   document.addEventListener('pazarAuthReady', async () => {
     await loadPazarProfile();
