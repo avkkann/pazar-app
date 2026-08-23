@@ -1,6 +1,6 @@
 # Pazar App — Proje Handoff (Claude için)
 
-**Son güncelleme:** 2026-08-21 oturumu (**güvenlik başlıkları** — `font-src 'self'` + `frame-ancestors 'none'` + nosniff, **HSTS** 1. basamak `max-age=300` → **2026-08-22'de 2. basamak `max-age=86400`**; **CI test kapısı** — `deploy needs: test`, 50 test (glob), kasıtlı FAIL ile kanıtlandı; **B1 kaçış** dört kaçışsız nokta kapatıldı (`test_kacis` 93 iddia); GITHUB_TOKEN varsayılanı read + workflow başına açık `permissions`; Grup 1 (M1/M2/M3/M4); **`www` → apex 301 kuruldu**, CF beacon panelden kapatıldı; fontlar self-host + GoatCounter pin; **KVKK / hesap silme DEVAM EDİYOR** — ölçüm bitti, taslaklar henüz çalıştırılmadı; **sw v232**). Ayrıntı için aşağıdaki "2026-08-21" blokları. Bu dosya her oturum başında okunur, sohbete asla ham metin olarak yapıştırılmaz.
+**Son güncelleme:** 2026-08-23 (**KVKK cascade CANLI** — BLOK 4 + BLOK 1 geçti, altı FK `ON DELETE CASCADE`, `sql/` repoya alındı; **`style-src`'den `'unsafe-inline'` kaldırıldı**, `script-src` bilinçli ertelendi + satır içi handler kilidi). Öncesi — 2026-08-21/22 oturumu (**güvenlik başlıkları** — `font-src 'self'` + `frame-ancestors 'none'` + nosniff, **HSTS** 1. basamak `max-age=300` → **2026-08-22'de 2. basamak `max-age=86400`**; **CI test kapısı** — `deploy needs: test`, 50 test (glob), kasıtlı FAIL ile kanıtlandı; **B1 kaçış** dört kaçışsız nokta kapatıldı (`test_kacis` 93 iddia); GITHUB_TOKEN varsayılanı read + workflow başına açık `permissions`; Grup 1 (M1/M2/M3/M4); **`www` → apex 301 kuruldu**, CF beacon panelden kapatıldı; fontlar self-host + GoatCounter pin; **KVKK / hesap silme DEVAM EDİYOR** — ölçüm bitti, taslaklar henüz çalıştırılmadı; **sw v232**). Ayrıntı için aşağıdaki "2026-08-21" blokları. Bu dosya her oturum başında okunur, sohbete asla ham metin olarak yapıştırılmaz.
 
 ---
 
@@ -20,9 +20,32 @@ Mustafa (GitHub: avkkann), **Pazar App**'in tek geliştiricisi — Türk market 
 
 ## Mevcut durum (2026-08-21 itibarıyla)
 
-### 2026-08-21 — KVKK / hesap silme: **DEVAM EDİYOR** (ölçüm bitti, hiçbir şey çalıştırılmadı)
+### 2026-08-22 — KVKK / hesap silme: **BLOK 4 ve BLOK 1 GEÇTİ** — cascade CANLI
 
-**Durum: AÇIK İŞ — "bitti" değil.** İki taslak dosya diskte hazır, **hiçbiri çalıştırılmadı, deploy edilmedi, commit edilmedi** (ikisi de untracked): `sql/hesap_silme_cascade.sql` ve `supabase/functions/hesap-sil/index.ts`.
+**BLOK 4 (throwaway rollback testi) GEÇTİ.** Kanıt **iki ayrı koşuda** toplandı, tek koşuda değil:
+- `silmeden_once = 6` — altı tablonun her birine satır **gerçekten eklendi**. Bu **kontrol grubu**: 6 görülmeden 0 anlamsızdı, çünkü satırlar hiç eklenmemiş olsa da sonuç 0 çıkardı.
+- `silinen_kullanici = 1` — `DELETE FROM auth.users` gerçekten bir satır sildi.
+- Sonra altı tablo **ayrı ayrı** sayıldı, hepsi **0** → cascade altısında da çalıştı.
+- **Tek başına "0 gördüm" kabul edilmedi.** Bu turun yöntem kuralı: bir silme testinde sıfır, ancak öncesinde sıfır-olmayan bir taban ölçüldüyse kanıttır.
+
+**BLOK 1 (kalıcı FK) GEÇTİ.** Altı FK **kalıcı olarak kuruldu**, `information_schema` sorgusuyla doğrulandı: altısında da `delete_rule = CASCADE`. Constraint adları `*_auth_fk` deseninde (`profiles_id_auth_fk` … `bulten_abonelik_user_id_auth_fk`) — BLOK 4'ün geçici `_t_*` adlarından farklı, çakışma yok.
+**BLOK 1'de `BEGIN`/`COMMIT` yok:** altı `ALTER` çıplak ifade olarak koştu, yani her biri kendi örtük transaction'ında **ayrı ayrı kalıcı** oldu (biri patlasa öncekiler geri gelmez). Geri alma yolu dosyada **BLOK 3**'te yorumlu duruyor — FK'ler `DROP CONSTRAINT` ile alınır, ama **cascade'in sildiği veri geri gelmez** (yalnız PITR).
+
+**ÖLÇÜLEN BULGULAR — dördü de yeni, hiçbiri repoda kayıtlı değildi:**
+- **`auth.users` üzerinde `on_auth_user_created` trigger'ı VAR** → `handle_new_user` fonksiyonunu çağırıyor, `AFTER INSERT`, ve **`profiles` satırını kendisi açıyor**. BLOK 4'te `INSERT INTO public.profiles` bu yüzden duplicate key'e düşüyordu; `ON CONFLICT (id) DO NOTHING` tam olarak bunun için gerekti.
+  **ÖNEMLİ: bu trigger REPODA TANIMLI DEĞİL.** Şemanın bir parçası sürüm kontrolünün dışında duruyor — makine/proje giderse tanımı da gider. (Gövdesi okunmadan repoya eklenmeyecek; ayrı tur.)
+- **Supabase SQL Editor yalnız SON sorgunun sonucunu gösteriyor** → çok adımlı bir ölçümde ara sonuçlar sessizce kaybolur. Ölçümü buna göre kur.
+- **CTE'ler aynı anlık görüntüyü (snapshot) görür.** `DELETE`'i bir CTE içine alıp sonrasını **aynı** sorguda saymak **YANLIŞ** sonuç verir: sayım silme öncesi görüntüden okur, **6 görünür** ve cascade çalışmamış sanılır. Ölçüm **ikiye bölünmeli** — sil, sonra ayrı sorguda say.
+- **`CREATE TEMP TABLE` ile ara sonuç saklamak işe yaramıyor:** editör ifadeleri ayrı bağlantıda koşturabiliyor, geçici tablo aradan kayboluyor.
+
+> **Bu üçü birlikte "ölçüm yanlış, kod doğru" sınıfının yeni vakası.** Cascade baştan beri çalışıyordu; yanlış olan ölçüm düzeneğiydi. Aynı sınıf bu depoda daha önce de görüldü (şablon "Bağlantı hatası" vakası, dokunma hedefi A/C premisleri).
+
+**SIRADAKİ:** edge function deploy → UI → gerçek test hesabıyla canlı uçtan uca silme → KVKK aydınlatma metni.
+
+### 2026-08-21 — KVKK / hesap silme: ölçüm turu *(tarihsel — 2026-08-22'de BLOK 4 ve BLOK 1 geçti, yukarı bak)*
+
+**Durum (o gün):** İki taslak dosya diskte hazırdı, hiçbiri çalıştırılmamış/deploy edilmemiş/commit edilmemişti: `sql/hesap_silme_cascade.sql` ve `supabase/functions/hesap-sil/index.ts`.
+**GÜNCEL:** SQL 2026-08-22'de koştu (BLOK 4 + BLOK 1 geçti) ve `sql/hesap_silme_cascade.sql` 2026-08-23'te **repoya alındı**. `supabase/functions/hesap-sil/index.ts` hâlâ **deploy edilmedi** — sıradaki adım o.
 
 **Amaç:** kullanıcı hesabını silince kişisel verisinin de silinmesi (KVKK silme/unutulma hakkı). Bugüne kadar `handleLogout` dışında bir hesap silme akışı **hiç yoktu**.
 
@@ -37,7 +60,7 @@ Mustafa (GitHub: avkkann), **Pazar App**'in tek geliştiricisi — Türk market 
 - FK yönü her zaman **child `public.<tablo>` → parent `auth.users(id)`**, asla ters (`auth.users`'a dokunulmuyor).
 - Edge function `uid`'yi **caller'ın kendi oturum JWT'sinden** alır (`callerClient.auth.getUser()`), istek gövdesinden **asla** — gövdedeki bir id'ye güvenilse bir kullanıcı başkasının hesabını sildirebilirdi. Silme `service_role` ile ve yalnız doğrulanan o `uid` için (`admin.auth.admin.deleteUser(user.id)`); anahtar yalnız `Deno.env`'de.
 
-**Sıra (KİLİTLİ, atlanmaz):** BLOK 0 uçuş öncesi (**bitti**, temiz) → **BLOK 4 throwaway rollback testi (şu an burası)** → BLOK 1 kalıcı FK → edge function deploy → UI → gerçek test hesabıyla uçtan uca canlı silme → KVKK aydınlatma metni. **FK'ler kalıcı geçmeden edge deploy YOK; edge canlı olmadan UI deploy YOK.**
+**Sıra (KİLİTLİ, atlanmaz):** BLOK 0 uçuş öncesi (**bitti**, temiz) → BLOK 4 throwaway rollback testi (**2026-08-22'de GEÇTİ**) → BLOK 1 kalıcı FK (**2026-08-22'de GEÇTİ**) → **edge function deploy (şu an burası)** → UI → gerçek test hesabıyla uçtan uca canlı silme → KVKK aydınlatma metni. **FK'ler kalıcı geçmeden edge deploy YOK; edge canlı olmadan UI deploy YOK.** (İlk iki kilit açıldı: FK'ler kalıcı.)
 
 **BLOK 4 nedir:** tek transaction içinde 6 FK'yi geçici kur → test kullanıcısı + 6 tabloya birer satır → say (6 beklenir) → `DELETE FROM auth.users` → say (0 beklenir) → **`ROLLBACK`** (dosyada tek `BEGIN`/tek `ROLLBACK`, arada `COMMIT` yok — doğrulandı). Kalıcı iz bırakmaz.
 
@@ -243,7 +266,7 @@ Açık bloklar depo varsayılanını **EZER** → varsayılan read'e çekilse de
    - **Pin GERÇEK dosyayla doğrulandı:** indirilen **212199 bayt**ın sha384'ü `index.html`'deki `integrity` ile **ESLESIYOR** → CDN hâlâ pinlenen baytları veriyor, pin bayat/bozuk değil.
    - **SRI'nin uygulandığı kontrol gruplu ölçüldü:** doğru hash'li script **yüklendi**, bozuk hash'li **bloklandı**. (Tek başına "bozuk bloklandı" yetmez; doğrunun yüklendiği de gösterilmeli.)
    - **`3.0.0` kararlı çıkınca OTOMATİK GEÇİLMEYECEK:** majör sürüm, auth yüzeyine dokunabilir → ayrı tur, changelog okunarak, aynı negatif/pozitif doğrulamayla.
-6. **KVKK: hesap silme akışı** — üstteki "KVKK / hesap silme: DEVAM EDİYOR" bloğuna bak. Bu madde o gün "DELETE policy yok" diye yazılmıştı; **çözüm yolu değişti**: DELETE policy eklenmeyecek, `auth.users`'a `ON DELETE CASCADE` FK + kullanıcının kendi JWT'siyle çağırdığı `hesap-sil` edge function'ı kurulacak. Ölçüm bitti, uygulama sırası kilitli, taslaklar henüz çalıştırılmadı.
+6. **KVKK: hesap silme akışı** — üstteki 2026-08-22 bloğuna bak. Bu madde o gün "DELETE policy yok" diye yazılmıştı; **çözüm yolu değişti**: DELETE policy eklenmeyecek, `auth.users`'a `ON DELETE CASCADE` FK + kullanıcının kendi JWT'siyle çağırdığı `hesap-sil` edge function'ı. **DB tarafı 2026-08-22'de BİTTİ** (altı FK kalıcı, `delete_rule=CASCADE` doğrulandı). Kalan: edge deploy → UI → canlı uçtan uca test.
 7. ~~**CI hiç test koşturmuyor**~~ **KAPANDI 2026-08-21** — `deploy.yml`'de ayrı `test` job + `deploy needs: test`; kanıtlandı (Teknik borç bölümüne bak).
 
 **Bu oturumun öğrenmeleri:**
@@ -914,7 +937,7 @@ Uygulama teknik olarak çalışıyor ama **pratikte hâlâ dağıtılmamış dur
 **Sıradaki işler (öncelik sırasıyla):**
 1. **Mezar taşını yayına al** (`mezar-tasi` dalı hazır, Pages Source ayarlandı, `deploy-pages` 503 veriyor). Geçtikten sonra ölçülecek: mezar taşı mı geliyor, meta refresh süresi, canonical, JS kapalı metin, ve **eski `sw.js` gerçekten `unregister` oluyor mu**. **main'e MERGE EDİLMEZ** — dosya adları uygulamanınkiyle aynı, merge giriş sayfasını ve service worker'ı ezer.
 2. **Aranabilir içerik üretimi.** Ürün başına statik sayfa + aylık zam listesi sayfası, **build zamanında** `anasayfa.json` deseniyle (`app.js`'i `node:vm`'de koşturup kendi fonksiyonlarını çağır — mantık ikinci kez yazılmaz). SPA'nın tek URL'si arama için yeterli değil.
-3. **KVKK aydınlatma metni + hesap silme — DEVAM EDİYOR (aktif iş).** Artık hesap, fiyat alarmı, push bildirimi ve şehir tercihi tutuluyor; "uygulama bitince" erteleme gerekçesi kalmadı. Teknik taraf ölçüldü ve sırası kilitlendi (BLOK 0 bitti → BLOK 4 rollback testi → BLOK 1 kalıcı FK → edge deploy → UI → canlı uçtan uca test), **aydınlatma metni bu zincirin SONUNDA** yazılacak — silme gerçekten çalışmadan metinde "silebilirsiniz" demek yanlış olur. Ayrıntı: üstteki "KVKK / hesap silme: DEVAM EDİYOR" bloğu.
+3. **KVKK aydınlatma metni + hesap silme — DEVAM EDİYOR (aktif iş, DB tarafı BİTTİ).** Artık hesap, fiyat alarmı, push bildirimi ve şehir tercihi tutuluyor; "uygulama bitince" erteleme gerekçesi kalmadı. Zincirin ilk iki halkası **2026-08-22'de geçti**: BLOK 0 (bitti) → **BLOK 4 rollback testi GEÇTİ** → **BLOK 1 kalıcı FK GEÇTİ, altı FK `delete_rule=CASCADE` ile canlı** → **edge deploy (sıradaki)** → UI → canlı uçtan uca test. **Aydınlatma metni bu zincirin SONUNDA** yazılacak — silme uçtan uca çalışmadan metinde "silebilirsiniz" demek yanlış olur. Ayrıntı: üstteki 2026-08-22 bloğu.
 4. **Searlo kredisi kararı** — resim doldurma adımı artık boşa koşmuyor ama **hiç resim de doldurmuyor**. Ya kredi yenilenecek ya alternatif kaynak seçilecek ya da adım tamamen kaldırılacak. Alternatif kaynak araştırması bilinçli olarak yapılmadı.
 5. **~2026-09-01: HAYALET ZAM kuralı ölçüye dayalı hale getirilecek.** `depot_id`/`depot_ad` **2026-08-11'den beri** birikiyor. O tarihte yeterli veri olacak ve "bu dip/zıplama gerçekten mağaza değişimi mi" sorusu **doğrudan** cevaplanabilecek; `zamSalinimVar`'daki yapısal salınım testi `depot_id` değişimini izleyen ölçüme dayalı kuralla değiştirilmeli. Not `app.js`'te `_seriKur` ve `zamSalinimVar` üzerinde duruyor. **Bu tarih geçmeden kuralı değiştirme, ölçüm olmadan yeni eşik uydurma.**
 6. ~~**`www.pazarapp.net` yönlendirmesi**~~ **KAPANDI (2026-08-21).** Cloudflare'de `www` CNAME (Proxied) + Redirect Rule 301 `www → apex` kuruldu, query string korunuyor; ikinci custom domain olarak bağlanmadı. Ayrıntı: yukarıdaki `www` bloğu.
