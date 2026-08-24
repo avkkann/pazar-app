@@ -1300,12 +1300,33 @@ function goBack() {
   showScreen(_prevScreen, 'back');
 }
 
+// ── openDetay: _prevScreen (GERI DONUS) NOTU ─────────────────────────
+// Bu aciklama BILEREK fonksiyonun DISINDA duruyor. test_al_zamani.mjs,
+// test_esit_fiyat.mjs ve test_supheli.mjs openDetay'i SABIT 4000/4500
+// karakterlik pencereyle kesip icinde cagri ariyor; govdeye uzun yorum
+// eklemek aranan cagrilari pencerenin disina itip UCUNU BIRDEN kirmisti
+// (olculdu). Govde icinde yalniz tek satirlik isaretci birakildi.
+//
+// 1) 'screen-firsatlar' listeye BU TURDA eklendi. Eksikligi tiklama
+//    duzeltilene kadar gorunmuyordu (detay zaten acilmiyordu): Firsatlar'dan
+//    acilan detayda geri tusu kullaniciyi Ana Sayfa'ya atardi.
+//    'screen-favoriler' hala listede DEGIL -- olculdu, ayri madde, kapsam disi.
+// 2) Atama KOSULA BAGLI ve bu kritik: openDetay tembel veri gelince
+//    (Promise.all dali) KENDINI yeniden cagiriyor. Ikinci cagrida ekranda
+//    screen-detay var, listedeki hicbir ekran gorunur degil -> find()
+//    undefined doner ve '|| screen-home' fallback'i GERCEK onceki ekrani EZER.
+//    OLCULDU (CDP zaman serisi, Firsatlar'dan acilan detay):
+//      tiklamadan  60ms sonra -> 'screen-firsatlar' (dogru)
+//      tiklamadan 660ms sonra -> 'screen-home'      (ezilmis)
+//    HER ekrani etkiliyordu (kategori ve sepetten acilan detay dahil).
+// 3) Gorunurluk _ekranGorunur ile olculuyor, inline style ile DEGIL --
+//    showScreen inline display yaziyor, bu depoda ayni tuzaga UC kez dusuldu.
 function openDetay(urunId) {
-  const screens = ['screen-home', 'screen-cat', 'screen-sepet'];
-  _prevScreen = screens.find(id => {
-    const el = document.getElementById(id);
-    return el && el.style.display !== 'none';
-  }) || 'screen-home';
+  const screens = ['screen-home', 'screen-cat', 'screen-sepet', 'screen-firsatlar'];
+  // Kosul + _ekranGorunur gerekcesi: fonksiyonun ustundeki nota bak.
+  if (!_ekranGorunur('screen-detay')) {
+    _prevScreen = screens.find(id => _ekranGorunur(id)) || 'screen-home';
+  }
 
   let u = productMap[urunId] || sepet.find(s => s._id === urunId);
   if (!u) return;
@@ -1317,8 +1338,7 @@ function openDetay(urunId) {
   if (u._kisa || !_gecmisCache) {
     Promise.all([loadAllCats(), gecmisVeriGetir()]).then(() => {
       const tam = productMap[urunId];
-      if (tam && !tam._kisa && document.getElementById('screen-detay') &&
-          document.getElementById('screen-detay').style.display !== 'none') {
+      if (tam && !tam._kisa && _ekranGorunur('screen-detay')) {
         openDetay(urunId);
       }
     }).catch(e => console.warn('[detay] tam veri yuklenemedi:', e && e.message));
@@ -5301,7 +5321,14 @@ function _firsatKartHtml(u, badge, badgeClass, altText) {
     ? '<img class="firsat-card-img" src="'+_guvenliUrl(u.resim)+'" alt="" loading="lazy" onerror="this.className=\'firsat-card-img-ph\';this.outerHTML=\'<div class=&quot;firsat-card-img-ph&quot;>'+emoji+'</div>\'">'
     : '<div class="firsat-card-img-ph">'+emoji+'</div>';
   const inCart = window.sepet && window.sepet.some(function(s){return s._id===u._id;});
-  return '<div class="firsat-card">'
+  // data-id + role/tabindex/aria-label: kart bu turdan once HICBIRINI
+  // tasimiyordu, bu yuzden tiklama HIC yakalanmiyordu (detay acilmiyordu).
+  // Diger uc kart uretici (cardHTML, _stripKartHTML, cart-item) bunlari
+  // bastan beri tasiyor -- fark tam olarak buydu.
+  // onclick/onkeydown BILEREK EKLENMEDI: satir ici olay ozniteligi sayaci
+  // 117'ye kilitli (test_satirici_kilit.mjs). Tiklama/klavye delegasyonla
+  // cozuluyor: _firsatKartTikla / _firsatKartTus.
+  return '<div class="firsat-card" role="button" tabindex="0" aria-label="' + _kacir(u.ad || '') + '" data-id="' + _kacir(u._id) + '">'
     + imgHtml
     + '<div class="firsat-card-body">'
     + '<div class="firsat-card-name">'+_kacir(u.ad||'')+'</div>'
@@ -5315,6 +5342,45 @@ function _firsatKartHtml(u, badge, badgeClass, altText) {
     + '<button class="firsat-card-add'+(inCart?' firsat-card-add--ekli':'')+'" onclick="event.stopPropagation();firsatSepetEkle(this,\''+btoa(unescape(encodeURIComponent(u._id)))+'\')">'+( inCart?'✓':'+')+'</button>'
     + '</div></div>';
 }
+
+// ── FIRSAT KARTI: TIKLAMA + KLAVYE (DELEGASYON) ──────────────────────
+// Neden delegasyon: satir ici onclick/onkeydown eklemek 117'lik sayaci
+// buyuturdu (script-src'den 'unsafe-inline' kaldirma gocu ertelendi ve
+// test_satirici_kilit.mjs tabani koruyor). Neden document uzerinde: firsat
+// kartlari renderFirsatlar her kostugunda YENIDEN uretiliyor; konteynere
+// baglanan bir dinleyici her render'da yeniden baglanmak zorunda kalirdi,
+// document'e bir kez baglanan ise her zaman calisir. Ayni desen zaten
+// dosyada var (.nav-btn nabiz dinleyicisi).
+function _firsatKartId(hedef) {
+  const kart = hedef && hedef.closest ? hedef.closest('.firsat-card') : null;
+  return kart && kart.dataset ? (kart.dataset.id || '') : '';
+}
+
+// Sepet butonu kendi isini yapar, detayi ACMAMALI. Butondaki satir ici
+// event.stopPropagation() bunu zaten sagliyor; buradaki kontrol IKINCI
+// savunma -- o stopPropagation bir gun kaldirilirsa "sepete ekle" sessizce
+// detay acmaya baslardi.
+function _firsatKartTikla(e) {
+  if (!e || !e.target || !e.target.closest) return;
+  if (e.target.closest('.firsat-card-add')) return;
+  const id = _firsatKartId(e.target);
+  if (id) openDetay(id);
+}
+
+function _firsatKartTus(e) {
+  if (!e || !e.target || !e.target.closest) return;
+  if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
+  if (e.target.closest('.firsat-card-add')) return;
+  const id = _firsatKartId(e.target);
+  if (!id) return;
+  // preventDefault YALNIZCA gercekten bir kart acarken: kosulsuz cagrilirsa
+  // sayfadaki her Space tusu (arama kutusuna bosluk yazmak dahil) bozulur.
+  e.preventDefault();
+  openDetay(id);
+}
+
+document.addEventListener('click', _firsatKartTikla);
+document.addEventListener('keydown', _firsatKartTus);
 
 function _firsatOzetGuncelle(ucuzSayi, tasarrufSayi) {
   const ozet = document.getElementById('firsatOzet');
