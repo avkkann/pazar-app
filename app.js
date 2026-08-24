@@ -4654,8 +4654,10 @@ function renderSepet() {
       <div class="cart-item-img">${img}</div>
       <div class="cart-item-info">
         <div class="cart-item-name">${_kacir(u.ad)}</div>
-        ${u.agirlik_hacim ? `<div class="cart-item-sub">${_kacir(u.agirlik_hacim)}</div>` : ''}
-        ${rozetHTML ? `<div class="cart-item-rozet">${rozetHTML}</div>` : ''}
+        <div class="cart-item-satir2">
+          <div class="cart-item-sub">${u.agirlik_hacim ? _kacir(u.agirlik_hacim) : ''}</div>
+          ${rozetHTML ? `<div class="cart-item-rozet">${rozetHTML}</div>` : ''}
+        </div>
       </div>
       ${fiyatStr}
       <button class="cart-del" data-id="${_kacir(u._id)}" onclick="event.stopPropagation(); removeFromSepet(this.dataset.id)">

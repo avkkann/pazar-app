@@ -118,5 +118,97 @@ ok('.detay-img-wrap min-height 228px (olculen deger, layout kilidi)',
 ok('masaustu min-height 308px (260 + 48 padding)',
    /#detayContent\s+\.detay-img-wrap\s*\{[^}]*min-height:\s*308px/.test(cssTemiz));
 
+console.log('\n=== 7. SEPET KARTI 2. SATIR: rozet gramajla YAN YANA + REZERVE ===');
+// ONCE: rozet gramajin ALTINDA ayri satirdaydi -> rozet (tembel cache'lerle
+// asenkron) gelince kart 70 -> 85 cikiyor, altindaki kartlar kayiyordu
+// (olculdu: 4. kart 359 -> 382, CLS 0,0213).
+// SIMDI: ayni satir. Gorselin 44px'i satir yuksegini belirledigi icin
+// ad(17) + satir2(23) = 40 < 44 -> kart 70'te SABIT.
+const rs = govde('renderSepet');
+ok('renderSepet .cart-item-satir2 sarmalayicisini basiyor', /cart-item-satir2/.test(rs), '');
+ok('  gramaj bu satirin ICINDE', /cart-item-satir2[\s\S]{0,200}cart-item-sub/.test(rs), '');
+ok('  rozet de bu satirin ICINDE', /cart-item-satir2[\s\S]{0,320}cart-item-rozet/.test(rs), '');
+// KRITIK: sub KOSULSUZ basilmali. Kosullu olursa gramajsiz uründe satir hic
+// dogmaz, rozet gelince satir SIFIRDAN acilir ve kart ici kayar.
+ok('  .cart-item-sub KOSULSUZ basiliyor (satir her zaman var)',
+   /<div class="cart-item-sub">\$\{u\.agirlik_hacim \?/.test(rs),
+   (rs.match(/cart-item-sub[^\n]{0,90}/) || [''])[0]);
+
+// REZERVE: min-height olmadan satir 13px dogup rozet gelince 23px'e cikiyor
+// ve URUN ADI y20 -> y15 KAYIYOR (olculdu, kontrol gruplu).
+ok('.cart-item-satir2 min-height REZERVE edilmis (asenkron rozet kaymasin)',
+   /\.cart-item-satir2\s*\{[^}]*min-height:\s*23px/.test(cssTemiz),
+   (cssTemiz.match(/\.cart-item-satir2\s*\{[^}]*\}/) || [''])[0]);
+ok('  satir flex (yan yana)', /\.cart-item-satir2\s*\{[^}]*display:\s*flex/.test(cssTemiz));
+// NOT: bu iddia once "min-width:0" ariyordu. Dar ekran kararindan sonra
+// gramaja TABAN verildi (sifira inmesin diye), dolayisiyla min-width artik 0
+// DEGIL. Iddia gevsemedi: "gramaj esneyebilir + ellipsis'i var" ayni sey,
+// tabanin varligi ise AYRI ve daha guclu bir iddia olarak asagida duruyor.
+ok('  gramaj esneyebilir (flex 1 1 auto) + ellipsis',
+   /\.cart-item-satir2\s+\.cart-item-sub\s*\{[^}]*flex:\s*1\s+1\s+auto/.test(cssTemiz) &&
+   /\.cart-item-satir2\s+\.cart-item-sub\s*\{[^}]*text-overflow:\s*ellipsis/.test(cssTemiz),
+   (cssTemiz.match(/\.cart-item-satir2\s+\.cart-item-sub\s*\{[^}]*\}/) || [''])[0]);
+// DAR EKRAN KARARI (Mustafa): daralmayi ONCE rozet yer, gramaj yasar.
+// Gerekce: fiyat karsilastirma uygulamasinda gramaj karsilastirmanin kendisi.
+// Once rozet flex:0 0 auto + 120px sabitti; 320px'te gramaj SIFIRA iniyor ve
+// rozet .cart-mkt-fiyat'in ustune biniyordu (ikisi de olculdu).
+ok('  rozet KISALABILIR (flex: 0 1 auto)',
+   /\.cart-item-satir2\s+\.cart-item-rozet\s*\{[^}]*flex:\s*0\s+1\s+auto/.test(cssTemiz),
+   (cssTemiz.match(/\.cart-item-satir2\s+\.cart-item-rozet\s*\{[^}]*\}/) || [''])[0]);
+ok('  rozet min-width:0 (kisalmaya izin)',
+   /\.cart-item-satir2\s+\.cart-item-rozet\s*\{[^}]*min-width:\s*0/.test(cssTemiz));
+ok('  GRAMAJ TABANI var (sifira inemez, min-width 0 DEGIL)',
+   /\.cart-item-satir2\s+\.cart-item-sub\s*\{[^}]*min-width:\s*(?!0[^.\d])[\d.]+\s*(ch|px|rem|em)/.test(cssTemiz),
+   (cssTemiz.match(/\.cart-item-satir2\s+\.cart-item-sub\s*\{[^}]*\}/) || [''])[0]);
+// ELLIPSIS FLEX KAPSAYICIDA CALISMAZ: rozet span'i inline-flex; ciplak metin
+// anonim flex ogesi oldugu icin ucnokta yerine DUZ kesiliyordu. Sepet
+// satirinda inline-block'a cevrilmesi ellipsis'in ON KOSULU.
+ok('  rozet ic ogesi inline-block (ellipsis ancak boyle calisir)',
+   /\.cart-item-satir2\s+\.cart-item-rozet\s*>\s*\*\s*\{[^}]*display:\s*inline-block/.test(cssTemiz),
+   (cssTemiz.match(/\.cart-item-satir2\s+\.cart-item-rozet\s*>\s*\*\s*\{[^}]*\}/) || [''])[0]);
+ok('  rozet ic ogesinde text-overflow: ellipsis',
+   /\.cart-item-satir2\s+\.cart-item-rozet\s*>\s*\*\s*\{[^}]*text-overflow:\s*ellipsis/.test(cssTemiz));
+
+console.log('\n=== 8. DAR EKRAN (<=360px): ROZET IKONA INER ===');
+// OLCULDU: 320px'te rozete kalan 64px; en kisa anlamli etiket ("Suphe") 71px.
+// Sigmiyor -> ellipsis "S..." uretiyordu: yer kapliyor, bilgi vermiyor.
+// Esik uzerinde metin GERI GELIR (361px kontrol grubu, canli olculdu).
+// DIKKAT: dosyada BASKA bir "@media (max-width: 360px)" blogu daha var
+// (.cmp-mkt-item-img). Ilk eslesmeyi almak yanlis bloga bakmak demek -- ilk
+// yazisimda tam bunu yapip yanlis KIRMIZI aldim. Bu yuzden 360px bloklarinin
+// HEPSI suslu parantez sayilarak cikariliyor ve icinde .cart-item-satir2
+// gecen SECILIYOR.
+function medyaBloklari(css, kosul) {
+  const bloklar = [];
+  const desen = new RegExp('@media\\s*\\(max-width:\\s*' + kosul + '\\)\\s*\\{', 'g');
+  let m;
+  while ((m = desen.exec(css)) !== null) {
+    let d = 1;
+    let j = m.index + m[0].length;
+    for (; j < css.length && d > 0; j++) {
+      if (css[j] === '{') d++;
+      else if (css[j] === '}') d--;
+    }
+    bloklar.push(css.slice(m.index, j));
+  }
+  return bloklar;
+}
+const darBlok = medyaBloklari(cssTemiz, '360px').find((b) => b.includes('.cart-item-satir2')) || '';
+ok('<=360px media query var', darBlok.length > 0, cssTemiz.slice(-400));
+ok('  rozet metni gizleniyor (font-size: 0)', /\.cart-item-rozet\s*>\s*\*\s*\{[^}]*font-size:\s*0/.test(darBlok), darBlok);
+// KRITIK: display:none OLMAMALI -- metin erisilebilirlik agacindan da duserdi.
+ok('  display:none KULLANILMIYOR (metin a11y agacinda kalsin)', !/display:\s*none/.test(darBlok), darBlok);
+
+console.log('\n=== 9. IKON-ONLY ROZETIN ERISIM YOLU ===');
+// Ikon tek basina anlasilmaz -> kullanici dokunup TAM metni gorebilmeli.
+// Yeni mekanizma EKLENMEDI: sepet karti zaten role="button" + openDetay
+// tasiyor ve rozetin tam metni urun detayinda duruyor. Bu satir o yolun
+// SESSIZCE kaldirilmasina karsi kilit.
+ok('sepet karti role="button"', /class="cart-item"[^>]*role="button"/.test(rs), '');
+ok('sepet karti tiklaninca DETAY aciliyor (ikonun erisim yolu)',
+   /class="cart-item"[^>]*onclick="openDetay\(/.test(rs), '');
+ok('sepet karti klavyeyle de acilabiliyor (tabindex + onkeydown)',
+   /class="cart-item"[^>]*tabindex="0"/.test(rs) && /class="cart-item"[^>]*onkeydown="_kartTus\(/.test(rs), '');
+
 console.log('\nSONUC: PASS=' + pass + ' FAIL=' + fail);
 process.exit(fail ? 1 : 0);

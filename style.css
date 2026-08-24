@@ -3100,3 +3100,68 @@
 .detay-img-wrap { position: relative; min-height: 228px; }
 .detay-img-wrap img { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
 .detay-img-wrap.yuklendi { font-size: 0; }
+
+/* ── SEPET KARTI 2. SATIR: gramaj + rozet YAN YANA ────────────────────
+   ONCE: rozet gramajin ALTINDA ayri satirdaydi -> rozet gelince kart
+   70px'ten 85px'e cikiyordu ve altindaki her kart kayiyordu (olculdu:
+   4. kart 359 -> 382, CLS 0,0213). Rozet cache'leri (_gecmisCache +
+   _puanCache) TEMBEL yuklendigi icin bu kayma sonradan geliyordu.
+   SIMDI: rozet gramajla AYNI satirda. Olculdu: gorselin 44px yuksekligi
+   satir yuksegini zaten belirledigi icin ad(17) + satir2(23) = 40 < 44,
+   yani kart 70px'te SABIT kaliyor -- rozetli de rozetsiz de.
+
+   min-height ZORUNLU, kozmetik degil: rozet ASENKRON geliyor. Rezerve
+   olmadan satir 13px (yalniz gramaj) dogup rozet gelince 23px'e cikiyor
+   ve URUN ADI y20 -> y15 KAYIYOR (olculdu, kontrol gruplu). Rezerveyle
+   ad her iki durumda da y15.
+
+   DAR EKRAN KARARI (2026-08-24 olcumu, Mustafa'nin karari): daralmanin
+   tamamini GRAMAJ yemez. Once rozet 120px sabitti (flex:0 0 auto) ve 320px'te
+   iki kusur olculdu: (1) gramaj SIFIR piksele iniyordu (ellipsis bile
+   gorunmuyordu), (2) rozet .cart-mkt-fiyat'in USTUNE biniyordu.
+   Gerekce: fiyat karsilastirma uygulamasinda GRAMAJ karsilastirmanin
+   kendisidir; rozet metninin SONU kaybedilebilir, gramaj kaybedilemez.
+   Bu yuzden: rozet kisalabilir (flex:0 1 auto + min-width:0 + ellipsis),
+   gramaja ise TABAN genislik verilir (min-width) -- sifira inemez. */
+.cart-item-satir2 { display: flex; align-items: center; gap: var(--space-2); min-height: 23px; }
+.cart-item-satir2 .cart-item-sub { margin: 0; min-width: 4.5ch; flex: 1 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* Kap FLEX: ic oge inline-block oldugu icin kap bir SATIR KUTUSU kuruyordu ve
+   inis (descender) bosluguyla 23px yerine 27px oluyordu; bu da info sutununu
+   40'tan 44'e cikarip ROZETLI kartlarda urun adini 2px yukari kaydiriyordu
+   (adY 15 -> 13, rozetsiz kartlarda 15 kaliyordu -> satirlar hizasiz).
+   Olculdu ve bu satirla kapatildi: kap flex olunca yuksekligi = cocugun
+   yuksekligi = 23px. */
+.cart-item-satir2 .cart-item-rozet { margin: 0; flex: 0 1 auto; min-width: 0; overflow: hidden; display: flex; align-items: center; }
+/* Rozetin KENDISI (ic span) kirpilir. DIKKAT -- OLCULDU: rozet span'i
+   display:inline-flex ve ELLIPSIS FLEX KAPSAYICIDA CALISMAZ; ciplak metin
+   anonim bir flex ogesi oldugu icin ucnokta yerine DUZ KESILIYORDU
+   (320px'te "Suph" gibi). Bu yuzden sepet satirinda inline-block'a
+   ceviriliyor -- ellipsis ancak o zaman devreye giriyor.
+   Ikon inline-block icinde artik flex ogesi degil, hizasi vertical-align
+   ile korunuyor ve inline-flex'in gap'i margin ile ikame ediliyor. */
+.cart-item-satir2 .cart-item-rozet > * { display: inline-block; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cart-item-satir2 .cart-item-rozet svg { vertical-align: -2px; margin-right: var(--space-1); }
+
+/* ── DAR EKRAN (<=360px): ROZET IKONA INER ────────────────────────────
+   OLCULEN GEREKCE (tahmin degil): 320px'te satir2 toplam 103px; gramaj
+   tabani 31 + bosluk 8 -> rozete kalan 64px. Ayni stilde olculen etiket
+   genislikleri: "Supheli indirim" 120, "Supheli" 77, "Suphe" 71,
+   "Gercek" 76. EN KISA ANLAMLI ETIKET BILE SIGMIYOR. Ellipsis'e birakilinca
+   rozet "S..." / "G..." oluyordu: hem yer kapliyor hem BILGI VERMIYOR.
+   Bu yuzden metnin zaten okunamadigi genislikte metin tamamen birakiliyor,
+   ikon + renk sinyali kaliyor (serit kartlarindaki dille ayni) ve gramaj
+   TAM okunur hale geliyor.
+   ESIK 360: 361px'te metin GERI GELIR (test_cls.mjs kontrol grubu).
+
+   font-size:0 SECILDI, display:none DEGIL -- metin DOM'da ve erisilebilirlik
+   agacinda KALSIN diye; ekran okuyucu "Supheli indirim" demeye devam eder.
+   .lc-icon px tabanli (14x14) oldugu icin font-size:0 ikonu KUCULTMEZ.
+
+   DOKUNMA/ERISIM: yeni mekanizma EKLENMEDI -- olculdu, uygulamada tooltip/
+   popover sistemi YOK. Sepet karti zaten role="button" + onclick=openDetay
+   tasiyor (app.js), yani ikona basmak URUN DETAYINI aciyor ve rozetin TAM
+   metni orada duruyor. Dokunma hedefi kartin kendisi: 358x70. */
+@media (max-width: 360px) {
+  .cart-item-satir2 .cart-item-rozet > * { font-size: 0; }
+  .cart-item-satir2 .cart-item-rozet svg { margin-right: 0; }
+}

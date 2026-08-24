@@ -108,7 +108,14 @@ console.log('\n=== 3. S3 sink\'leri doğru bağlam yardımcısından geçiyor (k
   // renderSepet — u.ad _kacir (metin+aria-label), u.resim _guvenliUrl (src)
   ok('renderSepet: aria-label _kacir(u.ad)', /aria-label="\$\{_kacir\(u\.ad\)\}"/.test(sep), sep.slice(0, 300));
   ok('renderSepet: cart-item-name _kacir(u.ad)', /cart-item-name">\$\{_kacir\(u\.ad\)\}</.test(sep), sep);
-  ok('renderSepet: cart-item-sub _kacir(u.agirlik_hacim)', /cart-item-sub">\$\{_kacir\(u\.agirlik_hacim\)\}</.test(sep), sep);
+  // 2026-08-24: gramaj artik .cart-item-satir2 icinde ve KOSULSUZ basiliyor
+  // (satir her zaman var, rozet asenkron gelince kart ici kaymasin diye), yani
+  // bicim `${_kacir(x)}` degil `${x ? _kacir(x) : ''}`. IDDIA AYNI KALDI --
+  // "agirlik_hacim _kacir'den geciyor mu" -- yalnizca desen gercek bicime
+  // uyarlandi. Ciplak interpolasyon yasagi asagida ayrica duruyor (satir 126),
+  // yani gevseme yok: kacissiz yazilirsa o iddia kirmizi verir.
+  ok('renderSepet: cart-item-sub _kacir(u.agirlik_hacim)',
+     /cart-item-sub">\$\{[^}]*_kacir\(u\.agirlik_hacim\)/.test(sep), sep.slice(0, 200));
   ok('renderSepet: src _guvenliUrl(u.resim)', /src="\$\{_guvenliUrl\(u\.resim\)\}"/.test(sep), sep);
 }
 
