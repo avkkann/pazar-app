@@ -3179,3 +3179,24 @@
   .cart-item-satir2 .cart-item-rozet > * { font-size: 0; }
   .cart-item-satir2 .cart-item-rozet svg { margin-right: 0; }
 }
+
+/* ── ARAMA: KATEGORI ONERI SATIRI ────────────────────────────────────
+   Eski aramada "icecek"/"kola" gibi sorgular TUM ust kategoriyi sonuc
+   olarak donduruyordu (olculdu: bes ayri sorgu ayni 1973 sonucu). Kestirme
+   silinmedi, YERI DEGISTI: artik sonuc listesinin USTUNDE bir oneri satiri.
+   Boylece "icecek" yazan kullanici bos ekranla karsilasmiyor ama sonuc
+   listesi de alakasiz 1973 urunle dolmuyor.
+   Satir DOM'a JS ile ekleniyor (index.html'e dokunulmadi); tiklama
+   delegasyonla (satir ici handler sayaci 117'ye kilitli). */
+.arama-kat-oneri {
+  display: flex; align-items: center; gap: var(--space-2);
+  width: 100%; margin: 0 0 var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--card-bg); color: var(--text);
+  border: 1px solid var(--border); border-radius: 12px;
+  font-size: var(--fs-2); font-weight: 600; text-align: left; cursor: pointer;
+  min-height: 44px;   /* dokunma hedefi */
+}
+.arama-kat-oneri span { color: var(--primary); }
+@media (hover: hover) { .arama-kat-oneri:hover { border-color: var(--primary); } }
+.arama-kat-oneri:active { opacity: .7; }

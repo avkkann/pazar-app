@@ -4312,6 +4312,97 @@ const KART_GRUP = {
   'dondurulmus': 'dondurulmus'
 };
 
+// ── ARAMA: TEK ESLESME + PUANLAMA KAPISI ─────────────────────────────
+// ONCE NE VARDI (olculdu 2026-08-25, canli veriyle):
+//   Ana arama UC DALLIYDI ve ILK DAL URUN ADINA HIC BAKMIYORDU:
+//     1) KART_GRUP[qn] varsa -> o UST KATEGORININ TAMAMI
+//     2) qn bir ana_kategori adinin basiysa -> o KATEGORININ TAMAMI
+//     3) yoksa -> ad icinde alt dize
+//   Sonuc: "kola", "cay", "su", "kahve", "icecek" -> BESI DE ayni 1973
+//   sonucu ayni sirayla donduruyordu. "kola" sorgusunda ilk sonuc
+//   "Lezzcafe Latte" [Kahve]; ilk GERCEK kola urunu 24. sirada; ekrana gelen
+//   ilk 96'da 3 kola'ya karsilik 22 KAHVE; katalogdaki 44 kola urununun 41'i
+//   listeye hic giremiyordu. Siralama/puanlama HIC YOKTU (katalog sirasi).
+//
+// SIMDI: tek fonksiyon, tek normalize kapisi, acik puanlama.
+//   3 = TAM KELIME      ("Coca-Cola KOLA 1.25 Lt" <- "kola")
+//   2 = KELIME BASI     ("KOLAli ...")
+//   1 = ALT DIZE        ("ciKOLAta")  -> eslesir ama EN ALTTA kalir
+// Esitlikte KISA ad once: kisa ad daha spesifik urun demek.
+// Kategori kestirmesi SILINMEDI, YERI DEGISTI: sonuc listesinin yerini
+// almiyor, listenin USTUNDE bir oneri satiri oluyor (kategoriOnerisi).
+const _ARAMA_GRUP_SLUG = { meyve: 'meyve-sebze', sebze: 'meyve-sebze' };
+
+function _aramaSkoru(ad, qn) {
+  const adn = trNormalize(ad);
+  if (!qn || !adn) return 0;
+  const kelimeler = adn.split(/[^a-z0-9]+/).filter(Boolean);
+  if (kelimeler.includes(qn)) return 3;
+  if (kelimeler.some(w => w.startsWith(qn))) return 2;
+  if (adn.includes(qn)) return 1;
+  return 0;
+}
+
+function urunAra(liste, q) {
+  const qn = trNormalize(q);
+  if (!qn) return [];
+  const bulunan = [];
+  for (const u of (liste || [])) {
+    const s = _aramaSkoru(u && u.ad, qn);
+    if (s) bulunan.push({ u: u, s: s });
+  }
+  bulunan.sort((a, b) => b.s - a.s || String(a.u.ad || '').length - String(b.u.ad || '').length);
+  return bulunan.map(x => x.u);
+}
+
+// Kategori onerisi: "icecek" yazan kullanici urun adi eslesmesine dusup
+// bos ekran gormesin. ANA KATEGORI eslesmesi TAM KELIME arar -- startsWith
+// birakilsaydi "tuz" yine "Tuz Baharat ve Harclar"in tamamini isaret ederdi.
+function kategoriOnerisi(q, urunler) {
+  const qn = trNormalize(q);
+  if (!qn) return null;
+  let grup = KART_GRUP[qn] || null;
+  if (!grup && Array.isArray(urunler)) {
+    const es = urunler.find(u => {
+      const a = trNormalize(u && u.ana_kategori);
+      return a && (a === qn || a.split(/\s+/).includes(qn));
+    });
+    if (es) grup = ustKategori(es.ana_kategori);
+  }
+  if (!grup) return null;
+  const slug = _ARAMA_GRUP_SLUG[grup] || grup;
+  const kat = KATEGORILER.find(k => k.slug === slug);
+  // ikon KATEGORININ KENDI ikonu. lcIcon TANIMSIZ isimde SESSIZCE '' doner ve
+  // ikon kaybolur -- ilk yazisimda lcIcon('kategori') denendi, 'kategori'
+  // _LUCIDE_PATHS'te YOK (o bir ROTA anahtari) ve ikon bos cikti. Olculdu,
+  // ekran goruntusunde bosluk olarak gorundu. Guard: test_arama.mjs.
+  return kat ? { slug: kat.slug, label: kat.label, ikon: kat.ikon } : null;
+}
+
+// Oneri satiri DOM'a JS ile eklenir: index.html'e dokunulmadi.
+// Satir ici handler EKLENMEZ (sayac 117'ye kilitli) -- tiklama delegasyonla.
+function _aramaOneriCiz(oneri) {
+  const kap = document.getElementById('home-search');
+  const liste = document.getElementById('searchList');
+  if (!kap || !liste) return;
+  let el = document.getElementById('aramaKatOneri');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'aramaKatOneri';
+    kap.insertBefore(el, liste);
+  }
+  if (!oneri) { el.innerHTML = ''; return; }
+  el.innerHTML = '<button type="button" class="arama-kat-oneri" data-slug="' + _kacir(oneri.slug) + '">'
+    + lcIcon(oneri.ikon) + '<span>' + _kacir(oneri.label) + '</span> kategorisine git</button>';
+}
+
+document.addEventListener('click', function (e) {
+  const b = e.target && e.target.closest ? e.target.closest('.arama-kat-oneri') : null;
+  if (!b) return;
+  const slug = b.dataset && b.dataset.slug;
+  if (slug && typeof openCategory === 'function') openCategory(slug);
+});
+
 // ── MARKETFİYATI CANLI ARAMA (POC v1) ──────────────────
 let _mfLastQuery = '';
 let _mfLastData = null;
@@ -4488,39 +4579,18 @@ document.getElementById('search').addEventListener('input', function() {
   if (!q) {
     document.getElementById('mf-ara-btn').classList.add('gizli');
     document.getElementById('mf-results').innerHTML = '';
+    _aramaOneriCiz(null);   // kutu bosalinca oneri satiri da gitsin
     return;
   }
   clearTimeout(_searchTimer);
   _searchTimer = setTimeout(async () => {
     document.getElementById('searchList').innerHTML = skeletonHTML(3);
     await loadAllCats();
-    const qn = trNormalize(q);
-    if (!qn) { results = []; }
     const allProducts = KATEGORILER.flatMap(k => catCache[k.slug] || []);
-
-    let hedefGrup = KART_GRUP[qn] || null;
-    let katAdiEslesme = null;
-
-    if (!hedefGrup) {
-      const eslesenKat = allProducts.some(u => {
-        const ana = trNormalize(u.ana_kategori);
-        return ana.split(/\s+/).some(w => w.startsWith(qn)) || ana.startsWith(qn);
-      });
-      if (eslesenKat) katAdiEslesme = qn;
-    }
-
-    let results;
-    if (hedefGrup) {
-      results = allProducts.filter(u => ustKategori(u.ana_kategori) === hedefGrup);
-    } else if (katAdiEslesme) {
-      results = allProducts.filter(u => {
-        const ana = trNormalize(u.ana_kategori);
-        return ana.split(/\s+/).some(w => w.startsWith(qn)) || ana.startsWith(qn);
-      });
-    } else {
-      results = allProducts.filter(u => trNormalize(u.ad).includes(qn));
-    }
-    results = results.slice(0, 96);
+    // TEK KAPI: eslesme + puanlama urunAra'da. Kategori kestirmesi sonuc
+    // listesinin yerini ALMIYOR, ustunde oneri satiri olarak duruyor.
+    let results = urunAra(allProducts, q).slice(0, 96);
+    _aramaOneriCiz(kategoriOnerisi(q, allProducts));
     document.getElementById('searchCount').textContent = results.length;
     document.getElementById('searchList').innerHTML = results.length
       ? results.map(cardHTML).join('')
