@@ -2694,7 +2694,9 @@
   #detayContent > .detay-sag { grid-column: 2; min-width: 0; }
   #detayContent > .detay-bolum { grid-column: 1 / -1; }
   /* Görsel biraz büyür ama sayfayı ele geçirmez */
-  #detayContent .detay-img-wrap { min-height: 260px; border-radius: 16px; }
+  /* 260 -> 308: resim akistan cikinca (position:absolute) yuksekligi emoji
+     belirlerdi ve masaustunde de 48px'lik kayma dogardi. 260 + padding 48. */
+  #detayContent .detay-img-wrap { min-height: 308px; border-radius: 16px; }
   #detayContent .detay-img-wrap img { max-width: 260px; max-height: 260px; }
   /* Grafik geniş alanı kullansın */
   #detayContent .fg-wrap { width: 100%; }
@@ -3064,3 +3066,37 @@
   color: var(--text-muted);
 }
 [data-theme="dark"] .hesap-sil-baslik { color: #fca5a5; }
+
+/* .profil-item bir <a> olarak da kullanilabilir (Gizlilik satiri, /gizlilik/).
+   Sebep: hedef bir URL; anchor klavyeyle odaklanir ve Enter ile acilir, yani
+   satir ici onclick/onkeydown cifti GEREKMEZ (o sayac 117'ye kilitli).
+   Anchor varsayilan alti cizgi + link rengini tasidigi icin sifirlaniyor;
+   metin rengini zaten .profil-item-title / .profil-item-sub veriyor. */
+.profil-item-link { text-decoration: none; color: inherit; }
+
+/* ── GORSEL YUVASI: resim YUKLENIRKEN de emoji gorunsun ──────────────
+   OLCULDU (2026-08-24, soguk + yavas 4G, CDP): splash kalktigi an gorus
+   alanindaki 6 serit kartinin 6'si da BOS BEYAZ kutuydu; 800ms sonra hala 5
+   bos; dolmasi ~9 saniye surdu. Yatay/dikey kaydirmada CLS = 0 -- yani kutu
+   DOGRU ayrilmis, sicrama YOK; sorun kutunun ICINDEKI BOSLUK.
+   Mevcut '-ph' yedegi YALNIZCA onerror'da devreye giriyordu, yani "resim
+   HATA verdi" halinde; "resim henuz GELMEDI" halinde hicbir sey yoktu.
+
+   COZUM: -ph kutusu ARTIK HER ZAMAN ciziliyor (emoji icinde), resim onun
+   USTUNE bindiriliyor. -ph olculeri zaten img ile birebir ayni oldugu icin
+   YENI BIR OLCU TANIMLANMADI, layout degismiyor.
+   Resim yuklenince .yuklendi sinifi geliyor ve emoji font-size:0 ile
+   gizleniyor (yoksa object-fit:contain'de resmin cevresinden sizardi).
+   Sinifi ekleyen dinleyici CAPTURE fazinda: 'load' olayi KABARCIKLANMAZ. */
+.gorsel-yuva { position: relative; }
+.gorsel-yuva > img { position: absolute; inset: 0; background: transparent; }
+.gorsel-yuva.yuklendi { font-size: 0; }
+
+/* Detay: kap zaten var (.detay-img-wrap), yalniz resim akistan cikariliyor ki
+   emoji ile YAN YANA durmasin. Resim akistan cikinca kabin yuksekligini
+   emoji belirlerdi (180 -> 128) ve sayfa 48px KAYARDI; min-height olculen
+   son degere (228) sabitlenerek bu engellendi. Masaustunde ayni hesap:
+   260 + 48 = 308. */
+.detay-img-wrap { position: relative; min-height: 228px; }
+.detay-img-wrap img { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+.detay-img-wrap.yuklendi { font-size: 0; }

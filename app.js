@@ -1347,8 +1347,12 @@ function openDetay(urunId) {
   const temiz    = fiyatlariTemizle(u.market_fiyatlari);
   const mktler   = temiz.gecerli.slice().sort((a, b) => a.fiyat - b.fiyat);
   const emoji    = KAT_EMOJI[ustKategori(u.ana_kategori)] || '📦';
+  // Emoji ARTIK resimle BIRLIKTE basiliyor; resim CSS ile akistan cikip
+  // ortalanmis olarak onun ustune biniyor (.detay-img-wrap img). Boylece
+  // resim gelene kadar (olculdu: soguk 3G'de 1,5-2,5 sn) kutu bos kalmiyor.
+  // Kap yuksekligi DEGISMIYOR: min-height olculen 228'e sabitlendi.
   const imgHtml  = u.resim
-    ? `<img src="${_guvenliUrl(u.resim)}" alt="" loading="lazy" onerror="this.onerror=null;this.parentElement.innerHTML='<div class=\'urun-gorsel-ph\'>${emoji}</div>'">`
+    ? `${emoji}<img src="${_guvenliUrl(u.resim)}" alt="" loading="lazy" onerror="this.remove()">`
     : emoji;
 
 
@@ -3071,7 +3075,8 @@ function cardHTML(u) {
     // gorseli yuklenemedigi her seferde yedek HIC cizilmiyordu, kullanici bos
     // beyaz kutu goruyordu. (Ayni satirin serit karti surumu \\' ile dogruydu;
     // olculdu: kategori ekraninda 4 kategori gezisinde 12 SyntaxError.)
-    ? `<img class="product-card-img" src="${_guvenliUrl(u.resim)}" alt="" loading="lazy" onerror="this.outerHTML='<div class=\\'product-card-img-ph\\'>${ph.emoji}</div>'">`
+    // Ayni desen: yedek kutusu hep cizilir, resim ustune biner (bkz. _stripKartHTML).
+    ? `<div class="product-card-img-ph gorsel-yuva">${ph.emoji}<img class="product-card-img" src="${_guvenliUrl(u.resim)}" alt="" loading="lazy" onerror="this.remove()"></div>`
     : `<div class="product-card-img-ph">${ph.emoji}</div>`;
 
   const inCart = sepet.some(s => s._id === u._id);
@@ -3145,7 +3150,14 @@ function _kartTus(e, id) {
 function _stripKartHTML(u, rozet) {
   const ph = placeholderRenk(ustKategori(u.ana_kategori));
   const img = u.resim
-    ? `<img class="strip-card-img" src="${_guvenliUrl(u.resim)}" alt="" loading="lazy" onerror="this.outerHTML='<div class=\\'strip-card-img-ph\\'>${ph.emoji}</div>'">`
+    // Yedek kutusu ARTIK HER ZAMAN ciziliyor, resim onun USTUNE biniyor.
+    // Onceden -ph yalnizca onerror'da geliyordu, yani "resim HATA verdi"
+    // halinde; "resim henuz GELMEDI" halinde kutu BOMBOSTU (olculdu: splash
+    // kalktigi an gorunur 6 kartin 6'si da bos beyazdi, dolmasi ~9 sn).
+    // onerror artik outerHTML degistirmiyor, sadece resmi kaldiriyor ->
+    // altindaki emoji gorunur kalir. Bu ayrica kacisi zor bir satir ici
+    // sablonu ortadan kaldiriyor (bu depoda bir kez bug uretmisti).
+    ? `<div class="strip-card-img-ph gorsel-yuva">${ph.emoji}<img class="strip-card-img" src="${_guvenliUrl(u.resim)}" alt="" loading="lazy" onerror="this.remove()"></div>`
     : `<div class="strip-card-img-ph">${ph.emoji}</div>`;
   // FIYAT kartin kahramani. Once buradaki tek kapidan gecer (enDusukFiyat,
   // market_fiyatlari uzerinden), o veremezse onceden hesaplanmis alana duser.
@@ -5381,6 +5393,24 @@ function _firsatKartTus(e) {
 
 document.addEventListener('click', _firsatKartTikla);
 document.addEventListener('keydown', _firsatKartTus);
+
+// ── GORSEL YUKLENDI ISARETI (delegasyon, CAPTURE fazi) ───────────────
+// Resim yuklenince altindaki emoji gizlenmeli; yoksa object-fit:contain'de
+// resmin cevresinden sizar. Sinif JS'ten ekleniyor cunku CSS'te "yuklendi"
+// diye bir secici yok.
+// CAPTURE ZORUNLU: 'load' olayi KABARCIKLANMAZ (error de oyle) -- ucuncu
+// argumani true olmadan document uzerindeki dinleyici bu olaylari HIC gormez.
+// Satir ici onload= EKLENMEDI: sayac 117'ye kilitli (test_satirici_kilit.mjs).
+function _gorselYuklendi(e) {
+  const t = e && e.target;
+  if (!t || t.tagName !== 'IMG') return;
+  const kap = t.parentElement;
+  if (!kap || !kap.classList) return;
+  if (kap.classList.contains('gorsel-yuva') || kap.classList.contains('detay-img-wrap')) {
+    kap.classList.add('yuklendi');
+  }
+}
+document.addEventListener('load', _gorselYuklendi, true);
 
 function _firsatOzetGuncelle(ucuzSayi, tasarrufSayi) {
   const ozet = document.getElementById('firsatOzet');

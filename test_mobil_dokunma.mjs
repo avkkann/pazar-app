@@ -64,22 +64,36 @@ console.log('\n=== 3. + BUTONU: KONUM EZILMIYOR ===');
      afterListe.slice(0, 160));
 }
 
-console.log('\n=== 4. URUN GORSELI YEDEGI: KACIS DOGRU ===');
+console.log('\n=== 4. URUN GORSELI YEDEGI: onerror ICINDE HTML URETILMIYOR ===');
 {
-  // Sablon dizesinde \\' olmali. \' yazilirsa HTML'e ' gider, oznitelik
-  // kapanir ve tarayici SyntaxError atar -> yedek HIC cizilmez.
-  const urun = (APP.match(/<img class="product-card-img"[^`]*/) || [''])[0];
-  ok('urun karti onerror satiri bulundu', urun.length > 40, urun.slice(0, 80));
-  ok('  class kacisi CIFT ters bolu (\\\\\')', /class=\\\\'product-card-img-ph\\\\'/.test(urun), urun.slice(0, 200));
-  ok('  TEK ters bolu DEGIL (SyntaxError sebebi)', !/[^\\]\\'product-card-img-ph/.test(urun), urun.slice(0, 200));
-
+  // TARIHCE: bu blok eskiden onerror ICINDEKI tirnak kacisini denetliyordu
+  // (\\' olmali, \' olursa oznitelik kapanir ve yedek HIC cizilmez -- 2026-08-19'da
+  // tam olarak bu bug yasandi). 2026-08-24'te yedek mekanizmasi degisti: yedek
+  // kutusu artik HER ZAMAN ciziliyor ve resim ustune biniyor, dolayisiyla
+  // onerror'in HTML uretmesine gerek kalmadi (this.remove() yetiyor).
+  //
+  // IDDIA GEVSETILMEDI, GUCLENDIRILDI: eskiden "kacis dogru yazilmis mi" diye
+  // soruyordu; simdi "onerror ICINDE HIC HTML URETILMIYOR mu" diye soruyor.
+  // Ikincisi bug SINIFINI komple ortadan kaldirir -- kacirilacak tirnak yoksa
+  // yanlis kacirma da olamaz.
+  const urun  = (APP.match(/<img class="product-card-img"[^`]*/) || [''])[0];
   const serit = (APP.match(/<img class="strip-card-img"[^`]*/) || [''])[0];
-  ok('serit karti kacisi bozulmadi', /class=\\\\'strip-card-img-ph\\\\'/.test(serit), serit.slice(0, 200));
+  ok('urun karti img satiri bulundu', urun.length > 40, urun.slice(0, 80));
+  ok('serit karti img satiri bulundu', serit.length > 40, serit.slice(0, 80));
 
-  // Ikisi AYNI deseni kullanmali -- biri digerinden sapmasin
-  const desen = (s) => (/class=(\\+)'/.exec(s) || [])[1];
-  ok('  iki kart AYNI kacis desenini kullaniyor', desen(urun) === desen(serit),
-     'urun=' + desen(urun) + ' serit=' + desen(serit));
+  for (const [ad, s] of [['urun', urun], ['serit', serit]]) {
+    const oe = (/onerror="([^"]*)"/.exec(s) || [])[1] || '';
+    ok(ad + ': onerror var', oe.length > 0, s.slice(0, 160));
+    ok('  ' + ad + ': onerror ICINDE < yok (HTML uretmiyor)', !oe.includes('<'), oe);
+    ok('  ' + ad + ': outerHTML/innerHTML yazmiyor', !/outerHTML|innerHTML/.test(oe), oe);
+    ok('  ' + ad + ': kacirilmis tirnak yok', !oe.includes("\\'"), oe);
+  }
+
+  // Yedek kutusu resimden BAGIMSIZ olarak ciziliyor mu (asil duzeltme).
+  ok('urun karti: img yedek kutusunun ICINDE', /product-card-img-ph gorsel-yuva[^`]*<img class="product-card-img"/.test(APP), '');
+  ok('serit karti: img yedek kutusunun ICINDE', /strip-card-img-ph gorsel-yuva[^`]*<img class="strip-card-img"/.test(APP), '');
+  ok('  ikisi AYNI deseni kullaniyor (gorsel-yuva)',
+     /product-card-img-ph gorsel-yuva/.test(APP) && /strip-card-img-ph gorsel-yuva/.test(APP), '');
 }
 
 console.log('\n=== 5. iOS SEKME-GECIS ZOOM + ODAK ZOOM ===');
