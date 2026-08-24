@@ -1545,7 +1545,21 @@
   .strip-card:hover { box-shadow: 0 2px 4px rgba(0,0,0,0.06), 0 8px 20px rgba(0,0,0,0.08); transform: translateY(-1px); }
 }
 .strip-card:active { transform: scale(0.98); }
-.strip-card-img { width:100%; height:90px; border-radius:8px; object-fit:cover; background:#FFFFFF; padding: var(--space-2); }
+/* object-fit: cover -> contain (2026-08-25). OLCULDU, sikayet "resimler
+   buyutulmus gorunuyor" idi ve sebebi COZUNURLUK DEGILDI:
+     kaynak 500x500 -> kutu ici 122x74 -> cover olcegi 0,244 -> cizilen 122x122
+     tasma 48px -> USTTEN 24 + ALTTAN 24 (object-position 50% 50%), yanlardan 0
+     kaybolan alan %39 -- ambalajin kapagi ve tabani kadraj disinda kaliyordu.
+   Efektif piksel yogunlugu zaten 1,81x idi (DPR 2'de fazlasiyla keskin), yani
+   bulaniklik iddiasi olcumde curudu; sorun KIRPMAYDI.
+   KUTU OLCUSU DEGISMEDI (138x90) -- yalniz sigdirma bicimi degisti.
+   Ayni sorun ana sayfa seridinde de vardi (ayni sinif, ayni %39); detayda
+   goze batmasinin sebebi ustundeki 180x180 'contain' ana gorselle kiyas.
+   Kategori (.product-card-img) ve firsat (.firsat-card-img) kartlari ZATEN
+   contain -- bu degisiklik envanteri tekillestiriyor.
+   Zemin: acikta beyaz '-ph' sarmalayicisindan, koyuda [data-theme=dark]
+   override'indan geliyor; kategori kartiyla AYNI davranis, yeni kural YOK. */
+.strip-card-img { width:100%; height:90px; border-radius:8px; object-fit:contain; background:#FFFFFF; padding: var(--space-2); }
 .strip-card-img-ph { width:100%; height:90px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:var(--glif-foto-yedek); background:#FFFFFF; padding: var(--space-2); }
 /* KARTIN KAHRAMANI. Öncesinde kartta fiyat HİÇ YOKTU — bir fiyat
    karşılaştırma uygulamasının ana sayfasında ürünün fiyatı görünmüyordu;

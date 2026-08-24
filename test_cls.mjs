@@ -210,5 +210,22 @@ ok('sepet karti tiklaninca DETAY aciliyor (ikonun erisim yolu)',
 ok('sepet karti klavyeyle de acilabiliyor (tabindex + onkeydown)',
    /class="cart-item"[^>]*tabindex="0"/.test(rs) && /class="cart-item"[^>]*onkeydown="_kartTus\(/.test(rs), '');
 
+console.log('\n=== 10. SERIT KARTI GORSELI: contain (cover KIRPIYORDU) ===');
+// OLCULDU: cover ile 500x500 kaynak 122x74 kutuya doldurulunca cizilen 122x122
+// oluyor, 48px tasiyor (USTTEN 24 + ALTTAN 24, object-position 50% 50%) ve
+// urun fotografinin %39'u kayboluyordu -- ambalajin kapagi/tabani kadraj disi.
+// Cozunurluk sorunu DEGILDI: efektif yogunluk 1,81x (DPR 2'de fazlasiyla keskin).
+// Kategori (.product-card-img) ve firsat (.firsat-card-img) kartlari ZATEN contain.
+const seritImg = (cssTemiz.match(/\.strip-card-img\s*\{[^}]*\}/) || [''])[0];
+ok('.strip-card-img object-fit: contain', /object-fit:\s*contain/.test(seritImg), seritImg);
+ok('  cover DEGIL (kirpma geri gelmesin)', !/object-fit:\s*cover/.test(seritImg), seritImg);
+// Kutu olcusu degismemeli -- duzeltmenin sarti buydu.
+ok('  kutu olcusu korunuyor (100% x 90px)', /width:\s*100%/.test(seritImg) && /height:\s*90px/.test(seritImg), seritImg);
+// Envanter tutarliligi: ayni urun fotografini gosteren diger iki yuzey de contain.
+const katImg = (cssTemiz.match(/\.product-card-img\s*\{[^}]*\}/) || [''])[0];
+const firImg = (cssTemiz.match(/\.firsat-card-img\s*\{[^}]*\}/) || [''])[0];
+ok('  kategori karti da contain (envanter tekil)', /object-fit:\s*contain/.test(katImg), katImg);
+ok('  firsat karti da contain (envanter tekil)', /object-fit:\s*contain/.test(firImg), firImg);
+
 console.log('\nSONUC: PASS=' + pass + ' FAIL=' + fail);
 process.exit(fail ? 1 : 0);
