@@ -56,6 +56,20 @@
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);    /* durum geçişi     */
       --ease-giris: cubic-bezier(0.22, 1, 0.36, 1); /* giriş animasyonu */
 
+      /* Ekran/sekme geçiş süresi — TEK KAYNAK (ileri ve geri aynı sayıyı
+         kullansın diye). Değer uydurulmadı: 200ms bu dosyada zaten en çok
+         geçen süre (--splash-cikis ve .2s'lik geçişler). Böylece splash
+         sönmesi ile ekran değişimi AYNI tempoda. */
+      --gecis-ekran: 200ms;
+      /* Gelen ekranın başlangıç ötelemesi. ÖLÇÜLDÜ: eskiden translateX(100%)
+         idi ve gelen ekran ilk karede TAM viewport dışındaydı; giden ekran ise
+         aynı anda display:none olduğu için kullanıcı ~35-41ms boyunca BOŞ ekran
+         görüyordu (390px'te ilk kare kapsamı %0). Bu, "amatörce" hissinin
+         ölçülebilir kaynağıydı. --space-4 (16px) mevcut boşluk ölçeğinden
+         alındı; .screen zemini body ile aynı (--bg) olduğu için bu şerit
+         görünmez, ama hareket hâlâ yön belli ediyor. */
+      --gecis-otele: var(--space-4);
+
       /* ══ SPLASH ════════════════════════════════════════════════════
          Zemin TEMA DEĞİŞKENİNE bağlı (--bg). Önceden #ffffff sabitti ve
          koyu temada yeşil→BEYAZ→siyah diye 1,5 sn'de üç zemin çakıyordu. */
@@ -1969,7 +1983,18 @@
       position: fixed; inset: 0; z-index: 9999;
       background: var(--bg);
       display: flex; align-items: center; justify-content: center;
-      transition: opacity var(--splash-cikis) var(--ease-out);
+      /* SÖNME EĞRİSİ: linear — ÖLÇÜMLE seçildi, tercih değil.
+         Önce var(--ease-out) = cubic-bezier(0.16,1,0.3,1) kullanılıyordu.
+         O eğri AŞIRI ÖNE YÜKLÜ: ilerlemenin %49'u ilk 20ms'de, %83'ü 50ms'de,
+         %97'si 100ms'de bitiyor (sayıyla hesaplandı). Tarayıcıda ölçülen
+         opaklık yolu da bunu doğruladı: 1 → 0,57 → 0,31 → 0,17 ilk üç karede.
+         Yani kâğıtta 200ms olan sönme ALGIDA ~40ms'lik bir kesme gibi
+         davranıyordu — "açılıştan uygulamaya ANİ geçiş" şikâyetinin ölçülebilir
+         kaynağı buydu. Süre DEĞİŞMEDİ (200ms); yalnız eğri linear yapıldı,
+         böylece 200ms gerçekten 200ms gibi görünüyor. Opaklık çapraz
+         geçişlerinde linear zaten doğru seçim: --ease-out GELEN bir şeyin
+         yavaşlaması için, GİDEN bir şeyin sönmesi için değil. */
+      transition: opacity var(--splash-cikis) linear;
     }
     #splash.gizle { opacity: 0; pointer-events: none; }
 
@@ -2134,16 +2159,38 @@
     .nav-btn img.pulsing {
       animation: navPulse 300ms var(--ease-giris);
     }
+    /* EKRAN GEÇİŞİ — kısa mesafe + yumuşama.
+       ÖLÇÜLDÜ (CDP, 390px, gerçek tıklama): eski hâlde gelen ekran
+       translateX(±100%) ile başlıyordu, yani ilk karede TAM ekran dışında;
+       giden ekran ise showScreen tarafından aynı anda display:none yapılıyor.
+       Sonuç: ileri geçişte 4 kare (~35ms), geri geçişte 5 kare (~41ms) boyunca
+       ekranda HİÇBİR ŞEY yoktu (kapsam %0), ardından tam genişlikte bir pano
+       kenardan içeri kayıyordu. Ekran görüntüsüyle de doğrulandı: başlık
+       havada duruyor, solda boş şerit var.
+       Ayrıca tam genişlikli yatay itme, HİYERARŞİK (drill-down) gezinmenin
+       dilidir; alt sekmeler ise EŞ DÜZEY. Eş düzey geçişte doğru dil kısa
+       öteleme + yumuşama.
+       Yön KORUNDU (ileri/geri ayrımı okunur kalsın), yalnız mesafe düştü.
+       Sadece transform+opacity — yerleşimi etkilemez, CLS üretmez. */
     @keyframes animSlideInRight {
-      from { transform: translateX(100%); opacity: 0.6; }
-      to   { transform: translateX(0);    opacity: 1; }
+      from { transform: translateX(var(--gecis-otele)); opacity: 0.6; }
+      to   { transform: translateX(0);                  opacity: 1; }
     }
     @keyframes animSlideInLeft {
-      from { transform: translateX(-100%); opacity: 0.6; }
-      to   { transform: translateX(0);     opacity: 1; }
+      from { transform: translateX(calc(-1 * var(--gecis-otele))); opacity: 0.6; }
+      to   { transform: translateX(0);                             opacity: 1; }
     }
-    .screen.anim-slide-in   { animation: animSlideInRight 260ms var(--ease-giris); }
-    .screen.anim-slide-back { animation: animSlideInLeft  260ms var(--ease-giris); }
+    .screen.anim-slide-in   { animation: animSlideInRight var(--gecis-ekran) var(--ease-giris); }
+    .screen.anim-slide-back { animation: animSlideInLeft  var(--gecis-ekran) var(--ease-giris); }
+    /* reduced-motion'da AÇIKÇA hiç animasyon. Genel `animation-duration:0.01ms`
+       reçetesi tek başına YETMİYOR — ölçüldü: animasyon 0,01ms'de bitse de ilk
+       karede `from` keyframe'i (16px ötelenmiş, %60 opak) bir kez boyanıyor,
+       yani kullanıcı minik bir sıçrama görüyor. `animation: none` ile o kare
+       de kalkıyor (ölçüm: ilk kare dx=0, opaklık=1). Aynı açık desen #splash
+       için de kullanılıyor (yukarıdaki reduced-motion bloğu). */
+    @media (prefers-reduced-motion: reduce) {
+      .screen.anim-slide-in, .screen.anim-slide-back { animation: none !important; }
+    }
 
     .theme-switch { display:flex; gap: var(--space-2); padding: 0 var(--space-1); }
     .theme-opt { flex:1; padding: var(--space-3); border:1px solid var(--border); background:var(--card-bg); border-radius:10px; font-size:13px; font-weight:500; color:var(--text); cursor:pointer; transition: background-color 150ms var(--ease-out), color 150ms var(--ease-out); }

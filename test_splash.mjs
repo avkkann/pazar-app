@@ -90,10 +90,18 @@ console.log('\n=== 4. KOYU TEMADA BEYAZ CAKMA YOK ===');
   ok('tema tespiti stylesheet\'ten ONCE kosuyor', iTema > -1 && iCss > -1 && iTema < iCss, `tema@${iTema} css@${iCss}`);
 }
 
+// YORUMLARI SOY — bu depoda tekrarlayan tuzak: test, YASAKLADIGI seyi
+// anlatan aciklama yorumuyla esleser. 2026-08-25'te tam bunu yasadi:
+// #splash kuralina "sonme egrisi neden linear" diye olcum notu eklenince
+// asagidaki "ham px/ms YOK" ve "ham egri kalmadi" iddialari YORUM METNI
+// yuzunden kirmiziya dondu (kuralin kendisi temizdi). Iddia GEVSETILMEDI;
+// yalnizca baktigi yer duzeltildi -- kural GOVDESI, yorum degil.
+const CSS_TEMIZ = CSS.replace(/\/\*[\s\S]*?\*\//g, '');
+
 console.log('\n=== 5. TOKEN BAGI (ham deger yok) ===');
 {
-  const kural = (CSS.match(/#splash \{[^}]*\}/) || [''])[0];
-  const markKural = (CSS.match(/\.splash-mark \{[^}]*\}/) || [''])[0];
+  const kural = (CSS_TEMIZ.match(/#splash \{[^}]*\}/) || [''])[0];
+  const markKural = (CSS_TEMIZ.match(/\.splash-mark \{[^}]*\}/) || [''])[0];
   ok('#splash kuralinda ham px/ms YOK', !/\b\d+(px|ms)\b/.test(kural), kural);
   for (const t of ['--splash-logo', '--splash-giris', '--splash-cikis']) {
     ok(`  ${t} tanimli`, new RegExp(t + ':\\s*[^;]+;').test(CSS), '');
@@ -112,7 +120,7 @@ console.log('\n=== 6. EASING: TEK KAYNAK, IKI ROL ===');
   ok('--ease-giris tanimli (giris animasyonu)', /--ease-giris:\s*cubic-bezier/.test(CSS), '');
   // Ham egri YALNIZCA token TANIMINDA kalmali; kullanim yerlerinde degil.
   // (Token tanimi zorunlu olarak ham degeri icerir — onu saymak yanlis olurdu.)
-  const tanimsiz = CSS.replace(/--ease-[a-z]+:\s*cubic-bezier\([^)]*\);/g, '');
+  const tanimsiz = CSS_TEMIZ.replace(/--ease-[a-z]+:\s*cubic-bezier\([^)]*\);/g, '');
   ok('kullanim yerlerinde ham cubic-bezier(0.22...) YOK', !/cubic-bezier\(0\.22/.test(tanimsiz),
      (tanimsiz.match(/cubic-bezier\(0\.22[^)]*\)/g) || []).join(' '));
   const kalanHam = (tanimsiz.match(/cubic-bezier\([^)]*\)/g) || []);
