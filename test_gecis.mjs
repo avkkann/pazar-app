@@ -151,8 +151,12 @@ ok('slide kurallarinda ham sure kalintisi yok',
 console.log('\n=== 4. SURE VE EGRI: HAREKET SURE BOYUNCA OKUNSUN ===');
 const gecisSure = ms(coz('var(--gecis-ekran)'));
 ok('gecis suresi tanimli', !isNaN(gecisSure), String(gecisSure));
-ok('sure kisa kalıyor (<=320ms)', gecisSure <= 320, gecisSure + 'ms');
-ok('sure tam genislik icin yeterli (>=220ms)', gecisSure >= 220, gecisSure + 'ms');
+// TAM DEGER — aralik DEGIL. Onceki turda "oteleme >= %85" diye aralik yazilmis
+// ve harness guard'in KOR oldugunu gostermisti (%85 mutasyonu yesil kalmisti).
+// Ders: iddiayi olcumun soyledigi kadar dar yaz. 300ms secilmis bir degerdir
+// (Mustafa "biraz daha uzun sursun" dedi, 260 -> 300); degisirse bu satir da
+// BILEREK guncellenir, sessizce kaymaz.
+ok('gecis suresi TAM 300ms', gecisSure === 300, gecisSure + 'ms');
 const egri = String(coz('var(--gecis-egri)')).trim();
 const ilr25 = ilerleme(egri, 0.25), ilr50 = ilerleme(egri, 0.5);
 ok('egri cozulebiliyor', ilr25 != null, egri);

@@ -58,11 +58,12 @@
 
       /* Ekran/sekme geçiş süresi — TEK KAYNAK (giren ve çıkan ekran aynı
          sayıyı kullanmak ZORUNDA: farklı olsalar birebir döşenmez, aralarında
-         boşluk ya da bindirme oluşur). 260ms uydurulmadı — bu geçişin özgün
-         değeri ve ölçülen aralıkta: tam genişlik (390px) öteleme 200ms'te
-         aceleci, 260ms'te okunur. Splash sönmesi (200ms) ile eşit DEĞİL ve
-         olmamalı: o bir opaklık sönmesi, bu 390px'lik bir yol. */
-      --gecis-ekran: 260ms;
+         boşluk ya da bindirme oluşur). Tam genişlik (390px) öteleme 200ms'te
+         aceleci; 260ms okunurdu, 300ms Mustafa'nın isteğiyle (geçiş biraz
+         daha uzun sürsün) 2026-08-25'te seçildi ve çalışma anında ölçüldü.
+         Splash sönmesi (200ms) ile eşit DEĞİL ve olmamalı: o bir opaklık
+         sönmesi, bu 390px'lik bir yol. */
+      --gecis-ekran: 300ms;
       /* Ekran geçişinin öteleme mesafesi — GİREN ve ÇIKAN ekran için AYNI.
          %100 = tam viewport genişliği. Bu değer BİREBİR DÖŞENME şartı:
          çıkan [-100%+p, p], giren [p, 100%+p] aralığını kaplar, üst üste
