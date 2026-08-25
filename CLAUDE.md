@@ -20,6 +20,16 @@ Mustafa (GitHub: avkkann), **Pazar App**'in tek geliştiricisi — Türk market 
 
 ## Mevcut durum (2026-08-21 itibarıyla)
 
+### 2026-08-25 — Madde 10 KAPANDI: detay "kg başına" satırı komşularıyla hizalandı
+
+**Şikâyet "ekranın soluna sıkışıyor"du; ölçüm SIKIŞMA DEĞİL HİZASIZLIK gösterdi.** `.detay-birim-fiyat`, `.detay-info`'nun **kardeşi** — yatay dolguyu `.detay-info` kendi üstünde taşıdığı için bu öğeye hiç uygulanmıyordu.
+
+**Ölçüm (320/360/390/430px, dördünde de aynı):** birim fiyat metninin sol kenarı **0**, komşularınınki (`.detay-name`, `.detay-unit`, `.detay-sec-label`) **16**. Kırpılma **yok**, taşma **yok**, kesişim **yok** — sadece 16px sola kaçık. Yani "sıkışma" diye tarif edilen şey, tek başına duran bir hizalama kusuruydu.
+
+**Düzeltme:** `.detay-birim-fiyat`'a `padding-left/right: var(--space-4)`. Değer **komşulardan kopyalandı** (`.detay-info` ve `.detay-section` de `--space-4`), yeni ölçü uydurulmadı. **Yalnız yatay** dolgu — dikey eklenmedi, blok yüksekliği değişmesin diye.
+
+**Doğrulama (aynı sayfada A/B, mutasyonun uygulandığı doğrulanarak):** metin sol kenarı **0 → 16**, komşular sabit 16, **detay yüksekliği değişmedi** (320px'te 1619, 390px'te 1640 — önce/sonra aynı). Dört genişlikte kesişim sıfır. **Kontrol grubu:** birim fiyatı olmayan üründe (`Kuru Patlıcan`) öğe hiç çizilmiyor ve yerleşim bozulmuyor. `test_cls.mjs` 45 → **49 iddia**; harness **15/15 kırmızı** (yatay dolgu kaldırılırsa · dolgu dikeye çevrilirse).
+
 ### 2026-08-25 — Madde 7 KAPANDI: ana arama tek eşleşme + puanlama kapısına alındı
 
 **Şikâyet "kola yazınca kahve geliyor"du. En olası görünen hipotez — alt dize ("çikolata" içinde "kola") — ÖLÇÜMDE ÇÜRÜDÜ.**
@@ -984,7 +994,7 @@ Bu aralık `DENETIM.md`'nin (2026-08-11) bulgularını kapatmakla geçti. Sürü
 
 | `test_firsat_detay.mjs` | 27 | Fırsat kartından ürün detayı: kartın `data-id`/`role`/`tabindex` taşıması, delegasyon dinleyicilerinin **davranışı** (sahte olayla, kontrol gruplu — sepet butonu ve kart dışı tıklama detay AÇMAMALI), Enter/Space, satır içi handler eklenmemesi, `_prevScreen`'in tembel yeniden çağrıda ezilmemesi. Fonksiyon gövdesini **parantez sayarak** çıkarıyor (sabit ofset değil) |
 
-| `test_cls.mjs` | 45 | Görsel yuvası: `-ph` kutusunun resimden BAĞIMSIZ çizilmesi, `onerror`'ın HTML üretmemesi, satır içi `onload` yasağı, dinleyicinin **capture** fazında kayıtlı olması (`load` kabarcıklanmaz), `.yuklendi` emojiyi gizlemesi, `.detay-img-wrap` min-height 228/308 **layout kilidi**. Dinleyici davranışsal + kontrol gruplu (alakasız kaba ve IMG olmayan hedefe dokunmamalı). Ayrıca **sepet kartı 2. satırı**: rozet gramajla yan yana, `min-height` rezervesi (asenkron rozet kart içi kaydırmasın), gramaj tabanı sıfırlanamaz, rozet kısalabilir, ≤360px'te rozet ikona iner (`display:none` DEĞİL — metin a11y ağacında kalır), ikonun erişim yolu (kart → detay) kilitli |
+| `test_cls.mjs` | 49 | Görsel yuvası: `-ph` kutusunun resimden BAĞIMSIZ çizilmesi, `onerror`'ın HTML üretmemesi, satır içi `onload` yasağı, dinleyicinin **capture** fazında kayıtlı olması (`load` kabarcıklanmaz), `.yuklendi` emojiyi gizlemesi, `.detay-img-wrap` min-height 228/308 **layout kilidi**. Dinleyici davranışsal + kontrol gruplu (alakasız kaba ve IMG olmayan hedefe dokunmamalı). Ayrıca **sepet kartı 2. satırı**: rozet gramajla yan yana, `min-height` rezervesi (asenkron rozet kart içi kaydırmasın), gramaj tabanı sıfırlanamaz, rozet kısalabilir, ≤360px'te rozet ikona iner (`display:none` DEĞİL — metin a11y ağacında kalır), ikonun erişim yolu (kart → detay) kilitli |
 
 | `test_arama.mjs` | 56 | Arama eşleşme + puanlama: **gerçek katalogla** (16.696 ürün) davranışsal — "kola" ilk 5'te 5/5 gerçek kola, `kola/çay/su/kahve` farklı sonuç (kestirme geri gelmesin), tam kelime > kelime başı > alt dize sırası, `trNormalize` tek kapı (süt=sut), kategori önerisi sonucun yerini almıyor + ikonu sessizce boş değil, vekil ölçüm (en sık 30 kelime ≥28 tam kelime). Ayrıca ana arama **dinleyicisinin** `urunAra` kullandığı (guard'ın kör noktasıydı) |
 

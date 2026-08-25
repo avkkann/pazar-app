@@ -227,5 +227,25 @@ const firImg = (cssTemiz.match(/\.firsat-card-img\s*\{[^}]*\}/) || [''])[0];
 ok('  kategori karti da contain (envanter tekil)', /object-fit:\s*contain/.test(katImg), katImg);
 ok('  firsat karti da contain (envanter tekil)', /object-fit:\s*contain/.test(firImg), firImg);
 
+console.log('\n=== 11. DETAY BIRIM FIYATI KOMSULARIYLA HIZALI ===');
+// SIKAYET "kg basina bilgisi ekranin soluna sikisiyor" idi; OLCUM sikisma
+// DEGIL HIZASIZLIK gosterdi. .detay-birim-fiyat, .detay-info'nun KARDESI ve
+// yatay dolguyu .detay-info kendisi tasidigi icin bu ogeye hic uygulanmiyordu.
+// Olculdu (320/360/390/430, dordunde de ayni): metin sol kenari 0 iken
+// komsulari (.detay-name / .detay-unit / .detay-sec-label) 16'daydi.
+// Kirpilma, tasma, kesisim YOKTU -- yalnizca 16px sola kacikti.
+{
+  const bf = (cssTemiz.match(/\.detay-birim-fiyat\s*\{[^}]*\}/) || [''])[0];
+  ok('.detay-birim-fiyat kurali bulundu', bf.length > 0);
+  ok('  yatay dolgu VAR (komsulariyla hizali)',
+     /padding-left:\s*var\(--space-4\)/.test(bf) && /padding-right:\s*var\(--space-4\)/.test(bf), bf);
+  // Deger komsulardan KOPYALANDI: .detay-info ve .detay-section da --space-4.
+  const info = (cssTemiz.match(/\.detay-info\s*\{[^}]*\}/) || [''])[0];
+  ok('  deger komsuyla AYNI token (--space-4)', /var\(--space-4\)/.test(info), info);
+  // Yukseklik degismemeli: yalniz YATAY dolgu eklendi.
+  ok('  dikey dolgu EKLENMEDI (blok yuksekligi sabit)',
+     !/padding-top:/.test(bf) && !/padding-bottom:/.test(bf) && !/padding:\s*[^;]*\s+[^;]*\s+/.test(bf), bf);
+}
+
 console.log('\nSONUC: PASS=' + pass + ' FAIL=' + fail);
 process.exit(fail ? 1 : 0);
