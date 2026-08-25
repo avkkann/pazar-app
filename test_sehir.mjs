@@ -176,5 +176,54 @@ console.log('\n=== 10. SW PRECACHE ===');
      !/il_marketler/.test(SW), '');
 }
 
+console.log('\n=== SEHIR SECIMI GORUNURLUGU (2026-08-25) ===');
+// OLCULDU (onceki tur): secim CALISIYOR -- kaydediliyor, okunuyor, kullaniliyor.
+// Sorun kullanicinin ETKIYI GOREMEMESIYDI: Erzurum secen kisi urun detayinda
+// Carrefour fiyatini gormeye devam ediyor ve "secim ise yaramiyor" saniyordu.
+// Iki dokunus noktasi eklendi: (1) etkinin GERCEKTEN oldugu yerde (sepet market
+// ozeti) sehir adi, (2) secimin yapildigi yerde (profil) KAPSAM cumlesi.
+{
+  // Yorumlar soyulur: bu depoda testin kendi aciklamasiyla eslesmesi
+  // dort kez yanlis KIRMIZI uretti (bkz. CLAUDE.md).
+  const kodu = (src) => String(src || '').replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
+  const govde = (ad) => {
+    const b = APP.indexOf('function ' + ad + '(');
+    if (b < 0) return '';
+    let d = 0;
+    for (let j = APP.indexOf('{', b); j < APP.length; j++) {
+      const c = APP[j];
+      if (c === '{') d++;
+      else if (c === '}') { d--; if (d === 0) return APP.slice(b, j + 1); }
+    }
+    return '';
+  };
+
+  const ozet = kodu(govde('sepetMarketOzetiHTML'));
+  ok('sepet ozeti secili sehri okuyor', /sehirOku\(\)/.test(ozet), ozet.slice(0, 160));
+  // DIKKAT: "_sehir ... ? ... : ''" seklinde gevsek aramak KOR -- _sehir sablon
+  // icinde de geciyor (${_kacir(_sehir)}), dolayisiyla kosul 'true' yapilsa
+  // bile desen tutuyordu (harness yakaladi; bu oturumda ayni sinif KORLUGUN
+  // UCUNCUSU). Iddia KOSULUN KENDISINE bakiyor.
+  ok('  sehir notu KOSULLU (secim yoksa cizilmez)',
+     /const sehirNotu\s*=\s*_sehir\b/.test(ozet), (ozet.match(/const sehirNotu[\s\S]{0,120}/) || [''])[0]);
+  ok('  not sehir ADINI yaziyor (kacisli)', /\$\{_kacir\(_sehir\)\}/.test(ozet), '');
+  // Not GERCEKTEN cikiya giriyor mu -- degisken tanimi yeterli DEGIL.
+  // (Bu depoda "degisken var ama yazma satirinda yok" korlugu iki kez yasandi.)
+  const donus = (ozet.match(/return `<div class="sepet-mkt">[\s\S]*?`;/) || [''])[0];
+  ok('  not DONUS blogunda basiliyor', /\$\{sehirNotu\}/.test(donus), donus.slice(0, 200));
+
+  const profil = kodu(govde('profilSehirHTML'));
+  ok('profil KAPSAM cumlesi tasiyor', /const kapsam\s*=/.test(profil), profil.slice(0, 160));
+  ok('  kapsam NE ETKILENIR diyor', /karşılaştırma/.test(profil) && /zam/.test(profil), '');
+  ok('  kapsam NE ETKILENMEZ diyor (urun fiyatlari)', /ürün fiyatları/.test(profil), '');
+  const pDonus = (profil.match(/return `<div class="profil-sehir">[\s\S]*?`;/) || [''])[0];
+  ok('  kapsam DONUS blogunda basiliyor', /\$\{kapsam\}/.test(pDonus), pDonus.slice(0, 220));
+
+  // Satir ici stil/handler yasagi (CSP + 117 kilidi)
+  ok('  eklenen markup satir ici stil TASIMIYOR', !/style="/.test(ozet) && !/style="/.test(profil), '');
+  ok('  eklenen markup YENI satir ici handler getirmiyor',
+     !/sehirNotu[^`]*on[a-z]+=/.test(ozet), '');
+}
+
 console.log('\nPASS=' + pass + '  FAIL=' + fail);
 process.exit(fail ? 1 : 0);

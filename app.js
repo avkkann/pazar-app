@@ -4936,8 +4936,19 @@ function sepetMarketOzetiHTML() {
       </div>`;
   }
 
+  // SEHIR GORUNURLUGU (2026-08-25). Olculdu: sehir secimi CALISIYOR ama
+  // etkisi kullaniciya hic soylenmiyordu -- Erzurum secen kisi burada
+  // Carrefour'u gormuyor, sebebini bilmiyor ve "secim ise yaramiyor"
+  // saniyordu. Etki TAM OLARAK bu blokta (marketToplamlari -> marketVarMi),
+  // o yuzden aciklama da burada duruyor -- ayri bir ekranda degil.
+  // Mevcut desen kullanildi (.listem-toplam-aciklama), yeni bilesen YOK.
+  const _sehir = sehirOku();
+  const sehirNotu = _sehir
+    ? `<div class="listem-toplam-aciklama sepet-mkt-sehir">${_kacir(_sehir)}'da bulunan marketler karşılaştırılıyor</div>`
+    : '';
   return `<div class="sepet-mkt">
       <div class="sepet-mkt-baslik">Tek markette ne ödersin</div>
+      ${sehirNotu}
       ${satirlar}
       ${oneri}
     </div>`;
@@ -5920,9 +5931,18 @@ function profilSehirHTML() {
     : (eksik.length
         ? `${eksik.map(m => MARKET_NAMES[m]).join(' ve ')} senin ilinde bulunmuyor`
         : 'Bu ildeki tüm marketler gösteriliyor');
+  // KAPSAM CUMLESI (2026-08-25). Onceki not yalnizca "hangi market yok"
+  // diyordu; secimin NEYI etkileyip NEYI etkilemedigi hic yazmiyordu.
+  // Olculdu -- etkiledikleri: sepet market toplamlari + bolme onerisi,
+  // Marketleri Karsilastir, zam seridi adaylari, zam yayginlik metni,
+  // zam rozeti, market pill'leri. ETKILEMEDIKLERI: urun detayindaki market
+  // fiyat listesi ve kategori kart sayisi. Kullanicinin "ise yaramiyor"
+  // sanmasinin sebebi tam olarak bu ikinci gruptu.
+  const kapsam = 'Bu seçim market karşılaştırmasını ve zam takibini etkiler; ürün fiyatları tüm marketler için gösterilmeye devam eder.';
   return `<div class="profil-sehir">
       <select class="profil-sehir-select" aria-label="Şehir seç" onchange="sehirDegisti(this.value)">${secenekler}</select>
       <div class="profil-sehir-not">${not}</div>
+      <div class="profil-sehir-not profil-sehir-kapsam">${kapsam}</div>
     </div>`;
 }
 

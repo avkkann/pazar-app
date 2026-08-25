@@ -20,6 +20,22 @@ Mustafa (GitHub: avkkann), **Pazar App**'in tek geliştiricisi — Türk market 
 
 ## Mevcut durum (2026-08-21 itibarıyla)
 
+### 2026-08-25 — Madde 5 KAPANDI: şehir seçimi artık **görünür** (işlev zaten çalışıyordu)
+
+Önceki turda ölçülmüştü: seçim **çalışıyor** — kaydediliyor, okunuyor, kullanılıyor. Sorun kullanıcının **etkiyi görememesiydi**: Erzurum seçen kişi ürün detayında CarrefourSA fiyatını görmeye devam ediyor ve "seçim işe yaramıyor" sanıyordu.
+
+**Etki haritası (teyit edildi):** sepet market toplamları + bölme önerisi · Marketleri Karşılaştır · zam şeridi adayları · zam yaygınlık metni · zam rozeti · market pill'leri. **Etkilemedikleri:** ürün detayındaki market fiyat listesi, kategori kart sayısı. Yanlış algının kaynağı tam olarak bu ikinci gruptu.
+
+**İki dokunuş noktası, yeni bileşen YOK — mevcut sınıflar yeniden kullanıldı:**
+1. **Etkinin gerçekten olduğu yerde** (`sepetMarketOzetiHTML`, "Tek markette ne ödersin" bloğu): şehir seçiliyse **"<İl>'da bulunan marketler karşılaştırılıyor"**. `.listem-toplam-aciklama` sınıfı kullanıldı. Seçim yoksa satır **hiç çizilmiyor** (kontrol grubuyla doğrulandı).
+2. **Seçimin yapıldığı yerde** (`profilSehirHTML`): kapsam cümlesi — *"Bu seçim market karşılaştırmasını ve zam takibini etkiler; ürün fiyatları tüm marketler için gösterilmeye devam eder."* Mevcut `.profil-sehir-not` sınıfı. Eski not ("CarrefourSA ve Hakmar senin ilinde bulunmuyor") **korundu**; kapsam cümlesi onun altına eklendi.
+
+CSS'e yalnız iki ince ayar kuralı girdi (boşluk/opaklık); **yeni renk ya da ölçü tanımlanmadı**. Satır içi stil yok, satır içi handler yok (sayaç 19/19).
+
+**Doğrulama:** `test_sehir.mjs` 51 → **61 iddia** — notun **koşullu** olduğu, şehir adının **kaçışlı** yazıldığı, notun **dönüş bloğunda** basıldığı, kapsam cümlesinin hem "ne etkilenir" hem "ne etkilenmez" dediği. Harness **4/4 kırmızı**. `test_kacis.mjs` ve `test_sepet_bol.mjs` `sepetMarketOzetiHTML`'i vm'de koşturduğu için `sehirOku` bağımlılığı eklendi — **iddia gevşetilmedi**, yalnız çalışma ortamı tamamlandı (`test_hakmar.mjs` ile aynı desen). 50/50 test yeşil.
+
+> **Harness yine kör nokta buldu (bu oturumda aynı sınıfın ÜÇÜNCÜSÜ):** "şehir notu koşulsuz oldu" mutasyonu yeşil kalmıştı — iddiam `_sehir ... ? ... : ''` diye gevşek arıyordu ve `_sehir` şablonun **içinde** de geçtiği için koşul `true` yapılsa bile tutuyordu. İddia **koşulun kendisine** bağlandı. Desen sabit: *aranan dize başka bir yerde de geçiyorsa, iddia yanlış yeri ölçüyor olabilir.*
+
 ### 2026-08-25 — Madde 10 KAPANDI: detay "kg başına" satırı komşularıyla hizalandı
 
 **Şikâyet "ekranın soluna sıkışıyor"du; ölçüm SIKIŞMA DEĞİL HİZASIZLIK gösterdi.** `.detay-birim-fiyat`, `.detay-info`'nun **kardeşi** — yatay dolguyu `.detay-info` kendi üstünde taşıdığı için bu öğeye hiç uygulanmıyordu.
@@ -130,7 +146,7 @@ Ekran görüntüsü doğruladı: beyaz boş dikdörtgenler. Detayda aynısı (so
 
 **SORUN İŞLEVDE DEĞİL GÖRÜNÜRLÜKTE:** seçim **ürün detayındaki market fiyat listesini ve kategori kart sayısını ETKİLEMİYOR** (kart sayısı 48 → 48). Erzurum seçen kullanıcı ürün detayında carrefour fiyatını görmeye devam ediyor — bu bir hata değil kapsam kararı, ama "seçim işe yaramıyor" hissini birebir açıklıyor.
 
-**KARAR: KALDIRILMAYACAK, GÖRÜNÜR KILINACAK (ayrı iş).** Kaldırılsaydı beş çağrı noktası koşulsuz `true` olurdu → illerin 46'sında bulunmayan carrefour/hakmar tekrar önerilirdi; ayrıca `data/il_marketler.json`, haftalık `il-marketler.yml`, `il_market_tara.py` ve **`test_sehir.mjs` (51 iddia)** ölü kalırdı.
+**KARAR: KALDIRILMAYACAK, GÖRÜNÜR KILINACAK.** ✅ **2026-08-25'te yapıldı** — ayrıntı: yukarıdaki "Madde 5 KAPANDI" bloğu. Kaldırılsaydı beş çağrı noktası koşulsuz `true` olurdu → illerin 46'sında bulunmayan carrefour/hakmar tekrar önerilirdi; ayrıca `data/il_marketler.json`, haftalık `il-marketler.yml`, `il_market_tara.py` ve **`test_sehir.mjs` (51 iddia)** ölü kalırdı.
 
 ### 2026-08-23 — KVKK / hesap silme: **UÇTAN UCA GEÇTİ — hesap silme CANLI** ✅
 
@@ -946,7 +962,7 @@ Bu aralık `DENETIM.md`'nin (2026-08-11) bulgularını kapatmakla geçti. Sürü
 | `test_profil.mjs` | 55 | Profil bölümleri, "verisi yoksa çizme" kuralı |
 | `test_resim.py` | 53 | Searlo kalıcı hata kesmesi, resim koruma, `.env` okuma |
 | `test_klavye_kalan.mjs` | 52 | Son 10 klavye açığı, modal arka planlarının bilerek dışarıda kalması |
-| `test_sehir.mjs` | 51 | Şehir seçimi, `marketVarMi` kapısı, il market haritası |
+| `test_sehir.mjs` | 61 | Şehir seçimi, `marketVarMi` kapısı, il market haritası |
 | `test_temiz_seri.mjs` | 47 | Salınımsız seri, susturma-yok kuralı, yerel gün sınırı |
 | `test_routing_duzen.mjs` | 44 | `?screen=` haritası, PWA kısayolları, masaüstü sütun dengesi |
 | `test_cmp_satir.mjs` | 43 | Karşılaştırma satırı (56px, iki satır ad, atanan fiyattan birim fiyat) |
@@ -1225,6 +1241,7 @@ Uygulama teknik olarak çalışıyor ama **pratikte hâlâ dağıtılmamış dur
 - **`getComputedStyle` bu araçta ÖNCEDEN VAR OLAN düğümlerde BAYAT değer döndürebiliyor — üç tur boyunca olmayan bir hatayı kovaladık.** 2026-08-12: `.cat-card` koyu temada `rgb(255,255,255)` okuyordu, kontrast 1,24 çıkıyordu. Kanıt zinciri: (a) CSS kaynağında `--card-bg` yalnızca iki yerde tanımlı (`:root` beyaz, `[data-theme="dark"]` koyu), build çıktısında sıra doğru; (b) 826 kural tarandı, 0 seçici hatası, elemana uyan **yalnızca iki** background kuralı ve ikisi de `var(--card-bg)`; (c) elemanın **kendi üzerinde** `--card-bg` = `#1C2823`; (d) **elemana doğrudan inline `background-color:#1C2823` yazıldı, okuma yine beyaz döndü** — canlı bir eleman için imkânsız; (e) yanı başına eklenen klon ve `renderCatGrid()` sonrası yeni kartlar `rgb(28,40,35)` veriyor; (f) **ekran görüntüsü kartları koyu ve okunur gösteriyor.** Yani kod doğruydu, ölçüm yanlıştı. **KURAL: renk/geometri iddiasını yalnızca `getComputedStyle` ile kapatma — ekran görüntüsüyle veya taze oluşturulmuş bir düğümle çapraz doğrula.** Bir okumanın gerçek olup olmadığını sınamanın en hızlı yolu: elemana inline stil yaz, değişmiyorsa okuma bayattır.
 - **TestSprite — DENENDİ, UYMADI (2026-08-11), tekrar deneme.** MCP sunucusu *yerel* sunucuyu tünelliyor; canlı URL'yi (`avkkann.github.io/pazar-app`) test EDEMİYOR — kendi açıklaması "use the TestSprite CLI instead" diyor. `dist/` yerelde sunulup denendi: `testsprite_bootstrap` 48100'de **etkileşimli bir kurulum arayüzü** açıp insan onayı bekledi, 1800 sn sessizlik sonrası düştü (`status` hep `"init"`, 0 kredi harcandı). Ayrıca **12 yetim süreç** bıraktı (3/5/7 Ağustos oturumlarından, günlerdir çalışıyorlardı) ve `Desktop/.mcp.json`'da API anahtarını **düz metin** tutuyordu. Hepsi temizlendi. Canlı URL denenecekse **MCP değil CLI**.
 - **gh CLI** — `gh run list/watch/view --log`, deploy ve veri koşusu doğrulaması
+- **`gh run watch --exit-status`'ün ÇIKIŞ KODUNA GÜVENME — 2026-08-25'te İKİ KEZ yanılttı.** İkisinde de `1` döndürdü ve ikisinde de koşu **gerçekte `success`**'ti; ikincisinde koşu daha `in_progress`ken watch erken çıktı. Yani çıkış kodu "koşu başarısız" değil, "watch bitmeden koptu" anlamına gelebiliyor. **Kural: yayın kararını watch'un çıkış koduna değil, koşunun kendi sonucuna bağla** — `gh run view <id> --json status,conclusion` ile oku ve `status == "completed"` olana kadar bekle (gerekirse kısa aralıklarla yokla), sonra `conclusion`'a bak. Job kırılımı için `--json jobs`. Bu, bu dosyada zaten yazılı olan **"aletin kendisi yanılabilir"** deseninin CI tarafındaki hâli — `check-ignore -v`, headless `--window-size`, `getComputedStyle` bayatlığı ve prove-by-breaking'in uygulanmamış mutasyonu ile aynı sınıf.
 
 ### ORTAM — Kaspersky bu makinede araya giriyor (TEK KAYIT, üç vaka)
 

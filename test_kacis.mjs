@@ -279,7 +279,11 @@ console.log('\n=== S4 DIŞ-API RENDER YOLLARI: GERÇEK _kacir ile kaçış (4639
   function kur(extra) {
     const c = Object.assign({ console, tl: (n) => String(n), birimFiyatYazi: () => '',
       _birimFiyatHam: () => ({}), placeholderRenk: () => ({ emoji: 'X' }),
-      ustKategori: (x) => x, lcIcon: () => '' }, extra || {});
+      ustKategori: (x) => x, lcIcon: () => '',
+      // 2026-08-25: sepetMarketOzetiHTML artik secili sehri okuyor.
+      // Bu test KACIS yollarini sinar, sehir gorunurlugunu degil -> stub
+      // 'secim yok' der, not cizilmez, sinanan yollar AYNEN kalir.
+      sehirOku: () => null }, extra || {});
     vm.createContext(c);
     vm.runInContext([fnKaynak('_kacir'), fnKaynak('_guvenliUrl')].filter(Boolean).join('\n'), c);
     return c;

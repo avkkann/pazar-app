@@ -46,6 +46,11 @@ function kur(sepet) {
   vm.runInContext([
     'const BOLME_MIN_KAZANC = ' + esik + ';',
     fnKaynak('_sepetMarketFiyati'),
+    // 2026-08-25: sepetMarketOzetiHTML artik sehirOku() cagiriyor. Gercek
+    // kaynak eklendi (kopya mantik degil); vm'de localStorage olmadigi icin
+    // kendi catch'ine dusup null donuyor = 'sehir secilmemis'. Bu testin
+    // iddialari (toplamlar, bolme onerisi) sehirden BAGIMSIZ, degismedi.
+    fnKaynak('sehirOku'),
     fnKaynak('marketToplamlari'), fnKaynak('sepetBolmeOnerisi'), fnKaynak('sepetMarketOzetiHTML'),
   ].join('\n'), ctx);
   return ctx;

@@ -3210,3 +3210,11 @@
 .arama-kat-oneri span { color: var(--primary); }
 @media (hover: hover) { .arama-kat-oneri:hover { border-color: var(--primary); } }
 .arama-kat-oneri:active { opacity: .7; }
+
+/* Sehir gorunurlugu (2026-08-25). Ikisi de MEVCUT not siniflarini yeniden
+   kullaniyor; buradaki iki kural yalniz ince ayar:
+   - sepet-mkt-sehir: ozet basligiyla satirlar arasinda nefes payi
+   - profil-sehir-kapsam: kapsam cumlesi, ustundeki nottan ayrilsin diye
+     biraz daha soluk ve ust bosluklu (yeni renk/olcu TANIMLANMADI). */
+.sepet-mkt-sehir { margin-bottom: var(--space-2); }
+.profil-sehir-kapsam { margin-top: var(--space-1); opacity: .85; }
