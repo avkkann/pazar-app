@@ -4058,7 +4058,10 @@ function setAltKat(ad) {
 }
 
 function catAra(q) {
-  window._catAramaTermi = (q || '').trim().toLowerCase();
+  // HAM saklaniyor: normalize TEK KAPIDA (urunAra -> trNormalize). Once
+  // burada toLowerCase yapiliyordu ve arama Turkce'de asimetrikti:
+  // olculdu -> "sut" 0 sonuc, "sut" 339 sonuc; "seker" 0, "seker" 40.
+  window._catAramaTermi = (q || '').trim();
   uygulaCatFiltre();
 }
 
@@ -4182,9 +4185,8 @@ function uygulaCatFiltre() {
   }
 
   if (aramaTermi.length > 0) {
-    filtreliler = filtreliler.filter(u => {
-      return (u.ad || '').toLowerCase().includes(aramaTermi);
-    });
+    // TEK KAPI: trNormalize + puanlama (tam kelime > kelime basi > alt dize).
+    filtreliler = urunAra(filtreliler, aramaTermi);
   }
 
   const secililer = window.aktifMarketler || [];
@@ -4209,8 +4211,14 @@ function uygulaCatFiltre() {
     pill.classList.toggle('active', secililer.includes(m));
   });
 
-  const sir = window._catSiralama || 'populer';
-  if (sir === 'birimfiyat') {
+  // ARAMA AKTIFKEN VE SIRALAMA VARSAYILANDA ISE: urunAra'nin ALAKA sirasi
+  // korunur. Yoksa popularite sirasi skoru ezer ve "tam kelime once" kurali
+  // ekranda hic gorunmez. Kullanici ACIKCA baska bir siralama sectiyse onun
+  // tercihi kazanir -- alaka sirasi varsayilanin yerine gecer, secimin degil.
+  const sir = (aramaTermi.length > 0 && !window._catSiralama) ? '_alaka' : (window._catSiralama || 'populer');
+  if (sir === '_alaka') {
+    /* urunAra zaten skora gore siraladi, dokunma */
+  } else if (sir === 'birimfiyat') {
     filtreliler = filtreliler.slice().sort(function(a,b) {
       var ba = birimFiyatHesapla(a);
       var bb = birimFiyatHesapla(b);
@@ -4292,6 +4300,13 @@ async function loadAllCats() {
 
 function trNormalize(s) {
   return String(s || '')
+    // BIRLESIK NOKTA (U+0307). OLCULDU 2026-08-25: hal.json'daki 139 urunun
+    // 56'sinda (%40) ad "Ci̇lek" gibi -- 'i' + COMBINING DOT ABOVE. Kaynaktaki
+    // bozuk buyuk/kucuk harf donusumunden geliyor. Bu isaret soyulmadan
+    // "cilek" yazan kullanici o 56 urunun HICBIRINI bulamiyordu.
+    // Ana katalogda bu isaretten 0 tane var (olculdu, 16.696 urun) -> bu satir
+    // orayi ETKILEMEZ, yalnizca hal aramasini kurtarir.
+    .replace(/̇/g, '')
     .replace(/İ/g, 'i').replace(/I/g, 'i').replace(/ı/g, 'i')
     .replace(/Ş/g, 's').replace(/ş/g, 's')
     .replace(/Ğ/g, 'g').replace(/ğ/g, 'g')
@@ -5297,7 +5312,8 @@ function renderHalScreen() {
     const gorselHtml = u.gorsel
       ? `<img src="${_guvenliUrl(u.gorsel)}" alt="${_kacir(u.ad)}" loading="lazy" class="hal-gorsel" onerror="this.outerHTML='<div class=&quot;hal-gorsel-ph hal-ph--${kat}&quot;>${halEmojiler[kat]}</div>'">`
       : `<div class="hal-gorsel-ph hal-ph--${kat}">${halEmojiler[kat]}</div>`;
-    return `<div class="hal-grid-card" data-kat="${kat}">
+    // data-ad: arama artik render edilmis METNI degil VERIYI okuyor.
+    return `<div class="hal-grid-card" data-kat="${kat}" data-ad="${_kacir(u.ad)}">
       ${gorselHtml}
       <div class="hal-govde">
         <div class="hal-ad">${_kacir(u.ad)}</div>
@@ -5306,7 +5322,19 @@ function renderHalScreen() {
       </div>
     </div>`;
   }).join('');
-  container.innerHTML = tarihDisplay + filtersHtml + `<div class="hal-grid" id="halList">${cards}</div>`;
+  // ARAMA KUTUSU (2026-08-25 eklendi). BULGU: halArama() ve dinleyici kaydi
+  // BASTAN BERI VARDI ama #halSearch HICBIR YERDE URETILMIYORDU --
+  // getElementById sessizce null donuyor, ?. ile dinleyici bosa dusuyordu.
+  // Yani 139 kartlik ekranda arama kullaniciya HIC ULASMAMIS.
+  // Desen DIGER KUTULARDAN kopyalandi (yeni tasarim yok): ayni sarmalayici
+  // stili (.hal-search-wrap, CSS'te .cat-search-wrap ile AYNI kurala bagli),
+  // ayni placeholder dili, ayni aria-label deseni.
+  // SATIR ICI HANDLER YOK: dinleyici asagida addEventListener ile baglaniyor
+  // (sayac 19/19 sabit kalsin diye).
+  const aramaHtml = '<div class="hal-search-wrap">'
+    + '<input type="text" id="halSearch" placeholder="Hal ürünlerinde ara..." autocomplete="off" aria-label="Hal ürünlerinde ara">'
+    + '</div>';
+  container.innerHTML = tarihDisplay + aramaHtml + filtersHtml + `<div class="hal-grid" id="halList">${cards}</div>`;
   document.getElementById('halSearch')?.addEventListener('input', halArama);
 }
 
@@ -5343,12 +5371,28 @@ function firsatTab(tab, btn) {
 }
 
 function firsatAra(q) {
-  window._firsatArama = (q||'').toLowerCase().trim();
-  const kartlar = document.querySelectorAll('#firsatContent .firsat-card');
-  kartlar.forEach(function(k) {
-    const isim = (k.querySelector('.firsat-card-name')||{}).textContent||'';
-    k.style.display = (!window._firsatArama || isim.toLowerCase().includes(window._firsatArama)) ? '' : 'none';
+  // ONCE: kart METNI okunup duz toLowerCase ile includes yapiliyordu.
+  // Iki kusur vardi: (a) Turkce asimetri (olculdu: "sut" 0 / "sut" 2),
+  // (b) DOM metnine bagimlilik -- kirpilmis/isaretlemeli metinde kirilgan.
+  // SIMDI: kart data-id ile productMap'ten GERCEK urune cozuluyor, skor
+  // _aramaSkoru'ndan geliyor ve kartlar skora gore YENIDEN SIRALANIYOR.
+  // productMap'te bulunamayan kart icin kart metni YEDEK yol (sessiz
+  // kaybolmasin diye), ama o da trNormalize'den geciyor.
+  window._firsatArama = (q||'').trim();
+  const kap = document.getElementById('firsatContent');
+  const kartlar = [...document.querySelectorAll('#firsatContent .firsat-card')];
+  const qn = trNormalize(window._firsatArama);
+  if (!qn) { kartlar.forEach(function(k){ k.style.display=''; }); return; }
+  const skorlu = kartlar.map(function(k) {
+    const u = k.dataset && k.dataset.id ? productMap[k.dataset.id] : null;
+    const ad = (u && u.ad) || ((k.querySelector('.firsat-card-name')||{}).textContent||'');
+    return { k: k, s: _aramaSkoru(ad, qn) };
   });
+  skorlu.forEach(function(x){ x.k.style.display = x.s ? '' : 'none'; });
+  if (!kap) return;
+  skorlu.filter(function(x){ return x.s; })
+        .sort(function(a,b){ return b.s - a.s; })
+        .forEach(function(x){ kap.appendChild(x.k); });
 }
 
 function renderFirsatlar(tab) {
@@ -6109,11 +6153,24 @@ function firsatSepetEkle(btn, id) {
 }
 
 function halArama() {
-  const q = document.getElementById('halSearch').value.toLowerCase().trim();
-  document.querySelectorAll('#halList .hal-grid-card').forEach(c => {
-    const name = c.querySelector('div:nth-child(2) div:first-child').textContent.toLowerCase();
-    c.style.display = name.includes(q) ? '' : 'none';
+  // ONCE: kart icindeki nth-child ile METIN okunup duz toLowerCase
+  // includes yapiliyordu -- hem Turkce asimetrikti hem de kart yapisi
+  // degisince sessizce kirilirdi. SIMDI: data-ad (VERIDEN geliyor) +
+  // trNormalize + puanlama; kartlar skora gore yeniden siralaniyor.
+  const el = document.getElementById('halSearch');
+  const qn = trNormalize(el ? el.value : '');
+  const kap = document.getElementById('halList');
+  const kartlar = [...document.querySelectorAll('#halList .hal-grid-card')];
+  if (!qn) { kartlar.forEach(function(c){ c.style.display=''; }); return; }
+  const skorlu = kartlar.map(function(c) {
+    const ad = (c.dataset && c.dataset.ad) || '';
+    return { c: c, s: _aramaSkoru(ad, qn) };
   });
+  skorlu.forEach(function(x){ x.c.style.display = x.s ? '' : 'none'; });
+  if (!kap) return;
+  skorlu.filter(function(x){ return x.s; })
+        .sort(function(a,b){ return b.s - a.s; })
+        .forEach(function(x){ kap.appendChild(x.c); });
 }
 
 loadData();

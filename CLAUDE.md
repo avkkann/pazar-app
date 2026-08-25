@@ -36,9 +36,27 @@ Mustafa (GitHub: avkkann), **Pazar App**'in tek geliştiricisi — Türk market 
 
 **Doğrulama:** yeni `test_arama.mjs` (37 iddia) **davranışsal ve gerçek katalogla** (`data/urunler_*.json`), kaynak grep'i değil. Harness **6/6 kırmızı**. 50/50 test yeşil.
 
+#### 2026-08-25 (ikinci tur) — Madde 7 **TAM KAPANDI**: dört kutunun dördü de tek kapıda
+
+Ana aramadan sonra kalan üç kutu (`catAra`/`uygulaCatFiltre`, `firsatAra`, `halArama`) da `trNormalize` + `_aramaSkoru` + `urunAra` kapısına bağlandı. **Ölçülen taban → sonra** (dinleyici katmanında, saf fonksiyonda değil):
+
+| | kategori (DOM kart) | fırsatlar (görünür kart) |
+|---|---|---|
+| `sut` / `süt` | **0** / 339 → **48 / 48** | **0** / 2 → **2 / 2** |
+| `seker` / `şeker` | **0** / 40 → **40 / 40** | **0** / 2 → **2 / 2** |
+| `icim` / `İçim` | **0** / 110 → **48 / 48** | — |
+
+*(48 = `PAGE_SIZE`; kategori ekranı sayfalı — 2323 üründen ilk sayfa, ölçüldü.)* Sıralama da düzeldi: "süt" → `Sek Süt 1 Lt`, `İçim Süt 1 Lt` (tam kelime üstte). Fırsat ve hal artık **veriden** okuyor: fırsat kartı `data-id` → `productMap`, hal kartı yeni `data-ad` (DOM metni yalnız yedek yol).
+
+**BULGU — hal araması BAŞTAN BERİ ÖLÜ KODMUŞ.** `halArama()` ve dinleyici kaydı (`getElementById('halSearch')?.addEventListener`) vardı ama **`#halSearch` hiçbir yerde üretilmiyordu**: ölçüldü, hal ekranında **sıfır `<input>`**, `getElementById` sessizce `null` dönüyor, `?.` dinleyiciyi boşa düşürüyordu. Yani 139 kartlık ekranda arama kullanıcıya **hiç ulaşmamış**. Eski `halArama` kutu yokken `null.value` okuyup **patlıyordu**. Bu turda kutu eklendi (`renderHalScreen` içinde, **satır içi handler YOK** — mevcut `addEventListener` kaydı kullanıldı), stil diğer kutulardan **kopyalandı** (`.hal-search-wrap`, CSS'te `.cat-search-wrap` ile **aynı kurala** bağlandı; yeni tasarım yok). Doğrulandı: boşta 139 kart, `acur` → 1, `domates` → 2, temizleyince 139; 390 ve 320px'te yatay taşma yok, kutu 44px yüksek / 16px font (iOS odak zoom'u guard'ı).
+
+**İKİNCİ BULGU — hal adlarının %40'ı aranamıyordu.** `hal.json`'daki 139 ürünün **56'sında** ad `Çi̇lek` gibi: `i` + **U+0307 COMBINING DOT ABOVE** (kaynaktaki bozuk büyük/küçük harf dönüşümü). `trNormalize` bu işareti bilmediği için "cilek" yazan kullanıcı o 56 ürünün **hiçbirini** bulamıyordu. Tek satırla soyuldu. **Ana katalogda bu işaretten 0 tane var** (16.696 üründe ölçüldü) → değişiklik orayı etkilemiyor; kontrol grubu: normal Türkçe harfler bozulmadı (`Şeker Çay Üzüm` → `seker cay uzum`).
+
+**Doğrulama:** `test_arama.mjs` 37 → **56 iddia** (üç kutunun **dinleyicisi** ayrıca kilitli). Harness **16/16 kırmızı**. `test_hakmar.mjs` vm bağımlılığı güncellendi (`urunAra`/`_aramaSkoru`/`trNormalize` eklendi — **iddia gevşetilmedi**). `test_mobil_dokunma.mjs`'in iOS 16px guard'ı seçici listesini kabul edecek şekilde genişletildi ve **`.hal-search-wrap input` de korumaya alındı** (bir seçici daha, gevşeme değil). 50/50 test yeşil, satır içi handler sayacı 19/19.
+
 #### Açık kalanlar (ölçüldü, bu turda kapatılmadı)
 1. **"yağ" hâlâ zayıf.** İlk sonuçlar "Porçöz **Yağ** Çözücü" (temizlik) — çünkü orada "yağ" **tam kelime** (skor 3); yemeklik yağda "Yağ**ı**" ek almış (skor 2). **Türkçe ek çözümleme** gerekiyor: ayrı ve büyük iş. Eskisinden kötü değil (eskiden "Zeytinyağlı Ton Balığı" geliyordu) ama iyi de değil.
-2. **Diğer dört arama kutusu hâlâ düz `toLowerCase`** — `catAra`/`uygulaCatFiltre`, `firsatAra`, `halArama`. Ölçüldü: kategori ekranında `sut` → **0 sonuç** (`süt` → 339), `seker` → **0** (`şeker` → 40), `icim` → **0** (`İçim` → 110). Türkçe karakter kullanmayan kullanıcı hiçbir şey bulamıyor. **Sıradaki tur.** Ayrıca `firsatAra`/`halArama` veri yerine **DOM metni** okuyor (gizli kartlarda kırılgan).
+2. ~~**Diğer dört arama kutusu hâlâ düz `toLowerCase`**~~ **KAPANDI (2026-08-25 ikinci tur)** — üçü de tek kapıya bağlandı, hal kutusu eklendi. Ayrıntı: yukarıdaki blok.
 
 ### 2026-08-25 — Madde 12 KAPANDI: ürün görselleri `cover` → `contain` (sorun çözünürlük değil KIRPMAYDI)
 
@@ -968,7 +986,7 @@ Bu aralık `DENETIM.md`'nin (2026-08-11) bulgularını kapatmakla geçti. Sürü
 
 | `test_cls.mjs` | 45 | Görsel yuvası: `-ph` kutusunun resimden BAĞIMSIZ çizilmesi, `onerror`'ın HTML üretmemesi, satır içi `onload` yasağı, dinleyicinin **capture** fazında kayıtlı olması (`load` kabarcıklanmaz), `.yuklendi` emojiyi gizlemesi, `.detay-img-wrap` min-height 228/308 **layout kilidi**. Dinleyici davranışsal + kontrol gruplu (alakasız kaba ve IMG olmayan hedefe dokunmamalı). Ayrıca **sepet kartı 2. satırı**: rozet gramajla yan yana, `min-height` rezervesi (asenkron rozet kart içi kaydırmasın), gramaj tabanı sıfırlanamaz, rozet kısalabilir, ≤360px'te rozet ikona iner (`display:none` DEĞİL — metin a11y ağacında kalır), ikonun erişim yolu (kart → detay) kilitli |
 
-| `test_arama.mjs` | 37 | Arama eşleşme + puanlama: **gerçek katalogla** (16.696 ürün) davranışsal — "kola" ilk 5'te 5/5 gerçek kola, `kola/çay/su/kahve` farklı sonuç (kestirme geri gelmesin), tam kelime > kelime başı > alt dize sırası, `trNormalize` tek kapı (süt=sut), kategori önerisi sonucun yerini almıyor + ikonu sessizce boş değil, vekil ölçüm (en sık 30 kelime ≥28 tam kelime). Ayrıca ana arama **dinleyicisinin** `urunAra` kullandığı (guard'ın kör noktasıydı) |
+| `test_arama.mjs` | 56 | Arama eşleşme + puanlama: **gerçek katalogla** (16.696 ürün) davranışsal — "kola" ilk 5'te 5/5 gerçek kola, `kola/çay/su/kahve` farklı sonuç (kestirme geri gelmesin), tam kelime > kelime başı > alt dize sırası, `trNormalize` tek kapı (süt=sut), kategori önerisi sonucun yerini almıyor + ikonu sessizce boş değil, vekil ölçüm (en sık 30 kelime ≥28 tam kelime). Ayrıca ana arama **dinleyicisinin** `urunAra` kullandığı (guard'ın kör noktasıydı) |
 
 **Toplam 56 takipli dosya (50 `.mjs` + 6 `.py`) — 2026-08-24'te `test_firsat_detay.mjs` ve `test_cls.mjs` eklendi. CI kapısından geçen 55 (50 `.mjs` + 5 `.py`).** Her iki CI adımı da **glob** ile çalışıyor (`for t in test_*.mjs` / `test_*.py`) → yeni test eklenince kapıya kendiliğinden giriyor, elle liste yok. Tek açık dışlama `test_resim.py` (canlı Searlo API'sine çıkıyor). Sayı gün içinde 49→50 oldu: `test_sablon_slug.mjs` kapı kurulduktan sonra eklendi.
 Bu tablo 2026-08-17'de **33 dosyada donmuştu**; hub turu ve tasarım turlarında eklenen

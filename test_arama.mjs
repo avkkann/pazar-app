@@ -63,6 +63,11 @@ function sabit(ad) {
   return '';
 }
 
+// YORUM SOYUCU: bu depoda bir testin KENDI ACIKLAMA YORUMUYLA eslesip yanlis
+// KIRMIZI vermesi DORDUNCU kez yasandi (bkz. CLAUDE.md). Kaynakta "su desen
+// YOK" turu iddia kurmadan once yorumlar SOYULUR.
+const kodu = (src) => String(src || '').replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
+
 const kutu = { console };
 vm.createContext(kutu);
 const kaynak = [
@@ -164,7 +169,90 @@ console.log('\n=== 6. ANA ARAMA DINLEYICISI TEK KAPIYI KULLANIYOR ===');
   ok('  kategori onerisi ayri satirda ciziliyor', /_aramaOneriCiz\(kategoriOnerisi\(/.test(dinleyici), '');
 }
 
-console.log('\n=== 7. VEKIL OLCUM: en sik 30 kelimede ilk sonuc TAM KELIME ===');
+console.log('\n=== 7. DIGER UC ARAMA KUTUSU DA TEK KAPIDAN GECIYOR ===');
+// Bu bolum KAYNAK duzeyinde ve bu BILINCLI: uc kutunun dinleyicisi de DOM'a
+// bagli, vm'de kosturulamiyor. Bu turun dersi: davranissal test yanlis
+// KATMANDA cagrilirsa kordur -- o yuzden saf fonksiyonun yaninda CAGRI
+// YERLERI de ayrica kilitleniyor.
+// OLCULEN TABAN (duzeltmeden once, canli): kategori ekraninda
+//   "sut" 0 / "sut" 339 · "seker" 0 / "seker" 40 · "icim" 0 / "Icim" 110
+//   firsatlarda "sut" 0 / "sut" 2 · "seker" 0 / "seker" 2
+{
+  const cat = govde('catAra');
+  ok('catAra sorguyu HAM sakliyor (normalize tek kapida)',
+     cat.length > 0 && !/toLowerCase/.test(kodu(cat)), kodu(cat));
+
+  const ucf = govde('uygulaCatFiltre');
+  ok('uygulaCatFiltre arama icin urunAra kullaniyor', /filtreliler\s*=\s*urunAra\(/.test(ucf),
+     (ucf.match(/aramaTermi\.length[\s\S]{0,160}/) || [''])[0]);
+  ok('  duz toLowerCase().includes() KALMADI',
+     !/\(u\.ad \|\| ''\)\.toLowerCase\(\)\.includes/.test(ucf), '');
+  // DIKKAT: sadece /_alaka/ aramak KOR -- o dize asagidaki
+  // "if (sir === '_alaka')" dalinda da geciyor, dolayisiyla SECIM satiri eski
+  // haline dondurulse bile iddia yesil kalirdi (harness yakaladi). Iddia
+  // SECIM SATIRININ KENDISINE bakiyor: alaka, arama aktifken ve kullanici
+  // acikca siralama secmemisken devreye girmeli.
+  const sirSatiri = (kodu(ucf).match(/const sir =[^\n]*/) || [''])[0];
+  ok('  arama aktifken ALAKA sirasi korunuyor (varsayilan siralama ezmiyor)',
+     /_alaka/.test(sirSatiri) && /aramaTermi\.length/.test(sirSatiri) && /!window\._catSiralama/.test(sirSatiri),
+     sirSatiri);
+
+  const fa = govde('firsatAra');
+  ok('firsatAra trNormalize + _aramaSkoru kullaniyor',
+     /trNormalize\(/.test(fa) && /_aramaSkoru\(/.test(fa), fa.slice(0, 200));
+  ok('  VERIDEN okuyor (productMap), DOM metni yalniz YEDEK',
+     /productMap\[/.test(fa), fa.slice(0, 300));
+  ok('  skora gore YENIDEN SIRALIYOR', /sort\(/.test(fa) && /appendChild\(/.test(fa), '');
+  ok('  duz toLowerCase().includes() KALMADI', !/toLowerCase\(\)\.includes/.test(fa), '');
+
+  const ha = govde('halArama');
+  ok('halArama trNormalize + _aramaSkoru kullaniyor',
+     /trNormalize\(/.test(ha) && /_aramaSkoru\(/.test(ha), ha.slice(0, 200));
+  ok('  VERIDEN okuyor (data-ad), nth-child METIN okuma KALMADI',
+     /dataset\.ad/.test(ha) && !/nth-child/.test(kodu(ha)), kodu(ha).slice(0, 300));
+  // Kutu DOM'da YOK (olculdu: #halSearch hicbir yerde uretilmiyor). Eski kod
+  // null uzerinde .value okuyup PATLIYORDU; yenisi patlamamali.
+  ok('  arama kutusu YOKKEN patlamiyor (null guvenli)',
+     /const el = document\.getElementById\('halSearch'\);[\s\S]{0,120}el \? el\.value/.test(ha), ha.slice(0, 260));
+
+  ok('hal karti data-ad tasiyor (arama VERIDEN okusun)',
+     /hal-grid-card"[^`]*data-ad="\$\{_kacir\(u\.ad\)\}"/.test(APP), '');
+}
+
+console.log('\n=== 7b. HAL: arama kutusu VAR ve birlesik nokta soyuluyor ===');
+{
+  // BULGU (2026-08-25): halArama() ve dinleyici kaydi BASTAN BERI vardi ama
+  // #halSearch HICBIR YERDE URETILMIYORDU -> arama kullaniciya hic ulasmamis.
+  // Olculdu: hal ekraninda sifir <input>, getElementById null donuyordu.
+  const rhs = kodu(govde('renderHalScreen'));
+  ok('renderHalScreen arama kutusunu basiyor', /halSearch/.test(rhs), rhs.slice(0, 200));
+  // DIKKAT: sadece /aramaHtml/ aramak KOR -- degiskenin TANIMI kalir ve
+  // innerHTML'den cikarilsa bile iddia yesil kalirdi (harness yakaladi,
+  // bu turda IKINCI kez ayni sinif). Iddia YAZMA SATIRINA bakiyor.
+  // Ilk eslesme YANLIS satiri yakaliyordu: renderHalScreen'de "Hal verisi
+  // bulunamadi" ERKEN DONUS dalinda da 'container.innerHTML = tarihDisplay'
+  // var. Dogru satir hal-grid'i basan satir.
+  const yazmaSatiri = (rhs.match(/container\.innerHTML = tarihDisplay[^\n]*hal-grid[^\n]*/) || [''])[0];
+  ok('  kutu innerHTML\'e GERCEKTEN giriyor', /aramaHtml/.test(yazmaSatiri), yazmaSatiri);
+  ok('  SATIR ICI handler YOK (117 kilidi)', !/oninput=/.test(rhs), '');
+  ok('  dinleyici addEventListener ile baglaniyor',
+     /getElementById\('halSearch'\)\?\.addEventListener\('input', halArama\)/.test(kodu(APP)), '');
+
+  // BIRLESIK NOKTA (U+0307): hal.json'daki 139 urunun 56'sinda ad 'i' + U+0307
+  // iceriyor (kaynaktaki bozuk buyuk/kucuk harf donusumu). Soyulmazsa "cilek"
+  // yazan kullanici o 56 urunun HICBIRINI bulamaz. Ana katalogda 0 tane var,
+  // yani bu soyma orayi etkilemiyor (olculdu).
+  const CILEK = 'Çi̇lek';
+  const tn = (x) => vm.runInContext('trNormalize(' + JSON.stringify(x) + ')', kutu);
+  ok('trNormalize birlesik noktayi (U+0307) soyuyor', tn(CILEK) === 'cilek', JSON.stringify(tn(CILEK)));
+  ok('  bozuk yazimli ad duz yazimla TAM KELIME esliyor',
+     skor(CILEK, 'cilek') === 3, String(skor(CILEK, 'cilek')));
+  // KONTROL GRUBU: soyma, normal Turkce isaretleri BOZMAMALI
+  ok('  KONTROL: normal Turkce harfler bozulmadi',
+     tn('Şeker Çay Üzüm') === 'seker cay uzum', JSON.stringify(tn('Şeker Çay Üzüm')));
+}
+
+console.log('\n=== 8. VEKIL OLCUM: en sik 30 kelimede ilk sonuc TAM KELIME ===');
 {
   const say = Object.create(null);
   for (const u of KATALOG) {

@@ -67,7 +67,12 @@ function calistir(urunlerVeri, aktifMarketler, altKat = 'tumu', arama = '') {
     enIyiBirimIdleri: () => new Set(),
     cardHTML: (u) => '<div class="product-card">' + u.ad + '</div>' };
   vm.createContext(ctx);
-  vm.runInContext(fnKaynak('renderUrunler') + '\n' + fnKaynak('uygulaCatFiltre') + '\nuygulaCatFiltre();', ctx);
+  // 2026-08-25: uygulaCatFiltre'nin arama dali artik TEK KAPIDAN geciyor
+  // (urunAra -> _aramaSkoru -> trNormalize). Bagimlilik eklendigi icin vm'e
+  // de eklendi; iddia DEGISMEDI, yalnizca calisma ortami tamamlandi.
+  vm.runInContext(
+    fnKaynak('trNormalize') + '\n' + fnKaynak('_aramaSkoru') + '\n' + fnKaynak('urunAra') + '\n' +
+    fnKaynak('renderUrunler') + '\n' + fnKaynak('uygulaCatFiltre') + '\nuygulaCatFiltre();', ctx);
   return { pillNodes: dom.pillNodes, sayac: dom.el.countNum.textContent, listeHTML: dom.el.productList.innerHTML };
 }
 

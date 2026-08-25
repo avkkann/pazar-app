@@ -116,8 +116,14 @@ console.log('\n=== 5. iOS SEKME-GECIS ZOOM + ODAK ZOOM ===');
      !/html,\s*body\s*\{\s*overflow-x:\s*hidden;?\s*\}/.test(CSS_KODU.replace(/@supports[^{]*\{[^}]*\{[^}]*\}[^}]*\}/g, '')), '');
 
   // (b) 16px alti input iOS'ta ODAKTA yakinlastirir ve zoom KALICI kalir.
-  for (const sel of ['.cat-search-wrap input', '.firsat-arabar input', '.alarm-input']) {
-    const re = new RegExp(sel.replace(/[.[\]]/g, '\\$&') + '\\s*\\{[^}]*\\}');
+  // 2026-08-25: '.hal-search-wrap input' EKLENDI (hal ekranina arama kutusu
+  // geldi) ve desen SECICI LISTESINI de kabul edecek sekilde genisletildi.
+  // Sebep: kural artik ".cat-search-wrap input, .hal-search-wrap input { ... }"
+  // biciminde; eski desen hemen ardindan '{' bekledigi icin kurali BULAMIYOR
+  // ve "font-size=YOK" diye YANLIS KIRMIZI veriyordu. Iddia GEVSEMEDI --
+  // aksine bir secici daha korunuyor; 16px kurali (iOS odak zoom'u) aynen.
+  for (const sel of ['.cat-search-wrap input', '.hal-search-wrap input', '.firsat-arabar input', '.alarm-input']) {
+    const re = new RegExp(sel.replace(/[.[\]]/g, '\\$&') + '[^{}]*\\{[^}]*\\}');
     const kural = (CSS_KODU.match(re) || [''])[0];
     const m = /font-size:\s*([\d.]+)(px|rem)/.exec(kural);
     const px = m ? (m[2] === 'rem' ? parseFloat(m[1]) * 16 : parseFloat(m[1])) : null;
