@@ -56,19 +56,37 @@
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);    /* durum geçişi     */
       --ease-giris: cubic-bezier(0.22, 1, 0.36, 1); /* giriş animasyonu */
 
-      /* Ekran/sekme geçiş süresi — TEK KAYNAK (ileri ve geri aynı sayıyı
-         kullansın diye). Değer uydurulmadı: 200ms bu dosyada zaten en çok
-         geçen süre (--splash-cikis ve .2s'lik geçişler). Böylece splash
-         sönmesi ile ekran değişimi AYNI tempoda. */
-      --gecis-ekran: 200ms;
-      /* Gelen ekranın başlangıç ötelemesi. ÖLÇÜLDÜ: eskiden translateX(100%)
-         idi ve gelen ekran ilk karede TAM viewport dışındaydı; giden ekran ise
-         aynı anda display:none olduğu için kullanıcı ~35-41ms boyunca BOŞ ekran
-         görüyordu (390px'te ilk kare kapsamı %0). Bu, "amatörce" hissinin
-         ölçülebilir kaynağıydı. --space-4 (16px) mevcut boşluk ölçeğinden
-         alındı; .screen zemini body ile aynı (--bg) olduğu için bu şerit
-         görünmez, ama hareket hâlâ yön belli ediyor. */
-      --gecis-otele: var(--space-4);
+      /* Ekran/sekme geçiş süresi — TEK KAYNAK (giren ve çıkan ekran aynı
+         sayıyı kullanmak ZORUNDA: farklı olsalar birebir döşenmez, aralarında
+         boşluk ya da bindirme oluşur). 260ms uydurulmadı — bu geçişin özgün
+         değeri ve ölçülen aralıkta: tam genişlik (390px) öteleme 200ms'te
+         aceleci, 260ms'te okunur. Splash sönmesi (200ms) ile eşit DEĞİL ve
+         olmamalı: o bir opaklık sönmesi, bu 390px'lik bir yol. */
+      --gecis-ekran: 260ms;
+      /* Ekran geçişinin öteleme mesafesi — GİREN ve ÇIKAN ekran için AYNI.
+         %100 = tam viewport genişliği. Bu değer BİREBİR DÖŞENME şartı:
+         çıkan [-100%+p, p], giren [p, 100%+p] aralığını kaplar, üst üste
+         binme SIFIR ve aralarında boşluk YOK.
+         %85-90 ÖLÇÜLDÜ ve ELENDİ: geçiş bitiminde çıkan ekranın sağ %15'i
+         hâlâ ekranda kalıyor ve çıkan ekran `position:absolute` olduğu için
+         girenin ÜSTÜNE boyanıyor → sol kenarda yanlış şerit.
+         (Önceki tur burada 16px'e inmişti; boşluk kapandı ama geçiş
+         algılanamaz oldu. Boşluğun doğru çözümü mesafeyi kısmak değil,
+         GİDEN EKRANI GÖRÜNÜR TUTMAK — aşağıdaki .anim-cikis-* notu.) */
+      --gecis-otele: 100%;
+      /* Geçiş eğrisi — GİREN ve ÇIKAN ekran için AYNI olmak ZORUNDA, yoksa
+         birebir döşenmez. Değer CSS'in kendi `ease-out` ANAHTAR SÖZCÜĞÜ
+         (0,0,0.58,1); bu dosyadaki `--ease-out` TOKEN'ı DEĞİL — o çok daha
+         keskin bir eğri (0.16,1,0.3,1) ve adı benziyor diye karıştırılmasın.
+         SEBEP ÖLÇÜLDÜ: 260ms üzerinde yol ilerlemesi (65/130/195ms)
+           --ease-giris  %76 / %96 / %100   <- 390px'lik kayma 130ms'de biter
+           --ease-out    %83 / %97 / %100
+           ease-out(kw)  %38 / %68 / %91    <- hareket süre boyunca okunur
+         Uygulamanın kendi eğrileri yolun neredeyse tamamını ilk çeyrekte
+         harcıyor; kısa mesafede fark etmez ama tam genişlik ötelemede geçişi
+         "sıçrama"ya çevirir. `ease-in-out` denenmedi değil ELENDİ: 65ms'de
+         yalnız %13 ilerler, dokunuşa gecikmeli hissi verir. */
+      --gecis-egri: ease-out;
 
       /* ══ SPLASH ════════════════════════════════════════════════════
          Zemin TEMA DEĞİŞKENİNE bağlı (--bg). Önceden #ffffff sabitti ve
@@ -234,6 +252,20 @@
     @supports not (overflow: clip) {
       html, body { overflow-x: hidden; }
     }
+    /* `body`ye KAPSAYICI BLOK rolü — ekran geçişindeki ÇIKAN ekran için.
+       ÖLÇÜLDÜ ve gerekli: çıkan ekran `position: absolute`; konumlanmış bir
+       atası olmadığında kapsayıcı bloğu İLK KAPSAYICI BLOK olur, o da
+       html/body'nin DIŞINDADIR — dolayısıyla yukarıdaki `overflow-x: clip`
+       onu KIRPMAZ. Geri geçişte çıkan ekran sağa ötelenince sayfa gerçekten
+       yatay kaydırılabilir hâle geliyordu (ölçüm: scrollWidth 390 → 744 ve
+       scrollTo(2000,0) sayfayı 354px KAYDIRDI). `position: relative` ile
+       kapsayıcı blok body olur ve clip devreye girer.
+       YAN ETKİSİ YOK — ölçüldü, varsayılmadı: sayfadaki 49 `absolute` ve 11
+       `fixed` öğenin HİÇBİRİNİN konumu ya da offsetParent'ı değişmiyor
+       (hepsinin zaten konumlanmış bir atası var). `fixed` öğeler zaten
+       etkilenmez; `relative` kapsayıcı blok oluşturmaz (transform/filter
+       oluştururdu, onlar eklenmedi). */
+    body { position: relative; }
 
     /* Etkileşimli öğelerde AÇIKÇA — köke ek olarak, belt-and-braces.
        Kaydırılabilir şeritler bilerek DIŞARIDA: onlarda `manipulation`
@@ -2173,21 +2205,50 @@
        Yön KORUNDU (ileri/geri ayrımı okunur kalsın), yalnız mesafe düştü.
        Sadece transform+opacity — yerleşimi etkilemez, CLS üretmez. */
     @keyframes animSlideInRight {
-      from { transform: translateX(var(--gecis-otele)); opacity: 0.6; }
-      to   { transform: translateX(0);                  opacity: 1; }
+      from { transform: translateX(var(--gecis-otele)); }
+      to   { transform: translateX(0); }
     }
     @keyframes animSlideInLeft {
-      from { transform: translateX(calc(-1 * var(--gecis-otele))); opacity: 0.6; }
-      to   { transform: translateX(0);                             opacity: 1; }
+      from { transform: translateX(calc(-1 * var(--gecis-otele))); }
+      to   { transform: translateX(0); }
     }
-    .screen.anim-slide-in   { animation: animSlideInRight var(--gecis-ekran) var(--ease-giris); }
-    .screen.anim-slide-back { animation: animSlideInLeft  var(--gecis-ekran) var(--ease-giris); }
+    /* ÇIKAN ekran — geçiş boyunca EKRANDA KALIR ve ters yöne ötelenir.
+       İlk denemede boşluk, öteleme 100% → 16px'e kısılarak kapatılmıştı;
+       boşluk gitti ama geçiş de algılanamaz oldu. Doğru çözüm bu: giden
+       ekranı görünür tut, ikisi tek film şeridi gibi kaysın.
+       `position: absolute` ZORUNLU: ekranlar BODY'nin doğrudan çocuğu ve
+       ikisi de akıştayken ALT ALTA diziliyor (ölçüldü: sepetOffsetTop 2575).
+       `top:0` görünür konumu DEĞİŞTİRMEZ — görünür ekran zaten belge
+       başında (homeOffsetTop 0). `margin: 0 auto; max-width: 600px` mirası
+       durduğu için masaüstünde ortalama da korunuyor.
+       `pointer-events: none`: çıkan ekran tıklanamasın. */
+    @keyframes animSlideOutLeft {
+      from { transform: translateX(0); }
+      to   { transform: translateX(calc(-1 * var(--gecis-otele))); }
+    }
+    @keyframes animSlideOutRight {
+      from { transform: translateX(0); }
+      to   { transform: translateX(var(--gecis-otele)); }
+    }
+    .screen.anim-slide-in   { animation: animSlideInRight  var(--gecis-ekran) var(--gecis-egri) both; }
+    .screen.anim-slide-back { animation: animSlideInLeft   var(--gecis-ekran) var(--gecis-egri) both; }
+    .screen.anim-cikis-sol  { animation: animSlideOutLeft  var(--gecis-ekran) var(--gecis-egri) both; }
+    .screen.anim-cikis-sag  { animation: animSlideOutRight var(--gecis-ekran) var(--gecis-egri) both; }
+    .screen.anim-cikis-sol,
+    .screen.anim-cikis-sag {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      pointer-events: none;
+    }
     /* reduced-motion'da AÇIKÇA hiç animasyon. Genel `animation-duration:0.01ms`
        reçetesi tek başına YETMİYOR — ölçüldü: animasyon 0,01ms'de bitse de ilk
-       karede `from` keyframe'i (16px ötelenmiş, %60 opak) bir kez boyanıyor,
-       yani kullanıcı minik bir sıçrama görüyor. `animation: none` ile o kare
-       de kalkıyor (ölçüm: ilk kare dx=0, opaklık=1). Aynı açık desen #splash
-       için de kullanılıyor (yukarıdaki reduced-motion bloğu). */
+       karede `from` keyframe'i bir kez boyanıyor, yani kullanıcı minik bir
+       sıçrama görüyor. `animation: none` ile o kare de kalkıyor (ölçüm: ilk
+       kare dx=0). Aynı açık desen #splash için de kullanılıyor.
+       ÇIKIŞ sınıfları burada YOK ve olmamalı: reduced-motion'da showScreen o
+       sınıfı zaten HİÇ eklemiyor (js tarafı). Eklenip yalnız animasyonu
+       kapatılsaydı `position:absolute` yerinde kalır ve giden ekran gelenin
+       ÜSTÜNDE hareketsiz dururdu. */
     @media (prefers-reduced-motion: reduce) {
       .screen.anim-slide-in, .screen.anim-slide-back { animation: none !important; }
     }

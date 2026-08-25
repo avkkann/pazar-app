@@ -1262,6 +1262,56 @@ function sablonYukle(id) {
 // ── NAVİGASYON ────────────────────────────────────────
 window._currentScreen = window._currentScreen || 'screen-home';
 
+// ── EKRAN GECISI: IKI EKRAN AYNI ANDA ────────────────────────────────
+// ILK DENEMEDE YANLIS COZULDU, kayda geciyor: gecisin basinda ekranin
+// ~35-41ms BOS kaldigi olculmustu (giden ekran aninda display:none, gelen
+// ekran translateX(100%) ile disarida). O tur bosluk OTELEME MESAFESI
+// KISILARAK (100% -> 16px) kapatildi; bosluk gitti ama gecis de
+// algilanamaz hale geldi -- "gecis yok gibi, basit duruyor".
+//
+// DOGRU COZUM: mesafeyi kismak degil, GIDEN EKRANI GORUNUR TUTMAK.
+// Giden ekran gecis boyunca ekranda kalir ve ters yone otelenir; ikisi
+// birlikte tek bir film seridi gibi kayar. Boylece oteleme TAM GENISLIK
+// olabilir ve ortada hicbir an bosluk kalmaz.
+//
+// Neden TAM %100 (85-90 degil): ikisi %100'de BIREBIR DOSENIR -- her an
+// giden [-100%+p, p], gelen [p, 100%+p] araligini kaplar, ust uste binme
+// SIFIR. %85'te ise gecis sonunda gidenin sag %15'i gelenin uzerinde
+// kalir (giden absolute oldugu icin USTTE boyanir) -> yanlis serit.
+// Olculdu, asagidaki CSS notuna bak.
+//
+// Giden ekran `position: absolute` yapilir cunku ekranlar BODY'nin
+// dogrudan cocugu ve ikisi de akistayken ALT ALTA diziliyor (olculdu:
+// sepetOffsetTop 2575). Akistan cikinca ayni alani paylasirlar. Gorunur
+// konum DEGISMEZ: gorunur ekran zaten belge basinda (homeOffsetTop 0).
+var _gecisCikan = null, _gecisZaman = null;
+
+function _gecisAzalt() {
+  return !!(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+}
+
+// Gecis suresi TEK KAYNAK: CSS tokeni (--gecis-ekran). JS ikinci bir sayi
+// tutmuyor; token degisirse guvenlik agi da kendiliginden ayarlanir.
+function _gecisSureMs() {
+  if (typeof getComputedStyle !== 'function') return 260;
+  var ham = getComputedStyle(document.documentElement).getPropertyValue('--gecis-ekran');
+  var v = parseFloat(ham);
+  if (!v) return 260;
+  return /ms/.test(ham) ? v : v * 1000;   // "260ms" ya da ".26s"
+}
+
+// Bekleyen bir cikis varsa HEMEN bitir. Hizli ard arda sekme degisiminde
+// eski cikan ekran ortada kalmasin diye; ayrica yeni gecis baslamadan
+// once cagriliyor.
+function _gecisTemizle() {
+  if (_gecisZaman) { clearTimeout(_gecisZaman); _gecisZaman = null; }
+  if (_gecisCikan) {
+    _gecisCikan.classList.remove('anim-cikis-sol', 'anim-cikis-sag');
+    _gecisCikan.style.display = 'none';
+    _gecisCikan = null;
+  }
+}
+
 function showScreen(id, direction) {
   if (window._currentScreen === id) return;
 
@@ -1276,12 +1326,36 @@ function showScreen(id, direction) {
     }
   }
 
-  document.querySelectorAll('.screen').forEach(function(s){ s.style.display = 'none'; });
+  _gecisTemizle();                       // bekleyen eski cikis varsa hemen bitir
+  var onceki = window._currentScreen ? document.getElementById(window._currentScreen) : null;
+  var azalt = _gecisAzalt();
+  // reduced-motion: cikis animasyonu HIC uygulanmaz. Sinifi verip animasyonu
+  // CSS'te kapatmak YANLIS olurdu -- sinif `position:absolute` de getiriyor,
+  // animasyonsuz haliyle giden ekran gelenin USTUNDE oylece durur.
+  var cikisVar = !!(onceki && onceki.id !== id && !azalt);
+
+  document.querySelectorAll('.screen').forEach(function(s){
+    if (!cikisVar || s !== onceki) s.style.display = 'none';
+  });
   var hedef = document.getElementById(id);
   hedef.style.display = 'block';
   hedef.classList.remove('anim-slide-in', 'anim-slide-back');
   void hedef.offsetWidth;
   hedef.classList.add(direction === 'back' ? 'anim-slide-back' : 'anim-slide-in');
+
+  if (cikisVar) {
+    onceki.classList.remove('anim-slide-in', 'anim-slide-back', 'anim-cikis-sol', 'anim-cikis-sag');
+    void onceki.offsetWidth;
+    onceki.classList.add(direction === 'back' ? 'anim-cikis-sag' : 'anim-cikis-sol');
+    _gecisCikan = onceki;
+    // animationend ERKEN bitirir; setTimeout ise GUVENLIK AGI (olay hic
+    // gelmezse -- sekme arka plana atilirsa, animasyon iptal edilirse --
+    // giden ekran sonsuza kadar ustte kalmasin). Sure CSS tokeninden
+    // okunuyor, ikinci bir sayi tutulmuyor.
+    var sure = _gecisSureMs();
+    onceki.addEventListener('animationend', _gecisTemizle, { once: true });
+    _gecisZaman = setTimeout(_gecisTemizle, sure + 120);
+  }
 
   document.querySelectorAll('.nav-btn').forEach(function(b){ b.classList.remove('active'); });
   if (id === 'screen-home')      document.getElementById('navHome').classList.add('active');
@@ -1840,6 +1914,13 @@ function _ekranGorunur(id) {
   const e = document.getElementById(id);
   if (!e) return false;
   if (e.style.display === 'none') return false;
+  // CIKMAKTA olan ekran "gorunur" SAYILMAZ. Iki ekranli gecis boyunca giden
+  // ekran hala display:block; bu kapı olmasaydı openDetay'in _prevScreen
+  // bulucusu (screens.find(_ekranGorunur)) gecis sirasinda ESKI ekrani
+  // secip geri tusunu yanlis yere baglardi. Ayni sinif renderSepet /
+  // renderUrunler / profilBolumleriCiz tetikleyicilerini de bosuna
+  // calistirirdi.
+  if (e.classList && (e.classList.contains('anim-cikis-sol') || e.classList.contains('anim-cikis-sag'))) return false;
   if (typeof getComputedStyle !== 'function') return true;
   return getComputedStyle(e).display !== 'none';
 }
