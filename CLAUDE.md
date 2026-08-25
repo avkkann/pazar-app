@@ -1,6 +1,6 @@
 # Pazar App — Proje Handoff (Claude için)
 
-**Son güncelleme:** 2026-08-23 (**KVKK HESAP SİLME UÇTAN UCA CANLI** — cascade FK + `hesap-sil` edge function + iki adımlı onaylı UI (`2ecfa41`); gerçek hesapla kontrol gruplu doğrulandı, kalan tek halka **KVKK aydınlatma metni**. Öncesi: BLOK 4 + BLOK 1 geçti, altı FK `ON DELETE CASCADE`, `sql/` repoya alındı; **`style-src`'den `'unsafe-inline'` kaldırıldı**, `script-src` bilinçli ertelendi + satır içi handler kilidi). Öncesi — 2026-08-21/22 oturumu (**güvenlik başlıkları** — `font-src 'self'` + `frame-ancestors 'none'` + nosniff, **HSTS** 1. basamak `max-age=300` → **2026-08-22'de 2. basamak `max-age=86400`**; **CI test kapısı** — `deploy needs: test`, 50 test (glob), kasıtlı FAIL ile kanıtlandı; **B1 kaçış** dört kaçışsız nokta kapatıldı (`test_kacis` 93 iddia); GITHUB_TOKEN varsayılanı read + workflow başına açık `permissions`; Grup 1 (M1/M2/M3/M4); **`www` → apex 301 kuruldu**, CF beacon panelden kapatıldı; fontlar self-host + GoatCounter pin; **KVKK / hesap silme DEVAM EDİYOR** — ölçüm bitti, taslaklar henüz çalıştırılmadı; **sw v232**). Ayrıntı için aşağıdaki "2026-08-21" blokları. Bu dosya her oturum başında okunur, sohbete asla ham metin olarak yapıştırılmaz.
+**Son güncelleme:** 2026-08-25 (**FİYAT GRAFİĞİ ETİKET ÇAKIŞMASI KAPANDI** — E-E/E-X/X-X/TAŞMA **sıfırlandı**, etiket↔çizgi hale ile okunur; 193 grafiğin tamamı gerçek tarayıcıda sayıldı, çakışma "karışıklık" değil **yanlış fiyat okuma** üretiyormuş: "103,95 ₺" ekranda "105,95 ₺" gibi okunuyordu. `test_fiyat_grafik.mjs` 51 iddia, prove-by-breaking 13/13. Ayrıntı: aşağıdaki "Madde 1 KAPANDI" bloğu. Öncesi — 2026-08-23: **KVKK HESAP SİLME UÇTAN UCA CANLI** — cascade FK + `hesap-sil` edge function + iki adımlı onaylı UI (`2ecfa41`); gerçek hesapla kontrol gruplu doğrulandı, kalan tek halka **KVKK aydınlatma metni**. Öncesi: BLOK 4 + BLOK 1 geçti, altı FK `ON DELETE CASCADE`, `sql/` repoya alındı; **`style-src`'den `'unsafe-inline'` kaldırıldı**, `script-src` bilinçli ertelendi + satır içi handler kilidi). Öncesi — 2026-08-21/22 oturumu (**güvenlik başlıkları** — `font-src 'self'` + `frame-ancestors 'none'` + nosniff, **HSTS** 1. basamak `max-age=300` → **2026-08-22'de 2. basamak `max-age=86400`**; **CI test kapısı** — `deploy needs: test`, 50 test (glob), kasıtlı FAIL ile kanıtlandı; **B1 kaçış** dört kaçışsız nokta kapatıldı (`test_kacis` 93 iddia); GITHUB_TOKEN varsayılanı read + workflow başına açık `permissions`; Grup 1 (M1/M2/M3/M4); **`www` → apex 301 kuruldu**, CF beacon panelden kapatıldı; fontlar self-host + GoatCounter pin; **KVKK / hesap silme DEVAM EDİYOR** — ölçüm bitti, taslaklar henüz çalıştırılmadı; **sw v232**). Ayrıntı için aşağıdaki "2026-08-21" blokları. Bu dosya her oturum başında okunur, sohbete asla ham metin olarak yapıştırılmaz.
 
 ---
 
@@ -19,6 +19,43 @@ Mustafa (GitHub: avkkann), **Pazar App**'in tek geliştiricisi — Türk market 
 ---
 
 ## Mevcut durum (2026-08-21 itibarıyla)
+
+### 2026-08-25 — Madde 1 KAPANDI: fiyat grafiğinde etiket çakışması (çakışma "karışıklık" değil, YANLIŞ OKUMA üretiyormuş)
+
+**Oturum başında bulunan sürpriz:** bu işin kodu **çalışma ağacında commit'siz duruyordu** — önceki bir oturumdan kalmış, hiç test edilmemiş, hiç doğrulanmamış. Görev metni onu "gizlilik işi" sanıyordu; ölçüldü, `app.js` değişikliği tamamen `fiyatGecmisiBlogu` içinde ve `style.css` değişikliği tek `.fg-fiyat-etiket` hunk'ı — gizlilik izi sıfır. Yani **iş yapılmış ama kanıtlanmamıştı**; bu tur onu ölçüp doğrulayıp kapattı. (Doküman bayatlığının beşinci vakası, bu kez ters yönde: doküman işi *yapılmamış* sanıyordu.)
+
+**ÖLÇÜM — sayım, örnekleme değil:** katalogda o gün grafik çizen ürün **203**, veri-tutarlılık kapısını geçip gerçekten çizilen **193**. Hepsi CDP + gerçek tarayıcıda `getBBox` ile, dört genişlikte ölçüldü. Taban (390px):
+
+| sınıf | taban | sonra |
+|---|---:|---:|
+| E-C etiket ↔ ortalama çizgisi | **144 örnek / 123 grafik (%64)** | 146 (hale ile okunur) |
+| E-E etiket ↔ etiket | **6** | **0** |
+| E-X etiket ↔ y ekseni tick'i | **4** | **0** |
+| E-N etiket ↔ vurgulu nokta | 8 | 4 |
+| X-X tarih ↔ tarih | **1** | **0** |
+| TAŞMA etiket viewBox dışında | 1 *(sentetik)* | **0** |
+
+**Zarar kozmetik değil — ekran görüntüsüyle yakalandı:** `atistirmalik_...` ürününde gerçek değer **"103,95 ₺"** iken çizgi rakamın içinden geçtiği için ekranda **"105,95 ₺"** gibi okunuyordu. Fiyat karşılaştırma uygulamasında bu "grafik karışık" değil, **yanlış fiyat gösterme**. Diğer somut çiftler: `149,00 ₺` üstüne `145,00 ₺`; `89,50 ₺` + y-tick `93` → `9389,50 ₺`; `20 Ağu` + `23 Ağu` → `20 AğuAğu`.
+
+**EKRAN GENİŞLİĞİ ETKİSİZ — varsayılmadı, dördü de ayrı ölçüldü** (320/360/390/430 → 6/4/145/8/1 · 6/4/144/8/1 · 6/4/144/8/1 · 5/4/143/8/1; ±1 font hinting). Sebep yapısal: `viewBox="0 0 320 180"` + `preserveAspectRatio` grafiği metin dahil **tek parça** ölçekliyor.
+
+**NOKTA YOĞUNLUĞU DA BELİRLEYİCİ DEĞİL** — E-C içeren grafik oranı 7-8 gün %61 · 9-12 gün %73 · 13-17 gün %59 · 18+ gün %50, **monoton eğilim yok**. Commit'siz koddaki "7-8'de %48, 21-29'da %92" notu **yanlıştı, düzeltildi**. Ayrıca kritik ayrım: **çizgideki nokta = farklı GÜN, ham kayıt değil** — "en çok 102 nokta" denen ürün çizgide **18 nokta** veriyor (30 gün penceresi + günlük ortalama). Yapısal tavan **31 gün**; 31 gün × 7 market = 217 ham kayıtlık sentetik uç durum ayrıca ölçüldü, çakışma **0**.
+
+**İKİ KÖK SEBEP, İKİ AYRI ÇÖZÜM (birleştirilemezler):**
+1. **etiket ↔ çizim** — çizginin yerel eğimi **sınırsız**, hiçbir sabit dikey ofset garanti veremez. Çözüm yerleşim değil **hale**: `paint-order: stroke fill` + `stroke: var(--bg)` 3px. Etiket noktasından oynamıyor, çizgi kırılmıyor, sadece rakamın arkası açılıyor. **Hale rengi ÖLÇÜLDÜ, varsayılmadı:** grafiğin arkasındaki gerçek boyalı zemin `.screen`'inki (açık `rgb(248,249,250)` / koyu `rgb(15,26,20)`) = `--bg`; `fg-wrap`/`detay-section` şeffaf, yani `--card-bg` **yanlış** olurdu.
+2. **etiket ↔ etiket/eksen** — sınırlı ve tam çözülebilir: kutu hesabı + yerleşim geçişi (yatay kenetleme + dikey alternatif konum) ve çakışan **orta** tarihin düşürülmesi. Etiket sayısı **her zaman ≤ 4** olduğu için iş nokta sayısından bağımsız.
+
+**REGRESYON YOK (ölçüldü):** grafik kutusu **değişmedi** (viewBox 193/193 aynı), band/çizgi/noktalar **193/193 birebir aynı**, **hiçbir fiyat etiketi düşmedi** (193/193), kontrol grubu (grafik çizilmeyen 80 ürün — 20 tek noktalı + 10 sıfır noktalı dahil) çıktısı **byte-byte aynı**. Koyu tema ayrıca ekran görüntüsüyle doğrulandı.
+
+**Orta tarih 193 grafiğin 2'sinde düşüyor ve ikisi aynı değil** — ölçülen gerçek boşluk: `red-bull` **−13,17** birim (gerçekten üst üste), `sarımsak` **+2,90** birim (çakışmıyor ama 390px'te ~3,5 fiziksel px, tek blok gibi okunuyor). Yani `_FG_EKSEN_KAR` tahmini bilerek geniş: hedef sıfır çakışma değil **okunur boşluk**. Kalan 191 grafikte en dar boşluk 8,5 birim ve üzeri → pay genel bir kırpma değil.
+
+**Doğrulama:** yeni `test_fiyat_grafik.mjs` (**51 iddia**) — kaynak grep'i değil, **gerçek katalogla davranışsal**: üretilen SVG'nin koordinatları üzerinden çakışma hesaplanıyor ve metin genişliği app.js'in *kendi* tahminiyle değil **tarayıcıda ölçülmüş bağımsız tabloyla** karşılaştırılıyor (yoksa test ölçtüğü şeyi doğru varsayardı). Test **taban koda karşı 10 iddiada KIRMIZI**, üstelik gerçek ürün adlarını ve çakışan metin çiftlerini adlandırarak. **Prove-by-breaking 13/13 kırmızı**, hepsinde `mutasyon DOGRULANDI`. 51/51 `.mjs` + 5/5 `.py` yeşil, satır içi handler sayacı **117 sabit** (`test_satirici_kilit` 19/19).
+
+> **Harness bu turda da kör nokta buldu (bu sınıfın DÖRDÜNCÜSÜ).** "Dikey alternatif konum kaldırıldı" mutasyonu **YEŞİL** kaldı: o mutasyon etiketi başka yere taşımıyor, **sessizce hiç çizmiyor** — ve testin "en az 2 etiket var" iddiası 4→3 düşüşü görmüyordu. Kapatan iddia veriden türeyen bir invaryant oldu: **yazılan etiket sayısı = vurgulu nokta sayısı** (bugün 193/193 tutuyor). Kodda "iki dikey konum da doluysa etiketi hiç çizme" dalı var; bugün gerçek veride **hiç çalışmıyor**, ama çalışırsa kullanıcı bir fiyatı sessizce kaybeder — artık CI yakalar.
+
+> **ÖLÇÜM ALETİ ÖNCE BOZUK ÇIKTI, "sıfır çakışma" dedi (`.screen` tuzağının dördüncü vakası).** İlk koşu dört genişlikte de **E-E=0 E-X=0 E-C=0** verdi. Kod değil **alet** bozuktu: ölçüm sayfasında grafik `.screen` içindeydi ve `.screen { display:none }` → `getBBox()` sıfır boyut döndürüyor, hiçbir kesişim doğmuyor. Kontrol grubu olmasaydı "çakışma yok, iş bitmiş" diye raporlanacaktı. Alete artık **kendi kontrol grubu** gömülü (etiket bbox > 1px ve font gerçekten Inter değilse **HARD-FAIL**). *Kural: bir ölçüm "temiz" çıktığında önce aletin o şeyi görebildiğini kanıtla.*
+
+> **CRLF, prove-by-breaking'i yine ısırdı — ama bu kez sessizce değil.** `app.js` **CRLF**, `style.css` **LF**; planımdaki çok satırlı desenler `app.js`'te eşleşmedi. `scripts/bozma-dogrula.mjs` bunu **HARD-FAIL** ile bildirdi (2026-08-24'te ad-hoc `sed` ile bu aynı durum sessiz yeşil vermişti). Çözüm: `app.js` mutasyonlarında **tek satırlık çapa** kullan.
 
 ### 2026-08-25 — Madde 5 KAPANDI: şehir seçimi artık **görünür** (işlev zaten çalışıyordu)
 
@@ -1010,11 +1047,12 @@ Bu aralık `DENETIM.md`'nin (2026-08-11) bulgularını kapatmakla geçti. Sürü
 
 | `test_firsat_detay.mjs` | 27 | Fırsat kartından ürün detayı: kartın `data-id`/`role`/`tabindex` taşıması, delegasyon dinleyicilerinin **davranışı** (sahte olayla, kontrol gruplu — sepet butonu ve kart dışı tıklama detay AÇMAMALI), Enter/Space, satır içi handler eklenmemesi, `_prevScreen`'in tembel yeniden çağrıda ezilmemesi. Fonksiyon gövdesini **parantez sayarak** çıkarıyor (sabit ofset değil) |
 
+| `test_fiyat_grafik.mjs` | 51 | Fiyat geçmişi grafiğinde **etiket çakışması**: gerçek katalogla davranışsal — üretilen SVG'nin koordinatlarından çakışma hesaplanıyor (kaynak grep'i DEĞİL), metin genişliği app.js'in kendi tahminiyle değil **tarayıcıda ölçülmüş bağımsız tabloyla** doğrulanıyor. E-E/E-X/X-X/TAŞMA sıfır · **bilgi kaybı yasağı** (çakışmayı etiketi silerek çözmek KIRMIZI) · **sessiz düşme kilidi** (etiket sayısı = vurgulu nokta sayısı) · kontrol grubu (7 tarih eşiği altında SVG hiç çizilmemeli, sebep metinle söylenmeli) · nokta sayısından bağımsızlık (31 gün / 217 kayıt sentetik uç durum) · **grafik kutusu kilidi** (viewBox 320×180) · hale kuralı (paint-order + `var(--bg)` + kalınlık) · satır içi stil/handler yasağı. Aletin kendi kontrol grubu gömülü |
 | `test_cls.mjs` | 49 | Görsel yuvası: `-ph` kutusunun resimden BAĞIMSIZ çizilmesi, `onerror`'ın HTML üretmemesi, satır içi `onload` yasağı, dinleyicinin **capture** fazında kayıtlı olması (`load` kabarcıklanmaz), `.yuklendi` emojiyi gizlemesi, `.detay-img-wrap` min-height 228/308 **layout kilidi**. Dinleyici davranışsal + kontrol gruplu (alakasız kaba ve IMG olmayan hedefe dokunmamalı). Ayrıca **sepet kartı 2. satırı**: rozet gramajla yan yana, `min-height` rezervesi (asenkron rozet kart içi kaydırmasın), gramaj tabanı sıfırlanamaz, rozet kısalabilir, ≤360px'te rozet ikona iner (`display:none` DEĞİL — metin a11y ağacında kalır), ikonun erişim yolu (kart → detay) kilitli |
 
 | `test_arama.mjs` | 56 | Arama eşleşme + puanlama: **gerçek katalogla** (16.696 ürün) davranışsal — "kola" ilk 5'te 5/5 gerçek kola, `kola/çay/su/kahve` farklı sonuç (kestirme geri gelmesin), tam kelime > kelime başı > alt dize sırası, `trNormalize` tek kapı (süt=sut), kategori önerisi sonucun yerini almıyor + ikonu sessizce boş değil, vekil ölçüm (en sık 30 kelime ≥28 tam kelime). Ayrıca ana arama **dinleyicisinin** `urunAra` kullandığı (guard'ın kör noktasıydı) |
 
-**Toplam 56 takipli dosya (50 `.mjs` + 6 `.py`) — 2026-08-24'te `test_firsat_detay.mjs` ve `test_cls.mjs` eklendi. CI kapısından geçen 55 (50 `.mjs` + 5 `.py`).** Her iki CI adımı da **glob** ile çalışıyor (`for t in test_*.mjs` / `test_*.py`) → yeni test eklenince kapıya kendiliğinden giriyor, elle liste yok. Tek açık dışlama `test_resim.py` (canlı Searlo API'sine çıkıyor). Sayı gün içinde 49→50 oldu: `test_sablon_slug.mjs` kapı kurulduktan sonra eklendi.
+**Toplam 57 takipli dosya (51 `.mjs` + 6 `.py`) — 2026-08-25'te `test_fiyat_grafik.mjs` eklendi; 2026-08-24'te `test_firsat_detay.mjs` ve `test_cls.mjs`. CI kapısından geçen 56 (51 `.mjs` + 5 `.py`).** Her iki CI adımı da **glob** ile çalışıyor (`for t in test_*.mjs` / `test_*.py`) → yeni test eklenince kapıya kendiliğinden giriyor, elle liste yok. Tek açık dışlama `test_resim.py` (canlı Searlo API'sine çıkıyor). Sayı gün içinde 49→50 oldu: `test_sablon_slug.mjs` kapı kurulduktan sonra eklendi.
 Bu tablo 2026-08-17'de **33 dosyada donmuştu**; hub turu ve tasarım turlarında eklenen
 13 dosya listelenmemişti. Sayılar `PASS=` / `SONUC:` çıktısından yeniden ölçüldü, tahmin
 değil. (Diskte 3 takipsiz `.py` daha var — aşağıdaki Searlo denemeleri.) `sonda_debug.py` / `sonda_resim_mini.py` / `sonda_searlo.py` (2026-08-21'de `test_*`'ten yeniden adlandırıldı) regresyon testi DEĞİL — `.gitignore`'daki tek seferlik Searlo sondaları, kredi bittiği için hata basarlar; CI `test_*` glob'una sızmasınlar diye `sonda_*` önekli.

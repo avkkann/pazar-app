@@ -2279,6 +2279,69 @@ function _fgAsiriDegerBilgisi(temiz, yon) {
   };
 }
 
+// ── FIYAT ETIKETI YERLESIM YARDIMCILARI ──────────────────────────────────
+// OLCULDU (2026-08-25, CDP + gercek tarayici, Inter 9,5px/700, getBBox ile;
+// SAYIM -- katalogda o gun grafik cizen 193 urunun TAMAMI, ornekleme degil).
+// Taban (HEAD) cakisma sayilari, 390px:
+//   etiket <-> ortalama cizgisi (E-C) 144 ornek / 123 grafik (%64)
+//   etiket <-> etiket           (E-E)   6   ("149,00 ₺" uzerine "145,00 ₺")
+//   etiket <-> y ekseni tick'i  (E-X)   4   ("89,50 ₺" + "93" -> "9389,50 ₺")
+//   etiket <-> vurgulu nokta    (E-N)   8
+//   tarih  <-> tarih           (X-X)    1   ("20 Ağu" + "23 Ağu" -> "20 AğuAğu")
+// Ekrandaki somut zarar sadece "karisik gorunmek" degil: cizgi rakamin
+// icinden gecince DEGER YANLIS OKUNUYORDU -- olculen ornek "103,95 ₺"
+// ekranda "105,95 ₺" gibi okunuyordu.
+//
+// EKRAN GENISLIGI ETKISIZ (varsayilmadi, 320/360/390/430'da ayri ayri olculdu:
+// 6/4/145/8/1 - 6/4/144/8/1 - 6/4/144/8/1 - 5/4/143/8/1; ±1'lik oynama font
+// hinting'i). Sebep yapisal: SVG viewBox="0 0 320 180" + preserveAspectRatio
+// ile TEK parca olcekleniyor, metin dahil; cakisma viewBox koordinatlarinda
+// doguyor, oranlar genislikle degismiyor.
+//
+// NOKTA YOGUNLUGU DA BELIRLEYICI DEGIL (olculdu; onceki notta bu satir YANLIS
+// yazilmisti, duzeltildi): E-C iceren grafik orani 7-8 gun %61 · 9-12 gun %73
+// · 13-17 gun %59 · 18+ gun %50 -- monoton bir egilim YOK. Gercek veride
+// 30 gunluk penceredeki en yuksek yogunluk 18 gun; yapisal tavan 31 gun
+// (pencere 30 gun, cizgi GUNLUK ORTALAMA cizer -> nokta sayisi = farkli GUN,
+// ham kayit sayisi degil; 102 ham kayitli urun cizgide 18 nokta veriyor).
+// 31 gun x 7 market = 217 ham kayitlik sentetik uc durum ayrica olculdu.
+//
+// Iki kok sebep var, iki ayri cozum aliyorlar:
+//  (1) etiket <-> CIZIM (cizgi/bant/nokta): cizginin egimi sinirsiz, hicbir
+//      sabit dikey ofset bunu garanti EDEMEZ -> CSS'te hale (.fg-fiyat-etiket
+//      paint-order). Etiket yerinden oynamiyor, sadece okunur kaliyor.
+//  (2) etiket <-> ETIKET / EKSEN: sinirli ve tam cozulebilir -> asagidaki
+//      kutu hesabi + yerlesim gecisi. Kutu sayisi HER ZAMAN <= 4 oldugu icin
+//      is nokta sayisindan bagimsiz: 31 gunde de 7 gunde de ayni.
+
+// Etiket genisligi tahmini. Inter 9,5px/700 icin karakter genislikleri gercek
+// tarayicida olculdu (getComputedTextLength): rakamlar 4,15-6,45 · virgul 3,19
+// · bosluk 2,30 · ₺ 6,12. Rakamlarin EN GENISI (6,45) hepsi icin kullaniliyor,
+// yani tahmin her zaman gercekten GENIS: 1022 gercek etiket metninde sapma en
+// fazla +2,5px, hicbirinde eksi degil. Fazla tahmin GUVENLI yon -- kutu gercek
+// kutunun superset'i oldugu icin cakisma testi asla kacirmaz, en fazla gereksiz
+// yere kenetler. Inter yuklenmezse yedek font DAHA DAR (ayni metin sans-serif'te
+// 32,1px, Inter'de 35,9px -- olculdu), yani tahmin orada da ust sinir kaliyor.
+function _fgEtiketGenislik(metin) {
+  let w = 0;
+  for (const c of String(metin)) w += (c === ',' || c === '.') ? 3.2 : (c === ' ') ? 2.3 : 6.45;
+  return w;
+}
+
+// Kutu olculeri de olculdu (getBBox): 9,5px/700 metin taban cizgisinden
+// 9,39px yukari cikiyor, yuksekligi 11,84px. Buraya pay eklendi (9,6 / 12,2)
+// cunku kutu hale ile 1,5px daha buyuyor ve komsu iki etiketin haleleri
+// birbirini kirpmasin.
+const _FG_ETIKET_UST = 9.6;
+const _FG_ETIKET_YUK = 12.2;
+// 9px eksen etiketi: en genis tarih "30 Tem" = 32,00px advance, karakter basi
+// 5,333 -> ust sinir 5,4. Taban cizgisinden 8,57 yukari, yukseklik 10,61.
+const _FG_EKSEN_KAR = 5.4;
+
+function _fgKutuCakisiyor(a, b) {
+  return !(a.x + a.w <= b.x || b.x + b.w <= a.x || a.y + a.h <= b.y || b.y + b.h <= a.y);
+}
+
 function _fgEmptyBlock(mesaj) {
   return '<div class="detay-section detay-section--gecmis"><div class="detay-sec-label">Fiyat Geçmişi</div><div class="fg-empty">' + mesaj + '</div></div>';
 }
@@ -2411,25 +2474,90 @@ function fiyatGecmisiBlogu(urun) {
   const enYuksekGun = gunler.reduce((a, b) => a.avg > b.avg ? a : b);
 
   const etiketliGunlerSet = new Set([ilkGun.t, sonGun.t, enDusukGun.t, enYuksekGun.t]);
-  const etiketliGunler = gunler.filter(g => etiketliGunlerSet.has(g.t));
+
+  // X ekseni 3 tarih — fiyat etiketlerinden ONCE hesaplaniyor cunku onlar bu
+  // kutulari ENGEL olarak kullaniyor. Cizim sirasi degismedi (eksenX asagida
+  // yine en sonda ekleniyor, yani hala en ustte boyaniyor).
+  const ortaTarih = tumTarihler[Math.floor(tumTarihler.length / 2)];
+  const xEtiketKutu = (metin, x, anchor) => {
+    const w = metin.length * _FG_EKSEN_KAR;
+    return { x: anchor === 'start' ? x : (anchor === 'end' ? x - w : x - w / 2), y: (H - 10) - 8.8, w, h: 11.2 };
+  };
+  const xLabels = [
+    { t: minT, anchor: 'start', x: padL },
+    { t: ortaTarih, anchor: 'middle', x: xFor(ortaTarih) },
+    { t: maxT, anchor: 'end', x: W - padR },
+  ].map(xl => {
+    const metin = _fgTarihFormatla(xl.t);
+    return { ...xl, metin, kutu: xEtiketKutu(metin, xl.x, xl.anchor) };
+  });
+  // Orta tarih INDEKS ortasindan seciliyor, x konumunun ortasindan degil:
+  // tarihler sona kumelenince orta etiket son etiketin ustune biniyor
+  // ("20 AğuAğu" diye okunuyordu). Kose etiketleri eksenin sinirlarini
+  // soyledigi icin feda edilemez -> cakisan ORTA etiket dusuruluyor.
+  // Bir okunmaz yigin yerine iki okunur tarih.
+  //
+  // ETKI OLCULDU: 193 grafigin 2'sinde orta tarih dusuyor. Ikisi ayni
+  // degil, ve fark bilerek korunuyor:
+  //   red-bull  -> gercek bosluk -13,17 birim (ELEMANLAR USTUSTE)
+  //   sarimsak  -> gercek bosluk  +2,90 birim (cakisma YOK ama 390px'te
+  //                ~3,5 fiziksel px; iki tarih tek blok gibi okunuyor)
+  // Yani _FG_EKSEN_KAR tahmini bilerek GENIS: sifir cakismayi degil,
+  // okunur BOSLUGU hedefliyor. Tahmini daraltmak sarimsak vakasini geri
+  // getirir. Kalan 191 grafikte en dar bosluk 8,5 birim ve uzeri -- yani
+  // pay, sadece gercekten sikisik olani yakaliyor, genel bir kirpma degil.
+  const xGorunur = xLabels.filter((xl, i) =>
+    i !== 1 || !xLabels.some((d, j) => j !== 1 && _fgKutuCakisiyor(d.kutu, xl.kutu)));
 
   let fgNoktalar = '';
-  let fgEtiketler = '';
   gunler.forEach(g => {
     const x = xFor(g.t);
     const y = yFor(g.avg);
     const oneCikan = etiketliGunlerSet.has(g.t);
     fgNoktalar += '<circle cx="' + x.toFixed(1) + '" cy="' + y.toFixed(1) + '" r="' + (oneCikan ? 3.5 : 2) + '" class="fg-point' + (oneCikan ? ' fg-point-vurgu' : '') + '"/>';
   });
-  etiketliGunler.forEach(g => {
-    const x = xFor(g.t);
-    const y = yFor(g.avg);
-    const ustte = g.t === enDusukGun.t ? false : true;
-    const etiketY = ustte ? (y - 8) : (y + 14);
+
+  // ETIKET YERLESIMI — bkz. _fgEtiketGenislik ustundeki olcum notu.
+  // Oncelik sirasi: uc gunler once (asil bilgi: 30 gunun dibi ve tepesi),
+  // kose etiketleri sonra (baglam: seri nerede basladi/bitti). Cakisma
+  // olursa geri adim atan hep dusuk oncelikli olan.
+  const etiketOncelik = [enYuksekGun, enDusukGun, ilkGun, sonGun];
+  const gorulen = new Set();
+  const etiketSirasi = [];
+  etiketOncelik.forEach(g => { if (!gorulen.has(g.t)) { gorulen.add(g.t); etiketSirasi.push(g); } });
+
+  const doluKutular = xGorunur.map(xl => xl.kutu);
+  let fgEtiketler = '';
+  etiketSirasi.forEach(g => {
+    const metin = fgFiyatYaz(g.avg) + ' ₺';
+    const w = _fgEtiketGenislik(metin);
+    const py = yFor(g.avg);
     let anchor = 'middle';
-    if (g.t === ilkGun.t) anchor = 'start';
-    if (g.t === sonGun.t) anchor = 'end';
-    fgEtiketler += '<text x="' + x.toFixed(1) + '" y="' + etiketY.toFixed(1) + '" text-anchor="' + anchor + '" class="fg-fiyat-etiket">' + fgFiyatYaz(g.avg) + ' ₺</text>';
+    let x = xFor(g.t);
+    if (g.t === ilkGun.t) { anchor = 'start'; x = padL; }
+    if (g.t === sonGun.t) { anchor = 'end'; x = W - padR; }
+    let sol = anchor === 'start' ? x : (anchor === 'end' ? x - w : x - w / 2);
+    // YATAY KENETLEME — E-Y sinifi burada doguyordu: sol kenara yakin bir uc
+    // gunun 'middle' etiketi kutusunun sol yarisiyla y ekseni oluguna girip
+    // tick sayisinin ustune biniyordu (ekranda "989,50 ₺" gibi okunuyordu).
+    // Kose etiketleri zaten kenetli; kural artik hepsi icin ayni.
+    if (sol < padL) { anchor = 'start'; x = padL; sol = padL; }
+    else if (sol + w > W - padR) { anchor = 'end'; x = W - padR; sol = x - w; }
+
+    // Dikey: mevcut davranis varsayilan (uc dip ALTA, digerleri USTE). Cakisirsa
+    // karsi tarafa atliyor. Iki taraf da doluysa etiket CIZILMIYOR -- ust uste
+    // iki okunmaz sayi yerine bir okunur sayi. Nokta yine de vurgulu ciziliyor,
+    // yani gun kayboluyor degil, sadece rakami yazilmiyor.
+    const varsayilanUstte = g.t !== enDusukGun.t;
+    for (const ustte of [varsayilanUstte, !varsayilanUstte]) {
+      const taban = ustte ? (py - 8) : (py + 14);
+      const kutu = { x: sol, y: taban - _FG_ETIKET_UST, w, h: _FG_ETIKET_YUK };
+      if (kutu.y < 0 || kutu.y + kutu.h > H) continue;
+      if (doluKutular.some(k => _fgKutuCakisiyor(k, kutu))) continue;
+      doluKutular.push(kutu);
+      fgEtiketler += '<text x="' + x.toFixed(1) + '" y="' + taban.toFixed(1) + '" text-anchor="' + anchor + '" class="fg-fiyat-etiket">' + metin + '</text>';
+      break;
+    }
   });
 
   // Zirve işareti — yalnızca şüphe sebebi zamansal zirveyse. Süre grafiğin KENDİ
@@ -2462,17 +2590,10 @@ function fiyatGecmisiBlogu(urun) {
     ekseny += '<line x1="' + padL + '" y1="' + y + '" x2="' + (W - padR) + '" y2="' + y + '" stroke="var(--border)" stroke-width="0.5" opacity="0.3"/>';
   });
 
-  // X ekseni 3 tarih
-  const ortaTarih = tumTarihler[Math.floor(tumTarihler.length / 2)];
-  const xLabels = [
-    { t: minT, anchor: 'start' },
-    { t: ortaTarih, anchor: 'middle' },
-    { t: maxT, anchor: 'end' },
-  ];
+  // X ekseni ciziliyor (kutular yukarida hesaplandi, cakisan orta etiket dusuruldu)
   let eksenX = '';
-  xLabels.forEach(xl => {
-    const x = xFor(xl.t);
-    eksenX += '<text x="' + x + '" y="' + (H - 10) + '" text-anchor="' + xl.anchor + '" class="fg-axis-label">' + _fgTarihFormatla(xl.t) + '</text>';
+  xGorunur.forEach(xl => {
+    eksenX += '<text x="' + xl.x.toFixed(1) + '" y="' + (H - 10) + '" text-anchor="' + xl.anchor + '" class="fg-axis-label">' + xl.metin + '</text>';
   });
 
   // Özet: %değişim filtreli üzerinden, en ucuz/pahalı TÜM veriden

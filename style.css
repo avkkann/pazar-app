@@ -963,6 +963,22 @@
     .fg-svg .fg-point-vurgu { fill: #0E4938; stroke: var(--card-bg); stroke-width: 1.5; }
     .fg-svg .fg-fiyat-etiket { font-size: 9.5px; font-weight: 700; fill: #0E4938; }
     [data-theme="dark"] .fg-svg .fg-fiyat-etiket { fill: #4ADE80; }
+    /* HALE — etiket CIZIMLE ic ice gectiginde okunur kalsin diye.
+       OLCULDU (2026-08-25, sayim: o gun grafik cizen 193 urunun TAMAMI):
+       123'unde (%64) fiyat etiketinin kutusunu ortalama cizgisi kesiyordu,
+       8'inde vurgulu nokta. Zarar kozmetik degil -- olculen bir ornekte
+       "103,95 ₺" ekranda "105,95 ₺" gibi okunuyordu (cizgi rakami degistiriyor).
+       Bu sinif YERLESIMLE cozulemez: cizginin yerel egimi sinirsiz, hicbir
+       sabit dikey ofset garanti vermez. Etiketi kaydirmak yerine metnin
+       ardina zemin renginde ince bir kontur ciziliyor; etiket noktasindan
+       oynamiyor, cizgi de kirilmiyor, sadece rakamin arkasi aciliyor.
+       Renk var(--card-bg) DEGIL var(--bg): grafigin arkasindaki gercek zemin
+       .screen'in zemini, olculdu (acik rgb(248,249,250) / koyu rgb(15,26,20)).
+       paint-order olmadan kontur metnin USTUNE binip rakami inceltirdi. */
+    .fg-svg .fg-fiyat-etiket {
+      paint-order: stroke fill;
+      stroke: var(--bg); stroke-width: 3px; stroke-linejoin: round;
+    }
     [data-theme="dark"] .fg-svg .fg-point-vurgu { fill: #4ADE80; stroke: var(--card-bg); }
     [data-theme="dark"] .fg-svg .fg-point { stroke: #4ADE80; }
     /* Eski çoklu-çizgi stilleri — artık kullanılmıyor, fg-band + fg-avg-line ile değiştirildi
