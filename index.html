@@ -602,6 +602,18 @@
       </div>
       <div class="profil-item-chevron">›</div>
     </div>
+    <!-- Gerçek <a>: hedef bir URL, JS degil. Satir ici onclick/onkeydown
+         EKLENMEDI (script-src 'unsafe-inline' gocu ertelendi, sayac
+         test_satirici_kilit.mjs ile 117'ye kilitli) -- anchor zaten
+         klavyeyle odaklanabilir ve Enter ile acilir, ekstra tesisat gereksiz. -->
+    <a class="profil-item profil-item-link" href="/gizlilik/">
+      <div class="profil-item-icon ikon-mavi" data-lc="database">🔒</div>
+      <div class="profil-item-body">
+        <div class="profil-item-title">Gizlilik ve KVKK</div>
+        <div class="profil-item-sub">Hangi verini tutuyoruz, nereye gidiyor, nasıl silersin</div>
+      </div>
+      <div class="profil-item-chevron">›</div>
+    </a>
     <div class="profil-item">
       <div class="profil-item-icon ikon-yesil" data-lc="leaf">🌿</div>
       <div class="profil-item-body">

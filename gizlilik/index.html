@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gizlilik ve KVKK Aydınlatma Metni — Pazar</title>
+  <meta name="description" content="Pazar uygulamasının hangi kişisel verileri topladığı, nereye aktardığı, ne kadar sakladığı ve hesabını nasıl sileceğin; KVKK aydınlatma metni.">
+  <link rel="canonical" href="https://pazarapp.net/gizlilik/">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://pazarapp.net/gizlilik/">
+  <meta property="og:title" content="Gizlilik ve KVKK Aydınlatma Metni">
+  <meta property="og:description" content="Pazar uygulamasının hangi kişisel verileri topladığı, nereye aktardığı, ne kadar sakladığı ve hesabını nasıl sileceğin; KVKK aydınlatma metni.">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:site_name" content="Pazar">
+  <meta property="og:image" content="https://pazarapp.net/static/og-image.png">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="/static/hub.css">
+</head>
+<body class="belge">
+  <header><a href="/">Pazar</a></header>
+  <main>
+    <h1>Gizlilik ve KVKK Aydınlatma Metni</h1>
+    <p>Bu sayfa, Pazar uygulamasının hangi kişisel verilerini topladığını, bunları kimlerle paylaştığını, ne kadar sakladığını ve verilerin üzerinde hangi haklara sahip olduğunu anlatır. Sade yazılmaya çalışıldı; anlamadığın bir yer olursa aşağıdaki adresten sorabilirsin.</p>
+
+    <h2>Veri sorumlusu</h2>
+    <p>Pazar, tek kişilik bir projedir. Veri sorumlusu <strong>Mustafa Karabıyık</strong>’tır.</p>
+    <ul>
+      <li>KVKK başvuruları: <a href="mailto:kvkk@pazarapp.net">kvkk@pazarapp.net</a></li>
+      <li>Genel iletişim: <a href="mailto:iletisim@pazarapp.net">iletisim@pazarapp.net</a></li>
+    </ul>
+
+    <h2>Hesap açmadan da kullanabilirsin</h2>
+    <p>Fiyatlara bakmak, karşılaştırmak ve alışveriş listesi kurmak için hesap açman gerekmez. Aşağıdaki verilerin çoğu yalnızca hesap açtığında oluşur.</p>
+
+    <h2>Toplanan veriler</h2>
+    <div class="tablo-sarmalayici"><table class="metin-tablo">
+      <thead><tr><th>Veri</th><th>Ne zaman oluşur</th><th>Ne işe yarar</th></tr></thead>
+      <tbody>
+        <tr><td>E-posta adresin</td><td>Kayıt olurken ya da Google ile girerken</td><td>Hesabını tanımlar, giriş yapmanı sağlar</td></tr>
+        <tr><td>Şifren</td><td>E-posta ile kayıt olurken</td><td>Girişte doğrulama. Şifren okunabilir biçimde değil, <strong>hash’lenerek</strong> saklanır — yani geri çevrilemez bir özete dönüştürülür; biz de dahil kimse şifreni geri okuyamaz</td></tr>
+        <tr><td>Görünen adın</td><td>Kendin yazarsan ya da Google’dan gelirse</td><td>Profil ekranında seni karşılamak için</td></tr>
+        <tr><td>Profil fotoğrafın</td><td>Yalnızca Google ile girersen</td><td>Profil ekranındaki avatar</td></tr>
+        <tr><td>Favorilerin</td><td>Bir ürünü favorilediğinde</td><td>Favori listeni cihazlar arasında taşımak</td></tr>
+        <tr><td>Fiyat alarmların</td><td>Bir ürüne alarm kurduğunda</td><td>Fiyat hedefine düşünce sana haber vermek</td></tr>
+        <tr><td>Gönderdiğin fiyat bildirimleri</td><td>“Bu fiyat tutmadı” dediğinde</td><td>Yanlış fiyatları diğer kullanıcılara uyarı olarak göstermek. Diğer kullanıcılar yalnızca <strong>kaç kişinin</strong> bildirdiğini görür; <strong>kimin bildirdiği gösterilmez</strong></td></tr>
+        <tr><td>Bülten tercihin</td><td>Bülteni açtığında</td><td>Haftalık özet e-postasını kime göndereceğimizi bilmek</td></tr>
+        <tr><td>Bildirim abonelik anahtarların</td><td>Bildirimlere izin verdiğinde</td><td>Tarayıcının ürettiği teknik anahtarlardır; telefonuna bildirim ulaştırmak için gerekir. Şifre değildir</td></tr>
+      </tbody>
+    </table></div>
+
+    <h2>Adın nereden geliyor</h2>
+    <p><strong>Google ile giriş yaptıysan:</strong> adın ve profil fotoğrafın Google hesabından alınır.</p>
+    <p><strong>E-posta ile kayıt olduysan:</strong> ad girmen istenmez. Bir ad yazmadıysan uygulama, seni gösterirken e-posta adresinin <strong>@ işaretinden önceki kısmını</strong> kullanır. Yani hiç ad girmediğin hâlde profilinde bir ad görürsün; bu ad e-postandan türetilmiştir. Profil ekranından istediğin zaman değiştirebilirsin.</p>
+
+    <h2>Otomatik toplananlar</h2>
+    <p>Giriş yaptığında, oturum kayıtlarında <strong>IP adresin ve tarayıcı bilgin</strong> tutulur. Bunları uygulama kendi tabloları için toplamaz; giriş altyapısı (Supabase) oturum ve güvenlik kayıtlarında kendisi tutar. Görünmesin diye gizlemek yerine burada söylüyoruz.</p>
+
+    <h2>Toplanmayanlar</h2>
+    <ul>
+      <li><strong>Konumun hiç istenmez.</strong> Uygulama tarayıcıdan konum izni sormaz. Şehir seçimini kendin yaparsın ve o seçim yalnızca cihazında kalır.</li>
+      <li><strong>Telefon numaran alınmaz.</strong></li>
+    </ul>
+
+    <h2>Yalnızca cihazında kalanlar</h2>
+    <p>Aşağıdakiler tarayıcının hafızasında durur, <strong>sunucuya gönderilmez</strong>; dolayısıyla bizde bir kopyası yoktur:</p>
+    <ul>
+      <li>Alışveriş listen (sepetin)</li>
+      <li>Kayıtlı liste şablonların ve onlara verdiğin isimler</li>
+      <li>Seçtiğin şehir</li>
+      <li>Tercih ettiğin marketler</li>
+      <li>Açık/koyu tema tercihin</li>
+    </ul>
+    <p>Hesabını silsen bile <strong>bunlar cihazında kalır.</strong> Bunu bilerek böyle yaptık: paylaşılan bir cihazda bu veriler senin değil, cihazı kullanan başka birinin listesi olabilir ve silme işlemi geri alınamaz. Bu verileri kendin temizlemek istersen tarayıcının site verilerini temizlemesi yeterlidir.</p>
+
+    <h2>Kimlere aktarılıyor</h2>
+    <div class="tablo-sarmalayici"><table class="metin-tablo">
+      <thead><tr><th>Kime</th><th>Giden veri</th><th>Neden</th></tr></thead>
+      <tbody>
+        <tr><td>Supabase (AWS, Frankfurt — eu-central-1)</td><td>Hesap verilerinin tamamı</td><td>Veritabanı ve giriş altyapısı burada çalışır</td></tr>
+        <tr><td>Cloudflare</td><td>İsteğinle birlikte giden IP ve tarayıcı bilgisi</td><td>Sitenin barındırılması ve dağıtımı</td></tr>
+        <tr><td>Resend</td><td>Bülteni açtıysan e-posta adresin</td><td>Haftalık özet e-postasının gönderilmesi</td></tr>
+        <tr><td>Google</td><td>Google ile giriş yaptıysan giriş isteğin. Ayrıca profil fotoğrafın Google sunucusunda durduğu için, avatarın her gösterildiğinde tarayıcın Google’a istek atar; o istekle <strong>IP adresin ve tarayıcı bilgin</strong> Google’a gider</td><td>Google ile giriş ve avatar gösterimi</td></tr>
+        <tr><td>GoatCounter</td><td>Sayfa görüntüleme istatistiği</td><td>Kaç kişi geliyor sorusunu görmek. <strong>Kimliğinle ilişkilendirilmez</strong>; kim olduğun gönderilmez</td></tr>
+        <tr><td>marketfiyati.org.tr</td><td>Arama kutusuna yazdığın arama terimi</td><td>Canlı ürün araması. <strong>Kimliğin gönderilmez</strong>; ancak istek tarayıcından çıktığı için IP adresin onlara görünür</td></tr>
+      </tbody>
+    </table></div>
+    <p>Fiyat alarmı bildirimlerin, tarayıcının kendi bildirim servisi üzerinden ulaşır (hangi servis olduğunu tarayıcın belirler; örneğin Google, Mozilla ya da Apple). Bu servise ne gidiyor:</p>
+    <ul>
+      <li><strong>Bildirimin içeriği şifrelenerek</strong> gönderilir — burada şifreleme yerinde bir sözcük, çünkü mesajı yalnızca senin cihazın açabilir. Bildirim servisi içeriği okuyamaz.</li>
+      <li>İçerikte <strong>ürün adı da hedef fiyatın da yoktur.</strong> Bildirimde yalnızca “Takip ettiğin ürün şu fiyata düştü” yazar ve o anki fiyat geçer. Yani hangi ürünü takip ettiğin bildirimin içine hiç konmaz.</li>
+      <li>Servisin buna rağmen gördüğü şey <strong>trafik bilgisidir</strong>: cihazının bildirim adresi, sana bir bildirim gönderildiği ve bunun ne zaman olduğu. İçeriği görmese de bu bilgi ondadır.</li>
+    </ul>
+
+    <h2>Yurt dışına aktarımın hukuki dayanağı</h2>
+    <!-- HUKUKÇUYA SORULACAK: 7499 sayılı Kanun sonrası açık rıza yalnız
+         ARIZİ aktarımlar için geçerli; buradaki aktarım SÜREKLİ, dolayısıyla
+         standart sözleşme gerekebilir. Dayanak belirlenmeden doldurulmayacak. -->
+
+    <h2>Ne kadar saklanıyor</h2>
+    <p><strong>Otomatik silme yoktur.</strong> Verilerini belirli bir süre sonra kendiliğinden silen bir sistem kurulmadı. Yukarıdaki veriler, sen hesabını silene kadar durur.</p>
+    <p>Bunun iki istisnası var, ikisi de süreye değil duruma bağlıdır: bir fiyat alarmı tetiklendiğinde alarm pasife alınır, ve telefonunun bildirim aboneliği geçersiz hâle geldiğinde (uygulamayı kaldırma, izni geri alma gibi) o abonelik kaydı silinir.</p>
+
+    <h2>Hesabını silme</h2>
+    <p>Uygulamada <strong>Profil → Hesabımı sil</strong> adımını izleyerek hesabını kendin silebilirsin. Silme işlemi tek seferde şunları kaldırır: hesabın, profilin, favorilerin, fiyat alarmların, bildirim aboneliklerin, gönderdiğin fiyat bildirimleri ve bülten tercihin.</p>
+    <p>Bu işlem <strong>geri alınamaz.</strong> Silinen veriler geri getirilemez. Yalnızca cihazında kalanlar (alışveriş listen, şablonların, şehir ve market tercihin, tema) silinmez — sebebi yukarıda anlatıldı.</p>
+
+    <h2>Hakların</h2>
+    <p>6698 sayılı Kişisel Verilerin Korunması Kanunu’nun 11. maddesi uyarınca şu haklara sahipsin. Aşağıdaki maddeler kanunun kendi ifadesiyle yazılmıştır:</p>
+    <ul>
+      <li>Kişisel verinizin işlenip işlenmediğini öğrenme</li>
+      <li>İşlenmişse buna ilişkin bilgi talep etme</li>
+      <li>İşlenme amacını ve amacına uygun kullanılıp kullanılmadığını öğrenme</li>
+      <li>Yurt içinde veya yurt dışında aktarıldığı üçüncü kişileri bilme</li>
+      <li>Eksik veya yanlış işlenmiş olması hâlinde düzeltilmesini isteme</li>
+      <li>Kanunun 7. maddesindeki şartlar çerçevesinde silinmesini veya yok edilmesini isteme</li>
+      <li>Düzeltme, silme ve yok etme işlemlerinin, verinin aktarıldığı üçüncü kişilere bildirilmesini isteme</li>
+      <li>Münhasıran otomatik sistemlerle analiz edilmesi suretiyle aleyhinize bir sonuç ortaya çıkmasına itiraz etme</li>
+      <li>Kanuna aykırı işlenmesi sebebiyle zarara uğramanız hâlinde zararın giderilmesini talep etme</li>
+    </ul>
+
+    <h2>Başvuru</h2>
+    <p>Yukarıdaki haklarını kullanmak için <a href="mailto:kvkk@pazarapp.net">kvkk@pazarapp.net</a> adresine yazabilirsin. Başvurunda sana ulaşabileceğimiz bilgileri ve talebini açıkça belirtmen, işlemi hızlandırır.</p>
+    <p>Hesabını silmek için başvuru yapman gerekmez; uygulamadaki <strong>Profil → Hesabımı sil</strong> adımı bu işlemi doğrudan yapar.</p>
+
+    <h2>Bu metinde değişiklik</h2>
+    <p>Bu metin zaman zaman güncellenebilir; uygulamaya yeni bir özellik girdiğinde ya da bir aktarım değiştiğinde burayı da güncelleriz. Güncel hâli her zaman bu adreste durur, ayrıca bir duyuru beklemen gerekmez. Metnin en altındaki yürürlük tarihi, o an geçerli sürümün ne zaman yayımlandığını gösterir.</p>
+  </main>
+  <footer>
+    <p>Yürürlük tarihi: <time datetime="2026-08-24">24 Ağustos 2026</time></p>
+    <p><a href="/">Pazar ana sayfası</a></p>
+  </footer>
+</body>
+</html>
