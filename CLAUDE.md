@@ -1285,8 +1285,7 @@ Uygulama teknik olarak çalışıyor ama **pratikte hâlâ dağıtılmamış dur
    **Taslak metin kaybolmadı:** çıkarılan `<h2>` + HUKUKÇUYA SORULACAK yorumu **commit `2e69630`'ın içinde** duruyor. Geri getirirken `git show 2e69630:gizlilik/index.html` ile bak.
    **Geri eklerken:** bölüm "Kimlere aktarılıyor" ile "Ne kadar saklanıyor" **arasına** girer (çıkarıldığı yer orası). Sayfa `h2` sayısı 13 → 14 olur.
 
-> Eski **kök `avkkann.github.io/sitemap.xml`** maddesi
- 2026-08-17'de düştü: artık `pazarapp.net` kendi host'u, kendi `robots.txt`'i ve kendi `sitemap.xml`'i var. `robots.txt` host başına okunduğu için Google artık bu depodan üretilen dosyayı okuyor. Başka bir depodaki o dosya bu proje için anlamsız.
+> Eski **kök `avkkann.github.io/sitemap.xml`** maddesi 2026-08-17'de düştü: artık `pazarapp.net` kendi host'u, kendi `robots.txt`'i ve kendi `sitemap.xml`'i var. `robots.txt` host başına okunduğu için Google artık bu depodan üretilen dosyayı okuyor. Başka bir depodaki o dosya bu proje için anlamsız.
 
 **Karar bekleyen:**
 - **Al/bekle'de kaybolan 900 çıktı.** Temiz seriye geçince alarm önerisi −492, al/bekle −408 düştü. Bunlar yeni bir susturma kuralı değil, **mevcut kapılar** düzeltilmiş veriye uygulandığı için: alarm "fiyat zaten dipteyse öneri yok"a, al/bekle `AL_ZAMANI_MIN_OYNAMA` %5 kapısına takılıyor. Düşenlerin yarısında temiz aralık **tam sıfır** (ürün 30 gündür kımıldamamış, "bekle" demek yanlıştı). Ama dürüst sınır: salınımlı seri "yanlış seri" değil — inip biten bir kampanya gerçek bir diptir ve o bilgiyi kaybettik. Kabul mü, yoksa hedefli bir istisna mı gerekiyor?
