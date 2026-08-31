@@ -607,18 +607,16 @@
          test_satirici_kilit.mjs ile 117'ye kilitli) -- anchor zaten
          klavyeyle odaklanabilir ve Enter ile acilir, ekstra tesisat gereksiz.
 
-         GIZLI (2026-08-26) -- gecici ve BILINCLI. /gizlilik/ sayfasi repoda
-         ama YAYINDA DEGIL (aktarim dayanagi bos, avukat bekliyor), yani bu
-         link canlida 404'e dusuyordu. Kullaniciya bir sey vaat edip
-         vermemek, hic link olmamasindan kotu.
-         `gizli` MEVCUT desen (style.css:3123 `.gizli{display:none}`); yeni
-         kural yazilmadi. Ozgulluk notu: `.profil-item` display:flex veriyor
-         (style.css:1205) ama `.gizli` DOSYADA DAHA SONRA geldigi icin ayni
-         ozgullukte kazaniyor -- gercek tarayicida da olculdu.
-         YAYINA ALIRKEN UC SEY BIRLIKTE: prepare-public.mjs + static/hub.css
-         + bu `gizli` sinifinin kaldirilmasi. Ayrintili kontrol listesi
-         CLAUDE.md'de. -->
-    <a class="profil-item profil-item-link gizli" href="/gizlilik/">
+         GORUNUR (2026-08-31) -- `gizli` sinifi KALDIRILDI. 2026-08-26'da
+         gecici olarak gizlenmisti, cunku /gizlilik/ repoda olsa da public/'e
+         kopyalanmiyordu ve link canlida 404'e dusuyordu. Bu turda sayfa
+         gercekten yayina alindi: prepare-public.mjs BELGE_DIZINLERI +
+         static/hub.css (.belge/.metin-tablo) + bu sinif kaldirma AYNI
+         COMMIT'te gitti -- ucu kontrol listesinin tamami, yarim durum yok.
+         Sayfadaki "yurt disina aktarimin hukuki dayanagi" basligi BOS
+         oldugu icin yayindan CIKARILDI; avukat gorusu gelince geri gelecek
+         (taslak metin commit 2e69630'da duruyor). -->
+    <a class="profil-item profil-item-link" href="/gizlilik/">
       <div class="profil-item-icon ikon-mavi" data-lc="database">🔒</div>
       <div class="profil-item-body">
         <div class="profil-item-title">Gizlilik ve KVKK</div>

@@ -33,3 +33,26 @@ tbody tr:last-child td { border-bottom: none; }
 footer { border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.95em; }
 footer nav a, footer p a { color: var(--link); }
 footer ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 12px 20px; }
+
+/* BELGE SAYFALARI (/gizlilik/) — hub iskeletini AYNEN kullanir, yalniz iki
+   kural ekler. Hub sayfalari fiyat tablosu basiyor ve th/td'de white-space:
+   nowrap DOGRU (sayi sutunu bolunmesin); belge sayfasinda hucreler duz METIN,
+   nowrap orada sayfayi yatay kaydirtir. Kapsam .metin-tablo ile sinirli ->
+   mevcut hub sayfalarinin hicbiri etkilenmez. */
+.metin-tablo { min-width: 0; }
+.metin-tablo th, .metin-tablo td { white-space: normal; vertical-align: top; }
+/* DAR EKRANDA TABLONUN KENDI KUTUSUNDA KAYMASI: BILINCLI, kusur degil.
+   390px'te uc sutunlu metin tablosu ~384px istiyor, sarmalayici 350px ->
+   .tablo-sarmalayici'nin overflow-x:auto'su devreye giriyor. SAYFANIN
+   KENDISINDE yatay tasma YOK (CDP olcumu: scrollWidth == clientWidth,
+   360/390/1440'ta ucu de).
+   IKI DUZELTME DENENDI, IKISI DE OLCULUP GERI ALINDI:
+     1) overflow-wrap:anywhere -> tasmayi bitirdi ama kelimeleri ORTADAN
+        boldu ("GoatCo/unter"); kusuru daha gorunur bir kusurla degistirdi.
+     2) dar ekranda dolgu kisaltma + hyphens -> tablo 384px'ten 391px'e
+        CIKTI, yani daha kotu oldu.
+   Kalan tek kural white-space:normal ve o ZORUNLU: hub varsayilani nowrap
+   ve bu tabloda hucreler cumle -- nowrap'la tablo binlerce px olurdu. */
+/* Uzun hukuki metinde satir uzunlugunu okunabilir bantta tut (~70 karakter).
+   Tablolar ve basliklar disarida -- onlar tam genisligi kullanmali. */
+.belge main p, .belge main li { max-width: 68ch; }

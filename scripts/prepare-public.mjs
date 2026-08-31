@@ -14,6 +14,33 @@ copyFileSync('manifest.json', `${PUB}/manifest.json`);
 copyFileSync('robots.txt', `${PUB}/robots.txt`);
 copyFileSync('sw.js', `${PUB}/sw.js`);
 
+// BELGE SAYFALARI — elle yazilan, veriye bagli OLMAYAN statik sayfalar.
+// Su an tek uye: gizlilik/ (KVKK aydinlatma metni).
+//
+// NEDEN .hub/ DEGIL, NEDEN hub-uret.mjs URETMIYOR (bilincli karar, olculdu):
+//   Hub sayfalari GUNLUK FIYAT VERISINDEN turetilir; bu yuzden hub-sayfa.mjs
+//   modeli veriDamgasi/sonVeri ZORUNLU tutar, sayfaKarari esik (12 satir /
+//   300 kelime) uygular ve .hub/manifest.json'a kayit duser. O kaydi da
+//   veri_tazelik_kontrol.py --hub okur ve damgasi ESIK_GUN(2)'den eskiyse
+//   deploy'u KIRMIZI yapar (deploy.yml, wrangler'dan ONCE kosar).
+//   Gizlilik metni veriden turemiyor ve her gun degismiyor -> manifeste
+//   yazilsaydi IKI GUN SONRA yayini kendiliginden bloklardi. Bu yuzden
+//   manifeste GIRMIYOR; tazelik kapisi yalnizca manifest kayitlarini gezdigi
+//   icin (glob DEGIL, olculdu) bu sayfa kapiya hic ugramiyor.
+// SUNUM DESENI YINE DE HUB'IN AYNISI: ayni <head> meta seti, ayni
+//   header/main/footer iskeleti, ayni /static/hub.css. Ikinci bir sayfa
+//   mimarisi kurulmadi.
+const BELGE_DIZINLERI = ['gizlilik'];
+for (const dizin of BELGE_DIZINLERI) {
+  if (!existsSync(dizin)) {
+    // Sessiz gecme: magazalar bu URL'yi istiyor, kaybolursa gorunur olsun.
+    console.warn(`[belge] ${dizin}/ bulunamadi — public/'e kopyalanmiyor.`);
+    continue;
+  }
+  cpSync(dizin, `${PUB}/${dizin}`, { recursive: true });
+  console.log(`[belge] ${dizin}/ public/'e kopyalandi`);
+}
+
 // Hub sayfalari (.hub/, Gorev 4: scripts/hub-uret.mjs) public/'e kopyalanir.
 // Sayfa dizinleri (hal/, kategori/, market/, zam/) static/data/manifest.json
 // ile AYNI SEVIYEDE, public/ kokune duzlenir -- boylece Vite publicDir'i
