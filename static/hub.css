@@ -56,3 +56,25 @@ footer ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 1
 /* Uzun hukuki metinde satir uzunlugunu okunabilir bantta tut (~70 karakter).
    Tablolar ve basliklar disarida -- onlar tam genisligi kullanmali. */
 .belge main p, .belge main li { max-width: 68ch; }
+
+/* GOVDE ICINDEKI LINKLER -- koyu temada OKUNMUYORDU (canlida olculdu 2026-08-31).
+   Yukaridaki `footer nav a, footer p a` kurali yalnizca FOOTER'i renklendiriyor;
+   main icindeki link hicbir renk kurali almiyor ve tarayici varsayilani
+   #0000EE'ye dusuyordu. Acik temada zarar yok (8,92) ama koyu temada
+   #0000EE / #14181B => kontrast 1,90 -- AA esigi 4,5. Yani KVKK basvuru
+   adresleri (kvkk@ / iletisim@) koyu temada fiilen okunamiyordu.
+   Olcum: kural yokken 1,90 -> kuralla 9,95 (koyu), 8,92 -> 9,82 (acik).
+
+   KAPSAM UYARISI -- BU KUSUR YALNIZ BU SAYFAYA AIT DEGIL:
+   ilk taramada /hal/ ornek alinmisti ve orada main'de link YOK (0 adet), bu
+   yuzden "govdesinde link tasiyan ilk sayfa bu" sanildi. YANLISTI. Canli
+   olcum: /kategori/et/ main'inde 7 link var ve YEDISI DE 1,90 -- yani 18 hub
+   sayfasinin buyuk kismi koyu temada ayni kusuru tasiyor ve bu kusur benim
+   commit'imden ONCE de vardi.
+   Buna ragmen kural bilerek .belge ile SINIRLI birakildi: hub sayfalarinin
+   gorunumunu degistirmek bu turun kapsami disinda ve gorsel degisiklik
+   Mustafa'nin onayina tabi. Genisletmek icin tek yapilacak sey `.belge `
+   onekini silmek (`main a { color: var(--link); }`). Acik madde CLAUDE.md'de.
+
+   Yeni renk YOK: zaten tanimli --link tokeni (koyu #4FD8A6, acik #0E4938). */
+.belge main a { color: var(--link); }

@@ -1285,6 +1285,13 @@ Uygulama teknik olarak çalışıyor ama **pratikte hâlâ dağıtılmamış dur
    **Taslak metin kaybolmadı:** çıkarılan `<h2>` + HUKUKÇUYA SORULACAK yorumu **commit `2e69630`'ın içinde** duruyor. Geri getirirken `git show 2e69630:gizlilik/index.html` ile bak.
    **Geri eklerken:** bölüm "Kimlere aktarılıyor" ile "Ne kadar saklanıyor" **arasına** girer (çıkarıldığı yer orası). Sayfa `h2` sayısı 13 → 14 olur.
 
+8. **HUB SAYFALARINDA GÖVDE LİNKLERİ KOYU TEMADA OKUNMUYOR — ölçüldü 2026-08-31, BİLEREK kapsam dışı bırakıldı.** `hub.css`'te link rengi yalnızca `footer nav a, footer p a` için tanımlı; **`main` içindeki link hiçbir renk kuralı almıyor** ve tarayıcı varsayılanı `#0000EE`'ye düşüyor. Koyu temada `#0000EE` / `#14181B` → **kontrast 1,90** (AA eşiği 4,5). Açık temada zarar yok (8,92).
+   **Canlı ölçüm:** `/kategori/et/` main'inde **7 link, yedisi de 1,90**. `/hal/`'de main linki YOK (0) — ilk tarama örneği olarak onu seçmek yanıltmıştı, "bu kusur yalnız yeni belge sayfasında" sanılmıştı. **Kusur benim commit'imden ÖNCE de vardı**, 18 hub sayfasının büyük kısmını etkiliyor.
+   **Bu turda YALNIZCA `/gizlilik/` düzeltildi** (`.belge main a { color: var(--link); }`) — çünkü orada kırılan şey **KVKK başvuru adresleriydi** (`kvkk@` / `iletisim@`) ve o sayfa bu turda yayına alınıyordu. Hub sayfalarının görünümünü değiştirmek turun kapsamı dışındaydı.
+   **Genişletmek tek kelimelik:** `static/hub.css`'teki kuraldan `.belge ` önekini sil → `main a { color: var(--link); }`. Yeni renk gerekmiyor, `--link` zaten tanımlı (koyu `#4FD8A6`, açık `#0E4938`). **Ama görsel değişiklik 18 sayfayı etkiler → Mustafa görüp karar versin.**
+   *Ders (bu turda yaşandı): bir kusurun kapsamını TEK örnekle belirleme. `/hal/` "0 link" dedi ve yanlış genelleme üretti; `find`+`sed` ile bütün sayfalar sayılınca gerçek dağılım çıktı.*
+
+
 > Eski **kök `avkkann.github.io/sitemap.xml`** maddesi 2026-08-17'de düştü: artık `pazarapp.net` kendi host'u, kendi `robots.txt`'i ve kendi `sitemap.xml`'i var. `robots.txt` host başına okunduğu için Google artık bu depodan üretilen dosyayı okuyor. Başka bir depodaki o dosya bu proje için anlamsız.
 
 **Karar bekleyen:**
