@@ -16,6 +16,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { appOrtamiKur } from './app-vm.mjs';
+import { ayZamCiftleri } from './zam-aylik.mjs';
 import { gunDamgasi, sayiTR, kirpmaNotu, ayKarari, sayfaKarari, sayfaHTML, slug } from './hub-sayfa.mjs';
 import { enYeniGozlemTarihi } from './veri-tarihi.mjs';
 
@@ -315,49 +316,22 @@ const guncelAy = uygunAylar[uygunAylar.length - 1];
 // geliyor -- ikisi de app.js'in KENDI kodu. Pencere SADECE takvim ayi --
 // bu, "mantik yeniden yazilmiyor" kuralinin BILINCLI istisnasi (bkz. dosya
 // basi yorumu): zamHavuzu() takvim ayina gore parametreleştirilemiyor.
+// ayZamHesapla 2026-09-01'de scripts/zam-aylik.mjs'e TASINDI (mantik
+// degismedi, bagimliliklar parametre oldu). Sebep: ayni hesap artik
+// anasayfa-uret.mjs tarafindan da kullaniliyor (uygulamada Firsatlar >
+// Zamlananlar sekmesi) ve iki ayri kopya UYGULAMA ile HUB SAYFASININ
+// farkli liste gostermesi demekti.
 function ayZamHesapla(ay, sonGun) {
-  const [yilS, ayS] = ay.split('-');
-  const gunler = [];
-  for (let g = 1; g <= sonGun; g++) gunler.push(`${yilS}-${ayS}-${String(g).padStart(2, '0')}`);
-  const pencereBas = gunler[0];
-  const pencereSon = gunler[gunler.length - 1];
-  console.log(`[hub] zam penceresi ${ay}: ${pencereBas}..${pencereSon} (${gunler.length} gün)`);
-
-  const ciftler = [];
-  let salinimElenen = 0;
-  for (const sid of Object.keys(gecmisFiyatlar)) {
-    const kategoriSlug = sidSlug.get(sid);
-    // Katalogda olmayan (artik satilmayan) urunler ve MEVSIM TUZAGI:
-    // meyve-sebze zam havuzunun disinda tutuluyor -- zamHavuzu()'nun
-    // 'meyve'/'sebze' disarida birakma ilkesiyle ayni (app.js ~satir 3053).
-    if (!kategoriSlug || kategoriSlug === 'meyve-sebze') continue;
-    const urun = sidUrun.get(sid);
-    const kayitlar = gecmisFiyatlar[sid];
-    if (!Array.isArray(kayitlar) || !kayitlar.length) continue;
-    const marketler = {};
-    for (const k of kayitlar) {
-      if (!k || !k.t || k.f == null || !(k.f > 0)) continue;
-      const m = k.m || '?';
-      (marketler[m] ||= []).push(k);
-    }
-    for (const m of Object.keys(marketler)) {
-      if (!MARKET_NAMES[m]) continue;
-      const a = marketler[m].slice().sort((x, y) => (x.t < y.t ? -1 : (x.t > y.t ? 1 : 0)));
-      // Salinim testi TAM gun izgarali seri istiyor -- bu kisim degismedi.
-      const seri = new Array(gunler.length).fill(null);
-      let j = 0, son = null;
-      for (let i = 0; i < gunler.length; i++) {
-        while (j < a.length && a[j].t <= gunler[i]) { son = a[j]; j++; }
-        seri[i] = son ? son.f : null;
-      }
-      // ZAM OLCUTU: onceki zirveye gore, app.js'in KENDI fonksiyonuyla.
-      const r = zamOlcutuIc(a, pencereBas, pencereSon);
-      if (!r || !(r.artis >= ZAM_ESIK)) continue;
-      if (salinimVarMi(seri)) { salinimElenen++; continue; }
-      ciftler.push({ sid, market: m, ad: urun ? urun.ad : sid, kategoriSlug, zirve: r.zirve, sonDeger: r.sonDeger, artis: r.artis, sonGozlemTarihi: son.t });
-    }
-  }
-  return { ciftler, salinimElenen };
+  const r = ayZamCiftleri(ay, sonGun, {
+    gecmisFiyatlar, sidSlug, sidUrun, MARKET_NAMES, ZAM_ESIK,
+    zamOlcutu: zamOlcutuIc, salinimVar: salinimVarMi
+  });
+  // LOG SARMALAYICIDA, MODULDE DEGIL: modul anasayfa-uret tarafindan da
+  // cagriliyor, "[hub]" oneki orada yanlis olurdu. Bu satiri tasima sirasinda
+  // dusurmustum ve test_hub_zam_pencere.mjs yakaladi -- o test stdout'u
+  // gozluyor, yani hub'in URETTIGI SAYFA degil KOSMA IZI de korunuyor.
+  console.log(`[hub] zam penceresi ${ay}: ${r.pencereBas}..${r.pencereSon} (${r.gunSayisi} gün)`);
+  return r;
 }
 
 function zamSayfaModeliKur(ay) {

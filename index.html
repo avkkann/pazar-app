@@ -385,10 +385,24 @@
       <img src="/static/icon-192.png" alt="Pazar" class="hdr-logo-mini">
     </div>
   </header>
+  <!-- Sekmeler DELEGASYONLA baglandi (2026-09-01). Onceden ikisi de satir ici
+       tiklama ozniteligi tasiyordu; ucuncu sekmeyi ayni sekilde eklemek satir
+       ici handler sayacini 117 -> 118 yapar ve test_satirici_kilit.mjs
+       kirmiziya donerdi. Ucu birden data-tab'a cevrildi -> sayac DUSTU (kilit
+       azalmaya izin veriyor, artmaya vermiyor). Dinleyici app.js'te
+       _firsatSekmeTikla.
+       NOT: bu yorumda ozniteligin ADI yazilmiyor -- sayac kaynak metninde
+       desen ariyor ve aciklama yorumu da eslesiyordu (depoda belgelenmis
+       tuzak; ilk yazimda 117 yerine 116 gorunmesine sebep oldu). -->
   <div class="firsat-tabs">
-    <button class="firsat-tab active" onclick="firsatTab('ucuz',this)">💰 En Ucuz</button>
-    <button class="firsat-tab" onclick="firsatTab('tasarruf',this)">En Tasarruflu</button>
+    <button class="firsat-tab active" data-tab="ucuz">💰 En Ucuz</button>
+    <button class="firsat-tab" data-tab="tasarruf">En Tasarruflu</button>
+    <button class="firsat-tab" data-tab="zam">📈 Zamlananlar</button>
   </div>
+  <!-- Ay cipleri: icerik app.js'te anasayfa.json'daki zamAylik'ten uretiliyor.
+       SABIT AY YAZILMIYOR -- veride hangi aylar varsa onlar cikiyor, yeni ay
+       kendiliginden geliyor. Zamlananlar sekmesi disinda gizli. -->
+  <div class="firsat-aylar gizli" id="firsatAylar"></div>
   <div class="firsat-arabar">
     <input type="text" id="firsatArama" placeholder="Fırsatlarda ara..." oninput="firsatAra(this.value)" autocomplete="off" aria-label="Fırsatlarda ara">
   </div>

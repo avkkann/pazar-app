@@ -3366,3 +3366,36 @@
 @media (max-width: 1023px) {
   #home-cats { min-height: 450px; }
 }
+
+/* ══════════════════════════════════════════════════════════════════════
+   FIRSATLAR > ZAMLANANLAR (3. sekme, 2026-09-01)
+   YENI RENK TANIMLANMADI: rozet mevcut --rozet-zam-* ailesini kullaniyor
+   (ana sayfadaki zam rozetiyle ayni dil), ay cipleri mevcut .filter-pill
+   olculerini izliyor. Yeni bilesen degil, mevcut dilin tekrari.
+   ══════════════════════════════════════════════════════════════════════ */
+.firsat-badge-zam { background: var(--rozet-zam-bg); color: var(--rozet-zam-fg); }
+[data-theme="dark"] .firsat-badge-zam { background: var(--rozet-zam-bg-koyu); color: var(--rozet-zam-fg-koyu); }
+
+/* Ay cipleri. .firsat-tabs ile AYNI yapisal desen (yatay kaydirilabilir,
+   scrollbar gizli) -- ikinci bir kaydirma dili kurulmuyor. */
+.firsat-aylar {
+  display: flex; gap: var(--space-2); flex-wrap: nowrap; overflow-x: auto;
+  scrollbar-width: none; padding: var(--space-3) var(--space-4) 0;
+}
+.firsat-aylar::-webkit-scrollbar { display: none; }
+.firsat-ay {
+  flex-shrink: 0; padding: var(--space-2) var(--space-4);
+  font-size: var(--fs-1); font-weight: 600; font-family: inherit;
+  color: var(--text-muted); background: var(--card-bg);
+  border: 1px solid var(--border); border-radius: 999px;
+  cursor: pointer; white-space: nowrap;
+}
+.firsat-ay.active { color: var(--primary); border-color: var(--primary); }
+/* 44px dokunma hedefi -- depodaki mevcut ::after deseni (style.css 2730
+   ailesi) ile ayni cozum; gorsel boyut degismiyor. */
+.firsat-ay { position: relative; }
+.firsat-ay::after {
+  content: ''; position: absolute; left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 44px; min-height: 44px; width: 100%; height: 100%;
+}

@@ -20,6 +20,40 @@ Mustafa (GitHub: avkkann), **Pazar App**'in tek geliştiricisi — Türk market 
 
 ## Mevcut durum (2026-08-21 itibarıyla)
 
+### 2026-09-01 — Fırsatlar'a **3. sekme: Zamlananlar** (aylık listeler uygulamaya girdi)
+
+Aylık zam listeleri yalnızca hub sayfalarındaydı (`/zam/2026-08/`) ve onlara tek giriş ana sayfanın **en altındaki** footer linkleriydi. Mustafa'nın tespiti: *"millet girip onu okumaya üşenir."* Liste artık Fırsatlar ekranında, **En Ucuz · En Tasarruflu · 📈 Zamlananlar** olarak üçüncü sekme; altında ay çipleri (Eylül / Ağustos / Temmuz).
+
+**TEK TANIM — yeni bir "zam nedir" doğmadı.** Hesap `scripts/zam-aylik.mjs`'e çıkarıldı ve **hem hub hem uygulama** onu çağırıyor. Fonksiyon `hub-uret.mjs`'ten **aynen** taşındı (mantık değişmedi, bağımlılıklar parametre oldu) ve taşımanın davranışı değiştirmediği **hash ile** kanıtlandı: 20 hub dosyasının sha256'sı `3bb0a214a86e701b` → taşımadan sonra **aynı**. Çekirdek ölçüt yine `app.js`'in kendi `zamOlcutu`'su.
+
+**NEDEN BUILD'DE HESAPLANIYOR (ölçüldü, varsayılmadı):**
+
+| yol | ek indirme | sekme açılınca |
+|---|---:|---|
+| **build → `anasayfa.json`** | **+10,5 KB gzip** (24 → 34,5) | **0 bekleme**, dosya zaten inmiş |
+| istemcide hesapla | `gecmis_fiyatlar.json` **728 KB gzip** | 73 ms hesap + indirme |
+
+İstemci hesabı *hızlı* (üç ay 73 ms) ama **veriyi** gerektiriyor; build yolu 69 kat daha az veri indiriyor. Bu zaten `anasayfa.json`'un var olma sebebi.
+
+**AY LİSTESİ VERİDEN TÜRÜYOR, sabit yazılmadı.** Bugünün ayından geriye 3 ay bakılıyor, **boş aylar çıkarılıyor** → yeni ay kendiliğinden giriyor, en eskisi düşüyor. `index.html`'de sabit ay adı yok (test kilitliyor). Ürün başına en fazla 50 — hub sayfasıyla aynı üst sınır.
+
+**Hub ile fark BİLİNÇLİ:** hub **ürün×market çifti** listeliyor (aynı ürün iki kez görünebilir), uygulama **ürün başına tekilleştirip** en yüksek artışı gösteriyor — kart listesinde aynı ürünün iki kartı kafa karıştırır. Ölçüldü: Ağustos'ta uygulamanın 50 ürününün **46'sı** hub sayfasında da var, ilk beşi aynı sırada.
+
+**SATIR İÇİ HANDLER SAYACI 117 → 115'E DÜŞTÜ.** Üçüncü sekmeyi mevcut desenle (`onclick=`) eklemek sayacı 118 yapıp `test_satirici_kilit`'i kırardı. Onun yerine **üç sekme birden** `data-tab` + delegasyona çevrildi; kilit azalmaya izin veriyor. Ay çipleri de delegasyonla.
+
+**Doğrulama (gerçek tarayıcı):** üç ay çipi · ay değiştirme (Eylül 48 · Ağustos 50 · Temmuz 50) · arama bu sekmede de çalışıyor (50 üründen 11'i "su") · diğer sekmeye geçince çipler gizleniyor ve özet eski hâline dönüyor · kart tıklaması detayı açıyor, geri **Fırsatlar'a** dönüyor · yatay taşma 0. Kontrast **AA**: ay çipi 4,83 / aktif çip 10,35 / rozet 6,37 (açık) — koyu temada rozet **8,30**. Dokunma hedefi 44px (`::after`, mevcut desen). Yeni renk **tanımlanmadı**: rozet mevcut `--rozet-zam-*` ailesini kullanıyor.
+
+**`sw.js` v232 → v233 ZORUNLUYDU:** service worker `data/anasayfa.json`'ı önbelleğe alıyor; sürüm artmadan yeni alan (`zamAylik`) kullanıcıya **hiç ulaşmıyordu** — yerelde bu bir kez yaşandı ve "veri yok" gibi göründü. Profildeki sürüm numarası artık `sw.js`'ten türediği için kendiliğinden v233 oldu.
+
+> **ÖLÇÜM ALETİ NOTU (bu turda iki kez yanıldım, ikisi de yakalandı):**
+> **(1)** İlk tarayıcı ölçümümde sekme dizisini **tıklamadan ÖNCE** almıştım; "sekme değişmedi" diye okudum, oysa delegasyon çalışıyordu. Tek gerçek sorun SW önbelleğiydi. *Ölçümün hangi anı yakaladığına bak.*
+> **(2)** Koyu temada rozet kontrastını **2,21** ölçtüm ve AA'da kaldı sandım — zemin `rgba(...,0.18)` yarı saydamdı ve onu opak sayıp hesaplamıştım. Alfa kompozitlenince gerçek değer **8,30**. *Yarı saydam zeminde kontrast, kompozit edilmiş renkle ölçülür.*
+
+**Yeni guard:** `test_zam_aylik.mjs` (26 iddia) — tek tanım (hesap gövdesi üreteçlere kopyalanmamış), satır içi handler yokluğu, sabit ay yasağı, boş ay yasağı, ürün tekrarı yasağı, mevcut token kullanımı. Prove-by-breaking **4/4 kırmızı**, dördünde de mutasyon doğrulandı.
+
+
+---
+
 ### 2026-08-31 — GİZLİLİK SAYFASI **YAYINDA** (kontrol listesi üçü birlikte kapandı)
 
 `/gizlilik/` artık canlı ve Profil ekranındaki link **görünür**. Altı turdur açık duran "yayına alma" kapısı bu turda tek commit'le kapandı.

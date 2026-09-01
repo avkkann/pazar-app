@@ -20,6 +20,7 @@ import { fileURLToPath } from 'node:url';
 import { appOrtamiKur } from './app-vm.mjs';
 import { enYeniGozlemTarihi } from './veri-tarihi.mjs';
 import { gunDamgasi } from './hub-sayfa.mjs';
+import { ayZamCiftleri, ayIcinSonGun } from './zam-aylik.mjs';
 
 const KOK = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const D = (p) => path.join(KOK, p);
@@ -130,12 +131,89 @@ const katalog = fs.readdirSync(D('data'))
 const veriTarihi = gunDamgasi(enYeniGozlemTarihi(gecmisFiyatlar, katalog));
 console.log(`[anasayfa] veri_tarihi (en yeni gozlem): ${veriTarihi}  (${Date.now() - tVeri} ms)`);
 
+// ── AYLIK ZAM LISTELERI (Firsatlar > Zamlananlar sekmesi) ──────────────
+// Ana sayfa seridi 30 GUNLUK KAYAN pencere kullaniyor; bu listeler TAKVIM AYI.
+// Ikisi AYRI sorulari cevapliyor: "son 30 gunde ne zamlandi" vs "Agustos'ta
+// ne zamlandi".
+//
+// TEK TANIM: hesap scripts/zam-aylik.mjs'te ve hub sayfalari (/zam/2026-08/)
+// AYNI fonksiyonu cagiriyor. Yani uygulamadaki liste ile hub sayfasindaki
+// liste ayni uretecten cikiyor -- ikisi ayri yazilsaydi kullanici ayni ay
+// icin iki farkli liste gorurdu.
+//
+// NEDEN BUILD'DE (olculdu): istemcide de hesaplanabilirdi -- uc ay 73 ms --
+// AMA gecmis_fiyatlar.json gerektiriyor: 728 KB gzip. Build'de uretilip
+// anasayfa.json'a konunca maliyet +4,9 KB gzip (24 -> 29 KB) ve o dosya
+// ZATEN ana sayfada iniyor: sekme aninda aciliyor, YENI ISTEK YOK.
+//
+// AY LISTESI VERIDEN TURUYOR, sabit yazilmiyor: bugunun ayindan geriye
+// AY_SAYISI kadar bakiliyor ve BOS AYLAR CIKARILIYOR -> her ay yeni ay
+// kendiliginden giriyor, en eskisi dusuyor; verisi olmayan ay (or. ayin
+// 1'i) hic cizilmiyor ("veri yoksa bos kabuk gosterme").
+const AY_SAYISI = 3;
+const AY_URUN_MAX = 50;   // hub sayfasiyla ayni ust sinir ("Ayin en cok zamlanan 50 urunu")
+const tAy = Date.now();
+const MARKET_NAMES = ic('MARKET_NAMES');
+const ZAM_ESIK = ic('ZAM_ESIK');
+const ZAM_AYLAR = ic('ZAM_AYLAR');
+const KATEGORILER_AY = ic('KATEGORILER');
+const catCacheAy = ic('catCache');
+const sidSlug = new Map();
+const sidUrun = new Map();
+for (const kat of KATEGORILER_AY) {
+  for (const u of catCacheAy[kat.slug] || []) {
+    if (u && u._sid) { sidSlug.set(u._sid, kat.slug); sidUrun.set(u._sid, u); }
+  }
+}
+function zamOlcutuIc(kayitlar, pencereBas, pencereSon) {
+  ctx.__zk = kayitlar; ctx.__zb = pencereBas; ctx.__zs = pencereSon;
+  return ic('zamOlcutu(__zk, __zb, __zs)');
+}
+function salinimVarMi(seri) {
+  ctx.__seri = seri;
+  return ic('_salinimVarSeri(__seri)') !== null;
+}
+const bugunISO = (() => {
+  const d = new Date();
+  const p = (n) => String(n).padStart(2, '0');
+  return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
+})();
+const zamAylik = [];
+for (let i = 0; i < AY_SAYISI; i++) {
+  const d = new Date(Number(bugunISO.slice(0, 4)), Number(bugunISO.slice(5, 7)) - 1 - i, 1);
+  const ay = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+  const { ciftler } = ayZamCiftleri(ay, ayIcinSonGun(ay, bugunISO), {
+    gecmisFiyatlar, sidSlug, sidUrun, MARKET_NAMES, ZAM_ESIK,
+    zamOlcutu: zamOlcutuIc, salinimVar: salinimVarMi
+  });
+  // Ayni urun birden cok markette esigi gecebilir; listede BIR KEZ, en yuksek
+  // artisiyla gorunsun (hub sayfasi cift bazinda tablo basiyor, uygulamada
+  // kart listesi var ve ayni urunun iki karti kafa karistirir).
+  const enIyi = new Map();
+  for (const c of ciftler) {
+    const v = enIyi.get(c.sid);
+    if (!v || c.artis > v.artis) enIyi.set(c.sid, c);
+  }
+  const urunler = [...enIyi.values()]
+    .sort((a, b) => b.artis - a.artis)
+    .slice(0, AY_URUN_MAX)
+    .map((c) => {
+      ctx.__u = sidUrun.get(c.sid);
+      return { u: ic('_asKart(__u)'), market: c.market, artis: c.artis, zirve: c.zirve, sonDeger: c.sonDeger };
+    })
+    .filter((x) => x.u);
+  if (!urunler.length) continue;                      // BOS AY CIZILMEZ
+  zamAylik.push({ ay, etiket: `${ZAM_AYLAR[Number(ay.slice(5, 7)) - 1]} ${ay.slice(0, 4)}`, urunler });
+}
+console.log(`[anasayfa] aylik zam: ${zamAylik.map((a) => a.ay + '=' + a.urunler.length).join(' ') || '(hic ay yok)'}, ${Date.now() - tAy} ms`);
+
 const cikti = {
   surum: 1,
   uretim: new Date().toISOString(),
   veri_tarihi: veriTarihi,
   urun_sayisi: urunSayisi,
   zam: zam,
+  zamAylik: zamAylik,
   tuzaklar: tuzaklar,
   dusenler: dusenler,
   supheli: supheli,

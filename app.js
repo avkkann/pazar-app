@@ -5600,12 +5600,39 @@ function goFirsatlar() {
 function firsatTab(tab, btn) {
   _firsatAktifTab = tab;
   document.querySelectorAll('.firsat-tab').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
+  if (btn) btn.classList.add('active');
   const ara = document.getElementById('firsatArama');
   if (ara) ara.value = '';
   window._firsatArama = '';
+  // Ay cipleri YALNIZ zam sekmesinde. Diger sekmelerde gizli kalmali, yoksa
+  // "En Ucuz"un ustunde anlamsiz bir ay secici durur.
+  const ayKap = document.getElementById('firsatAylar');
+  if (ayKap) ayKap.classList.toggle('gizli', tab !== 'zam');
   renderFirsatlar(tab);
 }
+
+// Sekme + ay cipi DELEGASYONU. Satir ici handler EKLENMIYOR (sayac kilidi 117).
+// `document` uzerinde tek dinleyici; sekmeler/cipler DOM'a sonradan girse de
+// calisir (ay cipleri zaten JS ile uretiliyor).
+function _firsatSekmeTikla(e) {
+  const sekme = e.target.closest && e.target.closest('.firsat-tab[data-tab]');
+  if (sekme) { firsatTab(sekme.dataset.tab, sekme); return; }
+  const cip = e.target.closest && e.target.closest('.firsat-ay[data-ay]');
+  if (cip) {
+    _firsatAktifAy = cip.dataset.ay;
+    document.querySelectorAll('.firsat-ay').forEach(c => c.classList.remove('active'));
+    cip.classList.add('active');
+    const ara = document.getElementById('firsatArama');
+    if (ara) ara.value = '';
+    window._firsatArama = '';
+    renderFirsatlar('zam');
+  }
+}
+document.addEventListener('click', _firsatSekmeTikla);
+// Klavye: cipler <button> degil <span> degil -- <button> uretiliyor, yani
+// Enter/Space native calisiyor. Ek tesisat GEREKMIYOR (olculdu).
+
+let _firsatAktifAy = null;
 
 function firsatAra(q) {
   // ONCE: kart METNI okunup duz toLowerCase ile includes yapiliyordu.
@@ -5636,6 +5663,10 @@ function renderFirsatlar(tab) {
   const container = document.getElementById('firsatContent');
   if (!container) return;
   container.innerHTML = '<div class="firsat-loading">⏳ Yükleniyor...</div>';
+  // ZAM SEKMESI ERKEN DONUYOR: verisi anasayfa.json'da, ZATEN inmis durumda.
+  // Asagidaki iki Supabase sorgusunu beklemek sekmeyi bosuna gecikirdi --
+  // sekmenin build'de hesaplanmasinin sebebi tam da aninda acilmasiydi.
+  if (tab === 'zam') { renderFirsatZam(container); return; }
   const ustKategoriler = ['meyve','sebze','et','sut','gida','icecek','temizlik','atistirmalik','dondurulmus','diger'];
   const ucuzQuery = Promise.all(ustKategoriler.map(function(kat) {
     return window.supabaseClient.from('urunler')
@@ -5773,9 +5804,17 @@ function _gorselYuklendi(e) {
 }
 document.addEventListener('load', _gorselYuklendi, true);
 
-function _firsatOzetGuncelle(ucuzSayi, tasarrufSayi) {
+// zamSayi VERILIRSE ozet zam sekmesine gore ciziliyor. Neden: zam sekmesinde
+// "0 En Ucuz / 0 Fiyat Farki" yazmak YANLIS bilgi olurdu -- o sayilar o
+// sekmenin sorusuna ait degil. Sekme kendi sayisini gosteriyor.
+function _firsatOzetGuncelle(ucuzSayi, tasarrufSayi, zamSayi) {
   const ozet = document.getElementById('firsatOzet');
   if (!ozet) return;
+  if (zamSayi != null) {
+    ozet.innerHTML =
+      '<div class="firsat-ozet-chip"><div class="firsat-ozet-sayi">'+zamSayi+'</div><div class="firsat-ozet-lbl">Zamlanan ürün</div></div>';
+    return;
+  }
   ozet.innerHTML = ''
     + '<div class="firsat-ozet-chip"><div class="firsat-ozet-sayi">'+ucuzSayi+'</div><div class="firsat-ozet-lbl">En Ucuz</div></div>'
     + '<div class="firsat-ozet-chip"><div class="firsat-ozet-sayi">'+tasarrufSayi+'</div><div class="firsat-ozet-lbl">Fiyat Farkı</div></div>';
@@ -5819,6 +5858,54 @@ function renderFirsatUcuz(container, ucuzGruplari) {
     html += '</div>';
   });
   container.innerHTML = html || '<div class="firsat-loading">Veri yükleniyor...</div>';
+}
+
+// ── ZAMLANANLAR SEKMESI (aylik listeler) ────────────────────────────────
+// Veri build'de uretiliyor (scripts/anasayfa-uret.mjs -> zamAylik) ve hub
+// sayfalariyla AYNI fonksiyondan cikiyor (scripts/zam-aylik.mjs), yani
+// uygulamadaki liste ile /zam/2026-08/ sayfasi ayni ureteci paylasiyor.
+// Burada yeni bir "zam nedir" tanimi YOK -- yalnizca cizim.
+//
+// Kart uretici YENIDEN YAZILMADI: diger iki sekmeyle ayni _firsatKartHtml.
+// Boylece tiklama/klavye/sepet davranisi ucunde de birebir ayni.
+async function renderFirsatZam(container) {
+  const on = await anasayfaVeriGetir();
+  const aylar = (on && on.zamAylik) || [];
+  const ayKap = document.getElementById('firsatAylar');
+
+  if (!aylar.length) {
+    // BOS KABUK GOSTERME: veri yoksa sebebi yazip cikiyoruz.
+    if (ayKap) { ayKap.innerHTML = ''; ayKap.classList.add('gizli'); }
+    container.innerHTML = '<div class="firsat-loading">Henüz aylık zam listesi yok.</div>';
+    _firsatOzetGuncelle(0, 0);
+    return;
+  }
+
+  // Aktif ay gecerli degilse (or. ay dondu, eski secim artik listede yok)
+  // en yeniye don -- sessizce bos ekran gostermek yerine.
+  if (!aylar.some(a => a.ay === _firsatAktifAy)) _firsatAktifAy = aylar[0].ay;
+
+  if (ayKap) {
+    ayKap.innerHTML = aylar.map(a =>
+      `<button type="button" class="firsat-ay${a.ay === _firsatAktifAy ? ' active' : ''}" data-ay="${_kacir(a.ay)}">${_kacir(a.etiket)}</button>`
+    ).join('');
+    ayKap.classList.remove('gizli');
+  }
+
+  const secili = aylar.find(a => a.ay === _firsatAktifAy) || aylar[0];
+  const urunler = secili.urunler || [];
+  let html = `<div class="firsat-section"><div class="firsat-section-title">${_kacir(secili.etiket)} · en çok zamlanan ${urunler.length} ürün</div>`;
+  urunler.forEach(function (x) {
+    const artis = Math.round(x.artis);
+    const marketAd = MARKET_NAMES[x.market] || x.market;
+    // Alt metin ZIRVEYI de soyluyor: "%23 zam" tek basina neye gore oldugunu
+    // sylemiyor; olcut "pencere oncesi zirveye gore" ve kullanici bunu gormeli.
+    const alt = marketAd + ' · ' + tl(x.zirve) + ' → ' + tl(x.u.en_dusuk_fiyat);
+    html += _firsatKartHtml(x.u, '+%' + artis, 'firsat-badge-zam', alt);
+  });
+  html += '</div>';
+  container.innerHTML = html;
+  _firsatOzetGuncelle(0, 0, urunler.length);
 }
 
 function renderFirsatTasarruf(container, tumUrunler) {
