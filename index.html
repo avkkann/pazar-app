@@ -628,7 +628,12 @@
       <div class="profil-item-icon ikon-yesil" data-lc="leaf">🌿</div>
       <div class="profil-item-body">
         <div class="profil-item-title">Pazar Uygulaması</div>
-        <div class="profil-item-sub" id="profilSurum">v1.0 · Marketteki gizli zamları gör</div>
+        <!-- Surum ELLE YAZILMAZ: build zamaninda sw.js'teki CACHE_NAME'den
+             turetiliyor (vite.config.js -> scripts/surum.mjs). Asagidaki deger
+             yalnizca yer tutucu; enjeksiyon calismazsa build KIRILMAZ, bu
+             deger gorunur. Eskiden burada sabit "v1.0" yaziyordu ve gercek
+             surum 232'ydi -- iki numara bagimsiz suruklenmisti. -->
+        <div class="profil-item-sub" id="profilSurum"><span id="surumNo">v?</span> · Marketteki gizli zamları gör</div>
       </div>
     </div>
   </div>
