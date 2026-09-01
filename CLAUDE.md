@@ -852,11 +852,17 @@ hata **0** (yalnızca 2 bilinen Cloudflare beacon ihlali).
 > ürün görselinin `src`'si bozulup `onerror` tetiklendi: `.strip-card-img-ph` 6 → 7 arttı,
 > yeni öğe 🍎 emojisini 32px'te bastı. Yani emoji temizliği yedeği bozmadı — iki temada da.
 
-> **AÇIK BORÇ — arama kutusundaki büyüteç dilin dışında.** `index.html`'de satır içi,
-> `stroke="#0E4938"` sabit hex (token değil), `butt`/`miter` (dil `round`/`round`),
-> `aria-hidden` yok. Ana sayfadaki 26 SVG'nin dil dışında kalan **tek** öğesi (ikincisi
-> kategori emojisiydi, Faz 3 onu kapattı). Faz 3'e dahil edilmedi çünkü kapsam kategori
-> ızgarasıydı; ayrı ve küçük bir iş.
+> ~~**AÇIK BORÇ — arama kutusundaki büyüteç dilin dışında.**~~ **KAPANDI.** Üç şikâyetin
+> **ikisi 2026-08-21 M3 turunda (`f962b51`) zaten düzelmişti ama bu satır güncellenmedi**
+> (doküman bayatlığı): büyüteç `stroke: var(--primary)` + `round`/`round` kullanıyor.
+> Kalan `aria-hidden` **2026-09-01'de** eklendi — ve ölçünce eksik olanın tek öğe
+> OLMADIĞI çıktı: `index.html`'in **22 statik SVG'sinin 20'sinde** `aria-hidden` yoktu.
+> ("26 SVG'nin 24'ünde var" ölçümü **render edilmiş** sayfaya aitti; app.js'in `lcIcon()`
+> ile ürettikleri zaten koyuyor — statik HTML ayrı bir yüzey.) Yirmisi de eklendi ama
+> **körlemesine değil**: her SVG için "etkileşimli atası var mı, varsa erişilebilir adı
+> var mı" ölçüldü (riskli: **0**), sonra 50 etkileşimli öğenin **hiçbirinin** isimsiz
+> kalmadığı doğrulandı — `aria-hidden`'ı bir butonun tek içeriğine koymak onu isimsiz
+> bırakır, yani düzeltme diye regresyon yazılabilirdi.
 
 ### 2026-08-18 — Ana sayfa tasarımı: token sistemi + hiyerarşi (CANLI, DOĞRULANDI)
 
@@ -1323,7 +1329,7 @@ Uygulama teknik olarak çalışıyor ama **pratikte hâlâ dağıtılmamış dur
 
 **Teknik borç / arıza:**
 - **`.hal-gorsel` `object-fit: cover` ile %42 KIRPIYOR (ölçüldü 2026-08-25, BİLEREK dokunulmadı).** 138×80 kutu, kare kaynak → çizilen 138×138, dikey taşma 58px. Şerit kartıyla aynı sınıf hata gibi görünüyor **ama aynı karar değil**: hal kartlarında görsel, kartın üst bandını dolduran bir kapak fotoğrafı ve sebze/meyve fotoğrafında dolu kadraj **kasıtlı** olabilir. Farklı ekran, farklı tasarım kararı — **Mustafa ekranı görüp karar verecek.**
-- **`.cart-item-img img` `object-fit: fill` (ölçüldü 2026-08-25, düzeltilmedi).** `fill` en-boy oranını **korumaz**, gerer. Bugün zarar yok çünkü kutu kare (44×44) ve kaynaklar kare; ama kare olmayan bir görsel gelirse ürün **ezilmiş** görünür. Latent risk, sessiz bozulma sınıfı.
+- ~~**`.cart-item-img img` `object-fit: fill`**~~ **BU MADDE BAYATMIŞ — 2026-09-01'de ölçüldü.** Kural bugün `object-fit: contain` (`style.css:851`), yani anlatılan latent risk **yok**; arada düzeltilmiş ama satır güncellenmemiş. *Doküman bayatlığının bir vakası daha. Hemen üstteki `.hal-gorsel` `cover` maddesi ise HÂLÂ GEÇERLİ (ölçüldü) — ikisini karıştırma.*
 - **SOĞUK AÇILIŞTA CLS — KISMEN DÜZELTİLDİ (2026-09-01): toplam kayma 1,14 → 0,773.** Kategori ızgarasına yer ayrıldı (`#home-cats { min-height: 450px }`, yalnız <1024px — orada ızgara `1fr 1fr`, yani 8 kategori TAM 4 satır; ölçüldü ve formülle doğrulandı: 4×99,59 + 3×12 + 16 = 450,4). ≥1024px **bilerek kapsam dışı**: `auto-fill` sütun sayısını genişliğe göre değiştiriyor, sabit rezerv ara genişliklerde ızgaranın altında **kalıcı boşluk** bırakırdı. Değer `test_cls.mjs` ile kilitli (prove-by-breaking 3/3), `.detay-img-wrap` 228/308 deseniyle aynı. **KALAN 0,773 tamamen ŞERİTLERDEN** ve bu bir TASARIM KARARI bekliyor: şerit yükseklikleri kart içeriğine göre değişiyor (ölçüldü: mevsim 255,8 · tuzaklar 316,8 · şüpheli 332 · zam 397,2 — tek sabit rezerv doğru değil) ve şeritler veri yoksa **bilerek gizli** kalıyor ("boş kabuk göstermez"). Onlara yer ayırmak o kararı tersine çevirir → **Mustafa iskelet gösterilsin mi diye karar verecek.** Aşağıdaki eski ölçüm kaydı duruyor: Sebebi **resimler DEĞİL** (onlar 0 kaydırıyor). Zaman çizelgesi: `cat-grid` 16px → **450px** (kategoriler basılıyor), ardından 5 şerit birden giriyor, sayfa **1357 → 3179px**, `hub-nav` 267 → 2523'e itiliyor. **Kullanıcı bunu GÖRMÜYOR** — ölçüldü: splash bu kaymalar biterken (t≈6,25 sn) kalkıyor, hepsi perdenin arkasında oluyor. Ilık (önbellekli) açılışta CLS **0**. **Ama Google saha verisinde bu sayılıyor** → algılanan kalitede sorun yok, **SEO tarafında gerçek** (1,15, "poor" eşiği 0,25). Çözüm yönü: şeritlerin ve kategori ızgarasının yerini önceden ayırmak (iskelet/`min-height`), yani ana sayfada da aynı "kutuyu önce ayır" ilkesi. Ölçmeden eşik uydurma.
 - **`screen-favoriler` `openDetay`'in `_prevScreen` listesinde YOK (ölçüldü 2026-08-24, düzeltilmedi).** Liste şu an `['screen-home','screen-cat','screen-sepet','screen-firsatlar']`; Favoriler'den açılan detayda geri tuşu kullanıcıyı **Ana Sayfa'ya** atar. Aynı turda `screen-firsatlar` eklendi ama bu kapsam dışı bırakıldı — tek satırlık ekleme, ama Favoriler akışı uçtan uca ölçülmeden eklenmemeli (Fırsatlar'da tam da böyle ikinci bir katman çıkmıştı).
 - **Fırsatlar'da "sepete eklendi" (✓) durumu HİÇ görünmüyor (ölçüldü 2026-08-24, düzeltilmedi).** `_firsatKartHtml` `inCart`'ı `window.sepet`'ten hesaplıyor (`window.sepet && window.sepet.some(...)`), ama gerçek sepet `sepet` — **ayrı nesne** (`window.sepet === sepet` → `false`, çalışma anında ölçüldü). Sonuç: ürün gerçekten sepete giriyor (`sepet` 0→1, localStorage 0→1) ama buton `firsat-card-add--ekli` sınıfını hiç almıyor, kullanıcı geri bildirim görmüyor. Düzeltmeden önce **hangi referansın doğru olduğu** belirlenmeli; `window.sepet`'i güncel tutmak mı, `_firsatKartHtml`'i `sepet`'e bağlamak mı — ikisi farklı kapsam kararı.
