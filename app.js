@@ -868,12 +868,10 @@ const KATEGORILER = [
 const PAGE_SIZE = 48;
 
 // ── DURUM ─────────────────────────────────────────────
-let halMap = {};
 let catCache = {};    // slug → [products with _id]
 let productMap = {};  // _id → product
 let urunler = [];     // görünen ürünler (toggleSepet için)
 let currentKategori = null, currentSayfa = 1, toplamSayfa = 1, yukleniyor = false;
-let activeMarket = null;
 let _prevScreen = 'screen-home';
 
 // Eski format sepeti temizle (id → _id migrasyonu)
@@ -4151,7 +4149,6 @@ async function openCategory(slug) {
   currentSayfa = 1;
   toplamSayfa = 1;
   urunler = [];
-  activeMarket = null;
   // Profildeki "Tercih Ettiğim Marketler" seçimi kategori filtresine VARSAYILAN gelir.
   window.aktifMarketler = tercihMarketleriOku();
   document.querySelectorAll('.filter-pill').forEach(p => {
@@ -4264,11 +4261,6 @@ function catAra(q) {
   // burada toLowerCase yapiliyordu ve arama Turkce'de asimetrikti:
   // olculdu -> "sut" 0 sonuc, "sut" 339 sonuc; "seker" 0, "seker" 40.
   window._catAramaTermi = (q || '').trim();
-  uygulaCatFiltre();
-}
-
-function filterUrunler(secilenMarket) {
-  if (secilenMarket !== undefined) window.aktifMarket = secilenMarket;
   uygulaCatFiltre();
 }
 
@@ -4634,9 +4626,7 @@ function marketfiyatiAra(keywords) {
   .catch(e => { console.warn('[arama] marketfiyati aramasi basarisiz, sonuc bos donecek:', e && e.message); return null; });
 }
 
-function mfGorsel(item) { return ''; }
 
-function mfPlaceholderEmoji(item) { return ''; }
 
 function mfMarketInitial(item) {
   const firstDepot = item.productDepotInfoList && item.productDepotInfoList[0];
@@ -5420,11 +5410,12 @@ function loadData() {
   return halVeriGetir().then(halData => {
     window.halVerisi = halData;
     if (halData.urunler) {
-      halMap = {};
-      for (const u of halData.urunler) {
-        const k = norm(u.ad);
-        if (!halMap[k] || (u.fiyat != null && u.fiyat < (halMap[k].fiyat ?? 9999))) halMap[k] = u;
-      }
+      // NOT: burada eskiden ad->en ucuz hal kalemi esleyen bir `halMap` kuruluyordu.
+      // Tek okuyucusu 2026-08-10'da silinen `halEsles` idi; o gunden beri harita her
+      // `loadData`da kuruluyor ama HIC okunmuyordu (olculdu: app.js/index.html/sw.js
+      // ve testlerde sifir okuma). Hal-market karsilastirmasi geri acilirsa esleme
+      // cesit seviyesinde yeniden kurulmali -- bu harita zaten dokme emtia ile
+      // ceside ayrim yapmadigi icin o isi karsilamiyordu (bkz. CLAUDE.md).
       // #halDate elemani index.html'de YOK (2026-07-10 inline->app.js ayiklamasinda
       // dustu). Korumasiz getElementById(...).innerHTML her acilista TypeError
       // atiyor, .then govdesi burada kesiliyor ve asagidaki hicbir satir
@@ -6312,14 +6303,6 @@ function profilGuncelle() {
   if (toggle) { toggle.className = 'profil-toggle' + (isDark ? ' on' : ''); }
   if (el('temaDurum')) el('temaDurum').textContent = isDark ? 'Koyu tema aktif' : 'Açık tema aktif';
   refreshThemeSwitch();
-}
-
-function temaToggle() {
-  const root = document.documentElement;
-  const isDark = root.getAttribute('data-theme') !== 'light';
-  root.setAttribute('data-theme', isDark ? 'light' : 'dark');
-  try { localStorage.setItem('pazar_theme', isDark ? 'light' : 'dark'); } catch(e){ /* localStorage yazilamadi (gizli mod/kota): tema bu oturumda calisir, kalici olmaz */ }
-  profilGuncelle();
 }
 
 function setTheme(val) {
