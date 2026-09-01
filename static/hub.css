@@ -65,16 +65,20 @@ footer ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 1
    adresleri (kvkk@ / iletisim@) koyu temada fiilen okunamiyordu.
    Olcum: kural yokken 1,90 -> kuralla 9,95 (koyu), 8,92 -> 9,82 (acik).
 
-   KAPSAM UYARISI -- BU KUSUR YALNIZ BU SAYFAYA AIT DEGIL:
-   ilk taramada /hal/ ornek alinmisti ve orada main'de link YOK (0 adet), bu
-   yuzden "govdesinde link tasiyan ilk sayfa bu" sanildi. YANLISTI. Canli
-   olcum: /kategori/et/ main'inde 7 link var ve YEDISI DE 1,90 -- yani 18 hub
-   sayfasinin buyuk kismi koyu temada ayni kusuru tasiyor ve bu kusur benim
-   commit'imden ONCE de vardi.
-   Buna ragmen kural bilerek .belge ile SINIRLI birakildi: hub sayfalarinin
-   gorunumunu degistirmek bu turun kapsami disinda ve gorsel degisiklik
-   Mustafa'nin onayina tabi. Genisletmek icin tek yapilacak sey `.belge `
-   onekini silmek (`main a { color: var(--link); }`). Acik madde CLAUDE.md'de.
+   KAPSAM -- 2026-09-01'de BUTUN SAYFALARA acildi (`.belge ` oneki kaldirildi).
+   Once yalniz /gizlilik/ duzeltilmisti; gerekce "hub sayfalarinin gorunumunu
+   degistirmek o turun kapsami disi" idi. Sonra butun sayfalar SAYILDI ve
+   kusurun boyutu ortaya cikti: 18 sayfada 525 govde linki
+     /zam/*      65 link x 2 sayfa
+     /market/*   48 link x 7 sayfa
+     /kategori/*  7 link x 8 sayfa
+     /gizlilik/   3 link
+     /hal/ ve ana sayfa: 0
+   Ilk taramada ornek olarak /hal/ secilmisti ve o, main'inde link OLMAYAN
+   IKI sayfadan biriydi -- "bu kusur yalniz belge sayfasinda" diye yanlis
+   genelleme tam buradan dogdu. TEK ORNEKLE KAPSAM BELIRLEME.
 
+   Footer linkleri zaten --link aliyordu; bu kural yalnizca main icindekileri
+   AYNI tokene bagliyor, yani yeni bir renk dili getirmiyor.
    Yeni renk YOK: zaten tanimli --link tokeni (koyu #4FD8A6, acik #0E4938). */
-.belge main a { color: var(--link); }
+main a { color: var(--link); }
