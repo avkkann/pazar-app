@@ -49,7 +49,15 @@ const sandbox = {
   _guvenliUrl: (u) => String(u || ''),
   supheliDurum: () => false,
   supheliRozetHTML: () => '',
-  window: { sepet: [] },
+  // `sepet` vm baglamina 2026-09-01'de EKLENDI. Oncesinde yalnizca
+  // `window: { sepet: [] }` vardi ve bu YETIYORDU -- cunku kod `window.sepet &&`
+  // ile kisa devre yapiyordu, yani `sepet` HIC degerlendirilmiyordu. Kod ciplak
+  // `sepet`e cevrilince vm "sepet is not defined" ile patladi; bu, duzeltmenin
+  // gercekten calisma yolunu degistirdiginin kaniti oldu.
+  // IDDIA GEVSETILMEDI, calisma ortami tamamlandi (test_kacis / test_sepet_bol
+  // icin `sehirOku` eklenirken uygulanan ayni desen).
+  sepet: [],
+  window: {},
   btoa: (s) => Buffer.from(s, 'binary').toString('base64'),
   unescape, encodeURIComponent,
   console,
@@ -178,6 +186,61 @@ ok('_prevScreen atamasi kosula bagli (detay acikken yeniden hesaplanmiyor)',
 ok('  gorunurluk _ekranGorunur ile olculuyor (inline style ile DEGIL)',
    /_ekranGorunur/.test(od) && !/\.style\.display\s*!==\s*'none'/.test(od),
    'CLAUDE.md kurali: gorunurluk kontrolu getComputedStyle tabanli _ekranGorunur ile yapilir');
+
+console.log('\n=== 8. SEPET DURUMU window.sepet DEN OKUNMUYOR ===');
+// OLCULDU 2026-09-01: `_firsatKartHtml` inCart'i `window.sepet`ten hesapliyordu.
+// `sepet` app.js'te ust duzey bir `let`; klasik script'te ust duzey let window'a
+// OZELLIK OLARAK YAZILMAZ -> `window.sepet` HER ZAMAN undefined, `inCart` her
+// zaman falsy, ✓ durumu HIC gorunmedi. Urun sepete giriyordu ama kullanici
+// geri bildirim almiyordu. Calisma aninda dogrulandi: typeof window.sepet
+// === 'undefined' iken sepet.length > 0.
+{
+  // Bu duzeltmeyi ANLATAN yorum "window.sepet" yaziyor; ciplak arama kendi
+  // aciklamasiyla eslesirdi (bu depoda belgelenmis tuzak). Ama yorumlari
+  // NAIF REGEX ile soymak DAHA KOTU: olculdu (2026-09-01), `/\*[\s\S]*?\*\//`
+  // app.js'ten 124.591 BAYT siliyor -- cunku `/*` dize/regex literallerinin
+  // icinde de geciyor ve non-greedy eslesme aradaki gercek kodu yutuyor.
+  // Sonuc: 4 gercek eslesmenin 3'u kayboluyor ve test YANLIS YESIL veriyordu.
+  // (Ayni sinif 2026-08-20'de de yasandi: soyucu 2287 satiri gizlemisti.)
+  // Guvenli yol SATIR BAZLI: yorum satirlarini atla, kodu bozma.
+  const kodSatirlari = APP.split(/\r?\n/).filter(l => {
+    const t = l.trim();
+    return !(t.startsWith('//') || t.startsWith('*') || t.startsWith('/*'));
+  });
+  const kacak = kodSatirlari.filter(l => l.includes('window.sepet')).length;
+  ok('kodda window.sepet KULLANIMI yok (yorum satirlari haric)',
+     kacak === 0, 'bulunan satir: ' + kacak);
+  // Soyucunun kendi kontrol grubu: filtre gercekten is goruyor mu?
+  ok('  satir filtresi calisiyor (yorumdaki window.sepet ayiklandi)',
+     APP.includes('window.sepet') && kodSatirlari.join('\n').includes('const inCart = sepet.some('),
+     'filtre ya hic ayiklamadi ya da kodu yedi');
+
+  // DAVRANISSAL — kaynak grep'i degil: fonksiyon vm'de KOSULUYOR ve sepet
+  // durumu iki yonlu degistirilip cikti okunuyor. Kontrol grubu sart:
+  // "hep ekli sinifi basan" bir kod da tek yonlu testten gecerdi.
+  const cagir = () => vm.runInContext(
+    '_firsatKartHtml(' + JSON.stringify(urun) + ', "EN UCUZ", "firsat-badge-ucuz", "alt")', sandbox);
+  sandbox.sepet.length = 0;
+  const bos = cagir();
+  sandbox.sepet.push({ _id: 'sut_12' });
+  const dolu = cagir();
+  sandbox.sepet.length = 0;
+  const tekrarBos = cagir();
+
+  ok('sepette DEGILKEN ekli sinifi YOK',
+     !/firsat-card-add--ekli/.test(bos), (bos.match(/<button[^>]*firsat-card-add[^>]*>/) || [''])[0]);
+  ok('sepetteYKEN ekli sinifi VAR',
+     /firsat-card-add--ekli/.test(dolu), (dolu.match(/<button[^>]*firsat-card-add[^>]*>/) || [''])[0]);
+  ok('sepetten cikinca ekli sinifi TEKRAR KALKIYOR (tek yonlu degil)',
+     !/firsat-card-add--ekli/.test(tekrarBos));
+  // Kontrol grubu: diger uc kart ureticisi de ayni referansi kullaniyor olmali.
+  // Biri window.sepet e kayarsa ayni sinif kusur oradan geri doner.
+  // Envanter: dort kart/buton ureticisi de ayni referansi kullanmali. Biri
+  // window.sepet e kayarsa ayni sinif kusur oradan geri doner.
+  const noktalar = [...APP.matchAll(/const inCart = sepet\.some\(/g)].length;
+  ok('dort ureticinin dordu de ciplak `sepet` kullaniyor', noktalar === 4,
+     'bulunan: ' + noktalar);
+}
 
 console.log('\nSONUC: PASS=' + pass + ' FAIL=' + fail);
 process.exit(fail ? 1 : 0);

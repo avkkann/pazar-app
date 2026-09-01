@@ -5665,7 +5665,15 @@ function _firsatKartHtml(u, badge, badgeClass, altText) {
   const imgHtml = u.resim
     ? '<img class="firsat-card-img" src="'+_guvenliUrl(u.resim)+'" alt="" loading="lazy" onerror="this.className=\'firsat-card-img-ph\';this.outerHTML=\'<div class=&quot;firsat-card-img-ph&quot;>'+emoji+'</div>\'">'
     : '<div class="firsat-card-img-ph">'+emoji+'</div>';
-  const inCart = window.sepet && window.sepet.some(function(s){return s._id===u._id;});
+  // 2026-09-01: 'window.sepet' -> 'sepet'. `sepet` app.js'te ust duzey bir
+  // `let` ve klasik script'te ust duzey let window'a OZELLIK OLARAK YAZILMAZ;
+  // yani `window.sepet` her zaman undefined idi, `inCart` her zaman falsy oldu
+  // ve bu butonda ✓ durumu HIC gorunmedi (urun sepete gerciyordu ama kullanici
+  // geri bildirim almiyordu). Hangi referansin dogru oldugu depo kuralindan
+  // okundu: diger UC kart ureticisi (detay butonu, renderDetayBtn, cardHTML)
+  // ciplak `sepet` kullaniyor. 'window.sepet'i guncel tutmak IKINCI BIR KAYNAK
+  // yaratirdi -- bu depoda tuzak diye isaretlenmis desen.
+  const inCart = sepet.some(s => s._id === u._id);
   // data-id + role/tabindex/aria-label: kart bu turdan once HICBIRINI
   // tasimiyordu, bu yuzden tiklama HIC yakalanmiyordu (detay acilmiyordu).
   // Diger uc kart uretici (cardHTML, _stripKartHTML, cart-item) bunlari
