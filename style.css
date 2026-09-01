@@ -926,8 +926,13 @@
       display: flex; justify-content: flex-start; align-items: center; gap: var(--space-2);
       padding: var(--space-2) 0; border-bottom: 1px solid var(--border); font-size: .8rem;
     }
-    .cmp-mkt-item-img { width: 30px; height: 30px; border-radius: 6px; object-fit: cover; background: #fff; flex-shrink: 0; }
-    .cmp-mkt-item-img-ph { width: 30px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 16px; background: #fff; flex-shrink: 0; }
+    /* Olculu: width/height/border-radius asagidaki cmp satir yeniden tasarim
+       blogunda (ayni ozgulluk, DAHA SONRA) 56px/10px ile eziliyor -> buradan
+       cikarildi. Kalanlar EZILMIYOR ve gereklidir: object-fit ve flex-shrink
+       hicbir yerde tekrar tanimli degil, background yalniz koyu temada eziliyor. */
+    .cmp-mkt-item-img { object-fit: cover; background: #fff; flex-shrink: 0; }
+    /* Ayni sekilde: width/height/border-radius VE font-size (26px) eziliyor. */
+    .cmp-mkt-item-img-ph { display: flex; align-items: center; justify-content: center; background: #fff; flex-shrink: 0; }
     .cmp-mkt-item:last-of-type { border-bottom: none; }
     .cmp-mkt-item-name {
       color: var(--text); flex: 1; min-width: 0;
@@ -2674,22 +2679,6 @@
   }
 }
 /* FIX-PART-TAMAM */
-
-@media (min-width: 1024px) {
-  .screen {
-    position: static;
-    left: auto;
-    width: auto;
-    margin-left: 264px;
-    margin-right: 0;
-  }
-  #screen-home, #screen-cat, #screen-sepet, #screen-firsatlar, #screen-favoriler, #screen-profil, #screen-hal, #screen-detay {
-    box-sizing: border-box;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-/* CENTER-FIX-TAMAM */
 
 @media (min-width: 1024px) {
   .screen {

@@ -156,7 +156,15 @@ for (const s of ['.strip-card', '.product-card', '.cat-card', '.cart-item']) {
   // basligina kadar surer. Once "isaretciden sonrasi tumu" diye alinmisti;
   // dosya sonuna baska bir is (JS KAPALI PANELI) eklendiginde bu koruma
   // yanlis yere ates etti. Koruma ayni sey icin duruyor, sinir kapatildi.
-  const yeni = (CSS.split('CMP SATIR YENIDEN TASARIM')[1] || '').split(/\/\*\s*═+\s/)[0];
+  // CAPA BOLUM BASLIGINA bagli, duz ifadeye DEGIL. Onceki hali sadece
+  // "CMP SATIR YENIDEN TASARIM" diye ariyordu; ayni sozu GECEN bir aciklama
+  // yorumu dosyanin baska bir yerine yazilinca split YANLIS YERDEN kesti ve
+  // test, kodda hicbir sey bozulmamisken kirmizi verdi (2026-09-01). Gercek
+  // baslik ═ cercevesi tasiyor, duz prose tasimiyor -> capa onu istiyor.
+  // Bu bir GEVSETME degil: kapsam daraldi, iddia aynen duruyor.
+  const bas = CSS.search(/\/\*\s*═+\s*CMP SATIR YENIDEN TASARIM/);
+  ok('bolum basligi bulundu (capa saglam)', bas >= 0, 'index=' + bas);
+  const yeni = (bas < 0 ? '' : CSS.slice(bas)).replace(/^\/\*[\s\S]*?\*\//, '').split(/\/\*\s*═+\s/)[0];
   ok('yeni CSS blogu var', yeni.length > 100, 'uzunluk=' + yeni.length);
   const secililer = [...yeni.matchAll(/^\s*([.\[][^{]*)\{/gm)].map(m => m[1].trim());
   const kacak = secililer.filter(s => !/cmp-/.test(s));
