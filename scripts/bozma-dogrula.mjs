@@ -32,8 +32,21 @@ const bozmalar = plan.bozmalar || [];
 if (!bozmalar.length) { console.error('[bozma] planda hic bozma yok'); process.exit(2); }
 
 // Once testin YESIL oldugunu dogrula -- kirmizi bir testle bozma denemesi anlamsiz.
+//
+// KOSTURUCU UZANTIYA GORE SECILIYOR (2026-09-01'de duzeltildi). Onceki hali
+// HER testi `process.execPath` (node) ile kosturuyordu; bir `.py` testi
+// verildiginde node onu ayristiramiyor, cagri patliyor ve harness bunu
+// "test zaten KIRMIZI" diye raporluyordu. Yani ALET, saglam bir testi bozuk
+// gosteriyordu -- tam da bu harness'in var olma sebebi olan hata sinifi.
+// (Olculdu: test_depot.py tek basina 22/0 YESIL iken harness KIRMIZI diyordu.)
+// Windows'ta Python `py` launcher'i ile calisiyor; `python` bu makinede YOK.
+function testKomutu() {
+  if (testDosyasi.endsWith('.py')) return { cmd: 'py', args: [testDosyasi] };
+  return { cmd: process.execPath, args: [testDosyasi] };
+}
 function testKosturVeSonuc() {
-  try { execFileSync(process.execPath, [testDosyasi], { stdio: 'pipe' }); return 'YESIL'; }
+  const { cmd, args } = testKomutu();
+  try { execFileSync(cmd, args, { stdio: 'pipe' }); return 'YESIL'; }
   catch { return 'KIRMIZI'; }
 }
 if (testKosturVeSonuc() !== 'YESIL') {

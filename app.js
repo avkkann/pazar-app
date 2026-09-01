@@ -3744,10 +3744,30 @@ function zamMarketArtisi(sid, market) {
 // carrefour-5027 "Karaköy Mını" 171,50). Mağaza değişimi geçmişimizde zam gibi
 // görünüyordu: Lux Zigzag 27 -> 85,90 -> 28 -> 85,90.
 //
-// GELECEK — BU KURAL GEÇİCİ: scraper 2026-08-11'den beri market_fiyatlari
-// içine depot_id/depot_ad yazıyor. 2-3 hafta veri birikince salınımın gerçekten
-// mağaza değişimi olup olmadığı DOĞRUDAN doğrulanabilecek; o zaman bu yapısal
-// kural, depot_id değişimini izleyen ölçüme dayalı kuralla değiştirilmeli.
+// ÖLÇÜLDÜ 2026-09-01 — "BU KURAL GEÇİCİ, depot_id kuralıyla DEĞİŞTİRİLMELİ"
+// NOTU ÇÜRÜDÜ; kural KALICI. Burada eskiden şu yazıyordu: veri birikince
+// salınımın gerçekten mağaza değişimi olup olmadığı doğrulanır ve bu yapısal
+// kural depot_id kuralıyla DEĞİŞTİRİLİR. O öneri, salınımın SEBEBİNİN depot
+// değişimi olduğunu varsayıyordu. 21 günlük gerçek seriyle (397.875 ardışık
+// gün çifti, scripts/depot-olcum.mjs) yan yana ölçülünce varsayım düştü:
+//   zincir        salınımlı %   depot değişen %
+//   bim              19,6            0,0     <- KONTROL GRUBU
+//   migros            9,3           37,0     <- ters yön
+//   carrefour        18,8           21,0
+//   hakmar            1,0            7,6
+// BİM'de depot HİÇ değişmiyor ama salınım ikinci en yüksek; Migros'ta depot en
+// çok değişiyor ama salınım en düşüklerden. İkisi FARKLI OLGU. Bu kural
+// kaldırılsaydı BİM'in 1834 serisi korumasız kalırdı.
+//
+// Hayalet zam yine de GERÇEK ama daha dar: depot aynıyken %15+ artış oranı
+// %1,32, depot değişince %9,33 (yedi kat) — ancak %15+ artışların yalnız
+// %14,1'i bir depot değişimiyle çakışıyor ve depot değişimlerinin %73,1'inde
+// fiyat HİÇ değişmiyor. Yani depot farkındalığı bu kuralın YERİNE değil
+// YANINA eklenecek bir sinyal.
+//
+// SIRADAKİ: scraper 2026-09-01'den beri depot'u fiyat GEÇMİŞİNE de yazıyor
+// (`d`, additive). Veri birikince zamOlcutu'na "depot değişen geçişi zam
+// kanıtı sayma" eki yazılabilir — bu kural yerinde kalarak.
 // Ölçüm (2026-08-11): 17.668 market serisinin %22,7'si salınımlı — zincir
 // bazında carrefour %28,6 · bim %24,7 · tarim_kredi %21,2 · migros %21,0 ·
 // sok %16,8 · a101 %13,1. Eşiği geçen 295 üründen 64'ü (%21,7) eleniyor.

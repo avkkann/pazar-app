@@ -110,5 +110,47 @@ esles = {f["market"]: f.get("depot_id") for f in u["market_fiyatlari"]}
 ok("carrefour dogru depota bagli", esles.get("carrefour") == "carrefour-1012", esles)
 ok("migros dogru depota bagli", esles.get("migros") == "migros-1991", esles)
 
+print("\n=== gecmis_kaydet: depot fiyat GECMISINE de yaziliyor ===")
+# NEDEN: depot_id 2026-08-11'den beri market_fiyatlari'nda vardi ama fiyat
+# GECMISINE hic girmiyordu -> calisma aninda "bu iki fiyat ayni magazadan mi"
+# sorusu cevaplanamiyordu. Olcum (scripts/depot-olcum.mjs, 21 gun, 397.875
+# ardisik cift): depot ayniyken %15+ artis %1,32 · depot degisince %9,33.
+import json
+import tempfile
+
+_gecici = tempfile.mkdtemp()
+_eskiDataDir = scr.DATA_DIR
+_eskiKategoriler = scr.CATEGORIES
+_eskiDondurulmus = scr.DONDURULMUS_OUT
+try:
+    scr.DATA_DIR = _gecici
+    scr.CATEGORIES = [("Test", "test", "urunler_test")]
+    scr.DONDURULMUS_OUT = "urunler_yok"
+    with open(os.path.join(_gecici, "urunler_test.json"), "w", encoding="utf-8") as f:
+        json.dump([
+            {"_sid": "test_depotlu", "market_fiyatlari": [
+                {"market": "carrefour", "fiyat": 85.9, "depot_id": "carrefour-1012"}]},
+            {"_sid": "test_depotsuz", "market_fiyatlari": [
+                {"market": "bim", "fiyat": 42.0}]},
+        ], f)
+    scr.gecmis_kaydet()
+    with open(os.path.join(_gecici, "gecmis_fiyatlar.json"), encoding="utf-8") as f:
+        g = json.load(f)
+    depotlu = g["test_depotlu"][0]
+    depotsuz = g["test_depotsuz"][0]
+    ok("depot_id varsa gecmis kaydina 'd' olarak giriyor",
+       depotlu.get("d") == "carrefour-1012", depotlu)
+    ok("mevcut alanlar bozulmadi (t/m/f)",
+       depotlu.get("m") == "carrefour" and depotlu.get("f") == 85.9 and depotlu.get("t"),
+       depotlu)
+    # ADDITIVE olmasi sart: alan bossa anahtar HIC acilmamali, yoksa milyonlarca
+    # kayda bos alan eklenir ve dosya bosuna buyur.
+    ok("depot_id YOKSA 'd' anahtari HIC acilmiyor (additive)",
+       "d" not in depotsuz, depotsuz)
+finally:
+    scr.DATA_DIR = _eskiDataDir
+    scr.CATEGORIES = _eskiKategoriler
+    scr.DONDURULMUS_OUT = _eskiDondurulmus
+
 print("\n%d gecti, %d basarisiz" % (gecti, basarisiz))
 sys.exit(1 if basarisiz else 0)

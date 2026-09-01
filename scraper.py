@@ -820,7 +820,25 @@ def gecmis_kaydet():
                     continue
                 if son and son.get("f") == fiyat:
                     continue
-                kayitlar.append({"t": bugun, "m": market, "f": fiyat})
+                kayit = {"t": bugun, "m": market, "f": fiyat}
+                # depot_id ADDITIVE olarak kayda giriyor (2026-09-01).
+                #
+                # NEDEN: API her market zinciri icin TEK TEMSILCI magaza donduruyor
+                # ve temsilci sabit degil; magaza degisimi gecmiste ZAM gibi
+                # gorunuyor. depot_id 2026-08-11'den beri market_fiyatlari'nda
+                # var ama fiyat GECMISINE hic yazilmiyordu -- yani calisma aninda
+                # "bu iki fiyat ayni magazadan mi" sorusu CEVAPLANAMIYORDU.
+                # Olcum (scripts/depot-olcum.mjs, 21 gun, 397.875 ardisik cift):
+                # depot ayniyken %15+ artis orani %1,32; depot degisince %9,33
+                # -- yedi kat. Bu alan olmadan o ayrim koda giremez.
+                #
+                # `liste_fiyat` / `agirlik_hacim_gecmisi` ile AYNI desen:
+                # alan bossa anahtar HIC acilmiyor -> eski kayitlar buyumez,
+                # okuyucu tarafi da yoklugu dogal karsilar.
+                depot = mf.get("depot_id")
+                if depot:
+                    kayit["d"] = depot
+                kayitlar.append(kayit)
                 yeni_kayit += 1
 
     with open(gecmis_dosya, "w", encoding="utf-8") as f:

@@ -171,10 +171,29 @@ ok('salinimlilar elenince esik DUSURULMUYOR', liste.length === 1 && liste[0].ad 
 
 console.log('\n=== 5. GELECEK NOTU (depot_id ile dogrulama) ===');
 const kaynak = fnKaynak('zamSalinimVar') || '';
-const cevre = APP.slice(Math.max(0, APP.indexOf('function zamSalinimVar(') - 1800),
-  APP.indexOf('function zamSalinimVar(') + kaynak.length);
+// CEVRE SABIT OFSETLE ALINMIYOR (2026-09-01'de duzeltildi). Onceki hali
+// fonksiyondan geriye SABIT 1800 KARAKTER aliyordu; yorum blogu uzayinca
+// "tolerans" aciklamasi pencerenin DISINA dusup test kirmiziya dondu -- kod
+// dogruydu, CIKARMA YONTEMI kirilgandi. Bu depoda belgelenmis tekrarlayan
+// sinif (openDetay'i 4000/4500 karakterle kesen uc test ayni sekilde kirilmisti).
+// Dogrusu: fonksiyonun ONUNDEKI YORUM BLOGUNUN TAMAMINI al -- once gelen ilk
+// yorumsuz satira kadar geriye yuru.
+const fnIdx = APP.indexOf('function zamSalinimVar(');
+const oncekiSatirlar = APP.slice(0, fnIdx).split(/\r?\n/);
+let bas = oncekiSatirlar.length - 1;
+while (bas > 0 && /^\s*(\/\/|$)/.test(oncekiSatirlar[bas - 1])) bas--;
+const cevre = oncekiSatirlar.slice(bas).join('\n') + APP.slice(fnIdx, fnIdx + kaynak.length);
+ok('yorum blogu bulundu (capa saglam, sabit ofset degil)', cevre.length > 500, 'uzunluk=' + cevre.length);
 ok('kodda depot_id notu var', /depot_id/.test(cevre));
-ok('notta bunun GECICI yapisal kural oldugu yaziyor', /geçici|gecici|yapısal|yapisal/i.test(cevre));
+// 2026-09-01: "bu kural GECICI, depot kuraliyla DEGISTIRILMELI" notu OLCUMDE
+// CURUDU (bim: depot degisimi %0 ama salinim %19,6). Iddia da ona gore
+// guncellendi -- artik notun kuralin KALICI oldugunu ve gerekcesini olcumle
+// birlikte yazmasi bekleniyor. Bu bir GEVSETME degil: eskiden "gecici yaziyor
+// mu" diye soruluyordu, simdi "curudugu ve KONTROL GRUBU yaziyor mu" deniyor.
+ok('notta planlanan degisikligin CURUDUGU yaziyor',
+   /çürüdü|curudu|KALICI/i.test(cevre), cevre.slice(0, 200));
+ok('  cürütmenin kontrol grubu (bim) adiyla yaziyor', /bim/i.test(cevre));
+ok('  olcum kaynagi gosteriliyor (tekrarlanabilir)', /depot-olcum\.mjs/.test(cevre));
 ok('tolerans 0 gerekcesi kodda yazili', /toleran/i.test(cevre));
 
 console.log('\nPASS=' + pass + '  FAIL=' + fail);
