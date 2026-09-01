@@ -247,5 +247,42 @@ console.log('\n=== 11. DETAY BIRIM FIYATI KOMSULARIYLA HIZALI ===');
      !/padding-top:/.test(bf) && !/padding-bottom:/.test(bf) && !/padding:\s*[^;]*\s+[^;]*\s+/.test(bf), bf);
 }
 
+console.log('\n=== KATEGORI IZGARASI ICIN YER AYRILDI (CLS) ===');
+// `#home-cats` HTML'de BOS geliyor, renderCatGrid() 8 karti sonradan basiyor
+// ve kutu 0 -> 450px buyuyup altindaki her seyi itiyordu. Olculdu
+// (layout-shift kaynaklari): toplam kayma 1,14 -> rezervle 0,773.
+{
+  // Yorumlari soy: bu rezervi ANLATAN yorum "min-height" ve "450" yaziyor.
+  // style.css saf CSS, blok-yorum soyma burada guvenli (app.js'te DEGIL).
+  const CSS_TEMIZ = CSS.replace(/\/\*[\s\S]*?\*\//g, '');
+  ok('kontrol grubu: soyucu kodu yemedi', CSS_TEMIZ.includes('#home-cats') && CSS_TEMIZ.length > 1000);
+
+  const kural = (CSS_TEMIZ.match(/#home-cats\s*\{[^}]*\}/) || [''])[0];
+  ok('#home-cats icin min-height rezervi VAR', /min-height/.test(kural), kural || '(kural yok)');
+  ok('  rezerv 450px (olculen gercek izgara yuksekligi 450,4)',
+     /min-height:\s*450px/.test(kural), kural);
+
+  // MOBILE SINIRLI OLMALI: >=1024px'te izgara auto-fill, sutun sayisi
+  // genislige gore degisiyor -> sabit rezerv ara genisliklerde izgaranin
+  // ALTINDA KALICI BOSLUK birakirdi. Kural bir max-width medya sorgusunda
+  // olmali; degilse "duzeltme" gorunur bir kusur uretir.
+  // DIKKAT: indexOf('#home-cats') YANLIS yeri bulur -- dosyada once
+  // `#screen-home.arama-aktif #home-cats` secici listesi geciyor. Kuralin
+  // KENDI konumu alinmali. (Bu tuzaga bu iddiayi yazarken bir kez dusuldu.)
+  const eslesme = CSS_TEMIZ.match(/#home-cats\s*\{[^}]*min-height[^}]*\}/);
+  const i = eslesme ? eslesme.index : -1;
+  ok('  rezerv kuralinin konumu bulundu', i >= 0);
+  const oncesi = i < 0 ? '' : CSS_TEMIZ.slice(Math.max(0, i - 400), i);
+  ok('  rezerv YALNIZ dar ekranda (max-width medya sorgusu icinde)',
+     /@media[^{]*max-width:\s*1023px[^{]*\{[^@]*$/.test(oncesi),
+     oncesi.slice(-120));
+
+  // Rezerv sayisi kart tasarimindan turuyor: 4 satir x kart + 3 gap + ust dolgu.
+  // Kart yuksekligi degisirse bu iddia hatirlatici olur (tarayicida olculur).
+  ok('  izgara hala 2 sutun (4 satir varsayimi gecerli)',
+     /\.cat-grid\s*\{[^}]*grid-template-columns:\s*1fr 1fr/.test(CSS_TEMIZ),
+     'auto-fill dar ekrana kayarsa 4 satir varsayimi coker');
+}
+
 console.log('\nSONUC: PASS=' + pass + ' FAIL=' + fail);
 process.exit(fail ? 1 : 0);

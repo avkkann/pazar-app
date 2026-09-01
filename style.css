@@ -3332,3 +3332,37 @@
      biraz daha soluk ve ust bosluklu (yeni renk/olcu TANIMLANMADI). */
 .sepet-mkt-sehir { margin-bottom: var(--space-2); }
 .profil-sehir-kapsam { margin-top: var(--space-1); opacity: .85; }
+
+/* ══════════════════════════════════════════════════════════════════════
+   CLS — KATEGORI IZGARASI ICIN YER AYIRMA (2026-09-01)
+   `#home-cats` HTML'de BOS geliyor ve renderCatGrid() 8 karti sonradan
+   basiyor; kutu 0 -> 450px buyuyup altindaki HER SEYI itiyordu. Olculdu
+   (PerformanceObserver, layout-shift kaynaklari): home-cats 0,256 ·
+   home-hal 0,442 · hub-nav 0,442 -- toplam ~1,14, CLAUDE.md'nin yazdigi
+   1,15 ile ortusuyor. Kullanici bunu GORMUYOR (splash perdesi arkasinda)
+   ama Google saha verisinde sayiliyor -> SEO tarafinda gercek.
+
+   NEDEN SIHIRLI SAYI DEGIL: <1024px'te izgara `1fr 1fr`, yani 8 kategori
+   TAM 4 satir demek. Yukseklik olculdu ve formulle dogrulandi:
+     4 x 99,59 (kart) + 3 x 12 (gap) + 16 (ust dolgu) = 450,4
+   Deger `test_cls.mjs` ile KILITLENDI: gercek izgara yuksekligi bu
+   rezervden saparsa test kirmiziya doner (kart tasarimi degisirse fark
+   edilir). Ayni desen `.detay-img-wrap` min-height 228/308 kilidinde de
+   kullanildi.
+
+   >=1024px BILEREK KAPSAM DISI: orada izgara `repeat(auto-fill,
+   minmax(170px,1fr))` -- sutun sayisi genislige gore degisiyor, dolayisiyla
+   satir sayisi da. Sabit bir rezerv ara genisliklerde IZGARANIN ALTINDA
+   KALICI BOSLUK birakirdi; yani "duzeltme" gorunur bir kusur uretirdi.
+   Mobil zaten kullanicilarin %68'i ve Google mobile-first indeksliyor.
+
+   SERITLER BU TURDA KAPSAM DISI: yukseklikleri kart ICERIGINE gore
+   degisiyor (olculdu: mevsim 255,8 · tuzaklar 316,8 · supheli 332 ·
+   zam 397,2), yani tek bir sabit rezerv dogru degil. Ustelik seritler
+   veri yoksa BILEREK gizli kaliyor ("bos kabuk gostermez", CLAUDE.md) --
+   onlara yer ayirmak o karari tersine cevirir. Iskelet gosterme karari
+   Mustafa'ya ait.
+   ══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 1023px) {
+  #home-cats { min-height: 450px; }
+}
