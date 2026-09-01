@@ -1394,7 +1394,12 @@ function goBack() {
 // 3) Gorunurluk _ekranGorunur ile olculuyor, inline style ile DEGIL --
 //    showScreen inline display yaziyor, bu depoda ayni tuzaga UC kez dusuldu.
 function openDetay(urunId) {
-  const screens = ['screen-home', 'screen-cat', 'screen-sepet', 'screen-firsatlar'];
+  // 'screen-favoriler' 2026-09-01'de EKLENDI. Oncesinde listede yoktu ->
+  // find() undefined donuyor, '|| screen-home' fallback'i devreye giriyor ve
+  // Favoriler'den acilan detayda geri tusu kullaniciyi ANA SAYFA'ya atiyordu.
+  // Olculdu (kontrol gruplu): diger dort ekran DOGRU calisiyordu, yalniz bu
+  // yanlisti -- yani sorun fallback mantiginda degil, listenin eksikligindeydi.
+  const screens = ['screen-home', 'screen-cat', 'screen-sepet', 'screen-firsatlar', 'screen-favoriler'];
   // Kosul + _ekranGorunur gerekcesi: fonksiyonun ustundeki nota bak.
   if (!_ekranGorunur('screen-detay')) {
     _prevScreen = screens.find(id => _ekranGorunur(id)) || 'screen-home';

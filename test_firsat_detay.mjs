@@ -145,6 +145,20 @@ ok("  'screen-firsatlar' listede", /screen-firsatlar/.test(liste), liste);
 ok("  'screen-home' hala listede (regresyon yok)", /screen-home/.test(liste), liste);
 ok("  'screen-cat' hala listede (regresyon yok)", /screen-cat/.test(liste), liste);
 ok("  'screen-sepet' hala listede (regresyon yok)", /screen-sepet/.test(liste), liste);
+// 2026-09-01: 'screen-favoriler' de eklendi. Ayni sinif kusurdu ve
+// firsatlar duzeltilirken kapsam disi birakilmisti; olculdu (kontrol gruplu:
+// diger DORT ekran dogru calisiyordu, yalniz bu 'screen-home'a dusuyordu).
+ok("  'screen-favoriler' listede", /screen-favoriler/.test(liste), liste);
+// Ekran envanteri KILIDI: uygulamada detay acilabilen bir ekran daha
+// eklenirse bu iddia onu bu listeye eklemeyi hatirlatir. Sayi degil ISIM
+// bazli — sayi pinlemek "yakin ama yanlis" listeyi kacirir.
+{
+  const beklenen = ['screen-home', 'screen-cat', 'screen-sepet', 'screen-firsatlar', 'screen-favoriler'];
+  const bulunan = [...liste.matchAll(/'(screen-[a-z]+)'/g)].map(m => m[1]);
+  ok('screens listesi TAM olarak beklenen bes ekran',
+     bulunan.length === beklenen.length && beklenen.every(e => bulunan.includes(e)),
+     'bulunan: ' + JSON.stringify(bulunan));
+}
 
 console.log('\n=== 7. _prevScreen TEMBEL YENIDEN CAGRIDA EZILMIYOR ===');
 // OLCULDU (CDP zaman serisi): tiklamadan 60ms sonra _prevScreen
