@@ -1539,14 +1539,20 @@ function ustKategori(k) {
   k = k || '';
   if (['Meyve'].includes(k)) return 'meyve';
   if (['Sebze'].includes(k)) return 'sebze';
-  if (['Şarküteri','Beyaz Et','Kırmızı Et','Deniz Ürünleri','Sakatat'].includes(k)) return 'et';
+  if (['Şarküteri','Beyaz Et','Kırmızı Et','Deniz Ürünleri','Sakatat',
+       // 2026-09-01: veride vardi ama listede yoktu -> 'diger'e dusuyordu
+       'Taze Deniz Ürünleri'].includes(k)) return 'et';
   if (['Süt','Yoğurt','Peynir','Tereyağı ve Margarin','Kaymak ve Krema','Yumurta',
        'Zeytin','Bal ve Reçel','Helva Tahin ve Pekmez','Kahvaltılık Gevrek Bar ve Granola',
-       'Sürülebilir Ürünler ve Kahvaltılık Soslar','Ayran ve Kefir'].includes(k)) return 'sut';
+       'Sürülebilir Ürünler ve Kahvaltılık Soslar','Ayran ve Kefir',
+       // 2026-09-01: veride vardi ama listede yoktu -> 'diger'e dusuyordu
+       'Diğer Süt Ürünleri'].includes(k)) return 'sut';
   if (['Mantı Makarna ve Erişte','Pasta Malzemeleri','Hazır Gıda','Bakliyat',
        'Ekmek ve Unlu Mamüller','Konserve','Salça','Ketçap Mayonez Sos ve Sirkeler',
        'Sıvı Yağlar','Tuz Baharat ve Harçlar','Şeker ve Tatlandırıcılar',
-       'Turşu','Un ve İrmik','Bebek Mamaları'].includes(k)) return 'gida';
+       'Turşu','Un ve İrmik','Bebek Mamaları',
+       // 2026-09-01: veride vardi ama listede yoktu -> 'diger'e dusuyordu
+       'Hazır Yemekler','Hazır Gıda Karışımları'].includes(k)) return 'gida';
   if (['Meyve Suyu','Su','Maden Suyu','Çay ve Bitki Çayları',
        'Gazsız İçecekler','Gazlı İçecekler','Kahve'].includes(k)) return 'icecek';
   if (['Bulaşık Temizlik Ürünleri','Kağıt Havlu','Kağıt Peçete ve Mendil',
@@ -1556,7 +1562,9 @@ function ustKategori(k) {
        'Bebek ve Hasta Bezi','Temizlik ve Kişisel Bakım',
        // 2026-07-25: kaynak sitede kategori ikiye bolununce gelen yeni main_category degerleri
        'Ağda ve Epilasyon','Diğer Temizlik','Islak Mendiller','Kağıt Peçete ve Mendiller',
-       'Parfüm ve Deodorant','Sağlık ve Medikal','Tuvalet Kağıtları','Tıraş Ürünleri'].includes(k)) return 'temizlik';
+       'Parfüm ve Deodorant','Sağlık ve Medikal','Tuvalet Kağıtları','Tıraş Ürünleri',
+       // 2026-09-01: veride vardi ama listede yoktu -> 'diger'e dusuyordu
+       'Makyaj','Hasta Bakım Ürünleri'].includes(k)) return 'temizlik';
   if (['Bisküvi ve Kraker','Cips','Dondurmalar','Gofret','Kek','Kuruyemiş ve Kuru Meyve','Sakız ve Şekerleme','Tatlılar','Çikolata'].includes(k)) return 'atistirmalik';
   if (k === 'Dondurulmuş Ürünler') return 'dondurulmus';
   return 'diger';
