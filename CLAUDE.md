@@ -59,6 +59,21 @@ kuralı `@media (min-width:1024px)` içinde birebir korundu (1200px'te 480, 966p
 **Kapsam dışı bırakılan, not düşülüyor:** `#appModalInput` (`.app-modal-input`) **14px** — 16px altı tek input,
 gizli bir modal alanı, bu turda dokunulmadı. iOS'ta o modal açıldığında zoom sıçraması yapabilir.
 
+> **İLK PUSH DEPLOY'U KIRDI — ve hata bendeydi: test paketi push'tan ÖNCE koşulmadı.**
+> `test_mobil_dokunma.mjs` üç iddiayla kırmızı döndü (`.cat-search-wrap input` /
+> `.hal-search-wrap input` / `.firsat-arabar input` → `font-size=YOK`). `deploy` job'u
+> `needs: test` olduğu için ATLANDI, yani **site hiç güncellenmedi** — kapı görevini yaptı.
+> Bekçi HAKLIYDI: tam olarak iOS odak-zoom kuralını koruyordu ve seçicilerin kalktığını gördü.
+> **Bekçi gevşetilmedi, GÜÇLENDİRİLDİ:** artık `.pz-search input`'a bakıyor, `var(--fs-3)`
+> token'ını `:root`'tan çözüyor (yani `--fs-3`'ün kendisi de korunuyor), eski seçicilerin geri
+> gelmediğini doğruluyor, ve dört alanın gerçekten `.pz-search` sarmalayıcısında olduğunu
+> markup'ta kontrol ediyor. 56 → **62 iddia**.
+> **Prove-by-breaking (üç mutasyon, üçü de kırmızı döndü):** `--fs-3: 14px` → token çözümü
+> yakaladı · `index.html`'de bir `pz-search` bozuldu → markup kapısı yakaladı (`bulunan=2`) ·
+> `.firsat-arabar input` geri eklendi → "eski seçici kalkmış" kapısı yakaladı. Geri alınca yeşil.
+> **Ders (bu dosyada zaten yazılı olanın tekrarı): `npm run build` yeşil olması testlerin
+> yeşil olduğu anlamına GELMEZ.** Push öncesi `for t in test_*.mjs; do node $t; done` koş.
+
 ### 2026-09-03 — "VERİ 2 GÜN ESKİ" — sebep veri hattı DEĞİL, istemcinin taze veriyi ÇÖPE ATMASIYMIŞ
 
 Mustafa bildirdi: uygulamada "Fiyatlar 1 Eylül 2026 verisi · 2 gün eski" yazıyor ama "Veri Guncelle" yeşil koşuyor. **İki ayrı şey karıştırılmıştı; ölçüm ayırdı.**
@@ -1558,7 +1573,7 @@ Uygulama teknik olarak çalışıyor ama **pratikte hâlâ dağıtılmamış dur
 - **Supabase** — auth, DB, Edge Functions, RPC (`get_fiyat_dusenler`, `indirim_puan_toplu_guncelle`, `get_fiyat_bildirimleri`, `jsonb_fiyat_max`)
 - **GitHub Actions — `update-data.yml`** (cron `0 3 * * *`, ~20 dk): checkout (`fetch-depth: 0`) → setup-python → pip install → `scraper.py` → `hal_scraper.py` → veri commit+push → **DB Senkronizasyonu** (`sync_db.py`) → **Sahte Indirim Analizi** (`indirim_analiz.py`, `continue-on-error`, başarı damgası `data/indirim_analiz_son.json`) → **Ana Sayfa Şeritleri** (`scripts/anasayfa-uret.mjs`) → **Ana Sayfa Şeritlerini İşle** (commit+push) → **Veri Tazelik Kontrolü** (`scripts/veri_tazelik_kontrol.py`, en son, kırmızıya çevirir). Fiyat alarmı taraması artık AYRI `fiyat-alarm` job'u (`needs: update`, checkout yok, edge function'a `x-cron-secret`'li curl — yan iş yayın yolunu bloke etmesin diye). Secrets: `SEARLO_API_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_ANON_KEY`, `CRON_SECRET`.
 - **Tetikleyici/iş ararken desen taraması YETMEZ — `.github/workflows/` tek tek listelenip HER dosya okunmalı.** Bu depoda iki tetikleyici desen taramasıyla kaçırıldı: `update-data.yml` içindeki alarm adımı (bir `curl` step'i, ayrı dosya değil) ve `bulten.yml` (grep'in `haftalik-bulten` yakalamadığı ayrı bir workflow — sonuçta iki workflow aynı `name: Haftalik Bulten` ile çakışıyordu). Ders: workflow envanteri için `ls .github/workflows/` + her dosyanın `name:`/`on:`/`run:` bloğunu oku; ayrıca yeni workflow eklerken `name:`'i dosya adıyla eşleştir ki isim çakışması olmasın.
-- **GitHub Actions — `deploy.yml`** ("Build ve Deploy"): `push` + **`workflow_run` ("Veri Guncelle" completed)** + `workflow_dispatch`. **Tek job**, `permissions: contents: read`. checkout(`ref: main`) → setup-node **24** → `npm ci` → `npm run build` (`DEPLOY_TARGET=cloudflare`) → **`cloudflare/wrangler-action@v3`** (`wranglerVersion: '4.122.0'` sabit). Secrets: `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`. GitHub Pages'e **artık yayınlamıyor**.
+- **GitHub Actions — `deploy.yml`** ("Build ve Deploy"): `push` + **`workflow_run` ("Veri Guncelle" completed)** + `workflow_dispatch`. **İKİ job: `test` → `deploy` (`needs: test`)** — kırmızı test yayını durdurur. `test` job'u `test_*.mjs`'in tamamını, sonra `test_*.py`'yi koşar (`test_resim.py` bilerek dışlanmış: canlı Searlo API'sine gidiyor). `permissions: contents: read`. *Bu satır 2026-09-03'e kadar "**Tek job**" diyordu — `test` kapısı dokümana hiç yazılmamıştı; doküman bayatlığı deseninin ALTINCI vakası. Sonucu somut: push öncesi test koşulmadı, deploy kırmızı döndü.* checkout(`ref: main`) → setup-node **24** → `npm ci` → `npm run build` (`DEPLOY_TARGET=cloudflare`) → **`cloudflare/wrangler-action@v3`** (`wranglerVersion: '4.122.0'` sabit). Secrets: `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`. GitHub Pages'e **artık yayınlamıyor**.
 - **Cloudflare Workers** — `wrangler.jsonc`: `name: pazar-app`, `main: ./src/worker.js`, `assets: { directory: ./dist, binding: ASSETS, not_found_handling: "none", run_worker_first: true }`, `routes: [{ pattern: "pazarapp.net", custom_domain: true }]`. **`run_worker_first: true` zorunlu** — CSP'nin uygulanmasının tek yolu. `src/worker.js` `env.ASSETS.fetch()` yapıp yanıta CSP header'ı ekliyor.
 - **Vite** — `npm run build` = `scripts/anasayfa-uret.mjs` + `scripts/prepare-public.mjs` + `vite build` → `dist/`. **`base: '/'`** varsayılan; eski Pages düzeni için `DEPLOY_TARGET=ghpages`.
 - **`scripts/og-gorsel-uret.mjs`** — `static/og-image.svg` → `static/og-image.png` (1200×630), Chrome headless `--screenshot`. SVG kaynak dosyadır, elle düzenlenir; script yalnızca PNG üretir. PNG'yi build ayrıca taşımıyor — `prepare-public.mjs` `static/` klasörünü komple kopyalıyor.

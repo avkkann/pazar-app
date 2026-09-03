@@ -122,14 +122,41 @@ console.log('\n=== 5. iOS SEKME-GECIS ZOOM + ODAK ZOOM ===');
   // biciminde; eski desen hemen ardindan '{' bekledigi icin kurali BULAMIYOR
   // ve "font-size=YOK" diye YANLIS KIRMIZI veriyordu. Iddia GEVSEMEDI --
   // aksine bir secici daha korunuyor; 16px kurali (iOS odak zoom'u) aynen.
-  for (const sel of ['.cat-search-wrap input', '.hal-search-wrap input', '.firsat-arabar input', '.alarm-input']) {
+  // 2026-09-03: dort arama alani TEK bilesende birlestirildi (.pz-search).
+  // Eski uc secici (.cat-search-wrap input / .hal-search-wrap input /
+  // .firsat-arabar input) CSS'ten KALKTI; kural artik '.pz-search input'ta
+  // ve deger TOKEN ile yaziliyor: font-size: var(--fs-3).
+  // IDDIA GEVSEMEDI, GUCLENDI -- uc yeni kapi eklendi:
+  //   (1) token :root'tan COZULUYOR, yani --fs-3'un KENDISI de korunuyor
+  //       (birisi --fs-3'u 14px yaparsa bu test kirmizi doner),
+  //   (2) eski seciciler geri gelirse yakalaniyor (iki kaynak = guard yanlis
+  //       yerden yesil verebilir),
+  //   (3) dort alanin GERCEKTEN .pz-search sarmalayicisinda oldugu markupta
+  //       dogrulaniyor -- kural dogru olsa da alan sarmalayiciya girmemisse
+  //       guard kagit uzerinde yesil, pratikte kordur.
+  const tokenPx = (ad) => {
+    const m = new RegExp('--' + ad + ':\\s*([\\d.]+)(px|rem)').exec(CSS_KODU);
+    return m ? (m[2] === 'rem' ? parseFloat(m[1]) * 16 : parseFloat(m[1])) : null;
+  };
+  for (const sel of ['.pz-search input', '.alarm-input']) {
     const re = new RegExp(sel.replace(/[.[\]]/g, '\\$&') + '[^{}]*\\{[^}]*\\}');
     const kural = (CSS_KODU.match(re) || [''])[0];
-    const m = /font-size:\s*([\d.]+)(px|rem)/.exec(kural);
-    const px = m ? (m[2] === 'rem' ? parseFloat(m[1]) * 16 : parseFloat(m[1])) : null;
-    ok(`  ${sel} font-size >= 16px (odak zoom yok)`, px !== null && px >= 16,
-       'font-size=' + (m ? m[0] : 'YOK') + (px !== null ? ' (' + px + 'px)' : ''));
+    const lit = /font-size:\s*([\d.]+)(px|rem)/.exec(kural);
+    const tok = /font-size:\s*var\(\s*--([a-z0-9-]+)\s*\)/i.exec(kural);
+    let px = null, kaynak = 'YOK';
+    if (lit) { px = lit[2] === 'rem' ? parseFloat(lit[1]) * 16 : parseFloat(lit[1]); kaynak = lit[0]; }
+    else if (tok) { px = tokenPx(tok[1]); kaynak = 'var(--' + tok[1] + ') -> ' + (px === null ? 'COZULEMEDI' : px + 'px'); }
+    ok(`  ${sel} font-size >= 16px (odak zoom yok)`, px !== null && px >= 16, 'font-size=' + kaynak);
   }
+  for (const eski of ['.cat-search-wrap input', '.hal-search-wrap input', '.firsat-arabar input']) {
+    ok(`  eski secici CSS'ten kalkmis: ${eski}`,
+       !new RegExp(eski.replace(/[.[\]]/g, '\\$&') + '[^{}]*\\{').test(CSS_KODU),
+       'hala var -> .pz-search ile iki ayri kaynak olusur');
+  }
+  const pzHtml = (HTML.match(/class="pz-search"/g) || []).length;
+  ok('  index.html: 3 arama alani .pz-search icinde (ana/kategori/firsat)', pzHtml === 3, 'bulunan=' + pzHtml);
+  ok('  app.js: hal aramasi .pz-search icinde uretiliyor',
+     /class="pz-search"/.test(APP) && /id="halSearch"/.test(APP), '');
 
   // (c) Tarayici metin boyutunu kendiligiden olceklemesin
   ok('  text-size-adjust: 100%', /(-webkit-)?text-size-adjust:\s*100%/.test(CSS_KODU), '');
