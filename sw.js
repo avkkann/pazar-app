@@ -33,7 +33,40 @@ self.addEventListener('fetch', event => {
   }
 });
 async function cacheFirst(r) { const c = await caches.open(CACHE_NAME); const h = await c.match(r); if (h) return h; const n = await fetch(r); if (n.ok) await c.put(r, n.clone()); return n; }
-async function staleWhileRevalidate(r) { const c = await caches.open(CACHE_NAME); const h = await c.match(r); const np = fetch(r).then(async n => { if (n.ok) { await c.put(r, n.clone()); (await self.clients.matchAll({includeUncontrolled:true})).forEach(cl => cl.postMessage({type:'DATA_UPDATED'})); } return n; }).catch(() => h); return h || np; }
+// DATA_UPDATED artik YALNIZCA icerik GERCEKTEN degistiginde yollaniyor.
+// ONCE her basarili revalidate'te yollaniyordu. Istemci tarafi memo'lari
+// bosaltmadigi icin bu zararsizdi (mesaj hicbir sey yapmiyordu, bkz. app.js);
+// memo bosaltma eklenince mesaj -> loadData -> fetch -> revalidate -> mesaj
+// diye SONSUZ DONGU olurdu. Mesajin anlami artik "veri degisti", "istek
+// tamamlandi" degil.
+function _damga(res) {
+  return res.headers.get('ETag') || res.headers.get('Last-Modified') || '';
+}
+async function _degistiMi(eski, yeni) {
+  if (!eski) return true;                       // ilk kez: degisim sayilir
+  const de = _damga(eski), dy = _damga(yeni);
+  if (de && dy) return de !== dy;               // Cloudflare ETag veriyor
+  // Damga yoksa GOVDEYI karsilastir. "damga yok -> hic haber verme" demek
+  // ozelligi sessizce olduruyordu; bu dosyalar kucuk (26 KB gzip).
+  try { return (await eski.clone().text()) !== (await yeni.clone().text()); }
+  catch (e) { console.warn('[sw] govde karsilastirilamadi, degisti sayiliyor:', e && e.message); return true; }
+}
+async function staleWhileRevalidate(r) {
+  const c = await caches.open(CACHE_NAME);
+  const h = await c.match(r);
+  const np = fetch(r).then(async n => {
+    if (n.ok) {
+      const degisti = await _degistiMi(h, n);
+      await c.put(r, n.clone());
+      if (degisti) {
+        (await self.clients.matchAll({ includeUncontrolled: true }))
+          .forEach(cl => cl.postMessage({ type: 'DATA_UPDATED' }));
+      }
+    }
+    return n;
+  }).catch(() => h);
+  return h || np;
+}
 
 self.addEventListener('push', event => {
   let data = {};

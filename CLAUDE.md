@@ -20,6 +20,33 @@ Mustafa (GitHub: avkkann), **Pazar App**'in tek geliştiricisi — Türk market 
 
 ## Mevcut durum (2026-08-21 itibarıyla)
 
+### 2026-09-03 — "VERİ 2 GÜN ESKİ" — sebep veri hattı DEĞİL, istemcinin taze veriyi ÇÖPE ATMASIYMIŞ
+
+Mustafa bildirdi: uygulamada "Fiyatlar 1 Eylül 2026 verisi · 2 gün eski" yazıyor ama "Veri Guncelle" yeşil koşuyor. **İki ayrı şey karıştırılmıştı; ölçüm ayırdı.**
+
+**(a) Veri hattı SAĞLAM.** Depoda ve canlıda veri 2 Eylül'dü (`veri_tarihi: 2026-09-02`), deploy yeşil, `zamAylik` canlıda. Mustafa'nın gördüğü kırmızı koşu (`b6fa368`, 1 Eylül 12:42) **sonraki koşularla düzelmişti** — 1 Eylül 12:44 ve 18:06, 2 Eylül 08:07 hepsi `success`. Yani deploy tıkalı değildi.
+
+**(b) GERÇEK KUSUR — `DATA_UPDATED` mesajı NO-OP'tu.** `sw.js` iki data dosyasını `staleWhileRevalidate` ile servis ediyor: önce ÖNBELLEK kopyası veriliyor, arkadan taze kopya inip önbelleğe konuyor ve istemciye `DATA_UPDATED` yollanıyor. İstemci o mesajda `loadData()` çağırıyordu — **ama iki getter de sonucu hafızada tutuyor**:
+- `halVeriGetir`: `if (_halCache) return Promise.resolve(_halCache)`
+- `anasayfaVeriGetir`: `if (_anasayfaCache !== null) return _anasayfaCache`
+
+Yani `loadData()` iki kaynağı da **memo'dan** döndürüyordu; taze kopya önbellekte duruyor ama ekrana **hiç çıkmıyordu**. Sonuç: kullanıcı her ziyarette **bir önceki ziyaretin** verisini görüyor — iki günde bir açan biri için tam olarak "2 gün eski". Belirti birebir üretildi: rozet `"Fiyatlar 1 Eylül 2026 verisi · 2 gün eski"`, `loadData()` sonrası `_anasayfaCache.veri_tarihi` **değişmiyor**.
+
+**DÜZELTMENİN AÇTIĞI İKİNCİ KUSUR ÖNCEDEN KAPATILDI.** Memo boşaltılınca `mesaj → loadData → fetch → revalidate → mesaj` diye **sonsuz döngü** olurdu; eski kod bundan yalnızca "mesaj zaten hiçbir şey yapmıyordu" diye korunuyordu. Bu yüzden mesajın ANLAMI değiştirildi: `DATA_UPDATED` artık "istek tamamlandı" değil **"veri gerçekten değişti"**. Karşılaştırma ETag/Last-Modified ile; damga yoksa **gövde** karşılaştırılıyor (damga yoksa hiç haber vermemek özelliği sessizce öldürürdü).
+
+**DOĞRULAMA (gerçek tarayıcı, temiz SW):**
+- taze veri servis edilince rozet **sayfa yenilenmeden** "2 Eylül" → **"3 Eylül"**, memo tazelendi, mesaj sayısı **1**
+- **kontrol grubu:** veri DEĞİŞMEDEN 3 revalidate → **0 yeni mesaj** (döngü yok)
+
+**Yeni guard:** `test_veri_tazeleme.mjs` (16 iddia) — `sw.js` gerçek kaynağı `node:vm`'de koşuluyor, sahte Response'larla revalidate sürülüyor. Kontrol grubu gömülü (önbellek boşken haber VERİLMELİ, yoksa mesaj kanalı kopuk demektir). Prove-by-breaking **4/4 kırmızı**, dördünde de mutasyon doğrulandı.
+
+**`sw.js` bump EDİLMEDİ (v233 kaldı) — 2026-08-22 ölçümüyle aynı gerekçe:** `CACHE_NAME` yalnız 2 JSON + 4 woff2'yi yönetiyor, `sw.js` o listede yok ve `max-age=0, must-revalidate` ile geliyor → bayt değişince tarayıcı yeni SW'yi zaten kuruyor. Bump edilseydi her kullanıcıda ~171 KB font boşuna yeniden inecekti.
+
+> **AYRI BULGU — gecelik cron SAATİ TUTMUYOR, bugün hiç koşmadı.** `update-data.yml` cron'u `0 3 * * *` ama son sekiz koşunun başlangıcı: 03:57 · 14:03 · 15:14 · 09:56 · 09:07 · 09:36 · 08:31 · 07:49. **3 Eylül 06:40 itibarıyla o günün koşusu hiç düşmemişti.** Bu GitHub Actions'ın bilinen davranışı (ücretsiz runner'larda zamanlanmış işler saatlerce gecikebilir ya da atlanabilir), bizim hatamız değil — ama sonucu şu: **veri bazen bir gün geç geliyor** ve `veri_tazelik_kontrol.py` eşiği 2 gün olduğu için bu kapıyı kırmıyor. Karar gerekiyorsa seçenekler: cron'u ikiye çıkarmak (ör. 03:00 + 11:00, ilkinde veri zaten tazeyse iş erken çıkar) ya da gecikmeyi kabul edip rozetin "N gün eski" metnine güvenmek. **Ölçmeden eşik değiştirme.**
+
+
+---
+
 ### 2026-09-01 — Fırsatlar'a **3. sekme: Zamlananlar** (aylık listeler uygulamaya girdi)
 
 Aylık zam listeleri yalnızca hub sayfalarındaydı (`/zam/2026-08/`) ve onlara tek giriş ana sayfanın **en altındaki** footer linkleriydi. Mustafa'nın tespiti: *"millet girip onu okumaya üşenir."* Liste artık Fırsatlar ekranında, **En Ucuz · En Tasarruflu · 📈 Zamlananlar** olarak üçüncü sekme; altında ay çipleri (Eylül / Ağustos / Temmuz).

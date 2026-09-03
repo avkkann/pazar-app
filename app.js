@@ -6572,7 +6572,22 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.addEventListener('message', event => {
     if (event.data?.type !== 'DATA_UPDATED') return;
     clearTimeout(_swUpdateTimer);
-    _swUpdateTimer = setTimeout(() => loadData(), 300);
+    _swUpdateTimer = setTimeout(() => {
+      // MEMO'LARI BOSALT -- yoksa bu handler NO-OP (olculdu 2026-09-03).
+      // halVeriGetir ve anasayfaVeriGetir ikisi de sonucu hafizada tutuyor
+      // (`if (_halCache) return ...`, `if (_anasayfaCache !== null) return ...`).
+      // SW taze kopyayi indirip onbellege koyuyor ve bu mesaji yolluyordu, ama
+      // loadData() iki kaynagi da HAFIZADAN donduruyordu -> ekrandaki serit ve
+      // "Fiyatlar X verisi" rozeti oturum boyunca ESKI kaliyordu. Kullanici her
+      // ziyarette bir onceki ziyaretin verisini goruyordu: iki gunde bir acan
+      // biri icin bu "2 gun eski" demek. Belirti aynen uretildi:
+      // "Fiyatlar 1 Eylul 2026 verisi · 2 gun eski".
+      _anasayfaCache = null; _anasayfaYukleniyor = null;
+      _halCache = null; _halPromise = null;
+      // veriTazelikCiz'i anasayfaVeriGetir kendi icinde cagiriyor; loadData da
+      // _anaEkraniCiz ile seritleri yeniden ciziyor -> ikisi de tazeleniyor.
+      loadData();
+    }, 300);
   });
 }
 
