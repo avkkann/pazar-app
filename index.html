@@ -176,9 +176,10 @@
   </header>
 
   <div class="search-wrap">
-    <div class="search-box">
-      <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-       <input id="search" type="text" placeholder="Ürün ara..." autocomplete="off" aria-label="Ürün ara">
+    <div class="pz-search">
+      <span class="pz-search__glow" aria-hidden="true"></span>
+      <span class="pz-search__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
+      <input id="search" type="text" placeholder="Ürün ara..." autocomplete="off" aria-label="Ürün ara">
     </div>
   </div>
 
@@ -277,8 +278,12 @@
   </header>
 
   <div class="cat-search-wrap">
-  <input type="text" id="catSearch" placeholder="Bu kategoride ara..." oninput="catAra(this.value)" autocomplete="off" aria-label="Bu kategoride ara">
-</div>
+    <div class="pz-search">
+      <span class="pz-search__glow" aria-hidden="true"></span>
+      <span class="pz-search__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
+      <input type="text" id="catSearch" placeholder="Bu kategoride ara..." oninput="catAra(this.value)" autocomplete="off" aria-label="Bu kategoride ara">
+    </div>
+  </div>
 
   <div class="filter-wrap">
     <button class="filter-pill active" data-market="all"         onclick="setMarketFilter('all')">Tümü</button>
@@ -404,7 +409,11 @@
        kendiliginden geliyor. Zamlananlar sekmesi disinda gizli. -->
   <div class="firsat-aylar gizli" id="firsatAylar"></div>
   <div class="firsat-arabar">
-    <input type="text" id="firsatArama" placeholder="Fırsatlarda ara..." oninput="firsatAra(this.value)" autocomplete="off" aria-label="Fırsatlarda ara">
+    <div class="pz-search">
+      <span class="pz-search__glow" aria-hidden="true"></span>
+      <span class="pz-search__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
+      <input type="text" id="firsatArama" placeholder="Fırsatlarda ara..." oninput="firsatAra(this.value)" autocomplete="off" aria-label="Fırsatlarda ara">
+    </div>
   </div>
   <div class="firsat-ozet" id="firsatOzet"></div>
   <div id="firsatContent"></div>

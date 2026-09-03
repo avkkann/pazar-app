@@ -20,6 +20,45 @@ Mustafa (GitHub: avkkann), **Pazar App**'in tek geliştiricisi — Türk market 
 
 ## Mevcut durum (2026-08-21 itibarıyla)
 
+### 2026-09-03 — Dört arama alanı TEK bileşene indi (`.pz-search`) + iki odak hatası kapandı
+
+**Durum: commit edildi, YAYINDA DEĞİL** (push Mustafa'nın kararına bırakıldı). `sw.js` **v233 → v234**.
+
+Görev "arama kutusunu şu karta benzet"ti; referans React/Tailwind/shadcn + `@paper-design/shaders-react`
+bir **320px içerik kartıydı**. Depoda o yığından hiçbiri yok (Vite + vanilla). Ayrıca tür farkı vardı:
+kart ≠ tek satırlık metin girişi. Karttan alınan: koyu panel üstünde renk katmanı, tutarlı ikon dili,
+ölçülü kenarlık. **Alınmayan: sürekli animasyon** — metin kutusunun arkasında hareket okunabilirliği
+düşürür ve kullanıcıların %64'ü iOS. Işıma yalnız `:focus-within`'de açılıyor.
+
+**Envanterin kanıtı:** dört arama alanı (`#search`, `#catSearch`, `#firsatArama`, `#halSearch`) **üç ayrı
+muamele** görüyordu — radius 12 vs 20, büyüteç ikonu yalnız birinde, iki odak rengi ELLE hex.
+
+- **HATA 1 (erişilebilirlik, kapandı):** `.firsat-arabar input:focus` → `#0E4938`. Koyu temada `--primary`
+  `#10B981`'e döner, bu satır dönmezdi → koyu zeminde koyu yeşil, **odaklı hâl odaksızdan ayırt edilemiyordu.**
+- **HATA 2 (kozmetik, kapandı):** `.search-box:focus-within` → `background: #fff`. Koyu temada input'un
+  etrafında **12px beyaz halka**. İç kısım koyu kalıyordu (input'un kendi zemini var), yani metin okunuyordu.
+- **`.home-search-wrap` ölü CSS'ti** — yalnız bir koyu tema seçicisinde geçiyordu, markup'ta karşılığı yoktu; kaldırıldı.
+
+**Kararlar ölçümle verildi, zevkle değil.** Radius **12px**: `style.css`'te 12px 23 kez, 20px 9 kez geçiyor
+(ve 12px ana aramanın mevcut değeriydi). Işıma **tek hue (yeşil)**: `#D97706` bu uygulamada zam/şüpheli
+rozetinin rengi — arama kutusunda dekoratif kullanmak o sinyalle çakışırdı.
+
+> **`getComputedStyle` bu turda ÜÇ KEZ bayat değer döndürdü.** Önce "odakta zemin değişmiyor" dedi (yanlış),
+> sonra "beyaz" dedi. Kırmızı `!important` kuralı enjekte edip ekranda bakınca gerçek çıktı: kırmızı yalnız
+> **çerçevede** göründü, iç kısım koyu kaldı. Bu sayede **kendi iddiamı düzelttim** — "koyu temada beyaz
+> üstüne beyaz yazılıyor" demiştim, öyle değildi. Dosyada zaten yazılı olan kural bir kez daha işe yaradı:
+> *renk iddiasını yalnız `getComputedStyle` ile kapatma.*
+
+**Canlı doğrulama (yerel `dist`, iki tema, dört alan):** radius **12px 8/8** · `font-size` **16px 8/8**
+(iOS kuralı korundu) · input zemini **saydam 8/8** (koyu temadaki genel `[data-theme="dark"] input` kuralını
+`(0,2,1)` özgüllüğüyle ezen yeni satır sayesinde) · ikon + ışıma **4/4** · yatay taşma **0** · konsol hatası **0**.
+**İşlevsel:** ana arama "peynir" → 96 sonuç · kategori 48 → "Domates" 18 → temizleyince 48 · hal 149 → "domates" 2 ·
+`app.js:4398`'in `#screen-cat .cat-search-wrap input` seçicisi hâlâ çözülüyor. Masaüstü `max-width: 480px`
+kuralı `@media (min-width:1024px)` içinde birebir korundu (1200px'te 480, 966px'te 568 — ölçüldü).
+
+**Kapsam dışı bırakılan, not düşülüyor:** `#appModalInput` (`.app-modal-input`) **14px** — 16px altı tek input,
+gizli bir modal alanı, bu turda dokunulmadı. iOS'ta o modal açıldığında zoom sıçraması yapabilir.
+
 ### 2026-09-03 — "VERİ 2 GÜN ESKİ" — sebep veri hattı DEĞİL, istemcinin taze veriyi ÇÖPE ATMASIYMIŞ
 
 Mustafa bildirdi: uygulamada "Fiyatlar 1 Eylül 2026 verisi · 2 gün eski" yazıyor ama "Veri Guncelle" yeşil koşuyor. **İki ayrı şey karıştırılmıştı; ölçüm ayırdı.**
@@ -1505,7 +1544,7 @@ Uygulama teknik olarak çalışıyor ama **pratikte hâlâ dağıtılmamış dur
 
 ## Yaklaşım & desenler
 
-- **SW cache version** her anlamlı `index.html`/`app.js`/`style.css`/`sw.js` değişikliğinde artırılır (şu an **v215**, canlıda 2026-08-19). Backend-only değişikliklerde (scraper, sync) bump edilmez. Akış: `git add` → `git commit` → `git pull --rebase` → `git push`. Not: `sw.js` yalnızca `data/hal.json` + `data/anasayfa.json`'ı önbelleğe alıyor ve `fetch`'i yalnızca o iki URL için yakalıyor — HTML/CSS/JS'i tutmuyor, onlar Cloudflare'den `Cache-Control: public, max-age=0, must-revalidate` ile geliyor (ölçüldü; eski GitHub Pages `max-age=600` notu bayattı). Bump proje kuralı ve tutarlılık için, HTML dağıtımını hızlandırmıyor.
+- **SW cache version** her anlamlı `index.html`/`app.js`/`style.css`/`sw.js` değişikliğinde artırılır (şu an **v234**, 2026-09-03). *Bu satır 2026-09-03'e kadar **v215** diyordu — 18 sürüm bayattı, doküman bayatlığı desenin BEŞİNCİ vakası. Sürümü bu satırdan değil `sw.js`'ten oku.* Backend-only değişikliklerde (scraper, sync) bump edilmez. Akış: `git add` → `git commit` → `git pull --rebase` → `git push`. Not: `sw.js` yalnızca `data/hal.json` + `data/anasayfa.json`'ı önbelleğe alıyor ve `fetch`'i yalnızca o iki URL için yakalıyor — HTML/CSS/JS'i tutmuyor, onlar Cloudflare'den `Cache-Control: public, max-age=0, must-revalidate` ile geliyor (ölçüldü; eski GitHub Pages `max-age=600` notu bayattı). Bump proje kuralı ve tutarlılık için, HTML dağıtımını hızlandırmıyor.
 - **Doğrulama:** Push sonrası `gh run watch` ile deploy'un koştuğu doğrulanır, sonra canlıda (Browser MCP) gerçek fonksiyonel test yapılır — "dosyada var mı" değil, "gerçekten çalışıyor mu". Layout değişikliklerinde ekran görüntüsü yetmez: değişiklikten ÖNCE geometri parmak izi (`getBoundingClientRect`) alınıp sonra sayısal karşılaştırılır.
 - **Kapsam disiplini:** İstenmeyen ekleme/çıkarma sessizce yapılmaz, not düşülür. Doküman/analiz önerileri körü körüne uygulanmaz — önce kodda geçerli mi diye bakılır.
 - **Büyük ürün/mimari kararları** (hosting migration, nav yapısı, tuzak'ın geleceği) Mustafa'nın onayı olmadan koda dökülmez.

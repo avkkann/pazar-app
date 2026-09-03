@@ -5563,13 +5563,17 @@ function renderHalScreen() {
   // BASTAN BERI VARDI ama #halSearch HICBIR YERDE URETILMIYORDU --
   // getElementById sessizce null donuyor, ?. ile dinleyici bosa dusuyordu.
   // Yani 139 kartlik ekranda arama kullaniciya HIC ULASMAMIS.
-  // Desen DIGER KUTULARDAN kopyalandi (yeni tasarim yok): ayni sarmalayici
-  // stili (.hal-search-wrap, CSS'te .cat-search-wrap ile AYNI kurala bagli),
-  // ayni placeholder dili, ayni aria-label deseni.
+  // Desen DIGER KUTULARDAN kopyalandi (yeni tasarim yok): 2026-09-03'ten beri
+  // dordu de TEK bilesen (.pz-search) -- .hal-search-wrap yalnizca yerlesim
+  // sarmalayicisi, kutunun stili .pz-search'te.
   // SATIR ICI HANDLER YOK: dinleyici asagida addEventListener ile baglaniyor
   // (sayac 19/19 sabit kalsin diye).
   const aramaHtml = '<div class="hal-search-wrap">'
+    + '<div class="pz-search">'
+    + '<span class="pz-search__glow" aria-hidden="true"></span>'
+    + '<span class="pz-search__ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>'
     + '<input type="text" id="halSearch" placeholder="Hal ürünlerinde ara..." autocomplete="off" aria-label="Hal ürünlerinde ara">'
+    + '</div>'
     + '</div>';
   container.innerHTML = tarihDisplay + aramaHtml + filtersHtml + `<div class="hal-grid" id="halList">${cards}</div>`;
   document.getElementById('halSearch')?.addEventListener('input', halArama);

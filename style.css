@@ -45,6 +45,11 @@
       --text: #1A1A2E;
       --text-muted: #6B7280;
       --border: #E5E7EB;
+      /* Arama alanı odak ışıması (.pz-search). Tek hue — turuncu bilinçli
+         kullanılmadı, o renk zam/şüpheli rozetinin anlamını taşıyor. */
+      --pz-glow-a: rgba(29, 158, 117, 0.50);
+      --pz-glow-b: rgba(14, 73, 56, 0.26);
+      --pz-ring: rgba(14, 73, 56, 0.10);
       /* ══ HAREKET EĞRİLERİ ═══════════════════════════════════════════
          İKİ eğri var ve bu bir tutarsızlık DEĞİL — ölçüldü, rol ayrımı net:
            --ease-out    9 kullanım, ağırlıklı `transition`
@@ -411,26 +416,52 @@
       padding: var(--space-3) var(--space-4);
       border-bottom: 1px solid var(--border);
     }
-    .search-box {
+    /* ══ .pz-search — TEK ARAMA BİLEŞENİ ═══════════════════════════════
+       Dört arama alanı (ana / kategori / hal / fırsatlar) ÖNCE üç ayrı
+       muamele görüyordu: radius 12 vs 20, ikon yalnız birinde, ve iki
+       odak rengi ELLE hex yazılmıştı. Ölçüm (2026-09-03):
+         - .firsat-arabar input:focus → #0e4938. Koyu temada --primary
+           #10B981'e döner, bu satır dönmez → odak göstergesi GÖRÜNMÜYORDU.
+         - .search-box:focus-within → background #fff. Koyu temada
+           input'un etrafında 12px beyaz halka.
+       Radius 12px seçildi: style.css'te 12px 23 kez, 20px 9 kez geçiyor.
+       Işıma SÜREKLİ DEĞİL, yalnız odakta: metin kutusunun arkasında sürekli
+       hareket okunabilirliği düşürür ve kullanıcıların %64'ü iOS (pil).
+       Tek renk (yeşil): #D97706 bu uygulamada zam/şüpheli rozetinin rengi,
+       dekoratif kullanmak o sinyalle çakışırdı. */
+    .pz-search {
+      position: relative; isolation: isolate; overflow: hidden;
       display: flex; align-items: center; gap: var(--space-2);
-      background: var(--bg); border: 1.5px solid var(--border);
-      border-radius: 12px; padding: var(--space-3) var(--space-3);
-      transition: all 0.2s ease;
+      background: var(--card-bg); border: 1.5px solid var(--border);
+      border-radius: 12px; padding: var(--space-3) 14px;
+      transition: border-color 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
     }
-    .search-box:focus-within {
+    .pz-search__glow {
+      position: absolute; inset: -45%; z-index: 0; pointer-events: none;
+      opacity: 0; transition: opacity 0.4s var(--ease-out);
+      filter: blur(22px);
+      background:
+        radial-gradient(44% 62% at 10% 50%, var(--pz-glow-a) 0%, transparent 72%),
+        radial-gradient(38% 56% at 92% 50%, var(--pz-glow-b) 0%, transparent 70%);
+    }
+    .pz-search:focus-within {
       border-color: var(--primary);
-      background: #fff;
-      box-shadow: 0 0 0 3px rgba(15,81,50,.08);
+      box-shadow: 0 0 0 3px var(--pz-ring);
     }
+    .pz-search:focus-within .pz-search__glow { opacity: 1; }
     /* İkon dili: diğer çizgi ikonlar (tazelik/şüpheli/fiyat-bildir) gibi yuvarlak
        uç ve köşe. Bu ikon o iki özelliği taşımıyordu; büyütecin sap ucu köşeli
        kalıp diğer ikonlarla uyumsuzdu. */
-    .search-box svg { width: 16px; height: 16px; stroke: var(--primary); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
-    .search-box input {
-      flex: 1; border: none; outline: none; background: transparent;
+    .pz-search__ico { position: relative; z-index: 1; flex: 0 0 auto; display: grid; place-items: center; }
+    .pz-search__ico svg { width: 17px; height: 17px; stroke: var(--text-muted); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.25s var(--ease-out); }
+    .pz-search:focus-within .pz-search__ico svg { stroke: var(--primary); }
+    .pz-search input {
+      position: relative; z-index: 1;
+      flex: 1; min-width: 0; width: 100%; box-sizing: border-box;
+      border: none; outline: none; background: transparent;
       font-size: var(--fs-3); color: var(--text); font-family: 'Inter', sans-serif; font-weight: 400;
     }
-    .search-box input::placeholder { color: var(--text-muted); }
+    .pz-search input::placeholder { color: var(--text-muted); }
 
     /* ── KATEGORİ GRİD ── */
     .cat-grid {
@@ -1091,9 +1122,9 @@
       scrollbar-width: none;
     }
     .filter-wrap::-webkit-scrollbar { display: none; }
+    /* Kutunun kendi stili artık .pz-search'te (tek bileşen). Bu sarmalayıcılar
+       yalnız yerleşim/padding rolünü taşıyor. */
     .cat-search-wrap, .hal-search-wrap { padding: var(--space-2) var(--space-3) 0; }
-    .cat-search-wrap input, .hal-search-wrap input { width: 100%; box-sizing: border-box; padding: var(--space-3) var(--space-4); border-radius: 20px; border: 1.5px solid var(--border); background: var(--bg); color: var(--text); font-size: 16px; outline: none; }
-    .cat-search-wrap input:focus, .hal-search-wrap input:focus { border-color: var(--primary); }
     .filter-pill {
       flex-shrink: 0; padding: var(--space-1) var(--space-3); border-radius: 999px;
       border: 1.5px solid var(--border); background: var(--bg);
@@ -1182,9 +1213,9 @@
 .firsat-badge-hal { background: #FEF3C7; color: #92400E; }
 .firsat-badge-tasarruf { background: #EDE9FE; color: #1D9E75; }
 .firsat-loading { text-align: center; padding: var(--space-10); color: var(--text-muted); font-size: .88rem; }
+/* Kutu stili .pz-search'e taşındı. Eski `input:focus { border-color: #0E4938 }`
+   ELLE hex'ti ve koyu temada odak göstergesini görünmez kılıyordu — kaldırıldı. */
 .firsat-arabar { padding: var(--space-3) var(--space-4) 0; }
-.firsat-arabar input { width: 100%; box-sizing: border-box; padding: var(--space-3) var(--space-4); border-radius: 20px; border: 1.5px solid var(--border); background: var(--bg); color: var(--text); font-size: 16px; outline: none; font-family: inherit; }
-.firsat-arabar input:focus { border-color: #0E4938; }
 .firsat-ozet { display: flex; gap: var(--space-2); padding: var(--space-3) var(--space-4) var(--space-1); }
 .firsat-ozet-chip { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: var(--space-2) var(--space-3); text-align: center; flex: 1; }
 .firsat-ozet-sayi { font-size: 1.4rem; font-weight: 800; color: var(--text); font-family: 'Cabinet Grotesk', 'Inter', sans-serif; letter-spacing: -0.02em; }
@@ -2301,6 +2332,9 @@
   --border: #1F2D26;
   --skel-base: #1A2620;
   --skel-hi: #243028;
+  --pz-glow-a: rgba(52, 211, 153, 0.38);
+  --pz-glow-b: rgba(16, 185, 129, 0.22);
+  --pz-ring: rgba(16, 185, 129, 0.18);
 }
 
 /* Surface override'ları — light'ta hard-coded olan her #fff/#FAFAFA/#F5F5F5/#F9FAFB */
@@ -2389,9 +2423,11 @@
 [data-theme="dark"] .filter-pill,
 [data-theme="dark"] .alt-kat-chip,
 [data-theme="dark"] .firsat-tab,
-[data-theme="dark"] .cat-search-wrap input,
-[data-theme="dark"] .hal-search-wrap input,
-[data-theme="dark"] .home-search-wrap input,
+/* .pz-search input'u koyu temada da SAYDAM kalmak ZORUNDA: yukarıdaki genel
+   `[data-theme="dark"] input` kuralı (0,1,1) ona zemin verirse odak ışımasının
+   üstünü örter. Bu seçici (0,2,1) olduğu için sırasından bağımsız kazanır.
+   `.home-search-wrap` buradan kaldırıldı — markup'ta karşılığı yoktu (ölü CSS). */
+[data-theme="dark"] .pz-search input { background: transparent; color: var(--text); }
 [data-theme="dark"] select { background: var(--card-bg); color: var(--text); border-color: var(--border); }
 
 [data-theme="dark"] .filter-pill.active,
@@ -2612,7 +2648,9 @@
     border-bottom: none;
   }
   .search-wrap { margin-top: var(--space-5); }
-  .search-box { max-width: 480px; background: var(--card-bg); border-color: var(--border); }
+  /* Yalnız ana arama masaüstünde daralır; kategori/hal/fırsat aramaları
+     kendi sütunlarının tam genişliğinde kalır. */
+  .search-wrap .pz-search { max-width: 480px; }
 
   .home-strip-head, .home-strip-scroll { padding-left: var(--space-10); padding-right: var(--space-10); }
   .home-strip { margin-bottom: var(--space-8); }
