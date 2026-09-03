@@ -64,3 +64,11 @@ DENETIM_GUVENLIK.md
 supabase/.temp/
 supabase/.env
 supabase/.branches/
+
+# data/mercek.json — SAF BUILD CIKTISI (493 KB), depoya ALINMIYOR.
+# Gerekce: npm run build her kosuda scripts/mercek-uret.mjs ile deterministik
+# olarak yeniden uretiyor ve deploy.yml zaten build kosuyor -> dist'te her
+# zaman taze. data/anasayfa.json (209 KB) commit'leniyor ama o gunluk veri
+# hattinin ciktisi; bunu da eklemek gunluk commit yukunu ucе katlardi.
+# GERI ALMAK ISTERSEN: bu iki satiri sil, `git add data/mercek.json`.
+data/mercek.json

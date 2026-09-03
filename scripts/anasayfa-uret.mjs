@@ -18,6 +18,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { appOrtamiKur } from './app-vm.mjs';
+import { asKartTanimla } from './kart-bicimi.mjs';
 import { enYeniGozlemTarihi } from './veri-tarihi.mjs';
 import { gunDamgasi } from './hub-sayfa.mjs';
 import { ayZamCiftleri, ayIcinSonGun } from './zam-aylik.mjs';
@@ -33,19 +34,9 @@ await ic('gecmisVeriGetir()');
 const urunSayisi = ic('Object.values(catCache).reduce((a,b)=>a+(b?b.length:0),0)');
 console.log(`[anasayfa] veri hazir: ${urunSayisi} urun, ${Date.now() - t0} ms`);
 
-// Kart cizimi icin gereken ALANLAR (bkz. _stripKartHTML + birimFiyatHesapla).
-// market_fiyatlari yalnizca market+fiyat ile tasiniyor: sehir filtresi ve
-// birim fiyat bunu kullaniyor, gerisi ana sayfada gereksiz.
-ic(`function _asKart(u) {
-  return {
-    _id: u._id, _sid: u._sid, ad: u.ad, resim: u.resim || null,
-    ana_kategori: u.ana_kategori || '', agirlik_hacim: u.agirlik_hacim || null,
-    en_dusuk_fiyat: u.en_dusuk_fiyat != null ? u.en_dusuk_fiyat : null,
-    market_fiyatlari: (u.market_fiyatlari || [])
-      .filter(f => f && f.market && f.fiyat != null)
-      .map(f => ({ market: f.market, fiyat: f.fiyat })),
-  };
-}`);
+// _asKart tanimi 2026-09-03'te scripts/kart-bicimi.mjs'e tasindi: mercek-uret.mjs
+// de ayni bicimi uretiyor, kopyalamak iki kaynak yaratirdi.
+asKartTanimla(ic);
 
 // ── ZAM: sehirden BAGIMSIZ havuz. Secim (sehir + cesitlilik + ZAM_MAX)
 //    istemcide zamSecHavuzdan ile ayni kodla yapiliyor.

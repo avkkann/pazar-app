@@ -1478,6 +1478,7 @@ function openDetay(urunId) {
     </div>
     <div class="detay-sag">
     ${fiyatGecmisiBlogu(u)}
+    ${uzunPencereBlogu(u)}
     ${fiyatAlarmiBlogu(u)}
     ${btnHtml}
     ${_bildirimYetkiVarMi() ? `<button type="button" class="fiyat-bildir-btn" data-id="${_kacir(u._id)}" onclick="fiyatBildirAc(this.dataset.id)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>Bu fiyat tutmadı</button>` : ''}
@@ -2436,6 +2437,48 @@ function _fgKutuCakisiyor(a, b) {
 
 function _fgEmptyBlock(mesaj) {
   return '<div class="detay-section detay-section--gecmis"><div class="detay-sec-label">Fiyat Geçmişi</div><div class="fg-empty">' + mesaj + '</div></div>';
+}
+
+// ═══ A2 (2026-09-03): TUM GOZLEM PENCERESI ═══════════════════════════
+// gecmis_fiyatlar.json 2026-05-25'ten beri birikiyor (101 gun, 96.917 nokta)
+// ve urunlerin %92,6'sinda 30 GUNDEN ESKI kayit var — arayuz bugune kadar
+// hepsini atiyordu (_seriKur 30 gunde kesiyor).
+//
+// 30 GUNLUK MANTIGA DOKUNULMADI, BILEREK. Bu dosyanin kendi "IDDIA-HESAP
+// UYUMU" bolumu (satir ~2114) sunu yaziyor: "30 gunun en dusugu" gibi
+// cumleler HAM 30 gunluk seriye ait iddialar. Pencereyi buyutseydim o
+// cumleler sessizce YALAN olurdu (alarm onerisi, al/bekle, rozet metni
+// hepsi ayni seriden besleniyor). Bu yuzden uzun pencere AYRI bir blok:
+// kendi cumlesini kuruyor, kimsenin iddiasini degistirmiyor.
+function uzunPencereBlogu(urun) {
+  if (!urun || !urun._sid) return '';
+  if (typeof _gecmisCache === 'undefined' || !_gecmisCache) return '';
+  const kayitlar = _gecmisCache[urun._sid];
+  if (!Array.isArray(kayitlar) || kayitlar.length < 2) return '';
+
+  const gecerli = kayitlar.filter(k => k && k.t && typeof k.f === 'number' && k.f > 0);
+  if (gecerli.length < 2) return '';
+  const gunler = new Set(gecerli.map(k => k.t));
+  const otuzGunSiniri = _yerelGunISO(30);
+  // Sadece 30 gun icinde veri varsa yeni bir sey soylemiyoruz — blok cizilmez.
+  if (![...gunler].some(t => t < otuzGunSiniri)) return '';
+
+  let min = Infinity, max = -Infinity, ilkT = null, sonT = null;
+  for (const k of gecerli) {
+    if (k.f < min) min = k.f;
+    if (k.f > max) max = k.f;
+    if (!ilkT || k.t < ilkT) ilkT = k.t;
+    if (!sonT || k.t > sonT) sonT = k.t;
+  }
+  const gunFark = Math.round((new Date(sonT) - new Date(ilkT)) / 86400000) + 1;
+  if (!(gunFark > 30) || !isFinite(min) || !isFinite(max) || max <= min) return '';
+
+  return '<div class="uzun-pencere">'
+    + '<div class="uzun-pencere__baslik">' + gunFark + ' günlük tüm gözlemimiz</div>'
+    + '<div class="uzun-pencere__satir"><span>En düşük</span><b>' + tl(min) + '</b></div>'
+    + '<div class="uzun-pencere__satir"><span>En yüksek</span><b>' + tl(max) + '</b></div>'
+    + '<div class="uzun-pencere__alt">' + gunler.size + ' farklı günde ölçüldü · üstteki grafik son 30 günü gösteriyor</div>'
+    + '</div>';
 }
 
 function fiyatGecmisiBlogu(urun) {
@@ -4965,7 +5008,7 @@ function renderSepet() {
       <div class="cart-item-info">
         <div class="cart-item-name">${_kacir(u.ad)}</div>
         <div class="cart-item-satir2">
-          <div class="cart-item-sub">${u.agirlik_hacim ? _kacir(u.agirlik_hacim) : ''}</div>
+          <div class="cart-item-sub">${u.agirlik_hacim ? _kacir(u.agirlik_hacim) : ''}${_firsatBirimFiyat(u) ? ` · ${_firsatBirimFiyat(u)}` : ''}</div>
           ${rozetHTML ? `<div class="cart-item-rozet">${rozetHTML}</div>` : ''}
         </div>
       </div>
@@ -5590,6 +5633,209 @@ function halFiltrele(kat, btn) {
 // ── FIRSATLAR ─────────────────────────────────────────
 let _firsatAktifTab = 'ucuz';
 
+// ═══════════════════════════════════════════════════════════════════════
+// MERCEK — toplanip gosterilmeyen veriyi ekrana cikaran sekme (2026-09-03)
+// ═══════════════════════════════════════════════════════════════════════
+// Dort bolum, dordu de ZATEN URETILEN ama arayuze hic girmemis veriden:
+//   ilan    A1  ilan edilen "eski fiyat" gecmiste hic gorulmemis olanlar
+//   market  A5  hangi market kac uruncte en ucuz (hesap hub-uret.mjs'te vardi)
+//   hal     A7  hal kaleminin fiyat araligi + kayit sayisi + 25 gunluk degisim
+//   supheli A4  supheli indirim listesinin genisletilmis hali (ana sayfa 49)
+//
+// VERI TEMBEL: data/mercek.json 73 KB gzip. Ana sayfada GEREKMIYOR, sekme
+// acilinca bir kez cekiliyor (gecmis_fiyatlar.json ile ayni gerekce).
+let _mercekVeri = null;
+let _mercekSekme = 'ilan';
+
+async function mercekVeriGetir() {
+  if (_mercekVeri) return _mercekVeri;
+  try {
+    const r = await fetch('./data/mercek.json');
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    _mercekVeri = await r.json();
+  } catch (e) {
+    console.warn('[mercek] data/mercek.json yuklenemedi; sekme veri gosteremeyecek:', e && e.message);
+    _mercekVeri = null;
+  }
+  return _mercekVeri;
+}
+
+function goMercek() {
+  showScreen('screen-mercek');
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  const nb = document.getElementById('navMercek');
+  if (nb) nb.classList.add('active');
+  renderMercek();
+}
+
+function mercekSekme(t) {
+  _mercekSekme = t;
+  document.querySelectorAll('.mercek-tab').forEach(b =>
+    b.classList.toggle('active', b.getAttribute('data-mtab') === t));
+  renderMercek();
+}
+
+function _mercekNot(metin) { return '<p class="mercek-not">' + metin + '</p>'; }
+
+// ── A1: ilan edilen eski fiyat vs gercekte gordugumuz ────────────────
+// DIL KURALI: "market yalan soyluyor" DEMIYOR. Olcum penceremiz 101 gun ve
+// gunluk ornekleme; o fiyat pencereden once ya da iki ornek arasinda var
+// olmus olabilir. Iddia yalnizca sudur: BIZ GORMEDIK.
+function _mercekIlanHTML(d) {
+  const liste = d.ilanYalan || [];
+  if (!liste.length) return '<div class="mercek-bos">Bu turda böyle bir kayıt çıkmadı.</div>';
+  const o = d.olcum || {};
+  let h = _mercekNot(
+    '<b>' + liste.length + '</b> üründe, marketin “eski fiyatı” diye gösterdiği tutarı ' +
+    '101 gündür bakmamıza rağmen <b>hiç görmedik</b>. ' +
+    'Aday sayısı ' + (o.ilanAdaySayisi || liste.length) + '; eşik %' + (o.ilanEsikYuzde ?? 10) +
+    ', o markette en az ' + (o.ilanMinGozlem ?? 3) + ' gözlem şartı var. ' +
+    '<i>Bu bir suçlama değil:</i> fiyat ölçüm penceremizden önce ya da iki günlük örnekleme arasında var olmuş olabilir.');
+  h += '<div class="mercek-liste">';
+  for (const x of liste) {
+    const mad = MARKET_NAMES[x.market] || _kacir(x.market);
+    h += '<article class="mercek-kart" tabindex="0" role="button" data-id="' + _kacir(String(x.u._id)) + '">' +
+      '<div class="mercek-kart__ust">' +
+        '<span class="mercek-kart__ad">' + _kacir(x.u.ad) + '</span>' +
+        '<span class="mercek-rozet mercek-rozet--kirmizi">+%' + x.sisme + '</span>' +
+      '</div>' +
+      '<div class="mercek-kart__satir"><span>' + mad + ' “eski fiyat”</span><b>' + tl(x.ilan) + '</b></div>' +
+      '<div class="mercek-kart__satir mercek-kart__satir--sonuc"><span>Bizim gördüğümüz en yüksek</span><b>' + tl(x.gorulen) + '</b></div>' +
+      '<div class="mercek-kart__alt">' + x.gozlem + ' gözlem' + (x.tarih ? ' · ilan ' + _kacir(x.tarih) : '') + '</div>' +
+    '</article>';
+  }
+  return h + '</div>';
+}
+
+// ── A5: market karnesi ───────────────────────────────────────────────
+// Kural hub-uret.mjs ile AYNI: yalnizca >=2 markette fiyati olan urunler
+// sayiliyor, esitlikte kimseye puan yok. Bu iki sinir EKRANDA yaziyor —
+// yoksa "%25 en ucuz" cumlesi katalogun tamamiymis gibi okunur.
+function _mercekMarketHTML(d) {
+  const liste = d.marketIstatistik || [];
+  if (!liste.length) return '<div class="mercek-bos">İstatistik çıkarılamadı.</div>';
+  const o = d.olcum || {};
+  const enBuyuk = Math.max.apply(null, liste.map(x => x.enUcuzSayisi)) || 1;
+  let h = _mercekNot(
+    'Katalogdaki <b>' + (o.katalogUrun || 0).toLocaleString('tr-TR') + '</b> üründen yalnızca ' +
+    '<b>' + (o.karsilastirilabilirUrun || 0).toLocaleString('tr-TR') + '</b> tanesi en az iki markette fiyatlanıyor — ' +
+    'karşılaştırma ancak onlarda mümkün. ' + (o.esitlikSayisi || 0) + ' üründe fiyatlar eşit, ' +
+    'onlarda hiçbir markete puan yazılmadı.');
+  h += '<div class="mercek-bar-liste">';
+  for (const x of liste) {
+    const mad = MARKET_NAMES[x.market] || _kacir(x.market);
+    const genislik = Math.round((x.enUcuzSayisi / enBuyuk) * 100);
+    h += '<div class="mercek-bar">' +
+      '<div class="mercek-bar__ust"><span>' + mad + '</span><b>%' + String(x.oran).replace('.', ',') + '</b></div>' +
+      '<div class="mercek-bar__yol"><span class="mercek-bar__dolu" style="width:' + genislik + '%"></span></div>' +
+      '<div class="mercek-bar__alt">' + x.enUcuzSayisi.toLocaleString('tr-TR') + ' üründe en ucuz · katalogda ' + x.urunSayisi.toLocaleString('tr-TR') + ' ürünü var</div>' +
+    '</div>';
+  }
+  return h + '</div>';
+}
+
+// ── A7: hal — aralik, kayit sayisi, 25 gunluk degisim ────────────────
+// DEGISIM her kalemde YOK: bultende tek satirla gecen kalem sacma salinim
+// uretiyor (olculdu: Lychee %+2400, tek kayit). Uretici tarafi bunu zaten
+// eliyor; burada sadece null gelirse cizmiyoruz.
+function _mercekHalHTML(d) {
+  const liste = (d.halOzet || []).slice().sort((a, b) => {
+    if (a.degisim == null && b.degisim == null) return 0;
+    if (a.degisim == null) return 1;
+    if (b.degisim == null) return -1;
+    return Math.abs(b.degisim) - Math.abs(a.degisim);
+  });
+  if (!liste.length) return '<div class="mercek-bos">Hal verisi alınamadı.</div>';
+  const olculen = liste.filter(x => x.degisim != null).length;
+  let h = _mercekNot(
+    '<b>' + liste.length + '</b> hal kalemi. Bültendeki fiyat tek bir sayı değil: ' +
+    'aralık ve kaç kayıttan geldiği de yazıyor. ' +
+    '<b>' + olculen + '</b> kalemde 25 günlük değişim ölçülebildi — ' +
+    'tek kayıtla geçen kalemlerde değişim <i>hesaplanmadı</i>, çünkü orada sayı gürültüden ibaret.');
+  h += '<div class="mercek-liste">';
+  for (const x of liste) {
+    const yon = x.degisim == null ? '' :
+      '<span class="mercek-rozet ' + (x.degisim > 0 ? 'mercek-rozet--kirmizi' : 'mercek-rozet--yesil') + '">' +
+      (x.degisim > 0 ? '+' : '') + String(x.degisim).replace('.', ',') + '%</span>';
+    const aralik = (x.min != null && x.max != null && x.max > x.min)
+      ? tl(x.min) + ' – ' + tl(x.max)
+      : 'tek fiyat';
+    h += '<article class="mercek-kart">' +
+      '<div class="mercek-kart__ust"><span class="mercek-kart__ad">' + _kacir(x.ad) + '</span>' + yon + '</div>' +
+      '<div class="mercek-kart__satir"><span>Bugün</span><b>' + tl(x.fiyat) + (x.birim ? ' / ' + _kacir(x.birim) : '') + '</b></div>' +
+      '<div class="mercek-kart__satir"><span>Bültendeki aralık</span><b>' + aralik + '</b></div>' +
+      '<div class="mercek-kart__alt">' + (x.kayit != null ? x.kayit + ' kayıt' : '') +
+        (x.nokta ? ' · ' + x.nokta + ' günlük seri' : '') + '</div>' +
+    '</article>';
+  }
+  return h + '</div>';
+}
+
+// ── A4 + A3: supheli indirimler, SAYISIYLA ve TUM sebepleriyle ───────
+// Ana sayfa seridi 49 kayit tasiyor ve rozet sadece "Şüpheli indirim"
+// yaziyordu; puan, dusus yuzdesi ve sebeplerin tamami DB'den CEKILIYOR ama
+// hicbiri ekrana basilmiyordu. Burada hepsi basiliyor.
+function _mercekSupheliHTML(d) {
+  const liste = d.supheliTum || [];
+  if (!liste.length) return '<div class="mercek-bos">Şüpheli kayıt bulunamadı.</div>';
+  let h = _mercekNot(
+    '<b>' + liste.length + '</b> üründe indirim iddiası şüpheli görünüyor. ' +
+    'Ana sayfadaki şerit bunların yalnızca en yüksek puanlılarını gösteriyor. ' +
+    'Puan 6 üzerinden; yalnızca <i>şu anda indirimde olan</i> ürünler listeleniyor.');
+  h += '<div class="mercek-liste">';
+  for (const x of liste) {
+    const dur = x.durum || {};
+    const cumleler = (typeof supheliCumleler === 'function' ? supheliCumleler(dur) : (dur.sebepler || []));
+    h += '<article class="mercek-kart" tabindex="0" role="button" data-id="' + _kacir(String(x.u._id)) + '">' +
+      '<div class="mercek-kart__ust">' +
+        '<span class="mercek-kart__ad">' + _kacir(x.u.ad) + '</span>' +
+        '<span class="mercek-rozet mercek-rozet--sari">' + (dur.puan != null ? dur.puan + '/6' : '?') + '</span>' +
+      '</div>' +
+      '<div class="mercek-kart__satir"><span>İddia edilen indirim</span><b>%' + (x.yuzde || 0) + '</b></div>' +
+      (dur.dusus != null ? '<div class="mercek-kart__satir"><span>Ölçtüğümüz düşüş</span><b>%' + dur.dusus + '</b></div>' : '') +
+      (cumleler.length ? '<ul class="mercek-sebep">' + cumleler.map(c => '<li>' + _kacir(c) + '</li>').join('') + '</ul>' : '') +
+    '</article>';
+  }
+  return h + '</div>';
+}
+
+// SATIR ICI HANDLER YOK — sayac test_satirici_kilit.mjs ile kilitli.
+// Nav butonu, sekme cubugu ve kartlar delegasyonla baglaniyor; desen
+// _aramaOneriCiz / _firsatKartTikla ile ayni (closest + data-*).
+document.addEventListener('click', function (e) {
+  const t = e.target && e.target.closest ? e.target : null;
+  if (!t) return;
+  if (t.closest('#navMercek')) { goMercek(); return; }
+  const sekme = t.closest('.mercek-tab');
+  if (sekme) { mercekSekme(sekme.getAttribute('data-mtab')); return; }
+  const kart = t.closest('.mercek-kart[data-id]');
+  if (kart) { openDetay(kart.dataset.id); return; }
+});
+
+// Klavye: kartlar ve sekmeler role="button" tasiyor, Enter/Space calismali.
+// Satir ici onkeydown EKLENMEDI (ayni kilit); delegasyon.
+document.addEventListener('keydown', function (e) {
+  if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
+  const t = e.target;
+  if (!t || !t.closest) return;
+  const kart = t.closest('.mercek-kart[data-id]');
+  if (kart) { e.preventDefault(); openDetay(kart.dataset.id); return; }
+  const sekme = t.closest('.mercek-tab');
+  if (sekme) { e.preventDefault(); mercekSekme(sekme.getAttribute('data-mtab')); }
+});
+
+async function renderMercek() {
+  const el = document.getElementById('mercekContent');
+  if (!el) return;
+  el.innerHTML = '<div class="mercek-yukleniyor">Ölçümler yükleniyor…</div>';
+  const d = await mercekVeriGetir();
+  if (!d) { el.innerHTML = '<div class="mercek-bos">Ölçüm verisi alınamadı.</div>'; return; }
+  if (_mercekSekme === 'market') el.innerHTML = _mercekMarketHTML(d);
+  else if (_mercekSekme === 'hal') el.innerHTML = _mercekHalHTML(d);
+  else if (_mercekSekme === 'supheli') el.innerHTML = _mercekSupheliHTML(d);
+  else el.innerHTML = _mercekIlanHTML(d);
+}
+
 function goFirsatlar() {
   showScreen('screen-firsatlar');
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
@@ -5712,6 +5958,24 @@ function renderFirsatlar(tab) {
   });
 }
 
+// Birim fiyat yazisi — firsat ve sepet kartlari icin ORTAK.
+// _stripKartHTML ile AYNI iki fonksiyonu cagiriyor (birimFiyatHesapla +
+// birimFiyatYazi); ikinci bir hesap yazilmadi. Gramaj zaten satirda yaziyorsa
+// tekrar etmiyoruz (strip kartindaki bfTekrar mantiginin sadelestirilmisi).
+function _firsatBirimFiyat(u) {
+  try {
+    const bf = birimFiyatHesapla(u);
+    if (!bf) return '';
+    const yazi = birimFiyatYazi(bf);
+    if (!yazi) return '';
+    const gram = String(u.agirlik_hacim || '').trim().toLowerCase();
+    if (gram && String(yazi).toLowerCase().indexOf(gram) >= 0) return '';
+    return yazi;
+  } catch (e) { /* Sessizlik BILINCLI, kullanici verisi kaybolmuyor: bu yalnizca bir susleme satiri. birimFiyatHesapla gramaji ayristiramadiginda (katalogda 56 urun, %0,3) konsola yazmak her kart ciziminde gurultu uretirdi; kartin ad/fiyat/rozet'i etkilenmiyor, sadece alt satir cizilmiyor. */
+    return '';
+  }
+}
+
 function _firsatKartHtml(u, badge, badgeClass, altText) {
   if (!u._id) u._id = u.ad + '_' + (u.agirlik_hacim||'');
   productMap[u._id] = u;
@@ -5741,6 +6005,11 @@ function _firsatKartHtml(u, badge, badgeClass, altText) {
     + '<div class="firsat-card-body">'
     + '<div class="firsat-card-name">'+_kacir(u.ad||'')+'</div>'
     + '<div class="firsat-card-sub">'+_kacir(altText)+'</div>'
+    // A6 (2026-09-03): birim fiyat. 16.198 urunun 16.142'sinde (%99,7)
+    // hesaplanabiliyor ve detay/kategori/serit kartlarinda ZATEN basiliyordu;
+    // firsat kartinda YOKTU. Firsatlar ekraninda iki urunu karsilastirirken
+    // ₺/kg olmadan "ucuz mu" sorusu cevaplanamiyor.
+    + (_firsatBirimFiyat(u) ? '<div class="firsat-card-sub firsat-card-bf">'+_firsatBirimFiyat(u)+'</div>' : '')
     // Şüpheli ürün listeden çıkarılmaz, rozetiyle görünür — kararı kullanıcı verir.
     + (supheliDurum(u) ? supheliRozetHTML() : '')
     + '</div>'
@@ -6251,6 +6520,11 @@ function profilSehirHTML() {
     .join('');
   const s = ilMarketleri();
   const eksik = s ? Object.keys(MARKET_NAMES).filter(m => !s.has(m)) : [];
+  // A8 (2026-09-03): kayit.depot = o ilde taranan magaza sayisi. 81 ilde dolu,
+  // ortalama 25,6 -- ama bugune kadar hic okunmuyordu. Kullanici kapsamin ne
+  // kadar genis oldugunu bilmiyordu.
+  const kayitIl = secili ? harita[secili] : null;
+  const magaza = kayitIl && typeof kayitIl.depot === 'number' ? kayitIl.depot : null;
   const not = !secili
     ? 'Şehrini seçersen o ilde bulunmayan marketler gizlenir'
     : (eksik.length
@@ -6266,7 +6540,7 @@ function profilSehirHTML() {
   const kapsam = 'Bu seçim market karşılaştırmasını ve zam takibini etkiler; ürün fiyatları tüm marketler için gösterilmeye devam eder.';
   return `<div class="profil-sehir">
       <select class="profil-sehir-select" aria-label="Şehir seç" onchange="sehirDegisti(this.value)">${secenekler}</select>
-      <div class="profil-sehir-not">${not}</div>
+      <div class="profil-sehir-not">${not}${magaza ? ` · ${s ? s.size : 0} zincir, ${magaza} mağaza tarandı` : ''}</div>
       <div class="profil-sehir-not profil-sehir-kapsam">${kapsam}</div>
     </div>`;
 }

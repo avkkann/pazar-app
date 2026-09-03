@@ -20,6 +20,85 @@ Mustafa (GitHub: avkkann), **Pazar App**'in tek geliştiricisi — Türk market 
 
 ## Mevcut durum (2026-08-21 itibarıyla)
 
+### 2026-09-03 — MERCEK sekmesi: toplanıp gösterilmeyen veri ekrana çıktı (8 madde)
+
+**Durum: commit edildi, YAYINDA DEĞİL** (push Mustafa'nın kararına bırakıldı). `sw.js` **v234 → v235**.
+
+Dört keşif ajanıyla "elimizde olup kullanılmayan veri" taraması yapıldı; çıkan sekiz madde
+uygulandı. Hepsinin ortak özelliği: **yeni veri toplanmadı**, hattın zaten ürettiği alanlar
+arayüze bağlandı.
+
+> **5. NAV SEKMESİ KARARI DÖNDÜ.** Bu dosyada "5. nav sekmesi (P0-U2) — MiniMax audit'ten
+> bilinçli atlandı" kaydı vardı. Mustafa 2026-09-03'te açıkça istedi. Karar onun.
+
+**Yeni: `Mercek` sekmesi** (`screen-mercek`) — dört bölüm, verisi `data/mercek.json`'dan
+**tembel** yükleniyor (73 KB gzip; ana sayfada gerekmiyor, `gecmis_fiyatlar.json` ile aynı gerekçe).
+Üretici `scripts/mercek-uret.mjs`, `npm run build` zincirine girdi.
+
+- **A1 “Görmediğimiz fiyatlar” (120 kayıt).** `ilan_indirim_gecmisi` 5.434 üründe doluydu ve
+  `app.js`'te **0 kez** geçiyordu. İlan edilen “eski fiyat”, o markette gördüğümüz en yüksek
+  fiyatla karşılaştırılıyor. **Eşik %10 ve o markette ≥3 gözlem şartı var:** eşiksiz tarama
+  1.186 kayıt (%15,0) veriyor ama içinde “67,25 vs 66,50” yuvarlama gürültüsü var; %10 üzeri
+  359 kayıt (%4,5), %50 üzeri 185 (%2,3). Market kırılımı **hacim etkisi değil**: Carrefour
+  5.223 kayıtta %6,8, Migros 2.107'de %0,2, BİM 592'de %0,2 — **34 kat**. En ağırı Molped
+  403,90 ₺ ilan / hiç 149,90 ₺'yi geçmemiş (+%169).
+  **DİL KURALI:** ekran “market yalan söylüyor” DEMİYOR, “biz görmedik” diyor — pencere 101 gün
+  ve günlük örnekleme; fiyat penceremizden önce ya da iki örnek arasında var olmuş olabilir.
+- **A2 “Tüm gözlem penceresi”.** `gecmis_fiyatlar.json` 101 gün derinliğinde, ürünlerin
+  **%92,6'sında 30 günden eski kayıt var** ve arayüz hepsini atıyordu. **30 günlük mantığa
+  DOKUNULMADI, bilerek:** bu dosyanın “İDDİA–HESAP UYUMU” bölümü “30 günün en düşüğü” gibi
+  cümlelerin ham 30 günlük seriye ait olduğunu yazıyor; pencereyi büyütmek alarm önerisi,
+  al/bekle ve rozet metinlerini sessizce yalan yapardı. Uzun pencere **ayrı blok**
+  (`uzunPencereBlogu`), kendi cümlesini kuruyor. Canlıda: “91 günlük tüm gözlemimiz · en düşük
+  15,50 ₺ · en yüksek 19,75 ₺ · üstteki grafik son 30 günü gösteriyor”.
+- **A3 Şüpheli rozetinin sayısı.** `puan`, `sebepler`, `dusus_yuzde` DB'den çekilip değişkene
+  yazılıyor ama **hiçbiri okunmuyordu**. Mercek'te üçü de basılıyor (“6/6 · iddia %25 ·
+  ölçtüğümüz düşüş %76” + sebep cümlelerinin tamamı; ana sayfadaki kutu 2 madde ile kırpıyordu).
+- **A4 Şüpheli liste 49 → 798.** Eşik puan≥4'ten 2'ye indi. **`indirimRozetiHesapla` kapısı
+  KALDIRILMADI** — ortada indirim yokken “bu indirim şüpheli” demek anlamsız; bu yüzden
+  “419'un tamamı” gösterilemez, gösterilebilir olan şu an indirim iddiası taşıyanlar.
+- **A5 Market karnesi.** `hub-uret.mjs:191` bunu zaten hesaplıyordu, sadece hub sayfalarında
+  duruyordu. Ölçüm: 16.198 üründen **2.647'si (%16,3)** ≥2 markette fiyatlanıyor — karşılaştırma
+  ancak orada mümkün; 593 üründe eşitlik var, onlarda kimseye puan yazılmadı. **Bu iki sınır
+  ekranda yazıyor**, yoksa “%25 en ucuz” cümlesi katalogun tamamıymış gibi okunur.
+- **A6 Birim fiyat fırsat + sepet kartına.** %99,7 üründe hesaplanabiliyor, detay/kategori/şerit
+  kartlarında zaten vardı, bu ikisinde yoktu. Canlıda 49 fırsat kartında göründü.
+- **A7 Hal: aralık + 25 günlük değişim.** `fiyat_min/max/satir_sayisi/hacim` ve `hal_gecmis.json`
+  `app.js`'te **0 kez** geçiyordu. **Değişim her kalemde gösterilmiyor:** bültende tek satırla
+  geçen kalem saçma salınım üretiyor (ölçüldü — Lychee %+2400, Isırgan %−97,7, ikisi de tek
+  kayıt; bu dosya onları zaten “kırılgan” diye işaretlemiş). `satir_sayisi≥2` ve `≥7 gün` şartı
+  kondu: 152 kalemin **94'ünde** değişim ölçülebiliyor.
+- **A8 Şehir kapsam sayısı.** `il_marketler.json`'daki `depot` alanı 81 ilde doluydu,
+  `app.js`'te **0 kez** okunuyordu. Artık: “4 zincir, 20 mağaza tarandı”.
+
+**Kod kararı:** `_asKart` tanımı `anasayfa-uret.mjs`'ten `scripts/kart-bicimi.mjs`'e taşındı —
+iki üretici aynı biçimi yazıyor, kopyalamak bu depoda “iki kaynak = kaçınılmaz sapma” kuralını
+çiğnerdi.
+
+> **ÜÇ BEKÇİ BENİ YAKALADI, ÜÇÜ DE HAKLIYDI — ve biri kendi körlüğünü açık etti.**
+> (1) `test_satirici_kilit.mjs`: satır içi handler eklemiştim, sayaç 117'ye kilitli.
+> Delegasyona çevrildi (`closest` + `data-*`), klavye de delegasyonla eklendi.
+> (2) `test_baslik_hiyerarsi.mjs`: yeni ekran meşru bir `<h2>` ekledi; temel 7→8, 14→15
+> güncellendi, “hepsi h2” ve tam metin eşitliği KORUNDU.
+> (3) `test_sessiz_catch.mjs`: açıklamasız `catch` bırakmıştım. Açıklama yazınca **yine
+> kırmızı kaldı** — sebep: **app.js CRLF ve bekçinin `/^\s*\/\/(.*)$/` deseni `\r` yüzünden
+> hiç eşleşmiyor.** Yani bekçinin “üstteki yorum” ve “alttaki yorum” dallarının **ikisi de bu
+> depoda baştan beri ÖLÜYDÜ**; fark edilmemiş çünkü o güne kadar hiçbir catch o yolu
+> kullanmamış (geçenlerin hepsi ya `console.warn` taşıyor ya aynı satırda `/* */`).
+> Desenler `\r?$` ile onarıldı — bekçi gevşemedi, iki tespit yolu **ilk kez gerçekten çalışıyor**
+> (prove-by-breaking: alt satır yorumu → yeşil, yorum tamamen silinince → kırmızı).
+> `test_firsat_detay.mjs` ise vm'de “`_firsatBirimFiyat` is not defined” ile patladı — yeni
+> satırın gerçekten çizim yolunda olduğunun kanıtı; çalışma ortamı tamamlandı **ve yeni bir
+> iddia eklendi** (satır basılıyor mu), prove-by-breaking ile doğrulandı.
+
+**Doğrulama:** 57 `test_*.mjs` + 5 `test_*.py` yeşil · `npm run build` yeşil · yerel `dist`'te
+dört Mercek sekmesi de çiziliyor (120 / 7 bar / 152 / 798 kayıt) · konsol hatası 0 ·
+A2/A6/A8 canlı ekranda ölçüldü.
+
+**Kapsam dışı, not düşülüyor:** `.firsat-tab.active` ve birçok kural hâlâ elle `#0E4938`
+yazıyor (koyu tema ayrı override'la kurtarıyor); yeni Mercek CSS'i token kullanıyor, o borç
+büyütülmedi ama kapatılmadı da.
+
 ### 2026-09-03 — Dört arama alanı TEK bileşene indi (`.pz-search`) + iki odak hatası kapandı
 
 **Durum: commit edildi, YAYINDA DEĞİL** (push Mustafa'nın kararına bırakıldı). `sw.js` **v233 → v234**.

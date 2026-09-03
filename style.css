@@ -1193,6 +1193,57 @@
 .firsat-tabs::-webkit-scrollbar { display: none; }
 .firsat-tab { display: inline-flex; align-items: center; gap: var(--space-2); flex-shrink: 0; padding: var(--space-3) var(--space-4); font-size: .78rem; font-weight: 600; color: var(--text-muted); border-bottom: 2.5px solid transparent; cursor: pointer; white-space: nowrap; background: none; border-top: none; border-left: none; border-right: none; font-family: inherit; }
 .firsat-tab.active { color: #0E4938; border-bottom-color: #0E4938; font-weight: 600; }
+/* Tum gozlem penceresi (A2, 2026-09-03). Ustundeki 30 gunluk grafikten
+   GORSEL OLARAK AYRI durmali: farkli soruyu cevapliyor ve farkli pencereye
+   ait — ayni kutuya konsa iki iddia birbirine karisir. */
+.uzun-pencere { margin: var(--space-3) var(--space-4); padding: var(--space-3) var(--space-4); background: var(--bg); border: 1px solid var(--border); border-radius: 14px; }
+.uzun-pencere__baslik { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--text-muted); margin-bottom: var(--space-2); }
+.uzun-pencere__satir { display: flex; justify-content: space-between; align-items: baseline; font-size: .82rem; color: var(--text-muted); padding: 2px 0; }
+.uzun-pencere__satir b { color: var(--text); font-weight: 600; font-variant-numeric: tabular-nums; }
+.uzun-pencere__alt { margin-top: var(--space-2); font-size: .7rem; color: var(--text-muted); }
+
+/* Firsat kartinda birim fiyat (A6, 2026-09-03). Urun adinin altindaki
+   aciklama satiriyla ayni ailede ama bir ton daha soluk: ikincil bilgi. */
+.firsat-card-bf { opacity: .78; font-variant-numeric: tabular-nums; }
+
+/* ═══ MERCEK (2026-09-03) ═══════════════════════════════════════════════
+   Sekme cubugu .firsat-tabs ile AYNI olculer — iki ayri sekme dili olmasin.
+   Renkler TOKEN'dan: bu dosyada elle yazilan #0E4938'ler koyu temada ayri
+   override gerektiriyor; yeni kod o borcu buyutmuyor.                     */
+.mercek-tabs { display: flex; gap: 0; background: var(--card-bg); border-bottom: 1px solid var(--border); padding: 0 var(--space-4); overflow-x: auto; scrollbar-width: none; position: sticky; top: 53px; z-index: 40; }
+.mercek-tabs::-webkit-scrollbar { display: none; }
+.mercek-tab { flex-shrink: 0; padding: var(--space-3) var(--space-4); font-size: .78rem; font-weight: 600; color: var(--text-muted); border: none; border-bottom: 2.5px solid transparent; background: none; cursor: pointer; white-space: nowrap; font-family: inherit; }
+.mercek-tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+
+.mercek-not { padding: var(--space-3) var(--space-4); font-size: .8rem; line-height: 1.55; color: var(--text-muted); background: var(--bg); border-bottom: 1px solid var(--border); margin: 0; }
+.mercek-not b { color: var(--text); font-weight: 700; }
+.mercek-yukleniyor, .mercek-bos { padding: var(--space-6) var(--space-4); text-align: center; color: var(--text-muted); font-size: .85rem; }
+
+.mercek-liste { padding: var(--space-3) var(--space-4) var(--space-6); display: flex; flex-direction: column; gap: var(--space-2); }
+.mercek-kart { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: var(--space-3) var(--space-4); cursor: pointer; }
+.mercek-kart__ust { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-3); margin-bottom: var(--space-2); }
+.mercek-kart__ad { font-size: .9rem; font-weight: 600; color: var(--text); line-height: 1.35; }
+.mercek-kart__satir { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-3); font-size: .8rem; color: var(--text-muted); padding: 2px 0; }
+.mercek-kart__satir b { font-variant-numeric: tabular-nums; color: var(--text); font-weight: 600; }
+/* Olcumumuzu tasiyan satir vurgulu: iddia yukarida, OLCUM burada. */
+.mercek-kart__satir--sonuc b { color: var(--primary); }
+.mercek-kart__alt { margin-top: var(--space-2); font-size: .7rem; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+
+.mercek-rozet { flex-shrink: 0; font-size: .72rem; font-weight: 700; padding: 3px 8px; border-radius: 100px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.mercek-rozet--kirmizi { background: var(--rozet-pahali-bg); color: var(--rozet-pahali-fg); }
+.mercek-rozet--sari    { background: var(--rozet-zam-bg);    color: var(--rozet-zam-fg); }
+.mercek-rozet--yesil   { background: var(--rozet-iyi-bg);    color: var(--rozet-iyi-fg); }
+
+.mercek-sebep { margin: var(--space-2) 0 0; padding-left: 1.1em; font-size: .78rem; line-height: 1.5; color: var(--text-muted); }
+.mercek-sebep li { margin-bottom: 2px; }
+
+.mercek-bar-liste { padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-4); }
+.mercek-bar__ust { display: flex; justify-content: space-between; align-items: baseline; font-size: .85rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+.mercek-bar__ust b { font-variant-numeric: tabular-nums; color: var(--primary); }
+.mercek-bar__yol { height: 8px; border-radius: 100px; background: var(--border); overflow: hidden; }
+.mercek-bar__dolu { display: block; height: 100%; border-radius: 100px; background: var(--primary); }
+.mercek-bar__alt { margin-top: 6px; font-size: .72rem; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+
 .firsat-section { padding: var(--space-3) var(--space-4) 0; }
 .firsat-section-title { font-size: .78rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: .05em; margin-bottom: var(--space-3); display: flex; align-items: center; gap: var(--space-2); }
 .firsat-card { background: var(--card-bg); border-radius: 16px; border: 1px solid var(--border); padding: var(--space-3) var(--space-4); display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-2); cursor: pointer; transition: box-shadow .18s ease, transform .18s ease; box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04); }

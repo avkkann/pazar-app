@@ -57,6 +57,12 @@ const sandbox = {
   // IDDIA GEVSETILMEDI, calisma ortami tamamlandi (test_kacis / test_sepet_bol
   // icin `sehirOku` eklenirken uygulanan ayni desen).
   sepet: [],
+  // `_firsatBirimFiyat` 2026-09-03'te EKLENDI (A6: birim fiyat firsat kartina
+  // girdi). vm "is not defined" ile patladi -- yani yeni satirin gercekten
+  // cizim yolunda oldugunun kaniti. IDDIA GEVSETILMEDI, calisma ortami
+  // tamamlandi (yukaridaki `sepet` ve test_kacis'taki `sehirOku` ile ayni
+  // desen) ve ASAGIYA yeni bir iddia eklendi: satir gercekten basiliyor mu.
+  _firsatBirimFiyat: () => '34,90 ₺/L',
   window: {},
   btoa: (s) => Buffer.from(s, 'binary').toString('base64'),
   unescape, encodeURIComponent,
@@ -68,6 +74,8 @@ vm.runInContext(src, sandbox);
 const urun = { _id: 'sut_12', _sid: 'sut-sid', ad: 'Süt 1 L', ana_kategori: 'Süt', en_dusuk_fiyat: 34.9, market_fiyatlari: [] };
 const html = vm.runInContext('_firsatKartHtml(' + JSON.stringify(urun) + ', "EN UCUZ", "firsat-badge-ucuz", "alt")', sandbox);
 
+ok('kart birim fiyat satirini basiyor (A6)', /firsat-card-bf[^>]*>34,90 ₺\/L</.test(html),
+   'firsat-card-bf bulunamadi -> birim fiyat firsat kartindan dusmus');
 ok('kart data-id tasiyor', /class="firsat-card"[^>]*data-id="sut_12"/.test(html), html.slice(0, 200));
 ok('kart role="button" tasiyor', /class="firsat-card"[^>]*role="button"/.test(html), html.slice(0, 200));
 ok('kart tabindex="0" tasiyor', /class="firsat-card"[^>]*tabindex="0"/.test(html), html.slice(0, 200));

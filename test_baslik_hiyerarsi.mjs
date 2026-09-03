@@ -36,9 +36,11 @@ console.log('\n=== 2. DIGER 7 EKRAN BASLIGI H2 ===');
   // .hdr-left icindeki basliklar
   const hdrBas = [...HTML.matchAll(/class="hdr-left"[\s\S]{0,400}?<h([1-6])([^>]*)>([\s\S]*?)<\/h\1>/g)]
     .map(m => ({ sev: +m[1], metin: m[3].replace(/<[^>]+>/g, '').trim() }));
-  ok('.hdr-left icinde 7 baslik bulundu', hdrBas.length === 7, 'adet=' + hdrBas.length);
+  ok('.hdr-left icinde 8 baslik bulundu', hdrBas.length === 8, 'adet=' + hdrBas.length);
   ok('  hepsi h2', hdrBas.every(b => b.sev === 2), hdrBas.map(b => 'h' + b.sev + ':' + b.metin).join(' | '));
-  const bekle = ['Kategori', 'Listem', 'Ürün Detayı', 'Hal Fiyatları', 'Fırsatlar', 'Favorilerim', 'Profil'];
+  // 2026-09-03: 'Mercek' EKLENDI (5. nav sekmesi). Liste GEVSETILMEDI --
+  // hala tam esitlik araniyor, yalnizca yeni ekran temele girdi.
+  const bekle = ['Kategori', 'Listem', 'Ürün Detayı', 'Hal Fiyatları', 'Fırsatlar', 'Mercek', 'Favorilerim', 'Profil'];
   ok('  metinler aynen korundu', JSON.stringify(hdrBas.map(b => b.metin)) === JSON.stringify(bekle),
     hdrBas.map(b => b.metin).join('|'));
   ok('  #cat-title id\'si duruyor (app.js metni oradan yaziyor)', /<h2[^>]*id="cat-title"/.test(HTML),
@@ -108,8 +110,8 @@ console.log('\n=== 6. BASKA BASLIKLAR BOZULMADI ===');
 ok('auth sheet h2 duruyor', /<h2[^>]*class="auth-sheet__title"/.test(HTML) || /auth-sheet__title[^>]*>/.test(HTML));
 ok('msSheet h3 "Marketleri Karşılaştır" duruyor', /<h3>Marketleri Karşılaştır<\/h3>/.test(HTML));
 ok('mfSheet h3 duruyor', /<h3 id="mfSheetTitle">/.test(HTML));
-ok('toplam baslik sayisi 14 (3 onboarding + 1 h1 + 7 ekran + 1 auth + 2 sheet)',
-  basliklar.length === 14, 'adet=' + basliklar.length);
+ok('toplam baslik sayisi 15 (3 onboarding + 1 h1 + 8 ekran + 1 auth + 2 sheet)',
+  basliklar.length === 15, 'adet=' + basliklar.length);
 
 console.log('\nPASS=' + pass + '  FAIL=' + fail);
 process.exit(fail ? 1 : 0);

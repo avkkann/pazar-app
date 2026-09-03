@@ -29,8 +29,16 @@ L.forEach((l, i) => {
   if (konsol) return;
   // konsol yoksa ACIKLAYICI yorum sart: ayni satirda /* ... */ veya ustunde //
   const ayniSatir = (l.match(/\/\*([^*]*)\*\//) || [])[1] || '';
-  const ustSatir = (L[i - 1] || '').match(/^\s*\/\/(.*)$/);
-  const sonraki = (L[i + 1] || '').match(/^\s*\/\/(.*)$/) || (L[i + 1] || '').match(/\/\*([^*]*)\*\//);
+  // 2026-09-03: desenlere \r EKLENDI. app.js CRLF satir sonu kullaniyor ve
+  // JS'te `.` satir sonlandiricisini (\r dahil) ESLEMEZ; `(.*)$` \r'nin
+  // onunde duruyor, `$` ise dize sonunu bekliyordu -> IKI DAL DA HIC
+  // ESLESMIYORDU. Yani bu bekcinin "ustteki yorum" ve "alttaki yorum"
+  // yollari bu depoda BASTAN BERI OLUYDU; kimse fark etmedi cunku o gune
+  // kadar hicbir catch o yolu kullanmamisti (gecenlerin hepsi ya
+  // console.warn tasiyor ya ayni satirda /* */ yorumu). Bekci GEVSEMEDI,
+  // aksine iki tespit yolu ilk kez gercekten calisiyor.
+  const ustSatir = (L[i - 1] || '').match(/^\s*\/\/(.*?)\r?$/);
+  const sonraki = (L[i + 1] || '').match(/^\s*\/\/(.*?)\r?$/) || (L[i + 1] || '').match(/\/\*([^*]*)\*\//);
   const aciklama = (ayniSatir + ' ' + (ustSatir ? ustSatir[1] : '') + ' ' + (sonraki ? sonraki[1] : '')).trim();
   // "sessiz" / "yoksay" tek basina aciklama DEGIL — NEDEN yazilmali
   const yeterli = aciklama.length >= 18 && !/^(sessiz|yoksay|sessiz düş|yok say)\.?$/i.test(aciklama);

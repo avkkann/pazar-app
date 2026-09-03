@@ -421,6 +421,32 @@
 </div>
 
 <!-- ══ EKRAN: FAVORİLERİM ══ -->
+<!-- ══ EKRAN: MERCEK ══ -->
+<div id="screen-mercek" class="screen">
+  <header class="app-header app-header--sub">
+    <div class="hdr-left">
+      <button class="back-btn" aria-label="Geri" onclick="showScreen('screen-home', 'back')">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <h2>Mercek</h2>
+    </div>
+    <div class="hdr-right">
+      <img src="/static/icon-192.png" alt="Pazar" class="hdr-logo-mini">
+    </div>
+  </header>
+
+  <div class="mercek-tabs" id="mercekTabs">
+    <button class="mercek-tab active" data-mtab="ilan">Görmediğimiz fiyatlar</button>
+    <button class="mercek-tab" data-mtab="market">Market karnesi</button>
+    <button class="mercek-tab" data-mtab="hal">Hal</button>
+    <button class="mercek-tab" data-mtab="supheli">Şüpheli indirimler</button>
+  </div>
+
+  <!-- Veri gelmeden BOS KABUK GOSTERILMEZ: icerigi app.js dolduruyor. -->
+  <div id="mercekContent"></div>
+  <div class="data-attribution">Veri: <a href="https://marketfiyati.org.tr" target="_blank" rel="noopener">marketfiyati.org.tr</a> (TÜBİTAK) · <a href="https://hal.gov.tr" target="_blank" rel="noopener">hal.gov.tr</a> (T.C. Ticaret Bakanlığı)</div>
+</div>
+
 <div id="screen-favoriler" class="screen">
   <header class="app-header app-header--sub">
     <div class="hdr-left">
@@ -696,6 +722,15 @@
   <button class="nav-btn" id="navFirsat" onclick="goFirsatlar()">
     <svg aria-hidden="true" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
     Fırsatlar
+  </button>
+  <!-- MERCEK (2026-09-03): 5. nav sekmesi. CLAUDE.md'de "5. nav sekmesi
+       (P0-U2) bilinçli atlandı" kaydı vardı; Mustafa 2026-09-03'te açıkça
+       istedi, karar döndü. Toplanıp gösterilmeyen dört veri kümesini
+       (ilan yalanı, market istatistiği, hal aralığı, şüpheli tam liste)
+       burada topluyor. Verisi data/mercek.json'dan TEMBEL yükleniyor. -->
+  <button class="nav-btn" id="navMercek">
+    <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/><path d="M11 8v6M8 11h6"/></svg>
+    Mercek
   </button>
   <button class="nav-btn" id="navProfil" onclick="goProfil()">
     <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
