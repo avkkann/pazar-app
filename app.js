@@ -5739,10 +5739,13 @@ function _mercekIlanHTML(d) {
   const o = d.olcum || {};
   let h = _mercekNot(
     '<b>' + liste.length + ' üründe</b> marketin “eski fiyatı” dediği tutarı hiç görmedik.',
-    '101 gündür her gün fiyat kaydediyoruz. Bir markette en az ' + (o.ilanMinGozlem ?? 3) +
-    ' gözlemimiz varsa ve ilan edilen eski fiyat, gördüğümüz en yükseğin %' + (o.ilanEsikYuzde ?? 10) +
-    '’undan fazla üstündeyse buraya giriyor. ' +
-    '<b>Bu bir suçlama değil:</b> o fiyat ölçüme başlamadan önce ya da iki günlük ölçüm arasında var olmuş olabilir.');
+    'Fiyatı <b>her değiştiğinde</b> kaydediyoruz; kayıt 101 gün geriye gidiyor, yani ' +
+    'aradaki günlerde fiyat sabit demektir. “Eski fiyat” ve satış fiyatı marketin ' +
+    '<b>aynı anda beyan ettiği iki alan</b> — ikisi de aynı mağazadan geliyor. ' +
+    'İlan edilen eski fiyat, o mağazada kaydettiğimiz en yüksek fiyatın %' + (o.ilanEsikYuzde ?? 10) +
+    '’undan fazla üstündeyse buraya giriyor (o markette en az ' + (o.ilanMinGozlem ?? 3) + ' kaydımız olmak şartıyla). ' +
+    '<b>Kesin kanıt değil:</b> o fiyat kayda başladığımız günden önce geçerli olmuş ya da ' +
+    'ürün bir süre listeden düşmüşse gözümüzden kaçmış olabilir. İddiamız tek cümle: <b>biz görmedik.</b>');
   h += '<div class="mercek-liste">';
   for (const x of liste) {
     const mad = MARKET_NAMES[x.market] || _kacir(x.market);
