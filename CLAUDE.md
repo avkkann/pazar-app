@@ -1439,7 +1439,7 @@ Uygulama teknik olarak çalışıyor ama **pratikte hâlâ dağıtılmamış dur
 - ~~**Cloudflare Insights beacon'ı — panelden KAPATILACAK**~~ **KAPATILDI (2026-08-21).** Cloudflare panel → Web Analytics **Disable** edildi; `static.cloudflareinsights.com/beacon.min.js` artık sayfaya hiç enjekte edilmiyor, dolayısıyla bloklanacak istek de yok. **Karar sabit ve süresiz: CF Web Analytics CSP'ye EKLENMEYECEK, GoatCounter yeterli — beacon'ı CSP'ye asla ekleme.** Kod tarafında yapılan/yapılacak bir şey yok. **Yan sonuç:** konsol ölçümlerinde artık "bilinen beacon ihlali" diye göz ardı edilecek bir gürültü yok; görülen her CSP ihlali incelenir.
 - **A101 Kapıda entegrasyonu** — pilot scraper hazır, DB'ye nasıl ekleneceği kararı bekliyor.
 - **P1-B1 (tuzak landing), P1-U1/U2/B2, P2** — tartışılmadı. (P1-T2 CSP 2026-08-17'de kapandı.)
-- **Safari'de hiç test edilmedi** — kullanıcıların **%64'ü** iOS/Safari (aşağıdaki dağıtım durumuna bak). Test hep masaüstü Chrome ve Claude in Chrome ile yapıldı.
+- ~~**Safari'de hiç test edilmedi**~~ **MUSTAFA TEST ETTİ (2026-09-03): sorun yok, çalışıyor.** Kullanıcıların **%64'ü** iOS/Safari olduğu için bu en riskli açık boşluktu. **Kaydın sınırı dürüstçe:** bu Mustafa'nın cihazındaki bir gezinme raporu — Claude tarafında ölçüm YOK (masaüstü Chrome + Claude in Chrome dışına çıkılamıyor). Yani "Safari'de hiç bakılmadı" durumu kapandı, ama sistematik bir iOS regresyon ölçümü hâlâ yok; iOS'a özgü bir şüphe doğarsa yine Mustafa'nın cihazı gerekir.
 
 ---
 
