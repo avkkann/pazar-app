@@ -2427,6 +2427,35 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "et_namet-dana-macar-salam-100-gr",
+    "ad": "Namet Dana Macar Salam 100 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "100 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 59.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 59.0,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        59.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "100 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "et_lezita-izgara-kofte-300-gr",
     "ad": "Lezita Izgara Köfte 300 Gr",
     "ana_kategori": "Kırmızı Et",
@@ -3494,35 +3523,6 @@
       [
         "2026-07-03",
         "55 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "et_namet-dana-macar-salam-100-gr",
-    "ad": "Namet Dana Macar Salam 100 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "100 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 59.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 59.0,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        59.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "100 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -23265,6 +23265,35 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "et_derya-ton-baligi-320-gr",
+    "ad": "Derya Ton Balığı 320 Gr",
+    "ana_kategori": "Deniz Ürünleri",
+    "agirlik_hacim": "320 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/800346.png",
+    "en_dusuk_fiyat": 121.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 121.0,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-03",
+        121.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-03",
+        "320 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "et_senpilic-lezita-tavuk-baget-1-kg",
     "ad": "Şenpiliç Lezita Tavuk Baget 1 Kg",
     "ana_kategori": "Beyaz Et",
@@ -23938,6 +23967,35 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "et_polonez-dana-fume-kaburga-80-gr",
+    "ad": "Polonez Dana Füme Kaburga 80 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "80 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/11000423.png",
+    "en_dusuk_fiyat": 219.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 219.0,
+        "depot_id": "a101-6815",
+        "depot_ad": "Kostak Ümraniye"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        219.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "80 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "et_isil-i-slem-gormus-dana-kangal-sucuk-500-gr",
     "ad": "Isıl İşlem Görmüş Dana Kangal Sucuk 500 Gr",
     "ana_kategori": "Şarküteri",
@@ -24483,35 +24541,6 @@
       [
         "2026-08-13",
         "250 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "et_polonez-dana-fume-kaburga-80-gr",
-    "ad": "Polonez Dana Füme Kaburga 80 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "80 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/11000423.png",
-    "en_dusuk_fiyat": 219.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 219.0,
-        "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        219.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "80 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []

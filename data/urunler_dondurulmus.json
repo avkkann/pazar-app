@@ -16,13 +16,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         99.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "400 GR"
       ]
     ],
@@ -46,13 +46,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         69.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -76,13 +76,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         89.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -106,13 +106,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         235.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "250 GR"
       ]
     ],
@@ -136,13 +136,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         249.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -166,13 +166,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         250.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "500 GR"
       ]
     ],
@@ -196,13 +196,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         59.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -226,13 +226,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         69.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -256,13 +256,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         189.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -286,13 +286,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         225.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -323,55 +323,25 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         305.96
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "280 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-02",
+        "tarih": "2026-09-03",
         "market": "migros",
         "liste_fiyat": 407.95,
         "satis_fiyat": 305.96
       }
     ],
     "_original_kategori": "Deniz Ürünleri"
-  },
-  {
-    "_sid": "dondurulmus_donuk-dana-doner-250-gr",
-    "ad": "Donuk Dana Döner 250 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "250 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 149.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 149.0,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-02",
-        149.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-02",
-        "250 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Kırmızı Et"
   },
   {
     "_sid": "dondurulmus_superfresh-zeytinyagli-ton-baligi-2x140-gr",
@@ -397,25 +367,55 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         329.96
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "280 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-02",
+        "tarih": "2026-09-03",
         "market": "migros",
         "liste_fiyat": 439.95,
         "satis_fiyat": 329.96
       }
     ],
     "_original_kategori": "Deniz Ürünleri"
+  },
+  {
+    "_sid": "dondurulmus_donuk-dana-doner-250-gr",
+    "ad": "Donuk Dana Döner 250 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "250 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 149.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 149.0,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-03",
+        149.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-03",
+        "250 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Kırmızı Et"
   },
   {
     "_sid": "dondurulmus_donuk-pilic-doner-1-kg",
@@ -434,13 +434,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         245.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -464,7 +464,7 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         69.9
       ]
     ],
@@ -489,13 +489,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         159.75
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "700 GR"
       ]
     ],
@@ -519,13 +519,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         209.75
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -555,13 +555,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         239.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "700 GR"
       ]
     ],
@@ -585,13 +585,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         59.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -615,13 +615,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         99.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "750 GR"
       ]
     ],
@@ -645,13 +645,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         139.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -675,13 +675,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         155.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "320 GR"
       ]
     ],
@@ -705,13 +705,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         99.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -735,13 +735,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         499.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -765,13 +765,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         84.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "200 GR"
       ]
     ],
@@ -795,13 +795,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         167.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "500 GR"
       ]
     ],
@@ -825,13 +825,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         299.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "500 GR"
       ]
     ],
@@ -855,13 +855,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         119.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -885,13 +885,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         219.75
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1.08 KG"
       ]
     ],
@@ -916,19 +916,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         287.21
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "225 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-02",
+        "tarih": "2026-09-03",
         "market": "migros",
         "liste_fiyat": 382.95,
         "satis_fiyat": 287.21
@@ -953,13 +953,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         99.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -983,7 +983,7 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         149.0
       ]
     ],
@@ -1008,13 +1008,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         199.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "500 GR"
       ]
     ],
@@ -1038,13 +1038,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         199.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -1069,19 +1069,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         245.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "700 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-02",
+        "tarih": "2026-09-03",
         "market": "carrefour",
         "liste_fiyat": 299.9,
         "satis_fiyat": 245.9
@@ -1106,13 +1106,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         285.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "500 GR"
       ]
     ],
@@ -1136,13 +1136,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         79.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "500 GR"
       ]
     ],
@@ -1167,19 +1167,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         249.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "225 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-02",
+        "tarih": "2026-09-03",
         "market": "carrefour",
         "liste_fiyat": 382.9,
         "satis_fiyat": 249.9
@@ -1204,13 +1204,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         1500.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -1234,13 +1234,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         209.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -1264,13 +1264,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         549.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "360 GR"
       ]
     ],
@@ -1294,13 +1294,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         175.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "225 GR"
       ]
     ],
@@ -1324,13 +1324,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         399.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "500 GR"
       ]
     ],
@@ -1355,19 +1355,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         99.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "200 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-02",
+        "tarih": "2026-09-03",
         "market": "migros",
         "liste_fiyat": 269.95,
         "satis_fiyat": 99.9
@@ -1392,13 +1392,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         119.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -1422,13 +1422,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         189.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "200 GR"
       ]
     ],
@@ -1452,13 +1452,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         199.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "420 GR"
       ]
     ],
@@ -1483,19 +1483,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         287.21
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "225 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-02",
+        "tarih": "2026-09-03",
         "market": "migros",
         "liste_fiyat": 382.95,
         "satis_fiyat": 287.21
@@ -1520,13 +1520,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         135.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "270 GR"
       ]
     ],
@@ -1550,13 +1550,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         239.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "390 GR"
       ]
     ],
@@ -1580,13 +1580,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         59.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -1610,7 +1610,7 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         189.0
       ]
     ],
@@ -1635,13 +1635,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         189.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -1665,13 +1665,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         89.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -1695,13 +1695,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         240.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "400 GR"
       ]
     ],
@@ -1725,13 +1725,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         539.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "500 GR"
       ]
     ],
@@ -1755,13 +1755,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         169.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -1785,13 +1785,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         225.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -1815,13 +1815,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         269.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "500 GR"
       ]
     ],
@@ -1846,19 +1846,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         287.18
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "225 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-02",
+        "tarih": "2026-09-03",
         "market": "carrefour",
         "liste_fiyat": 382.9,
         "satis_fiyat": 287.18
@@ -1883,13 +1883,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         65.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -1913,13 +1913,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         159.75
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "700 GR"
       ]
     ],
@@ -1943,13 +1943,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         189.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -1973,13 +1973,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         199.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "500 GR"
       ]
     ],
@@ -2003,13 +2003,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         319.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "500 GR"
       ]
     ],
@@ -2033,13 +2033,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         219.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "550 GR"
       ]
     ],
@@ -2063,13 +2063,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         260.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "400 GR"
       ]
     ],
@@ -2093,13 +2093,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         269.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "850 GR"
       ]
     ],
@@ -2123,13 +2123,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         349.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "130 GR"
       ]
     ],
@@ -2154,19 +2154,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         314.96
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "225 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-02",
+        "tarih": "2026-09-03",
         "market": "migros",
         "liste_fiyat": 419.95,
         "satis_fiyat": 314.96
@@ -2191,13 +2191,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         469.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "500 GR"
       ]
     ],
@@ -2221,13 +2221,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         645.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -2251,13 +2251,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         49.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "200 GR"
       ]
     ],
@@ -2281,13 +2281,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         119.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -2311,13 +2311,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         299.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "500 GR"
       ]
     ],
@@ -2341,13 +2341,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         89.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -2372,19 +2372,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         139.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "250 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-02",
+        "tarih": "2026-09-03",
         "market": "carrefour",
         "liste_fiyat": 199.0,
         "satis_fiyat": 139.0
@@ -2409,13 +2409,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         199.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "300 GR"
       ]
     ],
@@ -2439,13 +2439,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         349.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "500 GR"
       ]
     ],
@@ -2469,13 +2469,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         399.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "500 GR"
       ]
     ],
@@ -2499,13 +2499,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         159.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "500 GR"
       ]
     ],
@@ -2529,48 +2529,18 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         239.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "700 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Beyaz Et"
-  },
-  {
-    "_sid": "dondurulmus_akseker-dondurulmus-dilimli-kuzu-kokorec-200-gr",
-    "ad": "Akşeker Dondurulmuş Dilimli Kuzu Kokoreç 200 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/11002878.png",
-    "en_dusuk_fiyat": 245.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 245.0,
-        "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-02",
-        245.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-02",
-        "200 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Sakatat"
   },
   {
     "_sid": "dondurulmus_donuk-pismis-dana-doner-500-gr",
@@ -2589,13 +2559,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         299.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "500 GR"
       ]
     ],
@@ -2619,13 +2589,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         389.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "400 GR"
       ]
     ],
@@ -2649,13 +2619,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         399.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "250 GR"
       ]
     ],
@@ -2679,13 +2649,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         119.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -2709,13 +2679,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         209.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -2739,18 +2709,48 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         209.75
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "990 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Beyaz Et"
+  },
+  {
+    "_sid": "dondurulmus_akseker-dondurulmus-dilimli-kuzu-kokorec-200-gr",
+    "ad": "Akşeker Dondurulmuş Dilimli Kuzu Kokoreç 200 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/11002878.png",
+    "en_dusuk_fiyat": 245.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 245.0,
+        "depot_id": "a101-6815",
+        "depot_ad": "Kostak Ümraniye"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-03",
+        245.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-03",
+        "200 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Sakatat"
   },
   {
     "_sid": "dondurulmus_banvit-dondurulmus-pilic-pirzola-1-kg",
@@ -2769,13 +2769,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         99.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -2799,13 +2799,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         229.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -2829,13 +2829,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         245.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "200 GR"
       ]
     ],
@@ -2859,13 +2859,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         165.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "440 GR"
       ]
     ],
@@ -2889,13 +2889,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         175.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "225 GR"
       ]
     ],
@@ -2919,13 +2919,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         99.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1.08 KG"
       ]
     ],
@@ -2949,13 +2949,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         219.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -2979,13 +2979,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         399.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "500 GR"
       ]
     ],
@@ -3009,13 +3009,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         79.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -3039,13 +3039,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         269.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "850 GR"
       ]
     ],
@@ -3069,13 +3069,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         49.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -3099,13 +3099,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         39.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
       ]
     ],
@@ -3129,18 +3129,54 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         52.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_superfresh-konserve-misir-600-gr",
+    "ad": "Superfresh Konserve Mısır 600 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "600 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/9035900.jpg",
+    "en_dusuk_fiyat": 90.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 90.95,
+        "depot_id": "migros-1991",
+        "depot_ad": "Çiçekçi M Migros"
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 90.95,
+        "depot_id": "carrefour-5254",
+        "depot_ad": "Istanbul Üsküdar Salacak Mını"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-03",
+        90.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-03",
+        "600 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Konserve"
   },
   {
     "_sid": "dondurulmus_cokca-dondurulmus-misir-450-gr",
@@ -3159,13 +3195,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         52.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
       ]
     ],
@@ -3195,13 +3231,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         199.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "500 GR"
       ]
     ],
@@ -3225,13 +3261,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         39.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
       ]
     ],
@@ -3255,13 +3291,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         75.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "400 GR"
       ]
     ],
@@ -3285,13 +3321,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         199.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "420 GR"
       ]
     ],
@@ -3321,13 +3357,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         115.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -3351,13 +3387,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         52.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "400 GR"
       ]
     ],
@@ -3381,44 +3417,14 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         115.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_nimet-dondurulmus-ispanakli-peynirli-mini-borek-500-gr",
-    "ad": "Nimet Dondurulmuş Ispanaklı Peynirli Mini Börek 500 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/21000939.png",
-    "en_dusuk_fiyat": 79.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 79.5,
-        "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-02",
-        79.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-02",
-        "500 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -3441,13 +3447,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         82.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -3471,14 +3477,44 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         119.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "300 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_nimet-dondurulmus-ispanakli-peynirli-mini-borek-500-gr",
+    "ad": "Nimet Dondurulmuş Ispanaklı Peynirli Mini Börek 500 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "500 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/21000939.png",
+    "en_dusuk_fiyat": 79.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 79.5,
+        "depot_id": "a101-6815",
+        "depot_ad": "Kostak Ümraniye"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-03",
+        79.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-03",
+        "500 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -3507,13 +3543,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         165.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "150 GR"
       ]
     ],
@@ -3537,13 +3573,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         99.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "420 GR"
       ]
     ],
@@ -3567,44 +3603,14 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         49.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_pelmeni-dana-etli-dondurulmus-manti-400-gr",
-    "ad": "Pelmeni Dana Etli Dondurulmuş Mantı 400 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "400 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bim/1100892.jpg",
-    "en_dusuk_fiyat": 185.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 185.0,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-02",
-        185.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-02",
-        "400 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -3627,14 +3633,44 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         159.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_pelmeni-dana-etli-dondurulmus-manti-400-gr",
+    "ad": "Pelmeni Dana Etli Dondurulmuş Mantı 400 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "400 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bim/1100892.jpg",
+    "en_dusuk_fiyat": 185.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 185.0,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-03",
+        185.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-03",
+        "400 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -3664,66 +3700,22 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         90.97
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-02",
+        "tarih": "2026-09-03",
         "market": "migros",
         "liste_fiyat": 129.95,
         "satis_fiyat": 90.97
-      }
-    ],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_superfresh-pizza-king-xl-karisik-475-gr",
-    "ad": "Superfresh Pizza King XL Karışık 475 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "475 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30481824.jpg",
-    "en_dusuk_fiyat": 145.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 145.0,
-        "depot_id": "a101-9324",
-        "depot_ad": "Şahap Gürler Kadıköy Istanbul"
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 179.9,
-        "liste_fiyat": 249.95,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-02",
-        145.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-02",
-        "475 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-09-02",
-        "market": "carrefour",
-        "liste_fiyat": 249.95,
-        "satis_fiyat": 179.9
       }
     ],
     "_original_kategori": "Hazır Yemekler"
@@ -3745,13 +3737,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         258.25
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -3782,19 +3774,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         39.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "200 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-02",
+        "tarih": "2026-09-03",
         "market": "migros",
         "liste_fiyat": 54.95,
         "satis_fiyat": 39.95
@@ -3819,17 +3811,61 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         123.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_superfresh-pizza-king-xl-karisik-475-gr",
+    "ad": "Superfresh Pizza King XL Karışık 475 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "475 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30481824.jpg",
+    "en_dusuk_fiyat": 145.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 145.0,
+        "depot_id": "a101-9324",
+        "depot_ad": "Şahap Gürler Kadıköy Istanbul"
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 179.9,
+        "liste_fiyat": 249.95,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-03",
+        145.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-03",
+        "475 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-09-03",
+        "market": "carrefour",
+        "liste_fiyat": 249.95,
+        "satis_fiyat": 179.9
+      }
+    ],
     "_original_kategori": "Hazır Yemekler"
   },
   {
@@ -3849,13 +3885,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         95.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -3879,13 +3915,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         305.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "280 GR"
       ]
     ],
@@ -3910,19 +3946,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         115.47
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "400 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-02",
+        "tarih": "2026-09-03",
         "market": "migros",
         "liste_fiyat": 164.95,
         "satis_fiyat": 115.47
@@ -3948,19 +3984,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         139.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "420 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-02",
+        "tarih": "2026-09-03",
         "market": "carrefour",
         "liste_fiyat": 199.9,
         "satis_fiyat": 139.9
@@ -3985,13 +4021,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         199.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "800 GR"
       ]
     ],
@@ -4015,13 +4051,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         85.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -4045,13 +4081,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         189.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "600 GR"
       ]
     ],
@@ -4075,13 +4111,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         119.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -4112,19 +4148,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         109.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "400 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-02",
+        "tarih": "2026-09-03",
         "market": "carrefour",
         "liste_fiyat": 164.9,
         "satis_fiyat": 119.9
@@ -4149,44 +4185,14 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         179.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "150 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_pizza-mi-go-karisik-pizza-dondurulmus-545-gr",
-    "ad": "Pizza Mi-Go Karışık Pizza Dondurulmuş 545 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "545 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/5060619.png",
-    "en_dusuk_fiyat": 199.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 199.95,
-        "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-02",
-        199.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-02",
-        "545 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -4209,14 +4215,44 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         114.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_pizza-mi-go-karisik-pizza-dondurulmus-545-gr",
+    "ad": "Pizza Mi-Go Karışık Pizza Dondurulmuş 545 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "545 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/5060619.png",
+    "en_dusuk_fiyat": 199.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 199.95,
+        "depot_id": "migros-1991",
+        "depot_ad": "Çiçekçi M Migros"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-03",
+        199.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-03",
+        "545 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -4239,13 +4275,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         109.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "475 GR"
       ]
     ],
@@ -4269,13 +4305,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         179.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "400 GR"
       ]
     ],
@@ -4300,19 +4336,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         369.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "300 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-02",
+        "tarih": "2026-09-03",
         "market": "carrefour",
         "liste_fiyat": 499.95,
         "satis_fiyat": 369.9
@@ -4337,7 +4373,7 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         200.0
       ]
     ],
@@ -4362,13 +4398,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         259.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -4392,13 +4428,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         179.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "400 GR"
       ]
     ],
@@ -4422,13 +4458,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         270.25
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -4452,13 +4488,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         99.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "420 GR"
       ]
     ],
@@ -4482,13 +4518,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         109.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "650 GR"
       ]
     ],
@@ -4512,13 +4548,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         119.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -4542,13 +4578,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         139.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "300 GR"
       ]
     ],
@@ -4578,13 +4614,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         79.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
       ]
     ],
@@ -4615,19 +4651,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         139.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "500 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-02",
+        "tarih": "2026-09-03",
         "market": "carrefour",
         "liste_fiyat": 199.9,
         "satis_fiyat": 139.9
@@ -4659,19 +4695,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         167.97
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-02",
+        "tarih": "2026-09-03",
         "market": "migros",
         "liste_fiyat": 239.95,
         "satis_fiyat": 167.97
@@ -4696,13 +4732,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         169.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -4726,13 +4762,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         159.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "505 GR"
       ]
     ],
@@ -4756,48 +4792,18 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         307.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "350 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_superfresh-tereyagli-milfoy-1-kg",
-    "ad": "Superfresh Tereyağlı Milföy 1 Kg",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30066504.jpg",
-    "en_dusuk_fiyat": 239.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 239.95,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-02",
-        239.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-02",
-        "1 KG"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Ekmek ve Unlu Mamüller"
   },
   {
     "_sid": "dondurulmus_superfresh-patatesli-rulo-borek-500-gr",
@@ -4822,18 +4828,48 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         199.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "500 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_superfresh-tereyagli-milfoy-1-kg",
+    "ad": "Superfresh Tereyağlı Milföy 1 Kg",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30066504.jpg",
+    "en_dusuk_fiyat": 239.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 239.95,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-03",
+        239.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-03",
+        "1 KG"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Ekmek ve Unlu Mamüller"
   },
   {
     "_sid": "dondurulmus_dr-oetker-dondurulmus-karisik-pizza-405-gr",
@@ -4852,13 +4888,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         215.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "405 GR"
       ]
     ],
@@ -4889,19 +4925,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         160.97
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-02",
+        "tarih": "2026-09-03",
         "market": "migros",
         "liste_fiyat": 229.95,
         "satis_fiyat": 160.97
@@ -4926,13 +4962,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         172.8
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
       ]
     ],
@@ -4956,13 +4992,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         199.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "475 GR"
       ]
     ],
@@ -5005,19 +5041,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         259.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "780 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-02",
+        "tarih": "2026-09-03",
         "market": "carrefour",
         "liste_fiyat": 349.95,
         "satis_fiyat": 259.9
@@ -5042,13 +5078,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         99.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
       ]
     ],
@@ -5072,13 +5108,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         131.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "500 GR"
       ]
     ],
@@ -5103,19 +5139,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         79.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "200 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-02",
+        "tarih": "2026-09-03",
         "market": "carrefour",
         "liste_fiyat": 116.5,
         "satis_fiyat": 79.9
@@ -5140,13 +5176,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         52.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "400 GR"
       ]
     ],
@@ -5170,13 +5206,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         139.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "300 GR"
       ]
     ],
@@ -5200,13 +5236,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         82.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -5230,13 +5266,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         699.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "500 GR"
       ]
     ],
@@ -5260,13 +5296,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         44.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
       ]
     ],
@@ -5290,13 +5326,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         45.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "200 ML"
       ]
     ],
@@ -5320,13 +5356,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         49.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
       ]
     ],
@@ -5350,13 +5386,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         85.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -5380,13 +5416,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         99.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "200 GR"
       ]
     ],
@@ -5410,13 +5446,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         85.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -5440,13 +5476,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         117.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "600 GR"
       ]
     ],
@@ -5470,13 +5506,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         69.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
       ]
     ],
@@ -5506,13 +5542,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         94.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "300 GR"
       ]
     ],
@@ -5536,13 +5572,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         89.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "600 GR"
       ]
     ],
@@ -5566,13 +5602,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         99.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "650 GR"
       ]
     ],
@@ -5596,13 +5632,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         109.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "650 GR"
       ]
     ],
@@ -5626,13 +5662,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         109.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "650 GR"
       ]
     ],
@@ -5656,13 +5692,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         270.25
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -5686,13 +5722,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         243.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "400 GR"
       ]
     ],
@@ -5716,13 +5752,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         189.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "375 GR"
       ]
     ],
@@ -5747,19 +5783,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         279.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "300 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-02",
+        "tarih": "2026-09-03",
         "market": "carrefour",
         "liste_fiyat": 379.9,
         "satis_fiyat": 279.9
@@ -5784,13 +5820,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         109.85
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
       ]
     ],
@@ -5814,13 +5850,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         82.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -5874,13 +5910,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         139.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -5904,13 +5940,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         199.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "800 GR"
       ]
     ],
@@ -5934,13 +5970,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         94.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "300 GR"
       ]
     ],
@@ -5964,13 +6000,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         87.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -5994,13 +6030,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         129.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -6024,13 +6060,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         184.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "400 GR"
       ]
     ],
@@ -6054,13 +6090,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         199.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "300 GR"
       ]
     ],
@@ -6084,13 +6120,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         79.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "200 GR"
       ]
     ],
@@ -6114,13 +6150,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         139.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "820 GR"
       ]
     ],
@@ -6144,13 +6180,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         349.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "445 GR"
       ]
     ],
@@ -6174,13 +6210,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         55.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
       ]
     ],
@@ -6204,13 +6240,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         159.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
       ]
     ],
@@ -6234,13 +6270,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         85.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -6264,13 +6300,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         139.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "140 GR"
       ]
     ],
@@ -6294,13 +6330,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         154.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
       ]
     ],
@@ -6330,13 +6366,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         203.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
       ]
     ],
@@ -6366,13 +6402,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         215.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -6396,13 +6432,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         55.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
       ]
     ],
@@ -6426,13 +6462,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         139.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "820 GR"
       ]
     ],
@@ -6456,13 +6492,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         109.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "400 GR"
       ]
     ],
@@ -6486,13 +6522,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         119.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
       ]
     ],
@@ -6516,13 +6552,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         220.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "440 GR"
       ]
     ],
@@ -6553,19 +6589,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         69.97
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-02",
+        "tarih": "2026-09-03",
         "market": "migros",
         "liste_fiyat": 99.95,
         "satis_fiyat": 69.97
@@ -6590,13 +6626,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         79.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "500 GR"
       ]
     ],
@@ -6620,13 +6656,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         79.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "500 GR"
       ]
     ],
@@ -6650,13 +6686,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         219.75
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "400 GR"
       ]
     ],
@@ -6680,13 +6716,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         89.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "600 GR"
       ]
     ],
@@ -6710,13 +6746,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         239.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -6740,13 +6776,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         39.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
       ]
     ],
@@ -6777,19 +6813,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         79.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "200 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-02",
+        "tarih": "2026-09-03",
         "market": "carrefour",
         "liste_fiyat": 114.95,
         "satis_fiyat": 79.9
@@ -6814,13 +6850,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         104.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
       ]
     ],
@@ -6844,13 +6880,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         109.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "650 GR"
       ]
     ],
@@ -6875,19 +6911,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         189.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "300 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-02",
+        "tarih": "2026-09-03",
         "market": "carrefour",
         "liste_fiyat": 249.9,
         "satis_fiyat": 189.9
@@ -6912,13 +6948,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         79.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "500 GR"
       ]
     ],
@@ -6942,13 +6978,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         154.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "500 GR"
       ]
     ],
@@ -6972,13 +7008,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         49.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
       ]
     ],
@@ -7002,7 +7038,7 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         149.0
       ]
     ],
@@ -7027,13 +7063,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         65.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "350 GR"
       ]
     ],
@@ -7057,13 +7093,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         89.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "400 GR"
       ]
     ],
@@ -7087,13 +7123,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         189.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "400 GR"
       ]
     ],
@@ -7117,13 +7153,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         57.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
       ]
     ],
@@ -7147,13 +7183,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         124.85
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
       ]
     ],
@@ -7177,13 +7213,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         209.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
       ]
     ],
@@ -7207,13 +7243,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         199.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "350 GR"
       ]
     ],
@@ -7237,13 +7273,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         89.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "600 GR"
       ]
     ],
@@ -7267,13 +7303,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         99.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "200 GR"
       ]
     ],
@@ -7297,13 +7333,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         89.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "600 GR"
       ]
     ],
@@ -7327,13 +7363,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         99.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
       ]
     ],
@@ -7357,13 +7393,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         139.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
       ]
     ],
@@ -7387,13 +7423,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         144.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
       ]
     ],
@@ -7417,13 +7453,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         39.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
       ]
     ],
@@ -7448,19 +7484,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         69.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "200 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-02",
+        "tarih": "2026-09-03",
         "market": "bim",
         "liste_fiyat": 79.5,
         "satis_fiyat": 69.5
@@ -7485,13 +7521,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         165.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "150 GR"
       ]
     ],
@@ -7515,13 +7551,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         239.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -7552,19 +7588,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         83.97
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-02",
+        "tarih": "2026-09-03",
         "market": "migros",
         "liste_fiyat": 119.95,
         "satis_fiyat": 83.97
@@ -7590,19 +7626,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         119.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "320 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-02",
+        "tarih": "2026-09-03",
         "market": "carrefour",
         "liste_fiyat": 169.95,
         "satis_fiyat": 119.9
@@ -7627,13 +7663,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         79.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
       ]
     ],
@@ -7657,13 +7693,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         229.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
       ]
     ],
@@ -7687,13 +7723,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         128.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
       ]
     ],
@@ -7717,13 +7753,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         219.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
       ]
     ],
@@ -7747,13 +7783,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         259.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "1 KG"
       ]
     ],
@@ -7778,19 +7814,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         119.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "400 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-02",
+        "tarih": "2026-09-03",
         "market": "carrefour",
         "liste_fiyat": 164.9,
         "satis_fiyat": 119.9
@@ -7822,19 +7858,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         94.47
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-02",
+        "tarih": "2026-09-03",
         "market": "migros",
         "liste_fiyat": 134.95,
         "satis_fiyat": 94.47
@@ -7859,48 +7895,18 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         118.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_superfresh-milfoy-500-gr",
-    "ad": "Superfresh Milföy 500 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30013514.jpg",
-    "en_dusuk_fiyat": 129.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 129.9,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-02",
-        129.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-02",
-        "500 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Ekmek ve Unlu Mamüller"
   },
   {
     "_sid": "dondurulmus_superfresh-slimmo-king-dondurulmus-pizza-600-gr",
@@ -7919,13 +7925,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         189.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "600 GR"
       ]
     ],
@@ -7949,13 +7955,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         249.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "350 GR"
       ]
     ],
@@ -7963,40 +7969,34 @@
     "_original_kategori": "Hazır Yemekler"
   },
   {
-    "_sid": "dondurulmus_superfresh-konserve-misir-600-gr",
-    "ad": "Superfresh Konserve Mısır 600 Gr",
+    "_sid": "dondurulmus_superfresh-milfoy-500-gr",
+    "ad": "Superfresh Milföy 500 Gr",
     "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "600 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/9035900.jpg",
-    "en_dusuk_fiyat": 90.95,
+    "agirlik_hacim": "500 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30013514.jpg",
+    "en_dusuk_fiyat": 129.9,
     "market_fiyatlari": [
       {
-        "market": "migros",
-        "fiyat": 90.95,
-        "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
-      },
-      {
         "market": "carrefour",
-        "fiyat": 90.95,
-        "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını"
+        "fiyat": 129.9,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper"
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
-        90.95
+        "2026-09-03",
+        129.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
-        "600 GR"
+        "2026-09-03",
+        "500 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Konserve"
+    "_original_kategori": "Ekmek ve Unlu Mamüller"
   },
   {
     "_sid": "dondurulmus_superfresh-dondurulmus-visne-350-gr",
@@ -8016,19 +8016,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         349.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "350 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-02",
+        "tarih": "2026-09-03",
         "market": "carrefour",
         "liste_fiyat": 469.95,
         "satis_fiyat": 349.9
@@ -8053,13 +8053,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         69.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "720 ML"
       ]
     ],
@@ -8083,13 +8083,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         409.8
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "650 GR"
       ]
     ],
@@ -8113,13 +8113,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         404.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "650 GR"
       ]
     ],
@@ -8143,13 +8143,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         229.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "400 GR"
       ]
     ],
@@ -8173,13 +8173,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         55.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "118 GR"
       ]
     ],
@@ -8203,44 +8203,14 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         99.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "200 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Tatlılar"
-  },
-  {
-    "_sid": "dondurulmus_valonia-donuk-tramisu-600-gr",
-    "ad": "Valonia Donuk Tramisu 600 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "600 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/hakmarimages/1031817.png",
-    "en_dusuk_fiyat": 229.0,
-    "market_fiyatlari": [
-      {
-        "market": "hakmar",
-        "fiyat": 229.0,
-        "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-02",
-        229.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-02",
-        "600 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -8263,14 +8233,44 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         239.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "400 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Tatlılar"
+  },
+  {
+    "_sid": "dondurulmus_valonia-donuk-tramisu-600-gr",
+    "ad": "Valonia Donuk Tramisu 600 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "600 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/hakmarimages/1031817.png",
+    "en_dusuk_fiyat": 229.0,
+    "market_fiyatlari": [
+      {
+        "market": "hakmar",
+        "fiyat": 229.0,
+        "depot_id": "hakmar-5521",
+        "depot_ad": "Ahmediye  Üsküdar"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-03",
+        229.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-03",
+        "600 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -8293,13 +8293,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         67.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "75 GR"
       ]
     ],
@@ -8329,13 +8329,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         199.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "360 GR"
       ]
     ],
@@ -8359,13 +8359,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         239.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "600 GR"
       ]
     ],
@@ -8389,13 +8389,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         110.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "500 GR"
       ]
     ],
@@ -8419,13 +8419,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         39.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "135 GR"
       ]
     ],
@@ -8449,13 +8449,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         229.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "600 GR"
       ]
     ],
@@ -8479,13 +8479,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         350.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "700 GR"
       ]
     ],
@@ -8509,13 +8509,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         199.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "550 GR"
       ]
     ],
@@ -8539,13 +8539,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         240.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "650 GR"
       ]
     ],
@@ -8570,19 +8570,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         95.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "180 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-02",
+        "tarih": "2026-09-03",
         "market": "bim",
         "liste_fiyat": 119.0,
         "satis_fiyat": 95.0
@@ -8607,13 +8607,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         219.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "650 GR"
       ]
     ],
@@ -8637,13 +8637,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         416.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "650 GR"
       ]
     ],
@@ -8667,13 +8667,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         419.25
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "600 GR"
       ]
     ],
@@ -8697,13 +8697,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         69.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "250 GR"
       ]
     ],
@@ -8727,13 +8727,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         135.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "500 GR"
       ]
     ],
@@ -8757,13 +8757,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         145.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "135 GR"
       ]
     ],
@@ -8787,13 +8787,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         219.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "650 GR"
       ]
     ],
@@ -8817,13 +8817,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         149.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
+        "2026-09-03",
         "200 GR"
       ]
     ],
