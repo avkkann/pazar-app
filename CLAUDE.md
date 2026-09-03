@@ -99,6 +99,39 @@ A2/A6/A8 canlı ekranda ölçüldü.
 yazıyor (koyu tema ayrı override'la kurtarıyor); yeni Mercek CSS'i token kullanıyor, o borç
 büyütülmedi ama kapatılmadı da.
 
+#### Aynı gün, ikinci tur — Mustafa'nın geri bildirimi: "resimsiz hepsi ve çok karışık"
+
+Üç şikâyet, üçü de haklıydı ve **üçüncüsü ölçümde bir üretim hatası açığa çıkardı.**
+
+1. **Kartlar resimsizdi.** `_asKart` `resim` alanını taşıyordu ama çizilmiyordu. Dört bölüm
+   ortak `_mercekSatir()`'a taşındı: `[görsel] [ad + en fazla iki kısa satır] [sağda tek sayı]`
+   — `.firsat-card` ile aynı iskelet, iki ayrı liste dili olmasın.
+2. **Karışıktı.** Etiket/değer çiftleri alt alta diziliyordu; yöntem paragrafı dört cümleyle
+   listenin üstünde durup ilk ekranı yiyordu. Kural kondu: **sağda tek sayı, gövdede en fazla
+   iki satır**; yöntem `<details>` içine ("Bunu nasıl ölçtük?").
+3. **Ürüne basınca detay açılmıyordu.** Kök sebep: `openDetay(id)` ürünü `productMap`'ten
+   arıyor, ben kaydetmiyordum (`productMap[dataId] === undefined` ölçüldü). Diğer üç kart
+   üreticisi bunu baştan beri yapıyor. `_mercekSatir` artık kaydediyor.
+
+> **BULGU — HAL GÖRSELLERİ ÜRETİMDE HİÇ GÖRÜNMÜYORMUŞ (benim hatam değil, mevcut kusur).**
+> "Resimsiz" şikâyetini kovalarken ölçtüm: hal ekranındaki **152 kalemin 152'si de emoji yer
+> tutucu** gösteriyordu, tek bir gerçek görsel yoktu. Sebep `_guvenliUrl` değil ona verilen
+> yol: `data/hal.json`'daki alan `"data/hal-images/acur.jpg"` — **çıplak göreli**.
+> `_guvenliUrl` yalnızca `http(s)://`, `//host`, `/yol`, `./yol`, `../yol` kabul ediyor (doğru
+> davranış), çıplak göreliyi `''` yapıyor → `<img src="">` → `onerror` → yer tutucu.
+> **119 görsel depoda VAR, `dist`'e kopyalanıyor ve `pazarapp.net`'te 200 dönüyor** — yani
+> Wikimedia eşleme hattı çalışıyordu, görseller yalnızca ekrana ulaşmıyordu.
+> Çözüm: `_veriYolu()` yolu `./` ile normalleştiriyor. **Sanitizer GENİŞLETİLMEDİ** — güvenlik
+> kuralı aynen duruyor, düzeltilen çağrı yeri. Hem Mercek'te hem **mevcut hal ekranında**.
+> `test_kacis.mjs` bunu yakaladı (deseni birebir `_guvenliUrl(u.gorsel)` arıyordu); desen
+> iç ifadeye izin verecek şekilde açıldı ama **`_guvenliUrl` şartı kaldırılmadı** —
+> prove-by-breaking: `_guvenliUrl` sökülünce üç iddia birden kırmızıya dönüyor.
+
+**İkinci tur doğrulaması:** 57 JS + 5 Python yeşil · build yeşil · konsol hatası 0 ·
+karta basınca detay **açılıyor** (`productMap` kayıtlı) · 120 ilan kartının 95'inde gerçek
+ürün görseli (kalan 25'te `resim` alanı boş, emoji yer tutucu) · hal sekmesinde görünür
+görsellerin tamamı yükleniyor (`naturalWidth` 960). `sw.js` **v235 → v236**.
+
 ### 2026-09-03 — Dört arama alanı TEK bileşene indi (`.pz-search`) + iki odak hatası kapandı
 
 **Durum: commit edildi, YAYINDA DEĞİL** (push Mustafa'nın kararına bırakıldı). `sw.js` **v233 → v234**.

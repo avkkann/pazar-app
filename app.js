@@ -811,6 +811,24 @@ function _guvenliUrl(url) {
   return '';
 }
 
+// ── VERI YOLUNU NORMALLESTIR (2026-09-03) ────────────────────────────
+// BULGU: hal ekranindaki 152 kalemin 152'si de EMOJI YER TUTUCU gosteriyordu,
+// tek bir gercek gorsel cizilmiyordu. Sebep _guvenliUrl DEGIL, ona verilen
+// yol: data/hal.json'daki alan "data/hal-images/acur.jpg" — CIPLAK goreli.
+// _guvenliUrl yalnizca http(s)://, //host, /yol, ./yol, ../yol kabul ediyor
+// (dogru davranis, sanitizer GENISLETILMEDI), ciplak goreli yolu '' yapiyor
+// -> <img src=""> -> onerror -> yer tutucu.
+// Olculdu: 119 gorsel depoda VAR, dist'e kopyalaniyor ve pazarapp.net'te
+// 200 donuyor. Yani hat calisiyordu, gorseller yalnizca ekrana ulasmiyordu.
+// Cozum yolu duzeltmek: './' on eki ekleniyor. Zaten taninan bir on ek
+// tasiyorsa dokunulmuyor.
+function _veriYolu(yol) {
+  const s = String(yol == null ? '' : yol).trim();
+  if (!s) return '';
+  if (/^(https?:)?\/\//i.test(s) || /^\.{0,2}\//.test(s)) return s;
+  return './' + s;
+}
+
 // ── MARKET SINIFI (class özniteliği için BEYAZ LİSTE) ────────────────
 // Bu, İKİNCİ tekrar: bir tur önce m-tag'in METNİ kaçırıldı (_kacir eklendi)
 // ama CLASS özniteliği unutuldu -- sonuç ham geçiyordu:
@@ -5590,7 +5608,7 @@ function renderHalScreen() {
   const cards = products.map(u => {
     const kat = getHalKat(u.ad);
     const gorselHtml = u.gorsel
-      ? `<img src="${_guvenliUrl(u.gorsel)}" alt="${_kacir(u.ad)}" loading="lazy" class="hal-gorsel" onerror="this.outerHTML='<div class=&quot;hal-gorsel-ph hal-ph--${kat}&quot;>${halEmojiler[kat]}</div>'">`
+      ? `<img src="${_guvenliUrl(_veriYolu(u.gorsel))}" alt="${_kacir(u.ad)}" loading="lazy" class="hal-gorsel" onerror="this.outerHTML='<div class=&quot;hal-gorsel-ph hal-ph--${kat}&quot;>${halEmojiler[kat]}</div>'">`
       : `<div class="hal-gorsel-ph hal-ph--${kat}">${halEmojiler[kat]}</div>`;
     // data-ad: arama artik render edilmis METNI degil VERIYI okuyor.
     return `<div class="hal-grid-card" data-kat="${kat}" data-ad="${_kacir(u.ad)}">
@@ -5675,7 +5693,41 @@ function mercekSekme(t) {
   renderMercek();
 }
 
-function _mercekNot(metin) { return '<p class="mercek-not">' + metin + '</p>'; }
+// ── ORTAK SATIR ──────────────────────────────────────────────────────
+// Dort bolumun DORDU de ayni satiri kullaniyor: [gorsel] [ad + en fazla iki
+// kisa satir] [sagda tek sayi]. Onceki hal etiket/deger ciftlerini alt alta
+// diziyordu; okunmuyordu. Kural: SAGDA TEK SAYI, govdede en fazla iki satir.
+//
+// productMap KAYDI SART: openDetay(id) urunu productMap'ten ariyor. Ilk
+// surumde kayit yoktu -> karta basinca detay ACILMIYORDU (olculdu:
+// productMap[dataId] === undefined). Diger uc kart ureticisi (_firsatKartHtml,
+// cardHTML, _stripKartHTML) bunu bastan beri yapiyor.
+function _mercekSatir(u, sagHTML, govdeHTML) {
+  if (!u._id) u._id = u.ad + '_' + (u.agirlik_hacim || '');
+  productMap[u._id] = u;
+  const ph = placeholderRenk(ustKategori(u.ana_kategori || ''));
+  const gorsel = u.resim
+    ? '<div class="mercek-kart__gorsel gorsel-yuva">' + ph.emoji
+        + '<img src="' + _guvenliUrl(u.resim) + '" alt="" loading="lazy"></div>'
+    : '<div class="mercek-kart__gorsel">' + ph.emoji + '</div>';
+  return '<article class="mercek-kart" tabindex="0" role="button" aria-label="' + _kacir(u.ad) + '"'
+    + ' data-id="' + _kacir(String(u._id)) + '">'
+    + gorsel
+    + '<div class="mercek-kart__govde">'
+    +   '<div class="mercek-kart__ad">' + _kacir(u.ad) + '</div>'
+    +   govdeHTML
+    + '</div>'
+    + '<div class="mercek-kart__sag">' + sagHTML + '</div>'
+    + '</article>';
+}
+
+// Kisa ust bilgi + yontem AYRINTISI katlanabilir. Onceki halde yontem
+// paragrafi listenin ustunde acik duruyordu ve ilk ekrani yiyordu.
+function _mercekNot(ozet, yontem) {
+  return '<div class="mercek-not">' + ozet
+    + (yontem ? '<details class="mercek-yontem"><summary>Bunu nasıl ölçtük?</summary><div>' + yontem + '</div></details>' : '')
+    + '</div>';
+}
 
 // ── A1: ilan edilen eski fiyat vs gercekte gordugumuz ────────────────
 // DIL KURALI: "market yalan soyluyor" DEMIYOR. Olcum penceremiz 101 gun ve
@@ -5686,41 +5738,38 @@ function _mercekIlanHTML(d) {
   if (!liste.length) return '<div class="mercek-bos">Bu turda böyle bir kayıt çıkmadı.</div>';
   const o = d.olcum || {};
   let h = _mercekNot(
-    '<b>' + liste.length + '</b> üründe, marketin “eski fiyatı” diye gösterdiği tutarı ' +
-    '101 gündür bakmamıza rağmen <b>hiç görmedik</b>. ' +
-    'Aday sayısı ' + (o.ilanAdaySayisi || liste.length) + '; eşik %' + (o.ilanEsikYuzde ?? 10) +
-    ', o markette en az ' + (o.ilanMinGozlem ?? 3) + ' gözlem şartı var. ' +
-    '<i>Bu bir suçlama değil:</i> fiyat ölçüm penceremizden önce ya da iki günlük örnekleme arasında var olmuş olabilir.');
+    '<b>' + liste.length + ' üründe</b> marketin “eski fiyatı” dediği tutarı hiç görmedik.',
+    '101 gündür her gün fiyat kaydediyoruz. Bir markette en az ' + (o.ilanMinGozlem ?? 3) +
+    ' gözlemimiz varsa ve ilan edilen eski fiyat, gördüğümüz en yükseğin %' + (o.ilanEsikYuzde ?? 10) +
+    '’undan fazla üstündeyse buraya giriyor. ' +
+    '<b>Bu bir suçlama değil:</b> o fiyat ölçüme başlamadan önce ya da iki günlük ölçüm arasında var olmuş olabilir.');
   h += '<div class="mercek-liste">';
   for (const x of liste) {
     const mad = MARKET_NAMES[x.market] || _kacir(x.market);
-    h += '<article class="mercek-kart" tabindex="0" role="button" data-id="' + _kacir(String(x.u._id)) + '">' +
-      '<div class="mercek-kart__ust">' +
-        '<span class="mercek-kart__ad">' + _kacir(x.u.ad) + '</span>' +
-        '<span class="mercek-rozet mercek-rozet--kirmizi">+%' + x.sisme + '</span>' +
-      '</div>' +
-      '<div class="mercek-kart__satir"><span>' + mad + ' “eski fiyat”</span><b>' + tl(x.ilan) + '</b></div>' +
-      '<div class="mercek-kart__satir mercek-kart__satir--sonuc"><span>Bizim gördüğümüz en yüksek</span><b>' + tl(x.gorulen) + '</b></div>' +
-      '<div class="mercek-kart__alt">' + x.gozlem + ' gözlem' + (x.tarih ? ' · ilan ' + _kacir(x.tarih) : '') + '</div>' +
-    '</article>';
+    h += _mercekSatir(x.u,
+      '<span class="mercek-rozet mercek-rozet--kirmizi">+%' + x.sisme + '</span>',
+      '<div class="mercek-kart__bilgi">' + mad + ' “eski fiyat” dedi: <b>' + tl(x.ilan) + '</b></div>' +
+      '<div class="mercek-kart__bilgi mercek-kart__bilgi--vurgu">Biz en fazla <b>' + tl(x.gorulen) + '</b> gördük</div>');
   }
   return h + '</div>';
 }
 
 // ── A5: market karnesi ───────────────────────────────────────────────
 // Kural hub-uret.mjs ile AYNI: yalnizca >=2 markette fiyati olan urunler
-// sayiliyor, esitlikte kimseye puan yok. Bu iki sinir EKRANDA yaziyor —
-// yoksa "%25 en ucuz" cumlesi katalogun tamamiymis gibi okunur.
+// sayiliyor, esitlikte kimseye puan yok. Bu iki sinir yontem kutusunda
+// yaziyor — yoksa "%25 en ucuz" cumlesi katalogun tamamiymis gibi okunur.
 function _mercekMarketHTML(d) {
   const liste = d.marketIstatistik || [];
   if (!liste.length) return '<div class="mercek-bos">İstatistik çıkarılamadı.</div>';
   const o = d.olcum || {};
   const enBuyuk = Math.max.apply(null, liste.map(x => x.enUcuzSayisi)) || 1;
   let h = _mercekNot(
-    'Katalogdaki <b>' + (o.katalogUrun || 0).toLocaleString('tr-TR') + '</b> üründen yalnızca ' +
-    '<b>' + (o.karsilastirilabilirUrun || 0).toLocaleString('tr-TR') + '</b> tanesi en az iki markette fiyatlanıyor — ' +
-    'karşılaştırma ancak onlarda mümkün. ' + (o.esitlikSayisi || 0) + ' üründe fiyatlar eşit, ' +
-    'onlarda hiçbir markete puan yazılmadı.');
+    'İki veya daha fazla markette bulunan <b>' + (o.karsilastirilabilirUrun || 0).toLocaleString('tr-TR') +
+    ' üründe</b> hangi market kaç kez en ucuz çıktı.',
+    'Katalogda ' + (o.katalogUrun || 0).toLocaleString('tr-TR') + ' ürün var ama ' +
+    (o.karsilastirilabilirUrun || 0).toLocaleString('tr-TR') + ' tanesi en az iki markette fiyatlanıyor — ' +
+    'karşılaştırma ancak onlarda mümkün. ' + (o.esitlikSayisi || 0) +
+    ' üründe fiyatlar eşit çıktı, onlarda hiçbir markete puan yazılmadı.');
   h += '<div class="mercek-bar-liste">';
   for (const x of liste) {
     const mad = MARKET_NAMES[x.market] || _kacir(x.market);
@@ -5728,7 +5777,7 @@ function _mercekMarketHTML(d) {
     h += '<div class="mercek-bar">' +
       '<div class="mercek-bar__ust"><span>' + mad + '</span><b>%' + String(x.oran).replace('.', ',') + '</b></div>' +
       '<div class="mercek-bar__yol"><span class="mercek-bar__dolu" style="width:' + genislik + '%"></span></div>' +
-      '<div class="mercek-bar__alt">' + x.enUcuzSayisi.toLocaleString('tr-TR') + ' üründe en ucuz · katalogda ' + x.urunSayisi.toLocaleString('tr-TR') + ' ürünü var</div>' +
+      '<div class="mercek-bar__alt">' + x.enUcuzSayisi.toLocaleString('tr-TR') + ' üründe en ucuz</div>' +
     '</div>';
   }
   return h + '</div>';
@@ -5748,53 +5797,61 @@ function _mercekHalHTML(d) {
   if (!liste.length) return '<div class="mercek-bos">Hal verisi alınamadı.</div>';
   const olculen = liste.filter(x => x.degisim != null).length;
   let h = _mercekNot(
-    '<b>' + liste.length + '</b> hal kalemi. Bültendeki fiyat tek bir sayı değil: ' +
-    'aralık ve kaç kayıttan geldiği de yazıyor. ' +
-    '<b>' + olculen + '</b> kalemde 25 günlük değişim ölçülebildi — ' +
-    'tek kayıtla geçen kalemlerde değişim <i>hesaplanmadı</i>, çünkü orada sayı gürültüden ibaret.');
+    '<b>' + liste.length + ' hal kalemi.</b> ' + olculen + ' tanesinde 25 günlük değişimi ölçebildik.',
+    'Haldeki fiyat tek bir sayı değil: bülten aynı ürün için birden çok kayıt taşıyor, biz aralığı ' +
+    'da gösteriyoruz. Bültende <b>tek kayıtla</b> geçen kalemlerde değişim hesaplanmadı — orada sayı ' +
+    'gürültüden ibaret (ölçtük: tek kayıtlı kalemlerde %+2400’e varan sahte sıçramalar çıkıyor).');
   h += '<div class="mercek-liste">';
   for (const x of liste) {
-    const yon = x.degisim == null ? '' :
-      '<span class="mercek-rozet ' + (x.degisim > 0 ? 'mercek-rozet--kirmizi' : 'mercek-rozet--yesil') + '">' +
-      (x.degisim > 0 ? '+' : '') + String(x.degisim).replace('.', ',') + '%</span>';
+    const rozet = x.degisim == null
+      ? '<span class="mercek-rozet mercek-rozet--notr">—</span>'
+      : '<span class="mercek-rozet ' + (x.degisim > 0 ? 'mercek-rozet--kirmizi' : 'mercek-rozet--yesil') + '">' +
+        (x.degisim > 0 ? '+' : '') + String(x.degisim).replace('.', ',') + '%</span>';
     const aralik = (x.min != null && x.max != null && x.max > x.min)
-      ? tl(x.min) + ' – ' + tl(x.max)
-      : 'tek fiyat';
-    h += '<article class="mercek-kart">' +
-      '<div class="mercek-kart__ust"><span class="mercek-kart__ad">' + _kacir(x.ad) + '</span>' + yon + '</div>' +
-      '<div class="mercek-kart__satir"><span>Bugün</span><b>' + tl(x.fiyat) + (x.birim ? ' / ' + _kacir(x.birim) : '') + '</b></div>' +
-      '<div class="mercek-kart__satir"><span>Bültendeki aralık</span><b>' + aralik + '</b></div>' +
-      '<div class="mercek-kart__alt">' + (x.kayit != null ? x.kayit + ' kayıt' : '') +
-        (x.nokta ? ' · ' + x.nokta + ' günlük seri' : '') + '</div>' +
+      ? 'Bültende ' + tl(x.min) + ' – ' + tl(x.max) + (x.kayit ? ' · ' + x.kayit + ' kayıt' : '')
+      : (x.kayit ? x.kayit + ' kayıt · tek fiyat' : 'tek fiyat');
+    // Hal kalemi bir KATALOG URUNU DEGIL: productMap'te karsiligi yok, detay
+    // ekrani acilamaz. Bu yuzden _mercekSatir kullanilmiyor, tiklanmaz satir.
+    const ph = { emoji: '🥬' };
+    const gorsel = x.gorsel
+      ? '<div class="mercek-kart__gorsel gorsel-yuva">' + ph.emoji + '<img src="' + _guvenliUrl(_veriYolu(x.gorsel)) + '" alt="" loading="lazy"></div>'
+      : '<div class="mercek-kart__gorsel">' + ph.emoji + '</div>';
+    h += '<article class="mercek-kart mercek-kart--dusuk">' + gorsel +
+      '<div class="mercek-kart__govde">' +
+        '<div class="mercek-kart__ad">' + _kacir(x.ad) + '</div>' +
+        '<div class="mercek-kart__bilgi mercek-kart__bilgi--vurgu"><b>' + tl(x.fiyat) + '</b>' + (x.birim ? ' / ' + _kacir(x.birim) : '') + '</div>' +
+        '<div class="mercek-kart__bilgi">' + aralik + '</div>' +
+      '</div>' +
+      '<div class="mercek-kart__sag">' + rozet + '</div>' +
     '</article>';
   }
   return h + '</div>';
 }
 
-// ── A4 + A3: supheli indirimler, SAYISIYLA ve TUM sebepleriyle ───────
+// ── A4 + A3: supheli indirimler, SAYISIYLA ve sebepleriyle ───────────
 // Ana sayfa seridi 49 kayit tasiyor ve rozet sadece "Şüpheli indirim"
 // yaziyordu; puan, dusus yuzdesi ve sebeplerin tamami DB'den CEKILIYOR ama
-// hicbiri ekrana basilmiyordu. Burada hepsi basiliyor.
+// hicbiri ekrana basilmiyordu.
 function _mercekSupheliHTML(d) {
   const liste = d.supheliTum || [];
   if (!liste.length) return '<div class="mercek-bos">Şüpheli kayıt bulunamadı.</div>';
   let h = _mercekNot(
-    '<b>' + liste.length + '</b> üründe indirim iddiası şüpheli görünüyor. ' +
-    'Ana sayfadaki şerit bunların yalnızca en yüksek puanlılarını gösteriyor. ' +
-    'Puan 6 üzerinden; yalnızca <i>şu anda indirimde olan</i> ürünler listeleniyor.');
+    '<b>' + liste.length + ' üründe</b> indirim iddiası şüpheli görünüyor.',
+    'Her ürünün fiyat geçmişi dört sinyalle puanlanıyor (kısa süren zirve, yüksek oynaklık, ' +
+    'tekrarlayan zam-indirim döngüsü, aşırı yüksek indirim oranı). Puan 6 üzerinden. ' +
+    'Yalnızca <b>şu anda indirimde olan</b> ürünler listeleniyor — ortada indirim yokken ' +
+    '“bu indirim şüpheli” demek anlamsız olurdu.');
   h += '<div class="mercek-liste">';
   for (const x of liste) {
     const dur = x.durum || {};
     const cumleler = (typeof supheliCumleler === 'function' ? supheliCumleler(dur) : (dur.sebepler || []));
-    h += '<article class="mercek-kart" tabindex="0" role="button" data-id="' + _kacir(String(x.u._id)) + '">' +
-      '<div class="mercek-kart__ust">' +
-        '<span class="mercek-kart__ad">' + _kacir(x.u.ad) + '</span>' +
-        '<span class="mercek-rozet mercek-rozet--sari">' + (dur.puan != null ? dur.puan + '/6' : '?') + '</span>' +
-      '</div>' +
-      '<div class="mercek-kart__satir"><span>İddia edilen indirim</span><b>%' + (x.yuzde || 0) + '</b></div>' +
-      (dur.dusus != null ? '<div class="mercek-kart__satir"><span>Ölçtüğümüz düşüş</span><b>%' + dur.dusus + '</b></div>' : '') +
-      (cumleler.length ? '<ul class="mercek-sebep">' + cumleler.map(c => '<li>' + _kacir(c) + '</li>').join('') + '</ul>' : '') +
-    '</article>';
+    const ilkSebep = cumleler.length ? cumleler[0] : '';
+    const kalan = cumleler.length > 1 ? ' <span class="mercek-kart__kalan">+' + (cumleler.length - 1) + '</span>' : '';
+    h += _mercekSatir(x.u,
+      '<span class="mercek-rozet mercek-rozet--sari">' + (dur.puan != null ? dur.puan + '/6' : '?') + '</span>',
+      '<div class="mercek-kart__bilgi">İddia <b>%' + (x.yuzde || 0) + '</b> indirim' +
+        (dur.dusus != null ? ' · ölçtüğümüz düşüş <b>%' + dur.dusus + '</b>' : '') + '</div>' +
+      (ilkSebep ? '<div class="mercek-kart__bilgi mercek-kart__bilgi--sebep">' + _kacir(ilkSebep) + kalan + '</div>' : ''));
   }
   return h + '</div>';
 }

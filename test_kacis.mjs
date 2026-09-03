@@ -180,7 +180,14 @@ console.log('\n=== 6. S4 sink\'leri doğru yardımcıdan geçiyor (kaynak, yorum
 
   // Tüm dosyada geçen kritik S4 yardımcı sarmaları (mf/ms/cmp/zam/sepetÖzet)
   const A = yass(APP);
-  ok('hal: _guvenliUrl(u.gorsel) + alt _kacir(u.ad)', /src="\$\{_guvenliUrl\(u\.gorsel\)\}" alt="\$\{_kacir\(u\.ad\)\}"/.test(A));
+  // 2026-09-03: ic kisma _veriYolu() girdi (ciplak goreli yolu './' ile
+  // normallestiriyor; oncesinde _guvenliUrl onu reddedip '' donduruyordu ve
+  // 152 hal kaleminin 152'si de yer tutucu gosteriyordu). GUVENLIK IDDIASI
+  // AYNEN DURUYOR: disarida hala _guvenliUrl, alt hala _kacir. Desen
+  // _guvenliUrl'un ic ifadesine izin verecek sekilde acildi ama _guvenliUrl
+  // sarti KALDIRILMADI -- ciplak ${u.gorsel} yazilirsa bu iddia yine duser.
+  ok('hal: _guvenliUrl(...u.gorsel...) + alt _kacir(u.ad)',
+     /src="\$\{_guvenliUrl\([^}]*u\.gorsel[^}]*\)\}" alt="\$\{_kacir\(u\.ad\)\}"/.test(A));
   ok('compare: _guvenliUrl(it.resim) + _kacir(it.ad)', /_guvenliUrl\(it\.resim\)/.test(A) && /cmp-mkt-item-name">\$\{_kacir\(it\.ad\)\}</.test(A));
   ok('mf: _kacir(title) + _guvenliUrl(url)', /mf-card-title">\$\{_kacir\(title\)\}</.test(A) && /src="\$\{_guvenliUrl\(url\)\}"/.test(A));
   ok('ms satır: _kacir(m.name) + _kacir(m.key)', /ms-market-name">\$\{_kacir\(m\.name\)\}</.test(A) && /data-mkt="\$\{_kacir\(m\.key\)\}"/.test(A));

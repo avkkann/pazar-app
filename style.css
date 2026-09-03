@@ -1215,27 +1215,41 @@
 .mercek-tab { flex-shrink: 0; padding: var(--space-3) var(--space-4); font-size: .78rem; font-weight: 600; color: var(--text-muted); border: none; border-bottom: 2.5px solid transparent; background: none; cursor: pointer; white-space: nowrap; font-family: inherit; }
 .mercek-tab.active { color: var(--primary); border-bottom-color: var(--primary); }
 
-.mercek-not { padding: var(--space-3) var(--space-4); font-size: .8rem; line-height: 1.55; color: var(--text-muted); background: var(--bg); border-bottom: 1px solid var(--border); margin: 0; }
+/* Ust bilgi: TEK cumle. Yontem ayrintisi <details> icinde — onceki halde
+   dort cumlelik paragraf listenin ustunde durup ilk ekrani yiyordu. */
+.mercek-not { padding: var(--space-3) var(--space-4); font-size: .82rem; line-height: 1.5; color: var(--text-muted); background: var(--bg); border-bottom: 1px solid var(--border); }
 .mercek-not b { color: var(--text); font-weight: 700; }
+.mercek-yontem { margin-top: var(--space-2); }
+.mercek-yontem summary { cursor: pointer; font-size: .75rem; font-weight: 600; color: var(--primary); list-style: none; }
+.mercek-yontem summary::-webkit-details-marker { display: none; }
+.mercek-yontem summary::after { content: ' ›'; display: inline-block; transition: transform .2s ease; }
+.mercek-yontem[open] summary::after { transform: rotate(90deg); }
+.mercek-yontem > div { margin-top: var(--space-2); font-size: .76rem; line-height: 1.55; }
 .mercek-yukleniyor, .mercek-bos { padding: var(--space-6) var(--space-4); text-align: center; color: var(--text-muted); font-size: .85rem; }
 
+/* SATIR: [gorsel] [ad + en fazla iki kisa satir] [sagda TEK sayi].
+   .firsat-card ile ayni iskelet — iki ayri liste dili olmasin. */
 .mercek-liste { padding: var(--space-3) var(--space-4) var(--space-6); display: flex; flex-direction: column; gap: var(--space-2); }
-.mercek-kart { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: var(--space-3) var(--space-4); cursor: pointer; }
-.mercek-kart__ust { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-3); margin-bottom: var(--space-2); }
-.mercek-kart__ad { font-size: .9rem; font-weight: 600; color: var(--text); line-height: 1.35; }
-.mercek-kart__satir { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-3); font-size: .8rem; color: var(--text-muted); padding: 2px 0; }
-.mercek-kart__satir b { font-variant-numeric: tabular-nums; color: var(--text); font-weight: 600; }
-/* Olcumumuzu tasiyan satir vurgulu: iddia yukarida, OLCUM burada. */
-.mercek-kart__satir--sonuc b { color: var(--primary); }
-.mercek-kart__alt { margin-top: var(--space-2); font-size: .7rem; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+.mercek-kart { display: flex; align-items: center; gap: var(--space-3); background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: var(--space-3); cursor: pointer; }
+.mercek-kart--dusuk { cursor: default; }
+.mercek-kart__gorsel { position: relative; flex: 0 0 48px; width: 48px; height: 48px; border-radius: 10px; background: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; overflow: hidden; }
+.mercek-kart__gorsel img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; padding: 3px; background: var(--card-bg); }
+.mercek-kart__govde { flex: 1; min-width: 0; }
+.mercek-kart__ad { font-size: .86rem; font-weight: 600; color: var(--text); line-height: 1.3; margin-bottom: 3px; }
+.mercek-kart__bilgi { font-size: .75rem; line-height: 1.45; color: var(--text-muted); }
+.mercek-kart__bilgi b { color: var(--text); font-weight: 600; font-variant-numeric: tabular-nums; }
+/* Olcumumuzu tasiyan satir: iddia ustte, BIZIM OLCUMUMUZ burada. */
+.mercek-kart__bilgi--vurgu b { color: var(--primary); }
+.mercek-kart__bilgi--sebep { margin-top: 2px; font-style: italic; }
+.mercek-kart__kalan { display: inline-block; background: var(--bg); border: 1px solid var(--border); border-radius: 100px; padding: 0 5px; font-size: .68rem; font-style: normal; }
+.mercek-kart__sag { flex: 0 0 auto; }
 
 .mercek-rozet { flex-shrink: 0; font-size: .72rem; font-weight: 700; padding: 3px 8px; border-radius: 100px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.mercek-rozet--notr { background: var(--rozet-notr-bg); color: var(--rozet-notr-fg); }
 .mercek-rozet--kirmizi { background: var(--rozet-pahali-bg); color: var(--rozet-pahali-fg); }
 .mercek-rozet--sari    { background: var(--rozet-zam-bg);    color: var(--rozet-zam-fg); }
 .mercek-rozet--yesil   { background: var(--rozet-iyi-bg);    color: var(--rozet-iyi-fg); }
 
-.mercek-sebep { margin: var(--space-2) 0 0; padding-left: 1.1em; font-size: .78rem; line-height: 1.5; color: var(--text-muted); }
-.mercek-sebep li { margin-bottom: 2px; }
 
 .mercek-bar-liste { padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-4); }
 .mercek-bar__ust { display: flex; justify-content: space-between; align-items: baseline; font-size: .85rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
