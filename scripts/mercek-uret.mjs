@@ -13,7 +13,6 @@
 //   ilanYalan       A1 — ilan edilen "eski fiyat" gecmiste hic gorulmemis olanlar
 //   marketIstatistik A5 — hangi market kac uruncte en ucuz (hub-uret.mjs'teki
 //                        hesabin ayni kurali; orada vardi, uygulamaya girmiyordu)
-//   halOzet         A7 — hal kalemlerinin fiyat araligi + 25 gunluk degisim
 //   supheliTum      A4 — supheli indirim listesinin TAMAMI (ana sayfa 49 tasiyor)
 import fs from 'node:fs';
 import path from 'node:path';
@@ -128,44 +127,6 @@ const marketIstatistik = [...marketSayac.entries()]
 console.log(`[mercek] marketIstatistik: ${karsilastirilabilir} karsilastirilabilir urun, ${esitlik} esitlik, ${Date.now() - tMar} ms`);
 
 // ══════════════════════════════════════════════════════════════════════
-// A7 — HAL: FIYAT ARALIGI + 25 GUNLUK DEGISIM
-// ══════════════════════════════════════════════════════════════════════
-// hal.json'daki fiyat_min/fiyat_max/satir_sayisi/hacim alanlari %100 dolu
-// ama app.js'te 0 kez geciyor (hal karti sadece ad+fiyat+gorsel basiyor).
-// hal_gecmis.json 166 kalem x 25 gun kesintisiz — app.js'te 0 kez geciyor.
-const tHal = Date.now();
-let halOzet = [];
-try {
-  const hal = JSON.parse(fs.readFileSync(D('data/hal.json'), 'utf8'));
-  const halGec = JSON.parse(fs.readFileSync(D('data/hal_gecmis.json'), 'utf8'));
-  const kalemler = Array.isArray(hal) ? hal : (hal.urunler || hal.kalemler || []);
-  // hal.json'da slug alani YOK; hal_gecmis.json anahtarlari ad'in duz
-  // toLowerCase() hali ("Acur" -> "acur", "Alabaş(Kohlrabİ)" -> "alabaş(kohlrabi̇)"
-  // — birlesik nokta JS toLowerCase'in imzasi, locale'li surum kullanilmamis).
-  halOzet = kalemler.map((k) => {
-    const anahtar = String(k.ad || '').toLowerCase();
-    const seri = (halGec[anahtar] || []).filter((p) => p && typeof p.f === 'number');
-    // DEGISIM SADECE GUVENILIR KALEMDE: bultende tek satirla gecen kalem
-    // (satir_sayisi < 2) sacma salinim uretiyor — olculdu: Lychee %+2400,
-    // Isirgan %-97,7, ikisi de TEK kayit. CLAUDE.md bu kalemleri zaten
-    // "kirilgan" diye isaretlemis (Tamarind, Isirgan: dogrulanacak ikinci
-    // kayit yok). Az gozlemli seri de ayni sorunu uretiyor -> >=7 gun sarti.
-    const kayitSayisi = k.satir_sayisi ?? 0;
-    let degisim = null;
-    if (seri.length >= 7 && kayitSayisi >= 2) {
-      const ilk = seri[0].f, son = seri[seri.length - 1].f;
-      if (ilk > 0) degisim = Math.round(((son / ilk) - 1) * 1000) / 10;
-    }
-    return { ad: k.ad, fiyat: k.fiyat, birim: k.birim || null, gorsel: k.gorsel || null,
-             min: k.fiyat_min ?? null, max: k.fiyat_max ?? null,
-             kayit: k.satir_sayisi ?? null, hacim: k.hacim ?? null,
-             nokta: seri.length, degisim,
-             seri: seri.slice(-25).map((p) => p.f) };
-  }).filter((x) => x.ad);
-} catch (e) { console.warn('[mercek] hal ozeti cikarilamadi: ' + e.message); }
-console.log(`[mercek] halOzet: ${halOzet.length} kalem, ${Date.now() - tHal} ms`);
-
-// ══════════════════════════════════════════════════════════════════════
 // A4 — SUPHELI INDIRIM LISTESININ TAMAMI
 // ══════════════════════════════════════════════════════════════════════
 // anasayfa.json puan>=4 filtresiyle 49 kayit tasiyor; indirim_analiz_son.json
@@ -216,7 +177,6 @@ const cikti = {
   },
   ilanYalan,
   marketIstatistik,
-  halOzet,
   supheliTum,
 };
 fs.writeFileSync(D('data/mercek.json'), JSON.stringify(cikti), 'utf8');

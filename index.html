@@ -224,6 +224,19 @@
     <div class="home-strip-scroll" id="home-zam-list"></div>
   </div>
 
+  <!-- BASLIK 2026-09-04'te EKLENDI. Ana sayfadaki diger butun bolumler
+       .home-strip-head deseniyle baslik tasiyor; kategori izgarasi TEK
+       ISTISNAYDI ve "Bu ay en cok zamlananlar" seridinin hemen altinda
+       aciklamasiz bir kart yigini olarak basliyordu (olculdu: #home-cats'in
+       onceki kardesi dogrudan zam seridi, sayfada "Kategoriler" kelimesi
+       hic gecmiyordu). Yeni stil YAZILMADI, mevcut desen kullanildi;
+       .home-strip-head ve .cat-grid'in yatay padding'i zaten ayni. -->
+  <div class="home-strip-head">
+    <div class="home-strip-baslik-grup">
+      <span class="home-strip-title">Kategoriler</span>
+      <span class="home-strip-sub">Aradığını kategorisinden bul</span>
+    </div>
+  </div>
   <div id="home-cats" class="cat-grid"></div>
 
   <div id="home-mevsim" class="home-strip gizli">
@@ -438,7 +451,6 @@
   <div class="mercek-tabs" id="mercekTabs">
     <button class="mercek-tab active" data-mtab="ilan">Görmediğimiz fiyatlar</button>
     <button class="mercek-tab" data-mtab="market">Market karnesi</button>
-    <button class="mercek-tab" data-mtab="hal">Hal</button>
     <button class="mercek-tab" data-mtab="supheli">Şüpheli indirimler</button>
   </div>
 

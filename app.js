@@ -5786,51 +5786,6 @@ function _mercekMarketHTML(d) {
   return h + '</div>';
 }
 
-// ── A7: hal — aralik, kayit sayisi, 25 gunluk degisim ────────────────
-// DEGISIM her kalemde YOK: bultende tek satirla gecen kalem sacma salinim
-// uretiyor (olculdu: Lychee %+2400, tek kayit). Uretici tarafi bunu zaten
-// eliyor; burada sadece null gelirse cizmiyoruz.
-function _mercekHalHTML(d) {
-  const liste = (d.halOzet || []).slice().sort((a, b) => {
-    if (a.degisim == null && b.degisim == null) return 0;
-    if (a.degisim == null) return 1;
-    if (b.degisim == null) return -1;
-    return Math.abs(b.degisim) - Math.abs(a.degisim);
-  });
-  if (!liste.length) return '<div class="mercek-bos">Hal verisi alınamadı.</div>';
-  const olculen = liste.filter(x => x.degisim != null).length;
-  let h = _mercekNot(
-    '<b>' + liste.length + ' hal kalemi.</b> ' + olculen + ' tanesinde 25 günlük değişimi ölçebildik.',
-    'Haldeki fiyat tek bir sayı değil: bülten aynı ürün için birden çok kayıt taşıyor, biz aralığı ' +
-    'da gösteriyoruz. Bültende <b>tek kayıtla</b> geçen kalemlerde değişim hesaplanmadı — orada sayı ' +
-    'gürültüden ibaret (ölçtük: tek kayıtlı kalemlerde %+2400’e varan sahte sıçramalar çıkıyor).');
-  h += '<div class="mercek-liste">';
-  for (const x of liste) {
-    const rozet = x.degisim == null
-      ? '<span class="mercek-rozet mercek-rozet--notr">—</span>'
-      : '<span class="mercek-rozet ' + (x.degisim > 0 ? 'mercek-rozet--kirmizi' : 'mercek-rozet--yesil') + '">' +
-        (x.degisim > 0 ? '+' : '') + String(x.degisim).replace('.', ',') + '%</span>';
-    const aralik = (x.min != null && x.max != null && x.max > x.min)
-      ? 'Bültende ' + tl(x.min) + ' – ' + tl(x.max) + (x.kayit ? ' · ' + x.kayit + ' kayıt' : '')
-      : (x.kayit ? x.kayit + ' kayıt · tek fiyat' : 'tek fiyat');
-    // Hal kalemi bir KATALOG URUNU DEGIL: productMap'te karsiligi yok, detay
-    // ekrani acilamaz. Bu yuzden _mercekSatir kullanilmiyor, tiklanmaz satir.
-    const ph = { emoji: '🥬' };
-    const gorsel = x.gorsel
-      ? '<div class="mercek-kart__gorsel gorsel-yuva">' + ph.emoji + '<img src="' + _guvenliUrl(_veriYolu(x.gorsel)) + '" alt="" loading="lazy"></div>'
-      : '<div class="mercek-kart__gorsel">' + ph.emoji + '</div>';
-    h += '<article class="mercek-kart mercek-kart--dusuk">' + gorsel +
-      '<div class="mercek-kart__govde">' +
-        '<div class="mercek-kart__ad">' + _kacir(x.ad) + '</div>' +
-        '<div class="mercek-kart__bilgi mercek-kart__bilgi--vurgu"><b>' + tl(x.fiyat) + '</b>' + (x.birim ? ' / ' + _kacir(x.birim) : '') + '</div>' +
-        '<div class="mercek-kart__bilgi">' + aralik + '</div>' +
-      '</div>' +
-      '<div class="mercek-kart__sag">' + rozet + '</div>' +
-    '</article>';
-  }
-  return h + '</div>';
-}
-
 // ── A4 + A3: supheli indirimler, SAYISIYLA ve sebepleriyle ───────────
 // Ana sayfa seridi 49 kayit tasiyor ve rozet sadece "Şüpheli indirim"
 // yaziyordu; puan, dusus yuzdesi ve sebeplerin tamami DB'den CEKILIYOR ama
@@ -5891,7 +5846,6 @@ async function renderMercek() {
   const d = await mercekVeriGetir();
   if (!d) { el.innerHTML = '<div class="mercek-bos">Ölçüm verisi alınamadı.</div>'; return; }
   if (_mercekSekme === 'market') el.innerHTML = _mercekMarketHTML(d);
-  else if (_mercekSekme === 'hal') el.innerHTML = _mercekHalHTML(d);
   else if (_mercekSekme === 'supheli') el.innerHTML = _mercekSupheliHTML(d);
   else el.innerHTML = _mercekIlanHTML(d);
 }
