@@ -127,6 +127,21 @@ büyütülmedi ama kapatılmadı da.
 > iç ifadeye izin verecek şekilde açıldı ama **`_guvenliUrl` şartı kaldırılmadı** —
 > prove-by-breaking: `_guvenliUrl` sökülünce üç iddia birden kırmızıya dönüyor.
 
+#### Üçüncü tur — Hal sekmesi kaldırıldı, kategori başlığı eklendi, kaynak sayımı
+
+- **Hal sekmesi KALDIRILDI** (Mustafa: "saçma olmuş"). Sekme + `_mercekHalHTML` + build'deki
+  `halOzet` silindi; `data/mercek.json` **73 → 67 KB** gzip. **`_veriYolu()` DURUYOR** — o
+  düzeltme mevcut hal ekranını onarıyordu, Mercek'e bağlı değildi.
+- **Ana sayfada kategori ızgarasının BAŞLIĞI YOKMUŞ** (mevcut kusur). Ölçüldü: `#home-cats`'in
+  önceki kardeşi doğrudan zam şeridi, sayfada "Kategoriler" kelimesi **hiç geçmiyordu**.
+  Diğer tüm bölümler `.home-strip-head` deseniyle başlık taşıyor, bu ızgara tek istisnaydı;
+  `git` geçmişi en az 3 commit'tir böyle olduğunu gösteriyor. Yeni stil yazılmadı.
+- **Kaynaktaki toplam ürün sayısı ölçüldü** (`numberOfFound`, 4 Eylül 2026): **16.581**.
+  Bizde 16.198 → **%97,7 kapsama**. Farkın 375'i **`Diğer Ürünler` kategorisinden** geliyor —
+  `CATEGORIES` listesinde YOK, hiç çekilmiyor. Kalan 8 ürün günlük normal oynama.
+  *Yöntem notu:* API `keywords` alanına **slug değil Türkçe görünen ad** istiyor
+  (`"Meyve ve Sebze"`); slug gönderince 200 döner ama `numberOfFound: 0` gelir.
+
 **İkinci tur doğrulaması:** 57 JS + 5 Python yeşil · build yeşil · konsol hatası 0 ·
 karta basınca detay **açılıyor** (`productMap` kayıtlı) · 120 ilan kartının 95'inde gerçek
 ürün görseli (kalan 25'te `resim` alanı boş, emoji yer tutucu) · hal sekmesinde görünür
@@ -1671,7 +1686,7 @@ Uygulama teknik olarak çalışıyor ama **pratikte hâlâ dağıtılmamış dur
 
 ## Yaklaşım & desenler
 
-- **SW cache version** her anlamlı `index.html`/`app.js`/`style.css`/`sw.js` değişikliğinde artırılır (şu an **v234**, 2026-09-03). *Bu satır 2026-09-03'e kadar **v215** diyordu — 18 sürüm bayattı, doküman bayatlığı desenin BEŞİNCİ vakası. Sürümü bu satırdan değil `sw.js`'ten oku.* Backend-only değişikliklerde (scraper, sync) bump edilmez. Akış: `git add` → `git commit` → `git pull --rebase` → `git push`. Not: `sw.js` yalnızca `data/hal.json` + `data/anasayfa.json`'ı önbelleğe alıyor ve `fetch`'i yalnızca o iki URL için yakalıyor — HTML/CSS/JS'i tutmuyor, onlar Cloudflare'den `Cache-Control: public, max-age=0, must-revalidate` ile geliyor (ölçüldü; eski GitHub Pages `max-age=600` notu bayattı). Bump proje kuralı ve tutarlılık için, HTML dağıtımını hızlandırmıyor.
+- **SW cache version** her anlamlı `index.html`/`app.js`/`style.css`/`sw.js` değişikliğinde artırılır (şu an **v237**, 2026-09-04). *Bu satır 2026-09-03'e kadar **v215** diyordu — 18 sürüm bayattı, doküman bayatlığı desenin BEŞİNCİ vakası. Sürümü bu satırdan değil `sw.js`'ten oku.* Backend-only değişikliklerde (scraper, sync) bump edilmez. Akış: `git add` → `git commit` → `git pull --rebase` → `git push`. Not: `sw.js` yalnızca `data/hal.json` + `data/anasayfa.json`'ı önbelleğe alıyor ve `fetch`'i yalnızca o iki URL için yakalıyor — HTML/CSS/JS'i tutmuyor, onlar Cloudflare'den `Cache-Control: public, max-age=0, must-revalidate` ile geliyor (ölçüldü; eski GitHub Pages `max-age=600` notu bayattı). Bump proje kuralı ve tutarlılık için, HTML dağıtımını hızlandırmıyor.
 - **Doğrulama:** Push sonrası `gh run watch` ile deploy'un koştuğu doğrulanır, sonra canlıda (Browser MCP) gerçek fonksiyonel test yapılır — "dosyada var mı" değil, "gerçekten çalışıyor mu". Layout değişikliklerinde ekran görüntüsü yetmez: değişiklikten ÖNCE geometri parmak izi (`getBoundingClientRect`) alınıp sonra sayısal karşılaştırılır.
 - **Kapsam disiplini:** İstenmeyen ekleme/çıkarma sessizce yapılmaz, not düşülür. Doküman/analiz önerileri körü körüne uygulanmaz — önce kodda geçerli mi diye bakılır.
 - **Büyük ürün/mimari kararları** (hosting migration, nav yapısı, tuzak'ın geleceği) Mustafa'nın onayı olmadan koda dökülmez.
