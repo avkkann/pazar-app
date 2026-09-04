@@ -34,6 +34,10 @@
   // oldugu icin ayni adlari gormek ZORUNDALAR.
   let catCache = {};
   let productMap = {};
+  // sepet: app.js'te "let sepet = _rawSepet" (localStorage'a bagli) oldugu icin
+  // BIREBIR KOPYALANAMAZ. catCache/productMap ile ayni desen: burada tanimli,
+  // disaridan doldruluyor. Market toplamlarini hesaplayan fonksiyonlar bunu okuyor.
+  let sepet = [];
 
   /** Cekirdege veri verir. Hicbiri zorunlu degil; verilmeyen dokunulmaz. */
   function durumAyarla(d) {
@@ -52,11 +56,14 @@
     if (d.gecmis) { _gecmisCache = d.gecmis; _seriCache = new Map(); }
     if (d.puanlar) _puanCache = d.puanlar;
     if (d.ilMarketleri) _ilMarketCache = d.ilMarketleri;
+    // Bos dizi GECERLI bir deger (kullanici sepeti bosaltti) -> "if (d.sepet)" yanlis olurdu.
+    if (Array.isArray(d.sepet)) sepet = d.sepet;
   }
 
   function durumOku() {
     return { katalogSlug: Object.keys(catCache), urunSayisi: Object.keys(productMap).length,
-             gecmisVar: !!_gecmisCache, puanVar: !!_puanCache, ilVar: !!_ilMarketCache };
+             gecmisVar: !!_gecmisCache, puanVar: !!_puanCache, ilVar: !!_ilMarketCache,
+             sepetSayisi: sepet.length };
   }
 
   // ══ BURADAN ASAGISI app.js'TEN BIREBIR ═══════════════════════════════
@@ -125,6 +132,27 @@ const ZAM_MAX = 10;         // en fazla kaç ürün
 const ZAM_MIN_KAYIT = 2;    // pencere öncesi en az kaç kayıt olmalı
 
 const _ARAMA_GRUP_SLUG = { meyve: 'meyve-sebze', sebze: 'meyve-sebze' };
+
+const MARKET_NAMES = {
+  a101:'A101', bim:'BİM', carrefour:'CarrefourSA',
+  migros:'Migros', sok:'ŞOK', tarim_kredi:'T.Kredi',
+  hakmar:'Hakmar'
+};
+
+const MARKET_SIRALIYE = {
+  a101:'A101', bim:'BİM', carrefour:'CarrefourSA',
+  migros:'Migros', sok:'ŞOK', tarim_kredi:'Tarım Kredi',
+  hakmar:'Hakmar'
+};
+
+const BOLME_MIN_KAZANC = 50;
+
+const KAT_EMOJI = {
+  meyve:'🍎', sebze:'🥦', et:'🥩', sut:'🧀',
+  gida:'🥫', icecek:'🥤', temizlik:'🧴', atistirmalik:'🍫', dondurulmus:'🧊', diger:'📦'
+};
+
+const PAGE_SIZE = 48;
 
 let _ahIndex = null;
 
@@ -504,6 +532,13 @@ function alZamaniDurumu(u) {
   return null;
 }
 
+function _hamDipMi(sid, deger) {
+  if (deger == null || !(deger > 0)) return false;
+  const ham = otuzGunlukSeri(sid);
+  if (!ham || !ham.length) return false;
+  return deger <= Math.min.apply(null, ham) + 0.005;
+}
+
 function zamOlcutu(kayitlar, pencereBas, pencereSon) {
   if (!Array.isArray(kayitlar) || !pencereBas || !pencereSon) return null;
   const gecerli = kayitlar.filter(k => k && k.t && k.f > 0);
@@ -722,6 +757,95 @@ function marketVarMi(m) {
   if (!s) return true;
   return s.has(m);
 }
+
+function _sepetMarketFiyati(u, market) {
+  const f = fiyatlariTemizle(u.market_fiyatlari).gecerli
+    .filter(x => x.market === market && x.fiyat != null)
+    .sort((a, b) => a.fiyat - b.fiyat)[0];
+  return f ? f.fiyat : null;
+}
+
+function marketToplamlari() {
+  const liste = sepet || [];
+  if (!liste.length) return [];
+  // Sehir seciliyse o ilde BULUNMAYAN zincir hic aday olmasin — kullaniciyi
+  // gidemeyecegi bir markete yonlendirmeyelim. Secim yoksa marketVarMi hep true.
+  const marketler = new Set();
+  liste.forEach(u => fiyatlariTemizle(u.market_fiyatlari).gecerli.forEach(f => {
+    if (f.market && marketVarMi(f.market)) marketler.add(f.market);
+  }));
+  const sonuc = [];
+  marketler.forEach(m => {
+    let toplam = 0, varOlan = 0;
+    liste.forEach(u => {
+      const f = _sepetMarketFiyati(u, m);
+      if (f != null) { toplam += f; varOlan++; }
+    });
+    sonuc.push({
+      market: m, ad: MARKET_NAMES[m] || m,
+      toplam: toplam, varOlan: varOlan, eksik: liste.length - varOlan
+    });
+  });
+  // Sepetin tamamını karşılayanlar önce, sonra ucuzdan pahalıya.
+  sonuc.sort((a, b) => (a.eksik - b.eksik) || (a.toplam - b.toplam));
+  return sonuc;
+}
+
+function sepetBolmeOnerisi() {
+  const liste = sepet || [];
+  const bos = { oner: false, tekMarket: null, ikili: null, kazanc: 0 };
+  if (!liste.length) return bos;
+  const toplamlar = marketToplamlari();
+  const tamKapsayan = toplamlar.filter(m => m.eksik === 0);
+  if (!tamKapsayan.length) return bos;
+  const tek = tamKapsayan[0];
+
+  // En iyi İKİ market kombinasyonu. İkiden fazlaya asla bölmüyoruz.
+  const adaylar = toplamlar.map(m => m.market);
+  let enIyi = null;
+  for (let i = 0; i < adaylar.length; i++) {
+    for (let j = i + 1; j < adaylar.length; j++) {
+      const ikili = [adaylar[i], adaylar[j]];
+      let toplam = 0, kapsandi = 0;
+      liste.forEach(u => {
+        let en = null;
+        ikili.forEach(m => {
+          const f = _sepetMarketFiyati(u, m);
+          if (f != null && (en == null || f < en)) en = f;
+        });
+        if (en != null) { toplam += en; kapsandi++; }
+      });
+      if (kapsandi !== liste.length) continue;   // ikisi birlikte sepeti karşılamıyorsa geçersiz
+      if (!enIyi || toplam < enIyi.toplam) {
+        enIyi = { marketler: ikili, adlar: ikili.map(m => MARKET_NAMES[m] || m), toplam: toplam };
+      }
+    }
+  }
+  if (!enIyi) return { oner: false, tekMarket: tek, ikili: null, kazanc: 0 };
+  const kazanc = tek.toplam - enIyi.toplam;
+  return { oner: kazanc >= BOLME_MIN_KAZANC, tekMarket: tek, ikili: enIyi, kazanc: kazanc > 0 ? kazanc : 0 };
+}
+
+function enIyiBirimIdleri(liste) {
+  const sonuc = new Set();
+  if (!liste || !liste.length) return sonuc;
+  const gruplar = {};
+  liste.forEach(u => {
+    const bf = birimFiyatHesapla(u);
+    if (!bf || !(bf.deger > 0)) return;
+    if (!gruplar[bf.birim]) gruplar[bf.birim] = [];
+    gruplar[bf.birim].push({ id: u._id, deger: bf.deger });
+  });
+  Object.values(gruplar).forEach(g => {
+    if (g.length < 2) return;
+    // Eşit birim fiyata sahip TÜM ürünler işaretlenir -- yalnızca ilk
+    // rastlanan değil. Aksi halde aynı birim fiyata sahip iki üründen
+    // biri "en ucuz" alır, diğeri almaz: yanlış değil ama yanıltıcı.
+    const enDeger = Math.min(...g.map(x => x.deger));
+    g.forEach(x => { if (x.deger === enDeger && x.id != null) sonuc.add(x.id); });
+  });
+  return sonuc;
+}
 // ══ BIREBIR KOPYA SONU ═════════════════════════════════════════════════
 
   return {
@@ -730,7 +854,12 @@ function marketVarMi(m) {
     durumOku: durumOku,
     AL_ZAMANI_MIN_OYNAMA: AL_ZAMANI_MIN_OYNAMA,
     AL_ZAMANI_TOLERANS: AL_ZAMANI_TOLERANS,
+    BOLME_MIN_KAZANC: BOLME_MIN_KAZANC,
     KART_GRUP: KART_GRUP,
+    KAT_EMOJI: KAT_EMOJI,
+    MARKET_NAMES: MARKET_NAMES,
+    MARKET_SIRALIYE: MARKET_SIRALIYE,
+    PAGE_SIZE: PAGE_SIZE,
     SEHIR_KEY: SEHIR_KEY,
     SUPHELI_KUTU_ESIK: SUPHELI_KUTU_ESIK,
     SUPHELI_SEBEP_CUMLE: SUPHELI_SEBEP_CUMLE,
@@ -746,7 +875,9 @@ function marketVarMi(m) {
     _aramaSkoru: _aramaSkoru,
     _birimFiyatAyristir: _birimFiyatAyristir,
     _birimFiyatHam: _birimFiyatHam,
+    _hamDipMi: _hamDipMi,
     _salinimVarSeri: _salinimVarSeri,
+    _sepetMarketFiyati: _sepetMarketFiyati,
     _seriKur: _seriKur,
     _yerelGunISO: _yerelGunISO,
     _zamGunISO: _zamGunISO,
@@ -757,16 +888,19 @@ function marketVarMi(m) {
     birimFiyatYazi: birimFiyatYazi,
     digerPaketleriBul: digerPaketleriBul,
     enDusukFiyat: enDusukFiyat,
+    enIyiBirimIdleri: enIyiBirimIdleri,
     fiyatlariTemizle: fiyatlariTemizle,
     ilMarketleri: ilMarketleri,
     indirimRozetiHesapla: indirimRozetiHesapla,
     markaBul: markaBul,
+    marketToplamlari: marketToplamlari,
     marketVarMi: marketVarMi,
     norm: norm,
     otuzGunMinFiyat: otuzGunMinFiyat,
     otuzGunMinFiyatTemiz: otuzGunMinFiyatTemiz,
     otuzGunlukSeri: otuzGunlukSeri,
     otuzGunlukSeriTemiz: otuzGunlukSeriTemiz,
+    sepetBolmeOnerisi: sepetBolmeOnerisi,
     supheliDurum: supheliDurum,
     tl: tl,
     trNormalize: trNormalize,

@@ -39,6 +39,9 @@ const FONKSIYONLAR = [
   'enDusukFiyat', 'fiyatlariTemizle',
   // rozet / durum
   'indirimRozetiHesapla', 'supheliDurum', 'alZamaniDurumu',
+  // al/bekle alt cumlesinin kapisi: iddia HAM seriye karsi dogrulanir
+  // (temiz seriden gelen bir degeri ham veriye sormadan yazmak yalan olur).
+  '_hamDipMi',
   // zam
   'zamOlcutu', 'zamSalinimVar', 'zamMarketSerisi', 'zamMarketArtisi',
   'zamDurumu', 'zamAdaylari', 'zamHavuzu', 'zamSecHavuzdan',
@@ -48,6 +51,11 @@ const FONKSIYONLAR = [
   'ayniUrunMu', 'digerPaketleriBul',
   // sehir
   'ilMarketleri', 'marketVarMi',
+  // sepet: market toplamlari + bolme onerisi. Bunlar SAF hesap --
+  // sepetMarketOzetiHTML (HTML ureten) BILEREK disarida, cizim istemcinin isi.
+  '_sepetMarketFiyati', 'marketToplamlari', 'sepetBolmeOnerisi',
+  // liste icinde birim fiyati en iyi olani isaretler
+  'enIyiBirimIdleri',
 ];
 
 // sehirOku BILEREK YOK -- enjekte ediliyor (yukaridaki bas yoruma bak).
@@ -58,6 +66,7 @@ const SABITLER = [
   'SUPHELI_KUTU_ESIK', 'SUPHELI_SEBEP_CUMLE', 'SUPHELI_ZAMANSAL_SEBEPLER',
   'TUZAK_WHITELIST', 'ZAM_ESIK', 'ZAM_KAT_MAX', 'ZAM_MARKA_MAX', 'ZAM_MAX',
   'ZAM_MIN_KAYIT', '_ARAMA_GRUP_SLUG',
+  'MARKET_NAMES', 'MARKET_SIRALIYE', 'BOLME_MIN_KAZANC', 'KAT_EMOJI', 'PAGE_SIZE',
 ];
 
 // Cekirdek icinde tanimlanip disaridan doldurulan durum.
@@ -155,6 +164,10 @@ const cikti = `// ╔═══════════════════�
   // oldugu icin ayni adlari gormek ZORUNDALAR.
   let catCache = {};
   let productMap = {};
+  // sepet: app.js'te "let sepet = _rawSepet" (localStorage'a bagli) oldugu icin
+  // BIREBIR KOPYALANAMAZ. catCache/productMap ile ayni desen: burada tanimli,
+  // disaridan doldruluyor. Market toplamlarini hesaplayan fonksiyonlar bunu okuyor.
+  let sepet = [];
 
   /** Cekirdege veri verir. Hicbiri zorunlu degil; verilmeyen dokunulmaz. */
   function durumAyarla(d) {
@@ -173,11 +186,14 @@ const cikti = `// ╔═══════════════════�
     if (d.gecmis) { _gecmisCache = d.gecmis; _seriCache = new Map(); }
     if (d.puanlar) _puanCache = d.puanlar;
     if (d.ilMarketleri) _ilMarketCache = d.ilMarketleri;
+    // Bos dizi GECERLI bir deger (kullanici sepeti bosaltti) -> "if (d.sepet)" yanlis olurdu.
+    if (Array.isArray(d.sepet)) sepet = d.sepet;
   }
 
   function durumOku() {
     return { katalogSlug: Object.keys(catCache), urunSayisi: Object.keys(productMap).length,
-             gecmisVar: !!_gecmisCache, puanVar: !!_puanCache, ilVar: !!_ilMarketCache };
+             gecmisVar: !!_gecmisCache, puanVar: !!_puanCache, ilVar: !!_ilMarketCache,
+             sepetSayisi: sepet.length };
   }
 
   // ══ BURADAN ASAGISI app.js'TEN BIREBIR ═══════════════════════════════

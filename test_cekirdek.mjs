@@ -97,5 +97,68 @@ if (C) {
   C.baglaAyarla({ sehirOku: () => null });   // testler arasi sizinti olmasin
 }
 
+
+console.log('');
+console.log('=== 6. SEPET HESABI (enjekte edilen durum) ===');
+// NEDEN BURADA: market toplamlari ve bolme onerisi IS MANTIGI. RN istemcisi
+// bunu yeniden yazsaydi iki farkli "hangi market daha ucuz" cevabi olurdu --
+// bu depoda "iki kaynak = kacinilmaz sapma" diye kayitli tuzagin ta kendisi.
+// app.js'te bu fonksiyonlar modul seviyesindeki "sepet" degiskenini okuyor;
+// cekirdekte ayni ad durumAyarla() ile disaridan doldruluyor.
+if (C) {
+  const sahteUrun = (ad, fiyatlar) => ({
+    _id: ad, _sid: ad, ad: ad,
+    market_fiyatlari: Object.keys(fiyatlar).map((m) => ({ market: m, fiyat: fiyatlar[m] })),
+  });
+  const A = sahteUrun('A', { bim: 100, a101: 250 });   // iki markette de var
+  const B = sahteUrun('B', { bim: 40 });               // yalniz bim'de
+
+  // KONTROL GRUBU ONCE: sepet bosken hicbir sey uretilmemeli. Bu gorulmeden
+  // asagidaki iddialar anlamsiz olurdu -- bos sepet de 0 verirdi.
+  C.durumAyarla({ sepet: [] });
+  ok('bos sepette market toplami YOK', C.marketToplamlari().length === 0, '');
+  ok('bos sepette bolme onerisi kapali', C.sepetBolmeOnerisi().oner === false, '');
+
+  C.durumAyarla({ sepet: [A, B] });
+  const t = C.marketToplamlari();
+  const bim = t.find((x) => x.market === 'bim');
+  const a101 = t.find((x) => x.market === 'a101');
+  ok('sepet enjekte edildi (durumOku goruyor)', C.durumOku().sepetSayisi === 2,
+     String(C.durumOku().sepetSayisi));
+  ok('bim toplami 140 ve eksigi yok', !!bim && bim.toplam === 140 && bim.eksik === 0,
+     bim ? bim.toplam + '/' + bim.eksik : 'yok');
+  ok('a101 eksik urun sayisini bildiriyor', !!a101 && a101.eksik === 1,
+     a101 ? String(a101.eksik) : 'yok');
+  ok('sepeti tam karsilayan once siralaniyor', !!t[0] && t[0].market === 'bim',
+     t[0] ? t[0].market : 'yok');
+  ok('market adi cozuluyor (MARKET_NAMES cekirdekte)', !!bim && bim.ad === 'BİM',
+     bim ? bim.ad : 'yok');
+
+  // Tek market 140; en iyi ikili de 140 -> kazanc 0, esik 50 -> ONERILMEZ.
+  const o = C.sepetBolmeOnerisi();
+  ok('kazanc esigin altindayken bolme ONERILMIYOR', o.oner === false && o.kazanc === 0,
+     'oner=' + o.oner + ' kazanc=' + o.kazanc);
+  ok('bolme esigi app.js ile ayni (50)', C.BOLME_MIN_KAZANC === 50, String(C.BOLME_MIN_KAZANC));
+
+  // Esigi gercekten asan durum -> onerilmeli. (Iki yonlu kapi.)
+  C.durumAyarla({ sepet: [A, sahteUrun('B', { bim: 230, a101: 60 })] });
+  const o2 = C.sepetBolmeOnerisi();
+  ok('kazanc esigi asinca bolme ONERILIYOR', o2.oner === true && o2.kazanc >= 50,
+     'oner=' + o2.oner + ' kazanc=' + o2.kazanc);
+  ok('ikiden fazla markete bolunmuyor', !o2.ikili || o2.ikili.marketler.length === 2,
+     o2.ikili ? String(o2.ikili.marketler.length) : 'yok');
+
+  const bf = (ad, fi, gr) => ({ _id: ad, ad: ad, en_dusuk_fiyat: fi, agirlik_hacim: gr,
+                                market_fiyatlari: [{ market: 'bim', fiyat: fi }] });
+  const isaret = C.enIyiBirimIdleri([bf('ucuz', 10, '1 kg'), bf('pahali', 30, '1 kg')]);
+  ok('enIyiBirimIdleri Set donduruyor', isaret instanceof Set, typeof isaret);
+  ok('grupta yalniz en ucuz birim fiyat isaretli',
+     isaret.has('ucuz') && !isaret.has('pahali'), [...isaret].join(','));
+  ok('tek elemanli grupta isaretleme yok',
+     C.enIyiBirimIdleri([bf('yalniz', 10, '1 kg')]).size === 0, '');
+
+  C.durumAyarla({ sepet: [] });   // testler arasi sizinti olmasin
+}
+
 console.log('\nPASS=' + pass + '  FAIL=' + fail);
 process.exit(fail ? 1 : 0);
