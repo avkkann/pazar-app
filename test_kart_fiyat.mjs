@@ -170,5 +170,80 @@ console.log('\n=== 8. VERI TARIHI TEK KAYNAK ===');
   ok('  gozlem yoksa SESSIZCE bozuk damga uretmiyor, hata atiyor', atti);
 }
 
+
+// Bir seciciyi ve govdesini cikarir (yorumlar SOYULMUS metinden).
+function kuralGovdesi(sec) {
+  // Yorumlar ONCE soyuluyor: bu depoda testler kendi aciklama yorumuyla
+  // UC kez eslesti (test_splash, position:relative taramasi, ...).
+  const t = CSS.replace(/\/\*[\s\S]*?\*\//g, '');
+  // TUM eslesen kurallari topluyor, ILKINI degil. Ilk hali .strip-card'i
+  // cok secicili bir `touch-action` listesinde bulup orada duruyordu ve
+  // "zemin tokeni yok" diye YANLIS ALARM verdi. CSS zaten kaskad; dogru
+  // soru "bu seciciye uyan kurallarin TOPLAMINDA ne yaziyor".
+  const kacir = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, (m) => '\\' + m);
+  const re = new RegExp('(^|[},])\\s*' + kacir(sec) + '\\s*[,{]', 'gm');
+  const parcalar = [];
+  let m;
+  while ((m = re.exec(t)) !== null) {
+    const a = t.indexOf('{', m.index), b = t.indexOf('}', a);
+    if (a >= 0 && b >= 0) parcalar.push(t.slice(a + 1, b).replace(/\s+/g, ' ').trim());
+    re.lastIndex = b > 0 ? b : re.lastIndex;
+  }
+  return parcalar.join(' ; ');
+}
+
+
+console.log('\n=== 9. UST ISIK SERIDI + ZEMIN TOKENLARI (2026-09-05) ===');
+// NEDEN: acik temada kart<->sayfa kontrasti OLCULDU, 1,054 -- karti pratikte
+// yalnizca golge tutuyordu. Serit, yuzey rengine DOKUNMADAN ayrim getiriyor.
+// Yuzeyi tonlamak SECILMEDI cunku urun fotograflari opak (286 gorselin 115'i
+// JPEG, orneklenen 25 PNG'nin 25'i alfasiz) ve tonlu zemin fotografin
+// arkasinda kirli bir bant birakirdi.
+{
+  const seritKural = kuralGovdesi('.strip-card::before');
+  ok('ust serit kurali tanimli', !!seritKural, 'bulunamadi');
+  ok('serit yuksekligi tokenden (--kart-serit)', /var\(--kart-serit\)/.test(seritKural), seritKural);
+  ok('serit ham px yuksekligi TASIMIYOR', !/height:\s*\d+px/.test(seritKural), seritKural);
+  ok('serit markanin KENDI degrade cifti (--primary -> --primary-light)',
+     /var\(--primary\)/.test(seritKural) && /var\(--primary-light\)/.test(seritKural), seritKural);
+  ok('seritte ham hex YOK', !/#[0-9A-Fa-f]{3,6}/.test(seritKural), seritKural);
+  // "none VAR MI" diye sormak YETMEZ: ayni blokta sonra gelen bir
+  // `pointer-events: auto` onu ezer ve iddia yine yesil kalir. Harness bunu
+  // KOR NOKTA olarak yakaladi (2026-09-05). Iddia gevsetilmedi, daraltildi:
+  // son soz sahibi bildirim `none` olmali.
+  const peHepsi = [...seritKural.matchAll(/pointer-events:\s*([a-z-]+)/g)].map((m) => m[1]);
+  ok('serit tiklamayi engellemiyor (SON pointer-events none)',
+     peHepsi.length > 0 && peHepsi[peHepsi.length - 1] === 'none',
+     peHepsi.join(' -> ') || '(hic yok)');
+  // overflow:hidden BILEREK kullanilmadi -- .add-btn 2026-08-19'da tam oyle
+  // kirpilmisti. Serit kosede kartin kendi radius'unu miras aliyor.
+  ok('serit radius MIRAS aliyor (overflow:hidden yerine)',
+     /border-radius:\s*inherit/.test(seritKural), seritKural);
+  const stripKural = kuralGovdesi('.strip-card');
+  ok('.strip-card overflow:hidden EKLENMEDI (add-btn kirpma tuzagi)',
+     !/overflow:\s*hidden/.test(stripKural), stripKural.slice(0, 110));
+  ok('.strip-card konumlanmis (serit icin gerekli)',
+     /position:\s*relative/.test(stripKural), stripKural.slice(0, 110));
+
+  // Kart ve gorsel kutulari TOKEN kullanmali. Once elle #fff yaziliydi ve
+  // koyu tema ayri bir override'la kurtariyordu -- iki kaynak.
+  const tokenli = ['.strip-card', '.strip-card-img-ph', '.product-card',
+                   '.product-card-img', '.product-card-img-ph'];
+  for (const s of tokenli) {
+    const g = kuralGovdesi(s);
+    const bg = (/background:\s*([^;]+)/.exec(g) || [, ''])[1].trim();
+    ok(s + ' zemini TOKEN (elle beyaz degil)',
+       /var\(--/.test(bg), bg || '(background yok)');
+  }
+  // GERCEK KUSUR (olculdu, 50 oge): firsat gorsel kutusu koyu temada
+  // #F9FAFB kaliyordu -- koyu kartin ustunde parlak gri kare.
+  for (const s of ['.firsat-card-img', '.firsat-card-img-ph']) {
+    const g = kuralGovdesi(s);
+    const bg = (/background:\s*([^;]+)/.exec(g) || [, ''])[1].trim();
+    ok(s + ' zemini TOKEN (koyu temada parlak gri kalmasin)',
+       /var\(--/.test(bg), bg || '(background yok)');
+  }
+}
+
 console.log(`\nPASS=${pass}  FAIL=${fail}`);
 process.exit(fail ? 1 : 0);

@@ -201,6 +201,16 @@
       /* Şerit kartı genişliği — TEK KAYNAK. 390px'te ölçülerek seçildi,
          gerekçesi .strip-card kuralının başında. */
       --kart-genislik: 164px;
+      /* Ürün kartının üst ışık şeridi (2026-09-05).
+         NEDEN VAR: açık temada kart ile sayfa zemini arasındaki kontrast
+         ÖLÇÜLDÜ, 1,054 — kartı pratikte yalnızca gölge tutuyordu (koyu
+         temada 1,169, yani orası daha iyi durumda). Şerit, yüzey rengine
+         HİÇ dokunmadan ayrım getiriyor; bu önemli çünkü ürün fotoğrafları
+         opak (286 görselin 115'i JPEG, örneklenen 25 PNG'nin 25'i alfasız)
+         ve kart zeminini tonlamak fotoğrafın arkasında kirli bir bant
+         bırakırdı. Degrade çifti uydurulmadı: --primary → --primary-light,
+         .screen-firsatlar-header ve og-image'de zaten kullanılan çift. */
+      --kart-serit: 3px;
 
       /* Kategori ızgarası ikon boyutu. 24/32/40 ölçüldü (390px, canlı):
          24 → görünen çizgi 2,00px, kartta kayboluyor, ızgara "sadece metin"e
@@ -544,13 +554,13 @@
 
     /* ── ÜRÜN LİSTESİ ── */
     .product-list { padding: var(--space-3) var(--space-4); display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
-    .product-card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04); position: relative; display: flex; flex-direction: column; border: 1px solid rgba(0,0,0,0.06); transition: box-shadow .18s ease, transform .18s ease; }
+    .product-card { background: var(--card-bg); border-radius: 16px; overflow: hidden; box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04); position: relative; display: flex; flex-direction: column; border: 1px solid rgba(0,0,0,0.06); transition: box-shadow .18s ease, transform .18s ease; }
     @media (hover: hover) {
       .product-card:hover { box-shadow: 0 2px 4px rgba(0,0,0,0.06), 0 8px 20px rgba(0,0,0,0.08); transform: translateY(-1px); }
     }
     .product-card:active { transform: scale(0.98); }
-    .product-card-img { width: 100%; height: 130px; object-fit: contain; background: #FFFFFF; padding: var(--space-3); display: block; border-radius: 12px; }
-    .product-card-img-ph { width: 100%; height: 130px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; border-radius: 12px; }
+    .product-card-img { width: 100%; height: 130px; object-fit: contain; background: var(--card-bg); padding: var(--space-3); display: block; border-radius: 12px; }
+    .product-card-img-ph { width: 100%; height: 130px; background: var(--card-bg); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; border-radius: 12px; }
     .product-card-body { padding: var(--space-2) var(--space-3) var(--space-8) var(--space-3); flex: 1; }
     .product-name { font-size: 14px; font-weight: 600; color: #111827; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 34px; }
     .product-unit { font-size: 10px; color: #9CA3AF; margin-top: var(--space-05); font-weight: 400; }
@@ -1267,8 +1277,8 @@
   .firsat-card:hover { box-shadow: 0 2px 4px rgba(0,0,0,0.06), 0 8px 20px rgba(0,0,0,0.08); transform: translateY(-1px); }
 }
 .firsat-card:active { transform: scale(0.98); box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04); }
-.firsat-card-img { width: 52px; height: 52px; border-radius: 10px; object-fit: contain; background: #F9FAFB; padding: var(--space-1); flex-shrink: 0; }
-.firsat-card-img-ph { width: 52px; height: 52px; border-radius: 10px; background: #F9FAFB; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; flex-shrink: 0; }
+.firsat-card-img { width: 52px; height: 52px; border-radius: 10px; object-fit: contain; background: var(--bg); padding: var(--space-1); flex-shrink: 0; }
+.firsat-card-img-ph { width: 52px; height: 52px; border-radius: 10px; background: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; flex-shrink: 0; }
 .firsat-card-body { flex: 1; min-width: 0; }
 .firsat-card-name { font-size: .85rem; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .firsat-card-sub { font-size: .72rem; color: var(--text-muted); margin-top: var(--space-05); }
@@ -1715,7 +1725,7 @@
    sıkışmayan bir kart. Daha geniş seçenekler (176/190) kırpılmayı azaltıyor
    ama 190'da ekrana 2 kart bile sığmıyor — "yandaki kart görünüyor" ipucu
    kayboluyor, kullanıcı şeridin kaydığını anlamıyor. */
-.strip-card { flex:0 0 var(--kart-genislik); min-width:0; background:#fff; border-radius:14px; padding: var(--space-3); box-shadow:0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04); cursor:pointer; display:flex; flex-direction:column; gap: var(--space-2); border: 1px solid rgba(0,0,0,0.06); transition: box-shadow .18s ease, transform .18s ease; }
+.strip-card { flex:0 0 var(--kart-genislik); min-width:0; background:var(--card-bg); position:relative; border-radius:14px; padding: var(--space-3); box-shadow:0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04); cursor:pointer; display:flex; flex-direction:column; gap: var(--space-2); border: 1px solid rgba(0,0,0,0.06); transition: box-shadow .18s ease, transform .18s ease; }
 @media (hover: hover) {
   .strip-card:hover { box-shadow: 0 2px 4px rgba(0,0,0,0.06), 0 8px 20px rgba(0,0,0,0.08); transform: translateY(-1px); }
 }
@@ -1734,8 +1744,20 @@
    contain -- bu degisiklik envanteri tekillestiriyor.
    Zemin: acikta beyaz '-ph' sarmalayicisindan, koyuda [data-theme=dark]
    override'indan geliyor; kategori kartiyla AYNI davranis, yeni kural YOK. */
-.strip-card-img { width:100%; height:90px; border-radius:8px; object-fit:contain; background:#FFFFFF; padding: var(--space-2); }
-.strip-card-img-ph { width:100%; height:90px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:var(--glif-foto-yedek); background:#FFFFFF; padding: var(--space-2); }
+/* ÜST IŞIK ŞERİDİ — kartı sayfadan ayıran tek öğe. Gerekçe --kart-serit
+   token'ında yazılı. `overflow:hidden` BİLEREK KULLANILMADI: bu depoda
+   .add-btn 2026-08-19'da tam olarak öyle kırpılmıştı (10 gün fark edilmedi).
+   Şerit köşeye kartın kendi radius'unu miras alarak uyuyor. */
+.strip-card::before,
+.product-card::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0;
+  height: var(--kart-serit);
+  border-radius: inherit; border-bottom-left-radius: 0; border-bottom-right-radius: 0;
+  background: linear-gradient(90deg, var(--primary), var(--primary-light));
+  pointer-events: none;
+}
+.strip-card-img { width:100%; height:90px; border-radius:8px; object-fit:contain; background:var(--card-bg); padding: var(--space-2); }
+.strip-card-img-ph { width:100%; height:90px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:var(--glif-foto-yedek); background:var(--card-bg); padding: var(--space-2); }
 /* KARTIN KAHRAMANI. Öncesinde kartta fiyat HİÇ YOKTU — bir fiyat
    karşılaştırma uygulamasının ana sayfasında ürünün fiyatı görünmüyordu;
    yerine yalnızca birim fiyat vardı. Veri zaten mevcuttu: en_dusuk_fiyat
