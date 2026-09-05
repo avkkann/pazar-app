@@ -31,6 +31,7 @@
 // SPLASH (dokunulmadi, kilit duruyor): sure zaten 200ms'ti, kusur EGRIDEYDI.
 // var(--ease-out) ilerlemenin %83'unu ilk 50ms'de bitiriyordu; linear yapildi.
 import fs from 'fs';
+import vm from 'node:vm';
 import { tokenHaritasi, tokenCoz } from './scripts/css-token.mjs';
 
 const CSS = fs.readFileSync('style.css', 'utf8');
@@ -302,6 +303,171 @@ ok('.screen max-width 600px degismedi', /\.screen\s*\{[^}]*max-width:\s*600px/.t
 ok('#screen-home acilista display:block', /#screen-home\s*\{\s*display:\s*block/.test(cssTemiz));
 ok('gecis kurallarinda display/width/height yok',
   !/(display|width|height):/.test(kIleri + kGeri + kCikSol + kCikSag), kIleri + ' | ' + kCikSol);
+
+console.log('\n=== 11. EKRAN DEGISINCE SAYFA KAYDIRMASI (2026-09-05) ===');
+// SIKAYET: "urun detayina girerken alttan beyaz bir ekran aciliyor, gif gibi".
+//
+// OLCUM (canli, 375x812, gercek tiklama, y=2100'de bir serit karti):
+//   t=0..300ms  y=2100 SABIT, belge=3303, detay yuksekligi=1435
+//               -> kullanici detayin 665px ALTINDAKI bos zemine bakiyor
+//   t=330ms     giden ekran display:none -> belge 3303 -> 1435
+//               tarayici kaydirmayi KELEPCELIYOR: y 2100 -> 623 (ANI SICRAMA)
+//   t=450ms     tembel veri gelip detay 1435 -> 1571 -> y 623 -> 759 (IKINCI)
+//
+// KOK NEDEN: ekran degisiminde sayfa kaydirmasi HIC sifirlanmiyordu.
+// openDetay'daki `screen-detay.scrollTop = 0` OLU KODDU. Olculdu:
+//   yazilan 250 -> okunan 0 · overflow-y: visible · scrollHeight === clientHeight
+// .screen bir kaydirma kabi DEGIL; kaydiran documentElement.
+// Ayni olu satir screen-cat ve screen-favoriler'de de vardi.
+//
+// DUZELTME showScreen'de, cunku:
+//  (a) ekran GERCEKTEN degistiginde bir kez calisir. openDetay tembel veri
+//      gelince KENDINI yeniden cagiriyor; sifirlama openDetay'da olsaydi
+//      kullanici saniyeler sonra okudugu yerden tepeye firlatilirdi.
+//  (b) ayni hata uc ekranda birden vardi, tek yerde coldu.
+// Geri donuste TEPEYE DEGIL, birakilan konuma donulur -- yoksa uzun ana
+// sayfada geri tusu kullaniciyi listenin basina atar.
+// SIRA ONEMLI: SATIR yorumlari ONCE. Ters sirada app.js'in 870. satirindaki
+// `// ... static/cat/*.png` yorumu icindeki "/*" SAHTE bir blok yorum aciyor ve
+// 3533'e kadar 2663 satiri (124.971 bayt) taramadan siliyor -- bu iddianin
+// hedefi olan satir tam o araliktaydi. Olculdu: ters sirada 2 eslesme, dogru
+// sirada 3. Ayni sinif hata bu depoda daha once de yasandi (CLAUDE.md).
+const APP_TEMIZ = APP.replace(/^\s*\/\/.*$/gm, '').replace(/\/\*[\s\S]*?\*\//g, '');
+const screenKural = (/\.screen\s*\{([^}]*)\}/.exec(cssTemiz) || ['', ''])[1];
+ok('.screen kaydirma kabi DEGIL (scrollTop yazmak anlamsiz)',
+  screenKural.length > 0 && !/overflow-y:\s*(auto|scroll)/.test(screenKural),
+  screenKural.replace(/\s+/g, ' ').slice(0, 120));
+ok('olu kod gitti: .screen uzerine scrollTop yazilmiyor',
+  !/getElementById\(\s*['"]screen-[a-z]+['"]\s*\)\s*\.scrollTop\s*=/.test(APP_TEMIZ),
+  (APP_TEMIZ.match(/getElementById\(\s*['"]screen-[a-z]+['"]\s*\)\s*\.scrollTop\s*=[^;]*/g) || []).join(' | '));
+
+// Sahte DOM: showScreen'i gercekten CALISTIRIP scrollTo cagrilarini oku.
+// String aramasi yetmez -- "scrollTo gecer" ile "dogru anda dogru degerle
+// cagirir" ayri seyler; bu depoda string kilidi bir kez kor kalmisti.
+function _yapEl(id) {
+  const s = new Set();
+  return {
+    id: id, style: {}, offsetWidth: 0, _sinif: s,
+    classList: {
+      add: function () { for (let i = 0; i < arguments.length; i++) s.add(arguments[i]); },
+      remove: function () { for (let i = 0; i < arguments.length; i++) s.delete(arguments[i]); },
+      contains: function (c) { return s.has(c); }
+    },
+    addEventListener: function () {}
+  };
+}
+function kurOrtam(mevcut, y) {
+  const ekranIdler = ['screen-home', 'screen-sepet', 'screen-firsatlar', 'screen-profil',
+    'screen-detay', 'screen-cat', 'screen-favoriler', 'screen-hal', 'screen-mercek'];
+  const navIdler = ['navHome', 'navSepet', 'navFirsat', 'navProfil'];
+  const ekranlar = {}, navlar = {};
+  ekranIdler.forEach(function (id) { ekranlar[id] = _yapEl(id); });
+  navIdler.forEach(function (id) { navlar[id] = _yapEl(id); });
+  const cagrilar = [];
+  const kutu = {
+    console: console,
+    setTimeout: function () { return 0; },
+    clearTimeout: function () {},
+    renderHalScreen: function () {},
+    _gecisTemizle: function () {},
+    _gecisAzalt: function () { return false; },
+    _gecisSureMs: function () { return 260; },
+    _gecisCikan: null, _gecisZaman: null,
+    _ekranlar: ekranlar, _cagrilar: cagrilar,
+    document: {
+      getElementById: function (id) { return ekranlar[id] || navlar[id] || null; },
+      querySelectorAll: function (sec) {
+        if (sec === '.screen') return ekranIdler.map(function (i) { return ekranlar[i]; });
+        if (sec === '.nav-btn') return navIdler.map(function (i) { return navlar[i]; });
+        return [];
+      }
+    }
+  };
+  kutu.window = kutu;
+  kutu._currentScreen = mevcut;
+  kutu.scrollY = y; kutu.pageYOffset = y;
+  kutu.scrollTo = function (a, b) {
+    const hedefY = (a && typeof a === 'object') ? a.top : b;
+    cagrilar.push(Math.round(hedefY));
+    kutu.scrollY = hedefY; kutu.pageYOffset = hedefY;
+  };
+  vm.createContext(kutu);
+  vm.runInContext(ss, kutu);
+  return kutu;
+}
+// ALET KONTROLU: sahte ortam gercekten ekran degistirebiliyor mu? Bu gecmezse
+// asagidaki "kaydirma dogru" iddialari BOSA duser (yesil ama kor).
+const kA = kurOrtam('screen-home', 0);
+vm.runInContext("showScreen('screen-sepet')", kA);
+ok('ALET: sahte ortamda ekran degisiyor', kA._currentScreen === 'screen-sepet', String(kA._currentScreen));
+ok('ALET: hedef ekran display block oluyor', kA._ekranlar['screen-sepet'].style.display === 'block',
+  String(kA._ekranlar['screen-sepet'].style.display));
+
+const k1 = kurOrtam('screen-home', 2100);
+vm.runInContext("showScreen('screen-detay')", k1);
+ok('ILERI gidiste sayfa TEPEYE aliniyor',
+  k1._cagrilar.length > 0 && k1._cagrilar[k1._cagrilar.length - 1] === 0, JSON.stringify(k1._cagrilar));
+
+const k2 = kurOrtam('screen-home', 2100);
+vm.runInContext("showScreen('screen-detay')", k2);
+vm.runInContext("showScreen('screen-home', 'back')", k2);
+ok('GERI donuste birakilan konum geri yukleniyor (tepeye DEGIL)',
+  k2._cagrilar[k2._cagrilar.length - 1] === 2100, JSON.stringify(k2._cagrilar));
+
+// KONTROL GRUBU: openDetay tembel veri gelince KENDINI yeniden cagiriyor.
+// O ikinci cagri kullaniciyi okudugu yerden yukari FIRLATMAMALI.
+const k3 = kurOrtam('screen-home', 0);
+vm.runInContext("showScreen('screen-detay')", k3);
+k3.scrollY = 900; k3.pageYOffset = 900;
+const oncekiSayi = k3._cagrilar.length;
+vm.runInContext("showScreen('screen-detay')", k3);
+ok('KONTROL: ayni ekrana tekrar cagri kaydirmaya DOKUNMUYOR',
+  k3._cagrilar.length === oncekiSayi && k3.scrollY === 900,
+  'cagri=' + JSON.stringify(k3._cagrilar) + ' y=' + k3.scrollY);
+
+// ILERI iddiasi YUKARIDAKI HALIYLE KORDU -- harness yakaladi. k1'de detay HIC
+// ziyaret edilmemis, yani kayit yok; "tepeye al" ile "kayitli konuma don"
+// ikisi de 0 uretiyor ve mutasyon yesil kaliyordu. Ayirt eden tek senaryo:
+// hedef ekranin KAYITLI konumu VARKEN ileri gitmek.
+const k5 = kurOrtam('screen-home', 2100);
+vm.runInContext("showScreen('screen-detay')", k5);
+k5.scrollY = 900; k5.pageYOffset = 900;          // kullanici detayda asagi indi
+vm.runInContext("showScreen('screen-home', 'back')", k5);   // detay 900 olarak kaydedildi
+vm.runInContext("showScreen('screen-detay')", k5);          // ILERI, kayit VAR
+ok('ILERI gidis kayitli konumu KULLANMIYOR (yeni acilis tepeden)',
+  k5._cagrilar[k5._cagrilar.length - 1] === 0, JSON.stringify(k5._cagrilar));
+
+// DETAY ICINDE URUN DEGISIMI -- showScreen'in kapsayamadigi tek durum.
+// Detaydayken "diger paketleri" / "rakip markalar" seridinden baska bir urune
+// gecilince EKRAN DEGISMIYOR, yani showScreen en ustte erken donuyor ve
+// kaydirmaya hic dokunmuyor. Olculdu (yerel dist, 375x812):
+//   Fanta Portakal 250 Ml, y=827 -> ilgili urune tiklandi
+//   -> Fanta Portakal 500 Ml ekranda, y=597  (yeni urunun ORTASINDA aciliyor)
+// Sifirlama openDetay'da ve URUN ID'SINE bagli olmali: tembel veri dali
+// openDetay'i AYNI id ile yeniden cagiriyor, kosulsuz sifirlama kullaniciyi
+// saniyeler sonra okudugu yerden tepeye firlatirdi.
+const od = govde('openDetay');
+ok('openDetay urun kimligini hatirliyor', /_detayUrunId/.test(od),
+  od.length ? 'gövde var, _detayUrunId yok' : 'gövde cikarilamadi');
+ok('openDetay kaydirmayi sifirliyor', /window\.scrollTo\s*\(/.test(od));
+// ASIL IDDIA: sifirlama KOSULLU. Kosulsuz olursa tembel yeniden cagri
+// kullaniciyi tepeye firlatir -- prove-by-breaking bunu kirmiziya cevirir.
+const odTemiz = od.replace(/^\s*\/\/.*$/gm, '');
+ok('sifirlama URUN DEGISTIYSE yapiliyor (kosulsuz DEGIL)',
+  /if\s*\(\s*urunDegisti\s*\)\s*window\.scrollTo\s*\(\s*0\s*,\s*0\s*\)/.test(odTemiz),
+  (odTemiz.match(/.{0,50}window\.scrollTo.{0,30}/) || ['bulunamadi'])[0]);
+// KONTROL: kimlik ATAMASI karsilastirmadan SONRA olmali, yoksa karsilastirma
+// her zaman "ayni" der ve sifirlama hic calismaz.
+const iKarsilastirma = odTemiz.indexOf('window._detayUrunId !==');
+const iAtama = odTemiz.search(/window\._detayUrunId\s*=[^=]/);
+ok('KONTROL: kimlik atamasi karsilastirmadan SONRA',
+  iKarsilastirma >= 0 && iAtama > iKarsilastirma, 'karsilastirma=' + iKarsilastirma + ' atama=' + iAtama);
+
+// KONTROL GRUBU: geri donulen ekran hic ziyaret edilmemisse tepeden baslar.
+const k4 = kurOrtam('screen-detay', 500);
+vm.runInContext("showScreen('screen-cat', 'back')", k4);
+ok('KONTROL: kayitsiz ekrana geri donuste tepe (0)',
+  k4._cagrilar[k4._cagrilar.length - 1] === 0, JSON.stringify(k4._cagrilar));
 
 console.log('\nSONUC: PASS=' + pass + ' FAIL=' + fail);
 if (fail > 0) process.exit(1);

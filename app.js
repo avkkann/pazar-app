@@ -538,7 +538,6 @@
       return;
     }
     showScreen('screen-favoriler');
-    document.getElementById('screen-favoriler').scrollTop = 0;
     await renderFavorilerScreen();
   };
 
@@ -1331,6 +1330,11 @@ function _gecisTemizle() {
 function showScreen(id, direction) {
   if (window._currentScreen === id) return;
 
+  // Giden ekranin kaydirma konumu, HENUZ HICBIR SEY DEGISMEDEN okunuyor.
+  // Asagida display degisince tarayici kaydirmayi kelepceleyebilir; o zaman
+  // okunan deger artik kullanicinin birakti yer OLMAZ.
+  var kaynakY = window.pageYOffset || 0;
+
   if (!direction) {
     var navOrder = {'screen-home':0, 'screen-sepet':1, 'screen-firsatlar':2, 'screen-profil':3};
     var fromIdx = window._currentScreen ? navOrder[window._currentScreen] : null;
@@ -1373,6 +1377,30 @@ function showScreen(id, direction) {
     _gecisZaman = setTimeout(_gecisTemizle, sure + 120);
   }
 
+  // ── SAYFA KAYDIRMASI ──────────────────────────────────────────────
+  // .screen bir KAYDIRMA KABI DEGIL (olculdu: overflow-y visible,
+  // scrollHeight === clientHeight, scrollTop'a 250 yazilinca 0 okunuyor).
+  // Kaydiran documentElement. Bu yuzden ekran degisince sayfa konumu oldugu
+  // yerde kaliyordu ve kullanici yeni ekranin ALTINDAKI bos zemine bakiyordu;
+  // giden ekran akistan cikinca belge kisalip tarayici kaydirmayi KELEPCELIYOR
+  // ve ekran ziplyordu. Olculdu (canli, 375x812, y=2100'de gercek tiklama):
+  //   t=0..300ms  y=2100 sabit, belge 3303, detay yuksekligi 1435
+  //               -> detayin 665px ALTINDAKI bos zemin (beyaz)
+  //   t=330ms     belge 3303 -> 1435, y 2100 -> 623   (ANI SICRAMA)
+  //   t=450ms     tembel veri gelip detay 1571 olunca y 623 -> 759 (IKINCI)
+  //
+  // BURADA, showScreen'de olmasi SART: en ustteki erken donus sayesinde ayni
+  // ekrana yapilan ikinci cagri buraya HIC gelmiyor. openDetay tembel veri
+  // gelince KENDINI yeniden cagiriyor (saniyeler sonra olabilir); sifirlama
+  // openDetay'da olsaydi kullanici okudugu yerden tepeye FIRLATILIRDI.
+  // Ayni olu satir screen-cat ve screen-favoriler'de de vardi -> tek yerde coldu.
+  //
+  // GERI donuste tepeye DEGIL, birakilan yere donuluyor: uzun ana sayfada geri
+  // tusunun kullaniciyi listenin basina atmasi kaybolan bir yer demek.
+  var kayitlar = window._ekranKaydirma || (window._ekranKaydirma = {});
+  if (window._currentScreen) kayitlar[window._currentScreen] = kaynakY;
+  window.scrollTo(0, direction === 'back' ? (kayitlar[id] || 0) : 0);
+
   document.querySelectorAll('.nav-btn').forEach(function(b){ b.classList.remove('active'); });
   if (id === 'screen-home')      document.getElementById('navHome').classList.add('active');
   if (id === 'screen-sepet')     document.getElementById('navSepet').classList.add('active');
@@ -1411,6 +1439,22 @@ function goBack() {
 //    HER ekrani etkiliyordu (kategori ve sepetten acilan detay dahil).
 // 3) Gorunurluk _ekranGorunur ile olculuyor, inline style ile DEGIL --
 //    showScreen inline display yaziyor, bu depoda ayni tuzaga UC kez dusuldu.
+// KAYDIRMA SIFIRLAMA (urunDegisti) -- neden burada, neden KOSULLU:
+// Detaydayken "diger paketleri" / "rakip markalar" seridinden BASKA bir urune
+// gecilince EKRAN degismiyor, sadece ICERIK degisiyor. showScreen en ustteki
+// `_currentScreen === id` erken donusune takiliyor ve kaydirmaya hic dokunmuyor.
+// Olculdu (yerel dist, 375x812): Uludag Efsane Gazoz 1.5 Lt'de y=904 iken ilgili
+// urune tiklandiginda Uludag 1 Lt ekrana geliyor ama y=904 kaliyor -- kullanici
+// YENI urunun ortasinda aciliyor. Ekran degisimini showScreen hallediyor;
+// kapsayamadigi tek durum bu.
+// KOSUL URUN ID'SINE BAGLI ve bu kritik: asagidaki tembel veri dali openDetay'i
+// AYNI id ile yeniden cagiriyor (yavas baglantida saniyeler sonra olabilir).
+// Kosulsuz sifirlama kullaniciyi tam da okurken tepeye firlatirdi.
+// NOT: bu aciklama fonksiyonun DISINDA -- dort test (al_zamani, esit_fiyat,
+// liste_fiyat, supheli) openDetay'i SABIT OFSETLE kesiyor ve icerideki uzun
+// yorum aranan cagrilari pencerenin disina itip guard'lari kiriyor. Bu tuzaga
+// bu depoda daha once de dusuldu (CLAUDE.md 2026-08-24); cozum guard'i
+// gevsetmek degil, aciklamayi disari almak.
 function openDetay(urunId) {
   // 'screen-favoriler' 2026-09-01'de EKLENDI. Oncesinde listede yoktu ->
   // find() undefined donuyor, '|| screen-home' fallback'i devreye giriyor ve
@@ -1426,6 +1470,10 @@ function openDetay(urunId) {
   let u = productMap[urunId] || sepet.find(s => s._id === urunId);
   if (!u) return;
   productMap[u._id] = u;
+
+  // Gerekce fonksiyonun USTUNDEKI nota bak (kaydirma sifirlama).
+  const urunDegisti = window._detayUrunId !== urunId;
+  window._detayUrunId = urunId;
 
   // Ana sayfa şeritleri KISA kart taşıyor (ana sayfa 14 MB indirmesin diye).
   // Detayda seri, alarm önerisi, al/bekle ve rozetler tam veri istiyor —
@@ -1524,7 +1572,7 @@ function openDetay(urunId) {
 })()}`;
 
   showScreen('screen-detay');
-  document.getElementById('screen-detay').scrollTop = 0;
+  if (urunDegisti) window.scrollTo(0, 0);
 }
 
 function renderDetayBtn(urunId) {
@@ -4253,7 +4301,6 @@ async function openCategory(slug) {
     p.style.opacity = '';
   });
   showScreen('screen-cat');
-  document.getElementById('screen-cat').scrollTop = 0;
   // Karttaki "gerçek indirim" / indirim rozetleri geçmişten hesaplanıyor
   // (cardHTML -> urunRozetleriHTML). Ana sayfa geçmişi indirmediği için
   // burada tetikleniyor; gelince liste bir kez yeniden çiziliyor.

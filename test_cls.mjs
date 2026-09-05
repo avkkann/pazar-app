@@ -64,7 +64,14 @@ console.log('\n=== 3. SATIR ICI onload EKLENMEDI (117 kilidi) ===');
 // UC KEZ yanlis alarm uretti (bkz. CLAUDE.md). Ilk yazisimda yine oldu --
 // app.js'teki "satir ici onload= EKLENMEDI" yorumu iddiayi kirmiziya
 // dusurmustu. Once soy, sonra ara.
-const APP_KODU = APP.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
+// SIRA DUZELTILDI 2026-09-05 (iddia GEVSEMEDI, baktigi yer BUYUDU).
+// Ters sirada app.js'in 870. satirindaki `// ... static/cat/*.png` yorumundaki
+// "/*" SAHTE bir blok yorum aciyor ve 3533'e kadar 2663 satiri (124.971 bayt,
+// dosyanin %38'i) taramadan siliyordu -- yani bu iddia app.js'in ucte birini
+// HIC gormuyordu. Bugun o bolgede satir ici onload YOK (olculdu: her iki
+// sirada da 0), yani gizlenmis bir kusur cikmadi; kor nokta LATENT idi.
+// Ayni sinif hata bu depoda daha once de yasandi (CLAUDE.md, 2026-08-20).
+const APP_KODU = APP.replace(/^\s*\/\/.*$/gm, '').replace(/\/\*[\s\S]*?\*\//g, '');
 ok('app.js\'te satir ici yukleme oznitelig\'i YOK', !/\bonload\s*=/.test(APP_KODU),
    (APP_KODU.match(/.{0,40}onload\s*=.{0,40}/) || [''])[0]);
 
