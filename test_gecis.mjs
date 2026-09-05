@@ -98,22 +98,27 @@ ok('bezier: ease-out ANAHTAR SOZCUGU one yuklu DEGIL (<%50)',
 ok('keyframe/kural cikarici calisiyor', keyframe('animSlideInRight').includes('transform') && !!kural('.screen.anim-slide-in'));
 ok('showScreen govdesi cikarilabiliyor', govde('showScreen').includes('classList'));
 
-console.log('\n=== 1. OTELEME BUYUK (16px\'e geri donus YASAK) ===');
+console.log('\n=== 1. KISA OTELEME + CAPRAZ SOLMA (2026-09-05 karari) ===');
+// KARAR DEGISTI, IDDIA GEVSEMEDI — YERI DEGISTI.
+// Eski tasarim: %100 oteleme, opaklik YOK. O zaman algilanabilirligi TEK
+// BASINA mesafe tasiyordu, bu yuzden test "TAM %100" diye kilitliyordu ve
+// 16px'e donusu yasakliyordu (2026-08-25'te 16px "gecis yok gibi" oldu).
+// Yeni tasarim: 32px + CAPRAZ SOLMA. Algilanabilirligi artik OPAKLIK
+// tasiyor; mesafe yalnizca yon ipucu. Yani "mesafe buyuk olmali" sarti
+// dusmedi, YERINI "solma VAR olmali" sarti aldi -- asagida ayni siklikta
+// kilitli. Solma silinirse 32px tek basina kalir ve eski tuzak geri gelir.
 ok('--gecis-otele tokeni var', TOKEN.has('--gecis-otele'), [...TOKEN.keys()].filter(k => /gecis/.test(k)).join(','));
 const otele = String(coz('var(--gecis-otele)')).trim();
-ok('oteleme YUZDE cinsinden (viewport genisligine bagli)', /%$/.test(otele), otele);
-const oteleYuzde = parseFloat(otele);
-// TAM %100 — "buyuk olsun" degil, BIREBIR DOSENME sarti. %85 OLCULDU ve
-// elendi: her karede iki ekranin kapsam toplami 1,15 cikiyor, yani sabit
-// %15 BINDIRME var; cikan ekran absolute oldugu icin o bandi USTTEN
-// kapatiyor ve giren ekran kirpik gorunuyor. %100'de toplam tam 1,000.
-// (Bu iddia once ">=85" diye yazilmisti ve harness KOR oldugunu gosterdi:
-// 85% mutasyonu yesil kalmisti. Gevsetilmedi, DUZELTILDI.)
-ok('oteleme TAM %100 (birebir dosenme sarti; %85\'te sabit %15 bindirme olculdu)',
-  /%$/.test(otele) && oteleYuzde === 100, otele);
-// Asil kilit: 16px gibi kucuk bir DEGERE donulurse kirmizi.
-ok('KUCUK px degerine donulmemis (gecis algilanamaz olurdu)',
-  !/^\d+(\.\d+)?px$/.test(otele) || parseFloat(otele) > 200, otele);
+ok('oteleme px cinsinden (yon ipucu, viewport genisligine bagli DEGIL)',
+  /px$/.test(otele), otele);
+const otelePx = parseFloat(otele);
+// TAM DEGER — aralik DEGIL. Bu depoda "makul aralik" yazmak bir kez
+// guard'i kor birakmisti (%85 mutasyonu yesil kalmisti).
+ok('oteleme TAM 32px', /px$/.test(otele) && otelePx === 32, otele);
+// Ust sinir: tam genislige geri donulurse bu bir TASARIM DEGISIKLIGIDIR,
+// sessizce olmasin. Alt sinir: 0'a inerse yon ipucu tamamen kaybolur.
+ok('tam genislige (%) geri donulmemis', !/%$/.test(otele), otele);
+ok('oteleme sifirlanmamis (yon ipucu duruyor)', otelePx > 0, otele);
 
 console.log('\n=== 2. IKI EKRAN: CIKAN EKRAN GECIS BOYUNCA GORUNUR ===');
 const kIleri = kural('.screen.anim-slide-in'), kGeri = kural('.screen.anim-slide-back');
@@ -125,7 +130,7 @@ ok('cikis keyframe\'leri tanimli',
 for (const [ad, kf] of [['cikis-sol', keyframe('animSlideOutLeft')], ['cikis-sag', keyframe('animSlideOutRight')]]) {
   const c = coz(kf);
   ok(ad + ': 0\'dan BASLAR (ekranda duruyor)', /from\s*\{\s*transform:\s*translateX\(0\)/.test(c.replace(/\s+/g, ' ')), c.replace(/\s+/g, ' ').slice(0, 90));
-  ok(ad + ': tam mesafe oteleniyor', new RegExp('translateX\\((calc\\([^)]*)?-?\\s*' + oteleYuzde + '%').test(c.replace(/\s+/g, ' ')), c.replace(/\s+/g, ' ').slice(0, 100));
+  ok(ad + ': tam mesafe oteleniyor', new RegExp('translateX\\((calc\\([^)]*)?-?\\s*' + otelePx + 'px').test(c.replace(/\s+/g, ' ')), c.replace(/\s+/g, ' ').slice(0, 100));
   ok(ad + ': sadece transform (yerlesim ozelligi yok)',
     !/(^|[;{\s])(width|height|margin|padding|top|left|right|bottom)\s*:/.test(kf), kf.replace(/\s+/g, ' ').slice(0, 90));
 }
@@ -136,6 +141,40 @@ ok('cikan ekran position:absolute (yoksa alt alta dizilir)',
   /position:\s*absolute/.test(cikisOrtak), cikisOrtak.replace(/\s+/g, ' ').slice(0, 120));
 ok('cikan ekran top:0 (gorunur konum degismesin)', /top:\s*0/.test(cikisOrtak), cikisOrtak.replace(/\s+/g, ' ').slice(0, 120));
 ok('cikan ekran tiklanamaz (pointer-events:none)', /pointer-events:\s*none/.test(cikisOrtak), cikisOrtak.replace(/\s+/g, ' ').slice(0, 120));
+
+console.log('\n=== 2b. CAPRAZ SOLMA (algilanabilirligin ASIL tasiyicisi) ===');
+// Bu blok, eski "oteleme TAM %100" kilidinin YERINI aliyor. 32px tek basina
+// algilanamaz -- 2026-08-25'te 16px ile birebir yasandi ("gecis yok gibi").
+// Simdi gecisi gorunur kilan sey opaklik; silinirse ayni tuzak geri gelir.
+const kfGir = [['giris-ileri', keyframe('animSlideInRight')], ['giris-geri', keyframe('animSlideInLeft')]];
+const kfCik = [['cikis-sol', keyframe('animSlideOutLeft')], ['cikis-sag', keyframe('animSlideOutRight')]];
+for (const [ad, kf] of kfGir) {
+  const t = kf.replace(/\s+/g, ' ');
+  ok(ad + ': opaklik 0\'dan basliyor', /from\s*\{[^}]*opacity:\s*0\b/.test(t), t.slice(0, 100));
+  ok(ad + ': opaklik 1\'e variyor', /to\s*\{[^}]*opacity:\s*1\b/.test(t), t.slice(0, 100));
+}
+for (const [ad, kf] of kfCik) {
+  const t = kf.replace(/\s+/g, ' ');
+  ok(ad + ': opaklik 1\'den basliyor', /from\s*\{[^}]*opacity:\s*1\b/.test(t), t.slice(0, 100));
+  ok(ad + ': opaklik 0\'a soluyor', /to\s*\{[^}]*opacity:\s*0\b/.test(t), t.slice(0, 100));
+}
+
+console.log('\n=== 2c. KAYMA TEK YONLU: ileri ve geri AYNI yone (sola) ===');
+// Mustafa'nin karari (2026-09-05). Onceki tasarimda giren ekran ileride
+// sagdan, geride SOLDAN geliyordu; artik ikisi de sagdan gelip sola kayiyor.
+// Bunu kilitlemezsek yon ayrimi sessizce geri gelebilir.
+const gIleri = keyframe('animSlideInRight').replace(/\s+/g, ' ');
+const gGeri = keyframe('animSlideInLeft').replace(/\s+/g, ' ');
+const cSol = keyframe('animSlideOutLeft').replace(/\s+/g, ' ');
+const cSag = keyframe('animSlideOutRight').replace(/\s+/g, ' ');
+const negatifMi = s => /translateX\(\s*calc\([^)]*-\s*1\s*\*/.test(s);
+ok('giren: ileri ve geri AYNI yerden basliyor',
+  coz(gIleri).replace(/\s+/g, ' ') === coz(gGeri).replace(/\s+/g, ' '), gIleri + ' || ' + gGeri);
+ok('cikan: sol ve sag AYNI yere gidiyor',
+  coz(cSol).replace(/\s+/g, ' ') === coz(cSag).replace(/\s+/g, ' '), cSol + ' || ' + cSag);
+ok('giren POZITIFTEN geliyor (sagdan, sola dogru kayar)', !negatifMi(gIleri), gIleri.slice(0, 90));
+ok('cikan NEGATIFE gidiyor (sola dogru cikar)', negatifMi(cSol) && negatifMi(cSag),
+  cSol.slice(0, 90) + ' || ' + cSag.slice(0, 90));
 
 console.log('\n=== 3. BIREBIR DOSENME: AYNI SURE + AYNI EGRI ===');
 // Giren ve cikan farkli sure/egri kullanirsa aralarinda bosluk ya da
@@ -156,7 +195,9 @@ ok('gecis suresi tanimli', !isNaN(gecisSure), String(gecisSure));
 // Ders: iddiayi olcumun soyledigi kadar dar yaz. 300ms secilmis bir degerdir
 // (Mustafa "biraz daha uzun sursun" dedi, 260 -> 300); degisirse bu satir da
 // BILEREK guncellenir, sessizce kaymaz.
-ok('gecis suresi TAM 300ms', gecisSure === 300, gecisSure + 'ms');
+// 2026-09-05: 300 -> 260. Kisa oteleme + capraz solma icin 300 agir kaliyordu;
+// 260 lab'da secilen deger. Tam deger, aralik degil.
+ok('gecis suresi TAM 260ms', gecisSure === 260, gecisSure + 'ms');
 const egri = String(coz('var(--gecis-egri)')).trim();
 const ilr25 = ilerleme(egri, 0.25), ilr50 = ilerleme(egri, 0.5);
 ok('egri cozulebiliyor', ilr25 != null, egri);

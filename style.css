@@ -68,18 +68,20 @@
          daha uzun sürsün) 2026-08-25'te seçildi ve çalışma anında ölçüldü.
          Splash sönmesi (200ms) ile eşit DEĞİL ve olmamalı: o bir opaklık
          sönmesi, bu 390px'lik bir yol. */
-      --gecis-ekran: 300ms;
+      --gecis-ekran: 260ms;
       /* Ekran geçişinin öteleme mesafesi — GİREN ve ÇIKAN ekran için AYNI.
-         %100 = tam viewport genişliği. Bu değer BİREBİR DÖŞENME şartı:
-         çıkan [-100%+p, p], giren [p, 100%+p] aralığını kaplar, üst üste
-         binme SIFIR ve aralarında boşluk YOK.
-         %85-90 ÖLÇÜLDÜ ve ELENDİ: geçiş bitiminde çıkan ekranın sağ %15'i
-         hâlâ ekranda kalıyor ve çıkan ekran `position:absolute` olduğu için
-         girenin ÜSTÜNE boyanıyor → sol kenarda yanlış şerit.
-         (Önceki tur burada 16px'e inmişti; boşluk kapandı ama geçiş
-         algılanamaz oldu. Boşluğun doğru çözümü mesafeyi kısmak değil,
-         GİDEN EKRANI GÖRÜNÜR TUTMAK — aşağıdaki .anim-cikis-* notu.) */
-      --gecis-otele: 100%;
+         2026-09-05'te %100'den 32px'e indi. GEREKÇE, ve neden bu sefer
+         "geçiş yok gibi" olmuyor:
+         Tam genişlikli yatay itme HİYERARŞİK (drill-down) gezinmenin dilidir;
+         alt sekmeler ise EŞ DÜZEY. Bu uyumsuzluk 2026-08-25'te zaten teşhis
+         edilmişti ama %85'te bindirme çıktığı için %100'de kalınmıştı.
+         2026-08-25'in İLK denemesi 16px'ti ve "geçiş yok gibi" göründü —
+         çünkü ÇAPRAZ SOLMA YOKTU, tek sinyal 16px'lik yoldu. Şimdi
+         algılanabilirliği opaklık taşıyor (aşağıdaki keyframe'ler), mesafe
+         yalnızca YÖN ipucu veriyor. Bu yüzden 32px yeterli ve döşenme
+         şartı da ortadan kalktı: çıkan ekran solarak gidiyor, altında
+         boşluk kalmıyor. */
+      --gecis-otele: 32px;
       /* Geçiş eğrisi — GİREN ve ÇIKAN ekran için AYNI olmak ZORUNDA, yoksa
          birebir döşenmez. Değer CSS'in kendi `ease-out` ANAHTAR SÖZCÜĞÜ
          (0,0,0.58,1); bu dosyadaki `--ease-out` TOKEN'ı DEĞİL — o çok daha
@@ -2306,13 +2308,20 @@
        öteleme + yumuşama.
        Yön KORUNDU (ileri/geri ayrımı okunur kalsın), yalnız mesafe düştü.
        Sadece transform+opacity — yerleşimi etkilemez, CLS üretmez. */
+    /* KAYMA YÖNÜ TEK YÖNLÜ (2026-09-05, Mustafa'nın kararı): ileri ve geri
+       geçişte içerik AYNI yöne — sola — kayar. Bu yüzden `InRight` ve
+       `InLeft` artık aynı hareketi tanımlıyor; sınıf adları korundu çünkü
+       showScreen ileri/geri ayrımını hâlâ yapıyor ve yön kararı bir gün
+       geri gelirse tek yerden açılsın.
+       ÇAPRAZ SOLMA ASIL SİNYAL: 32px tek başına algılanamaz (2026-08-25'te
+       16px ile ölçüldü), opaklık onu görünür kılıyor. */
     @keyframes animSlideInRight {
-      from { transform: translateX(var(--gecis-otele)); }
-      to   { transform: translateX(0); }
+      from { transform: translateX(var(--gecis-otele)); opacity: 0; }
+      to   { transform: translateX(0); opacity: 1; }
     }
     @keyframes animSlideInLeft {
-      from { transform: translateX(calc(-1 * var(--gecis-otele))); }
-      to   { transform: translateX(0); }
+      from { transform: translateX(var(--gecis-otele)); opacity: 0; }
+      to   { transform: translateX(0); opacity: 1; }
     }
     /* ÇIKAN ekran — geçiş boyunca EKRANDA KALIR ve ters yöne ötelenir.
        İlk denemede boşluk, öteleme 100% → 16px'e kısılarak kapatılmıştı;
@@ -2325,12 +2334,12 @@
        durduğu için masaüstünde ortalama da korunuyor.
        `pointer-events: none`: çıkan ekran tıklanamasın. */
     @keyframes animSlideOutLeft {
-      from { transform: translateX(0); }
-      to   { transform: translateX(calc(-1 * var(--gecis-otele))); }
+      from { transform: translateX(0); opacity: 1; }
+      to   { transform: translateX(calc(-1 * var(--gecis-otele))); opacity: 0; }
     }
     @keyframes animSlideOutRight {
-      from { transform: translateX(0); }
-      to   { transform: translateX(var(--gecis-otele)); }
+      from { transform: translateX(0); opacity: 1; }
+      to   { transform: translateX(calc(-1 * var(--gecis-otele))); opacity: 0; }
     }
     .screen.anim-slide-in   { animation: animSlideInRight  var(--gecis-ekran) var(--gecis-egri) both; }
     .screen.anim-slide-back { animation: animSlideInLeft   var(--gecis-ekran) var(--gecis-egri) both; }
