@@ -245,5 +245,54 @@ console.log('\n=== 9. UST ISIK SERIDI + ZEMIN TOKENLARI (2026-09-05) ===');
   }
 }
 
+
+console.log('\n=== 10. EKRAN ZEMINI: YUMUSAK EGIM (2026-09-05) ===');
+{
+  const T = (ad) => (new RegExp('--' + ad + ':\s*([^;]+);').exec(CSS) || [, ''])[1].trim();
+
+  // BANT YUKSEKLIGI BIR ERISILEBILIRLIK SINIRIDIR, zevk degil.
+  // Olculdu: tazelik satiri (#6B7280) duz zeminde 4,59 -- AA esigi 4,5.
+  // Uzerine %5 yesil tint bile onu 4,34'e dusurup AA'yi kiriyor. Bant bu
+  // yuzden tazelik satirinin USTUNDE bitiyor. Uzatilirsa bu satir kirmizi.
+  ok('--zemin-egim tokeni var', !!T('zemin-egim'), '(yok)');
+  ok('bant TAM 152px (tazelik satirinin AA sinirini asmiyor)',
+     T('zemin-egim') === '152px', T('zemin-egim'));
+
+  // TEK KAYNAK: baslik ve ekran zemini AYNI kompozisyonu boyuyor.
+  // Ayrilirlarsa aralarinda sert bir cizgi olusur ve butun "baslik + biraz
+  // yesil" gibi okunur -- bu isin cikis noktasi tam olarak buydu.
+  ok('--zemin-katman tokeni var', /--zemin-katman:/.test(CSS), '(yok)');
+  const kullanan = (CSS.match(/background-image:\s*var\(--zemin-katman\)/g) || []).length;
+  ok('kompozisyonu EN AZ iki kural kullaniyor (ekran + baslik)', kullanan >= 2, 'adet=' + kullanan);
+  ok('.screen kompozisyonu tokenden aliyor',
+     /\.screen\s*\{[^}]*background-image:\s*var\(--zemin-katman\)/s.test(CSS.replace(/\/\*[\s\S]*?\*\//g, '')), '');
+
+  // Basliklar UC yerde ham hex yaziyordu; artik token.
+  // STANDART CIFT (#0E4938 -> #1D9E75) bes baslikta ham hex yaziyordu,
+  // artik tokenden. .profil-header BILEREK disarida: o FARKLI bir cift
+  // kullaniyor (#0E4938 -> #065F46), yani ayri bir tasarim karari ve bu
+  // kilit onu zorlamiyor.
+  ok('standart baslik cifti ham hex olarak KALMADI',
+     !/linear-gradient\(135deg,\s*#0E4938 0%,\s*#1D9E75/.test(CSS), 'hala var');
+
+  // Renk cifti --primary'ye BAGLANMAMALI: koyu temada parlak yesile doner
+  // ve hemen ustundeki baslikla catisir (baslik koyu temada ezilmiyor).
+  const katman = (/--zemin-katman:([\s\S]*?);\s*\n\s*--zemin-tekrar/.exec(CSS) || [, ''])[1];
+  ok('kompozisyon --zemin-a/--zemin-b kullaniyor',
+     /var\(--zemin-a\)/.test(katman) && /var\(--zemin-b\)/.test(katman), katman.slice(0, 90));
+  ok('kompozisyon --primary ailesine BAGLI DEGIL (koyu temada parlar)',
+     !/var\(--primary/.test(katman), katman.slice(0, 90));
+
+  // GRAIN: gradyanin bantlanmasini kiriyor. data: URI -- CSP'de
+  // `img-src 'self' data:` izinli (olculdu).
+  ok('grain dokusu var (feTurbulence)', /feTurbulence/.test(katman), '(yok)');
+  ok('grain data: URI olarak gomulu', /url\("data:image\/svg\+xml/.test(katman), '(yok)');
+
+  // MALIYET: tuylenme gradyan duraklariyla, blur katmaniyla DEGIL.
+  ok('kompozisyonda filter: blur YOK (boyama maliyeti)', !/filter:\s*blur/.test(katman), 'blur var');
+  ok('zeminde animasyon YOK (dekoratif surekli animasyon yasak)',
+     !/animation/.test(katman), 'animasyon var');
+}
+
 console.log(`\nPASS=${pass}  FAIL=${fail}`);
 process.exit(fail ? 1 : 0);

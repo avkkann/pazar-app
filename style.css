@@ -211,6 +211,39 @@
          bırakırdı. Degrade çifti uydurulmadı: --primary → --primary-light,
          .screen-firsatlar-header ve og-image'de zaten kullanılan çift. */
       --kart-serit: 3px;
+      /* Ekran zemini: eğim bandı. 152px seçimi ÖLÇÜMDEN geliyor — gerekçe
+         .screen kuralında yazılı.
+         RENK ÇİFTİ --primary'YE BAĞLI DEĞİL, BİLEREK: başlık çubuğu
+         (.app-header ve iki kardeşi) üç yerde de `#0E4938 → #1D9E75`
+         yazıyor ve KOYU TEMADA EZİLMİYOR — ölçüldü. Band --primary'ye
+         bağlansaydı koyu temada parlak yeşile döner, hemen üstündeki
+         başlıkla çakışırdı. Bant başlığın devamı olduğu için onun çiftini
+         kullanıyor. (Başlığın kendisi hâlâ ham hex yazıyor; o borç
+         BÜYÜTÜLMEDİ ama kapatılmadı da — kapatılırsa bu iki token'a bağlanır.)
+         Tüy ayrı token: koyu temada yalnızca o zayıflıyor. */
+      --zemin-a: #0E4938;
+      --zemin-b: #1D9E75;
+      --zemin-egim: 152px;
+      --zemin-tuy: rgba(29, 158, 117, .30);
+      /* Kompozisyon TEK YERDE tanımlı ve HEM başlık HEM ekran zemini onu
+         kullanıyor. Sebep: başlık kendi 135°'lik gradyanını taşıdığı sürece
+         iki alan sert bir çizgide buluşuyordu ve bütün "başlık + biraz
+         yeşil" gibi okunuyordu. İkisi aynı 152px'lik alanın farklı
+         dilimlerini boyayınca tek parça oluyor — başlık üstteki ~48px'i,
+         ekran tamamını. Kaydırıldığında yapışkan başlık yine aynı dilimi
+         boyuyor, yani solid yeşil kalıyor.
+         YAN KAZANÇ: başlıklar üç yerde ham hex yazıyordu, artık token. */
+      --zemin-katman:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E"),
+        radial-gradient(130% 100% at 86% -22%, rgba(255,255,255,.26) 0%, transparent 62%),
+        linear-gradient(168deg,
+          var(--zemin-a) 0%,
+          var(--zemin-b) 38%,
+          var(--zemin-tuy) 50%,
+          transparent 62%);
+      --zemin-tekrar: repeat, no-repeat, no-repeat;
+      --zemin-boyut: 120px 120px, 100% var(--zemin-egim), 100% var(--zemin-egim);
+      --zemin-konum: top left, top center, top center;
 
       /* Kategori ızgarası ikon boyutu. 24/32/40 ölçüldü (390px, canlı):
          24 → görünen çizgi 2,00px, kartta kayboluyor, ızgara "sadece metin"e
@@ -340,19 +373,57 @@
     .profil-istat-sayi { font-variant-numeric: tabular-nums; }
 
     /* ── EKRANLAR ── */
+    /* ══ EKRAN ZEMİNİ — "yumuşak eğim" (2026-09-05, Mustafa'nın seçimi) ══
+       Üç katman, hepsi ELEMENTİN KENDİ background'ı: pseudo-element ya da
+       ayrı bir div YOK. Sebep: akışa hiç girmiyor, yığın bağlamı açmıyor,
+       içeriğin üstüne binme riski yok ve içerikle birlikte kayıyor.
+
+       BANT NEDEN BU KADAR KISA (152px) — ölçüldü, zevk değil.
+       375px'te ana sayfada ilk 260px'e ÜÇ metin düşüyor: arama kutusu
+       (92-138), tazelik satırı (151-174), ilk şerit başlığı (182-212).
+       Metinsiz ilk boşluk ancak 220px'den sonra, yani kartların arkasında.
+       Tüylenmiş kenar ~40px yer istiyor; onu 174-182 arasındaki 8px'e
+       sığdırmak imkânsız. Bandı 236px'e uzatıp üç metni de beyaza çevirmek
+       DENENDİ ve ELENDİ: şeritlerin hepsi index.html'de `.gizli` başlıyor
+       ve JS veri gelince açıyor, yani "ilk şerit" sabit DEĞİL. Tuzaklar
+       şeridi boş kaldığı gün altındaki başlık yeşilin üstünde koyu metinle
+       kalırdı (ölçüm: koyu metin #0E4938 üstünde 1,65 — AA'da kalır).
+       Bant aramanın altında bitince hiçbir başlık yeşile binmiyor ve
+       metin rengine hiç dokunulmuyor.
+
+       TÜYLENME `filter: blur` İLE DEĞİL GRADYAN DURAKLARIYLA: blur ayrı bir
+       katman ve boyama maliyeti ister; aynı yumuşaklık %42→%64 arasına
+       yayılmış duraklarla bedelsiz elde ediliyor.
+
+       GRAIN NEDEN VAR: geniş bir yeşil gradyan telefonda bantlanır ("amatör
+       gradyan" hissinin teknik kaynağı). %5,5 opaklıkta feTurbulence dokusu
+       bandı kırıyor. data: URI — CSP'de `img-src 'self' data:` izinli
+       (ölçüldü); beyaz zeminde zaten görünmüyor, yeşilde iş görüyor.
+
+       ANIMASYON YOK, karar: tasarım kılavuzu "sürekli animasyon yalnız
+       yükleme göstergesi için" diyor ve bu depo aynı kararı arama kutusunda
+       vermişti (kullanıcıların %64'ü iOS). */
     .screen {
       display: none;
       min-height: 100dvh;
       max-width: 600px;
       margin: 0 auto;
-      background: var(--bg);
+      background-color: var(--bg);
+      background-image: var(--zemin-katman);
+      background-repeat: var(--zemin-tekrar);
+      background-size: var(--zemin-boyut);
+      background-position: var(--zemin-konum);
       padding-bottom: 76px;
     }
     #screen-home { display: block; }
 
     /* ── HEADER ── */
     .header {
-      background: linear-gradient(135deg, #0E4938 0%, #1D9E75 100%);
+      background-color: var(--zemin-a);
+      background-image: var(--zemin-katman);
+      background-repeat: var(--zemin-tekrar);
+      background-size: var(--zemin-boyut);
+      background-position: var(--zemin-konum);
       padding: var(--space-5) var(--space-4) var(--space-4);
       display: flex; align-items: center; gap: var(--space-3);
       position: sticky; top: 0; z-index: 50;
@@ -377,7 +448,11 @@
 
     /*
     .header-sub {
-      background: linear-gradient(135deg, #0E4938 0%, #1D9E75 100%);
+      background-color: var(--zemin-a);
+      background-image: var(--zemin-katman);
+      background-repeat: var(--zemin-tekrar);
+      background-size: var(--zemin-boyut);
+      background-position: var(--zemin-konum);
       padding: var(--space-4) var(--space-4);
       display: flex; align-items: center; gap: var(--space-3);
       position: sticky; top: 0; z-index: 50;
@@ -388,7 +463,11 @@
     }
     */
     .app-header--sub {
-      background: linear-gradient(135deg, #0E4938 0%, #1D9E75 100%);
+      background-color: var(--zemin-a);
+      background-image: var(--zemin-katman);
+      background-repeat: var(--zemin-tekrar);
+      background-size: var(--zemin-boyut);
+      background-position: var(--zemin-konum);
       padding: var(--space-4) var(--space-4);
       display: flex; align-items: center; justify-content: space-between;
       position: sticky; top: 0; z-index: 50;
@@ -1198,7 +1277,7 @@
 
 /* ── FIRSATLAR ── */
 /*
-.screen-firsatlar-header { background: linear-gradient(135deg,#0E4938 0%,#1D9E75 100%); padding: var(--space-4) var(--space-4); display: flex; align-items: center; gap: var(--space-3); position: sticky; top: 0; z-index: 50;     box-shadow: 0 2px 12px rgba(14,73,56,.25); }
+.screen-firsatlar-header { background-color: var(--zemin-a); background-image: var(--zemin-katman); background-repeat: var(--zemin-tekrar); background-size: var(--zemin-boyut); background-position: var(--zemin-konum); padding: var(--space-4) var(--space-4); display: flex; align-items: center; gap: var(--space-3); position: sticky; top: 0; z-index: 50;     box-shadow: 0 2px 12px rgba(14,73,56,.25); }
 .screen-firsatlar-header h2 { font-size: 1rem; font-weight: 700; color: #fff; }
 */
 .firsat-tabs { display: flex; gap: 0; background: var(--card-bg); border-bottom: 1px solid var(--border); padding: 0 var(--space-4); overflow-x: auto; scrollbar-width: none; position: sticky; top: 53px; z-index: 40; }
@@ -1302,7 +1381,7 @@
 /*
 .profil-header { background: linear-gradient(135deg,#0E4938 0%,#065F46 100%); padding: var(--space-8) var(--space-5) var(--space-6); display: flex; flex-direction: column; align-items: center; gap: var(--space-3); }
 */
-.profil-hero { background: linear-gradient(135deg,#0E4938 0%,#1D9E75 100%); padding: var(--space-6) var(--space-5) var(--space-6); display: flex; flex-direction: column; align-items: center; gap: var(--space-3); }
+.profil-hero { background-color: var(--zemin-a); background-image: var(--zemin-katman); background-repeat: var(--zemin-tekrar); background-size: var(--zemin-boyut); background-position: var(--zemin-konum); padding: var(--space-6) var(--space-5) var(--space-6); display: flex; flex-direction: column; align-items: center; gap: var(--space-3); }
 .profil-avatar { width: 76px; height: 76px; border-radius: 50%; background: rgba(255,255,255,.15); display: flex; align-items: center; justify-content: center; font-size: 2.2rem; border: 3px solid rgba(255,255,255,.35); }
 .profil-isim { font-size: 1.1rem; font-weight: 700; color: #fff; }
 .profil-isim { cursor: pointer; }
@@ -2418,6 +2497,13 @@
 
 /* ═══ DARK TEMA ═══ */
 [data-theme="dark"] {
+  /* Zemin egimi koyu temada BASLIKLA AYNI kaliyor: --zemin-a/b hic
+     degismiyor, cunku .app-header de degismiyor (olculdu). Yalnizca TUY
+     zayifliyor -- koyu zeminde ayni opaklik parlak bir hale birakiyordu.
+     Bandi markaya dogru ACMAK denenmedi degil ELENDI: kart (#1C2823) ile
+     zemin ayrimi koyu temada zaten 1,169 ve zemini acmak onu 1,037e
+     dusuruyordu. */
+  --zemin-tuy: rgba(16, 185, 129, .18);
   --primary: #10B981;
   --primary-light: #34D399;
   --price-color: #34D399;
