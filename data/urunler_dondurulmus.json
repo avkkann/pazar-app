@@ -16,13 +16,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         99.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -30,42 +30,34 @@
     "_original_kategori": "Beyaz Et"
   },
   {
-    "_sid": "dondurulmus_lezita-dondurulmus-pilic-jumbo-fileto-700-gr",
-    "ad": "Lezita Dondurulmuş Piliç Jumbo Fileto 700 Gr",
+    "_sid": "dondurulmus_torku-dondurulmus-dana-kuzu-cizbiz-kofte-390-gr",
+    "ad": "Torku Dondurulmuş Dana Kuzu Cızbız Köfte 390 Gr",
     "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "700 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 245.9,
+    "agirlik_hacim": "390 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/11001830.png",
+    "en_dusuk_fiyat": 239.0,
     "market_fiyatlari": [
       {
-        "market": "carrefour",
-        "fiyat": 245.9,
-        "liste_fiyat": 299.9,
-        "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını"
+        "market": "a101",
+        "fiyat": 239.0,
+        "depot_id": "a101-9324",
+        "depot_ad": "Şahap Gürler Kadıköy Istanbul"
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
-        245.9
+        "2026-09-06",
+        239.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
-        "700 GR"
+        "2026-09-06",
+        "390 GR"
       ]
     ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-09-05",
-        "market": "carrefour",
-        "liste_fiyat": 299.9,
-        "satis_fiyat": 245.9
-      }
-    ],
-    "_original_kategori": "Beyaz Et"
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Kırmızı Et"
   },
   {
     "_sid": "dondurulmus_kuzey-balik-dondurulmus-alabalik-fileto-500-gr",
@@ -84,13 +76,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         285.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "500 GR"
       ]
     ],
@@ -114,13 +106,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         180.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "250 GR"
       ]
     ],
@@ -144,18 +136,56 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         219.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "550 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Deniz Ürünleri"
+  },
+  {
+    "_sid": "dondurulmus_lezita-dondurulmus-pilic-jumbo-fileto-700-gr",
+    "ad": "Lezita Dondurulmuş Piliç Jumbo Fileto 700 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "700 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 245.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 245.9,
+        "liste_fiyat": 299.9,
+        "depot_id": "carrefour-5254",
+        "depot_ad": "Istanbul Üsküdar Salacak Mını"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        245.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
+        "700 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-09-06",
+        "market": "carrefour",
+        "liste_fiyat": 299.9,
+        "satis_fiyat": 245.9
+      }
+    ],
+    "_original_kategori": "Beyaz Et"
   },
   {
     "_sid": "dondurulmus_lezita-dondurulmus-pilic-izgara-kofte-1-kg",
@@ -174,13 +204,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         99.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -204,13 +234,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         349.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "500 GR"
       ]
     ],
@@ -234,13 +264,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         469.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "500 GR"
       ]
     ],
@@ -264,13 +294,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         219.75
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1.08 KG"
       ]
     ],
@@ -294,13 +324,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         135.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "270 GR"
       ]
     ],
@@ -331,19 +361,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         314.96
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "225 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-05",
+        "tarih": "2026-09-06",
         "market": "migros",
         "liste_fiyat": 419.95,
         "satis_fiyat": 314.96
@@ -368,13 +398,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         645.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -398,13 +428,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         59.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -428,13 +458,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         119.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -458,13 +488,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         159.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "500 GR"
       ]
     ],
@@ -488,13 +518,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         165.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "440 GR"
       ]
     ],
@@ -518,13 +548,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         167.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "500 GR"
       ]
     ],
@@ -548,13 +578,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         225.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -578,13 +608,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         382.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "225 GR"
       ]
     ],
@@ -608,13 +638,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         119.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -638,13 +668,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         189.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -668,13 +698,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         199.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "300 GR"
       ]
     ],
@@ -698,13 +728,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         269.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "850 GR"
       ]
     ],
@@ -728,13 +758,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         79.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -758,13 +788,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         225.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -788,13 +818,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         59.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -818,7 +848,7 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         189.0
       ]
     ],
@@ -843,13 +873,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         199.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "500 GR"
       ]
     ],
@@ -873,13 +903,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         199.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "500 GR"
       ]
     ],
@@ -903,14 +933,44 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         119.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Beyaz Et"
+  },
+  {
+    "_sid": "dondurulmus_lezita-dondurulmus-pilic-nugget-700-gr",
+    "ad": "Lezita Dondurulmuş Piliç Nugget 700 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "700 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/11002745.png",
+    "en_dusuk_fiyat": 159.75,
+    "market_fiyatlari": [
+      {
+        "market": "hakmar",
+        "fiyat": 159.75,
+        "depot_id": "hakmar-5521",
+        "depot_ad": "Ahmediye  Üsküdar"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        159.75
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
+        "700 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -933,78 +993,18 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         175.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "225 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Kırmızı Et"
-  },
-  {
-    "_sid": "dondurulmus_lezita-dondurulmus-pilic-nugget-700-gr",
-    "ad": "Lezita Dondurulmuş Piliç Nugget 700 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "700 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/11002745.png",
-    "en_dusuk_fiyat": 159.75,
-    "market_fiyatlari": [
-      {
-        "market": "hakmar",
-        "fiyat": 159.75,
-        "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        159.75
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "700 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Beyaz Et"
-  },
-  {
-    "_sid": "dondurulmus_akseker-donuk-kuzu-dilim-kokorec-200-gr",
-    "ad": "Akşeker Donuk Kuzu Dilim Kokoreç 200 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "200 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 189.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 189.0,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        189.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "200 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Sakatat"
   },
   {
     "_sid": "dondurulmus_tarim-kredi-dondurulmus-dana-kavurma-1-kg",
@@ -1023,18 +1023,48 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         1350.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Şarküteri"
+  },
+  {
+    "_sid": "dondurulmus_akseker-donuk-kuzu-dilim-kokorec-200-gr",
+    "ad": "Akşeker Donuk Kuzu Dilim Kokoreç 200 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "200 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 189.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 189.0,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        189.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
+        "200 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Sakatat"
   },
   {
     "_sid": "dondurulmus_omega61-dondurulmus-karadeniz-somon-fileto-500-gr",
@@ -1053,13 +1083,43 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         499.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
+        "500 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Deniz Ürünleri"
+  },
+  {
+    "_sid": "dondurulmus_dondurulmus-norvec-somon-dilim-500-gr",
+    "ad": "Dondurulmuş Norveç Somon Dilim 500 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "500 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 299.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 299.0,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        299.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
         "500 GR"
       ]
     ],
@@ -1090,19 +1150,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         305.96
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "280 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-05",
+        "tarih": "2026-09-06",
         "market": "migros",
         "liste_fiyat": 407.95,
         "satis_fiyat": 305.96
@@ -1127,73 +1187,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         69.9
       ]
     ],
     "agirlik_hacim_gecmisi": [],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Beyaz Et"
-  },
-  {
-    "_sid": "dondurulmus_dondurulmus-norvec-somon-dilim-500-gr",
-    "ad": "Dondurulmuş Norveç Somon Dilim 500 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "500 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 299.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 299.0,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        299.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "500 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Deniz Ürünleri"
-  },
-  {
-    "_sid": "dondurulmus_erpilic-dondurulmus-pilic-ciger-tabak-1-kg",
-    "ad": "Erpiliç Dondurulmuş Piliç Ciğer Tabak 1 Kg",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/11002943.png",
-    "en_dusuk_fiyat": 49.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 49.5,
-        "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        49.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "1 KG"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Sakatat"
   },
   {
     "_sid": "dondurulmus_nora-dondurulmus-midye-dolma-250-gr",
@@ -1213,19 +1213,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         139.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "250 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-05",
+        "tarih": "2026-09-06",
         "market": "carrefour",
         "liste_fiyat": 199.0,
         "satis_fiyat": 139.0
@@ -1250,13 +1250,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         199.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -1281,19 +1281,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         287.21
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "225 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-05",
+        "tarih": "2026-09-06",
         "market": "migros",
         "liste_fiyat": 382.95,
         "satis_fiyat": 287.21
@@ -1318,18 +1318,48 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         399.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "500 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Kırmızı Et"
+  },
+  {
+    "_sid": "dondurulmus_erpilic-dondurulmus-pilic-ciger-tabak-1-kg",
+    "ad": "Erpiliç Dondurulmuş Piliç Ciğer Tabak 1 Kg",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/11002943.png",
+    "en_dusuk_fiyat": 49.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 49.5,
+        "depot_id": "a101-6815",
+        "depot_ad": "Kostak Ümraniye"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        49.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
+        "1 KG"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Sakatat"
   },
   {
     "_sid": "dondurulmus_balikdunyasi-dondurulmus-sardalya-500-gr",
@@ -1348,13 +1378,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         79.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "500 GR"
       ]
     ],
@@ -1378,13 +1408,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         99.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1.08 KG"
       ]
     ],
@@ -1408,13 +1438,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         199.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "500 GR"
       ]
     ],
@@ -1438,13 +1468,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         299.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "500 GR"
       ]
     ],
@@ -1468,13 +1498,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         299.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "420 GR"
       ]
     ],
@@ -1498,13 +1528,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         399.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "500 GR"
       ]
     ],
@@ -1528,13 +1558,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         499.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -1558,13 +1588,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         199.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -1588,78 +1618,18 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         245.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Beyaz Et"
-  },
-  {
-    "_sid": "dondurulmus_maret-pismis-dondurulmus-dana-doner-500-gr",
-    "ad": "Maret Pişmiş Dondurulmuş Dana Döner 500 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/17400017.jpg",
-    "en_dusuk_fiyat": 539.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 539.95,
-        "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        539.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "500 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Kırmızı Et"
-  },
-  {
-    "_sid": "dondurulmus_donuk-dana-doner-250-gr",
-    "ad": "Donuk Dana Döner 250 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "250 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 149.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 149.0,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        149.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "250 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Kırmızı Et"
   },
   {
     "_sid": "dondurulmus_maret-dondurulmus-soslu-dana-doner-200-gr",
@@ -1678,13 +1648,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         209.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "200 GR"
       ]
     ],
@@ -1708,13 +1678,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         209.75
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "990 GR"
       ]
     ],
@@ -1738,13 +1708,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         349.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "130 GR"
       ]
     ],
@@ -1768,18 +1738,48 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         382.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "225 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Deniz Ürünleri"
+  },
+  {
+    "_sid": "dondurulmus_maret-pismis-dondurulmus-dana-doner-500-gr",
+    "ad": "Maret Pişmiş Dondurulmuş Dana Döner 500 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "500 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/17400017.jpg",
+    "en_dusuk_fiyat": 539.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 539.95,
+        "depot_id": "migros-1991",
+        "depot_ad": "Çiçekçi M Migros"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        539.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
+        "500 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Kırmızı Et"
   },
   {
     "_sid": "dondurulmus_aspilic-dondurulmus-pilic-sinitzel-1-kg",
@@ -1798,18 +1798,48 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         69.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Beyaz Et"
+  },
+  {
+    "_sid": "dondurulmus_donuk-dana-doner-250-gr",
+    "ad": "Donuk Dana Döner 250 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "250 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 149.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 149.0,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        149.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
+        "250 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Kırmızı Et"
   },
   {
     "_sid": "dondurulmus_donuk-dana-kiyma-400-gr",
@@ -1828,48 +1858,18 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         230.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "400 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Kırmızı Et"
-  },
-  {
-    "_sid": "dondurulmus_dardanel-donuk-haslanmis-norvec-karidesi-200-gr",
-    "ad": "Dardanel Donuk Haşlanmış Norveç Karidesi 200 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30417216.png",
-    "en_dusuk_fiyat": 399.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 399.0,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        399.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "200 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Deniz Ürünleri"
   },
   {
     "_sid": "dondurulmus_tarim-kredi-dana-dilimli-donuk-kavurma-250-gr",
@@ -1888,13 +1888,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         399.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "250 GR"
       ]
     ],
@@ -1918,13 +1918,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         209.75
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -1948,13 +1948,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         295.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "300 GR"
       ]
     ],
@@ -1978,14 +1978,44 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         299.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "500 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Deniz Ürünleri"
+  },
+  {
+    "_sid": "dondurulmus_dardanel-donuk-haslanmis-norvec-karidesi-200-gr",
+    "ad": "Dardanel Donuk Haşlanmış Norveç Karidesi 200 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30417216.png",
+    "en_dusuk_fiyat": 399.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 399.0,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        399.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
+        "200 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -2008,13 +2038,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         65.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -2038,13 +2068,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         209.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -2068,48 +2098,18 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         99.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "400 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Kırmızı Et"
-  },
-  {
-    "_sid": "dondurulmus_donersah-dondurulmus-pilic-doner-500-gr",
-    "ad": "Dönerşah Dondurulmuş Piliç Döner 500 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/11002476.png",
-    "en_dusuk_fiyat": 250.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 250.0,
-        "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        250.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "500 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Beyaz Et"
   },
   {
     "_sid": "dondurulmus_lezita-dondurulmus-pilic-nugget-1-kg",
@@ -2128,13 +2128,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         99.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -2159,25 +2159,55 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         99.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "200 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-05",
+        "tarih": "2026-09-06",
         "market": "migros",
         "liste_fiyat": 269.95,
         "satis_fiyat": 99.9
       }
     ],
     "_original_kategori": "Deniz Ürünleri"
+  },
+  {
+    "_sid": "dondurulmus_donersah-dondurulmus-pilic-doner-500-gr",
+    "ad": "Dönerşah Dondurulmuş Piliç Döner 500 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "500 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/11002476.png",
+    "en_dusuk_fiyat": 250.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 250.0,
+        "depot_id": "a101-6815",
+        "depot_ad": "Kostak Ümraniye"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        250.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
+        "500 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Beyaz Et"
   },
   {
     "_sid": "dondurulmus_dondurulmus-dana-doner-500-gr",
@@ -2196,13 +2226,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         269.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "500 GR"
       ]
     ],
@@ -2226,13 +2256,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         69.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -2256,7 +2286,7 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         149.0
       ]
     ],
@@ -2281,13 +2311,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         155.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "320 GR"
       ]
     ],
@@ -2311,13 +2341,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         219.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -2341,13 +2371,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         260.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "400 GR"
       ]
     ],
@@ -2371,13 +2401,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         139.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -2401,13 +2431,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         189.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -2431,13 +2461,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         319.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "500 GR"
       ]
     ],
@@ -2468,19 +2498,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         329.96
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "280 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-05",
+        "tarih": "2026-09-06",
         "market": "migros",
         "liste_fiyat": 439.95,
         "satis_fiyat": 329.96
@@ -2505,13 +2535,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         89.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -2535,13 +2565,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         249.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -2566,19 +2596,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         287.21
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "225 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-05",
+        "tarih": "2026-09-06",
         "market": "migros",
         "liste_fiyat": 382.95,
         "satis_fiyat": 287.21
@@ -2603,13 +2633,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         89.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -2633,48 +2663,18 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         119.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Beyaz Et"
-  },
-  {
-    "_sid": "dondurulmus_sampiyon-dondurulmus-dilimli-kuzu-kokorec-200-gr",
-    "ad": "Şampiyon Dondurulmuş Dilimli Kuzu Kokoreç 200 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/11002980.png",
-    "en_dusuk_fiyat": 245.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 245.0,
-        "depot_id": "a101-9324",
-        "depot_ad": "Şahap Gürler Kadıköy Istanbul"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        245.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "200 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Sakatat"
   },
   {
     "_sid": "dondurulmus_erpilic-dondurulmus-citir-pilic-fileto-700-gr",
@@ -2699,18 +2699,48 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         239.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "700 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Beyaz Et"
+  },
+  {
+    "_sid": "dondurulmus_sampiyon-dondurulmus-dilimli-kuzu-kokorec-200-gr",
+    "ad": "Şampiyon Dondurulmuş Dilimli Kuzu Kokoreç 200 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/11002980.png",
+    "en_dusuk_fiyat": 245.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 245.0,
+        "depot_id": "a101-9324",
+        "depot_ad": "Şahap Gürler Kadıköy Istanbul"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        245.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
+        "200 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Sakatat"
   },
   {
     "_sid": "dondurulmus_dondurulmus-citir-kova-850-gr",
@@ -2729,13 +2759,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         269.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "850 GR"
       ]
     ],
@@ -2759,13 +2789,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         99.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "750 GR"
       ]
     ],
@@ -2789,13 +2819,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         209.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -2819,13 +2849,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         245.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "200 GR"
       ]
     ],
@@ -2849,13 +2879,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         89.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -2879,13 +2909,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         399.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "500 GR"
       ]
     ],
@@ -2909,13 +2939,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         599.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "360 GR"
       ]
     ],
@@ -2939,13 +2969,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         175.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "225 GR"
       ]
     ],
@@ -2969,44 +2999,14 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         219.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Beyaz Et"
-  },
-  {
-    "_sid": "dondurulmus_bereket-pismis-donuk-pilic-doner-200-gr",
-    "ad": "Bereket Pişmiş Donuk Piliç Döner 200 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/121930.jpg",
-    "en_dusuk_fiyat": 109.0,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 109.0,
-        "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        109.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "200 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -3029,13 +3029,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         235.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "250 GR"
       ]
     ],
@@ -3059,13 +3059,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         389.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "400 GR"
       ]
     ],
@@ -3089,14 +3089,44 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         69.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Beyaz Et"
+  },
+  {
+    "_sid": "dondurulmus_bereket-pismis-donuk-pilic-doner-200-gr",
+    "ad": "Bereket Pişmiş Donuk Piliç Döner 200 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/121930.jpg",
+    "en_dusuk_fiyat": 109.0,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 109.0,
+        "depot_id": "tarim_kredi-7488",
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        109.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
+        "200 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -3119,13 +3149,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         159.75
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "700 GR"
       ]
     ],
@@ -3149,48 +3179,18 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         239.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "700 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Beyaz Et"
-  },
-  {
-    "_sid": "dondurulmus_torku-dondurulmus-dana-kuzu-cizbiz-kofte-390-gr",
-    "ad": "Torku Dondurulmuş Dana Kuzu Cızbız Köfte 390 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "390 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/11001830.png",
-    "en_dusuk_fiyat": 239.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 239.0,
-        "depot_id": "a101-9324",
-        "depot_ad": "Şahap Gürler Kadıköy Istanbul"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        239.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "390 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Kırmızı Et"
   },
   {
     "_sid": "dondurulmus_mutfagim-dondurulmus-bezelye-450-gr",
@@ -3209,13 +3209,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         49.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "450 GR"
       ]
     ],
@@ -3239,50 +3239,14 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         75.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "400 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_superfresh-pizza-king-xl-karisik-475-gr",
-    "ad": "Superfresh Pizza King XL Karışık 475 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "475 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30481824.jpg",
-    "en_dusuk_fiyat": 145.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 145.0,
-        "depot_id": "a101-9324",
-        "depot_ad": "Şahap Gürler Kadıköy Istanbul"
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 249.95,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        145.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "475 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -3311,13 +3275,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         79.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "450 GR"
       ]
     ],
@@ -3342,19 +3306,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         115.47
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "400 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-05",
+        "tarih": "2026-09-06",
         "market": "migros",
         "liste_fiyat": 164.95,
         "satis_fiyat": 115.47
@@ -3363,30 +3327,36 @@
     "_original_kategori": "Mantı Makarna ve Erişte"
   },
   {
-    "_sid": "dondurulmus_feast-elma-dilim-patates-1-kg",
-    "ad": "Feast Elma Dilim Patates 1 Kg",
+    "_sid": "dondurulmus_superfresh-pizza-king-xl-karisik-475-gr",
+    "ad": "Superfresh Pizza King XL Karışık 475 Gr",
     "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30074615.png",
-    "en_dusuk_fiyat": 258.25,
+    "agirlik_hacim": "475 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30481824.jpg",
+    "en_dusuk_fiyat": 145.0,
     "market_fiyatlari": [
       {
+        "market": "a101",
+        "fiyat": 145.0,
+        "depot_id": "a101-9324",
+        "depot_ad": "Şahap Gürler Kadıköy Istanbul"
+      },
+      {
         "market": "carrefour",
-        "fiyat": 258.25,
+        "fiyat": 249.95,
         "depot_id": "carrefour-1012",
         "depot_ad": "Istanbul Acıbadem Hıper"
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
-        258.25
+        "2026-09-06",
+        145.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
-        "1 KG"
+        "2026-09-06",
+        "475 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -3409,14 +3379,44 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         118.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "450 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_feast-elma-dilim-patates-1-kg",
+    "ad": "Feast Elma Dilim Patates 1 Kg",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30074615.png",
+    "en_dusuk_fiyat": 258.25,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 258.25,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        258.25
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
+        "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -3439,7 +3439,7 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         149.0
       ]
     ],
@@ -3464,13 +3464,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         209.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "350 GR"
       ]
     ],
@@ -3494,13 +3494,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         184.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "400 GR"
       ]
     ],
@@ -3530,13 +3530,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         115.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -3560,121 +3560,17 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         259.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_sef-franzi-dondurulmus-peynirli-pizza-475-gr",
-    "ad": "Şef Franzi Dondurulmuş Peynirli Pizza 475 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "475 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 109.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 109.0,
-        "depot_id": "sok-4707",
-        "depot_ad": "Şok Minifevziçakmak"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        109.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "475 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_superfresh-kinoali-ton-balikli-salata-150-gr",
-    "ad": "SuperFresh Kinoalı Ton Balıklı Salata 150 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "150 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/9050253.jpg",
-    "en_dusuk_fiyat": 165.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 165.95,
-        "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        165.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "150 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_superfresh-sogan-450-gr",
-    "ad": "Superfresh Soğan 450 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "450 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30081945.jpg",
-    "en_dusuk_fiyat": 69.97,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 69.97,
-        "liste_fiyat": 99.95,
-        "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 99.95,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        69.97
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "450 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-09-05",
-        "market": "migros",
-        "liste_fiyat": 99.95,
-        "satis_fiyat": 69.97
-      }
-    ],
     "_original_kategori": "Hazır Yemekler"
   },
   {
@@ -3700,18 +3596,212 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         90.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "600 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Konserve"
+  },
+  {
+    "_sid": "dondurulmus_superfresh-sogan-450-gr",
+    "ad": "Superfresh Soğan 450 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "450 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30081945.jpg",
+    "en_dusuk_fiyat": 69.97,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 69.97,
+        "liste_fiyat": 99.95,
+        "depot_id": "migros-1991",
+        "depot_ad": "Çiçekçi M Migros"
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 99.95,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        69.97
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
+        "450 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-09-06",
+        "market": "migros",
+        "liste_fiyat": 99.95,
+        "satis_fiyat": 69.97
+      }
+    ],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_sef-franzi-dondurulmus-peynirli-pizza-475-gr",
+    "ad": "Şef Franzi Dondurulmuş Peynirli Pizza 475 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "475 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 109.0,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 109.0,
+        "depot_id": "sok-4707",
+        "depot_ad": "Şok Minifevziçakmak"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        109.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
+        "475 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_superfresh-kinoali-ton-balikli-salata-150-gr",
+    "ad": "SuperFresh Kinoalı Ton Balıklı Salata 150 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "150 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/9050253.jpg",
+    "en_dusuk_fiyat": 165.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 165.95,
+        "depot_id": "migros-1991",
+        "depot_ad": "Çiçekçi M Migros"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        165.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
+        "150 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_migros-hizli-dondurulmus-bezelye-450-gr",
+    "ad": "Migros Hızlı Dondurulmuş Bezelye 450 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "450 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/17010058.jpg",
+    "en_dusuk_fiyat": 49.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 49.95,
+        "depot_id": "migros-3296",
+        "depot_ad": "Kadıköy Caferağa M Migros"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        49.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
+        "450 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_feast-i-nce-cubuk-patates-1-kg",
+    "ad": "Feast İnce Çubuk Patates 1 Kg",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "1 KG",
+    "resim": null,
+    "en_dusuk_fiyat": 270.25,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 270.25,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        270.25
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
+        "1 KG"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_superfresh-i-nce-pizza-king-600-gr",
+    "ad": "Superfresh İnce Pizza King 600 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "600 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/21001157.png",
+    "en_dusuk_fiyat": 189.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 189.0,
+        "depot_id": "a101-6815",
+        "depot_ad": "Kostak Ümraniye"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        189.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
+        "600 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
   },
   {
     "_sid": "dondurulmus_superfresh-dondurulmus-bohca-manti-1-kg",
@@ -3736,44 +3826,14 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         215.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_migros-hizli-dondurulmus-bezelye-450-gr",
-    "ad": "Migros Hızlı Dondurulmuş Bezelye 450 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "450 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/17010058.jpg",
-    "en_dusuk_fiyat": 49.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 49.95,
-        "depot_id": "migros-3296",
-        "depot_ad": "Kadıköy Caferağa M Migros"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        49.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -3796,44 +3856,14 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         124.85
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "450 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_superfresh-i-nce-pizza-king-600-gr",
-    "ad": "Superfresh İnce Pizza King 600 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "600 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/21001157.png",
-    "en_dusuk_fiyat": 189.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 189.0,
-        "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        189.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "600 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -3856,13 +3886,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         219.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "420 GR"
       ]
     ],
@@ -3886,13 +3916,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         239.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "140 GR"
       ]
     ],
@@ -3916,14 +3946,44 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         99.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "200 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_superfresh-gourmet-hamburger-500-gr",
+    "ad": "Superfresh Gourmet Hamburger 500 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "500 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30027866.jpg",
+    "en_dusuk_fiyat": 769.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 769.95,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        769.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
+        "500 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -3946,13 +4006,43 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         85.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
+        "1 KG"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_feast-dondurulmus-i-nce-citir-patates-1-kg",
+    "ad": "Feast Dondurulmuş İnce Çıtır Patates 1 Kg",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/hakmarimages/1030093.png",
+    "en_dusuk_fiyat": 119.9,
+    "market_fiyatlari": [
+      {
+        "market": "hakmar",
+        "fiyat": 119.9,
+        "depot_id": "hakmar-5521",
+        "depot_ad": "Ahmediye  Üsküdar"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        119.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -3976,13 +4066,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         79.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "500 GR"
       ]
     ],
@@ -3990,30 +4080,60 @@
     "_original_kategori": "Hazır Yemekler"
   },
   {
-    "_sid": "dondurulmus_feast-dondurulmus-i-nce-citir-patates-1-kg",
-    "ad": "Feast Dondurulmuş İnce Çıtır Patates 1 Kg",
+    "_sid": "dondurulmus_superfresh-cheddarli-tost-pizza-2-li-200-gr",
+    "ad": "Superfresh Cheddarlı Tost Pizza 2'li 200 Gr",
     "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/hakmarimages/1030093.png",
-    "en_dusuk_fiyat": 119.9,
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/hakmar/1030660.jpg",
+    "en_dusuk_fiyat": 99.5,
     "market_fiyatlari": [
       {
         "market": "hakmar",
-        "fiyat": 119.9,
-        "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "fiyat": 99.5,
+        "depot_id": "hakmar-5602",
+        "depot_ad": "Selimpaşa  Üsküdar"
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
-        119.9
+        "2026-09-06",
+        99.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
-        "1 KG"
+        "2026-09-06",
+        "200 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_superfresh-slimmo-king-dondurulmus-pizza-600-gr",
+    "ad": "Superfresh Slimmo King Dondurulmuş Pizza 600 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "600 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1100857.png",
+    "en_dusuk_fiyat": 189.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 189.0,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        189.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
+        "600 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -4042,104 +4162,14 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         219.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "500 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_superfresh-gourmet-hamburger-500-gr",
-    "ad": "Superfresh Gourmet Hamburger 500 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30027866.jpg",
-    "en_dusuk_fiyat": 769.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 769.95,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        769.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "500 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_superfresh-cheddarli-tost-pizza-2-li-200-gr",
-    "ad": "Superfresh Cheddarlı Tost Pizza 2'li 200 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/hakmar/1030660.jpg",
-    "en_dusuk_fiyat": 99.5,
-    "market_fiyatlari": [
-      {
-        "market": "hakmar",
-        "fiyat": 99.5,
-        "depot_id": "hakmar-5602",
-        "depot_ad": "Selimpaşa  Üsküdar"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        99.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "200 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_superfresh-slimmo-king-dondurulmus-pizza-600-gr",
-    "ad": "Superfresh Slimmo King Dondurulmuş Pizza 600 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "600 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1100857.png",
-    "en_dusuk_fiyat": 189.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 189.0,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        189.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "600 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -4162,62 +4192,14 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         119.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "300 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_superfresh-pizza-king-4-lu-780-gr",
-    "ad": "Superfresh Pizza King 4'lü 780 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "780 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30090619.png",
-    "en_dusuk_fiyat": 259.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 259.0,
-        "depot_id": "sok-1017",
-        "depot_ad": "Selimiye"
-      },
-      {
-        "market": "tarim_kredi",
-        "fiyat": 349.9,
-        "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak"
-      },
-      {
-        "market": "migros",
-        "fiyat": 399.95,
-        "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 399.95,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        259.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "780 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -4240,13 +4222,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         85.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -4277,55 +4259,22 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         90.97
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-05",
+        "tarih": "2026-09-06",
         "market": "migros",
         "liste_fiyat": 129.95,
         "satis_fiyat": 90.97
-      }
-    ],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_lezzethane-dondurulmus-lahmacun-400-gr",
-    "ad": "Lezzethane Dondurulmuş Lahmacun 400 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": null,
-    "resim": null,
-    "en_dusuk_fiyat": 160.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 160.0,
-        "liste_fiyat": 200.0,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        160.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-09-05",
-        "market": "bim",
-        "liste_fiyat": 200.0,
-        "satis_fiyat": 160.0
       }
     ],
     "_original_kategori": "Hazır Yemekler"
@@ -4347,17 +4296,50 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         199.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "800 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_lezzethane-dondurulmus-lahmacun-400-gr",
+    "ad": "Lezzethane Dondurulmuş Lahmacun 400 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": null,
+    "resim": null,
+    "en_dusuk_fiyat": 160.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 160.0,
+        "liste_fiyat": 200.0,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        160.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-09-06",
+        "market": "bim",
+        "liste_fiyat": 200.0,
+        "satis_fiyat": 160.0
+      }
+    ],
     "_original_kategori": "Hazır Yemekler"
   },
   {
@@ -4377,13 +4359,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         219.75
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "400 GR"
       ]
     ],
@@ -4407,13 +4389,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         52.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "450 GR"
       ]
     ],
@@ -4437,13 +4419,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         109.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "650 GR"
       ]
     ],
@@ -4474,54 +4456,24 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         83.97
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-05",
+        "tarih": "2026-09-06",
         "market": "migros",
         "liste_fiyat": 119.95,
         "satis_fiyat": 83.97
       }
     ],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_feast-dondurulmus-i-nce-citir-patates-7x7-1-kg",
-    "ad": "Feast Dondurulmuş İnce Çıtır Patates 7x7 1 Kg",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1707122.png",
-    "en_dusuk_fiyat": 115.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 115.0,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        115.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "1 KG"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
     "_original_kategori": "Hazır Yemekler"
   },
   {
@@ -4541,13 +4493,43 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         270.25
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
+        "1 KG"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_feast-dondurulmus-i-nce-citir-patates-7x7-1-kg",
+    "ad": "Feast Dondurulmuş İnce Çıtır Patates 7x7 1 Kg",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1707122.png",
+    "en_dusuk_fiyat": 115.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 115.0,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        115.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -4571,13 +4553,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         129.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -4607,13 +4589,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         201.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "500 GR"
       ]
     ],
@@ -4637,13 +4619,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         129.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "200 GR"
       ]
     ],
@@ -4667,13 +4649,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         179.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "450 GR"
       ]
     ],
@@ -4697,13 +4679,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         82.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -4727,13 +4709,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         209.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "450 GR"
       ]
     ],
@@ -4757,74 +4739,14 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         57.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "450 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_mutfagim-dondurulmus-citir-patates-1-kg",
-    "ad": "Mutfağım Dondurulmuş Çıtır Patates 1 Kg",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/bim/1101505.jpg",
-    "en_dusuk_fiyat": 95.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 95.0,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        95.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "1 KG"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_feast-renkli-karnabahar-500-gr",
-    "ad": "Feast Renkli Karnabahar 500 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30486687.jpg",
-    "en_dusuk_fiyat": 131.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 131.9,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        131.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "500 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -4847,14 +4769,74 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         199.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "545 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_feast-renkli-karnabahar-500-gr",
+    "ad": "Feast Renkli Karnabahar 500 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "500 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30486687.jpg",
+    "en_dusuk_fiyat": 131.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 131.9,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        131.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
+        "500 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_mutfagim-dondurulmus-citir-patates-1-kg",
+    "ad": "Mutfağım Dondurulmuş Çıtır Patates 1 Kg",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/bim/1101505.jpg",
+    "en_dusuk_fiyat": 95.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 95.0,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        95.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
+        "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -4877,13 +4859,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         139.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "820 GR"
       ]
     ],
@@ -4907,13 +4889,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         99.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "650 GR"
       ]
     ],
@@ -4937,13 +4919,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         99.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "450 GR"
       ]
     ],
@@ -4974,19 +4956,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         119.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "400 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-05",
+        "tarih": "2026-09-06",
         "market": "carrefour",
         "liste_fiyat": 164.9,
         "satis_fiyat": 119.9
@@ -5017,13 +4999,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         165.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "150 GR"
       ]
     ],
@@ -5047,14 +5029,44 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         220.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "440 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_feast-taze-fasulye-450-gr",
+    "ad": "Feast Taze Fasulye 450 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "450 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1708515.png",
+    "en_dusuk_fiyat": 128.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 128.9,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        128.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
+        "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -5108,19 +5120,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         139.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-05",
+        "tarih": "2026-09-06",
         "market": "migros",
         "liste_fiyat": 212.95,
         "satis_fiyat": 149.07
@@ -5145,44 +5157,14 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         179.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "400 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_feast-taze-fasulye-450-gr",
-    "ad": "Feast Taze Fasulye 450 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "450 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1708515.png",
-    "en_dusuk_fiyat": 128.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 128.9,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        128.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -5205,13 +5187,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         199.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "350 GR"
       ]
     ],
@@ -5235,13 +5217,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         52.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "400 GR"
       ]
     ],
@@ -5265,13 +5247,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         39.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "450 GR"
       ]
     ],
@@ -5295,13 +5277,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         89.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "600 GR"
       ]
     ],
@@ -5325,13 +5307,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         89.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "600 GR"
       ]
     ],
@@ -5355,44 +5337,14 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         199.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "800 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_feast-peynirli-cubuk-300-gr",
-    "ad": "Feast Peynirli Çubuk 300 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "300 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1708543.png",
-    "en_dusuk_fiyat": 139.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 139.0,
-        "depot_id": "a101-9324",
-        "depot_ad": "Şahap Gürler Kadıköy Istanbul"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        139.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "300 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -5422,24 +5374,54 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         167.97
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-05",
+        "tarih": "2026-09-06",
         "market": "migros",
         "liste_fiyat": 239.95,
         "satis_fiyat": 167.97
       }
     ],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_feast-peynirli-cubuk-300-gr",
+    "ad": "Feast Peynirli Çubuk 300 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "300 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1708543.png",
+    "en_dusuk_fiyat": 139.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 139.0,
+        "depot_id": "a101-9324",
+        "depot_ad": "Şahap Gürler Kadıköy Istanbul"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        139.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
+        "300 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
     "_original_kategori": "Hazır Yemekler"
   },
   {
@@ -5459,13 +5441,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         139.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "450 GR"
       ]
     ],
@@ -5489,13 +5471,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         99.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "420 GR"
       ]
     ],
@@ -5520,19 +5502,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         139.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "420 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-05",
+        "tarih": "2026-09-06",
         "market": "carrefour",
         "liste_fiyat": 199.9,
         "satis_fiyat": 139.9
@@ -5557,18 +5539,48 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         264.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_superfresh-misir-konservesi-600-gr",
+    "ad": "Superfresh Mısır Konservesi 600 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "600 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/18002567.png",
+    "en_dusuk_fiyat": 89.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 89.0,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        89.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
+        "600 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Konserve"
   },
   {
     "_sid": "dondurulmus_superfresh-dondurulmus-klasik-pizza-tost-200-gr",
@@ -5587,13 +5599,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         79.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "200 GR"
       ]
     ],
@@ -5617,48 +5629,18 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         79.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_superfresh-misir-konservesi-600-gr",
-    "ad": "Superfresh Mısır Konservesi 600 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "600 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/18002567.png",
-    "en_dusuk_fiyat": 89.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 89.0,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        89.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "600 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Konserve"
   },
   {
     "_sid": "dondurulmus_superfresh-bogurtlen-300-gr",
@@ -5677,13 +5659,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         249.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "300 GR"
       ]
     ],
@@ -5707,13 +5689,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         469.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "350 GR"
       ]
     ],
@@ -5738,55 +5720,25 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         119.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "320 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-05",
+        "tarih": "2026-09-06",
         "market": "carrefour",
         "liste_fiyat": 169.95,
         "satis_fiyat": 119.9
       }
     ],
     "_original_kategori": "Ekmek ve Unlu Mamüller"
-  },
-  {
-    "_sid": "dondurulmus_nimet-dondurulmus-ispanakli-peynirli-mini-borek-500-gr",
-    "ad": "Nimet Dondurulmuş Ispanaklı Peynirli Mini Börek 500 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/21000939.png",
-    "en_dusuk_fiyat": 79.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 79.5,
-        "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        79.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "500 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
   },
   {
     "_sid": "dondurulmus_pizza-mi-go-peynirli-pizza-dondurulmus-475-gr",
@@ -5805,14 +5757,44 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         199.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "475 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_nimet-dondurulmus-ispanakli-peynirli-mini-borek-500-gr",
+    "ad": "Nimet Dondurulmuş Ispanaklı Peynirli Mini Börek 500 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "500 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/21000939.png",
+    "en_dusuk_fiyat": 79.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 79.5,
+        "depot_id": "a101-6815",
+        "depot_ad": "Kostak Ümraniye"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        79.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
+        "500 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -5835,13 +5817,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         89.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "180 GR"
       ]
     ],
@@ -5865,13 +5847,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         399.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "445 GR"
       ]
     ],
@@ -5895,13 +5877,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         79.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "500 GR"
       ]
     ],
@@ -5932,24 +5914,54 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         139.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "500 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-05",
+        "tarih": "2026-09-06",
         "market": "carrefour",
         "liste_fiyat": 199.9,
         "satis_fiyat": 139.9
       }
     ],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_mutfagim-dondurulmus-manti-450-gr",
+    "ad": "Mutfağım Dondurulmuş Mantı 450 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "450 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1100272.png",
+    "en_dusuk_fiyat": 39.5,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 39.5,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        39.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
+        "450 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
     "_original_kategori": "Hazır Yemekler"
   },
   {
@@ -5969,13 +5981,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         99.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "450 GR"
       ]
     ],
@@ -6005,44 +6017,14 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         109.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "400 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_mutfagim-dondurulmus-manti-450-gr",
-    "ad": "Mutfağım Dondurulmuş Mantı 450 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "450 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1100272.png",
-    "en_dusuk_fiyat": 39.5,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 39.5,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        39.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -6065,13 +6047,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         159.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -6095,13 +6077,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         189.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "375 GR"
       ]
     ],
@@ -6126,19 +6108,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         349.97
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "500 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-05",
+        "tarih": "2026-09-06",
         "market": "migros",
         "liste_fiyat": 499.95,
         "satis_fiyat": 349.97
@@ -6163,13 +6145,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         139.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "820 GR"
       ]
     ],
@@ -6193,13 +6175,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         154.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "500 GR"
       ]
     ],
@@ -6223,18 +6205,48 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         294.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Ekmek ve Unlu Mamüller"
+  },
+  {
+    "_sid": "dondurulmus_cokca-dondurulmus-misir-450-gr",
+    "ad": "Çokça Dondurulmuş Mısır 450 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "450 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/21001196.png",
+    "en_dusuk_fiyat": 52.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 52.5,
+        "depot_id": "a101-6815",
+        "depot_ad": "Kostak Ümraniye"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        52.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
+        "450 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
   },
   {
     "_sid": "dondurulmus_feast-ispanak-450-gr",
@@ -6253,13 +6265,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         109.85
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "450 GR"
       ]
     ],
@@ -6283,44 +6295,14 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         117.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "600 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_cokca-dondurulmus-misir-450-gr",
-    "ad": "Çokça Dondurulmuş Mısır 450 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "450 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/21001196.png",
-    "en_dusuk_fiyat": 52.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 52.5,
-        "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        52.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -6350,25 +6332,55 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         39.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "200 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-05",
+        "tarih": "2026-09-06",
         "market": "migros",
         "liste_fiyat": 54.95,
         "satis_fiyat": 39.95
       }
     ],
     "_original_kategori": "Konserve"
+  },
+  {
+    "_sid": "dondurulmus_mevsiminden-dondurulmus-bezelye-450-gr",
+    "ad": "Mevsiminden Dondurulmuş Bezelye 450 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "450 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/hakmarimages/1025818.png",
+    "en_dusuk_fiyat": 44.5,
+    "market_fiyatlari": [
+      {
+        "market": "hakmar",
+        "fiyat": 44.5,
+        "depot_id": "hakmar-5521",
+        "depot_ad": "Ahmediye  Üsküdar"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        44.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
+        "450 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
   },
   {
     "_sid": "dondurulmus_superfresh-7-24-firindan-mini-baget-ekmegi-300-gr",
@@ -6393,48 +6405,18 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         109.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "300 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Ekmek ve Unlu Mamüller"
-  },
-  {
-    "_sid": "dondurulmus_mevsiminden-dondurulmus-bezelye-450-gr",
-    "ad": "Mevsiminden Dondurulmuş Bezelye 450 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "450 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/hakmarimages/1025818.png",
-    "en_dusuk_fiyat": 44.5,
-    "market_fiyatlari": [
-      {
-        "market": "hakmar",
-        "fiyat": 44.5,
-        "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        44.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "450 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
   },
   {
     "_sid": "dondurulmus_tukas-dondurulmus-parmak-patates-1-kg",
@@ -6453,13 +6435,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         119.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -6483,13 +6465,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         379.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "300 GR"
       ]
     ],
@@ -6513,13 +6495,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         259.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -6543,13 +6525,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         179.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "150 GR"
       ]
     ],
@@ -6573,13 +6555,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         87.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -6603,48 +6585,18 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         109.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "300 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Ekmek ve Unlu Mamüller"
-  },
-  {
-    "_sid": "dondurulmus_lezzethane-dondurulmus-karisik-pizza-505-gr",
-    "ad": "Lezzethane Dondurulmuş Karışık Pizza 505 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "505 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 159.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 159.0,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        159.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "505 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
   },
   {
     "_sid": "dondurulmus_lezzethane-dondurulmus-sigara-boregi-400-gr",
@@ -6663,14 +6615,44 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         52.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "400 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_lezzethane-dondurulmus-karisik-pizza-505-gr",
+    "ad": "Lezzethane Dondurulmuş Karışık Pizza 505 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "505 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 159.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 159.0,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        159.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
+        "505 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -6699,14 +6681,74 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         203.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "450 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_lezzethane-dondurulmus-milfoy-hamuru-1-kg",
+    "ad": "Lezzethane Dondurulmuş Milföy Hamuru 1 Kg",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1100785.png",
+    "en_dusuk_fiyat": 82.5,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 82.5,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        82.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
+        "1 KG"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Ekmek ve Unlu Mamüller"
+  },
+  {
+    "_sid": "dondurulmus_iff-s-dondurulmus-dilim-cilek-350-gr",
+    "ad": "Iff's Dondurulmuş Dilim Çilek 350 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "350 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 65.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 65.0,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        65.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
+        "350 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -6729,13 +6771,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         79.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "500 GR"
       ]
     ],
@@ -6766,85 +6808,25 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         160.97
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-05",
+        "tarih": "2026-09-06",
         "market": "migros",
         "liste_fiyat": 229.95,
         "satis_fiyat": 160.97
       }
     ],
     "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_iff-s-dondurulmus-dilim-cilek-350-gr",
-    "ad": "Iff's Dondurulmuş Dilim Çilek 350 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "350 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 65.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 65.0,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        65.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "350 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_lezzethane-dondurulmus-milfoy-hamuru-1-kg",
-    "ad": "Lezzethane Dondurulmuş Milföy Hamuru 1 Kg",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1100785.png",
-    "en_dusuk_fiyat": 82.5,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 82.5,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        82.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "1 KG"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Ekmek ve Unlu Mamüller"
   },
   {
     "_sid": "dondurulmus_superfresh-mozzarella-peyniri-cubuklari-280-gr",
@@ -6863,13 +6845,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         305.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "280 GR"
       ]
     ],
@@ -6893,13 +6875,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         189.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "400 GR"
       ]
     ],
@@ -6923,13 +6905,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         39.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "450 GR"
       ]
     ],
@@ -6953,13 +6935,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         172.8
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "450 GR"
       ]
     ],
@@ -6983,14 +6965,44 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         104.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "450 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_superfresh-pizza-king-4-lu-780-gr",
+    "ad": "Superfresh Pizza King 4'lü 780 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "780 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/hakmarimages/1016802.png",
+    "en_dusuk_fiyat": 289.5,
+    "market_fiyatlari": [
+      {
+        "market": "hakmar",
+        "fiyat": 289.5,
+        "depot_id": "hakmar-5521",
+        "depot_ad": "Ahmediye  Üsküdar"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        289.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
+        "780 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -7013,13 +7025,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         69.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "450 GR"
       ]
     ],
@@ -7043,13 +7055,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         139.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "140 GR"
       ]
     ],
@@ -7073,13 +7085,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         99.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "420 GR"
       ]
     ],
@@ -7103,13 +7115,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         185.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "400 GR"
       ]
     ],
@@ -7134,19 +7146,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         203.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "300 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-05",
+        "tarih": "2026-09-06",
         "market": "carrefour",
         "liste_fiyat": 271.95,
         "satis_fiyat": 203.9
@@ -7171,13 +7183,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         219.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "400 GR"
       ]
     ],
@@ -7201,13 +7213,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         121.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "400 GR"
       ]
     ],
@@ -7231,13 +7243,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         55.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "450 GR"
       ]
     ],
@@ -7261,13 +7273,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         123.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "450 GR"
       ]
     ],
@@ -7291,13 +7303,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         139.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "300 GR"
       ]
     ],
@@ -7321,13 +7333,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         89.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "600 GR"
       ]
     ],
@@ -7351,13 +7363,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         144.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "450 GR"
       ]
     ],
@@ -7388,19 +7400,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         167.97
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-05",
+        "tarih": "2026-09-06",
         "market": "migros",
         "liste_fiyat": 239.95,
         "satis_fiyat": 167.97
@@ -7425,13 +7437,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         247.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "405 GR"
       ]
     ],
@@ -7455,13 +7467,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         109.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "650 GR"
       ]
     ],
@@ -7486,19 +7498,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         69.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "200 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-05",
+        "tarih": "2026-09-06",
         "market": "bim",
         "liste_fiyat": 79.5,
         "satis_fiyat": 69.5
@@ -7523,13 +7535,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         74.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -7553,43 +7565,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         49.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
-        "450 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_superfresh-patates-kroket-450-gr",
-    "ad": "Superfresh Patates Kroket 450 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "450 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/17011078.png",
-    "en_dusuk_fiyat": 114.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 114.95,
-        "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        114.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
+        "2026-09-06",
         "450 GR"
       ]
     ],
@@ -7613,13 +7595,43 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         39.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
+        "450 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_superfresh-patates-kroket-450-gr",
+    "ad": "Superfresh Patates Kroket 450 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "450 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/17011078.png",
+    "en_dusuk_fiyat": 114.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 114.95,
+        "depot_id": "migros-1991",
+        "depot_ad": "Çiçekçi M Migros"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        114.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
         "450 GR"
       ]
     ],
@@ -7643,13 +7655,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         219.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "450 GR"
       ]
     ],
@@ -7673,13 +7685,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         243.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "400 GR"
       ]
     ],
@@ -7703,13 +7715,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         45.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "200 ML"
       ]
     ],
@@ -7733,13 +7745,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         89.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "400 GR"
       ]
     ],
@@ -7763,18 +7775,48 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         149.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "500 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Ekmek ve Unlu Mamüller"
+  },
+  {
+    "_sid": "dondurulmus_mutfagim-dondurulmus-patates-1-kg",
+    "ad": "Mutfağım Dondurulmuş Patates 1 Kg",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/bim/1100273.jpg",
+    "en_dusuk_fiyat": 85.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 85.0,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        85.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
+        "1 KG"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
   },
   {
     "_sid": "dondurulmus_superfresh-frambuaz-300-gr",
@@ -7793,13 +7835,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         499.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "300 GR"
       ]
     ],
@@ -7823,43 +7865,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         85.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
-        "1 KG"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_mutfagim-dondurulmus-patates-1-kg",
-    "ad": "Mutfağım Dondurulmuş Patates 1 Kg",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/bim/1100273.jpg",
-    "en_dusuk_fiyat": 85.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 85.0,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        85.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
       ]
     ],
@@ -7883,13 +7895,43 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         119.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
+        "450 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_superfresh-gurme-sogan-halkasi-450-gr",
+    "ad": "Superfresh Gurme Soğan Halkası 450 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "450 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/17014774.png",
+    "en_dusuk_fiyat": 154.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 154.95,
+        "depot_id": "migros-1991",
+        "depot_ad": "Çiçekçi M Migros"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        154.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
         "450 GR"
       ]
     ],
@@ -7919,44 +7961,14 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         114.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "200 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_superfresh-gurme-sogan-halkasi-450-gr",
-    "ad": "Superfresh Gurme Soğan Halkası 450 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "450 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/17014774.png",
-    "en_dusuk_fiyat": 154.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 154.95,
-        "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        154.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -7979,44 +7991,14 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         269.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "300 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_mutfagim-dondurulmus-patates-2-5-kg",
-    "ad": "Mutfağım Dondurulmuş Patates 2.5 Kg",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "2.5 KG",
-    "resim": null,
-    "en_dusuk_fiyat": 145.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 145.0,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        145.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "2.5 KG"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -8039,14 +8021,44 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         109.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "650 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_mutfagim-dondurulmus-patates-2-5-kg",
+    "ad": "Mutfağım Dondurulmuş Patates 2.5 Kg",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "2.5 KG",
+    "resim": null,
+    "en_dusuk_fiyat": 145.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 145.0,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        145.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
+        "2.5 KG"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -8069,13 +8081,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         109.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "650 GR"
       ]
     ],
@@ -8106,54 +8118,24 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         94.47
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-05",
+        "tarih": "2026-09-06",
         "market": "migros",
         "liste_fiyat": 134.95,
         "satis_fiyat": 94.47
       }
     ],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_feast-sogan-halkasi-450-gr",
-    "ad": "Feast Soğan Halkası 450 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "450 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/21000690.png",
-    "en_dusuk_fiyat": 55.0,
-    "market_fiyatlari": [
-      {
-        "market": "hakmar",
-        "fiyat": 55.0,
-        "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        55.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "450 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
     "_original_kategori": "Hazır Yemekler"
   },
   {
@@ -8173,14 +8155,44 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         169.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "1 KG"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_feast-sogan-halkasi-450-gr",
+    "ad": "Feast Soğan Halkası 450 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "450 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/21000690.png",
+    "en_dusuk_fiyat": 55.0,
+    "market_fiyatlari": [
+      {
+        "market": "hakmar",
+        "fiyat": 55.0,
+        "depot_id": "hakmar-5521",
+        "depot_ad": "Ahmediye  Üsküdar"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        55.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
+        "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -8203,13 +8215,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         69.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "720 ML"
       ]
     ],
@@ -8233,13 +8245,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         219.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "650 GR"
       ]
     ],
@@ -8269,13 +8281,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         219.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "360 GR"
       ]
     ],
@@ -8299,13 +8311,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         239.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "600 GR"
       ]
     ],
@@ -8329,13 +8341,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         67.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "75 GR"
       ]
     ],
@@ -8359,13 +8371,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         149.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "200 GR"
       ]
     ],
@@ -8389,13 +8401,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         229.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "400 GR"
       ]
     ],
@@ -8419,13 +8431,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         69.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "250 GR"
       ]
     ],
@@ -8449,13 +8461,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         408.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "650 GR"
       ]
     ],
@@ -8480,19 +8492,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         95.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "180 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-05",
+        "tarih": "2026-09-06",
         "market": "bim",
         "liste_fiyat": 119.0,
         "satis_fiyat": 95.0
@@ -8517,13 +8529,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         55.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "118 GR"
       ]
     ],
@@ -8547,13 +8559,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         145.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "135 GR"
       ]
     ],
@@ -8577,13 +8589,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         240.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "650 GR"
       ]
     ],
@@ -8607,13 +8619,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         39.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "135 GR"
       ]
     ],
@@ -8637,13 +8649,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         99.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "200 GR"
       ]
     ],
@@ -8667,13 +8679,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         135.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "500 GR"
       ]
     ],
@@ -8698,19 +8710,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         189.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "600 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-05",
+        "tarih": "2026-09-06",
         "market": "bim",
         "liste_fiyat": 229.0,
         "satis_fiyat": 189.0
@@ -8735,13 +8747,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         199.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "550 GR"
       ]
     ],
@@ -8765,13 +8777,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         229.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "600 GR"
       ]
     ],
@@ -8779,29 +8791,29 @@
     "_original_kategori": "Tatlılar"
   },
   {
-    "_sid": "dondurulmus_ma-sante-dondurulmus-cheesecake-limonlu-frambuazli-650-gr",
-    "ad": "Ma Sante Dondurulmuş Cheesecake Limonlu Frambuazlı 650 Gr",
+    "_sid": "dondurulmus_feast-frambuazli-cheesecake-650-gr",
+    "ad": "Feast Frambuazlı Cheesecake 650 Gr",
     "ana_kategori": "Dondurulmuş Ürünler",
     "agirlik_hacim": "650 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1100768.png",
-    "en_dusuk_fiyat": 219.0,
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30301936.png",
+    "en_dusuk_fiyat": 409.8,
     "market_fiyatlari": [
       {
-        "market": "bim",
-        "fiyat": 219.0,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "market": "carrefour",
+        "fiyat": 409.8,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper"
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
-        219.0
+        "2026-09-06",
+        409.8
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "650 GR"
       ]
     ],
@@ -8825,13 +8837,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         416.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "650 GR"
       ]
     ],
@@ -8839,29 +8851,29 @@
     "_original_kategori": "Tatlılar"
   },
   {
-    "_sid": "dondurulmus_feast-frambuazli-cheesecake-650-gr",
-    "ad": "Feast Frambuazlı Cheesecake 650 Gr",
+    "_sid": "dondurulmus_ma-sante-dondurulmus-cheesecake-limonlu-frambuazli-650-gr",
+    "ad": "Ma Sante Dondurulmuş Cheesecake Limonlu Frambuazlı 650 Gr",
     "ana_kategori": "Dondurulmuş Ürünler",
     "agirlik_hacim": "650 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30301936.png",
-    "en_dusuk_fiyat": 409.8,
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1100768.png",
+    "en_dusuk_fiyat": 219.0,
     "market_fiyatlari": [
       {
-        "market": "carrefour",
-        "fiyat": 409.8,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "market": "bim",
+        "fiyat": 219.0,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar"
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
-        409.8
+        "2026-09-06",
+        219.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "650 GR"
       ]
     ],
@@ -8885,44 +8897,14 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         239.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "400 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Tatlılar"
-  },
-  {
-    "_sid": "dondurulmus_feast-san-sebastian-cheesecake-600-gr",
-    "ad": "Feast San Sebastian Cheesecake 600 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "600 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30301941.png",
-    "en_dusuk_fiyat": 419.25,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 419.25,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        419.25
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "600 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -8945,14 +8927,44 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         110.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "500 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Tatlılar"
+  },
+  {
+    "_sid": "dondurulmus_feast-san-sebastian-cheesecake-600-gr",
+    "ad": "Feast San Sebastian Cheesecake 600 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "600 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30301941.png",
+    "en_dusuk_fiyat": 419.25,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 419.25,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-06",
+        419.25
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-06",
+        "600 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -8975,13 +8987,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         350.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-05",
+        "2026-09-06",
         "700 GR"
       ]
     ],
