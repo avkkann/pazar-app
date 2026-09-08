@@ -13916,6 +13916,39 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "et_banvit-uzun-pilic-sosis-1-kg",
+    "ad": "Banvit Uzun Piliç Sosis 1 Kg",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/bim/1710327.jpg",
+    "en_dusuk_fiyat": 109.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 109.5,
+        "depot_id": "a101-4217",
+        "depot_ad": "Rıhtım Kadıköy Istanbul"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        99.0
+      ],
+      [
+        "2026-09-05",
+        109.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "et_tarim-kredi-dana-kokteyl-sosis-200-gr",
     "ad": "Tarım Kredi Dana Kokteyl Sosis 200 Gr",
     "ana_kategori": "Şarküteri",
@@ -14411,35 +14444,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "et_migros-karides-400-gr",
-    "ad": "Migros Karides 400 Gr",
-    "ana_kategori": "Taze Deniz Ürünleri",
-    "agirlik_hacim": "400 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/18992595.png",
-    "en_dusuk_fiyat": 629.9,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 629.9,
-        "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-07-27",
-        629.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-27",
-        "400 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
     "_sid": "et_polonez-fume-pilic-gogus-1-kg",
     "ad": "Polonez Füme Piliç Göğüs 1 Kg",
     "ana_kategori": "Şarküteri",
@@ -14665,39 +14669,6 @@
       [
         "2026-07-25",
         "55 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "et_banvit-uzun-pilic-sosis-1-kg",
-    "ad": "Banvit Uzun Piliç Sosis 1 Kg",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/bim/1710327.jpg",
-    "en_dusuk_fiyat": 109.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 109.5,
-        "depot_id": "a101-4217",
-        "depot_ad": "Rıhtım Kadıköy Istanbul"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        99.0
-      ],
-      [
-        "2026-09-05",
-        109.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -15332,6 +15303,35 @@
       [
         "2026-07-03",
         "320 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "et_migros-karides-400-gr",
+    "ad": "Migros Karides 400 Gr",
+    "ana_kategori": "Taze Deniz Ürünleri",
+    "agirlik_hacim": "400 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/18992595.png",
+    "en_dusuk_fiyat": 629.9,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 629.9,
+        "depot_id": "migros-1991",
+        "depot_ad": "Çiçekçi M Migros"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-07-27",
+        629.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-27",
+        "400 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -26080,6 +26080,43 @@
       ]
     ],
     "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "et_pilic-kofte-300-gr",
+    "ad": "Piliç Köfte 300 Gr",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "300 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 69.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 69.0,
+        "liste_fiyat": 89.0,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-08",
+        69.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-08",
+        "300 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-09-08",
+        "market": "bim",
+        "liste_fiyat": 89.0,
+        "satis_fiyat": 69.0
+      }
+    ]
   },
   {
     "_sid": "et_keskinoglu-pilic-doner-200-gr",
