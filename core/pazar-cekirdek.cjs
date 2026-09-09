@@ -34,6 +34,12 @@
   // oldugu icin ayni adlari gormek ZORUNDALAR.
   let catCache = {};
   let productMap = {};
+  // app.js'teki sayacin karsiligi. Orada productMap'e _pmEkle ile yaziliyor ve
+  // sayac orada artiyor; burada katalog TEK SEFERDE kuruldugu icin dongu bitince
+  // bir kez saymak yeterli. _ahIndexRebuildIfNeeded bunu okuyor -- eskiden her
+  // cagrida Object.keys(productMap).length kosuyordu ve o is KART BASINA
+  // yapiliyordu (16 bin anahtarlik dizi; olculen 115-150 ms/sayfa).
+  let _productMapSayac = 0;
   // sepet: app.js'te "let sepet = _rawSepet" (localStorage'a bagli) oldugu icin
   // BIREBIR KOPYALANAMAZ. catCache/productMap ile ayni desen: burada tanimli,
   // disaridan doldruluyor. Market toplamlarini hesaplayan fonksiyonlar bunu okuyor.
@@ -51,6 +57,7 @@
           productMap[u._id] = u;
         }
       }
+      _productMapSayac = Object.keys(productMap).length;
       _ahIndex = null; _ahIndexSize = 0;   // katalog degisti -> indeks bayat
     }
     if (d.gecmis) { _gecmisCache = d.gecmis; _seriCache = new Map(); }
@@ -153,6 +160,8 @@ const KAT_EMOJI = {
 };
 
 const PAGE_SIZE = 48;
+
+const _adnCache = new Map();
 
 let _ahIndex = null;
 
@@ -672,13 +681,23 @@ function zamSecHavuzdan(havuz) {
   return secilen;
 }
 
+function _adAyristir(ad) {
+  let v = _adnCache.get(ad);
+  if (v === undefined) {
+    const adn = trNormalize(ad);
+    v = { adn: adn, kelimeler: adn.split(/[^a-z0-9]+/).filter(Boolean) };
+    _adnCache.set(ad, v);
+  }
+  return v;
+}
+
 function _aramaSkoru(ad, qn) {
-  const adn = trNormalize(ad);
-  if (!qn || !adn) return 0;
-  const kelimeler = adn.split(/[^a-z0-9]+/).filter(Boolean);
-  if (kelimeler.includes(qn)) return 3;
-  if (kelimeler.some(w => w.startsWith(qn))) return 2;
-  if (adn.includes(qn)) return 1;
+  if (!qn || !ad) return 0;
+  const p = _adAyristir(ad);
+  if (!p.adn) return 0;
+  if (p.kelimeler.includes(qn)) return 3;
+  if (p.kelimeler.some(w => w.startsWith(qn))) return 2;
+  if (p.adn.includes(qn)) return 1;
   return 0;
 }
 
@@ -699,7 +718,7 @@ function urunAra(liste, q) {
 // birakilsaydi "tuz" yine "Tuz Baharat ve Harclar"in tamamini isaret ederdi.
 
 function _ahIndexRebuildIfNeeded() {
-  const size = Object.keys(productMap).length;
+  const size = _productMapSayac;
   if (_ahIndex && size === _ahIndexSize) return;
   _ahIndex = {};
   for (const k in productMap) {
@@ -871,6 +890,7 @@ function enIyiBirimIdleri(liste) {
     ZAM_MAX: ZAM_MAX,
     ZAM_MIN_KAYIT: ZAM_MIN_KAYIT,
     _ARAMA_GRUP_SLUG: _ARAMA_GRUP_SLUG,
+    _adAyristir: _adAyristir,
     _ahIndexRebuildIfNeeded: _ahIndexRebuildIfNeeded,
     _aramaSkoru: _aramaSkoru,
     _birimFiyatAyristir: _birimFiyatAyristir,

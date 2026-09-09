@@ -40,16 +40,36 @@ KATEGORI_DOSYALARI = [
 
 
 def kategori_urunlerini_yukle():
+    """(urunler, eksik_dosyalar) doner.
+
+    ESKIDEN eksik dosya sessizce atlaniyordu ve main dogrudan silmeye
+    geciyordu: bir kategori dosyasi okunamazsa o kategorinin TUM urunleri
+    "artik gecerli degil" sayilip veritabanindan siliniyordu, geri donusu
+    olmadan. Artik eksikler cagirana bildiriliyor ki silme iptal edilebilsin.
+    Bos dosya da eksik sayilir -- 0 urun, dosyanin yarim yazildigi anlamina
+    gelir ve ayni toptan silmeyi tetikler.
+    """
     tum_urunler = []
+    eksikler = []
     for dosya in KATEGORI_DOSYALARI:
         path = f"data/{dosya}.json"
         if not os.path.exists(path):
-            print(f"UYARI: {path} bulunamadi, atlaniyor")
+            print(f"UYARI: {path} bulunamadi")
+            eksikler.append(dosya)
             continue
-        with open(path, encoding="utf-8") as f:
-            urunler = json.load(f)
+        try:
+            with open(path, encoding="utf-8") as f:
+                urunler = json.load(f)
+        except (json.JSONDecodeError, OSError) as e:
+            print(f"UYARI: {path} okunamadi: {e}")
+            eksikler.append(dosya)
+            continue
+        if not urunler:
+            print(f"UYARI: {path} BOS (0 urun)")
+            eksikler.append(dosya)
+            continue
         tum_urunler.extend(urunler)
-    return tum_urunler
+    return tum_urunler, eksikler
 
 
 def satirlara_donustur(urunler):
@@ -126,8 +146,15 @@ def eskileri_sil(silinecekler):
     return silinen
 
 
+# Silme icin emniyet tabani: bir kosuda DB'nin bu oranindan fazlasi
+# silinecekse durur ve insan onayi bekler. Gercek gunluk devir cok
+# kucuk (yuzde birin altinda); yuzde 5 bol bir tavan, yani ancak
+# gercekten bir sey bozulunca devreye girer.
+SILME_TAVAN_ORANI = 0.05
+
+
 def main():
-    urunler = kategori_urunlerini_yukle()
+    urunler, eksik_dosyalar = kategori_urunlerini_yukle()
     print(f"Kategori dosyalarindan okunan ham urun: {len(urunler)}")
 
     satirlar = satirlara_donustur(urunler)
@@ -141,6 +168,29 @@ def main():
     print(f"DB'deki toplam satir: {len(db_sidleri)}")
 
     silinecekler = db_sidleri - gecerli_sidler
+
+    # ── SILME EMNIYETI ───────────────────────────────────────────────
+    # Silme geri donusu olmayan tek adim; onunde iki kapi var.
+    # KAPI 1: kategori dosyalarindan biri bile eksik/bozuk/bos ise HIC silme.
+    # O dosyanin urunleri gecerli listede olmadigi icin hepsi "eski" gorunur
+    # ve toptan silinirdi. Upsert zaten yapildi, yani veri guncel; sadece
+    # temizlik atlaniyor ve is kirmizi doniyor.
+    if eksik_dosyalar:
+        print(f"\nSILME IPTAL: {len(eksik_dosyalar)} kategori dosyasi eksik/bozuk: "
+              f"{', '.join(eksik_dosyalar)}")
+        print("Upsert tamamlandi, temizlik atlandi. Dosyalar duzelince tekrar kos.")
+        sys.exit(1)
+
+    # KAPI 2: silinecek miktar DB'nin belirlenen oranini asiyorsa durdur.
+    # Normal gunluk devir yuzde birin cok altinda; tavani asmasi "veri
+    # tarafinda bir sey bozuldu" demektir, "bugun cok urun kalkti" demek degil.
+    if db_sidleri and len(silinecekler) > len(db_sidleri) * SILME_TAVAN_ORANI:
+        oran = len(silinecekler) / len(db_sidleri) * 100
+        print(f"\nSILME IPTAL: {len(silinecekler)} satir silinecekti "
+              f"(DB'nin yuzde {oran:.1f}'i, tavan yuzde {SILME_TAVAN_ORANI * 100:.0f}).")
+        print("Bu kadar buyuk bir dusus normal degil. Veriyi kontrol edip elle onayla.")
+        sys.exit(1)
+
     if silinecekler:
         print(f"Artik gecerli olmayan {len(silinecekler)} urun DB'den silinecek")
         silinen = eskileri_sil(silinecekler)

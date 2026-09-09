@@ -341,7 +341,10 @@ function seritKur({ rpcData, tableData, tableHata }) {
     if (!m) throw new Error('sabit bulunamadi: ' + n);
     return 'const ' + n + ' = ' + m[1] + ';';
   }).join('\n');
-  const kaynak = [sabitler, fnKaynak('renderDusenlerSeridi'), fnKaynak('renderSupheliSeridi')].filter(Boolean).join('\n');
+  // productMap'e yazma artik _pmEkle kapisindan geciyor (sayac bozulmasin diye).
+  // SAHTE koymuyoruz -- gercek kaynagi yukluyoruz ki kapi bozulursa test de bozulsun.
+  const kaynak = [sabitler, 'let _productMapSayac = 0;', fnKaynak('_pmEkle'),
+                  fnKaynak('renderDusenlerSeridi'), fnKaynak('renderSupheliSeridi')].filter(Boolean).join('\n');
   vm.runInContext(kaynak, ctx);
   return { ctx, el, cagri };
 }

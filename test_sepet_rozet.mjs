@@ -58,8 +58,14 @@ console.log('\n=== 3. renderSepet rozeti CANLI urunden + CIFT-cache sarti ===');
 {
   const rs = soy(fnKaynak('renderSepet'));
   ok('renderSepet tanimli', !!rs, '');
-  // canli urun productMap[u._id] den aliniyor
-  ok('  rozet CANLI urunden (productMap[u._id])', /const _canliUrun = productMap\[u\._id\]/.test(rs), '');
+  // IDDIA AYNI KALDI -- "rozet CANLI urunden, sepetteki eski kopyadan DEGIL".
+  // Yalnizca desen gercek bicime uyarlandi: cozum artik _sepetCanli uzerinden
+  // yapiliyor, cunku productMap'in anahtari (_id) KARARSIZ -- `slug_index`
+  // biciminde ve veri her gece yeniden dizildigi icin ayni index ertesi gun
+  // BASKA bir urune denk geliyordu. _sepetCanli once sabit _sid ile ariyor.
+  ok('  rozet CANLI urunden (_sepetCanli)', /const _canliUrun = _sepetCanli\(u\)/.test(rs), rs.slice(0, 200));
+  ok('  kararsiz productMap[u._id] yoluna GERI DONULMEDI',
+     !/const _canliUrun = productMap\[u\._id\]/.test(rs), '');
   // tek kaynak urunRozetleriHTML, canli urunle cagriliyor
   ok('  tek kaynak urunRozetleriHTML(_canliUrun, true)', /urunRozetleriHTML\(_canliUrun, true\)/.test(rs), '');
   // KRITIK: cift-cache sarti -- _puanCache dusetse supheli/gercek ayirt edilemez

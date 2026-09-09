@@ -73,6 +73,10 @@ vm.runInContext([
   fnKaynak('ustKategori'),
   fnKaynak('urunKategoriSlugu'),
   fnKaynak('_yuklemeHataModali'),
+  // assignIds artik productMap'e _pmEkle kapisindan yaziyor. GERCEK kaynak
+  // yukleniyor (sahte degil) ki kapi bozulursa test de bozulsun.
+  'let _productMapSayac = 0;',
+  fnKaynak('_pmEkle'),
   fnKaynak('assignIds'),
   dedup ? dedup[0] : 'let _catYukleniyor = new Map();',
   fnKaynak('loadCat'),

@@ -73,6 +73,10 @@ vm.createContext(kutu);
 const kaynak = [
   sabit('KATEGORILER'), sabit('KART_GRUP'), sabit('_ARAMA_GRUP_SLUG'),
   govde('trNormalize'), govde('ustKategori'),
+  // _aramaSkoru artik ad basina normalize+kelime onbellegi kullaniyor
+  // (her tus vurusunda 16 bin urunu yeniden normalize etmeyi biraktik).
+  // GERCEK kaynak yukleniyor, sahte degil.
+  'const _adnCache = new Map();', govde('_adAyristir'),
   govde('_aramaSkoru'), govde('urunAra'), govde('kategoriOnerisi'),
 ].join('\n');
 for (const [ad, p] of [['KATEGORILER', sabit('KATEGORILER')], ['KART_GRUP', sabit('KART_GRUP')],
@@ -271,6 +275,42 @@ console.log('\n=== 8. VEKIL OLCUM: en sik 30 kelimede ilk sonuc TAM KELIME ===')
   // Eski mantikta bu oran 22/30 idi (olculdu). Esik 28: kucuk veri
   // dalgalanmasina dayansin ama gerilemeyi yakalasin.
   ok('30 kelimenin EN AZ 28\'inde ilk sonuc tam kelime', tam >= 28, tam + '/30 · kotuler: ' + kotu.join(', '));
+}
+
+// ── 9. AD ONBELLEGI: her tus vurusunda 16 bin ad yeniden normalize EDILMEMELI ──
+// Kusur perf'ti ama kullaniciya islevsel gorunuyordu: arama kutusuna yazarken
+// telefon takiliyordu. Olculdu (gercek katalog, 16.119 urun, dort tus vurusu):
+// 287,2 ms -> 35,0 ms, 8,2 kat. Sonuclar birebir ayni kaldi.
+// Bu bolum onbellegin GERCEKTEN kullanildigini kilitler; yoksa biri
+// _aramaSkoru'yu eski haline dondurunce hicbir test kirmizi olmazdi.
+{
+  console.log('\n=== 9. AD ONBELLEGI ===');
+  const sk = govde('_aramaSkoru');
+  ok('_aramaSkoru ad onbellegini kullaniyor (_adAyristir)', /_adAyristir\(\s*ad\s*\)/.test(sk), sk.slice(0, 200));
+  ok('  her cagrida trNormalize(ad) yeniden KOSMUYOR', !/const adn = trNormalize\(ad\)/.test(sk), sk.slice(0, 200));
+  ok('  her cagrida split yeniden KOSMUYOR', !/adn\.split\(/.test(sk), sk.slice(0, 200));
+
+  const ay = govde('_adAyristir');
+  ok('_adAyristir sonucu Map te sakliyor', /_adnCache\.set\(/.test(ay) && /_adnCache\.get\(/.test(ay), ay);
+
+  // DAVRANIS: ayni ad iki kez sorulunca trNormalize BIR kez kosmali.
+  const kutu2 = {};
+  vm.createContext(kutu2);
+  vm.runInContext(
+    'let _sayac = 0;\n' +
+    govde('trNormalize').replace('function trNormalize(s) {', 'function trNormalize(s) { _sayac++;') + '\n' +
+    'const _adnCache = new Map();\n' + govde('_adAyristir') + '\n' + govde('_aramaSkoru'),
+    kutu2);
+  vm.runInContext('_aramaSkoru("Pınar Süt 1 L", "sut")', kutu2);
+  const ilk = vm.runInContext('_sayac', kutu2);
+  vm.runInContext('_aramaSkoru("Pınar Süt 1 L", "sut"); _aramaSkoru("Pınar Süt 1 L", "pinar");', kutu2);
+  const sonra = vm.runInContext('_sayac', kutu2);
+  ok('  ayni ad tekrar sorulunca trNormalize YENIDEN kosmuyor', sonra === ilk, ilk + ' -> ' + sonra);
+  // KONTROL GRUBU: farkli ad GERCEKTEN yeni bir normalize tetiklemeli,
+  // yoksa yukaridaki "artmadi" olcumu aletin korlugu de olabilirdi.
+  vm.runInContext('_aramaSkoru("Sek Ayran 1 L", "ayran")', kutu2);
+  ok('  farkli ad yeni normalize tetikliyor (arac kor degil)',
+     vm.runInContext('_sayac', kutu2) > sonra, sonra + ' -> ' + vm.runInContext('_sayac', kutu2));
 }
 
 console.log('\nSONUC: PASS=' + pass + ' FAIL=' + fail);

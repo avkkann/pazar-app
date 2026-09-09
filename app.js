@@ -1,7 +1,18 @@
   // ===== SUPABASE CLIENT =====
   const SUPABASE_URL = 'https://gbgxxahhbfnulmyecxia.supabase.co';
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdiZ3h4YWhoYmZudWxteWVjeGlhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI4MjY4MDgsImV4cCI6MjA5ODQwMjgwOH0.VqJ1MAPKBbvEfS1c781iFbHisEJ9GmHvCLmwz1c6pWM';
-  const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  // TEK DIS SERVISE BAGLI DEGIL. Bu satir eskiden korumasizdi: jsdelivr coker,
+  // kurumsal ag engeller ya da SRI damgasi tutmazsa window.supabase tanimsiz
+  // kaliyor, bu satir hata firlatiyor ve 7000 satirlik dosyanin TAMAMI hic
+  // calismiyordu -- yani sadece giris/favori degil, Supabase'e hic ihtiyac
+  // duymayan FIYAT KARSILASTIRMANIN KENDISI de olmuyordu.
+  const supabaseClient = (window.supabase && typeof window.supabase.createClient === 'function')
+    ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+    : null;
+  if (!supabaseClient) {
+    // SESSIZ YUTMA YOK: bu depoda en sik hata sinifi sessiz basarisizlik.
+    console.warn('[pazar] Supabase kutuphanesi yuklenemedi -- giris, favori ve fiyat alarmi kapali; fiyat karsilastirma calisiyor.');
+  }
   window.supabaseClient = supabaseClient;
 
   // Auth state listener — global pazarAuth objesi
@@ -11,18 +22,35 @@
     ready: false
   };
 
-  supabaseClient.auth.getSession().then(({ data: { session } }) => {
-    window.pazarAuth.session = session;
-    window.pazarAuth.user = session?.user || null;
+  if (supabaseClient) {
+    supabaseClient.auth.getSession().then(({ data: { session } }) => {
+      window.pazarAuth.session = session;
+      window.pazarAuth.user = session?.user || null;
+      window.pazarAuth.ready = true;
+      document.dispatchEvent(new CustomEvent('pazarAuthReady', { detail: window.pazarAuth }));
+    });
+
+    supabaseClient.auth.onAuthStateChange((event, session) => {
+      window.pazarAuth.session = session;
+      window.pazarAuth.user = session?.user || null;
+      document.dispatchEvent(new CustomEvent('pazarAuthChange', { detail: { event, session, user: session?.user || null } }));
+    });
+  } else {
+    // OLAY YINE DE ATILIYOR. pazarAuthReady'yi bekleyen kod var; kutuphane
+    // yok diye olayi hic atmamak "sonsuza kadar bekleyen" bir uygulama
+    // birakirdi -- cozmeye calistigimiz seyin aynisi. Oturum yok, hazir evet.
     window.pazarAuth.ready = true;
     document.dispatchEvent(new CustomEvent('pazarAuthReady', { detail: window.pazarAuth }));
-  });
+  }
 
-  supabaseClient.auth.onAuthStateChange((event, session) => {
-    window.pazarAuth.session = session;
-    window.pazarAuth.user = session?.user || null;
-    document.dispatchEvent(new CustomEvent('pazarAuthChange', { detail: { event, session, user: session?.user || null } }));
-  });
+  // Supabase gerektiren bir islemin kapisi. Kutuphane yoksa kullaniciya SEBEBI
+  // soyleyip cikar; TypeError firlatmasindansa acik bir mesaj daha iyi.
+  function _supabaseGerekli() {
+    if (supabaseClient) return true;
+    if (typeof toastGoster === 'function') toastGoster('Giriş servisi şu an yüklenemedi. Bağlantını kontrol edip sayfayı yenile.');
+    return false;
+  }
+  window._supabaseGerekli = _supabaseGerekli;
   // ===== /SUPABASE CLIENT =====
 
   var onboardingIdx = 0;
@@ -887,6 +915,21 @@ const PAGE_SIZE = 48;
 // ── DURUM ─────────────────────────────────────────────
 let catCache = {};    // slug → [products with _id]
 let productMap = {};  // _id → product
+// KAC AYRI URUN GIRDI. Bu soru eskiden her sorulusta
+// Object.keys(productMap).length ile cevaplaniyordu: 16 bin anahtarlik bir
+// dizi ayirip uzunlugunu okuyup atiyordu. Ve soru KART BASINA soruluyordu
+// (digerPaketleriBul -> _ahIndexRebuildIfNeeded), yani bir kategori sayfasi
+// cizmek olculen 115-150 ms'yi buna harciyordu. Sayac ayni cevabi sabit
+// zamanda veriyor. Cekirdek iskeleti de bunu durumAyarla'da bir kez kurar.
+let _productMapSayac = 0;
+// productMap'e yazmanin TEK kapisi. Dogrudan atama yapilirsa sayac kayar,
+// index yenilenmez ve "diger paketler" listesi eksik cikar.
+function _pmEkle(u) {
+  if (!u || !u._id) return u;
+  if (!(u._id in productMap)) _productMapSayac++;
+  productMap[u._id] = u;
+  return u;
+}
 let urunler = [];     // görünen ürünler (toggleSepet için)
 let currentKategori = null, currentSayfa = 1, toplamSayfa = 1, yukleniyor = false;
 let _prevScreen = 'screen-home';
@@ -1063,9 +1106,23 @@ function modalKapat() {
 
 document.addEventListener('keydown', e => {
   const m = document.getElementById('appModal');
-  if (!m || m.style.display === 'none') return;
-  if (e.key === 'Enter') { e.preventDefault(); document.getElementById('appModalOk').click(); }
-  if (e.key === 'Escape') { e.preventDefault(); modalKapat(); }
+  // ACIK MI: kutu YALNIZCA style.display='flex' ile aciliyor ve 'none' ile
+  // kapaniyor. Eski kontrol "=== 'none'" idi; ama TAZE SAYFADA satir ici stil
+  // BOS dize (index.html'de gizleme .gizli SINIFIYLA yapiliyor), yani cikis
+  // kosulu hic saglanmiyordu ve sayfadaki HER Enter preventDefault yiyordu --
+  // butonlar, baglantilar, giris formu klavyeyle calismiyordu. Kilit ancak
+  // kullanici bir kez kutu acip kapatinca coozuluyordu, ki bunu bilmesi imkansiz.
+  if (!m || m.style.display !== 'flex') return;
+  if (e.key === 'Escape') { e.preventDefault(); modalKapat(); return; }
+  if (e.key !== 'Enter') return;
+  // ODAKTAKI DUGMEYE KARISMA: kullanici Iptal'e gelip Enter'a bastiginda
+  // tarayici zaten ONA basar. Kosulsuz appModalOk.click() demek "Iptal ->
+  // Tamam" demekti; hesap silme onayi da tam bu kutuyu kullaniyor, yani
+  // vazgecmek isteyen kisi silmeye bir adim daha yaklasiyordu.
+  const odak = document.activeElement;
+  if (odak && (odak.tagName === 'BUTTON' || odak.tagName === 'A' || odak.tagName === 'TEXTAREA')) return;
+  e.preventDefault();
+  document.getElementById('appModalOk').click();
 });
 
 function _sablonDisplayAd(ad) {
@@ -1455,6 +1512,13 @@ function goBack() {
 // yorum aranan cagrilari pencerenin disina itip guard'lari kiriyor. Bu tuzaga
 // bu depoda daha once de dusuldu (CLAUDE.md 2026-08-24); cozum guard'i
 // gevsetmek degil, aciklamayi disari almak.
+// openDetay ICINDE urun aranirken _sid indeksine ONCE bakilir: sepet
+// kartlari artik kararsiz _id yerine sabit _sid gonderiyor. Sira guvenli --
+// OLCULDU (2026-09-10, 16.119 urun): _sid degerleriyle uretilen _id degerleri
+// HIC cakismiyor (kesisim 0) ve urunlerin tamaminda _sid dolu.
+// NOT: bu aciklama fonksiyonun DISINDA -- uc test openDetay govdesini SABIT
+// PENCEREYLE kesip icinde cagri ariyor; ice yazilan uzun yorum aranan
+// cagrilari pencerenin disina itip testleri kiriyor (CLAUDE.md'de kayitli tuzak).
 function openDetay(urunId) {
   // 'screen-favoriler' 2026-09-01'de EKLENDI. Oncesinde listede yoktu ->
   // find() undefined donuyor, '|| screen-home' fallback'i devreye giriyor ve
@@ -1467,9 +1531,9 @@ function openDetay(urunId) {
     _prevScreen = screens.find(id => _ekranGorunur(id)) || 'screen-home';
   }
 
-  let u = productMap[urunId] || sepet.find(s => s._id === urunId);
+  let u = _sidIndeksi()[urunId] || productMap[urunId] || sepet.find(s => _sepetEslesir(s, urunId));
   if (!u) return;
-  productMap[u._id] = u;
+  _pmEkle(u);
 
   // Gerekce fonksiyonun USTUNDEKI nota bak (kaydirma sifirlama).
   const urunDegisti = window._detayUrunId !== urunId;
@@ -1510,7 +1574,7 @@ function openDetay(urunId) {
     </div>${bildirimUyariHTML(u._sid, f.market)}`;
   }).join('');
 
-  const inCart = sepet.some(s => s._id === urunId);
+  const inCart = sepet.some(s => _sepetEslesir(s, urunId));
   const btnHtml = `<button id="detayEkleBtn" class="detay-btn-ekle${inCart ? ' added' : ''}" data-id="${_kacir(u._id)}"
     onclick="toggleSepet(this.dataset.id); renderDetayBtn(this.dataset.id)">
     ${inCart
@@ -1578,7 +1642,7 @@ function openDetay(urunId) {
 function renderDetayBtn(urunId) {
   const btn = document.getElementById('detayEkleBtn');
   if (!btn) return;
-  const inCart = sepet.some(s => s._id === urunId);
+  const inCart = sepet.some(s => _sepetEslesir(s, urunId));
   btn.className = 'detay-btn-ekle' + (inCart ? ' added' : '');
   btn.innerHTML = inCart
     ? `<svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Listemde`
@@ -1596,6 +1660,41 @@ function norm(s) {
 function tl(v) {
   return v == null ? '—' :
     v.toLocaleString('tr-TR',{minimumFractionDigits:2,maximumFractionDigits:2}) + ' ₺';
+}
+
+// ═══ EKRAN OKUYUCU ETİKETLERİ ═══════════════════════════════════════
+// NOT: bu bant SART. cekirdek-uret.mjs bir fonksiyonun govdesini "bir
+// sonraki ust duzey bildirime kadar" alir; bant olmazsa asagidaki yorumlar
+// bir ustteki tl()'nin govdesine yapisip cekirdege oyle kopyalanir.
+// Ekran okuyucuya verilecek metin: HTML etiketlerini at, "₺" ve "%" gibi
+// isaretleri okunacak kelimeye cevir. Isaretleri oldugu gibi birakmak
+// okuyucuya gore "Turkish lira sign" ya da hic okunmamak demek.
+function _sesliMetin(s) {
+  return String(s == null ? '' : s)
+    .replace(/<[^>]*>/g, ' ')
+    .replace(/₺/g, 'lira')
+    .replace(/%\s*(\d+)/g, 'yüzde $1')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+// KART ETIKETI TEK YERDEN. Kartlar role="button" + aria-label tasiyor; bu
+// ikisi birlikte kullanilinca ekran okuyucu kartin ICINDEKI yazilari HIC
+// okumaz. Etikette yalnizca urun adi vardi -- yani fiyat karsilastirma
+// uygulamasinda goremeyen kullanici tek bir FIYAT duymuyordu, "%111 pahali"
+// uyarisini duymuyordu, litre fiyatini duymuyordu; karsilastirmak icin her
+// urunu tek tek acmak zorundaydi. Uc kart ureticisi (product/strip/cart) de
+// burayi cagirir ki biri zenginlestirilip digeri unutulmasin.
+function _kartEtiketi(u, ek) {
+  ek = ek || {};
+  const p = [];
+  if (u && u.ad) p.push(String(u.ad));
+  if (u && u.agirlik_hacim) p.push(String(u.agirlik_hacim));
+  if (ek.fiyat != null) p.push(_sesliMetin(tl(ek.fiyat)));
+  if (ek.market) p.push(String(ek.market));
+  if (ek.rozet) p.push(_sesliMetin(ek.rozet));
+  if (ek.birim) p.push(_sesliMetin(ek.birim));
+  return p.filter(Boolean).join(', ');
 }
 
 function tlHTML(v) {
@@ -1660,7 +1759,7 @@ function assignIds(slug, products) {
   products.forEach((u, i) => {
     if (!u._id) {
       u._id = slug + '_' + i;
-      productMap[u._id] = u;
+      _pmEkle(u);
     }
   });
   return products;
@@ -1906,7 +2005,7 @@ let _ahIndex = null;
 let _ahIndexSize = 0;
 
 function _ahIndexRebuildIfNeeded() {
-  const size = Object.keys(productMap).length;
+  const size = _productMapSayac;
   if (_ahIndex && size === _ahIndexSize) return;
   _ahIndex = {};
   for (const k in productMap) {
@@ -2054,7 +2153,7 @@ function _anasayfaKartlariKaydet(kartlar) {
     if (!u || !u._id) return;
     if (!productMap[u._id] || productMap[u._id]._kisa) {
       u._kisa = true;
-      productMap[u._id] = u;
+      _pmEkle(u);
     }
   });
 }
@@ -2981,7 +3080,7 @@ let _akIndex = null;
 let _akIndexSize = 0;
 
 function _akIndexRebuildIfNeeded() {
-  const size = Object.keys(productMap).length;
+  const size = _productMapSayac;
   if (_akIndex && size === _akIndexSize) return;
   _akIndex = {};
   for (const k in productMap) {
@@ -3401,7 +3500,7 @@ function cardHTML(u) {
     ? `<div class="product-card-img-ph gorsel-yuva">${ph.emoji}<img class="product-card-img" src="${_guvenliUrl(u.resim)}" alt="" loading="lazy" onerror="this.remove()"></div>`
     : `<div class="product-card-img-ph">${ph.emoji}</div>`;
 
-  const inCart = sepet.some(s => s._id === u._id);
+  const inCart = sepet.some(s => _sepetEslesir(s, u._id));
   let gosterilenFiyat = cheapest ? cheapest.fiyat : null;
   let gosterilenMarket = cheapest ? cheapest.market : '';
   const secililer = window.aktifMarketler || [];
@@ -3416,7 +3515,7 @@ function cardHTML(u) {
     }
   }
   const marketLbl = gosterilenMarket ? MARKET_NAMES[gosterilenMarket] || gosterilenMarket : '';
-  return `<div class="product-card" tabindex="0" role="button" aria-label="${_kacir(u.ad)}" data-id="${_kacir(u._id)}" data-sid="${_kacir(u._sid || '')}" data-markets="${_kacir((u.market_fiyatlari||[]).map(f=>f.market).join(','))}" onclick="openDetay(this.dataset.id)" onkeydown="_kartTus(event, this.dataset.id)">
+  return `<div class="product-card" tabindex="0" role="button" aria-label="${_kacir(_kartEtiketi(u, { fiyat: gosterilenFiyat, market: marketLbl }))}" data-id="${_kacir(u._id)}" data-sid="${_kacir(u._sid || '')}" data-markets="${_kacir((u.market_fiyatlari||[]).map(f=>f.market).join(','))}" onclick="openDetay(this.dataset.id)" onkeydown="_kartTus(event, this.dataset.id)">
     ${favBtnHTML(u._sid)}
     ${img}
     <div class="product-card-body">
@@ -3504,7 +3603,7 @@ function _stripKartHTML(u, rozet) {
   // Rozet yuvasi ISARETCI ile aciliyor; cagiranlarin ekledigi rozetler
   // (dusenler/supheli) _kartaRozetEkle ile TAM BURAYA giriyor. Oncesinde
   // kartin sonuna ekleniyorlardi ve yeni sirada en altta kalirlardi.
-  return `<div class="strip-card" tabindex="0" role="button" aria-label="${_kacir(u.ad)}" data-id="${_kacir(u._id)}" onclick="openDetay(this.dataset.id)" onkeydown="_kartTus(event, this.dataset.id)">
+  return `<div class="strip-card" tabindex="0" role="button" aria-label="${_kacir(_kartEtiketi(u, { fiyat: fiyat, rozet: rozetHTML, birim: bfYazi }))}" data-id="${_kacir(u._id)}" onclick="openDetay(this.dataset.id)" onkeydown="_kartTus(event, this.dataset.id)">
     ${img}
     ${fiyat != null ? `<div class="strip-card-fiyat">${tl(fiyat)}</div>` : ''}
     ${rozetHTML}<!--ROZET-->
@@ -3676,7 +3775,7 @@ async function renderDusenlerSeridi() {
     if (error || !data || !data.length) { wrap.classList.add('gizli'); return; }
     data.forEach(u => {
       if (!u._id) u._id = u.ad + '_' + (u.agirlik_hacim||'');
-      productMap[u._id] = u;
+      _pmEkle(u);
     });
     // Düşenler bir fırsat şeridi; şüpheli ürün burada iki mesajı da zayıflatıyor.
     // Onlar "Bu indirimlere dikkat" bölümünde gösteriliyor.
@@ -3742,7 +3841,7 @@ async function renderSupheliSeridi() {
     const secilen = adaylar.slice(0, SUPHELI_SERIT_MAX);
     if (secilen.length < SUPHELI_SERIT_MIN) { wrap.classList.add('gizli'); return; }
 
-    secilen.forEach(x => { productMap[x.u._id] = x.u; });
+    secilen.forEach(x => { _pmEkle(x.u); });
     list.innerHTML = secilen.map(x => _kartaRozetEkle(
       _stripKartHTML(x.u, null), supheliRozetHTML()
     )).join('');
@@ -4190,7 +4289,7 @@ async function renderZamSeridi() {
     }
     if (secilen.length < ZAM_MIN) { wrap.classList.add('gizli'); return; }
     window._zamListesi = secilen;
-    secilen.forEach(x => { productMap[x.u._id] = x.u; });
+    secilen.forEach(x => { _pmEkle(x.u); });
     // Kartta yer dar: rozet + EN GUCLU TEK bilgi (yayginlik). Tarih/kademe/
     // kategori baglami urun detayinda.
     list.innerHTML = secilen.map(x => _kartaRozetEkle(
@@ -4683,13 +4782,37 @@ const KART_GRUP = {
 // almiyor, listenin USTUNDE bir oneri satiri oluyor (kategoriOnerisi).
 const _ARAMA_GRUP_SLUG = { meyve: 'meyve-sebze', sebze: 'meyve-sebze' };
 
+// ═══ ARAMA ADI ÖNBELLEĞİ ═════════════════════════════════════════════
+// NOT: bant SART -- cekirdek-uret.mjs govdeyi "bir sonraki ust duzey
+// bildirime kadar" alir; bant olmazsa bu yorumlar ustteki fonksiyona yapisir.
+//
+// Eskiden _aramaSkoru her cagrisinda trNormalize'i yeniden kosuyordu: 12
+// replace + bir split. Ve o cagri HER TUS VURUSUNDA katalogdaki HER urun
+// icin yapiliyordu -- 16.119 urun. Ad degismedigi surece sonucu da degismez,
+// yani is tamamen tekrardi.
+// OLCULDU (gercek katalog, 16.119 urun, dort tus vurusu, 5 tur ortalamasi):
+//   simdiki 287,2 ms  ->  onbellekli 35,0 ms   = 8,2 kat, %88 daha az.
+// Bu makine orta seviye bir Android'den 4-5 kat hizli, yani telefonda fark
+// saniyeler mertebesinde. Sonuclar BIREBIR ayni (dort sorguda donen _sid
+// dizileri karsilastirildi: sut / cikolata / peynir / zzqq).
+const _adnCache = new Map();
+function _adAyristir(ad) {
+  let v = _adnCache.get(ad);
+  if (v === undefined) {
+    const adn = trNormalize(ad);
+    v = { adn: adn, kelimeler: adn.split(/[^a-z0-9]+/).filter(Boolean) };
+    _adnCache.set(ad, v);
+  }
+  return v;
+}
+
 function _aramaSkoru(ad, qn) {
-  const adn = trNormalize(ad);
-  if (!qn || !adn) return 0;
-  const kelimeler = adn.split(/[^a-z0-9]+/).filter(Boolean);
-  if (kelimeler.includes(qn)) return 3;
-  if (kelimeler.some(w => w.startsWith(qn))) return 2;
-  if (adn.includes(qn)) return 1;
+  if (!qn || !ad) return 0;
+  const p = _adAyristir(ad);
+  if (!p.adn) return 0;
+  if (p.kelimeler.includes(qn)) return 3;
+  if (p.kelimeler.some(w => w.startsWith(qn))) return 2;
+  if (p.adn.includes(qn)) return 1;
   return 0;
 }
 
@@ -4899,7 +5022,7 @@ function mfSheetAc(idx) {
       </div>
       <div class="mf-depot-right">
         <div class="mf-depot-price">${isFinite(p) ? mfTl(p) : ''}</div>
-        <div class="mf-depot-unit">${unitPrice}</div>
+        <div class="mf-depot-unit">${_kacir(unitPrice)}</div>
       </div>
     </div>`;
   }).join('');
@@ -4977,8 +5100,8 @@ function toastGoster(mesaj) {
 }
 
 function toggleSepet(id) {
-  if (sepet.find(s => s._id === id)) {
-    sepet = sepet.filter(s => s._id !== id);
+  if (sepet.find(s => _sepetEslesir(s, id))) {
+    sepet = sepet.filter(s => !_sepetEslesir(s, id));
     saveSepet();
     setEkleBtns(id, false);
   } else {
@@ -5018,7 +5141,7 @@ function setEkleBtns(id, inCart) {
 }
 
 function removeFromSepet(id) {
-  sepet = sepet.filter(s => s._id !== id);
+  sepet = sepet.filter(s => !_sepetEslesir(s, id));
   saveSepet();
   setEkleBtns(id, false);
   renderSepet();
@@ -5028,6 +5151,58 @@ function removeFromSepet(id) {
 // productMap uzerinden cozer ve ogeye YAZAR (additive; bir sonraki saveSepet'te
 // kalicilasir). productMap yuklenmemisse ya da urun kataloğdan cikmissa null
 // doner -> cagiran taraf rozeti CIZMEZ (ayri dal; sessiz catch YOK).
+// ═══ SEPET KİMLİĞİ ═══════════════════════════════════════════════════
+// NOT: bant SART -- cekirdek-uret.mjs fonksiyon govdesini "bir sonraki ust
+// duzey bildirime kadar" alir; bant olmazsa bu yorumlar ustteki fonksiyonun
+// govdesine yapisir.
+//
+// KOK SEBEP: productMap `_id` ile anahtarli ve `_id` KARARSIZ --
+// assignIds onu `slug + '_' + dizideki_sira` diye uretiyor. Veri her gece
+// yeniden yazildigi icin ayni sira ertesi gun BASKA bir urune denk geliyor.
+// Sepet localStorage'da KALICI oldugu icin sonuc su: kullanicinin listesine
+// koydugu urun, veri guncellenince sessizce baska bir urune donusuyor --
+// adi, fiyati, marketi degisiyor ve kimse haber vermiyor.
+// `_sid` ise veriden geliyor ve urunle birlikte sabit kaliyor.
+
+// _sid -> canli urun. productMap her degistiginde (sayacla) yeniden kurulur.
+let _sidIndex = null;
+let _sidIndexSayac = -1;
+function _sidIndeksi() {
+  if (_sidIndex && _sidIndexSayac === _productMapSayac) return _sidIndex;
+  _sidIndex = {};
+  for (const k in productMap) {
+    const u = productMap[k];
+    if (u && u._sid) _sidIndex[u._sid] = u;
+  }
+  _sidIndexSayac = _productMapSayac;
+  return _sidIndex;
+}
+
+// Sepet ogesini CANLI urune cozer.
+// _sid VARSA yalnizca _sid ile aranir; bulunamazsa null doner ve _id'ye
+// DUSULMEZ -- o dusus kusurun ta kendisi olurdu (o sira baska bir urune
+// denk gelebilir). Urun katalogdan kalkmissa dogru davranis "baska bir urun
+// goster" degil, "canli karsiligi yok" demektir.
+function _sepetCanli(item) {
+  if (!item) return null;
+  if (item._sid) return _sidIndeksi()[item._sid] || null;
+  return productMap[item._id] || null;   // eski (_sid'siz) kayitlar icin geri uyum
+}
+
+// Sepet ogesi ile verilen id ayni urunu mu gosteriyor?
+// Iki tarafta da _sid varsa KARSILASTIRMA _sid uzerinden yapilir; yoksa
+// eski davranisa (_id) dusulur, boylece _sid'i olmayan eski sepetler calismaya
+// devam eder.
+function _sepetEslesir(item, id) {
+  if (!item) return false;
+  // Dogrudan _sid gelmis olabilir (sepet kartlari artik onu gonderiyor).
+  if (item._sid && item._sid === id) return true;
+  const canli = productMap[id];
+  const sid = canli && canli._sid;
+  if (item._sid && sid) return item._sid === sid;
+  return item._id === id;
+}
+
 function _sepetSid(item) {
   if (item && item._sid) return item._sid;
   const p = item && productMap[item._id];
@@ -5066,9 +5241,9 @@ function renderSepet() {
     // sarti: _puanCache olmadan supheli/gercek ayirt edilemez, plain "indirim"
     // gostermek sahteyi olumlu etiketleyebilir -> hepsini gizle.
     _sepetSid(u);
-    const _canliUrun = productMap[u._id] || null;
+    const _canliUrun = _sepetCanli(u);
     const rozetHTML = (_canliUrun && _gecmisCache && _puanCache) ? urunRozetleriHTML(_canliUrun, true) : '';
-    return `<div class="cart-item" tabindex="0" role="button" aria-label="${_kacir(u.ad)}" data-id="${_kacir(u._id)}" onclick="openDetay(this.dataset.id)" onkeydown="_kartTus(event, this.dataset.id)">
+    return `<div class="cart-item" tabindex="0" role="button" aria-label="${_kacir(_kartEtiketi(u, { rozet: rozetHTML, birim: fiyatStr }))}" data-id="${_kacir(u._sid || u._id)}" onclick="openDetay(this.dataset.id)" onkeydown="_kartTus(event, this.dataset.id)">
       <div class="cart-item-img">${img}</div>
       <div class="cart-item-info">
         <div class="cart-item-name">${_kacir(u.ad)}</div>
@@ -5078,7 +5253,7 @@ function renderSepet() {
         </div>
       </div>
       ${fiyatStr}
-      <button class="cart-del" data-id="${_kacir(u._id)}" onclick="event.stopPropagation(); removeFromSepet(this.dataset.id)">
+      <button class="cart-del" data-id="${_kacir(u._sid || u._id)}" onclick="event.stopPropagation(); removeFromSepet(this.dataset.id)">
         <svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>
       </button>
     </div>`;
@@ -5751,7 +5926,7 @@ function mercekSekme(t) {
 // cardHTML, _stripKartHTML) bunu bastan beri yapiyor.
 function _mercekSatir(u, sagHTML, govdeHTML) {
   if (!u._id) u._id = u.ad + '_' + (u.agirlik_hacim || '');
-  productMap[u._id] = u;
+  _pmEkle(u);
   const ph = placeholderRenk(ustKategori(u.ana_kategori || ''));
   const gorsel = u.resim
     ? '<div class="mercek-kart__gorsel gorsel-yuva">' + ph.emoji
@@ -5978,6 +6153,14 @@ function renderFirsatlar(tab) {
   // Asagidaki iki Supabase sorgusunu beklemek sekmeyi bosuna gecikirdi --
   // sekmenin build'de hesaplanmasinin sebebi tam da aninda acilmasiydi.
   if (tab === 'zam') { renderFirsatZam(container); return; }
+  // KUTUPHANE YOKSA: asagidaki iki sorgu try/catch DISINDA. Korumasiz
+  // birakilirsa Supabase yuklenmediginde bu ekran TypeError ile oluyordu.
+  // Zam sekmesi Supabase'e hic ihtiyac duymuyor (yukarida donuyor), o yuzden
+  // kullaniciyi oraya yonlendiren acik bir mesaj birakiyoruz.
+  if (!window.supabaseClient) {
+    container.innerHTML = '<div class="state-msg">Fırsatlar şu an yüklenemiyor. Bağlantını kontrol edip sayfayı yenile — “Zamlananlar” sekmesi çalışmaya devam ediyor.</div>';
+    return;
+  }
   const ustKategoriler = ['meyve','sebze','et','sut','gida','icecek','temizlik','atistirmalik','dondurulmus','diger'];
   const ucuzQuery = Promise.all(ustKategoriler.map(function(kat) {
     return window.supabaseClient.from('urunler')
@@ -6039,7 +6222,7 @@ function _firsatBirimFiyat(u) {
 
 function _firsatKartHtml(u, badge, badgeClass, altText) {
   if (!u._id) u._id = u.ad + '_' + (u.agirlik_hacim||'');
-  productMap[u._id] = u;
+  _pmEkle(u);
   const emoji = KAT_EMOJI[ustKategori(u.ana_kategori||'')] || '📦';
   const fiyat = u.en_dusuk_fiyat != null ? tlHTML(u.en_dusuk_fiyat) : '<span class="fp"><span class="fp-l">—</span></span>';
   const imgHtml = u.resim
@@ -6053,7 +6236,7 @@ function _firsatKartHtml(u, badge, badgeClass, altText) {
   // okundu: diger UC kart ureticisi (detay butonu, renderDetayBtn, cardHTML)
   // ciplak `sepet` kullaniyor. 'window.sepet'i guncel tutmak IKINCI BIR KAYNAK
   // yaratirdi -- bu depoda tuzak diye isaretlenmis desen.
-  const inCart = sepet.some(s => s._id === u._id);
+  const inCart = sepet.some(s => _sepetEslesir(s, u._id));
   // data-id + role/tabindex/aria-label: kart bu turdan once HICBIRINI
   // tasimiyordu, bu yuzden tiklama HIC yakalanmiyordu (detay acilmiyordu).
   // Diger uc kart uretici (cardHTML, _stripKartHTML, cart-item) bunlari
@@ -6751,7 +6934,8 @@ function profilGuncelle() {
   const el = function(id){ return document.getElementById(id); };
   if (el('profilSepetSayi')) el('profilSepetSayi').textContent = sepetSayi;
   if (el('profilSepetOzet')) el('profilSepetOzet').textContent = sepetSayi > 0 ? sepetSayi + ' ürün listemde' : 'Liste boş';
-  if (el('profilToplamUrun')) {
+  // try/catch DISINDA: kutuphane yoksa profil ekrani cizilirken patliyordu.
+  if (el('profilToplamUrun') && window.supabaseClient) {
     window.supabaseClient.from('urunler')
       .select('*', { count: 'exact', head: true })
       .then(function(res) {
@@ -6805,9 +6989,9 @@ function firsatSepetEkle(btn, id) {
     }
   }
   if (!u) { btn.textContent = '?'; return; }
-  var zatenVar = sepet.some(function(s){ return s._id === id; });
+  var zatenVar = sepet.some(function(s){ return _sepetEslesir(s, id); });
   if (zatenVar) {
-    sepet = sepet.filter(function(s){ return s._id !== id; });
+    sepet = sepet.filter(function(s){ return !_sepetEslesir(s, id); });
     btn.textContent = '+';
     btn.style.background = '';
   } else {

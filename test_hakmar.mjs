@@ -71,7 +71,12 @@ function calistir(urunlerVeri, aktifMarketler, altKat = 'tumu', arama = '') {
   // (urunAra -> _aramaSkoru -> trNormalize). Bagimlilik eklendigi icin vm'e
   // de eklendi; iddia DEGISMEDI, yalnizca calisma ortami tamamlandi.
   vm.runInContext(
-    fnKaynak('trNormalize') + '\n' + fnKaynak('_aramaSkoru') + '\n' + fnKaynak('urunAra') + '\n' +
+    // `_adAyristir` + `_adnCache` 2026-09-10'da EKLENDI: _aramaSkoru artik ad
+    // basina normalize+kelime onbellegi kullaniyor (her tus vurusunda 16 bin
+    // urunu yeniden normalize etmiyor). IDDIA DEGISMEDI, calisma ortami
+    // tamamlandi -- GERCEK kaynak yukleniyor, sahte degil.
+    fnKaynak('trNormalize') + '\nconst _adnCache = new Map();\n' +
+    fnKaynak('_adAyristir') + '\n' + fnKaynak('_aramaSkoru') + '\n' + fnKaynak('urunAra') + '\n' +
     fnKaynak('renderUrunler') + '\n' + fnKaynak('uygulaCatFiltre') + '\nuygulaCatFiltre();', ctx);
   return { pillNodes: dom.pillNodes, sayac: dom.el.countNum.textContent, listeHTML: dom.el.productList.innerHTML };
 }

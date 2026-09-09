@@ -20,6 +20,54 @@ Mustafa (GitHub: avkkann), **Pazar App**'in tek geliştiricisi — Türk market 
 
 ## Mevcut durum (2026-08-21 itibarıyla)
 
+### 2026-09-10 — Denetimin 8 KRİTİK maddesinin 7'si kapandı (`sw.js` v241 → **v242**)
+
+**Durum: commit edildi, YAYINDA DEĞİL** (push Mustafa'nın kararına bırakıldı).
+Kaynak: 08.09.2026 çok ajanlı denetim (59 doğrulanmış bulgu; rapor artifact'te).
+
+| # | Bulgu | Kök neden | Doğrulama |
+|---|---|---|---|
+| 1 | **Dış API metni kaçışsız ekrana basılıyordu (XSS)** | `app.js` `mf-depot-unit` satırında `${unitPrice}` — aynı satırdaki `marketAdi`/`depotName` `_kacir`'dan geçiyordu, biri unutulmuş | `test_kacis` deseni zaten koruyordu, nokta eklendi |
+| 2 | **jsdelivr çökerse uygulama HİÇ açılmıyordu** | `const supabaseClient = window.supabase.createClient(...)` korumasız ve dosyanın 4. satırı → kütüphane inmezse 7000 satır hiç çalışmıyor | canlı: istemci `null`'lanınca ana sayfa 39 kart, zam sekmesi 50 kart, konsol hatası 0 |
+| 3 | **Taze sayfada Enter hiçbir yerde çalışmıyordu** | modal `.gizli` SINIFIYLA gizleniyor, kontrol `m.style.display === 'none'` diye satır içi stile bakıyordu → çıkış koşulu hiç sağlanmıyor, her Enter `preventDefault` yiyor. Ayrıca İptal odaktayken koşulsuz `appModalOk.click()` | canlı, kontrol gruplu: taze sayfada `defaultPrevented=false`, modal açıkken `true`, İptal odaktayken Tamam basılmıyor |
+| 4 | **Kart fiyatı ekran okuyucuya hiç ulaşmıyordu** | `role="button"` + `aria-label` ikilisi kart içi metni örtüyor, etikette yalnızca ürün adı vardı | tek `_kartEtiketi` yardımcısı, üç kart üreticisinde; canlı: "…159,00 lira, yüzde 60 pahalı, kg başına 530,00 lira" |
+| 5 | **Gece işi veri dosyası eksik gelirse Supabase'i toptan siliyordu** | `sync_db.py` eksik dosyada "UYARI…atlaniyor" deyip devam ediyor, sonra o kategorinin TÜM ürünleri "artık geçerli değil" sayılıp siliniyordu | iki kapı: eksik/bozuk/boş dosya → hiç silme; silinecek > DB'nin %5'i → dur. Yeni `test_sync_emniyet.py` (12 iddia), kontrol gruplu |
+| 6 | **Her kartta 16 bin ürün baştan sayılıyordu** | `_ahIndexRebuildIfNeeded` her çağrıda `Object.keys(productMap).length` — ve o çağrı KART BAŞINA | `_pmEkle` tek yazma kapısı + `_productMapSayac`; çekirdek iskeletine de eklendi |
+| 7 | **Listeye eklenen ürün başka ürüne dönüşüyordu** | `productMap` anahtarı `_id` ve `_id` KARARSIZ (`slug_index`); veri her gece yeniden dizilince aynı index başka ürüne denk geliyor, sepet ise kalıcı | `_sidIndeksi`/`_sepetCanli`/`_sepetEslesir`; kartlar artık `_sid` gönderiyor. Yeni `test_sepet_kimlik.mjs` (18 iddia), prove-by-breaking **6/6** |
+
+**8. madde (arama 1,3 MB indiriyor) YARIM KAPANDI — bilinçli.** İki iş vardı:
+- **CPU tarafı KAPANDI.** `_aramaSkoru` her çağrıda `trNormalize` (12 replace) + `split`
+  koşuyordu ve o çağrı HER TUŞ VURUŞUNDA 16.119 ürün için yapılıyordu. Ad başına
+  önbellek (`_adnCache` + `_adAyristir`). **Ölçüldü: 287,2 ms → 35,0 ms, 8,2 kat**;
+  sonuçlar birebir aynı (dört sorguda `_sid` dizileri karşılaştırıldı). Canlıda
+  dört tuş vuruşu **37 ms**. `test_arama.mjs` 56 → **62 iddia** (kontrol gruplu:
+  farklı ad gerçekten yeni normalize tetikliyor).
+- **İNDİRME tarafı AÇIK ve bir ÜRÜN KARARI bekliyor.** Ayrı arama dosyası ölçüldü:
+  **550 KB gzip** (görselsiz 405), bugünkü 1.317 KB'a karşı **%58 kazanç**. Ama o
+  dosyada `market_fiyatlari` yok; arama sonucu kartları tam veri gelene kadar
+  **fiyat gösteremez**. Bu görünür bir davranış değişikliği → Mustafa karar versin.
+  Ölçüm tekrarlanabilir; yeni eşik uydurulmadı.
+
+> **Bu turda üç kez kendi hatamı ölçüm yakaladı.** (1) `_pmEkle` gövdesine kendi toplu
+> değiştirmem çarpıp **sonsuz özyineleme** bıraktı — testler `RangeError` ile yakaladı,
+> canlıya gitmedi. (2) `test_sepet_kimlik`'in ilk hâli `let` ile tanımlı vm değişkenlerini
+> `ctx.x` ile okumaya çalıştı; iki iddia **yanlış kırmızı** verdi. (3) prove-by-breaking
+> altıncı mutasyonda **bekçimin kör noktasını** buldu: `kur()` yardımcım her senaryoda
+> `_sidIndex`'i sıfırladığı için bayatlama koşulu hiç doğmuyordu — iddia gevşetilmedi,
+> senaryo gerçekçileştirildi (index sıfırlanmadan katalog büyütülüyor), sonra 6/6 kırmızı.
+
+> **Dört bekçi ısırdı, dördü de haklıydı ve HİÇBİRİ GEVŞETİLMEDİ.** `test_cekirdek`
+> (yorumlarım `tl` gövdesine yapışmıştı → deponun kendi `// ═` bant idiyomu),
+> `test_kacis` (aria-label deseni → iddia korundu, **üstüne** "etiket sadece ad olamaz"
+> kilidi eklendi), `test_kart_fiyat`/`test_arama`/`test_hakmar`/`test_firsat_detay`/
+> `test_supheli`/`test_sablon_slug` (vm bağımlılığı → **sahte değil gerçek kaynak**
+> yüklendi), `test_al_zamani`+`test_supheli` (openDetay sabit-pencere tuzağı → açıklama
+> fonksiyonun DIŞINA alındı, CLAUDE.md'de zaten yazılı olan çözüm).
+
+**Doğrulama:** 59 `test_*.mjs` + 6 `test_*.py` yeşil (**2.417 geçen iddia**) · `npm run build`
+yeşil · yerel `dist`'te yedi düzeltmenin yedisi de gerçek tarayıcıda kontrol gruplu ölçüldü ·
+konsol hatası 0.
+
 ### 2026-09-03 — MERCEK sekmesi: toplanıp gösterilmeyen veri ekrana çıktı (8 madde)
 
 **Durum: commit edildi, YAYINDA DEĞİL** (push Mustafa'nın kararına bırakıldı). `sw.js` **v234 → v235**.
@@ -1686,7 +1734,7 @@ Uygulama teknik olarak çalışıyor ama **pratikte hâlâ dağıtılmamış dur
 
 ## Yaklaşım & desenler
 
-- **SW cache version** her anlamlı `index.html`/`app.js`/`style.css`/`sw.js` değişikliğinde artırılır (şu an **v237**, 2026-09-04). *Bu satır 2026-09-03'e kadar **v215** diyordu — 18 sürüm bayattı, doküman bayatlığı desenin BEŞİNCİ vakası. Sürümü bu satırdan değil `sw.js`'ten oku.* Backend-only değişikliklerde (scraper, sync) bump edilmez. Akış: `git add` → `git commit` → `git pull --rebase` → `git push`. Not: `sw.js` yalnızca `data/hal.json` + `data/anasayfa.json`'ı önbelleğe alıyor ve `fetch`'i yalnızca o iki URL için yakalıyor — HTML/CSS/JS'i tutmuyor, onlar Cloudflare'den `Cache-Control: public, max-age=0, must-revalidate` ile geliyor (ölçüldü; eski GitHub Pages `max-age=600` notu bayattı). Bump proje kuralı ve tutarlılık için, HTML dağıtımını hızlandırmıyor.
+- **SW cache version** her anlamlı `index.html`/`app.js`/`style.css`/`sw.js` değişikliğinde artırılır (şu an **v242**, 2026-09-10). *Bu satır 2026-09-03'e kadar **v215** diyordu — 18 sürüm bayattı, doküman bayatlığı desenin BEŞİNCİ vakası. Sürümü bu satırdan değil `sw.js`'ten oku.* Backend-only değişikliklerde (scraper, sync) bump edilmez. Akış: `git add` → `git commit` → `git pull --rebase` → `git push`. Not: `sw.js` yalnızca `data/hal.json` + `data/anasayfa.json`'ı önbelleğe alıyor ve `fetch`'i yalnızca o iki URL için yakalıyor — HTML/CSS/JS'i tutmuyor, onlar Cloudflare'den `Cache-Control: public, max-age=0, must-revalidate` ile geliyor (ölçüldü; eski GitHub Pages `max-age=600` notu bayattı). Bump proje kuralı ve tutarlılık için, HTML dağıtımını hızlandırmıyor.
 - **Doğrulama:** Push sonrası `gh run watch` ile deploy'un koştuğu doğrulanır, sonra canlıda (Browser MCP) gerçek fonksiyonel test yapılır — "dosyada var mı" değil, "gerçekten çalışıyor mu". Layout değişikliklerinde ekran görüntüsü yetmez: değişiklikten ÖNCE geometri parmak izi (`getBoundingClientRect`) alınıp sonra sayısal karşılaştırılır.
 - **Kapsam disiplini:** İstenmeyen ekleme/çıkarma sessizce yapılmaz, not düşülür. Doküman/analiz önerileri körü körüne uygulanmaz — önce kodda geçerli mi diye bakılır.
 - **Büyük ürün/mimari kararları** (hosting migration, nav yapısı, tuzak'ın geleceği) Mustafa'nın onayı olmadan koda dökülmez.

@@ -46,7 +46,7 @@ const FONKSIYONLAR = [
   'zamOlcutu', 'zamSalinimVar', 'zamMarketSerisi', 'zamMarketArtisi',
   'zamDurumu', 'zamAdaylari', 'zamHavuzu', 'zamSecHavuzdan',
   // arama
-  '_aramaSkoru', 'urunAra', '_ahIndexRebuildIfNeeded',
+  '_adAyristir', '_aramaSkoru', 'urunAra', '_ahIndexRebuildIfNeeded',
   // urun iliskileri
   'ayniUrunMu', 'digerPaketleriBul',
   // sehir
@@ -70,7 +70,7 @@ const SABITLER = [
 ];
 
 // Cekirdek icinde tanimlanip disaridan doldurulan durum.
-const DURUM = ['_ahIndex', '_ahIndexSize', '_gecmisCache', '_ilMarketCache',
+const DURUM = ['_adnCache', '_ahIndex', '_ahIndexSize', '_gecmisCache', '_ilMarketCache',
                '_puanCache', '_seriCache'];
 
 const KAYNAK = fs.readFileSync(D('app.js'), 'utf8');
@@ -164,6 +164,12 @@ const cikti = `// ╔═══════════════════�
   // oldugu icin ayni adlari gormek ZORUNDALAR.
   let catCache = {};
   let productMap = {};
+  // app.js'teki sayacin karsiligi. Orada productMap'e _pmEkle ile yaziliyor ve
+  // sayac orada artiyor; burada katalog TEK SEFERDE kuruldugu icin dongu bitince
+  // bir kez saymak yeterli. _ahIndexRebuildIfNeeded bunu okuyor -- eskiden her
+  // cagrida Object.keys(productMap).length kosuyordu ve o is KART BASINA
+  // yapiliyordu (16 bin anahtarlik dizi; olculen 115-150 ms/sayfa).
+  let _productMapSayac = 0;
   // sepet: app.js'te "let sepet = _rawSepet" (localStorage'a bagli) oldugu icin
   // BIREBIR KOPYALANAMAZ. catCache/productMap ile ayni desen: burada tanimli,
   // disaridan doldruluyor. Market toplamlarini hesaplayan fonksiyonlar bunu okuyor.
@@ -181,6 +187,7 @@ const cikti = `// ╔═══════════════════�
           productMap[u._id] = u;
         }
       }
+      _productMapSayac = Object.keys(productMap).length;
       _ahIndex = null; _ahIndexSize = 0;   // katalog degisti -> indeks bayat
     }
     if (d.gecmis) { _gecmisCache = d.gecmis; _seriCache = new Map(); }

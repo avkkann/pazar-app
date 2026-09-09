@@ -69,7 +69,16 @@ const sandbox = {
   console,
 };
 vm.createContext(sandbox);
-vm.runInContext(src, sandbox);
+// `_pmEkle` 2026-09-10'da EKLENDI: productMap'e yazmanin tek kapisi oldu
+// (her kartta 16 bin anahtar sayan Object.keys cagrisi kalkti). vm yine
+// "is not defined" ile patladi -- yani kart cizimi gercekten bu kapiyi
+// kullaniyor. IDDIA GEVSETILMEDI, GERCEK kaynak yuklendi (sahte degil) ki
+// kapi bozulursa test de bozulsun.
+// `_sepetEslesir` de 2026-09-10'da EKLENDI: sepet aramasi kararsiz _id yerine
+// sabit _sid ile eslesiyor (listeye eklenen urun veri guncellenince baska bir
+// urune donusuyordu). Yine GERCEK kaynak yukleniyor.
+vm.runInContext('let _productMapSayac = 0;\n' + govde('_pmEkle') + '\n'
+  + govde('_sepetEslesir') + '\n' + src, sandbox);
 
 const urun = { _id: 'sut_12', _sid: 'sut-sid', ad: 'Süt 1 L', ana_kategori: 'Süt', en_dusuk_fiyat: 34.9, market_fiyatlari: [] };
 const html = vm.runInContext('_firsatKartHtml(' + JSON.stringify(urun) + ', "EN UCUZ", "firsat-badge-ucuz", "alt")', sandbox);

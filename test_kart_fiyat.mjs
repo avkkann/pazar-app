@@ -37,6 +37,9 @@ vm.createContext(ctx);
 vm.runInContext([
   fnKaynak('tl'), fnKaynak('enDusukFiyat'), fnKaynak('_birimFiyatAyristir'),
   fnKaynak('birimFiyatHesapla'), fnKaynak('birimFiyatYazi'),
+  // Kart artik ekran okuyucu etiketini bu ikisiyle kuruyor; SAHTE koymuyoruz,
+  // gercek kaynagi yukluyoruz ki etiket bozulursa test de bozulsun.
+  fnKaynak('_sesliMetin'), fnKaynak('_kartEtiketi'),
   fnKaynak('_stripKartHTML'), fnKaynak('_kartaRozetEkle'),
 ].filter(Boolean).join('\n'), ctx);
 const calis = (i) => vm.runInContext(i, ctx);

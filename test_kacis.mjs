@@ -106,7 +106,13 @@ console.log('\n=== 3. S3 sink\'leri doğru bağlam yardımcısından geçiyor (k
   ok("  eski String(...).replace(/</g,'&lt;') tek kaçışı kalmadı", !/\)\s*\.replace\(\/<\/g,\s*['"]&lt;['"]\)\s*;/.test(prof), prof);
 
   // renderSepet — u.ad _kacir (metin+aria-label), u.resim _guvenliUrl (src)
-  ok('renderSepet: aria-label _kacir(u.ad)', /aria-label="\$\{_kacir\(u\.ad\)\}"/.test(sep), sep.slice(0, 300));
+  // IDDIA AYNI KALDI -- "aria-label _kacir'den geciyor mu". Yalnizca desen
+  // gercek bicime uyarlandi: etiket artik urun adi DEGIL, _kartEtiketi'nin
+  // kurdugu tam cumle (ad + gramaj + fiyat + rozet + birim fiyat). Ustune
+  // ikinci bir kilit eklendi ki etiket tekrar yalniz ada dusmesin -- eski
+  // halinde ekran okuyucu kullanan biri hicbir FIYAT duymuyordu.
+  ok('renderSepet: aria-label _kacir ile kaçırılıyor', /aria-label="\$\{_kacir\(/.test(sep), sep.slice(0, 300));
+  ok('renderSepet: aria-label sadece ürün adı DEĞİL (_kartEtiketi)', /aria-label="\$\{_kacir\(_kartEtiketi\(/.test(sep), sep.slice(0, 300));
   ok('renderSepet: cart-item-name _kacir(u.ad)', /cart-item-name">\$\{_kacir\(u\.ad\)\}</.test(sep), sep);
   // 2026-08-24: gramaj artik .cart-item-satir2 icinde ve KOSULSUZ basiliyor
   // (satir her zaman var, rozet asenkron gelince kart ici kaymasin diye), yani
@@ -169,7 +175,12 @@ console.log('\n=== 6. S4 sink\'leri doğru yardımcıdan geçiyor (kaynak, yorum
 
   // Aynı veriyi iki yerde basan cardHTML ve _stripKartHTML AYNI deseni kullanmalı
   ok('cardHTML: src _guvenliUrl(u.resim)', /src="\$\{_guvenliUrl\(u\.resim\)\}"/.test(card), card.slice(0,120));
-  ok('cardHTML: aria-label _kacir(u.ad)', /aria-label="\$\{_kacir\(u\.ad\)\}"/.test(card));
+  ok('cardHTML: aria-label _kacir ile kaçırılıyor', /aria-label="\$\{_kacir\(/.test(card));
+  // Uc kart ureticisi de ayni etiket yardimcisini kullanmali; biri
+  // zenginlestirilip digeri unutulursa ekran okuyucu kullanan biri o
+  // ekranda yine fiyat duymaz.
+  ok('cardHTML: aria-label sadece ürün adı DEĞİL (_kartEtiketi)', /aria-label="\$\{_kacir\(_kartEtiketi\(/.test(card));
+  ok('_stripKartHTML: aria-label sadece ürün adı DEĞİL (aynı desen)', /aria-label="\$\{_kacir\(_kartEtiketi\(/.test(strip));
   ok('cardHTML: product-name _kacir(u.ad)', /product-name">\$\{_kacir\(u\.ad\)\}</.test(card));
   ok('_stripKartHTML: src _guvenliUrl(u.resim)  (aynı desen)', /src="\$\{_guvenliUrl\(u\.resim\)\}"/.test(strip));
   ok('_stripKartHTML: strip-card-name _kacir(u.ad)  (aynı desen)', /strip-card-name">\$\{_kacir\(u\.ad\)\}</.test(strip));
