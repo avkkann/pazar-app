@@ -483,7 +483,7 @@ def parse_product(item, kategori_adi, slug_kisa="urun"):
     prices = [f["fiyat"] for f in market_fiyatlari]
     ad = item.get("title")
 
-    return {
+    kayit = {
         "_sid":             _make_sid(slug_kisa, ad),
         "ad":               ad,
         "ana_kategori":     item.get("main_category") or kategori_adi,
@@ -492,6 +492,28 @@ def parse_product(item, kategori_adi, slug_kisa="urun"):
         "en_dusuk_fiyat":   min(prices) if prices else None,
         "market_fiyatlari": market_fiyatlari,
     }
+
+    # MARKA (additive, liste_fiyat/depot_id ile ayni desen: alan bossa anahtar
+    # HIC ACILMIYOR).
+    #
+    # NEDEN ALINIYOR: API "brand" alanini uruncun %100'unde veriyor (olculdu
+    # 10.09.2026, 16.434 baslik) ve biz onu atiyorduk. Elimizde bir urunu
+    # tanimlayan tek sey ADI idi; marka, ad disinda sahip oldugumuz TEK
+    # ayirt edici alan. Onemi resimsiz urunlerde olculdu: 2.384 resimsiz
+    # urunun 2.210'u (%92,7) MARKALI paketli urun ve ayni gramajda farkli
+    # markalar birbirine cok benziyor ("Tat Bulgur" / "Duru Bulgur",
+    # "Cem Siyah Zeytin" / "Zeytino Siyah Zeytin"). Marka olmadan yapilan
+    # her ad eslestirmesi bu ciftleri karistirir.
+    #
+    # "Markasız" YAZILMIYOR: API acik/dokme urunlerde (karpuz, baby patates)
+    # brand alanina birebir "Markasız" koyuyor -- 479 urun (%2,9). Bu bir
+    # marka DEGIL, "markasi yok" demek; 479 kez ayni bilgisiz dizeyi tasimak
+    # yerine anahtar hic acilmiyor. Alanin YOKLUGU zaten "markasiz" demek.
+    _marka = (item.get("brand") or "").strip()
+    if _marka and _marka.lower() not in ("markasız", "markasiz"):
+        kayit["marka"] = _marka
+
+    return kayit
 
 
 def _apply_fiyat_gecmisi(yeni_urunler, cat_file):
@@ -562,14 +584,13 @@ def _apply_agirlik_gecmisi(yeni_urunler, cat_file):
         u["agirlik_hacim_gecmisi"] = gecmis
 
 
-def _apply_resim_koru(yeni_urunler, cat_file):
-    """API bu kez resim vermediyse dosyadaki mevcut resmi korur.
+def _alan_koru(yeni_urunler, cat_file, alan):
+    """API bu kez `alan`i vermediyse dosyadaki mevcut degeri korur.
 
-    parse_product her gece urunu sifirdan kurup resim'i item['imageUrl'] ile
-    yaziyor; kaynak o gun bos donerse elde olan resim de siliniyordu. Searlo'nun
-    26 Mayis'ta doldurdugu 73 resim de ertesi gece bu yuzden ucmustu.
-    Kural: yeni deger BOSSA eski korunur, DOLUYSA API kazanir (kaynak
-    guncellemis olabilir). agirlik_hacim_gecmisi ile ayni desen."""
+    TEK KAYNAK: resim ve marka ayni kurali paylasiyor, iki kopya mantik
+    kacinilmaz sapma demekti (bu deponun kayitli dersi). Kural: yeni deger
+    BOSSA eski korunur, DOLUYSA kaynak kazanir (guncellemis olabilir).
+    """
     eski_index = {}
     if os.path.exists(cat_file):
         try:
@@ -579,17 +600,28 @@ def _apply_resim_koru(yeni_urunler, cat_file):
                     if sid:
                         eski_index[sid] = u
         except Exception as e:
-            print(f"  [uyari] eski JSON okunamadi (resim): {e}")
+            print(f"  [uyari] eski JSON okunamadi ({alan}): {e}")
 
     korunan = 0
     for u in yeni_urunler:
-        if u.get("resim"):
+        if u.get(alan):
             continue
         eski = eski_index.get(u.get("_sid"))
-        if eski and eski.get("resim"):
-            u["resim"] = eski["resim"]
+        if eski and eski.get(alan):
+            u[alan] = eski[alan]
             korunan += 1
     return korunan
+
+
+def _apply_resim_koru(yeni_urunler, cat_file):
+    """API bu kez resim vermediyse dosyadaki mevcut resmi korur.
+
+    parse_product her gece urunu sifirdan kurup resim'i item['imageUrl'] ile
+    yaziyor; kaynak o gun bos donerse elde olan resim de siliniyordu. Searlo'nun
+    26 Mayis'ta doldurdugu 73 resim de ertesi gece bu yuzden ucmustu.
+    Kural: yeni deger BOSSA eski korunur, DOLUYSA API kazanir (kaynak
+    guncellemis olabilir). agirlik_hacim_gecmisi ile ayni desen."""
+    return _alan_koru(yeni_urunler, cat_file, "resim")
 
 
 def _apply_ilan_indirim_gecmisi(yeni_urunler, cat_file):
@@ -810,6 +842,9 @@ def scrape_category(cookies, slug, keyword, dosya_adi):
     _korunan_resim = _apply_resim_koru(products, cat_file)
     if _korunan_resim:
         print(f"  {_korunan_resim} resim korundu (API bu kez vermedi)")
+    _korunan_marka = _alan_koru(products, cat_file, "marka")
+    if _korunan_marka:
+        print(f"  {_korunan_marka} marka korundu (API bu kez vermedi)")
     _atomik_json_yaz(cat_file, products, indent=2)
     print(f"  Tamamlandi: {len(products)} urun -> {cat_file}")
     return products

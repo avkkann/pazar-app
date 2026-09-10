@@ -1,6 +1,6 @@
 # Pazar App — Proje Handoff (Claude için)
 
-**Son güncelleme:** 2026-09-10 (**YÜKSEK grubunun KALAN 4 GRUBU BİTTİ** — 12 bulgu tek turda: koyu temada seçili sekme 1,17 → 15,25 ve giriş paneli 1,24 → 12,32; tarayıcı/Android geri tuşu artık uygulamadan ÇIKARMIYOR (history.length ölçüldü: 1 → 1 idi); hızlı kategori geçişinde yanlış liste (başlık "Temizlik", liste 779 ET ürünü) kapandı; damgalı JS/CSS `immutable`; kapalı panellerde 9 hayalet düğme → 0; sıralama menüsü klavyeyle kullanılabilir; ana sayfada ürüne dokunmak 19.742 KB → 8.357 KB; Türkçe ekler kurala bağlandı; `scraper.py` ağ koparsa yarım dosyayı ARTIK üzerine yazmıyor + beş yazma yeri atomik; `test_iddia.mjs`'in koşulsuz 3 PASS'ı kalktı. Prove-by-breaking **69/69**; üç bekçi kendi kör noktasını açık etti ve sıkılaştırıldı; **kendi yorum soyucum bozuktu** — dosyanın %55'ini siliyordu, güvenli sürümle değişti. **⑨ görsel boyutu ölçüldü ama KARAR MUSTAFA'DA** — Cloudflare Image Resizing bir hesap kararı. `sw.js` **v245**. Öncesi — 2026-08-31: **KVKK AYDINLATMA METNİ YAYINDA** — `/gizlilik/` canlı, Profil'deki link görünür; kontrol listesinin üçü de tek commit'te gitti. Boş duran "yurt dışına aktarımın hukuki dayanağı" bölümü yayına alınırken **sayfadan çıkarıldı**, avukat görüşünden sonra geri gelecek — taslak metin `2e69630`'da. `.metin-tablo` kuralının yük taşıdığı prove-by-breaking ile ölçüldü: kural silinince tablo 383px → **1694px**. Öncesi — 2026-08-26: metin repoya alınmıştı ama yayında değildi. Ölçüm düzeltmesi: push bildiriminde ürün adı/hedef fiyat YOK ve yük uçtan uca şifreli. Öncesi — 2026-08-25: **SEKME GEÇİŞİ: İKİ EKRAN BİRLİKTE KAYIYOR** — ilk çözüm boş kareyi ötelemeyi 100%→16px kısarak kapatmıştı, geçiş algılanamaz oldu; DOĞRUSU giden ekranı GÖRÜNÜR tutmak. Şimdi tam genişlik (390px), iki ekran birden 15 kare, boş kare 0, yatay taşma 0 (gizli kusur: `overflow-x: clip` absolute öğeyi kırpmıyordu → `body { position: relative }`), CLS 0. `test_gecis.mjs` 72 iddia, prove-by-breaking 18/18. Öncesi — **GEÇİŞLER YUMUŞATILDI** — sekme geçişinde ekranın ~35-41ms BOŞ kaldığı ölçüldü (ilk kare kapsamı %0) ve sıfırlandı; splash sönmesinde kusur SÜREDE DEĞİL EĞRİDEYDİ (%83'ü ilk 50ms'de bitiyordu → linear). reduced-motion'da animasyon TAM kapalı, layout birebir aynı. `test_gecis.mjs` 41 iddia, prove-by-breaking 12/12. Öncesi aynı gün — **FİYAT GRAFİĞİ ETİKET ÇAKIŞMASI KAPANDI** — E-E/E-X/X-X/TAŞMA **sıfırlandı**, etiket↔çizgi hale ile okunur; 193 grafiğin tamamı gerçek tarayıcıda sayıldı, çakışma "karışıklık" değil **yanlış fiyat okuma** üretiyormuş: "103,95 ₺" ekranda "105,95 ₺" gibi okunuyordu. `test_fiyat_grafik.mjs` 51 iddia, prove-by-breaking 13/13. Ayrıntı: aşağıdaki "Madde 1 KAPANDI" bloğu. Öncesi — 2026-08-23: **KVKK HESAP SİLME UÇTAN UCA CANLI** — cascade FK + `hesap-sil` edge function + iki adımlı onaylı UI (`2ecfa41`); gerçek hesapla kontrol gruplu doğrulandı, kalan tek halka **KVKK aydınlatma metni**. Öncesi: BLOK 4 + BLOK 1 geçti, altı FK `ON DELETE CASCADE`, `sql/` repoya alındı; **`style-src`'den `'unsafe-inline'` kaldırıldı**, `script-src` bilinçli ertelendi + satır içi handler kilidi). Öncesi — 2026-08-21/22 oturumu (**güvenlik başlıkları** — `font-src 'self'` + `frame-ancestors 'none'` + nosniff, **HSTS** 1. basamak `max-age=300` → **2026-08-22'de 2. basamak `max-age=86400`**; **CI test kapısı** — `deploy needs: test`, 50 test (glob), kasıtlı FAIL ile kanıtlandı; **B1 kaçış** dört kaçışsız nokta kapatıldı (`test_kacis` 93 iddia); GITHUB_TOKEN varsayılanı read + workflow başına açık `permissions`; Grup 1 (M1/M2/M3/M4); **`www` → apex 301 kuruldu**, CF beacon panelden kapatıldı; fontlar self-host + GoatCounter pin; **KVKK / hesap silme DEVAM EDİYOR** — ölçüm bitti, taslaklar henüz çalıştırılmadı; **sw v232**). Ayrıntı için aşağıdaki "2026-08-21" blokları. Bu dosya her oturum başında okunur, sohbete asla ham metin olarak yapıştırılmaz.
+**Son güncelleme:** 2026-09-10 (**`marka` ALANI KAYDEDİLİYOR + YORUM SOYUCUSU İKİNCİ KEZ ONARILDI** — API `brand`'i 16.434 başlığın %100'ünde veriyordu ve atıyorduk; marka, ad dışında sahip olduğumuz TEK ayırt edici alan (resimsiz 2.384 ürünün %92,7'si markalı paketli). Additive, `"Markasız"` yazılmıyor (479 ürün), koruma kuralı resimle TEK KAYNAKTA (`_alan_koru`). Canlı API: 75 üründen 52'sine yazıldı, yazılmayan 23'ün 23'ü de API'de "Markasız". **Görsel çekme hattı KURULMUYOR — karar Mustafa'nın:** gözlem %92,7 doğru ama dürüst tavan açığın ~%15'i (Carrefour/Migros/A101 sözleşmeyle yasaklıyor = %52; BİM'in kataloğu yok = %22,7) ve baskın risk YANLIŞ fotoğraf. **Yorum soyucusunun "güvenli" sürümü de bozuktu:** JS'te `.` `\r`'yi eşlemiyor, `m` yokken `$` dize sonu bekliyor → CRLF satırda yorum HİÇ soyulmuyordu; CI Linux'ta LF olduğu için orada yeşil, yalnız Windows'ta kırmızı. Regex yerine karakter koduyla onarıldı ve **soyucuya beş dosyada kendi kontrol grubu gömüldü** (aynı ders iki tur önce yazılmış ama uygulanmamıştı). Prove-by-breaking **5/5** + `test_marka.py` 10/10. `sw.js` **v245 SABİT** — backend/test değişikliği. Öncesi — **YÜKSEK grubunun KALAN 4 GRUBU BİTTİ** — 12 bulgu tek turda: koyu temada seçili sekme 1,17 → 15,25 ve giriş paneli 1,24 → 12,32; tarayıcı/Android geri tuşu artık uygulamadan ÇIKARMIYOR (history.length ölçüldü: 1 → 1 idi); hızlı kategori geçişinde yanlış liste (başlık "Temizlik", liste 779 ET ürünü) kapandı; damgalı JS/CSS `immutable`; kapalı panellerde 9 hayalet düğme → 0; sıralama menüsü klavyeyle kullanılabilir; ana sayfada ürüne dokunmak 19.742 KB → 8.357 KB; Türkçe ekler kurala bağlandı; `scraper.py` ağ koparsa yarım dosyayı ARTIK üzerine yazmıyor + beş yazma yeri atomik; `test_iddia.mjs`'in koşulsuz 3 PASS'ı kalktı. Prove-by-breaking **69/69**; üç bekçi kendi kör noktasını açık etti ve sıkılaştırıldı; **kendi yorum soyucum bozuktu** — dosyanın %55'ini siliyordu, güvenli sürümle değişti. **⑨ görsel boyutu ölçüldü ama KARAR MUSTAFA'DA** — Cloudflare Image Resizing bir hesap kararı. `sw.js` **v245**. Öncesi — 2026-08-31: **KVKK AYDINLATMA METNİ YAYINDA** — `/gizlilik/` canlı, Profil'deki link görünür; kontrol listesinin üçü de tek commit'te gitti. Boş duran "yurt dışına aktarımın hukuki dayanağı" bölümü yayına alınırken **sayfadan çıkarıldı**, avukat görüşünden sonra geri gelecek — taslak metin `2e69630`'da. `.metin-tablo` kuralının yük taşıdığı prove-by-breaking ile ölçüldü: kural silinince tablo 383px → **1694px**. Öncesi — 2026-08-26: metin repoya alınmıştı ama yayında değildi. Ölçüm düzeltmesi: push bildiriminde ürün adı/hedef fiyat YOK ve yük uçtan uca şifreli. Öncesi — 2026-08-25: **SEKME GEÇİŞİ: İKİ EKRAN BİRLİKTE KAYIYOR** — ilk çözüm boş kareyi ötelemeyi 100%→16px kısarak kapatmıştı, geçiş algılanamaz oldu; DOĞRUSU giden ekranı GÖRÜNÜR tutmak. Şimdi tam genişlik (390px), iki ekran birden 15 kare, boş kare 0, yatay taşma 0 (gizli kusur: `overflow-x: clip` absolute öğeyi kırpmıyordu → `body { position: relative }`), CLS 0. `test_gecis.mjs` 72 iddia, prove-by-breaking 18/18. Öncesi — **GEÇİŞLER YUMUŞATILDI** — sekme geçişinde ekranın ~35-41ms BOŞ kaldığı ölçüldü (ilk kare kapsamı %0) ve sıfırlandı; splash sönmesinde kusur SÜREDE DEĞİL EĞRİDEYDİ (%83'ü ilk 50ms'de bitiyordu → linear). reduced-motion'da animasyon TAM kapalı, layout birebir aynı. `test_gecis.mjs` 41 iddia, prove-by-breaking 12/12. Öncesi aynı gün — **FİYAT GRAFİĞİ ETİKET ÇAKIŞMASI KAPANDI** — E-E/E-X/X-X/TAŞMA **sıfırlandı**, etiket↔çizgi hale ile okunur; 193 grafiğin tamamı gerçek tarayıcıda sayıldı, çakışma "karışıklık" değil **yanlış fiyat okuma** üretiyormuş: "103,95 ₺" ekranda "105,95 ₺" gibi okunuyordu. `test_fiyat_grafik.mjs` 51 iddia, prove-by-breaking 13/13. Ayrıntı: aşağıdaki "Madde 1 KAPANDI" bloğu. Öncesi — 2026-08-23: **KVKK HESAP SİLME UÇTAN UCA CANLI** — cascade FK + `hesap-sil` edge function + iki adımlı onaylı UI (`2ecfa41`); gerçek hesapla kontrol gruplu doğrulandı, kalan tek halka **KVKK aydınlatma metni**. Öncesi: BLOK 4 + BLOK 1 geçti, altı FK `ON DELETE CASCADE`, `sql/` repoya alındı; **`style-src`'den `'unsafe-inline'` kaldırıldı**, `script-src` bilinçli ertelendi + satır içi handler kilidi). Öncesi — 2026-08-21/22 oturumu (**güvenlik başlıkları** — `font-src 'self'` + `frame-ancestors 'none'` + nosniff, **HSTS** 1. basamak `max-age=300` → **2026-08-22'de 2. basamak `max-age=86400`**; **CI test kapısı** — `deploy needs: test`, 50 test (glob), kasıtlı FAIL ile kanıtlandı; **B1 kaçış** dört kaçışsız nokta kapatıldı (`test_kacis` 93 iddia); GITHUB_TOKEN varsayılanı read + workflow başına açık `permissions`; Grup 1 (M1/M2/M3/M4); **`www` → apex 301 kuruldu**, CF beacon panelden kapatıldı; fontlar self-host + GoatCounter pin; **KVKK / hesap silme DEVAM EDİYOR** — ölçüm bitti, taslaklar henüz çalıştırılmadı; **sw v232**). Ayrıntı için aşağıdaki "2026-08-21" blokları. Bu dosya her oturum başında okunur, sohbete asla ham metin olarak yapıştırılmaz.
 
 ---
 
@@ -19,6 +19,93 @@ Mustafa (GitHub: avkkann), **Pazar App**'in tek geliştiricisi — Türk market 
 ---
 
 ## Mevcut durum (2026-08-21 itibarıyla)
+
+### 2026-09-10 (beşinci tur) — `marka` alanı kaydediliyor + **kendi yorum soyucumun ikinci kusuru** (`sw.js` v245 SABİT)
+
+**Durum: commit edildi, YAYINDA DEĞİL.** İkisi de arka uç/test tarafı — `sw.js`
+**bilerek bump EDİLMEDİ** (`index.html`/`app.js`/`style.css` değişmedi; test dosyaları
+kullanıcıya hiç gitmiyor). Bu, dosyanın kendi kuralı: backend-only değişiklikte bump yok.
+
+**A — `marka` alanı: API'nin verdiği ama attığımız tek ayırt edici bilgi.**
+Görsel sorusu (aşağıdaki B'ye bakan tur) ölçülürken çıktı: API `brand` alanını
+**16.434 başlığın %100'ünde** veriyor ve `parse_product` onu atıyordu. Elimizde bir
+ürünü tanımlayan tek şey **adıydı**; marka, ad dışında sahip olduğumuz **tek** ayırt
+edici alan. Önemi resimsiz ürünlerde ölçüldü: **2.384 resimsiz ürünün 2.210'u (%92,7)
+markalı paketli ürün** ve aynı gramajda farklı markalar birbirine çok benziyor
+("Tat Bulgur" / "Duru Bulgur", "Cem Siyah Zeytin" / "Zeytino Siyah Zeytin") — marka
+olmadan yapılan her ad eşleştirmesi bu çiftleri karıştırır.
+
+- **Additive**, `liste_fiyat`/`depot_id` ile birebir aynı desen: alan boşsa anahtar
+  **hiç açılmıyor**. Geriye dönük doldurma **yapılmadı**.
+- **"Markasız" YAZILMIYOR.** API açık/dökme ürünlerde (karpuz, baby patates) `brand`
+  alanına birebir `"Markasız"` koyuyor — **479 ürün (%2,9)**. Bu bir marka değil,
+  "markası yok" demek; 479 kez aynı bilgisiz dizeyi taşımak yerine anahtar açılmıyor.
+  **Alanın YOKLUĞU zaten "markasız" demek.**
+- **Koruma kuralı KOPYALANMADI, TEKİLLEŞTİRİLDİ.** `_apply_resim_koru` gövdesi
+  `_alan_koru(yeni, dosya, alan)`'a çıkarıldı; resim ve marka **aynı** kuralı
+  paylaşıyor. İkinci bir kopya yazmak bu deponun kayıtlı tuzağı olurdu
+  ("iki kaynak = kaçınılmaz sapma"); `_apply_resim_koru` ince bir sarmalayıcı olarak
+  duruyor, çağıranları değişmedi.
+- **Uçtan uca canlı API ile doğrulandı:** 75 ürün → **52'sinde `marka` yazıldı**,
+  yazılmayan 23'ün **23'ü de** API'de `"Markasız"`. Yani boşluk kayıp değil, kural.
+
+> **KARAR MUSTAFA'DA VE VERİLDİ: görsel çekme hattı KURULMUYOR, yalnız `marka`.**
+> "Resimsiz ürünlerin fotoğrafını satıldıkları siteden çekemez miyiz" sorusu ölçüldü:
+> gözlem **%92,7 oranında doğru** (ürün gerçekten markette var ve fotoğrafı var), ama
+> dürüst tavan **açığın ~%15'i** — çünkü (a) Carrefour/Migros/A101 kullanım şartları
+> bunu **sözleşmeyle yasaklıyor** ve bu üçü resimsizlerin **%52'sini** kapsıyor,
+> (b) resimsizlerin **%22,7'si yalnız BİM'de** ve BİM'in ürün kataloğu **yok**.
+> Baskın risk eksik fotoğraf değil **YANLIŞ fotoğraf**. Görsel küçültme (⑨) de
+> "şimdilik dokunma" denildi. *Not düşülüyor, istenmedi: eksik fotoğraflar için doğru
+> yol TÜBİTAK/marketfiyati'ye talep — attribution zaten footer'da.*
+
+**B — YORUM SOYUCUSU İKİNCİ KEZ BOZUKTU, ve bu kez kusur BENDEYDİ + CI'DA GÖRÜNMEZDİ.**
+Dördüncü turda naif blok-yorum regex'ini "güvenli satır tabanlı sürümle" değiştirmiştim.
+O sürüm de bozuktu: satırları `char(10)` ile bölüp `/^\s*\/\/.*$/` arıyordu. **JS'te `.`
+satır sonlandırıcılarını (`\r` dahil) ESLEMEZ** ve `m` bayrağı yokken `$` **dize sonunu**
+bekler — CRLF bir satırda geriye kalan `\r` yüzünden desen **hiç eşleşmiyor**, yorum
+**soyulmuyor**. Yani "şu desen kaynakta YOK" diyen iddialar yorumla eşleşip **yanlış
+alarm** veriyordu (üç test kırmızıya döndü: `test_tembel`, `test_arama_indeks`,
+`test_gecmis`; ikisi latent taşıyordu).
+
+> **EN SİNSİ TARAFI: CI'DA GÖRÜNMÜYOR.** CI Linux'ta LF checkout yapıyor, orada `\r`
+> hiç doğmuyor ve kapı **yeşil kalıyor**. Hata yalnızca Windows'ta çıkıyor — üstelik
+> `git pull --rebase` `app.js`'i tamamen CRLF'e normalize edince ortaya çıktı, yani
+> **kod değişmeden** bir test kırmızıya dönebiliyor. Deponun kayıtlı tuzağının aynısı
+> (2026-09-03, `test_sessiz_catch` iki dalı bu yüzden ÖLÜ taşıyordu).
+
+- **Onarım regex'le DEĞİL, karakter koduyla:** `if (l.charCodeAt(l.length-1) === 13)
+  l = l.slice(0, -1);`. Kaçış tuzağı bir daha doğmasın diye bilerek desen kullanılmadı.
+- **SOYUCUYA KENDİ KONTROL GRUBU GÖMÜLDÜ (beş dosyanın beşine).** Bu turun asıl dersi:
+  alet iki turdur bozuktu ve **iki kez de ancak başka bir testin yanlış alarmı** açık
+  etti — çünkü soyucunun kendini kanıtlayan bir iddiası yoktu. Artık her koşuda üç
+  iddia: CRLF satırda yorum soyuluyor · LF satırda soyuluyor · **kod satırı korunuyor**
+  (aşırı soyma yok — %55 silen ilk kusurun bekçisi). *Dosyada zaten yazılıydı: "bir
+  aleti teste koymadan önce onun da kontrol grubunu koş." Bu tur onu ihlal ettiğim
+  için bedelini ödedi.*
+- **Prove-by-breaking 5/5.** Kontrol grubu eklenmeden önce ölçüldü: 3/5 kırmızı,
+  ikisi "GUARD KOR" (soyucu o iki dosyada ölçülebilir yük taşımıyordu). Kontrol grubu
+  eklendikten sonra **5/5**, hepsinde `mutasyon DOGRULANDI`.
+
+> **KENDİ ONARIM BETİĞİM DE İKİ KEZ BOZULDU — üçüncüde düzeldi.** (1) Python heredoc
+> `\r?\n` kaçışlarını yiyip beş dosyaya **literal CR/LF** yazdı, hepsi bozuldu
+> (`git checkout --` ile geri alındı). (2) Betiği dosyaya yazdım ama `replace()`'e
+> **dize** verdim ve dizede `` $` `` vardı — `String.replace` bunu **"eşleşmeden önceki
+> her şey"** diye yorumluyor (özel desenler: `$$ $& $` $' $n`), dosyanın başı ortaya
+> kopyalandı. Doğrusu `replace(bul, () => yeni)` — **fonksiyon dönüşünde özel desen
+> yorumlanmaz.** *Ders: `replace`'e kullanıcı/şablon metni verirken her zaman fonksiyon
+> kullan; `$` içeren hiçbir metin dize olarak güvenli değil.*
+
+**Yeni bekçi:** `test_marka.py` (36 iddia) — additive kayıt, "Markasız" dışlaması,
+koruma kuralı, ve `sync_db.py`'nin açık sözlük kurduğu (yani `marka`nın DB'ye sessizce
+sızmadığı) kilitli. Prove-by-breaking **10/10**.
+**Genişletilenler:** `test_tembel.mjs` (46→49), `test_arama_indeks.mjs` (34→37),
+`test_gecmis.mjs` (54→57), `test_klavye_panel.mjs` (48→51), `test_turkce_ek.mjs` (18→21)
+— beşi de soyucu kontrol grubuyla.
+**Doğrulama:** 65 `test_*.mjs` + 8 `test_*.py` yeşil (**2.703 `.mjs` iddiası**),
+build yeşil, canlı API ile uçtan uca marka ölçümü yapıldı.
+
+---
 
 ### 2026-09-10 (dördüncü tur) — YÜKSEK grubunun KALAN 4 GRUBU bitti: 12 bulgu (`sw.js` v244 → **v245**)
 
@@ -130,6 +217,12 @@ dört grup tek turda kapandı. Prove-by-breaking **69/69**.
 > sürümle değiştirildi (yalnız satır başında başlayan blok yorumlar + tam satırlık
 > `//`), kayıp %55 → **%30** (yalnızca yorumlar). *Ders: bir aleti teste koymadan
 > önce onun da kontrol grubunu koş.*
+>
+> ⚠️ **DÜZELTME (2026-09-10, beşinci tur): o "güvenli sürüm" DE BOZUKTU.** Dersi
+> yazdım ama **uygulamadım** — yeni soyucuya kontrol grubu koymadım ve CRLF satırlarda
+> yorumu hiç soymadığı iki tur sonra, üç testin yanlış alarmıyla ortaya çıktı. Onarım
+> ve soyucunun artık her koşuda kendini kanıtlaması için yukarıdaki beşinci tur
+> bloğuna bak.
 
 > **TEST KENDİ AÇIKLAMASIYLA EŞLEŞTİ — beşinci ve altıncı vaka.** `test_tembel` ve
 > `test_arama_indeks` "`loadAllCats` geçmiyor" diye kilitliyordu; `_detayTamVeriGetir`'in
@@ -1721,6 +1814,7 @@ Bu aralık `DENETIM.md`'nin (2026-08-11) bulgularını kapatmakla geçti. Sürü
 | `test_anasayfa.mjs` | 22 | Havuz/seçim ayrımı, şehirli-şehirsiz birebir eşitlik |
 | `test_birim_fiyat.mjs` | 22 | Birim fiyat vurgusu, diğer ekranların etkilenmemesi |
 | `test_iddia.mjs` | 22 | Sayısal iddiaların HAM seriye karşı doğrulanması (`_hamDipMi`) |
+| `test_marka.py` | 36 | `marka` alanı: additive kayıt (alan boşsa anahtar açılmaz), API'nin `"Markasız"` değerinin dışlanması, `_alan_koru` tek-kaynak koruma kuralı (resim ile paylaşılıyor), `sync_db.py`'nin açık sözlük kurduğu — yani `marka`nın DB'ye sessizce sızmadığı |
 | `test_liste_fiyat.py` | 21 | `discountlessPrice` parse'ı, `ilan_indirim_gecmisi` birikimi |
 | `test_depot.py` | 19 | `depot_id`/`depot_ad` additive kaydı, boş alan taşınmaması |
 | `test_tazelik.py` | 18 | Tazelik kontrolü kapsamı, `anasayfa.json` + `indirim_analiz_son.json` |

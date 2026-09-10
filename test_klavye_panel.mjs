@@ -49,12 +49,34 @@ function govde(ad) {
 function kodTemiz(src) {
   const cikti = [];
   let blokta = false;
-  for (const l of String(src).split(String.fromCharCode(10))) {
+  // CRLF GUVENLIGI: JS regexinde nokta satir sonlandiricilarini (CR dahil)
+  // ESLEMEZ ve m bayragi yokken satir-sonu capasi DIZE sonunu bekler. CRLF
+  // bir satirda geriye kalan CR yuzunden asagidaki // deseni HIC eslesmez,
+  // yorum SOYULMAZ ve "su desen kaynakta YOK" diyen iddia yorumla eslesip
+  // YANLIS ALARM verir. SINSI: CI (Linux, LF checkout) YESIL kalir, hata
+  // yalnizca Windows ta gorunur -- deponun kayitli tuzagi (2026-09-03,
+  // test_sessiz_catch). Regex ile degil KARAKTER KODUYLA kirpiliyor.
+  for (let l of String(src).split(String.fromCharCode(10))) {
+    if (l.charCodeAt(l.length - 1) === 13) l = l.slice(0, -1);
     if (blokta) { if (l.indexOf("*/") >= 0) blokta = false; cikti.push(""); continue; }
     if (/^\s*\/\*/.test(l)) { if (l.indexOf("*/") < 0) blokta = true; cikti.push(""); continue; }
     cikti.push(l.replace(/^\s*\/\/.*$/, ""));
   }
   return cikti.join(String.fromCharCode(10));
+}
+
+// ALET KONTROLU (soyucunun KENDI kontrol grubu). Bu alet 2026-09-10 turunda
+// SESSIZCE BOZUKTU: CRLF satirlarda yorumu hic soymuyordu ve bunu ancak
+// baska bir testin YANLIS ALARMI acik etti. CI Linux ta LF checkout yaptigi
+// icin orada yesil kaliyordu. Artik alet her kosuda kendini kanitliyor.
+{
+  const CR = String.fromCharCode(13), LF = String.fromCharCode(10);
+  const _crlf = kodTemiz("// SOYULMALI_YORUM" + CR + LF + "const _kod = 1;" + CR + LF);
+  const _lf   = kodTemiz("// SOYULMALI_YORUM" + LF + "const _kod = 1;" + LF);
+  ok("ALET: CRLF satirda yorum SOYULUYOR", !/SOYULMALI_YORUM/.test(_crlf), JSON.stringify(_crlf));
+  ok("ALET:   LF satirda yorum SOYULUYOR", !/SOYULMALI_YORUM/.test(_lf), JSON.stringify(_lf));
+  ok("ALET: kod satiri KORUNUYOR (asiri soyma yok)",
+     /const _kod = 1;/.test(_crlf) && /const _kod = 1;/.test(_lf), JSON.stringify(_crlf));
 }
 
 // ── sahte DOM ────────────────────────────────────────────────────────
