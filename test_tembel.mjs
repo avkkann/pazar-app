@@ -106,8 +106,30 @@ console.log('\n=== 4. loadCat HATADA takilmiyor (uctaki kayit temizleniyor) ==='
   vm.createContext(ctx);
   const dedup = APP.match(/let _catYukleniyor[^\n]*\n/);
   vm.runInContext([dedup ? dedup[0] : '', fnKaynak('loadCat'), fnKaynak('_loadCatGetir')].join('\n'), ctx);
-  const bos = await vm.runInContext('loadCat("et")', ctx);
-  ok('hata cokmeye yol acmiyor, bos dizi donuyor', Array.isArray(bos), JSON.stringify(bos));
+  // IDDIA GUCLENDIRILDI, GEVSETILMEDI.
+  // ESKI iddia "bos dizi donuyor" idi -- ve tam olarak O DAVRANIS kusurun
+  // kendisiydi: bos dizi catCache'e "yuklendi" diye yaziliyor, JavaScript'te
+  // truthy oldugu icin bir daha ISTEK ATILMIYOR ve kategori OTURUM BOYUNCA
+  // bos kaliyordu (denetim 2026-09-08, uc ayri bulgu, tek kok).
+  // Bolum basliginin soyledigi asil sart -- "uctaki kayit temizleniyor" --
+  // aynen duruyor ve uzerine uc yeni sart eklendi.
+  let firlatti = false, hataKodu = null;
+  try { await vm.runInContext('loadCat("et")', ctx); }
+  catch (e) { firlatti = true; hataKodu = e && e.kod; }
+  ok('basarisizlikta HATA FIRLIYOR (bos dizi donmuyor)', firlatti, 'sessizce bos dizi dondu');
+  ok('  hata ayirt edilebilir kod tasiyor', hataKodu === 'AG_HATASI', String(hataKodu));
+  ok('  ONBELLEK ZEHIRLENMEDI (catCache bos kayit tutmuyor)',
+     vm.runInContext('catCache["et"] === undefined', ctx), JSON.stringify(ctx.catCache));
+  // KONTROL GRUBU: ag geri gelince tekrar deneme GERCEKTEN yeni istek atiyor
+  // NOT: `istek` ve `patlat` bu test dosyasinin DIS degiskenleri; fetch
+  // taklidi onlari kapanisla goruyor. ctx.istek diye okumak undefined verir
+  // (bu oturumda ayni sinif sonda hatasi dorduncu kez yasandi).
+  const oncekiIstek = istek;
+  patlat = false;
+  const sonra = await vm.runInContext('loadCat("et")', ctx);
+  ok('  ag gelince tekrar deneme CALISIYOR', Array.isArray(sonra) && sonra.length > 0,
+     JSON.stringify(sonra));
+  ok('  ve gercekten YENI istek atildi', istek > oncekiIstek, oncekiIstek + ' -> ' + istek);
 }
 
 console.log('\n=== 5. GECMISI GEREKTIREN EKRANLAR TETIKLIYOR ===');

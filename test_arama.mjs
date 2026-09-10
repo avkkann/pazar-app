@@ -29,6 +29,21 @@ for (const f of dosyalar) {
 ok('gercek katalog yuklendi (>10.000 urun)', KATALOG.length > 10000, KATALOG.length + ' urun');
 
 // ── app.js'ten GERCEK kaynagi cikar (mantik kopyalanmaz) ────────────
+// Ust duzey `const AD = ...;` bildirimini dengeli parantez sayarak cikarir.
+// (cekirdek-uret.mjs'teki sabitGovdesi ile ayni desen.) Sahte deger
+// yazmamak icin var: sabitin GERCEK degeri yuklensin, bozulursa test bozulsun.
+function _sabit(ad) {
+  const L = APP.split(/\r?\n/);
+  const bas = L.findIndex((l) => new RegExp('^(const|let) ' + ad + '\\s*=').test(l));
+  if (bas < 0) throw new Error('sabit bulunamadi: ' + ad);
+  let d = 0;
+  for (let i = bas; i < L.length; i++) {
+    for (const ch of L[i]) { if ('([{'.includes(ch)) d++; else if (')]}'.includes(ch)) d--; }
+    if (d <= 0 && /;\s*(\/\/.*)?$/.test(L[i])) return L.slice(bas, i + 1).join('\n');
+  }
+  throw new Error('sabit kapanmadi: ' + ad);
+}
+
 function govde(ad) {
   const b = APP.indexOf('function ' + ad + '(');
   if (b < 0) return '';
@@ -76,7 +91,10 @@ const kaynak = [
   // _aramaSkoru artik ad basina normalize+kelime onbellegi kullaniyor
   // (her tus vurusunda 16 bin urunu yeniden normalize etmeyi biraktik).
   // GERCEK kaynak yukleniyor, sahte degil.
+  // `_ekliAyniKelime` + `_TR_EKLER` 2026-09-10'da EKLENDI: Turkce eki tam
+  // kelime sayan kural ("yagi" = "yag"). GERCEK kaynak yukleniyor.
   'const _adnCache = new Map();', govde('_adAyristir'),
+  _sabit('_TR_EKLER'), _sabit('_TR_EK_MIN'), govde('_ekliAyniKelime'),
   govde('_aramaSkoru'), govde('urunAra'), govde('kategoriOnerisi'),
 ].join('\n');
 for (const [ad, p] of [['KATEGORILER', sabit('KATEGORILER')], ['KART_GRUP', sabit('KART_GRUP')],
@@ -117,7 +135,15 @@ console.log('\n=== 2. FARKLI SORGU FARKLI SONUC (kestirme geri gelmesin) ===');
 
 console.log('\n=== 3. PUANLAMA SIRASI: tam kelime > kelime basi > alt dize ===');
 ok('tam kelime = 3', skor('Pepsi Kola 1 Lt', 'kola') === 3);
-ok('kelime basi = 2', skor('Kolali Icecek', 'kola') === 2, String(skor('Kolali Icecek', 'kola')));
+// ORNEK DEGISTI, IDDIA DEGISMEDI. "Kolali" artik TAM KELIME sayiliyor (3):
+// 2026-09-10'da Turkce ek kurali geldi -- "kolali" = "kola"+"li", tipki
+// "yagi" = "yag" gibi. Kural tam da bunun icin var: "yag" arayan kullanici
+// "Yag Cozucu"yu (tam kelime) gorup "Aycicek Yagi"ni 41. sirada goruyordu.
+// Uc kademeli sira AYNEN duruyor; yalnizca hangi kelimenin "tam" sayildigi
+// genisledi. Ornek, eki OLMAYAN gercek bir kelime basi ile degistirildi:
+// "kolay" -> "kola"+"y" ve "y" bir cekim eki DEGIL.
+ok('kelime basi = 2', skor('Kolay Temizlik', 'kola') === 2, String(skor('Kolay Temizlik', 'kola')));
+ok('  Turkce ekli bicim TAM KELIME sayiliyor (3)', skor('Kolali Icecek', 'kola') === 3, String(skor('Kolali Icecek', 'kola')));
 ok('alt dize = 1', skor('Ulker Cikolata 60 Gr', 'kola') === 1, String(skor('Ulker Cikolata 60 Gr', 'kola')));
 ok('eslesmeyen = 0', skor('Ayran 1 Lt', 'kola') === 0);
 // Siralamanin GERCEKTEN uygulandigi: cikolata (alt dize) kola aramasinda EN ALTTA
@@ -299,7 +325,9 @@ console.log('\n=== 8. VEKIL OLCUM: en sik 30 kelimede ilk sonuc TAM KELIME ===')
   vm.runInContext(
     'let _sayac = 0;\n' +
     govde('trNormalize').replace('function trNormalize(s) {', 'function trNormalize(s) { _sayac++;') + '\n' +
-    'const _adnCache = new Map();\n' + govde('_adAyristir') + '\n' + govde('_aramaSkoru'),
+    'const _adnCache = new Map();\n' + govde('_adAyristir') + '\n'
+      + _sabit('_TR_EKLER') + '\n' + _sabit('_TR_EK_MIN') + '\n'
+      + govde('_ekliAyniKelime') + '\n' + govde('_aramaSkoru'),
     kutu2);
   vm.runInContext('_aramaSkoru("Pınar Süt 1 L", "sut")', kutu2);
   const ilk = vm.runInContext('_sayac', kutu2);
@@ -311,6 +339,96 @@ console.log('\n=== 8. VEKIL OLCUM: en sik 30 kelimede ilk sonuc TAM KELIME ===')
   vm.runInContext('_aramaSkoru("Sek Ayran 1 L", "ayran")', kutu2);
   ok('  farkli ad yeni normalize tetikliyor (arac kor degil)',
      vm.runInContext('_sayac', kutu2) > sonra, sonra + ' -> ' + vm.runInContext('_sayac', kutu2));
+}
+
+// ── 10. COK KELIMELI SORGU (denetim bulgusu: "hic sonuc vermiyor") ──
+// OLCULDU (2026-09-10, 16.256 urun): "zeytin yagi" 1 sonuc veriyordu ama 108
+// urun iki kelimeyi de iceriyor; "sivi yag" 0/18, "sek sut" 3/38.
+// Sorgu tek parca alindigi icin ancak adda BITISIK gectiginde tutuyordu.
+{
+  console.log('\n=== 10. COK KELIMELI SORGU ===');
+  const kelimeIceren = (q) => {
+    const kel = q.split(/\s+/).map((w) => vm.runInContext('trNormalize(' + JSON.stringify(w) + ')', kutu)).filter(Boolean);
+    return KATALOG.filter((u) => {
+      const adn = vm.runInContext('trNormalize(' + JSON.stringify(u.ad || '') + ')', kutu);
+      return kel.every((k) => adn.includes(k));
+    }).length;
+  };
+  for (const [q, enAz] of [['zeytin yağı', 90], ['sıvı yağ', 15], ['sek süt', 30], ['tam yağlı süt', 15]]) {
+    const bulunan = ara(q).length;
+    const gercek = kelimeIceren(q);
+    ok('"' + q + '" sonuc veriyor (>= ' + enAz + ')', bulunan >= enAz, bulunan + ' bulundu / ' + gercek + ' gercek');
+    ok('  hepsini yakaliyor (kayip yok)', bulunan >= gercek, bulunan + ' vs ' + gercek);
+  }
+  // VE MANTIGI: bir kelime tutmuyorsa urun listeye GIRMEMELI
+  ok('kelimelerden biri tutmazsa sonuc yok', ara('zeytin zzqqxx').length === 0, String(ara('zeytin zzqqxx').length));
+  // TAM IFADE BONUSU -- DEGISMEZ KURAL, tek bir siraya bakmak YETMIYOR.
+  // Ilk yazimda "ilk sirada tam ifade var mi" diye soruyordu ve
+  // prove-by-breaking bunu yakaladi: bonus tamamen kaldirilinca da ilk sira
+  // ayni kaliyordu (en kisa ad zaten one geciyor). Olculdu: bonus 10
+  // sorgunun 3'unde ilk 10 sirasini degistiriyor, ama 1. sirayi degil.
+  // Dogru iddia: tam ifadeyi tasiyan HER urun, tasimayan HER urunden ONCE.
+  // (Taban skor en fazla 3, bonusla 4 -> matematiksel olarak garanti.)
+  for (const q of ['tam yağlı süt', 'yeşil çay', 'sıvı sabun']) {
+    const r = ara(q);
+    const qn = vm.runInContext('trNormalize(' + JSON.stringify(q) + ')', kutu);
+    const tasiyor = (u) => vm.runInContext('trNormalize(' + JSON.stringify(u.ad || '') + ')', kutu).includes(qn);
+    let sonTasiyan = -1, ilkTasimayan = -1;
+    for (let i = 0; i < r.length; i++) {
+      if (tasiyor(r[i])) sonTasiyan = i;
+      else if (ilkTasimayan < 0) ilkTasimayan = i;
+    }
+    ok('"' + q + '": tam ifadeyi tasiyanlar HEPSI once',
+       ilkTasimayan < 0 || sonTasiyan < ilkTasimayan,
+       'son tasiyan@' + sonTasiyan + ' ilk tasimayan@' + ilkTasimayan);
+  }
+  // KONTROL GRUBU: tek kelimeli sorgu davranisi BOZULMADI
+  ok('KONTROL: tek kelime hala calisiyor', ara('peynir').length > 100, String(ara('peynir').length));
+}
+
+// ── 11. AKSANLI HARFLER (denetim bulgusu) ────────────────────────────
+// Turkce klavyede é/è/ä yok. OLCULDU: "nescafe" 2 sonuc / "nescafé" 122,
+// "nestle" 1 / "nestlé" 78, "loreal" 0 / "l'oréal" 26. Katalogda 257 aksanli
+// harf var (é 241, ä 13, è 3); o/ö ve u/ü zaten Turkce satirlarda cozuluyor.
+{
+  console.log('\n=== 11. AKSANLI HARFLER ===');
+  for (const [tr, orj] of [['nescafe', 'nescafé'], ['nestle', 'nestlé'], ['cafe', 'café']]) {
+    const a = ara(tr).length, b = ara(orj).length;
+    ok('"' + tr + '" ile "' + orj + '" AYNI sonucu veriyor', a === b, a + ' vs ' + b);
+  }
+  ok('  "nescafe" gercekten cok sonuc getiriyor (>50)', ara('nescafe').length > 50, String(ara('nescafe').length));
+  const n = (s) => vm.runInContext('trNormalize(' + JSON.stringify(s) + ')', kutu);
+  ok('  é/è/ê/ë -> e', n('éèêë') === 'eeee', n('éèêë'));
+  ok('  ä/â/à -> a', n('äâà') === 'aaa', n('äâà'));
+  ok('  ñ -> n', n('ñ') === 'n', n('ñ'));
+  // KONTROL GRUBU: Turkce harfler BOZULMADI (aksan kurali onlari ezmemeli)
+  ok('KONTROL: Turkce harfler aynen cozuluyor', n('ŞĞÜÖÇİI') === 'sguocii', n('ŞĞÜÖÇİI'));
+}
+
+// ── 12. TURKCE EK: "yagi" = "yag" (denetim bulgusu: siralama) ────────
+// OLCULDU: "yag" arayan kullanici ilk 40 sirada YEMEKLIK yag goremiyordu --
+// "Yag Cozucu" tam kelime (3), "Aycicek Yagi" ek aldigi icin kelime basi (2).
+// Kural sonrasi ilk yemeklik yag 41. -> 5. siraya cikti.
+// ESIK 3 HARF, OLCUMLE: 2 harfli sorgularda kural zarar veriyor -- "et"
+// aramasi ("et"+"i") ETI MARKASINI uste cikariyordu (440 urun).
+{
+  console.log('\n=== 12. TURKCE EK KURALI ===');
+  ok('"yagi" kelimesi "yag" sorgusuyla TAM KELIME', skor('Komili Ayçiçek Yağı 1 Lt', 'yag') === 3);
+  ok('"peyniri" kelimesi "peynir" sorgusuyla TAM KELIME', skor('Lor Peyniri 500 Gr', 'peynir') === 3);
+  ok('"cayi" kelimesi "cay" sorgusuyla TAM KELIME', skor('Beta Nar Çayı 50 Gr', 'cay') === 3);
+  // KONTROL GRUBU 1: ek OLMAYAN kelime basi hala 2
+  ok('KONTROL: ek olmayan kelime basi hala 2', skor('Kolay Temizlik', 'kola') === 2);
+  // KONTROL GRUBU 2: 3 HARFTEN KISA sorguda kural KAPALI (Eti markasi tuzagi)
+  ok('KONTROL: 2 harfli sorguda kural KAPALI ("et" -> "Eti" yukselmiyor)',
+     skor('Eti Canga 45 Gr', 'et') === 2, String(skor('Eti Canga 45 Gr', 'et')));
+  ok('  ve "un" -> "Unye" yukselmiyor', skor('Ünye Kurabiyesi 300 Gr', 'un') === 2,
+     String(skor('Ünye Kurabiyesi 300 Gr', 'un')));
+  // DAVRANIS: yemeklik yag artik ilk 10'da
+  {
+    const r = ara('yağ').slice(0, 10).map((u) => u.ad);
+    const yemeklik = r.findIndex((a) => /(ayçiçek|zeytinya|mısır ya|kanola|natürel)/i.test(a));
+    ok('"yağ" ilk 10 sonucunda YEMEKLIK yag var', yemeklik >= 0, r.join(' | ').slice(0, 160));
+  }
 }
 
 console.log('\nSONUC: PASS=' + pass + ' FAIL=' + fail);

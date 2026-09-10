@@ -46,7 +46,7 @@ const FONKSIYONLAR = [
   'zamOlcutu', 'zamSalinimVar', 'zamMarketSerisi', 'zamMarketArtisi',
   'zamDurumu', 'zamAdaylari', 'zamHavuzu', 'zamSecHavuzdan',
   // arama
-  '_adAyristir', '_aramaSkoru', 'urunAra', '_ahIndexRebuildIfNeeded',
+  '_adAyristir', '_ekliAyniKelime', '_aramaSkoru', 'urunAra', '_ahIndexRebuildIfNeeded',
   // urun iliskileri
   'ayniUrunMu', 'digerPaketleriBul',
   // sehir
@@ -62,6 +62,7 @@ const FONKSIYONLAR = [
 const ENJEKTE = ['sehirOku'];
 
 const SABITLER = [
+  '_TR_EKLER', '_TR_EK_MIN',
   'AL_ZAMANI_MIN_OYNAMA', 'AL_ZAMANI_TOLERANS', 'KART_GRUP', 'SEHIR_KEY',
   'SUPHELI_KUTU_ESIK', 'SUPHELI_SEBEP_CUMLE', 'SUPHELI_ZAMANSAL_SEBEPLER',
   'TUZAK_WHITELIST', 'ZAM_ESIK', 'ZAM_KAT_MAX', 'ZAM_MARKA_MAX', 'ZAM_MAX',

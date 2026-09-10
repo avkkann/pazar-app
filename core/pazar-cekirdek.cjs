@@ -74,6 +74,13 @@
   }
 
   // ══ BURADAN ASAGISI app.js'TEN BIREBIR ═══════════════════════════════
+const _TR_EKLER = ['i','u','a','e','si','su','sa','se','in','un','an','en',
+  'da','de','ta','te','dan','den','tan','ten','la','le','li','lu',
+  'lar','ler','nin','nun','ni','nu','na','ne','yi','yu','ya','ye',
+  'lari','leri','larin','lerin','sinin','sunun'];
+
+const _TR_EK_MIN = 3;
+
 const AL_ZAMANI_MIN_OYNAMA = 0.05;  // 30 gunde en az %5 oynama yoksa yorum yok
 
 const AL_ZAMANI_TOLERANS = 0.02;    // uca %2 yakinlik "ucta" sayilir
@@ -190,6 +197,18 @@ function trNormalize(s) {
     .replace(/Ü/g, 'u').replace(/ü/g, 'u')
     .replace(/Ö/g, 'o').replace(/ö/g, 'o')
     .replace(/Ç/g, 'c').replace(/ç/g, 'c')
+    // AKSANLI LATIN HARFLERI. Turkce klavyede é, è, ä yok; kullanici
+    // "nescafe" yaziyor ama katalogda "Nescafé" duruyor ve eslesme kopuyordu.
+    // OLCULDU (2026-09-10, 16.256 urun): "nescafe" 2 sonuc / "nescafé" 122,
+    // "nestle" 1 / "nestlé" 78, "loreal" 0 / "l'oréal" 26.
+    // Katalogda 257 aksanli harf var (é 241, ä 13, è 3) -- o/ö ve u/ü zaten
+    // yukaridaki Turkce satirlarda cozuluyor, burada TEKRAR edilmiyor.
+    .replace(/[ÉÈÊËéèêë]/g, 'e')
+    .replace(/[ÁÀÂÄÅáàâäå]/g, 'a')
+    .replace(/[ÍÌÎÏíìîï]/g, 'i')
+    .replace(/[ÓÒÔÕØóòôõø]/g, 'o')
+    .replace(/[ÚÙÛúùû]/g, 'u')
+    .replace(/[Ññ]/g, 'n')
     .toLowerCase().trim();
 }
 
@@ -691,11 +710,23 @@ function _adAyristir(ad) {
   return v;
 }
 
+// Turkce isim cekim ekleri (iyelik, hal, cogul). "yagi" kelimesi "yag"
+// sorgusuyla AYNI kelime sayilsin diye; yoksa "Yag Cozucu" (tam kelime,
+// skor 3) yemeklik "Aycicek Yagi"nin (skor 2) ustune cikiyordu.
+
+function _ekliAyniKelime(kelime, qn) {
+  if (kelime === qn) return true;
+  if (qn.length < _TR_EK_MIN) return false;
+  if (!kelime.startsWith(qn)) return false;
+  const kalan = kelime.slice(qn.length);
+  return kalan.length > 0 && kalan.length <= 5 && _TR_EKLER.indexOf(kalan) >= 0;
+}
+
 function _aramaSkoru(ad, qn) {
   if (!qn || !ad) return 0;
   const p = _adAyristir(ad);
   if (!p.adn) return 0;
-  if (p.kelimeler.includes(qn)) return 3;
+  if (p.kelimeler.some(w => _ekliAyniKelime(w, qn))) return 3;
   if (p.kelimeler.some(w => w.startsWith(qn))) return 2;
   if (p.adn.includes(qn)) return 1;
   return 0;
@@ -704,9 +735,31 @@ function _aramaSkoru(ad, qn) {
 function urunAra(liste, q) {
   const qn = trNormalize(q);
   if (!qn) return [];
+  // COK KELIMELI SORGU: kelimelerin HEPSI eslesmeli.
+  // Eskiden sorgu tek parca aliniyordu: "zeytin yagi" ancak adda BITISIK
+  // gectiginde tutuyordu. OLCULDU (16.256 urun): "zeytin yagi" 1 sonuc
+  // veriyordu, oysa 108 urun iki kelimeyi de iceriyor; "sivi yag" 0/18,
+  // "sek sut" 3/38. Yani bosluk kullanan kullanici bos ekran goruyordu.
+  const kelimeler = qn.split(/\s+/).filter(Boolean);
   const bulunan = [];
   for (const u of (liste || [])) {
-    const s = _aramaSkoru(u && u.ad, qn);
+    let s;
+    if (kelimeler.length > 1) {
+      // HEPSI sart: biri tutmazsa urun listeye hic girmez (VE mantigi).
+      // Skor ortalama -- boylece "tam kelime" eslesenler ustte kalir.
+      let top = 0;
+      for (const k of kelimeler) {
+        const p = _aramaSkoru(u && u.ad, k);
+        if (!p) { top = 0; break; }
+        top += p;
+      }
+      s = top ? top / kelimeler.length : 0;
+      // Tam ifade AYNEN geciyorsa en uste: "tam yagli sut" arayan once
+      // birebir o ifadeyi tasiyan urunu gormeli.
+      if (s && _adAyristir(u.ad).adn.includes(qn)) s += 1;
+    } else {
+      s = _aramaSkoru(u && u.ad, qn);
+    }
     if (s) bulunan.push({ u: u, s: s });
   }
   bulunan.sort((a, b) => b.s - a.s || String(a.u.ad || '').length - String(b.u.ad || '').length);
@@ -890,11 +943,14 @@ function enIyiBirimIdleri(liste) {
     ZAM_MAX: ZAM_MAX,
     ZAM_MIN_KAYIT: ZAM_MIN_KAYIT,
     _ARAMA_GRUP_SLUG: _ARAMA_GRUP_SLUG,
+    _TR_EKLER: _TR_EKLER,
+    _TR_EK_MIN: _TR_EK_MIN,
     _adAyristir: _adAyristir,
     _ahIndexRebuildIfNeeded: _ahIndexRebuildIfNeeded,
     _aramaSkoru: _aramaSkoru,
     _birimFiyatAyristir: _birimFiyatAyristir,
     _birimFiyatHam: _birimFiyatHam,
+    _ekliAyniKelime: _ekliAyniKelime,
     _hamDipMi: _hamDipMi,
     _salinimVarSeri: _salinimVarSeri,
     _sepetMarketFiyati: _sepetMarketFiyati,

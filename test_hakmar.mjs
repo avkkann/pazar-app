@@ -15,6 +15,21 @@ const ok = (ad, kosul, detay = '') => {
   else { fail++; console.log('  FAIL  ' + ad + (detay ? '  -> ' + detay : '')); }
 };
 
+// Ust duzey `const AD = ...;` bildirimini dengeli parantez sayarak cikarir.
+// (cekirdek-uret.mjs'teki sabitGovdesi ile ayni desen.) Sahte deger
+// yazmamak icin var: sabitin GERCEK degeri yuklensin, bozulursa test bozulsun.
+function _sabit(ad) {
+  const L = APP.split(/\r?\n/);
+  const bas = L.findIndex((l) => new RegExp('^(const|let) ' + ad + '\\s*=').test(l));
+  if (bas < 0) throw new Error('sabit bulunamadi: ' + ad);
+  let d = 0;
+  for (let i = bas; i < L.length; i++) {
+    for (const ch of L[i]) { if ('([{'.includes(ch)) d++; else if (')]}'.includes(ch)) d--; }
+    if (d <= 0 && /;\s*(\/\/.*)?$/.test(L[i])) return L.slice(bas, i + 1).join('\n');
+  }
+  throw new Error('sabit kapanmadi: ' + ad);
+}
+
 function fnKaynak(ad) {
   const bas = APP.indexOf('function ' + ad + '(');
   if (bas < 0) throw new Error('bulunamadi: ' + ad);
@@ -76,7 +91,10 @@ function calistir(urunlerVeri, aktifMarketler, altKat = 'tumu', arama = '') {
     // urunu yeniden normalize etmiyor). IDDIA DEGISMEDI, calisma ortami
     // tamamlandi -- GERCEK kaynak yukleniyor, sahte degil.
     fnKaynak('trNormalize') + '\nconst _adnCache = new Map();\n' +
-    fnKaynak('_adAyristir') + '\n' + fnKaynak('_aramaSkoru') + '\n' + fnKaynak('urunAra') + '\n' +
+    // `_ekliAyniKelime` + `_TR_EKLER` 2026-09-10'da EKLENDI: Turkce eki tam
+    // kelime sayan kural ("yagi" = "yag"). GERCEK kaynak yukleniyor.
+    fnKaynak('_adAyristir') + '\n' + _sabit('_TR_EKLER') + '\n' + _sabit('_TR_EK_MIN') + '\n' +
+    fnKaynak('_ekliAyniKelime') + '\n' + fnKaynak('_aramaSkoru') + '\n' + fnKaynak('urunAra') + '\n' +
     fnKaynak('renderUrunler') + '\n' + fnKaynak('uygulaCatFiltre') + '\nuygulaCatFiltre();', ctx);
   return { pillNodes: dom.pillNodes, sayac: dom.el.countNum.textContent, listeHTML: dom.el.productList.innerHTML };
 }

@@ -990,7 +990,11 @@ function _yuklemeHataModali(e) {
       okText: 'Tamam'
     };
   }
-  const agHatasi = (e instanceof TypeError) && /fetch|network|failed|load/i.test((e && e.message) || '');
+  // KOD ONCE: loadCat artik basarisizlikta ayirt edilebilir bir kod
+  // firlatiyor (AG_HATASI / SUNUCU_HATASI). Eski TypeError sezgisi ALTTA
+  // KALDI -- kaldirilirsa kod tasimayan eski yollar yanlis mesaja duserdi.
+  const agHatasi = (e && (e.kod === 'AG_HATASI' || e.kod === 'SUNUCU_HATASI'))
+    || ((e instanceof TypeError) && /fetch|network|failed|load/i.test((e && e.message) || ''));
   if (agHatasi) {
     return {
       title: 'Bağlantı hatası',
@@ -1826,10 +1830,26 @@ async function _loadCatGetir(slug) {
     err.kod = 'GECERSIZ_KATEGORI';
     throw err;
   }
+  // BASARISIZ YUKLEME ONBELLEGE YAZILMAZ.
+  // Eskiden hata yutuluyor, `products` bos dizi kaliyor ve asagida
+  // `catCache[slug] = products` ile "yuklendi" diye kaydediliyordu. Bos dizi
+  // JavaScript'te truthy oldugu icin `if (catCache[slug]) return` bir daha
+  // ISTEK ATMIYORDU -> metroda/asansorde bir saniyelik kopma o kategoriyi
+  // OTURUM BOYUNCA bos birakiyordu ve kullaniciya "Sonuc bulunamadi" gibi
+  // YANLIS SEBEP gosteriliyordu. Ustelik `resp.ok` degilse (404/500) konsola
+  // uyari bile dusmuyordu -- sessiz basarisizlik, bu deponun en pahali hata
+  // sinifi. Artik hata FIRLIYOR; cagiran dogru mesaji gosterip tekrar
+  // deneyebiliyor, onbellek zehirlenmiyor.
   let products = [];
   try {
     const resp = await fetch('./data/' + kat.file + '.json');
-    if (resp.ok) {
+    if (!resp.ok) {
+      const err = new Error('Kategori sunucudan gelmedi: ' + kat.file + ' (' + resp.status + ')');
+      err.kod = 'SUNUCU_HATASI';
+      err.durum = resp.status;
+      throw err;
+    }
+    {
       const data = await resp.json();
       products = Array.isArray(data) ? data : (data.urunler || []);
       // Kategori JSON'larında zaman alanı yok (15 bin ürünü şişirmemek için).
@@ -1845,7 +1865,12 @@ async function _loadCatGetir(slug) {
       }
     }
   } catch (e) {
-    console.warn('Kategori yuklenemedi:', kat.file, e);
+    // SESSIZ YUTMA YOK ve ONBELLEGE YAZMA YOK. Hata yukari firlatiliyor ki
+    // (a) cagiran "bulunamadi" yerine "baglanti" desin, (b) kullanici tekrar
+    // denedigi anda GERCEKTEN yeni bir istek atilsin.
+    console.warn('[pazar] kategori yuklenemedi:', kat.file, e && e.message);
+    if (!e.kod) e.kod = 'AG_HATASI';
+    throw e;
   }
   assignIds(slug, products);
   catCache[slug] = products;
@@ -4372,7 +4397,16 @@ async function renderMevsimSeridi() {
   const aranan = MEVSIM[ay] || [];
   if (!aranan.length) { wrap.classList.add('gizli'); return; }
 
-  await loadCat('meyve-sebze');
+  // loadCat artik basarisizlikta HATA FIRLATIYOR (onbellegi zehirlememek
+  // icin). Bu serit ikincil bir bolum -- inmezse gizlenir, ana sayfanin
+  // geri kalanini goturmez.
+  try {
+    await loadCat('meyve-sebze');
+  } catch (e) {
+    console.warn('[mevsim] serit cizilemedi, bolum gizlenecek:', e && e.message);
+    wrap.classList.add('gizli');
+    return;
+  }
   const urunler = catCache['meyve-sebze'] || [];
   if (!urunler.length) { wrap.classList.add('gizli'); return; }
 
@@ -4731,10 +4765,38 @@ async function loadKategoriSayfasi(slug, sayfa) {
     uygulaCatFiltre();
   } catch(e) {
     console.error('Veri yükleme hatası:', e);
+    // DOGRU SEBEBI GOSTER. Eskiden hata yutulup bos liste onbellege
+    // yaziliyordu ve ekran "Sonuc bulunamadi" diyordu -- kullanici urun
+    // olmadigini saniyordu, oysa BAGLANTI kopmustu. Ustelik onbellek
+    // zehirlendigi icin tekrar denemek de ise yaramiyordu.
+    const bilgi = _yuklemeHataModali(e);
+    const list = document.getElementById('productList');
+    if (list) {
+      list.innerHTML = `<div class="empty-state">
+        <div class="empty-icon">${lcIcon('alert-triangle')}</div>
+        <div class="empty-title">${_kacir(bilgi.title)}</div>
+        <div class="empty-desc">${_kacir(bilgi.msg)}</div>
+        <button type="button" class="filter-pill" data-kat-tekrar="${_kacir(slug)}">Tekrar dene</button>
+      </div>`;
+    }
   } finally {
     yukleniyor = false;
   }
 }
+
+// "Tekrar dene": DELEGASYON ile. Satir ici handler EKLENMIYOR --
+// test_satirici_kilit sayaci tabana kilitli ve borc buyumemeli.
+document.addEventListener('click', function (e) {
+  const btn = e.target && e.target.closest && e.target.closest('[data-kat-tekrar]');
+  if (!btn) return;
+  const slug = btn.dataset.katTekrar;
+  if (!slug) return;
+  const list = document.getElementById('productList');
+  if (list) list.innerHTML = skeletonHTML(3);
+  // catCache'te kayit YOK (basarisiz yukleme yazilmiyor), yani bu cagri
+  // gercekten yeni bir istek atiyor.
+  loadKategoriSayfasi(slug, 1);
+});
 
 // ── SONSUZ SCROLL ─────────────────────────────────────
 const scrollObserver = new IntersectionObserver(entries => {
@@ -4874,6 +4936,18 @@ function trNormalize(s) {
     .replace(/Ü/g, 'u').replace(/ü/g, 'u')
     .replace(/Ö/g, 'o').replace(/ö/g, 'o')
     .replace(/Ç/g, 'c').replace(/ç/g, 'c')
+    // AKSANLI LATIN HARFLERI. Turkce klavyede é, è, ä yok; kullanici
+    // "nescafe" yaziyor ama katalogda "Nescafé" duruyor ve eslesme kopuyordu.
+    // OLCULDU (2026-09-10, 16.256 urun): "nescafe" 2 sonuc / "nescafé" 122,
+    // "nestle" 1 / "nestlé" 78, "loreal" 0 / "l'oréal" 26.
+    // Katalogda 257 aksanli harf var (é 241, ä 13, è 3) -- o/ö ve u/ü zaten
+    // yukaridaki Turkce satirlarda cozuluyor, burada TEKRAR edilmiyor.
+    .replace(/[ÉÈÊËéèêë]/g, 'e')
+    .replace(/[ÁÀÂÄÅáàâäå]/g, 'a')
+    .replace(/[ÍÌÎÏíìîï]/g, 'i')
+    .replace(/[ÓÒÔÕØóòôõø]/g, 'o')
+    .replace(/[ÚÙÛúùû]/g, 'u')
+    .replace(/[Ññ]/g, 'n')
     .toLowerCase().trim();
 }
 
@@ -4933,11 +5007,34 @@ function _adAyristir(ad) {
   return v;
 }
 
+// Turkce isim cekim ekleri (iyelik, hal, cogul). "yagi" kelimesi "yag"
+// sorgusuyla AYNI kelime sayilsin diye; yoksa "Yag Cozucu" (tam kelime,
+// skor 3) yemeklik "Aycicek Yagi"nin (skor 2) ustune cikiyordu.
+const _TR_EKLER = ['i','u','a','e','si','su','sa','se','in','un','an','en',
+  'da','de','ta','te','dan','den','tan','ten','la','le','li','lu',
+  'lar','ler','nin','nun','ni','nu','na','ne','yi','yu','ya','ye',
+  'lari','leri','larin','lerin','sinin','sunun'];
+
+// SORGU EN AZ 3 HARF OLMALI. Bu sinir zevk degil OLCUM: 2 harfli sorgularda
+// kural zarar veriyor -- "et" aramasi ("et"+"i") EТI MARKASINI uste
+// cikariyordu (440 urun yanlis yukseliyordu), "un" ise "Unye"yi.
+// 3 harf ve uzeri: "peynir"->"Peyniri", "cay"->"Cayi", "jel"->"Jeli",
+// "bal"->"Bali" duzeliyor ve "et"/"un" zarari SIFIR (olculdu).
+const _TR_EK_MIN = 3;
+
+function _ekliAyniKelime(kelime, qn) {
+  if (kelime === qn) return true;
+  if (qn.length < _TR_EK_MIN) return false;
+  if (!kelime.startsWith(qn)) return false;
+  const kalan = kelime.slice(qn.length);
+  return kalan.length > 0 && kalan.length <= 5 && _TR_EKLER.indexOf(kalan) >= 0;
+}
+
 function _aramaSkoru(ad, qn) {
   if (!qn || !ad) return 0;
   const p = _adAyristir(ad);
   if (!p.adn) return 0;
-  if (p.kelimeler.includes(qn)) return 3;
+  if (p.kelimeler.some(w => _ekliAyniKelime(w, qn))) return 3;
   if (p.kelimeler.some(w => w.startsWith(qn))) return 2;
   if (p.adn.includes(qn)) return 1;
   return 0;
@@ -4946,9 +5043,31 @@ function _aramaSkoru(ad, qn) {
 function urunAra(liste, q) {
   const qn = trNormalize(q);
   if (!qn) return [];
+  // COK KELIMELI SORGU: kelimelerin HEPSI eslesmeli.
+  // Eskiden sorgu tek parca aliniyordu: "zeytin yagi" ancak adda BITISIK
+  // gectiginde tutuyordu. OLCULDU (16.256 urun): "zeytin yagi" 1 sonuc
+  // veriyordu, oysa 108 urun iki kelimeyi de iceriyor; "sivi yag" 0/18,
+  // "sek sut" 3/38. Yani bosluk kullanan kullanici bos ekran goruyordu.
+  const kelimeler = qn.split(/\s+/).filter(Boolean);
   const bulunan = [];
   for (const u of (liste || [])) {
-    const s = _aramaSkoru(u && u.ad, qn);
+    let s;
+    if (kelimeler.length > 1) {
+      // HEPSI sart: biri tutmazsa urun listeye hic girmez (VE mantigi).
+      // Skor ortalama -- boylece "tam kelime" eslesenler ustte kalir.
+      let top = 0;
+      for (const k of kelimeler) {
+        const p = _aramaSkoru(u && u.ad, k);
+        if (!p) { top = 0; break; }
+        top += p;
+      }
+      s = top ? top / kelimeler.length : 0;
+      // Tam ifade AYNEN geciyorsa en uste: "tam yagli sut" arayan once
+      // birebir o ifadeyi tasiyan urunu gormeli.
+      if (s && _adAyristir(u.ad).adn.includes(qn)) s += 1;
+    } else {
+      s = _aramaSkoru(u && u.ad, qn);
+    }
     if (s) bulunan.push({ u: u, s: s });
   }
   bulunan.sort((a, b) => b.s - a.s || String(a.u.ad || '').length - String(b.u.ad || '').length);
@@ -5340,6 +5459,56 @@ function _sepetEslesir(item, id) {
   return item._id === id;
 }
 
+// ═══ SEPET FİYAT TAZELİĞİ ════════════════════════════════════════════
+// NOT: bant SART -- cekirdek-uret.mjs govdeyi "bir sonraki ust duzey
+// bildirime kadar" alir; bant olmazsa bu yorumlar ustteki fonksiyona yapisir.
+//
+// KUSUR: sepete eklerken market_fiyatlari KOPYALANIYOR (toggleSepet) ve o
+// kopya bir daha guncellenmiyordu. Fiyatlar her gece degisiyor; kullanici
+// haftalar once ekledigi urunun ESKI fiyatini goruyor, "Marketleri
+// Karsilastir" o eski fiyatla hesap yapiyor ve yanlis markete yonlendiriyordu.
+// Uygulamanin tek cumlelik vaadi "guncel fiyati goster" olmasina ragmen.
+//
+// COZUM: sepet ogesinin market_fiyatlari'ni TUKETEN on bir ayri yeri
+// yamamak yerine KAYNAGI tazeliyoruz -- sepet ogesi urunun onbellegi,
+// onbellek tazelenir. Boylece toplamlar, karsilastirma, paylasim metni ve
+// enflasyon karti tek noktadan duzeliyor.
+function sepetFiyatlariTazele() {
+  let degisen = 0;
+  for (const oge of (sepet || [])) {
+    const canli = _sepetCanli(oge);
+    // Katalogda YOKSA eldeki kopya korunur: urun kalkmis olabilir ve
+    // kullanicinin listesinden sessizce fiyat silmek daha kotu olurdu.
+    if (!canli || !Array.isArray(canli.market_fiyatlari)) continue;
+    const eski = JSON.stringify(oge.market_fiyatlari || []);
+    const yeni = JSON.stringify(canli.market_fiyatlari);
+    if (eski === yeni) continue;
+    oge.market_fiyatlari = canli.market_fiyatlari;
+    if (canli.en_dusuk_fiyat != null) oge.en_dusuk_fiyat = canli.en_dusuk_fiyat;
+    if (canli.ad) oge.ad = canli.ad;                       // gramaj duzeltmesi ada yansiyabiliyor
+    if (canli.resim) oge.resim = canli.resim;
+    if (canli.agirlik_hacim) oge.agirlik_hacim = canli.agirlik_hacim;
+    degisen++;
+  }
+  if (degisen) saveSepet();
+  return degisen;
+}
+
+// Sepetteki urunlerin kategorilerini indirip fiyatlari tazeler.
+// TAM KATALOG INMIYOR: _sid onegi kategoriyi tasiyor (urunKategoriSlugu),
+// tipik bir sepet 1-3 kategoriye dokunuyor.
+async function sepetFiyatlariGuncelle() {
+  if (!sepet || !sepet.length) return 0;
+  const sluglar = new Set();
+  for (const oge of sepet) { const s = urunKategoriSlugu(oge); if (s) sluglar.add(s); }
+  if (!sluglar.size) return 0;
+  // allSettled: bir kategori inmezse digerleri yine tazelensin. loadCat artik
+  // basarisizlikta HATA FIRLATIYOR (onbellegi zehirlememek icin), yani
+  // Promise.all burada tumunu goturur.
+  await Promise.allSettled([...sluglar].map(s => loadCat(s)));
+  return sepetFiyatlariTazele();
+}
+
 function _sepetSid(item) {
   if (item && item._sid) return item._sid;
   const p = item && productMap[item._id];
@@ -5348,9 +5517,22 @@ function _sepetSid(item) {
 }
 let _sepetRozetYuklemeBasladi = false;
 
+// Sepet ekrani her acilista fiyatlari tazeler. Cizimi BEKLETMIYOR (liste
+// aninda gorunsun); veri gelince ve gercekten bir sey degistiyse ekran bir
+// kez yenileniyor -- ana sayfanin tembel yukleme deseninin aynisi.
+// _sepetTazeleBasladi: yenileme -> renderSepet -> yenileme SONSUZ DONGUSUNU
+// keser. Bu depoda ayni tuzak DATA_UPDATED mesajinda bir kez yasandi.
+let _sepetTazeleBasladi = false;
 function renderSepet() {
   document.getElementById('sepetCount').textContent = sepet.length;
   renderSablonBar();
+  if (!_sepetTazeleBasladi && sepet.length) {
+    _sepetTazeleBasladi = true;
+    sepetFiyatlariGuncelle()
+      .then(n => { if (n && _ekranGorunur('screen-sepet')) renderSepet(); })
+      .catch(e => console.warn('[sepet] fiyatlar tazelenemedi:', e && e.message))
+      .finally(() => { _sepetTazeleBasladi = false; });
+  }
   const el = document.getElementById('sepetContent');
   if (!sepet.length) {
     el.innerHTML = `<div class="empty-state">

@@ -20,6 +20,74 @@ Mustafa (GitHub: avkkann), **Pazar App**'in tek geliştiricisi — Türk market 
 
 ## Mevcut durum (2026-08-21 itibarıyla)
 
+### 2026-09-10 (üçüncü tur) — YÜKSEK grubundan 5 bulgu, 3 iş (`sw.js` v243 → **v244**)
+
+**Durum: commit edildi, YAYINDA DEĞİL.** Denetimin 24 "yüksek" maddesinden en yüksek getirili üçlü.
+
+**A — Ağ bir saniye koparsa kategori oturum boyunca boş kalıyordu (3 bulgu, tek kök).**
+`_loadCatGetir` hatayı yutup **boş diziyi** `catCache`'e yazıyordu; boş dizi JavaScript'te
+truthy olduğu için `if (catCache[slug]) return` bir daha **istek atmıyordu**. Üstelik
+`resp.ok` değilse (404/500) konsola uyarı bile düşmüyordu — sessiz başarısızlık.
+Artık hata **fırlıyor** (`AG_HATASI` / `SUNUCU_HATASI`), önbellek zehirlenmiyor,
+`_yuklemeHataModali` kodu tanıyor ve kategori ekranı **"Bağlantı hatası" + Tekrar dene**
+gösteriyor (delegasyonla; satır içi handler sayacı 117'de sabit).
+*Canlı ölçüm (fetch engellenerek):* mesaj "Bağlantı hatası…", "Sonuç bulunamadı" **yok**,
+`catCache` temiz, tekrar dene → **287 ürün indi, 48 kart**.
+
+**B — Listedeki fiyatlar donuyordu.** Sepete eklerken `market_fiyatlari` kopyalanıyor,
+kopya bir daha güncellenmiyordu; "Marketleri Karşılaştır" haftalar öncesinin fiyatıyla
+hesap yapıyordu. **Tüketen 11 ayrı yeri yamamak yerine KAYNAK tazeleniyor** —
+`sepetFiyatlariTazele()` sepet öğesini `_sepetCanli` ile çözüp canlıyla eşitliyor.
+Ürün katalogdan kalkmışsa **kopya korunuyor** (kullanıcının listesinden sessizce fiyat
+silmek daha kötü olurdu). **Tam katalog inmiyor:** `_sid` öneki kategoriyi taşıdığı için
+yalnızca sepetteki kategoriler (`Promise.allSettled`).
+*Canlı ölçüm:* katalog fiyatı değiştirildi → sepet **65,95 → 72,95** tazelendi, ekrana yansıdı.
+
+**D+E+F — Arama kalitesi (3 bulgu, tek dosya).** Üçü de **ölçümle** kuruldu:
+| | önce | sonra |
+|---|---:|---:|
+| "zeytin yağı" | 1 | **108** (gerçekte 108 ürün iki kelimeyi de içeriyor) |
+| "sıvı yağ" | 0 | **18** |
+| "sek süt" | 3 | **38** (ilk sonuç *Sek Süt 1 Lt*) |
+| "nescafe" | 2 | **122** (= "nescafé") |
+| "yağ" → ilk yemeklik yağ | **41. sıra** | **5. sıra** |
+
+- **Çok kelime:** kelimelerin **hepsi** eşleşmeli (VE), skor ortalama, tam ifade taşıyana +1.
+- **Aksan:** é/è/ê/ë→e, á/à/â/ä→a, í/ì/î/ï→i, ó/ò/ô/õ/ø→o, ú/ù/û→u, ñ→n. Katalogda
+  257 aksanlı harf var; ö/ü zaten Türkçe satırlarda çözülüyordu, tekrar edilmedi.
+- **Türkçe ek:** "yağı" = "yağ" (tam kelime). **Eşik 3 harf, ÖLÇÜMLE:** eşiksiz kural
+  "et" aramasında **Eti markasını** üste çıkarıyordu (440 ürün yanlış yükseliyor),
+  "un" → "Ünye". 3 harf ve üzerinde "peynir→Peyniri", "çay→Çayı", "jel→Jeli",
+  "bal→Balı" düzeliyor ve et/un zararı **sıfır**.
+
+> **"yağ" TAM ÇÖZÜLMEDİ, dürüst kayıt.** İlk 4 sonuç hâlâ "Yağlı Süt". Yemeklik yağ
+> 41.'den 5.'ye çıktı ve temizleyiciler tepeden gitti, ama doğru cevap ilk sırada değil.
+> Bu **anlamsal/kategori** meselesi; ek çözümlemesiyle kapanmıyor. Ayrı iş.
+
+> **BEŞ BEKÇİ ISIRDI, HİÇBİRİ GEVŞETİLMEDİ.** `test_tembel` "hata olunca **boş dizi
+> dönüyor**" diye kilitliyordu — yani **kusurun kendisini**; bölüm başlığının söylediği
+> asıl şart ("uçtaki kayıt temizleniyor") korunup üzerine dört yeni şart eklendi
+> (hata fırlıyor, kod taşıyor, önbellek zehirlenmiyor, tekrar deneme **gerçekten yeni
+> istek atıyor**). `test_arama`'nın "kelime başı = 2" örneği bayatladı — "kolalı" artık
+> gerçekten "kola"nın ekli hâli; **iddia aynı kaldı, örnek** ekі olmayan bir kelimeyle
+> değiştirildi ve üstüne yeni davranış kilitlendi. Üç vm testi yeni bağımlılıkları
+> **sahte değil gerçek kaynakla** aldı.
+
+**Prove-by-breaking 16/16** — ve **üçü guard'ın kendi kör noktasını buldu**, üçünde de
+iddia **sıkılaştırıldı**: (a) "tam ifade bonusu" iddiası tek sıraya bakıyordu, bonus
+kaldırılınca da 1. sıra aynı kalıyordu → değişmez kurala çevrildi (*tam ifadeyi taşıyan
+her ürün, taşımayan her üründen önce*); (b) sonsuz döngü kapısı iddiası **adın varlığına**
+bakıyordu, koşul silinse de atama satırı deseni tutturuyordu → koşulun kendisine bağlandı;
+(c) mutasyonlardan biri yanlış eşleşmeyi vurdu (üç yerde geçen çapa), satır numarasıyla
+doğrudan hedeflenince kırmızı döndü.
+
+**Yeni guard:** `test_sepet_tazelik.mjs` (20 iddia, kontrol gruplu — önce kusurun
+gerçekten doğduğu gösteriliyor). `test_arama.mjs` 63 → **91 iddia**.
+**Doğrulama:** 61 `test_*.mjs` + 6 `test_*.py` yeşil (**2.473 geçen iddia**), build yeşil,
+yerel `dist`'te beş düzeltmenin beşi de gerçek tarayıcıda ölçüldü, konsol hatası 0.
+
+---
+
 ### 2026-09-10 (ikinci tur) — 8. kritik de kapandı: arama artık 1,3 MB indirmiyor (`sw.js` v242 → **v243**)
 
 **Durum: commit edildi, YAYINDA DEĞİL.** İlk turda "ürün kararı bekliyor" diye açık bırakılmıştı; **o gerekçe ölçümde çürüdü.**
@@ -1785,7 +1853,7 @@ Uygulama teknik olarak çalışıyor ama **pratikte hâlâ dağıtılmamış dur
 
 ## Yaklaşım & desenler
 
-- **SW cache version** her anlamlı `index.html`/`app.js`/`style.css`/`sw.js` değişikliğinde artırılır (şu an **v243**, 2026-09-10). *Bu satır 2026-09-03'e kadar **v215** diyordu — 18 sürüm bayattı, doküman bayatlığı desenin BEŞİNCİ vakası. Sürümü bu satırdan değil `sw.js`'ten oku.* Backend-only değişikliklerde (scraper, sync) bump edilmez. Akış: `git add` → `git commit` → `git pull --rebase` → `git push`. Not: `sw.js` yalnızca `data/hal.json` + `data/anasayfa.json`'ı önbelleğe alıyor ve `fetch`'i yalnızca o iki URL için yakalıyor — HTML/CSS/JS'i tutmuyor, onlar Cloudflare'den `Cache-Control: public, max-age=0, must-revalidate` ile geliyor (ölçüldü; eski GitHub Pages `max-age=600` notu bayattı). Bump proje kuralı ve tutarlılık için, HTML dağıtımını hızlandırmıyor.
+- **SW cache version** her anlamlı `index.html`/`app.js`/`style.css`/`sw.js` değişikliğinde artırılır (şu an **v244**, 2026-09-10). *Bu satır 2026-09-03'e kadar **v215** diyordu — 18 sürüm bayattı, doküman bayatlığı desenin BEŞİNCİ vakası. Sürümü bu satırdan değil `sw.js`'ten oku.* Backend-only değişikliklerde (scraper, sync) bump edilmez. Akış: `git add` → `git commit` → `git pull --rebase` → `git push`. Not: `sw.js` yalnızca `data/hal.json` + `data/anasayfa.json`'ı önbelleğe alıyor ve `fetch`'i yalnızca o iki URL için yakalıyor — HTML/CSS/JS'i tutmuyor, onlar Cloudflare'den `Cache-Control: public, max-age=0, must-revalidate` ile geliyor (ölçüldü; eski GitHub Pages `max-age=600` notu bayattı). Bump proje kuralı ve tutarlılık için, HTML dağıtımını hızlandırmıyor.
 - **Doğrulama:** Push sonrası `gh run watch` ile deploy'un koştuğu doğrulanır, sonra canlıda (Browser MCP) gerçek fonksiyonel test yapılır — "dosyada var mı" değil, "gerçekten çalışıyor mu". Layout değişikliklerinde ekran görüntüsü yetmez: değişiklikten ÖNCE geometri parmak izi (`getBoundingClientRect`) alınıp sonra sayısal karşılaştırılır.
 - **Kapsam disiplini:** İstenmeyen ekleme/çıkarma sessizce yapılmaz, not düşülür. Doküman/analiz önerileri körü körüne uygulanmaz — önce kodda geçerli mi diye bakılır.
 - **Büyük ürün/mimari kararları** (hosting migration, nav yapısı, tuzak'ın geleceği) Mustafa'nın onayı olmadan koda dökülmez.
