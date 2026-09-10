@@ -131,8 +131,18 @@ if (az) {
       !/kadar indi/.test(h), h.slice(0, 200));
   }
 } else {
-  ok('al/bekle bu senaryoda cikmadi (kapi)', true);
-  ok('  ikinci iddia kontrolu atlandi', true);
+  // ESKIDEN: iki tane `ok(..., true)` -- KOSULSUZ PASS. Senaryo bu kapidan
+  // dondugunde test HICBIR SEY dogrulamadan iki yesil satir yaziyordu
+  // (denetim bulgusu: "hicbir sey dogrulamadan 3 PASS"). Bir testin en kotu
+  // hali kirmizi olmasi degil, KORKEN yesil olmasidir: bu iki satir
+  // al/bekle blogu tamamen kirilsa bile ayni sekilde gecerdi.
+  //
+  // Simdi kapinin KAPALI oldugu GERCEKTEN dogrulaniyor: durum yoksa blok da
+  // cizilmemeli ve hicbir sayisal iddia basilmamali.
+  h = calis(c, 'alZamaniHTML(' + JSON.stringify(U(45)) + ')');
+  ok('al/bekle kapali: blok HIC cizilmiyor', !/detay-zaman/.test(h), h.slice(0, 200));
+  ok('  ve sayisal iddia da basilmiyor',
+    !/kadar indi|en ucuz seviyesinde/.test(h), h.slice(0, 200));
 }
 // ham=temiz senaryosunda iddia CIKMALI
 c = kur(G2, [U2]);
@@ -140,7 +150,11 @@ const az2 = calis(c, 'alZamaniDurumu(' + JSON.stringify(U2) + ')');
 if (az2) {
   h = calis(c, 'alZamaniHTML(' + JSON.stringify(U2) + ')');
   ok('ham=temiz oldugunda sayisal iddia VAR', /kadar indi|en ucuz seviyesinde/.test(h), h.slice(0, 200));
-} else ok('ham=temiz senaryosunda al/bekle cikmadi (kapi)', true);
+} else {
+  // Ayni sinif kosulsuz PASS burada da vardi.
+  h = calis(c, 'alZamaniHTML(' + JSON.stringify(U2) + ')');
+  ok('ham=temiz senaryosunda kapi kapaliysa blok da YOK', !/detay-zaman/.test(h), h.slice(0, 200));
+}
 
 console.log('\n=== 6. DOKUNULMAYANLAR (bunlar ZATEN ham seriden) ===');
 ok('indirimRozetiHesapla hala TUM seriden (zirve)',

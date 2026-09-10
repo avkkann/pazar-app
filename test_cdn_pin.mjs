@@ -184,5 +184,76 @@ console.log('\n=== CSP DAVRANISI: worker GERCEKTEN kosturulup URETTIGI baslik ol
     ok(`  ${d} hala tanimli`, Array.isArray(dir[d]), Object.keys(dir).join(','));
 }
 
+console.log('\n=== ONBELLEK BASLIGI: damgali varliklar IMMUTABLE, degisenler DEGIL ===');
+{
+  // KUSUR (denetim, yuksek): Cloudflare varlik katmani HER dosyaya
+  // "public, max-age=0, must-revalidate" veriyordu. OLCULDU (canli, sunucu
+  // tarafli): /app.0ed6c6ce.js ve /assets/index-DxpkFUHq.css ikisi de o basligi
+  // aliyordu -- adi ICERIGIN hash'i olan, tanimi geregi degismeyecek iki dosya
+  // icin her acilista ag turu. CSS render'i bloklayan bir kaynak oldugundan
+  // tur dogrudan ilk boyamayi geciktiriyor.
+  //
+  // KAYNAK GREP DEGIL: worker gercekten kosturulup URETTIGI baslik okunuyor.
+  const mod = await import(pathToFileURL(path.resolve('src/worker.js')).href);
+  const cc = async (yol, durum = 200) => {
+    const res = await mod.default.fetch(new Request('https://pazarapp.net' + yol), {
+      ASSETS: { fetch: async () => new Response(durum === 304 ? null : 'ok', {
+        status: durum,
+        headers: { 'cache-control': 'public, max-age=0, must-revalidate' } }) }
+    });
+    return res.headers.get('cache-control') || '';
+  };
+
+  // ALET KONTROLU: worker dokunmadiginda ORIJIN basligi gercekten geciyor mu?
+  // Bu gecmezse asagidaki "immutable DEGIL" iddialari bos yere yesil kalirdi.
+  ok('KONTROL: dokunulmayan yolda orijin basligi goruluyor',
+     (await cc('/index.html')).includes('must-revalidate'), await cc('/index.html'));
+
+  const DAMGALI = [
+    ['/app.0ed6c6ce.js',              'vite.config.js hashClassicScript -> app.<sha256[0:8]>.js'],
+    ['/assets/index-B01cmNb3.css',    'Vite assets/<ad>-<hash>.css'],
+    ['/assets/index-DxpkFUHq.css',    'canlidaki gercek ad'],
+  ];
+  for (const [yol, neden] of DAMGALI) {
+    const v = await cc(yol);
+    ok(`damgali IMMUTABLE: ${yol}  [${neden}]`, /immutable/.test(v) && /max-age=31536000/.test(v), v);
+  }
+
+  // Bunlar AYNI AD altinda icerik degistiriyor -> uzun omur BAYAT VERI demek.
+  // data/*.json her gece degisiyor; sw.js sürüm atlayinca kullaniciya hic
+  // ulasmaz; index.html damgali dosyalara giden tek yol.
+  const DEGISEN = [
+    ['/',                             'giris sayfasi'],
+    ['/index.html',                   'giris sayfasi'],
+    ['/sw.js',                        'service worker (surum atlar)'],
+    ['/manifest.json',                'PWA manifesti'],
+    ['/data/anasayfa.json',           'her gece degisiyor'],
+    ['/data/hal.json',                'her gece degisiyor'],
+    ['/static/fonts/inter-latin.woff2', 'adinda damga YOK; sw.js cacheFirst tutuyor'],
+    ['/static/og-image.png',          'adinda damga YOK'],
+    ['/robots.txt',                   'adinda damga YOK'],
+    ['/app.js',                       'damgasiz kaynak adi'],
+  ];
+  for (const [yol, neden] of DEGISEN) {
+    const v = await cc(yol);
+    ok(`  degisen dosya IMMUTABLE DEGIL: ${yol}  [${neden}]`, !/immutable/.test(v), v);
+  }
+
+  // 304 SART: gecisten once onbelleklenmis kopyalar "must-revalidate" tasiyor.
+  // 304'e yazilmazsa o tarayicilar sonsuza kadar revalidate etmeye devam eder
+  // ve kazanc onlara HIC ulasmaz.
+  ok('304 yanitinda da damgali dosya IMMUTABLE',
+     /immutable/.test(await cc('/app.0ed6c6ce.js', 304)), await cc('/app.0ed6c6ce.js', 304));
+  ok('  404 damgalanmiyor (var olmayan varlik yil boyu onbelleklenmesin)',
+     !/immutable/.test(await cc('/app.deadbeef.js', 404)), await cc('/app.deadbeef.js', 404));
+
+  // CSP ve HSTS bu yolda da uygulanmali -- yeni dal onlari atlamasin.
+  const res = await mod.default.fetch(new Request('https://pazarapp.net/app.0ed6c6ce.js'), {
+    ASSETS: { fetch: async () => new Response('ok', { status: 200 }) }
+  });
+  ok('  damgali yolda CSP hala uygulaniyor', (res.headers.get('content-security-policy') || '').length > 0);
+  ok('  damgali yolda HSTS hala uygulaniyor', (res.headers.get('strict-transport-security') || '').includes('max-age'));
+}
+
 console.log(`\nPASS=${pass}  FAIL=${fail}`);
 process.exit(fail ? 1 : 0);

@@ -25,6 +25,23 @@ function fnKaynak(ad) {
 const GEREKEN = ['sepetEnflasyonuHesapla', 'profilEnflasyonHTML', 'paylasEnflasyon'];
 console.log('\n=== 0. YAPI ===');
 const eksik = [];
+// `const AD = ...;` govdesini cikar (hizalama bosluklarina toleransli).
+function sabitKaynak(ad) {
+  // Regex YOK: ad ile '=' arasinda hizalama boslugu olabiliyor
+  // (`const _EK_INCE  = ...`), ad ONUNDEKI bosluk ise her zaman tek.
+  const i = APP.indexOf('const ' + ad);
+  if (i < 0) throw new Error('sabit yok: ' + ad);
+  const suslu = APP.indexOf('{', i), noktali = APP.indexOf(';', i);
+  if (suslu > 0 && suslu < noktali) {
+    let d = 0;
+    for (let j = suslu; j < APP.length; j++) {
+      if (APP[j] === '{') d++;
+      else if (APP[j] === '}') { d--; if (d === 0) return APP.slice(i, j + 2); }
+    }
+  }
+  return APP.slice(i, noktali + 1);
+}
+
 for (const f of GEREKEN) { const v = !!fnKaynak(f); ok('function ' + f, v); if (!v) eksik.push(f); }
 if (eksik.length) { console.log('\n  Eksik: ' + eksik.join(', ')); console.log('\nPASS=' + pass + '  FAIL=' + fail); process.exit(1); }
 
@@ -44,6 +61,12 @@ function kur(sepet, gecmis) {
   const esik = (APP.match(/const ENFLASYON_MIN_URUN\s*=\s*(\d+)/) || [])[1] || '3';
   vm.runInContext([
     'const ENFLASYON_MIN_URUN = ' + esik + ';',
+    // _ek BAGIMLILIGI: profilEnflasyonHTML artik Turkce ek uyumu kullaniyor
+    // ("3'u hesaba katildi"). STUB DEGIL GERCEK KAYNAK -- sahtelemek testi
+    // ekin dogru uretildigi konusunda KOR birakirdi.
+    sabitKaynak('_EK_KALIN'), sabitKaynak('_EK_INCE'), sabitKaynak('_EK_SESLI'),
+    sabitKaynak('_EK_SERT'), sabitKaynak('_EK_SAYI'),
+    fnKaynak('_ekSayiSes'), fnKaynak('_ekSes'), fnKaynak('_ek'),
     fnKaynak('_yerelGunISO'),
     fnKaynak('_otuzGunOncekiEnUcuz'),
     fnKaynak('sepetEnflasyonuHesapla'),

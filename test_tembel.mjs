@@ -176,7 +176,29 @@ ok('profil enflasyonu gecmisi tetikliyor',
   ok('  tembel yukleyici gecmisi tetikliyor', /gecmisVeriGetir|gecmisGerekli/.test(tv), tv.slice(0, 300));
   // Hafif urun (arama indeksi) TAM KATALOGU indirmemeli -- indeksin
   // varlik sebebi tam olarak bu; regresyon sessizce 1,3 MB geri getirirdi.
-  const hafifDal = tv.slice(0, tv.indexOf('_kisa') > 0 ? tv.indexOf('_kisa') : tv.length);
+  // YORUMLAR SOYULUYOR: asagidaki iddia "loadAllCats gecmiyor" diyor ve
+  // fonksiyonun basindaki aciklama tam da o adi ANLATIYOR -- soyulmazsa
+  // test kendi aciklamasiyla eslesip yanlis alarm verir (bu depoda
+  // BESINCI vaka). Soymak iddiayi GEVSETMEZ, sertlestirir: silinen bir
+  // cagri artik onu anan bir yorumla maskelenemez.
+  // GUVENLI YORUM SOYUCU (satir tabanli).
+  // Naif /\/\*[\s\S]*?\*\//g deseni BU DEPODA BOZUK: app.js'te 25 "/*" ama
+  // 23 "*/" var (bir kismi dize/regex icinde), esler kayiyor ve dosyanin %55'i
+  // siliniyor -- "desen kaynakta YOK" diyen iddialar bos yere yesil kalirdi.
+  // Yalnizca SATIR BASINDA baslayan blok yorumlar ve tam satirlik // yorumlar
+  // silinir; bu depoda aciklamalar zaten oyle yazili.
+  function kodTemiz(src) {
+    const cikti = [];
+    let blokta = false;
+    for (const l of String(src).split(String.fromCharCode(10))) {
+      if (blokta) { if (l.indexOf("*/") >= 0) blokta = false; cikti.push(""); continue; }
+      if (/^\s*\/\*/.test(l)) { if (l.indexOf("*/") < 0) blokta = true; cikti.push(""); continue; }
+      cikti.push(l.replace(/^\s*\/\/.*$/, ""));
+    }
+    return cikti.join(String.fromCharCode(10));
+  }
+  const tvT = kodTemiz(tv);
+  const hafifDal = tvT.slice(0, tvT.indexOf('_kisa') > 0 ? tvT.indexOf('_kisa') : tvT.length);
   ok('  hafif urun YALNIZCA kendi kategorisini indiriyor',
      /loadCat\(u\._kat\)/.test(hafifDal) && !/loadAllCats/.test(hafifDal), hafifDal.slice(0, 300));
 }
@@ -187,6 +209,99 @@ for (const f of ['renderZamSeridi', 'renderDusenlerSeridi', 'renderSupheliSeridi
   const kesim = s.indexOf('GERİYE DÜŞÜŞ');
   const hizli = kesim > 0 ? s.slice(0, kesim) : s;
   ok(f + ' hizli yolda gecmis BEKLEMIYOR', !/await\s+gecmisVeriGetir/.test(hizli), '');
+}
+
+console.log('\n=== 7. DETAY TAM KATALOG INDIRMIYOR (DAVRANISSAL) ===');
+{
+  // KUSUR (denetim, yuksek): _detayTamVeriGetir'in ikinci dali loadAllCats()
+  // cagiriyordu. OLCULDU (canli, yerel dist, ana sayfa seridinden TEK bir
+  // urune dokunus): 8 JSON istegi, 19.742 KB ham. Tiklanan urun "icecek_376"
+  // idi; katalogdan gereken TEK sey kendi kategorisiydi (1.911 KB). Kalan
+  // alti kategori -- 11,5 MB -- hicbir sey icin iniyordu.
+  //
+  // Ayni dal gecmis onbellekte yokken TAM URUNLER icin de kosuyordu, yani
+  // kategori ekranindan acilan ilk detay da butun katalogu indiriyordu.
+  //
+  // Iddia KAYNAK GREP DEGIL: fonksiyon gercekten kosturulup HANGI yukleyicinin
+  // cagrildigi sayiliyor. (Grep olsaydi `if (false) loadAllCats()` yesil kalirdi
+  // -- bu oturumda ayni kor nokta uc kez yakalandi.)
+  function kur(gecmisVar) {
+    const cagri = [];
+    const ctx = {
+      console: { warn() {}, error() {} }, Promise,
+      loadCat: (s) => { cagri.push('loadCat:' + s); return Promise.resolve(); },
+      loadAllCats: () => { cagri.push('loadAllCats'); return Promise.resolve(); },
+      gecmisVeriGetir: () => { cagri.push('gecmis'); return Promise.resolve(); },
+      _gecmisCache: gecmisVar ? {} : null,
+      _sidIndeksi: () => ({}), productMap: {},
+      _ekranGorunur: () => false,          // yeniden cizim bu testin konusu degil
+      openDetay: () => {},
+      KATEGORILER: [{ slug: 'icecek' }, { slug: 'sut' }, { slug: 'et' }],
+      ustKategori: (x) => x,
+      cagri
+    };
+    ctx.window = ctx;
+    vm.createContext(ctx);
+    vm.runInContext([fnKaynak('urunKategoriSlugu'), fnKaynak('_detayTamVeriGetir')].join(String.fromCharCode(10)), ctx);
+    return ctx;
+  }
+  const bekle = () => new Promise(r => setTimeout(r, 0));
+
+  // ALET KONTROLU: ortam bir yukleyici cagrisini gorebiliyor mu?
+  {
+    const c = kur(false);
+    c.u = { _kisa: true, _sid: 'icecek_kola-1l' };
+    vm.runInContext("_detayTamVeriGetir(u, 'icecek_kola-1l')", c);
+    ok('ALET KONTROLU: yukleyici cagrisi goruluyor', c.cagri.length > 0, JSON.stringify(c.cagri));
+    ok('KISA urun YALNIZCA kendi kategorisini indiriyor',
+       c.cagri.indexOf('loadCat:icecek') >= 0 && c.cagri.indexOf('loadAllCats') < 0, JSON.stringify(c.cagri));
+  }
+  // Gecmis ZATEN elde ise ikinci kez inmemeli.
+  {
+    const c = kur(true);
+    c.u = { _kisa: true, _sid: 'sut_pinar-1l' };
+    vm.runInContext("_detayTamVeriGetir(u, 'sut_pinar-1l')", c);
+    ok('  gecmis onbellekteyken TEKRAR inmiyor', c.cagri.indexOf('gecmis') < 0, JSON.stringify(c.cagri));
+  }
+  {
+    const c = kur(false);
+    c.u = { _kisa: true, _sid: 'sut_pinar-1l' };
+    vm.runInContext("_detayTamVeriGetir(u, 'sut_pinar-1l')", c);
+    ok('  gecmis onbellekte YOKKEN iniyor', c.cagri.indexOf('gecmis') >= 0, JSON.stringify(c.cagri));
+    ok('  ve yaninda yalniz kendi kategorisi', c.cagri.join(',') === 'loadCat:sut,gecmis', JSON.stringify(c.cagri));
+  }
+  // TAM urun + gecmis eksik: YALNIZCA gecmis inmeli, katalog DEGIL.
+  {
+    const c = kur(false);
+    c.u = { _sid: 'et_kiyma-1kg' };                     // _kisa YOK
+    vm.runInContext("_detayTamVeriGetir(u, 'et_kiyma-1kg')", c);
+    ok('TAM urun + gecmis eksik: yalnizca gecmis iniyor',
+       c.cagri.join(',') === 'gecmis', JSON.stringify(c.cagri));
+    ok('  katalog HIC inmiyor (kategori ekranindan acilan detay)',
+       c.cagri.indexOf('loadAllCats') < 0 && c.cagri.join(',').indexOf('loadCat') < 0, JSON.stringify(c.cagri));
+  }
+  // TAM urun + gecmis var: HICBIR SEY inmemeli.
+  {
+    const c = kur(true);
+    c.u = { _sid: 'et_kiyma-1kg' };
+    vm.runInContext("_detayTamVeriGetir(u, 'et_kiyma-1kg')", c);
+    ok('  KONTROL: gerek yokken hicbir istek YOK', c.cagri.length === 0, JSON.stringify(c.cagri));
+  }
+  // HAFIF urun (arama indeksi) dali bozulmadi.
+  {
+    const c = kur(false);
+    c.u = { _hafif: true, _kat: 'sut', _sid: 'sut_x' };
+    vm.runInContext("_detayTamVeriGetir(u, 'sut_x')", c);
+    ok('  KONTROL: hafif dal hala yalniz kendi kategorisini indiriyor',
+       c.cagri.indexOf('loadCat:sut') >= 0 && c.cagri.indexOf('loadAllCats') < 0, JSON.stringify(c.cagri));
+  }
+  // Slug cozulemezse YEDEK yol: detayi bos birakmaktansa tam katalog.
+  {
+    const c = kur(true);
+    c.u = { _kisa: true, _sid: 'bilinmeyen_kategori-x', _id: 'zzz' };
+    vm.runInContext("_detayTamVeriGetir(u, 'zzz')", c);
+    ok('  slug cozulemezse YEDEK yol calisiyor', c.cagri.indexOf('loadAllCats') >= 0, JSON.stringify(c.cagri));
+  }
 }
 
 console.log('\nPASS=' + pass + '  FAIL=' + fail);

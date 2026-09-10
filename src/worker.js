@@ -60,6 +60,26 @@ const CSP = [
   "frame-ancestors 'none'"
 ].join('; ');
 
+// ICERIK DAMGALI VARLIKLAR — uzun omurlu ve degismez.
+//
+// KUSUR (denetim, yuksek): Cloudflare'in varlik katmani HER dosyaya
+// "public, max-age=0, must-revalidate" veriyor. OLCULDU (canli, sunucu
+// tarafli): /app.0ed6c6ce.js ve /assets/index-DxpkFUHq.css ikisi de o basligi
+// aliyor. Yani adi ICERIGIN hash'i olan, tanimi geregi hic degismeyecek iki
+// dosya icin tarayici HER acilista ag turu atiyor -- ve CSS render'i
+// bloklayan bir kaynak, yani tur dogrudan ilk boyamayi geciktiriyor.
+//
+// Neden guvenli: ad icerikten turuyor (vite.config.js hashClassicScript ->
+// app.<sha256[0:8]>.js; Vite -> assets/<ad>-<hash>.<uzanti>). Icerik degisirse
+// AD degisir, yani ayni ad altinda farkli bayt SERVIS EDILEMEZ. Bayat kopya
+// riski yok.
+//
+// Desen BILEREK DAR: yalnizca adinda hash tasiyan dosyalar. index.html, sw.js,
+// manifest.json ve data/*.json ayni ad altinda icerik degistiriyor -> onlar
+// "must-revalidate" olarak KALMALI, yoksa kullanici gunlerce bayat veri gorur.
+// static/fonts/*.woff2 de adsiz-damgasiz; onlari zaten sw.js cacheFirst tutuyor.
+const DAMGALI = /^\/(?:app\.[0-9a-f]{8}\.js|assets\/[^/]+-[A-Za-z0-9_-]{8,}\.(?:js|css))$/;
+
 export default {
   async fetch(request, env) {
     const response = await env.ASSETS.fetch(request);
@@ -81,6 +101,16 @@ export default {
     //   bir pencere; 1 yil degil.
     // Deger test_cdn_pin.mjs'te sabitli — burasi degisip test degismezse KIRMIZI.
     newResponse.headers.set('Strict-Transport-Security', 'max-age=86400');
+
+    // 200 VE 304: gecisten once onbelleklenmis kopyalar "must-revalidate"
+    // tasiyor: 304'e de yazilmazsa o tarayicilar sonsuza kadar revalidate
+    // etmeye devam eder ve kazanc onlara hic ulasmaz.
+    if (response.status === 200 || response.status === 304) {
+      const yol = new URL(request.url).pathname;
+      if (DAMGALI.test(yol)) {
+        newResponse.headers.set('Cache-Control', 'public, max-age=31536000, immutable');
+      }
+    }
     return newResponse;
   }
 };

@@ -181,12 +181,12 @@
     errEl.style.display = 'none';
     errEl.style.background = '';
     errEl.style.color = '';
-    document.getElementById('auth-sheet').setAttribute('aria-hidden', 'false');
+    _panelGizli(document.getElementById('auth-sheet'), false);
     document.body.style.overflow = 'hidden';
   };
 
   window.closeAuthSheet = function() {
-    document.getElementById('auth-sheet').setAttribute('aria-hidden', 'true');
+    _panelGizli(document.getElementById('auth-sheet'), true);
     document.body.style.overflow = '';
   };
 
@@ -1388,7 +1388,199 @@ function _gecisTemizle() {
   }
 }
 
+// ═══ TARAYICI GERİ TUŞU ══════════════════════════════════════════
+// NOT: bant SART -- cekirdek-uret.mjs govdeyi "bir sonraki ust duzey
+// bildirime kadar" alir; bant olmazsa bu yorumlar ustteki fonksiyona yapisir.
+//
+// KUSUR (denetim, yuksek): uygulama ekran gecislerini history'ye HIC
+// yazmiyordu. OLCULDU (canli, ardarda uc ekran degisimi): history.length
+// 1 -> 1, history.state null. Yani Android donanim geri tusu, masaustu geri
+// oku ve iOS kenar kaydirma jesti kullaniciyi bir onceki EKRANA degil
+// SITEDEN DISARI cikariyordu -- standalone PWA'da bu "uygulama kapandi".
+//
+// Desen: her ILERI gecis bir history kaydi acar ve kaydin state'i hangi
+// ekranda oldugumuzu tasir; geri/ileri tusunda popstate o ekrani kurar.
+//
+// Uygulama ici geri butonlari da AYNI yigini kullanir (_geriGit ->
+// history.back()). Ayri dursalardi yigin ile history AYRISIRDI: ekrandaki
+// geri tusu arkada bir kayit birakip giderdi ve bir sonraki donanim geri
+// tusu kullaniciyi zaten gecilmis bir ekrana ya da dogrudan disari atardi.
+
+let _gecmisSonN = 0;
+
+function _gecmisDurum() {
+  // history.state kum havuzunda / file:// altinda SecurityError atabilir.
+  // null donmek "gecmiste bizim kaydimiz yok" demek ve _geriGit o durumda
+  // zaten ekran ici hedefe donuyor -- yani yutmak burada DOGRU varsayilan,
+  // gorunur bir uyari her cagride konsolu doldururdu.
+  try { return history.state || null; } catch (e) { return null; }
+}
+
+function _gecmisDerinlik() {
+  const d = _gecmisDurum();
+  return (d && typeof d.n === 'number') ? d.n : 0;
+}
+
+// Acilis kaydi: pushState DEGIL replaceState -- yeni kayit acmadan mevcut
+// girise kimlik yaziyoruz. Boylece kullanici en basa dondugunde bir sonraki
+// geri tusu siteden CIKAR. Bu DOGRU davranis: uygulama kullaniciyi hapsetmez.
+try { history.replaceState({ pazar: 'screen-home', n: 0 }, ''); }
+catch (e) { console.warn('[pazar] history.replaceState calismadi:', e && e.message); }
+
+function _gecmisIleri(id, ek) {
+  const d = _gecmisDurum();
+  const urun = (ek && ek.urun) || null;
+  const kat  = (ek && ek.kat)  || null;
+  // Zaten bu kayittayiz (popstate ile kurulan ekran) -> TEKRAR PUSHLAMA.
+  // Bayrak yerine DURUM karsilastirmasi: openDetay async, bir bayrak yanlis
+  // anda sifirlanabilirdi; bu karsilastirma kendi kendini duzeltiyor.
+  if (d && d.pazar === id && (d.urun || null) === urun && (d.kat || null) === kat) return;
+  const yeni = { pazar: id, n: _gecmisDerinlik() + 1 };
+  if (urun) yeni.urun = urun;
+  if (kat)  yeni.kat  = kat;
+  try { history.pushState(yeni, ''); _gecmisSonN = yeni.n; }
+  catch (e) { console.warn('[pazar] history.pushState calismadi:', e && e.message); }
+}
+
+// Ekran ici geri butonlarinin TEK kapisi (index.html'deki .back-btn'ler).
+function _geriGit(varsayilan) {
+  // Gecmiste BIZIM kaydimiz varsa tarayiciya birak -> tek yigin, ayrisma yok.
+  if (_gecmisDerinlik() > 0) { history.back(); return; }
+  // Derin link (?screen=kategori) ya da replaceState'in tutmadigi ortam:
+  // arkada bizim kaydimiz YOK, history.back() kullaniciyi SITEDEN cikarirdi.
+  showScreen(varsayilan || 'screen-home', 'back');
+}
+
+window.addEventListener('popstate', function (e) {
+  const d = e.state;
+  if (!d || !d.pazar) return;            // bizim kaydimiz degil -> karisma
+  const yon = (d.n || 0) < _gecmisSonN ? 'back' : 'forward';
+  _gecmisSonN = d.n || 0;
+  // Detay ve kategori TEK bir DOM tasiyor: hedef baska bir urun/kategori ise
+  // ekrani gostermek YETMEZ, icerigi de kurmak gerekir -- yoksa baslik bir sey
+  // der, liste baska seyi gosterir (bu turda duzeltilen kategori yarisi kusuru).
+  if (d.pazar === 'screen-detay' && d.urun && window._detayUrunId !== d.urun) { openDetay(d.urun); return; }
+  if (d.pazar === 'screen-cat' && d.kat && currentKategori !== d.kat) { openCategory(d.kat); return; }
+  showScreen(d.pazar, yon);
+});
+
+// ═══ KAPALI PANEL: KLAVYEDEN DE GİZLİ ══════════════════════════
+// NOT: bant SART -- cekirdek-uret.mjs govdeyi bir sonraki ust duzey
+// bildirime kadar alir; bant olmazsa bu yorumlar ustteki fonksiyona yapisir.
+//
+// KUSUR (denetim, yuksek): uc panel kapaliyken aria-hidden="true" tasiyor
+// ama denetimleri HALA ODAKLANABILIYOR. OLCULDU (canli, ana sayfa, her
+// ogeye gercekten focus() verilerek): 9 hayalet denetim --
+//   auth-sheet 6 : "Giris Yap" / "Uye Ol" / E-posta / Sifre / "Giris Yap"
+//                  / "Google ile devam et"   (opacity 0 ile gizli)
+//   msSheet    2 : kapat, "Hesapla"          (translateY ile disari itilmis)
+//   mfSheet    1 : kapat                     (translateY ile disari itilmis)
+// Klavye kullanicisi GORMEDIGI dugmelere takiliyor; ekran okuyucu ise
+// orada olduklarini soylemiyor. Iki katman birbiriyle CELISIYOR.
+//
+// Neden `inert`: aria-hidden yalnizca ERISILEBILIRLIK AGACINI etkiler,
+// odagi ETKILEMEZ. Odagi kaldirmanin uc yolu var -- display:none,
+// visibility:hidden ve inert. Ilk ikisi bu panellerin acilis animasyonunu
+// oldururdu (auth-sheet opacity gecisi, msSheet/mfSheet translateY kaymasi);
+// inert gorunumu HIC degistirmeden yalnizca odagi ve isaretlemeyi kaldirir.
+// Destegi olmayan eski tarayicida davranis BUGUNKUYLE ayni kalir, kotulesmez.
+function _panelGizli(el, gizli) {
+  if (!el) return;
+  el.setAttribute('aria-hidden', gizli ? 'true' : 'false');
+  if (gizli) el.setAttribute('inert', ''); else el.removeAttribute('inert');
+}
+
+// ═══ TÜRKÇE EK UYUMU ═══════════════════════════════════════════
+// NOT: bant SART -- cekirdek-uret.mjs govdeyi bir sonraki ust duzey
+// bildirime kadar alir; bant olmazsa bu yorumlar ustteki fonksiyona yapisir.
+//
+// KUSUR (denetim, yuksek): ekler metne SABIT yazilmisti. Olculdu:
+//   "Bugün 14:30'te güncellendi"        -> "14:30'da"  ("otuz" kalin)
+//   "3 üründen 3'i hesaba katıldı"     -> "3'ü"      ("üç" ince-yuvarlak)
+//   "Kayseri'da bulunan marketler"     -> "Kayseri'de" (ince)
+// Uygulamanin tamami Turkce ve tek vaadi guven; ek uyumu bozuk metin
+// dogrudan "bunu makine yazmis" izlenimi veriyor.
+//
+// Ek, sayinin OKUNUSUNA gore degisir -- rakamin kendisine degil. Bu yuzden
+// sayilar icin tablo var: 30 "otuz" (kalin, yumusak) -> 'da; 3 "uc" (ince,
+// sert) -> 'u; 40 "kirk" (kalin, SERT) -> 'ta.
+const _EK_KALIN = 'aıou';
+const _EK_INCE  = 'eiöü';
+const _EK_SESLI = _EK_KALIN + _EK_INCE;
+const _EK_SERT  = 'pçtkfhsş';          // sert sessizler: ek de sertlesir (d->t)
+// [son sesli, son ses SERT mi, sesliyle mi bitiyor]
+const _EK_SAYI = {
+  0:  ['ı', false, false],  // sifir
+  1:  ['i', false, false],  // bir
+  2:  ['i', false, true ],  // iki
+  3:  ['ü', true,  false],  // uc
+  4:  ['ö', true,  false],  // dort
+  5:  ['e', true,  false],  // bes
+  6:  ['ı', false, true ],  // alti
+  7:  ['i', false, true ],  // yedi
+  8:  ['i', false, false],  // sekiz
+  9:  ['u', false, false],  // dokuz
+  10: ['o', false, false],  // on
+  20: ['i', false, true ],  // yirmi
+  30: ['u', false, false],  // otuz
+  40: ['ı', true,  false],  // kirk
+  50: ['i', false, true ],  // elli
+  60: ['ı', true,  false],  // altmis
+  70: ['i', true,  false],  // yetmis
+  80: ['e', false, false],  // seksen
+  90: ['a', false, false],  // doksan
+  100: ['ü', false, false],        // yuz
+  1000: ['i', false, false],       // bin
+  1000000: ['o', false, false],    // milyon
+  1000000000: ['a', false, false]  // milyar
+};
+// Eki belirleyen sey sayinin TAMAMI degil SON OKUNAN sozcuk: 1.230 ->
+// "bin iki yuz otuz" -> "otuz". Bu yuzden asagidaki basamak elemesi.
+function _ekSayiSes(n) {
+  n = Math.abs(Math.trunc(Number(n) || 0));
+  if (!n) return _EK_SAYI[0];
+  if (n % 10) return _EK_SAYI[n % 10];
+  if (n % 100) return _EK_SAYI[n % 100];
+  if (n % 1000) return _EK_SAYI[100];
+  if (n % 1000000) return _EK_SAYI[1000];
+  if (n % 1000000000) return _EK_SAYI[1000000];
+  return _EK_SAYI[1000000000];
+}
+function _ekSes(metin) {
+  const ham = String(metin == null ? '' : metin).trim();
+  // SAAT ozel durumu: "14:00" okunurken dakika SOYLENMEZ ("saat on dortte"),
+  // yani ek saate gore olur. Dakika sifir degilse ek dakikaya gore.
+  const saat = /^(\d{1,2}):(\d{2})$/.exec(ham);
+  if (saat) return _ekSayiSes(saat[2] === '00' ? saat[1] : saat[2]);
+  const rakam = /(\d+)\s*$/.exec(ham);
+  if (rakam) return _ekSayiSes(rakam[1]);
+  const kucuk = ham.toLocaleLowerCase('tr');
+  let sesli = '';
+  for (let i = kucuk.length - 1; i >= 0; i--) {
+    if (_EK_SESLI.indexOf(kucuk[i]) >= 0) { sesli = kucuk[i]; break; }
+  }
+  const son = kucuk.slice(-1);
+  return [sesli || 'e', _EK_SERT.indexOf(son) >= 0, _EK_SESLI.indexOf(son) >= 0];
+}
+// tur: 'de' bulunma (-de/-da/-te/-ta) | 'i' belirtme | 'in' tamlayan
+function _ek(metin, tur) {
+  const ses = _ekSes(metin);
+  const sesli = ses[0], sert = ses[1], sesliBitis = ses[2];
+  const kalin = _EK_KALIN.indexOf(sesli) >= 0;
+  const dort = { a: 'ı', 'ı': 'ı', o: 'u', u: 'u', e: 'i', i: 'i', 'ö': 'ü', 'ü': 'ü' }[sesli] || 'i';
+  if (tur === 'de') return (sert ? 't' : 'd') + (kalin ? 'a' : 'e');
+  // Sesliyle biten sozcukte KAYNASTIRMA harfi: 6'yi, 6'nin.
+  if (tur === 'i')  return (sesliBitis ? 'y' : '') + dort;
+  if (tur === 'in') return (sesliBitis ? 'n' : '') + dort + 'n';
+  return '';
+}
+
 function showScreen(id, direction) {
+  // Tarayici gecmisine yaz -- gerekce icin ustteki "TARAYICI GERI TUSU" bandi.
+  // Detay ve kategori kendi kimliklerini de tasir (ikisi de TEK DOM kullaniyor).
+  _gecmisIleri(id, id === 'screen-detay' ? { urun: window._detayUrunId }
+                 : id === 'screen-cat'   ? { kat: currentKategori } : null);
+
   if (window._currentScreen === id) return;
 
   // Giden ekranin kaydirma konumu, HENUZ HICBIR SEY DEGISMEDEN okunuyor.
@@ -1476,7 +1668,7 @@ function goSepet() { renderSepet(); showScreen('screen-sepet'); }
 
 function goBack() {
   if (_prevScreen === 'screen-sepet') renderSepet();
-  showScreen(_prevScreen, 'back');
+  _geriGit(_prevScreen);
 }
 
 // ── openDetay: _prevScreen (GERI DONUS) NOTU ─────────────────────────
@@ -1537,12 +1729,37 @@ function _detayTamVeriGetir(u, urunId) {
     }).catch(e => console.warn('[detay] tam urun yuklenemedi:', e && e.message));
     return;
   }
-  if (u._kisa || !_gecmisCache) {
-    Promise.all([loadAllCats(), gecmisVeriGetir()]).then(() => {
+  // TAM KATALOG INMEZ. Eskiden bu dal loadAllCats() cagiriyordu ve OLCULDU
+  // (canli, yerel dist, ana sayfa seridinden tek bir urune dokunus):
+  //   8 JSON istegi, 19.742 KB ham -- urunler_temizlik 3.298, atistirmalik
+  //   3.289, gida 2.828, sut 2.007, icecek 1.911, et 656, dondurulmus 223,
+  //   ustune gecmis_fiyatlar 5.529.
+  // Tiklanan urun "icecek_376" idi; detayin katalogdan ihtiyaci olan TEK sey
+  // kendi kategorisiydi (icecek, 1.911 KB). Kalan alti kategori -- 11.5 MB --
+  // hicbir sey icin indiriliyordu. Telefonda bu yalnizca bant genisligi degil
+  // AYRISTIRMA maliyeti: her JSON ana is parcaciginda cozuluyor.
+  //
+  // Ayni dal, gecmis onbellekte yokken TAM URUNLER icin de kosuyordu -- yani
+  // kategori ekranindan acilan ilk detay da butun katalogu indiriyordu.
+  // Simdi iki ihtiyac AYRI: katalog yalnizca urun KISA ise, gecmis yalnizca
+  // onbellekte yoksa.
+  const _gerekli = [];
+  if (u._kisa) {
+    // urunKategoriSlugu _sid'den turetiyor (ana sayfa urunlerinde %100 dolu,
+    // olculdu). Cozulemezse tam katalog YEDEK yol olarak kaliyor: detayi bos
+    // birakmaktansa fazla indirmek yeglenir.
+    const _slug = urunKategoriSlugu(u);
+    _gerekli.push(_slug ? loadCat(_slug) : loadAllCats());
+  }
+  if (!_gecmisCache) _gerekli.push(gecmisVeriGetir());
+  if (_gerekli.length) {
+    Promise.all(_gerekli).then(() => {
       // _sid ONCE: urunId bir _sid olabilir (sepet ve arama kartlari onu
       // gonderiyor), productMap ise slug_sira ile anahtarli.
       const tam = _sidIndeksi()[urunId] || productMap[urunId];
-      if (tam && !tam._kisa && _ekranGorunur('screen-detay')) {
+      // Kullanici bu arada baska bir urune gectiyse EKRANI EZME (hafif
+      // daldaki kapinin ayni sinifi -- oradaki olcum bunu gerektirmisti).
+      if (tam && !tam._kisa && _ekranGorunur('screen-detay') && window._detayUrunId === urunId) {
         openDetay(urunId);
       }
     }).catch(e => console.warn('[detay] tam veri yuklenemedi:', e && e.message));
@@ -3268,7 +3485,7 @@ function tazelikChipHTML(u) {
   let sinif, metin;
   if (gun === 0) {
     const ss = String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
-    sinif = 'taze'; metin = `Bugün ${ss}'te güncellendi`;
+    sinif = 'taze'; metin = `Bugün ${ss}'${_ek(ss, 'de')} güncellendi`;
   } else if (gun === 1) {
     sinif = 'taze'; metin = 'Dün güncellendi';
   } else if (gun <= 4) {
@@ -4603,7 +4820,11 @@ function setSiralama(deger) {
     };
     btn.querySelector('.siralama-label').innerHTML = 'Sıralama: <strong>' + (labelMap[deger] || deger) + '</strong>';
     panel.querySelectorAll('.siralama-option').forEach(function(o) {
-      o.classList.toggle('active', o.dataset.value === deger);
+      var secili = o.dataset.value === deger;
+      o.classList.toggle('active', secili);
+      // aria-selected SART: role="option" tasiyan bir oge icin ekran okuyucu
+      // "secili" bilgisini SINIFTAN degil bu ozniteliktan okur.
+      o.setAttribute('aria-selected', secili ? 'true' : 'false');
     });
     panel.classList.remove('open');
     btn.setAttribute('aria-expanded', 'false');
@@ -4622,15 +4843,62 @@ function _acSiralamaPanel() {
       panel.classList.add('open');
     });
   });
+  // KLAVYE: menu acilinca odak SECILI secenege gider. Boylece klavye
+  // kullanicisi menuyu acar acmaz nerede oldugunu bilir ve ok tuslari
+  // oradan yurur. Odak paneldeki bir ogeye tasinmazsa secenekler
+  // role="option" tasisa bile ERISILEMEZ kalir -- kusurun kendisi buydu.
+  var secili = panel.querySelector('.siralama-option.active') || panel.querySelector('.siralama-option');
+  if (secili) secili.focus();
 }
 
 function _kapatSiralamaPanel() {
   var panel = document.getElementById('catSiralamaPanel');
   var btn = document.getElementById('catSiralamaBtn');
   if (!panel || !btn) return;
+  // Odak menunun ICINDEYSE dugmeye geri verilmeli: panel gizlenince odak
+  // <body>'ye duser ve klavye kullanicisi sayfanin basina firlar. Odak zaten
+  // disardaysa (fareyle baska yere tiklandi) DOKUNMA -- yoksa kullanicinin
+  // tikladigi yerden odagi calariz.
+  var odakIcerideydi = panel.contains(document.activeElement);
   panel.classList.remove('open');
   btn.setAttribute('aria-expanded', 'false');
   setTimeout(function() { panel.classList.add('panel-hidden'); }, 160);
+  if (odakIcerideydi) btn.focus();
+}
+
+// Listbox klavye deseni: ok tuslari dolasir, Enter/Space secer, Tab kapatir.
+// (Escape'i mevcut genel dinleyici zaten yakaliyor.)
+function _siralamaTus(e) {
+  var panel = document.getElementById('catSiralamaPanel');
+  // KAPI `open` DEGIL `panel-hidden` YOKLUGUNA bakiyor. `open` cift
+  // requestAnimationFrame icinde ekleniyor; `panel-hidden` ise acilis aninda
+  // ESZAMANLI kaldiriliyor. rAF gecikirse (sekme arka planda, dusuk guc modu)
+  // `open` hic gelmez ve klavye tamamen olur -- olculdu: pane gizliyken cift
+  // rAF 1500 ms icinde HIC kosmadi, panel acikti ama ok tuslari islemiyordu.
+  // Animasyon sinifi GORUNUM icin, kapi ise DURUM icin olmali.
+  if (!panel || panel.classList.contains('panel-hidden')) return;
+  var secenekler = [].slice.call(panel.querySelectorAll('.siralama-option'));
+  if (!secenekler.length) return;
+  var i = secenekler.indexOf(document.activeElement);
+  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+    e.preventDefault();
+    var adim = e.key === 'ArrowDown' ? 1 : -1;
+    var yeni = i < 0 ? (adim > 0 ? 0 : secenekler.length - 1)
+                     : (i + adim + secenekler.length) % secenekler.length;
+    secenekler[yeni].focus();
+  } else if (e.key === 'Home' || e.key === 'End') {
+    e.preventDefault();
+    secenekler[e.key === 'Home' ? 0 : secenekler.length - 1].focus();
+  } else if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+    if (i < 0) return;
+    e.preventDefault();          // Space sayfayi kaydirmasin
+    setSiralama(secenekler[i].dataset.value);
+    _kapatSiralamaPanel();       // odagi dugmeye geri verir
+  } else if (e.key === 'Tab') {
+    // Tab menuden CIKAR: acik birakmak, kullaniciyi arkadaki icerige
+    // goturup menuyu ekranda asili birakirdi.
+    _kapatSiralamaPanel();
+  }
 }
 
 function _siralamaDisariTikla(e) {
@@ -4648,12 +4916,22 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   document.addEventListener('click', _siralamaDisariTikla);
+  // Ok tusuyla ACMA: yerlesik acilir menu davranisi. Enter/Space zaten
+  // <button> uzerinde click uretiyor, o yol kendiliginden calisiyor.
+  if (btn) btn.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      var p = document.getElementById('catSiralamaPanel');
+      if (p && !p.classList.contains('open')) _acSiralamaPanel();
+    }
+  });
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') _kapatSiralamaPanel();
   });
 
   var panel = document.getElementById('catSiralamaPanel');
   if (panel) {
+    panel.addEventListener('keydown', _siralamaTus);
     panel.querySelectorAll('.siralama-option').forEach(function(opt) {
       opt.addEventListener('click', function(e) {
         e.stopPropagation();
@@ -4755,15 +5033,28 @@ function uygulaCatFiltre() {
   renderUrunler(filtreliler);
 }
 
+let _katIstekSira = 0;
+
 async function loadKategoriSayfasi(slug, sayfa) {
-  if (yukleniyor) return;
+  // ESKIDEN: `if (yukleniyor) return;` -- ikinci kategori SESSIZCE dusuyordu
+  // ve uctaki ILK istek ekrani ele geciriyordu. OLCULDU (iki hizli dokunus,
+  // et -> temizlik): baslik "Temizlik" olurken yuklenenUrunler 779 ET urunu,
+  // ekrandaki ilk uc kart "Namet Hindi Fume" / "Banvit Pilic Sosis" /
+  // "Namet Hindi Salam". Yani erken donus yaristan KORUMUYORDU; yalnizca
+  // kullanicinin ISTEDIGI kategoriyi olduruyordu.
+  //
+  // Yerine SIRA NUMARASI: her istek kendi numarasini alir; yeni istek gelince
+  // eskisi bayatlar ve donunce ekrana HIC dokunmaz.
+  const istek = ++_katIstekSira;
   yukleniyor = true;
   try {
     if (!catCache[slug]) await loadCat(slug);
+    if (istek !== _katIstekSira) return;       // baska kategori istendi -> sus
     window.yuklenenUrunler = catCache[slug] || [];
     if (sayfa === 1) renderAltKatBar();
     uygulaCatFiltre();
   } catch(e) {
+    if (istek !== _katIstekSira) return;       // BAYAT hata ekrani basilmaz
     console.error('Veri yükleme hatası:', e);
     // DOGRU SEBEBI GOSTER. Eskiden hata yutulup bos liste onbellege
     // yaziliyordu ve ekran "Sonuc bulunamadi" diyordu -- kullanici urun
@@ -4780,7 +5071,9 @@ async function loadKategoriSayfasi(slug, sayfa) {
       </div>`;
     }
   } finally {
-    yukleniyor = false;
+    // Bayrak yalnizca EN SON istegin: bayat olan birakirsa sonsuz scroll
+    // gozlemcisi hala inmekte olan kategoriye sayfa eklemeye baslar.
+    if (istek === _katIstekSira) yukleniyor = false;
   }
 }
 
@@ -5275,13 +5568,13 @@ function mfSheetAc(idx) {
   document.getElementById('mfDepotList').innerHTML = html || '<div class="mf-results-empty">Fiyat bilgisi yok.</div>';
   document.getElementById('mfSheetBackdrop').classList.add('open');
   document.getElementById('mfSheet').classList.add('open');
-  document.getElementById('mfSheet').setAttribute('aria-hidden', 'false');
+  _panelGizli(document.getElementById('mfSheet'), false);
 }
 
 function mfSheetKapat() {
   document.getElementById('mfSheetBackdrop').classList.remove('open');
   document.getElementById('mfSheet').classList.remove('open');
-  document.getElementById('mfSheet').setAttribute('aria-hidden', 'true');
+  _panelGizli(document.getElementById('mfSheet'), true);
 }
 
 document.getElementById('search').addEventListener('input', function() {
@@ -5771,7 +6064,7 @@ function sepetMarketOzetiHTML() {
   // Mevcut desen kullanildi (.listem-toplam-aciklama), yeni bilesen YOK.
   const _sehir = sehirOku();
   const sehirNotu = _sehir
-    ? `<div class="listem-toplam-aciklama sepet-mkt-sehir">${_kacir(_sehir)}'da bulunan marketler karşılaştırılıyor</div>`
+    ? `<div class="listem-toplam-aciklama sepet-mkt-sehir">${_kacir(_sehir)}'${_ek(_sehir, 'de')} bulunan marketler karşılaştırılıyor</div>`
     : '';
   return `<div class="sepet-mkt">
       <div class="sepet-mkt-baslik">Tek markette ne ödersin</div>
@@ -5867,7 +6160,7 @@ function msSheetAc(mktList) {
 
   document.getElementById('msSheetSub').textContent = `${sepet.length} ürün için`;
   document.getElementById('msSheet').classList.add('open');
-  document.getElementById('msSheet').setAttribute('aria-hidden', 'false');
+  _panelGizli(document.getElementById('msSheet'), false);
   const b = document.getElementById('msSheetBackdrop');
   if (b) b.classList.add('open');
   msSheetGuncelle();
@@ -5876,7 +6169,7 @@ function msSheetAc(mktList) {
 function msSheetKapat() {
   const s = document.getElementById('msSheet');
   s.classList.remove('open');
-  s.setAttribute('aria-hidden', 'true');
+  _panelGizli(s, true);
   const b = document.getElementById('msSheetBackdrop');
   if (b) b.classList.remove('open');
 }
@@ -6909,7 +7202,7 @@ function profilEnflasyonHTML() {
   return `<div class="profil-enflasyon ${r.yon}">
       <div class="profil-enflasyon-ust">Senin sepetin bu ay</div>
       <div class="profil-enflasyon-rakam">${yuzdeYazi} ${cumle}</div>
-      <div class="profil-enflasyon-alt">30 gün önce ${tl(r.eskiToplam)} · bugün ${tl(r.yeniToplam)} — ${r.toplam} üründen ${r.katilan}'i hesaba katıldı</div>
+      <div class="profil-enflasyon-alt">30 gün önce ${tl(r.eskiToplam)} · bugün ${tl(r.yeniToplam)} — ${r.toplam} üründen ${r.katilan}'${_ek(r.katilan, 'i')} hesaba katıldı</div>
       <button type="button" class="profil-enflasyon-paylas" onclick="paylasEnflasyon()">${lcIcon('share-2')} Paylaş</button>
     </div>`;
 }

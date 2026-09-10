@@ -373,6 +373,16 @@ function kurOrtam(mevcut, y) {
     _gecisAzalt: function () { return false; },
     _gecisSureMs: function () { return 260; },
     _gecisCikan: null, _gecisZaman: null,
+    console: { warn: function () {}, error: function () {} },
+    // Sahte history: showScreen artik her gecisi gecmise yaziyor.
+    history: (function () {
+      let d = { pazar: 'screen-home', n: 0 };
+      return {
+        get state() { return d; },
+        pushState: function (yeni) { d = yeni; },
+        replaceState: function (yeni) { d = yeni; }
+      };
+    })(),
     _ekranlar: ekranlar, _cagrilar: cagrilar,
     document: {
       getElementById: function (id) { return ekranlar[id] || navlar[id] || null; },
@@ -392,6 +402,17 @@ function kurOrtam(mevcut, y) {
     kutu.scrollY = hedefY; kutu.pageYOffset = hedefY;
   };
   vm.createContext(kutu);
+  // GECMIS BAGIMLILIGI: STUB DEGIL GERCEK KAYNAK (bu deponun kurali).
+  // showScreen artik her ekran gecisini history'ye yaziyor; bu fonksiyonlari
+  // sahtelemek testi KOR birakirdi -- showScreen'in gercekte ne yazdigini
+  // goremezdik. Iddia gevsetilmedi, calisma ortami tamamlandi.
+  vm.runInContext([
+    'let _gecmisSonN = 0;',
+    'let currentKategori = null;',
+    govde('_gecmisDurum'),
+    govde('_gecmisDerinlik'),
+    govde('_gecmisIleri'),
+  ].join(String.fromCharCode(10)), kutu);
   vm.runInContext(ss, kutu);
   return kutu;
 }

@@ -1,6 +1,6 @@
 # Pazar App — Proje Handoff (Claude için)
 
-**Son güncelleme:** 2026-08-31 (**KVKK AYDINLATMA METNİ YAYINDA** — `/gizlilik/` canlı, Profil'deki link görünür; kontrol listesinin üçü de tek commit'te gitti. Boş duran "yurt dışına aktarımın hukuki dayanağı" bölümü yayına alınırken **sayfadan çıkarıldı**, avukat görüşünden sonra geri gelecek — taslak metin `2e69630`'da. `.metin-tablo` kuralının yük taşıdığı prove-by-breaking ile ölçüldü: kural silinince tablo 383px → **1694px**. Öncesi — 2026-08-26: metin repoya alınmıştı ama yayında değildi. Ölçüm düzeltmesi: push bildiriminde ürün adı/hedef fiyat YOK ve yük uçtan uca şifreli. Öncesi — 2026-08-25: **SEKME GEÇİŞİ: İKİ EKRAN BİRLİKTE KAYIYOR** — ilk çözüm boş kareyi ötelemeyi 100%→16px kısarak kapatmıştı, geçiş algılanamaz oldu; DOĞRUSU giden ekranı GÖRÜNÜR tutmak. Şimdi tam genişlik (390px), iki ekran birden 15 kare, boş kare 0, yatay taşma 0 (gizli kusur: `overflow-x: clip` absolute öğeyi kırpmıyordu → `body { position: relative }`), CLS 0. `test_gecis.mjs` 72 iddia, prove-by-breaking 18/18. Öncesi — **GEÇİŞLER YUMUŞATILDI** — sekme geçişinde ekranın ~35-41ms BOŞ kaldığı ölçüldü (ilk kare kapsamı %0) ve sıfırlandı; splash sönmesinde kusur SÜREDE DEĞİL EĞRİDEYDİ (%83'ü ilk 50ms'de bitiyordu → linear). reduced-motion'da animasyon TAM kapalı, layout birebir aynı. `test_gecis.mjs` 41 iddia, prove-by-breaking 12/12. Öncesi aynı gün — **FİYAT GRAFİĞİ ETİKET ÇAKIŞMASI KAPANDI** — E-E/E-X/X-X/TAŞMA **sıfırlandı**, etiket↔çizgi hale ile okunur; 193 grafiğin tamamı gerçek tarayıcıda sayıldı, çakışma "karışıklık" değil **yanlış fiyat okuma** üretiyormuş: "103,95 ₺" ekranda "105,95 ₺" gibi okunuyordu. `test_fiyat_grafik.mjs` 51 iddia, prove-by-breaking 13/13. Ayrıntı: aşağıdaki "Madde 1 KAPANDI" bloğu. Öncesi — 2026-08-23: **KVKK HESAP SİLME UÇTAN UCA CANLI** — cascade FK + `hesap-sil` edge function + iki adımlı onaylı UI (`2ecfa41`); gerçek hesapla kontrol gruplu doğrulandı, kalan tek halka **KVKK aydınlatma metni**. Öncesi: BLOK 4 + BLOK 1 geçti, altı FK `ON DELETE CASCADE`, `sql/` repoya alındı; **`style-src`'den `'unsafe-inline'` kaldırıldı**, `script-src` bilinçli ertelendi + satır içi handler kilidi). Öncesi — 2026-08-21/22 oturumu (**güvenlik başlıkları** — `font-src 'self'` + `frame-ancestors 'none'` + nosniff, **HSTS** 1. basamak `max-age=300` → **2026-08-22'de 2. basamak `max-age=86400`**; **CI test kapısı** — `deploy needs: test`, 50 test (glob), kasıtlı FAIL ile kanıtlandı; **B1 kaçış** dört kaçışsız nokta kapatıldı (`test_kacis` 93 iddia); GITHUB_TOKEN varsayılanı read + workflow başına açık `permissions`; Grup 1 (M1/M2/M3/M4); **`www` → apex 301 kuruldu**, CF beacon panelden kapatıldı; fontlar self-host + GoatCounter pin; **KVKK / hesap silme DEVAM EDİYOR** — ölçüm bitti, taslaklar henüz çalıştırılmadı; **sw v232**). Ayrıntı için aşağıdaki "2026-08-21" blokları. Bu dosya her oturum başında okunur, sohbete asla ham metin olarak yapıştırılmaz.
+**Son güncelleme:** 2026-09-10 (**YÜKSEK grubunun KALAN 4 GRUBU BİTTİ** — 12 bulgu tek turda: koyu temada seçili sekme 1,17 → 15,25 ve giriş paneli 1,24 → 12,32; tarayıcı/Android geri tuşu artık uygulamadan ÇIKARMIYOR (history.length ölçüldü: 1 → 1 idi); hızlı kategori geçişinde yanlış liste (başlık "Temizlik", liste 779 ET ürünü) kapandı; damgalı JS/CSS `immutable`; kapalı panellerde 9 hayalet düğme → 0; sıralama menüsü klavyeyle kullanılabilir; ana sayfada ürüne dokunmak 19.742 KB → 8.357 KB; Türkçe ekler kurala bağlandı; `scraper.py` ağ koparsa yarım dosyayı ARTIK üzerine yazmıyor + beş yazma yeri atomik; `test_iddia.mjs`'in koşulsuz 3 PASS'ı kalktı. Prove-by-breaking **69/69**; üç bekçi kendi kör noktasını açık etti ve sıkılaştırıldı; **kendi yorum soyucum bozuktu** — dosyanın %55'ini siliyordu, güvenli sürümle değişti. **⑨ görsel boyutu ölçüldü ama KARAR MUSTAFA'DA** — Cloudflare Image Resizing bir hesap kararı. `sw.js` **v245**. Öncesi — 2026-08-31: **KVKK AYDINLATMA METNİ YAYINDA** — `/gizlilik/` canlı, Profil'deki link görünür; kontrol listesinin üçü de tek commit'te gitti. Boş duran "yurt dışına aktarımın hukuki dayanağı" bölümü yayına alınırken **sayfadan çıkarıldı**, avukat görüşünden sonra geri gelecek — taslak metin `2e69630`'da. `.metin-tablo` kuralının yük taşıdığı prove-by-breaking ile ölçüldü: kural silinince tablo 383px → **1694px**. Öncesi — 2026-08-26: metin repoya alınmıştı ama yayında değildi. Ölçüm düzeltmesi: push bildiriminde ürün adı/hedef fiyat YOK ve yük uçtan uca şifreli. Öncesi — 2026-08-25: **SEKME GEÇİŞİ: İKİ EKRAN BİRLİKTE KAYIYOR** — ilk çözüm boş kareyi ötelemeyi 100%→16px kısarak kapatmıştı, geçiş algılanamaz oldu; DOĞRUSU giden ekranı GÖRÜNÜR tutmak. Şimdi tam genişlik (390px), iki ekran birden 15 kare, boş kare 0, yatay taşma 0 (gizli kusur: `overflow-x: clip` absolute öğeyi kırpmıyordu → `body { position: relative }`), CLS 0. `test_gecis.mjs` 72 iddia, prove-by-breaking 18/18. Öncesi — **GEÇİŞLER YUMUŞATILDI** — sekme geçişinde ekranın ~35-41ms BOŞ kaldığı ölçüldü (ilk kare kapsamı %0) ve sıfırlandı; splash sönmesinde kusur SÜREDE DEĞİL EĞRİDEYDİ (%83'ü ilk 50ms'de bitiyordu → linear). reduced-motion'da animasyon TAM kapalı, layout birebir aynı. `test_gecis.mjs` 41 iddia, prove-by-breaking 12/12. Öncesi aynı gün — **FİYAT GRAFİĞİ ETİKET ÇAKIŞMASI KAPANDI** — E-E/E-X/X-X/TAŞMA **sıfırlandı**, etiket↔çizgi hale ile okunur; 193 grafiğin tamamı gerçek tarayıcıda sayıldı, çakışma "karışıklık" değil **yanlış fiyat okuma** üretiyormuş: "103,95 ₺" ekranda "105,95 ₺" gibi okunuyordu. `test_fiyat_grafik.mjs` 51 iddia, prove-by-breaking 13/13. Ayrıntı: aşağıdaki "Madde 1 KAPANDI" bloğu. Öncesi — 2026-08-23: **KVKK HESAP SİLME UÇTAN UCA CANLI** — cascade FK + `hesap-sil` edge function + iki adımlı onaylı UI (`2ecfa41`); gerçek hesapla kontrol gruplu doğrulandı, kalan tek halka **KVKK aydınlatma metni**. Öncesi: BLOK 4 + BLOK 1 geçti, altı FK `ON DELETE CASCADE`, `sql/` repoya alındı; **`style-src`'den `'unsafe-inline'` kaldırıldı**, `script-src` bilinçli ertelendi + satır içi handler kilidi). Öncesi — 2026-08-21/22 oturumu (**güvenlik başlıkları** — `font-src 'self'` + `frame-ancestors 'none'` + nosniff, **HSTS** 1. basamak `max-age=300` → **2026-08-22'de 2. basamak `max-age=86400`**; **CI test kapısı** — `deploy needs: test`, 50 test (glob), kasıtlı FAIL ile kanıtlandı; **B1 kaçış** dört kaçışsız nokta kapatıldı (`test_kacis` 93 iddia); GITHUB_TOKEN varsayılanı read + workflow başına açık `permissions`; Grup 1 (M1/M2/M3/M4); **`www` → apex 301 kuruldu**, CF beacon panelden kapatıldı; fontlar self-host + GoatCounter pin; **KVKK / hesap silme DEVAM EDİYOR** — ölçüm bitti, taslaklar henüz çalıştırılmadı; **sw v232**). Ayrıntı için aşağıdaki "2026-08-21" blokları. Bu dosya her oturum başında okunur, sohbete asla ham metin olarak yapıştırılmaz.
 
 ---
 
@@ -19,6 +19,152 @@ Mustafa (GitHub: avkkann), **Pazar App**'in tek geliştiricisi — Türk market 
 ---
 
 ## Mevcut durum (2026-08-21 itibarıyla)
+
+### 2026-09-10 (dördüncü tur) — YÜKSEK grubunun KALAN 4 GRUBU bitti: 12 bulgu (`sw.js` v244 → **v245**)
+
+**Durum: commit edildi, YAYINDA DEĞİL.** Denetimin 24 "yüksek" maddesinden geriye kalan
+dört grup tek turda kapandı. Prove-by-breaking **69/69**.
+
+**GRUP 1 — koyu tema (2), gezinme (2), önbellek (1).**
+
+| # | Kusur | Kök neden | Ölçüm |
+|---|---|---|---|
+| ① | **Koyu temada seçili sekme okunmuyordu** | `[data-theme="dark"] .nav-btn.active { color:#0F1A14 }` KÖK seviyedeydi. O koyu metin "parlak yeşil zemin" için doğru ama yeşil zemin YALNIZCA ≥1024px'te var; telefonda buton koyu çubuğun üstünde duruyor | kontrast **1,17 → 15,25**; masaüstü `#0F1A14`/yeşil **7,03** korundu; kontrol grubu (pasif sekme) 6,01'de sabit |
+| ② | **Koyu temada giriş paneli beyaz açılıyordu** | `.auth-sheet` ailesinin koyu tema override'ı hiç yazılmamış | panel **1,24 → 12,32** · e-posta/şifre **1,24 → 14,40** · ayıraç **2,54 → 6,01** · başlık 10,86 |
+| ③ | **Geri tuşu uygulamayı kapatıyordu** | Ekran geçişleri `history`'ye HİÇ yazılmıyordu | ölçüldü: üç ekran değişiminde `history.length` **1 → 1**, `state` **null**. Sonra: +3 kayıt, üç geri tuşu profil→fırsatlar→sepet→home |
+| ④ | **Hızlı kategori geçişinde YANLIŞ liste** | `loadKategoriSayfasi` `if (yukleniyor) return;` ile başlıyordu → ikinci istek SESSİZCE düşüyor, uçtaki ilki ekranı ele geçiriyordu | et→temizlik: başlık "Temizlik", liste **779 ET ürünü** ("Namet Hindi Füme"…). Sonra: liste temizlik, `_sid` `temizlik_…` |
+| ⑤ | **Damgalı JS/CSS her açılışta doğrulanıyordu** | Cloudflare varlık katmanı HER dosyaya `max-age=0, must-revalidate` veriyor | canlı ölçüldü: `app.0ed6c6ce.js` ve `assets/index-DxpkFUHq.css` ikisi de. Artık adında hash olanlar `immutable` |
+
+> **③'ün deseni:** her İLERİ geçiş bir `history` kaydı açar, kayıt hangi ekranda
+> olduğumuzu taşır. **Uygulama içi geri butonları da AYNI yığını kullanıyor**
+> (`_geriGit` → `history.back()`) — ayrı dursalardı yığın ile history ayrışır ve
+> ekrandaki geri tuşu arkada bir kayıt bırakıp giderdi. Açılış kaydı `pushState`
+> **değil** `replaceState`: kullanıcı en başa dönünce bir sonraki geri tuşu siteden
+> **çıkar** — uygulama kullanıcıyı hapsetmiyor. Derin linkte (`?screen=kategori`)
+> arkada bizim kaydımız yoksa `history.back()` çağrılmıyor.
+
+> **⑤ bilerek DAR:** yalnız adında içerik hash'i olanlar (`app.<sha256[0:8]>.js`,
+> `assets/<ad>-<hash>.css`). `index.html`, `sw.js`, `manifest.json` ve `data/*.json`
+> aynı ad altında içerik değiştiriyor → onlar `must-revalidate` KALMALI. 304'e de
+> yazılıyor, yoksa geçişten önce önbelleklenmiş tarayıcılar sonsuza kadar doğrular.
+
+**GRUP 2 — klavye ve ekran okuyucu (2).**
+- **⑥ Kapalı panellerde 9 hayalet düğme.** Ölçüldü (her öğeye gerçekten `focus()`
+  verilerek): `auth-sheet` 6, `msSheet` 2, `mfSheet` 1. Üçü de `aria-hidden="true"`
+  ama denetimleri odaklanabiliyordu — klavye kullanıcısı **görmediği** düğmelere
+  takılıyor, ekran okuyucu ise orada olduklarını söylemiyor. **`inert`** eklendi
+  (hem JS'te tek kapıdan `_panelGizli`, hem markup'ta başlangıçta).
+  *Neden `display:none` değil:* panellerin açılış animasyonunu öldürürdü.
+  **9 → 0**, kontrol grubu: panel açılınca 6 denetim geri geliyor.
+- **⑦ Sıralama menüsü klavyeyle kullanılamıyordu.** Seçenekler `<div role="option">`
+  ve `tabindex` yok → odak hiç giremiyor, panelde tuş dinleyicisi de yok. Tam
+  listbox deseni kuruldu: ok tuşları (sarmalı), Home/End, Enter/Space seçer,
+  Tab kapatır, açılışta odak SEÇİLİ seçeneğe gider, kapanışta düğmeye döner
+  (**yalnız odak menüdeyse** — yoksa kullanıcının tıkladığı yerden odağı çalardık).
+  `aria-selected` de artık seçime bağlı.
+
+> **KLAVYE KAPISI `open` SINIFINA BAĞLIYDI, DEĞİŞTİRİLDİ.** `open` çift
+> `requestAnimationFrame` içinde ekleniyor; ölçüldü: pane gizliyken çift rAF
+> **1500 ms içinde hiç koşmadı**, panel açıktı ama ok tuşları işlemiyordu. Kapı
+> `panel-hidden` yokluğuna çevrildi (açılışta EŞZAMANLI kaldırılıyor).
+> *Animasyon sınıfı GÖRÜNÜM için, kapı ise DURUM için olmalı.*
+
+**GRUP 3 — indirme (1) + ölçülüp size bırakılan (1).**
+- **⑧ Ana sayfada bir ürüne dokunmak TÜM katalogu indiriyordu.** `_detayTamVeriGetir`
+  `loadAllCats()` çağırıyordu. Ölçüldü (tek dokunuş): **8 JSON isteği, 19.742 KB ham**
+  — temizlik 3.298, atıştırmalık 3.289, gıda 2.828, süt 2.007, içecek 1.911, et 656,
+  dondurulmuş 223 + geçmiş 5.529. Tıklanan ürün `icecek_376`; katalogdan gereken tek
+  şey kendi kategorisiydi. **Sonra: 2 istek, 8.357 KB (%58 az)**, detay eksiksiz
+  (3 bölüm, market satırları, grafik). Aynı dal geçmiş önbellekte yokken TAM ürünler
+  için de koşuyordu — yani kategori ekranından açılan ilk detay da tüm katalogu
+  indiriyordu; o da kapandı.
+- **⑨ 200 KB'lık görseller — ÖLÇÜLDÜ, KARAR MUSTAFA'DA.** 60 görsellik örnek
+  (alet kontrolü geçti): **ortalama 166 KB, medyan 159, en büyük 619**; %70'i
+  100 KB üstü, %32'si 200 KB üstü. Ana sayfa ~39 görsel ≈ **6,5 MB**, kategori
+  ekranı 48 kart ≈ **8 MB**. Kaynak `cdn.marketfiyati.org.tr` (13.920 ürün, %85,6).
+  Kartlarda gösterim en fazla 171×130 → **~%85-90 boşa iniyor**.
+  **Yapılabilecek tek gerçek çözüm Cloudflare Image Resizing** (`/cdn-cgi/image/`)
+  ve o bir **hesap kararı** — Claude açamaz. *Hesap kararı gerektirmeyen kısımda
+  kapatılacak boşluk YOK: dokuz ürün görseli `<img>`'inin dokuzu da zaten
+  `loading="lazy"` taşıyor (ölçüldü).*
+
+**GRUP 4 — metin (1), veri hattı (1), test dürüstlüğü (1).**
+- **⑩ Türkçe ekler sabit yazılmıştı.** "14:30**'te**" (doğrusu 'da — "otuz" kalın),
+  "3**'i**" (doğrusu 'ü — "üç" ince-yuvarlak), "Kayseri**'da**" (doğrusu 'de).
+  Tek kural (`_ek`) yazıldı: ek **sayının OKUNUŞUNA** göre değişiyor, rakamına değil
+  (40 → "kırk" → kalın + **SERT** → 'ta). Kaynaştırma harfi de var (6'**yı**, 6'**nın**).
+  **Tam saatte dakika okunmaz** özel durumu: "14:00" → "saat on dört**te**".
+  Ek **ham** değerden türetiliyor, `_kacir` çıktısından değil (`&#39;` ile bitseydi
+  son ses yanlış okunurdu). 50 örnekle doğrulandı.
+  > **Dördüncü bir yer BİLEREK dışarıda:** fiyat hedefi + "'nin altına" — fiyatın ₺
+  > sembolüyle okunuşu ("...lira**nın**" mı "...doksan**ın**" mı) gerçekten tartışmalı;
+  > tahminle kullanıcıya görünen metin değiştirilmedi.
+- **⑪ `scraper.py` ağ koparsa YARIM dosyayı üzerine yazıyordu.** Kök neden
+  sayfalama döngüsündeki `if not data: break` — **sessizce** kesiyor ve çağırana
+  `"ok"` diyordu. 20 sayfalık bir kategorinin 5. sayfasında kopan bağlantı dosyaya
+  yalnız ilk 5 sayfayı yazıyordu; sonra `sync_db` o ürünleri "artık yok" sayıp
+  **fiyat geçmişini siliyordu.** Artık `"eksik"` durumu var ve **eşik uydurulmadı**:
+  kural iki ölçülebilir sinyale bakıyor — (a) çekimde gerçekten hata oldu mu,
+  (b) sonuç mevcut dosyadan AZ mı. İkisi birden doğruysa eski dosya korunuyor;
+  hatasız küçülme (ürün listeden kalkmış) normaldir ve engellenmiyor.
+  Ayrıca **beş yazma yerinin beşi de atomik** (`.tmp` + `os.replace`): `open(...,"w")`
+  dosyayı ANINDA kırpıyor, süreç ortada ölürse geride yarım json kalıyordu.
+- **⑫ `test_iddia.mjs` hiçbir şey doğrulamadan 3 PASS yazıyordu.** Üç `ok(..., true)`
+  koşulsuz geçiyordu. *Bir testin en kötü hâli kırmızı olması değil, KÖRKEN yeşil
+  olmasıdır:* o satırlar al/bekle bloğu tamamen kırılsa da aynı şekilde geçerdi.
+  Artık kapının GERÇEKTEN kapalı olduğu doğrulanıyor. **Tüm paket tarandı**, başka
+  koşulsuz PASS yok.
+
+> **ÜÇ BEKÇİ KENDİ KÖR NOKTASINI AÇIK ETTİ, ÜÇÜ DE SIKILAŞTIRILDI (gevşetilmedi).**
+> Üçü de aynı sınıf: iddia **çağrının VARLIĞINA** bakıyordu, **KOŞTUĞUNA** değil —
+> `if (false) …()` mutasyonu testi yeşil bırakıyordu. (a) "showScreen geçmişe yazıyor"
+> kaynak grep'iydi → showScreen artık gerçekten koşturulup history'ye NE YAZILDIĞI
+> ölçülüyor; (b) "açılışta odak menüye giriyor" ve (c) "kapanışta odak düğmeye
+> dönüyor" da davranışsal yapıldı. Bu sınıf bu depoda artık **sekizinci** kez.
+
+> **KENDİ YAZDIĞIM YORUM SOYUCUSU BOZUKTU — ve kör nokta ÜRETİYORDU.** Beş teste
+> `/\/\*[\s\S]*?\*\//g` deseniyle bir yorum soyucu koymuştum. Ölçüldü: `app.js`'te
+> **25 tane `/*` ama 23 tane `*/`** var (bir kısmı dize ve regex içinde), eşler
+> kayıyor ve desen **365.686 karakterin 201.814'ünü (%55)** siliyor. Yani "şu desen
+> kaynakta YOK" diyen her iddia boş yere yeşil kalabilirdi. Satır tabanlı güvenli
+> sürümle değiştirildi (yalnız satır başında başlayan blok yorumlar + tam satırlık
+> `//`), kayıp %55 → **%30** (yalnızca yorumlar). *Ders: bir aleti teste koymadan
+> önce onun da kontrol grubunu koş.*
+
+> **TEST KENDİ AÇIKLAMASIYLA EŞLEŞTİ — beşinci ve altıncı vaka.** `test_tembel` ve
+> `test_arama_indeks` "`loadAllCats` geçmiyor" diye kilitliyordu; `_detayTamVeriGetir`'in
+> başına yazdığım "eskiden loadAllCats çağırıyordu" açıklaması iddiayı kırmızıya
+> çevirdi. Yorum silinmedi, iddia gevşetilmedi — ikisi de artık yorumları **soyuyor**,
+> bu da onları **sertleştiriyor** (silinen bir çağrı artık onu anan bir yorumla
+> maskelenemez). Aynı şey `test_gecmis`'te de yaşandı.
+
+> **ÖLÇÜM ALETİ ÜÇ KEZ YANILTTI, üçü de kontrol grubuyla yakalandı.**
+> **(1)** Tarayıcı aleti **tuşları sayfaya hiç ulaştırmıyor** — Enter/ArrowDown
+> gönderildi, `document`'a takılan dinleyici **0 keydown** kaydetti. Yani "Enter
+> menüyü açmadı" okuması kusur değil **alet artefaktıydı**; ölçüm olay göndermeye
+> çevrildi. **(2)** `getComputedStyle` yine bayat değer döndürdü: `#screen-home`
+> `opacity: 0` diyordu, ekran görüntüsü sayfanın **görünür** olduğunu gösterdi — o
+> okumaya dayanan 69 "hayalet öğe" yanlış pozitifti. Doğru tanım (`aria-hidden` kabın
+> içinde odaklanabilen öğe) tam **9** verdi, yani bulgunun sayısıyla birebir.
+> **(3)** Görsel boyutu ölçen ilk `curl` zinciri sessizce 0 KB döndürdü; alete kendi
+> kontrol grubu (bilinen boyutta yerel dosya) konunca gerçek dağılım çıktı.
+
+> **CRLF ve kabuk kaçışı yine ısırdı (bu oturumda 5 kez).** İki mutasyon çok satırlı
+> çapa yüzünden HARD-FAIL verdi (tek satırlık çapayla çözüldü); `node -e` ve heredoc
+> içinde `\n` ve `\s` üç kez yendi. *Depoda zaten yazılı: çok satırlı iş için
+> betiği DOSYAYA yaz.*
+
+**Yeni bekçiler:** `test_gecmis.mjs` (54), `test_koyu_tema.mjs` (34),
+`test_klavye_panel.mjs` (48), `test_turkce_ek.mjs` (18), `test_scraper_yazma.py` (23).
+**Genişletilenler:** `test_cdn_pin.mjs` (+19, önbellek başlığı), `test_tembel.mjs`
+(+10, davranışsal indirme sayımı), `test_gecis.mjs` (vm'e gerçek `_gecmisIleri`),
+`test_enflasyon.mjs` (vm'e gerçek `_ek`), `test_iddia.mjs` (koşulsuz PASS kalktı),
+`test_arama_indeks.mjs` (yorum soyucu).
+**Doğrulama:** 65 `test_*.mjs` + 7 `test_*.py` yeşil (**2.827 geçen iddia**),
+build yeşil, yerel `dist`'te on düzeltmenin onu da gerçek tarayıcıda kontrol gruplu
+ölçüldü, konsol hatası 0, yatay taşma 0.
+
+---
 
 ### 2026-09-10 (üçüncü tur) — YÜKSEK grubundan 5 bulgu, 3 iş (`sw.js` v243 → **v244**)
 
@@ -1853,7 +1999,7 @@ Uygulama teknik olarak çalışıyor ama **pratikte hâlâ dağıtılmamış dur
 
 ## Yaklaşım & desenler
 
-- **SW cache version** her anlamlı `index.html`/`app.js`/`style.css`/`sw.js` değişikliğinde artırılır (şu an **v244**, 2026-09-10). *Bu satır 2026-09-03'e kadar **v215** diyordu — 18 sürüm bayattı, doküman bayatlığı desenin BEŞİNCİ vakası. Sürümü bu satırdan değil `sw.js`'ten oku.* Backend-only değişikliklerde (scraper, sync) bump edilmez. Akış: `git add` → `git commit` → `git pull --rebase` → `git push`. Not: `sw.js` yalnızca `data/hal.json` + `data/anasayfa.json`'ı önbelleğe alıyor ve `fetch`'i yalnızca o iki URL için yakalıyor — HTML/CSS/JS'i tutmuyor, onlar Cloudflare'den `Cache-Control: public, max-age=0, must-revalidate` ile geliyor (ölçüldü; eski GitHub Pages `max-age=600` notu bayattı). Bump proje kuralı ve tutarlılık için, HTML dağıtımını hızlandırmıyor.
+- **SW cache version** her anlamlı `index.html`/`app.js`/`style.css`/`sw.js` değişikliğinde artırılır (şu an **v245**, 2026-09-10). *Bu satır 2026-09-03'e kadar **v215** diyordu — 18 sürüm bayattı, doküman bayatlığı desenin BEŞİNCİ vakası. Sürümü bu satırdan değil `sw.js`'ten oku.* Backend-only değişikliklerde (scraper, sync) bump edilmez. Akış: `git add` → `git commit` → `git pull --rebase` → `git push`. Not: `sw.js` yalnızca `data/hal.json` + `data/anasayfa.json`'ı önbelleğe alıyor ve `fetch`'i yalnızca o iki URL için yakalıyor — HTML/CSS/JS'i tutmuyor, onlar Cloudflare'den geliyor. **2026-09-10'da ayrıldı:** adında içerik hash'i olanlar (`app.<hash>.js`, `assets/<ad>-<hash>.css`) artık `max-age=31536000, immutable`; `index.html`/`sw.js`/`manifest.json`/`data/*.json` ise aynı ad altında içerik değiştirdiği için `max-age=0, must-revalidate` KALDI (ölçüldü; eski GitHub Pages `max-age=600` notu bayattı). Bump proje kuralı ve tutarlılık için, HTML dağıtımını hızlandırmıyor.
 - **Doğrulama:** Push sonrası `gh run watch` ile deploy'un koştuğu doğrulanır, sonra canlıda (Browser MCP) gerçek fonksiyonel test yapılır — "dosyada var mı" değil, "gerçekten çalışıyor mu". Layout değişikliklerinde ekran görüntüsü yetmez: değişiklikten ÖNCE geometri parmak izi (`getBoundingClientRect`) alınıp sonra sayısal karşılaştırılır.
 - **Kapsam disiplini:** İstenmeyen ekleme/çıkarma sessizce yapılmaz, not düşülür. Doküman/analiz önerileri körü körüne uygulanmaz — önce kodda geçerli mi diye bakılır.
 - **Büyük ürün/mimari kararları** (hosting migration, nav yapısı, tuzak'ın geleceği) Mustafa'nın onayı olmadan koda dökülmez.

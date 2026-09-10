@@ -3125,9 +3125,55 @@
     [data-theme="dark"] .auth-divider { color: #9CA3AF; }
     [data-theme="dark"] .auth-divider::before,
     [data-theme="dark"] .auth-divider::after { background: var(--border); }
-    /* Parlak yesil zeminde beyaz yerine koyu metin: ayni vurgu, okunur kontrast. */
-    [data-theme="dark"] .nav-btn.active { color: #0F1A14; }
-    [data-theme="dark"] .nav-btn.active svg { stroke: #0F1A14; }
+    /* ═══ 2026-09-10: GIRIS PANELI KOYU TEMADA YARIM KALIYORDU ═══
+       Onceki tur yalnizca SEKME YAZILARINA koyu tema kurali yazmisti; panelin
+       kendisi, girdiler ve Google dugmesi ham #fff ile beyaz kaliyordu. Metin
+       ise koyu temada aciga donuyordu -> acik metin BEYAZ zeminde.
+       OLCULDU (canli, 375px, koyu tema, panel acik):
+         .auth-sheet__panel  zemin beyaz, metin #E5E7EB -> kontrast 1,24
+         #auth-email / #auth-password  ayni: 1,24  (yazilan sey gorunmuyordu)
+         .auth-divider  #9CA3AF beyaz uzerinde -> 2,54
+       .auth-submit BILEREK DISARIDA: gradyani var (#0F5132 -> #0E4938) ve
+       beyaz metinle okunuyor. Ilk olcumum onu 1,00 gostermisti -- artefakt:
+       backgroundColor gradyani "transparent" diye raporluyor. bgImage
+       okununca gorundu. (Bu deponun kayitli tuzagi: renk iddiasini yalniz
+       getComputedStyle ile kapatma.)
+       Renkler YENI DEGIL: mevcut koyu tema paletinden (--card-bg, --bg,
+       --border, --text, --text-muted). */
+    [data-theme="dark"] .auth-sheet__panel { background: var(--card-bg); }
+    [data-theme="dark"] .auth-sheet__title { color: #86EFAC; }
+    [data-theme="dark"] .auth-sheet__handle { background: var(--border); }
+    [data-theme="dark"] .auth-sheet__tabs { background: var(--bg); }
+    [data-theme="dark"] .auth-form input {
+      background: var(--bg);
+      border-color: var(--border);
+      color: var(--text);
+    }
+    [data-theme="dark"] .auth-form input::placeholder { color: var(--text-muted); }
+    [data-theme="dark"] .auth-form input:focus { border-color: #86EFAC; }
+    [data-theme="dark"] .auth-google {
+      background: var(--bg);
+      border-color: var(--border);
+      color: var(--text);
+    }
+    /* Parlak yesil zeminde beyaz yerine koyu metin: ayni vurgu, okunur kontrast.
+       ═══ 2026-09-10 DUZELTMESI: BU KURAL YALNIZ MASAUSTUNDE DOGRU ═══
+       Yorumun anlattigi "parlak yesil zemin" yalnizca >=1024px'te var
+       (satir 2799: .nav-btn.active { background: var(--primary) }). TELEFONDA
+       aktif dugmenin zemini YOK; buton koyu nav cubugunun (#1C2823) uzerinde
+       duruyor. Kural kok seviyede yazildigi icin telefona da uygulaniyordu ve
+       KOYU METNI KOYU ZEMINE koyuyordu.
+       OLCULDU (canli, 375px, koyu tema): secili sekme yazisi rgb(15,26,20),
+       cubuk zemini rgb(28,40,35) -> kontrast 1,17 (gereken 4,5). Yani menunun
+       tek isi olan "buradasin" bilgisi HIC OKUNMUYORDU; diger dort sekme
+       6,01 ile net gorunurken secili olan kayboluyordu.
+       Ayni ozgullukteki 3115. satir (color:#fff) bunun ustune yaziliyordu --
+       sonraki kural kazanir. Simdi o satir telefonda gecerli, bu blok ise
+       zeminin gercekten yesil oldugu masaustune tasindi. */
+    @media (min-width: 1024px) {
+      [data-theme="dark"] .nav-btn.active { color: #0F1A14; }
+      [data-theme="dark"] .nav-btn.active svg { stroke: #0F1A14; }
+    }
     /* Pastel ikon cipi koyu temada da acik kaliyor -> on plan koyu kalmali. */
     [data-theme="dark"] .profil-item-icon { color: #1A1A2E; }
 

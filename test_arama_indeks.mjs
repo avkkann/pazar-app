@@ -145,7 +145,27 @@ ok('  indeks yuklenince _sid haritasi kuruluyor',
    /_aramaSid\s*=\s*\{\}/.test(yuk) && /_aramaSid\[u\._sid\]\s*=\s*u/.test(yuk), yuk.slice(-500));
 
 const tamVeri = govde('_detayTamVeriGetir');
-const hafifDal = tamVeri.slice(0, tamVeri.indexOf('_kisa') > 0 ? tamVeri.indexOf('_kisa') : tamVeri.length);
+// YORUMLAR SOYULUYOR: iddia "loadAllCats gecmiyor" diyor, fonksiyonun
+// basindaki aciklama ise o adi ANLATIYOR -- soyulmazsa test kendi
+// aciklamasiyla eslesir (bu depoda BESINCI vaka). Soymak sertlestirir.
+// GUVENLI YORUM SOYUCU (satir tabanli).
+// Naif /\/\*[\s\S]*?\*\//g deseni BU DEPODA BOZUK: app.js'te 25 "/*" ama
+// 23 "*/" var (bir kismi dize/regex icinde), esler kayiyor ve dosyanin %55'i
+// siliniyor -- "desen kaynakta YOK" diyen iddialar bos yere yesil kalirdi.
+// Yalnizca SATIR BASINDA baslayan blok yorumlar ve tam satirlik // yorumlar
+// silinir; bu depoda aciklamalar zaten oyle yazili.
+function kodTemiz(src) {
+  const cikti = [];
+  let blokta = false;
+  for (const l of String(src).split(String.fromCharCode(10))) {
+    if (blokta) { if (l.indexOf("*/") >= 0) blokta = false; cikti.push(""); continue; }
+    if (/^\s*\/\*/.test(l)) { if (l.indexOf("*/") < 0) blokta = true; cikti.push(""); continue; }
+    cikti.push(l.replace(/^\s*\/\/.*$/, ""));
+  }
+  return cikti.join(String.fromCharCode(10));
+}
+const tamVeriT = kodTemiz(tamVeri);
+const hafifDal = tamVeriT.slice(0, tamVeriT.indexOf('_kisa') > 0 ? tamVeriT.indexOf('_kisa') : tamVeriT.length);
 ok('  hafif urune dokununca YALNIZCA kendi kategorisi iniyor',
    /loadCat\(u\._kat\)/.test(hafifDal) && !/loadAllCats/.test(hafifDal), hafifDal.slice(0, 400));
 

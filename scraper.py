@@ -269,8 +269,7 @@ def resimleri_doldur():
 
         toplam_eksik += len(eksikler)
 
-        with open(cat_file, "w", encoding="utf-8") as f:
-            json.dump(products, f, ensure_ascii=False, indent=2)
+        _atomik_json_yaz(cat_file, products, indent=2)
         print(f"  -> {keyword} sonuc: {kat_dolduruldu} dolduruldu, {kat_atlandi} atlandi (esik altı), {kat_hata} hata")
 
     if iptal:
@@ -351,13 +350,11 @@ def dondurulmus_ayir():
                 kalanlar.append(u)
 
         if bu_kategori_ayrildi > 0:
-            with open(cat_file, "w", encoding="utf-8") as f:
-                json.dump(kalanlar, f, ensure_ascii=False, indent=2)
+            _atomik_json_yaz(cat_file, kalanlar, indent=2)
             print(f"  {keyword}: {bu_kategori_ayrildi} urun ayrildi, {len(kalanlar)} kaldi")
 
     out_file = os.path.join(DATA_DIR, f"{DONDURULMUS_OUT}.json")
-    with open(out_file, "w", encoding="utf-8") as f:
-        json.dump(ayrilanlar, f, ensure_ascii=False, indent=2)
+    _atomik_json_yaz(out_file, ayrilanlar, indent=2)
     print(f"\n[DONDURULMUS] TOPLAM: {len(ayrilanlar)} urun -> {out_file}")
     print("=" * 60)
 
@@ -647,6 +644,47 @@ def _apply_ilan_indirim_gecmisi(yeni_urunler, cat_file):
         u["ilan_indirim_gecmisi"] = gecmis
 
 
+def _mevcut_urun_sayisi(cat_file):
+    """Diskteki kategori dosyasindaki urun sayisi; dosya yoksa/bozuksa None."""
+    try:
+        with open(cat_file, encoding="utf-8") as f:
+            veri = json.load(f)
+        return len(veri) if isinstance(veri, list) else None
+    except FileNotFoundError:
+        return None
+    except (json.JSONDecodeError, OSError) as e:
+        # Dosya BOZUK. Sessiz gecmek tehlikeli: "onceki yok" saniip uzerine
+        # yazariz. Sesli uyar, None don -> koruma kapisi devreye girmez ama
+        # neden girmedigi log'da yazar.
+        print(f"  [UYARI] Mevcut dosya okunamadi ({cat_file}): {e}")
+        return None
+
+
+def _atomik_json_yaz(yol, veri, **dump_args):
+    """Once .tmp'ye yaz, sonra os.replace ile yerine koy.
+
+    KUSUR (denetim, yuksek): open(yol, "w") dosyayi ANINDA kirpiyor. Surec
+    yazma ortasinda olurse (runner zaman asimi, disk dolu, iptal) geride
+    YARIM json kaliyor; ertesi gece _apply_fiyat_gecmisi onu okuyamayip tum
+    fiyat gecmisini dusuruyor. os.replace ayni dosya sisteminde ATOMIK:
+    okuyucu ya eski ya yeni dosyayi gorur, yarim olani ASLA gormez.
+    """
+    tmp = yol + ".tmp"
+    try:
+        with open(tmp, "w", encoding="utf-8") as f:
+            json.dump(veri, f, ensure_ascii=False, **dump_args)
+        os.replace(tmp, yol)
+    except BaseException:
+        # Yarim .tmp geride kalmasin (bir sonraki kosuda kafa karistirir).
+        # BaseException: KeyboardInterrupt/SystemExit'te de temizlenmeli.
+        try:
+            if os.path.exists(tmp):
+                os.remove(tmp)
+        except OSError:
+            pass
+        raise
+
+
 def _kategori_sayfalarini_cek(session, api_keyword, kategori_adi, slug_kisa):
     """Tek bir API kategori adi icin butun sayfalari ceker.
 
@@ -655,6 +693,8 @@ def _kategori_sayfalarini_cek(session, api_keyword, kategori_adi, slug_kisa):
       "ag_hatasi" - MAX_RETRIES denemenin hepsi basarisiz (data is None)
       "bos"       - istek basarili (HTTP 200) ama content bos; kategori adi
                     degismis olabilir. Ag hatasiyla ayni sey DEGILDIR.
+      "eksik"     - ilk sayfa geldi ama SAYFALAMA yarida kesildi. Veri var
+                    ama TAM DEGIL; tam dosyanin uzerine yazilmamali.
     """
     data = fetch_page(session, api_keyword, 0)
     if data is None:
@@ -669,19 +709,33 @@ def _kategori_sayfalarini_cek(session, api_keyword, kategori_adi, slug_kisa):
     urunler = [parse_product(item, kategori_adi, slug_kisa) for item in items]
 
     page = 1
+    eksik = False
     while len(urunler) < total:
         print(f"  Sayfa {page + 1} ... ({len(urunler)}/{total})")
         data = fetch_page(session, api_keyword, page)
         if not data:
+            # AG KOPTU. Eskiden burada SESSIZCE break ediliyor ve cagirana
+            # "ok" donuluyordu; yarim liste tam dosyanin uzerine yaziliyordu.
+            # Simdi hem sesli hem de durumla bildiriliyor.
+            print(f"  [HATA] Sayfa {page + 1} alinamadi, sayfalama YARIDA kesildi"
+                  f" ({len(urunler)}/{total} urun): {api_keyword}")
+            eksik = True
             break
         page_items = data.get("content") or []
         if not page_items:
+            # Sunucu bos sayfa dondu. Beklenen toplama ULASILMADIYSA bu da
+            # eksik veridir -- "bos" durumuyla karistirma, orada ILK sayfa
+            # bostu, burada sayfalama ortasinda kesildi.
+            if len(urunler) < total:
+                print(f"  [HATA] Sayfa {page + 1} BOS dondu, beklenen {total},"
+                      f" alinan {len(urunler)}: {api_keyword}")
+                eksik = True
             break
         urunler.extend(parse_product(item, kategori_adi, slug_kisa) for item in page_items)
         page += 1
         time.sleep(0.5)
 
-    return urunler, "ok"
+    return urunler, ("eksik" if eksik else "ok")
 
 
 def scrape_category(cookies, slug, keyword, dosya_adi):
@@ -704,10 +758,13 @@ def scrape_category(cookies, slug, keyword, dosya_adi):
 
     products = []
     gorulen_sid = set()
+    eksik_veri = False
     for api_keyword in api_keywords:
         if len(api_keywords) > 1:
             print(f"  [API kategorisi] {api_keyword}")
         bulunan, durum = _kategori_sayfalarini_cek(session, api_keyword, keyword, slug_kisa)
+        if durum in ("ag_hatasi", "eksik"):
+            eksik_veri = True
         if durum == "ag_hatasi":
             print(f"  [HATA] Ag hatasi, {MAX_RETRIES} denemenin hepsi basarisiz: {api_keyword}")
         elif durum == "bos":
@@ -727,14 +784,33 @@ def scrape_category(cookies, slug, keyword, dosya_adi):
 
     # Kategori için ayrı JSON kaydet
     cat_file = os.path.join(DATA_DIR, f"{dosya_adi}.json")
+
+    # EKSIK VERI TAM DOSYANIN UZERINE YAZILMAZ.
+    # KUSUR (denetim, yuksek): sayfalama dongusu ag koptugunda SESSIZCE
+    # break ediyordu; 20 sayfalik bir kategorinin 5. sayfasinda kopan bir
+    # baglanti, dosyaya yalnizca ilk 5 sayfayi yaziyordu. Sonuc gecelik
+    # hatta zincirleme: eksik dosya -> sync_db o urunleri "artik yok"
+    # sayar -> fiyat gecmisi ve rozetler dusen urunlerde SILINIR.
+    #
+    # ESIK UYDURULMADI: kural yalnizca iki OLCULEBILIR sinyale bakiyor --
+    # (a) cekim sirasinda gercekten hata oldu mu, (b) sonuc mevcut dosyadan
+    # AZ mi. Ikisi birden dogruysa eski dosya korunur. Hatasiz kucuklme
+    # (urun listeden kalkmis) normaldir ve engellenmez.
+    if eksik_veri:
+        _onceki = _mevcut_urun_sayisi(cat_file)
+        if _onceki and len(products) < _onceki:
+            print(f"  [KRITIK] Eksik veri ({len(products)} urun) mevcut dosyadan"
+                  f" ({_onceki}) AZ -> {dosya_adi}.json KORUNDU, uzerine yazilmadi.")
+            return []
+        print(f"  [UYARI] Cekimde hata vardi ama sonuc kucuk degil"
+              f" ({len(products)} >= {_onceki or 0}) -> yaziliyor.")
     _apply_fiyat_gecmisi(products, cat_file)
     _apply_agirlik_gecmisi(products, cat_file)
     _apply_ilan_indirim_gecmisi(products, cat_file)
     _korunan_resim = _apply_resim_koru(products, cat_file)
     if _korunan_resim:
         print(f"  {_korunan_resim} resim korundu (API bu kez vermedi)")
-    with open(cat_file, "w", encoding="utf-8") as f:
-        json.dump(products, f, ensure_ascii=False, indent=2)
+    _atomik_json_yaz(cat_file, products, indent=2)
     print(f"  Tamamlandi: {len(products)} urun -> {cat_file}")
     return products
 
@@ -841,8 +917,9 @@ def gecmis_kaydet():
                 kayitlar.append(kayit)
                 yeni_kayit += 1
 
-    with open(gecmis_dosya, "w", encoding="utf-8") as f:
-        json.dump(gecmis, f, ensure_ascii=False, separators=(",", ":"))
+    # Ayni atomik yazma: bu dosya 5,5 MB fiyat GECMISI tasiyor ve yarim
+    # kalirsa kayip GERI ALINAMAZ (gecmis yalnizca burada birikiyor).
+    _atomik_json_yaz(gecmis_dosya, gecmis, separators=(",", ":"))
     print(f"  {yeni_kayit} yeni fiyat kaydi eklendi -> {gecmis_dosya}")
 
 
