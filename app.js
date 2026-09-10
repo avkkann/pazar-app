@@ -1512,6 +1512,39 @@ function goBack() {
 // yorum aranan cagrilari pencerenin disina itip guard'lari kiriyor. Bu tuzaga
 // bu depoda daha once de dusuldu (CLAUDE.md 2026-08-24); cozum guard'i
 // gevsetmek degil, aciklamayi disari almak.
+// Detay ekraninin eksik verisini TEMBEL getirir ve gelince ekrani bir kez
+// yeniler. openDetay'in GOVDESINDEN AYRI TUTULUYOR, ve bu bir bicim tercihi
+// degil: dort test (al_zamani, esit_fiyat, liste_fiyat, supheli) openDetay'i
+// SABIT KARAKTER PENCERESIYLE kesip icinde cagri ariyor; govdeye eklenen her
+// satir aranan cagrilari pencerenin disina itip o testleri kiriyor.
+// (CLAUDE.md'de kayitli tuzak; bu turda iki kez yasandi.)
+function _detayTamVeriGetir(u, urunId) {
+  if (u._hafif) {
+    // HAFIF URUN: arama indeksinden geldi. Kart icin yeterli ama detay
+    // ekrani gecmis, rozet ve alarm onerisi istiyor. YALNIZCA KENDI
+    // KATEGORISI iniyor, tam katalog degil -- indeksin varlik sebebi bu.
+    const sid = u._sid;
+    Promise.all([loadCat(u._kat), gecmisVeriGetir()]).then(() => {
+      const tam = _sidIndeksi()[sid];
+      // Kullanici bu arada baska bir urune gectiyse EKRANI EZME.
+      if (tam && !tam._hafif && _ekranGorunur('screen-detay') && window._detayUrunId === urunId) {
+        openDetay(sid);
+      }
+    }).catch(e => console.warn('[detay] tam urun yuklenemedi:', e && e.message));
+    return;
+  }
+  if (u._kisa || !_gecmisCache) {
+    Promise.all([loadAllCats(), gecmisVeriGetir()]).then(() => {
+      // _sid ONCE: urunId bir _sid olabilir (sepet ve arama kartlari onu
+      // gonderiyor), productMap ise slug_sira ile anahtarli.
+      const tam = _sidIndeksi()[urunId] || productMap[urunId];
+      if (tam && !tam._kisa && _ekranGorunur('screen-detay')) {
+        openDetay(urunId);
+      }
+    }).catch(e => console.warn('[detay] tam veri yuklenemedi:', e && e.message));
+  }
+}
+
 // openDetay ICINDE urun aranirken _sid indeksine ONCE bakilir: sepet
 // kartlari artik kararsiz _id yerine sabit _sid gonderiyor. Sira guvenli --
 // OLCULDU (2026-09-10, 16.119 urun): _sid degerleriyle uretilen _id degerleri
@@ -1531,7 +1564,12 @@ function openDetay(urunId) {
     _prevScreen = screens.find(id => _ekranGorunur(id)) || 'screen-home';
   }
 
-  let u = _sidIndeksi()[urunId] || productMap[urunId] || sepet.find(s => _sepetEslesir(s, urunId));
+  // _aramaSid ZINCIRDE SART: arama sonucu kartlari hafif urunun _sid'ini
+  // gonderiyor ama hafif urunler productMap'e girmiyor (tam urunle
+  // karismasin diye). Bu halka olmadan sonuca tiklayinca detay BOS aciliyor.
+  let u = _sidIndeksi()[urunId] || productMap[urunId]
+        || (_aramaSid && _aramaSid[urunId])
+        || sepet.find(s => _sepetEslesir(s, urunId));
   if (!u) return;
   _pmEkle(u);
 
@@ -1542,14 +1580,7 @@ function openDetay(urunId) {
   // Ana sayfa şeritleri KISA kart taşıyor (ana sayfa 14 MB indirmesin diye).
   // Detayda seri, alarm önerisi, al/bekle ve rozetler tam veri istiyor —
   // burada tembel yüklenip ekran bir kez yenileniyor.
-  if (u._kisa || !_gecmisCache) {
-    Promise.all([loadAllCats(), gecmisVeriGetir()]).then(() => {
-      const tam = productMap[urunId];
-      if (tam && !tam._kisa && _ekranGorunur('screen-detay')) {
-        openDetay(urunId);
-      }
-    }).catch(e => console.warn('[detay] tam veri yuklenemedi:', e && e.message));
-  }
+  _detayTamVeriGetir(u, urunId);
 
   const temiz    = fiyatlariTemizle(u.market_fiyatlari);
   const mktler   = temiz.gecerli.slice().sort((a, b) => a.fiyat - b.fiyat);
@@ -4732,6 +4763,102 @@ async function loadAllCats() {
   _allLoaded = true;
 }
 
+// ═══ ARAMA İNDEKSİ ═══════════════════════════════════════════════════
+// NOT: bant SART -- cekirdek-uret.mjs govdeyi "bir sonraki ust duzey
+// bildirime kadar" alir; bant olmazsa bu yorumlar ustteki fonksiyona yapisir.
+//
+// Arama kutusuna ILK HARFI yazan kullanici eskiden loadAllCats() ile sekiz
+// kategori dosyasini birden indiriyordu: OLCULDU 1.317 KB gzip / 14,2 MB ham.
+// Mobil internette 3-8 saniye. Oysa arama sonucu kartinin okudugu alanlar
+// sayili (cardHTML zinciri tarandi: 214 fonksiyon, 8 urun alani).
+// data/arama.json tam o alanlari tasiyor -> 632 KB gzip, %52 daha az.
+// FIYAT BILGISI KAYBOLMUYOR: market_fiyatlari indekste var, yalnizca
+// gecmis dizileri (fiyat_gecmisi, ilan_indirim_gecmisi, depot bilgisi)
+// disarida. Yani kart BIREBIR ayni ciziliyor.
+//
+// Kullanici bir sonuca DOKUNUNCA tam urun kendi kategorisinden iniyor
+// (openDetay'daki _hafif dali). Yani indeks urun verisinin ikinci kaynagi
+// degil, yalnizca ilk ekran icin hafif bir goruntusu.
+let _aramaKatalog = null;      // hafif urunler; productMap'e GIRMEZ
+let _aramaSid = null;          // _sid -> hafif urun (openDetay bunu okuyor)
+let _aramaYukleniyor = null;   // ucusta tekillestirme (loadCat deseni)
+
+// Dizi satirini urun nesnesine cevirir. Sira arama-uret.mjs ile ESLESMEK
+// ZORUNDA; uretici alan sirasini dosyaya yaziyor ve asagida DOGRULANIYOR.
+function _aramaCoz(satir, damga) {
+  const u = {
+    _sid: satir[0],
+    ad: satir[1],
+    resim: satir[2] || '',
+    agirlik_hacim: satir[3] || '',
+    ana_kategori: satir[4] || '',
+    en_dusuk_fiyat: satir[5],
+    market_fiyatlari: (satir[6] || []).map(p => ({ market: p[0], fiyat: p[1] })),
+    // _id KIMLIK: kategori dosyasindaki "slug_sira" KARARSIZ oldugu icin
+    // burada _sid kullaniliyor. Cakisma OLCULDU (16.119 urun): kesisim 0.
+    _id: satir[0],
+    _kat: satir[7],
+    _hafif: true,          // openDetay bunu gorunce tam urunu indirir
+  };
+  if (damga) u.son_senkron = damga;
+  return u;
+}
+
+async function loadAramaIndeksi() {
+  if (_aramaKatalog) return _aramaKatalog;
+  if (_aramaYukleniyor) return _aramaYukleniyor;
+  _aramaYukleniyor = (async () => {
+    const resp = await fetch('./data/arama.json');
+    if (!resp.ok) throw new Error('arama indeksi inmedi: ' + resp.status);
+    const j = await resp.json();
+    if (!j || !Array.isArray(j.urunler) || !Array.isArray(j.alanlar)) {
+      throw new Error('arama indeksi bicimi taninmiyor');
+    }
+    // BICIM KAPISI: uretici alan sirasini degistirirse burada DURUR.
+    // Sessizce yanlis alanlari okumak, urunleri yanlis adla/fiyatla
+    // gostermek demekti -- bu depoda en pahali hata sinifi.
+    const beklenen = '_sid,ad,resim,agirlik_hacim,ana_kategori,en_dusuk_fiyat,market_fiyatlari,slug';
+    if (j.alanlar.join(',') !== beklenen) {
+      throw new Error('arama indeksi alan sirasi degismis: ' + j.alanlar.join(','));
+    }
+    // Tazelik damgasi: kategori dosyalarindaki desenin aynisi.
+    let damga = null;
+    const lm = resp.headers.get('Last-Modified');
+    if (lm) { const t = new Date(lm); if (!isNaN(t.getTime())) damga = t.toISOString(); }
+    _aramaKatalog = j.urunler.map(s => _aramaCoz(s, damga));
+    // KART TIKLAMASI ICIN SART: kartin data-id'si _sid tasiyor ve openDetay
+    // urunu productMap/_sidIndeksi'nde ariyor. Hafif urunler oraya GIRMIYOR
+    // (tam urunle karismasin diye), dolayisiyla openDetay onlari bulamazdi --
+    // OLCULDU: bu harita olmadan sonuca tiklayinca detay BOS aciliyordu.
+    _aramaSid = {};
+    for (const u of _aramaKatalog) _aramaSid[u._sid] = u;
+    return _aramaKatalog;
+  })().catch(err => {
+    // SESSIZ YUTMA YOK ve BOS DIZI ONBELLEGE YAZILMIYOR: bos dizi truthy
+    // oldugu icin "yuklendi" sayilir ve arama oturum boyunca olu kalirdi
+    // (bu deponun catCache'te yasadigi kusurun aynisi).
+    console.warn('[pazar] arama indeksi yuklenemedi, tam katalogla devam ediliyor:', err && err.message);
+    _aramaKatalog = null;
+    throw err;
+  }).finally(() => { _aramaYukleniyor = null; });
+  return _aramaYukleniyor;
+}
+
+// Arama icin kullanilacak katalog. Indeks inmezse ESKI yola dusuyor --
+// arama calismaya devam etsin, yalnizca yavas olsun.
+async function aramaKatalogu() {
+  try {
+    return await loadAramaIndeksi();
+  } catch (e) {
+    // SESSIZ YUTMA DEGIL: hatayi loadAramaIndeksi zaten console.warn ile
+    // bildirdi. Buradaki catch bir SEBEP degil bir YEDEK YOL -- indeks
+    // inmezse arama olmesin diye eski (tam katalog) yoluna dusuluyor.
+    // Ikinci kez uyarmak konsolu ayni mesajla iki kez doldururdu.
+    await loadAllCats();
+    return KATEGORILER.flatMap(k => catCache[k.slug] || []);
+  }
+}
+
 function trNormalize(s) {
   return String(s || '')
     // BIRLESIK NOKTA (U+0307). OLCULDU 2026-08-25: hal.json'daki 139 urunun
@@ -5056,8 +5183,11 @@ document.getElementById('search').addEventListener('input', function() {
   clearTimeout(_searchTimer);
   _searchTimer = setTimeout(async () => {
     document.getElementById('searchList').innerHTML = skeletonHTML(3);
-    await loadAllCats();
-    const allProducts = KATEGORILER.flatMap(k => catCache[k.slug] || []);
+    // ESKIDEN loadAllCats(): ilk harfte sekiz kategori dosyasi birden
+    // iniyordu (OLCULDU: 1.317 KB gzip / 14,2 MB ham JSON). Artik hafif
+    // arama indeksi (632 KB gzip). Indeks inmezse aramaKatalogu() eski
+    // yola DUSER -- arama yavaslar ama olmez.
+    const allProducts = await aramaKatalogu();
     // TEK KAPI: eslesme + puanlama urunAra'da. Kategori kestirmesi sonuc
     // listesinin yerini ALMIYOR, ustunde oneri satiri olarak duruyor.
     let results = urunAra(allProducts, q).slice(0, 96);
@@ -5172,7 +5302,14 @@ function _sidIndeksi() {
   _sidIndex = {};
   for (const k in productMap) {
     const u = productMap[k];
-    if (u && u._sid) _sidIndex[u._sid] = u;
+    if (!u || !u._sid) continue;
+    // TAM URUN HAFIFIYLE EZILMEZ. Ayni _sid iki kez girebilir: arama
+    // indeksinden gelen hafif kopya (anahtar _sid) ve kategori dosyasindan
+    // gelen tam urun (anahtar slug_sira). Hangisinin once yazildigina
+    // BAGLI KALMAMAK icin kural acik: tam olan kazanir.
+    const eski = _sidIndex[u._sid];
+    if (eski && !eski._hafif && u._hafif) continue;
+    _sidIndex[u._sid] = u;
   }
   _sidIndexSayac = _productMapSayac;
   return _sidIndex;

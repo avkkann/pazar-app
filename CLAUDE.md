@@ -20,6 +20,57 @@ Mustafa (GitHub: avkkann), **Pazar App**'in tek geliştiricisi — Türk market 
 
 ## Mevcut durum (2026-08-21 itibarıyla)
 
+### 2026-09-10 (ikinci tur) — 8. kritik de kapandı: arama artık 1,3 MB indirmiyor (`sw.js` v242 → **v243**)
+
+**Durum: commit edildi, YAYINDA DEĞİL.** İlk turda "ürün kararı bekliyor" diye açık bırakılmıştı; **o gerekçe ölçümde çürüdü.**
+
+> **KENDİ ÇERÇEVELEMEM YANLIŞTI.** "Ayrı arama dosyası fiyat taşıyamaz, o yüzden sonuç
+> kartları fiyat gösteremez" demiştim ve bunu bir **ürün ödünü** diye sunmuştum. Ölçünce
+> çıktı ki ağır olan `market_fiyatlari` DEĞİL, **geçmiş dizileri** (`fiyat_gecmisi`,
+> `ilan_indirim_gecmisi`, `agirlik_hacim_gecmisi`, depot alanları). `cardHTML` zinciri
+> taranınca (214 fonksiyon) kartın ürüne sorduğu alanların **tamamı 8 tane** çıktı ve
+> `market_fiyatlari` onlardan biri — yani fiyat **taşınabiliyor**. Ödün yok, kart
+> **birebir aynı** çiziliyor. *Ders: "şu yapılamaz" demeden önce neyin pahalı olduğunu
+> ölç; benim varsayımım maliyetin yanlış parçasına bakıyordu.*
+
+**`data/arama.json`** (`scripts/arama-uret.mjs`, build zincirinde): 16.256 ürün,
+3,14 MB ham / **632 KB gzip** — bugünkü 1.317 KB'a karşı **%52**. Dizi biçimi (anahtar
+adları 16 bin kez tekrarlanmasın), alan sırası dosyanın içinde yazılı ve istemcide
+**doğrulanıyor** — sıra değişirse `throw`, sessizce yanlış alan okunamıyor.
+Depoya **commit edilmiyor** (`.gitignore`, `mercek.json` ile aynı gerekçe).
+
+- **Arama yolu:** `loadAllCats()` → `aramaKatalogu()`. İndeks inmezse **eski yola düşüyor**
+  (arama yavaşlar ama ölmez).
+- **Tıklama yolu:** hafif ürüne dokununca **yalnızca kendi kategorisi** iniyor
+  (`_detayTamVeriGetir` → `loadCat(u._kat)`), tam katalog değil — yoksa kazanç ilk
+  tıklamada geri verilirdi.
+- **Kimlik:** hafif ürünün `_id`'si `_sid` (kararsız `slug_sira` değil; çakışma ölçüldü: 0).
+  `_sidIndeksi` kuralı açık: **tam ürün hafifiyle ezilmez**, sıraya bağlı kalmıyor.
+
+> **ÖLÇÜM GERÇEK BİR KIRIK YAKALADI, canlıya gitmeden.** İlk uygulamada hafif ürünler
+> yalnızca `_aramaKatalog` dizisindeydi ama `openDetay` onları `productMap`/`_sidIndeksi`'nde
+> arıyordu → **sonuca tıklayınca detay BOŞ açılıyordu** (ölçüldü: metin uzunluğu 11, market
+> satırı 0, hiçbir istek yok). `_aramaSid` haritası eklendi; iddia teste bağlandı,
+> prove-by-breaking 2/2.
+
+**Canlı (yerel dist) ölçüm:** aramada inen dosya **1** (`arama.json`), eskiden 8 ·
+tıklamada inen **sadece kendi kategorisi** + `gecmis_fiyatlar.json` · detay doğru ürünle
+açılıyor, 3 market satırı, fiyat grafiği, `_hafif` → tam yükseltme başarılı · konsol hatası 0.
+
+**Yeni guard `test_arama_indeks.mjs` (34 iddia):** üreteç gerçekten koşuyor, boyut tam
+katalogun yarısından küçük, kart alanları eksiksiz, indeks kaynakla **birebir** (500
+örnekte ad ve market fiyatları), biçim kapısı `throw` ediyor, yedek yol gerçekten
+katalog **döndürüyor**, tam ürün hafifiyle ezilmiyor (iki sırada da), tıklama zinciri.
+**Prove-by-breaking 10/10** — ikisi guard'ın kendi kör noktasını buldu ve iddia
+**gevşetilmeden sıkılaştırıldı**: (a) biçim kapısı iddiası mesaj METNİNE bakıyordu,
+`console.log`'a çevrilince yeşil kalıyordu → artık `throw`a bakıyor; (b) yedek yol
+iddiası ÇAĞRIYA bakıyordu, `return`'ü boş diziye çevirmek yeşil kalıyordu → artık
+dönüşe de bakıyor.
+
+**Doğrulama:** 60 `test_*.mjs` + 6 `test_*.py` yeşil (**2.453 geçen iddia**), build yeşil.
+
+---
+
 ### 2026-09-10 — Denetimin 8 KRİTİK maddesinin 7'si kapandı (`sw.js` v241 → **v242**)
 
 **Durum: commit edildi, YAYINDA DEĞİL** (push Mustafa'nın kararına bırakıldı).
@@ -1734,7 +1785,7 @@ Uygulama teknik olarak çalışıyor ama **pratikte hâlâ dağıtılmamış dur
 
 ## Yaklaşım & desenler
 
-- **SW cache version** her anlamlı `index.html`/`app.js`/`style.css`/`sw.js` değişikliğinde artırılır (şu an **v242**, 2026-09-10). *Bu satır 2026-09-03'e kadar **v215** diyordu — 18 sürüm bayattı, doküman bayatlığı desenin BEŞİNCİ vakası. Sürümü bu satırdan değil `sw.js`'ten oku.* Backend-only değişikliklerde (scraper, sync) bump edilmez. Akış: `git add` → `git commit` → `git pull --rebase` → `git push`. Not: `sw.js` yalnızca `data/hal.json` + `data/anasayfa.json`'ı önbelleğe alıyor ve `fetch`'i yalnızca o iki URL için yakalıyor — HTML/CSS/JS'i tutmuyor, onlar Cloudflare'den `Cache-Control: public, max-age=0, must-revalidate` ile geliyor (ölçüldü; eski GitHub Pages `max-age=600` notu bayattı). Bump proje kuralı ve tutarlılık için, HTML dağıtımını hızlandırmıyor.
+- **SW cache version** her anlamlı `index.html`/`app.js`/`style.css`/`sw.js` değişikliğinde artırılır (şu an **v243**, 2026-09-10). *Bu satır 2026-09-03'e kadar **v215** diyordu — 18 sürüm bayattı, doküman bayatlığı desenin BEŞİNCİ vakası. Sürümü bu satırdan değil `sw.js`'ten oku.* Backend-only değişikliklerde (scraper, sync) bump edilmez. Akış: `git add` → `git commit` → `git pull --rebase` → `git push`. Not: `sw.js` yalnızca `data/hal.json` + `data/anasayfa.json`'ı önbelleğe alıyor ve `fetch`'i yalnızca o iki URL için yakalıyor — HTML/CSS/JS'i tutmuyor, onlar Cloudflare'den `Cache-Control: public, max-age=0, must-revalidate` ile geliyor (ölçüldü; eski GitHub Pages `max-age=600` notu bayattı). Bump proje kuralı ve tutarlılık için, HTML dağıtımını hızlandırmıyor.
 - **Doğrulama:** Push sonrası `gh run watch` ile deploy'un koştuğu doğrulanır, sonra canlıda (Browser MCP) gerçek fonksiyonel test yapılır — "dosyada var mı" değil, "gerçekten çalışıyor mu". Layout değişikliklerinde ekran görüntüsü yetmez: değişiklikten ÖNCE geometri parmak izi (`getBoundingClientRect`) alınıp sonra sayısal karşılaştırılır.
 - **Kapsam disiplini:** İstenmeyen ekleme/çıkarma sessizce yapılmaz, not düşülür. Doküman/analiz önerileri körü körüne uygulanmaz — önce kodda geçerli mi diye bakılır.
 - **Büyük ürün/mimari kararları** (hosting migration, nav yapısı, tuzak'ın geleceği) Mustafa'nın onayı olmadan koda dökülmez.

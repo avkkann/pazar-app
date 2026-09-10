@@ -141,8 +141,23 @@ ok('profil enflasyonu gecmisi tetikliyor',
   ok('  openCategory tetiklemesi kategori ekrani acilirken',
     oc.indexOf('gecmisGerekli') > oc.indexOf("showScreen('screen-cat')"), '');
 }
-ok('openDetay gecmisi tetikliyor',
-  /gecmisVeriGetir|gecmisGerekli/.test(fnKaynak('openDetay') || ''), '');
+// IDDIA AYNI KALDI -- "detay ekrani gecmisi tetikliyor". Yalnizca ZINCIR
+// bir adim derinlesti: tembel yukleme openDetay govdesinden cikip
+// _detayTamVeriGetir'e tasindi. Sebep bicim degil: dort test openDetay'i
+// SABIT KARAKTER PENCERESIYLE kesiyor ve govdeye eklenen her satir aranan
+// cagrilari pencerenin disina itiyor. Guard artik ZINCIRI takip ediyor,
+// yani hem baglantinin hem tetiklemenin varligini ayri ayri kilitliyor.
+{
+  const od = fnKaynak('openDetay') || '';
+  const tv = fnKaynak('_detayTamVeriGetir') || '';
+  ok('openDetay tembel yukleyiciyi cagiriyor', /_detayTamVeriGetir\s*\(/.test(od), od.slice(0, 300));
+  ok('  tembel yukleyici gecmisi tetikliyor', /gecmisVeriGetir|gecmisGerekli/.test(tv), tv.slice(0, 300));
+  // Hafif urun (arama indeksi) TAM KATALOGU indirmemeli -- indeksin
+  // varlik sebebi tam olarak bu; regresyon sessizce 1,3 MB geri getirirdi.
+  const hafifDal = tv.slice(0, tv.indexOf('_kisa') > 0 ? tv.indexOf('_kisa') : tv.length);
+  ok('  hafif urun YALNIZCA kendi kategorisini indiriyor',
+     /loadCat\(u\._kat\)/.test(hafifDal) && !/loadAllCats/.test(hafifDal), hafifDal.slice(0, 300));
+}
 
 console.log('\n=== 6. ANA SAYFA SERITLERI GECMIS BEKLEMIYOR (hizli yol) ===');
 for (const f of ['renderZamSeridi', 'renderDusenlerSeridi', 'renderSupheliSeridi', 'renderTuzaklarSeridi']) {

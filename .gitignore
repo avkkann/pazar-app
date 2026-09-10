@@ -72,3 +72,9 @@ supabase/.branches/
 # hattinin ciktisi; bunu da eklemek gunluk commit yukunu ucе katlardi.
 # GERI ALMAK ISTERSEN: bu iki satiri sil, `git add data/mercek.json`.
 data/mercek.json
+
+# data/arama.json — AYNI SINIF (3,2 MB ham / 632 KB gzip). scripts/arama-uret.mjs
+# her build'de urunler_*.json'lardan deterministik uretiyor; deploy zaten build
+# kosuyor -> dist'te her zaman taze. Commit'lenseydi gunluk veri kosusu her gece
+# 3,2 MB'lik bir dosyayi yeniden yazip git gecmisini sisirirdi.
+data/arama.json
