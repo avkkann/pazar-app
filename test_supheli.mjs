@@ -335,7 +335,7 @@ function seritKur({ rpcData, tableData, tableHata }) {
   vm.createContext(ctx);
   // Fonksiyonlarin okudugu sayisal sabitleri app.js'ten oldugu gibi al —
   // yoksa ReferenceError catch'e duser ve testler yanlis sebeple gecer.
-  const sabitAdlari = ['DUSENLER_KART', 'DUSENLER_RPC_LIMIT', 'SUPHELI_SERIT_MAX', 'SUPHELI_SERIT_MIN', 'SUPHELI_SERIT_SORGU_LIMIT'];
+  const sabitAdlari = ['DUSENLER_KART', 'SUPHELI_SERIT_MAX', 'SUPHELI_SERIT_MIN', 'SUPHELI_SERIT_SORGU_LIMIT'];
   const sabitler = sabitAdlari.map(n => {
     const m = APP.match(new RegExp('const ' + n + '\\s*=\\s*(\\d+)'));
     if (!m) throw new Error('sabit bulunamadi: ' + n);
@@ -355,26 +355,11 @@ ok('renderDusenlerSeridi tanimli', varDusenler);
 ok('renderSupheliSeridi tanimli', varSupheli);
 
 if (varDusenler && varSupheli) {
-  // 9a) supheliler cikariliyor, serit 6 kartla doluyor
-  {
-    const rpc = [];
-    for (let i = 0; i < 40; i++) rpc.push({ _sid: 's' + i, ad: 'U' + i, dusus_yuzde: 70 - i, _supheli: i % 2 === 0, _yuzde: 70 - i });
-    const { ctx, el, cagri } = seritKur({ rpcData: rpc, tableData: [] });
-    await vm.runInContext('renderDusenlerSeridi()', ctx);
-    const html = el['home-dusenler-list'].innerHTML;
-    const kart = (html.match(/strip-card/g) || []).length;
-    ok('dusenler: supheli rozetli kart YOK', !/supheli-rozet/.test(html), html.slice(0, 200));
-    ok('dusenler: 6 kart ciziliyor (yarim birakilmadi)', kart === 6, 'kart=' + kart);
-    ok('dusenler: RPC limiti 6dan buyuk (doldurmak icin)', cagri.rpcLimit > 6, 'p_limit=' + cagri.rpcLimit);
-    ok('dusenler: gorunur', !el['home-dusenler'].classList.contains('gizli'));
-  }
-  // 9b) hicbir temiz urun kalmazsa serit gizlenir
-  {
-    const rpc = Array.from({ length: 40 }, (_, i) => ({ _sid: 't' + i, ad: 'T' + i, dusus_yuzde: 50, _supheli: true, _yuzde: 50 }));
-    const { ctx, el } = seritKur({ rpcData: rpc, tableData: [] });
-    await vm.runInContext('renderDusenlerSeridi()', ctx);
-    ok('dusenler: hepsi supheliyse serit gizli', el['home-dusenler'].classList.contains('gizli'));
-  }
+  // 9a/9b TASINDI (2026-09-11) -> test_dusenler.mjs. Dusenler seridi artik
+  // get_fiyat_dusenler RPC'sinden gelmiyor; supheli elemesi dusenHavuzu()'nun
+  // icinde. Ayni uc niyet orada GERCEK app.js ile kilitli: supheli urun seride
+  // girmiyor, ustteki adaylar supheli olsa da serit 6 kartla doluyor, hepsi
+  // supheliyse serit gizli. Iddialar gevsetilmedi, yer degistirdi.
 
   console.log('\n=== 10. YENI BOLUM: "Bu indirimlere dikkat" ===');
   // 10a) 3 alti -> hic render edilmez

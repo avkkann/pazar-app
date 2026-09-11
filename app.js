@@ -3275,15 +3275,19 @@ function lcIcon(name, klass) {
   return `<svg class="${c}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${path}</svg>`;
 }
 
-function indirimRozetiHTML(rozet, kisa) {
+function indirimRozetiHTML(rozet, kisa, market) {
   if (!rozet) return '';
+  // market yalnız kısa rozette (şerit kartı): "Bu hafta düşenler" indirimi
+  // MARKET BAZLI ölçüyor (bkz. dusenOlcutu); hangi markette olduğunu
+  // söylemeyen "-%30" belirsiz kalır. Sınıf zam rozetininkiyle ortak.
+  const mk = (kisa && market) ? ` <span class="zam-rozet-mkt">${_kacir(MARKET_NAMES[market] || market)}</span>` : '';
   if (rozet.tip === 'buyuk') {
     return kisa
-      ? `<span class="indirim-rozet buyuk-kisa">${lcIcon('flame')} -%${rozet.yuzde}</span>`
+      ? `<span class="indirim-rozet buyuk-kisa">${lcIcon('flame')} -%${rozet.yuzde}${mk}</span>`
       : `<span class="indirim-rozet buyuk">${lcIcon('flame')} Büyük indirim · Son ayın zirvesinden %${rozet.yuzde} ucuz</span>`;
   }
   return kisa
-    ? `<span class="indirim-rozet normal-kisa">${lcIcon('trending-down')} -%${rozet.yuzde}</span>`
+    ? `<span class="indirim-rozet normal-kisa">${lcIcon('trending-down')} -%${rozet.yuzde}${mk}</span>`
     : `<span class="indirim-rozet normal">${lcIcon('trending-down')} Fiyat düştü · Son ayın zirvesinden %${rozet.yuzde} ucuz</span>`;
 }
 
@@ -4016,47 +4020,167 @@ function _kartaRozetEkle(html, rozetHTML, altHTML) {
   return html.replace('<!--ROZET-->', '');
 }
 
-// Şeritte gösterilen kart sayısı. RPC limiti bundan yüksek: şüpheliler
-// elendikten sonra şerit yarım kalmasın (ölçüm: p_limit=6'da 6 üründen 3'ü
-// şüpheliydi, p_limit=40'ta 8 temiz ürün kalıyor).
+// ═══ "BU HAFTA DÜŞENLER" ════════════════════════════════
+// ESKİ YOL (2026-09-11'e kadar) Supabase'deki bir RPC'ydi ve indirimi ürünün
+// UZUN DÖNEM en yüksek fiyatına göre ölçüyordu; zaman penceresi yoktu.
+// Ölçüldü (2026-09-10, 40 aday): 28'inde referans HATALI veriydi (12 Ağustos'ta
+// Hakmar'da tek günlük hata — 35 g kek 149 TL — 14 ürünü 28 gün boyunca
+// "-%83...-95" gösterdi); görünen 6 kartın yalnız 1'i o hafta gerçekten
+// düşmüştü; listenin 40. sırası -%58 olduğu için gerçek haftalık indirimlerin
+// %94'ü (%10-49) listeye HİÇ giremiyordu.
+//
+// YENİ ÖLÇÜT — ürünün satıldığı HER market kendi geçmişiyle kıyaslanıyor:
+//  1) Referans marketin NORMAL fiyatı: bu haftadan önceki 60 günün günlük
+//     (carry-forward) serisinin ÜST ORTANCASI. Tek günlük hatalı zirve
+//     ortancayı kıpırdatamaz; üst ortanca her zaman gerçekten görülmüş fiyat.
+//  2) İndirim SON 7 GÜNDE BAŞLAMIŞ olmalı ve öncesinde indirimsiz bir gün
+//     GÖRÜLMÜŞ olmalı ("bu hafta düştü" iddiası tam olarak bunu söylüyor).
+//  3) İndirim BUGÜN hâlâ sürmeli; bittiyse ya da 7 günden eskiyse şeritten
+//     kendiliğinden düşer (ölçüldü: biten kampanyaların %65'i 4-14 gün).
+//  4) Geçmiş normal fiyatı hesaplamaya yetmiyorsa (yeni ürün) marketin İLAN
+//     ettiği eski fiyat kanıt sayılır — AMA yalnızca indirimden önce bizim
+//     gördüğümüz fiyatla uyuşuyorsa. İlan tek başına güvenilmez: ölçüldü,
+//     Migros normali ~170 TL olan bir deodorantı "eski fiyat 329,95" diye
+//     gösteriyor. Geçmiş yeterliyse ilan referansı ASLA ezmez.
+//  5) Kartın gösterdiği fiyat (en ucuz) indirimli fiyat olmalı; başka market
+//     daha ucuzsa o kart "düştü" demez.
+// Ölçüm (2026-09-10 verisi): 653 kayıt + ilan yolundan 42 ürün (eski yolda 40
+// aday). %70 üstü indirim 0 çıktı — ayrı bir üst sınır gerekmedi.
 const DUSENLER_KART = 6;
-const DUSENLER_RPC_LIMIT = 40;
+const DUSEN_PENCERE_GUN = 7;        // indirim bu kadar gün içinde başlamış olmalı
+const DUSEN_NORMAL_GUN = 60;        // normal fiyat penceresi (bu haftadan önceki günler)
+const DUSEN_NORMAL_MIN_GUN = 30;    // normal için en az bu kadar BİLİNEN gün
+const DUSEN_ESIK = 10;              // normalin en az yüzde kaç altında
+const DUSEN_INDIRIMDE = 0.97;       // "indirimde" durumu: normalin %3'ten fazla altı
+const DUSEN_ILAN_TOLERANS = 0.05;   // ilan: indirim öncesi gözlenen fiyat ±%5 uyuşmalı
+const DUSEN_ILAN_MIN_GUN = 7;       // ilan: indirimden önce en az bu kadar gün gözlem
+// Çeşitlilik zam şeridiyle AYNI kodla (_cesitliSec). Market sınırı ÖLÇÜMLE
+// eklendi: yalnız marka/kategori kuralıyla ilk 6'nın 6'sı Carrefour çıkıyordu.
+const DUSEN_MARKA_MAX = 1;
+const DUSEN_KAT_MAX = 2;
+const DUSEN_MARKET_MAX = 2;
+
+// 'yyyy-aa-gg' + n gün. UTC aritmetiği: saat dilimi kaydırmaz.
+function _isoGunKaydir(iso, n) {
+  const p = String(iso).split('-');
+  const d = new Date(Date.UTC(Number(p[0]), Number(p[1]) - 1, Number(p[2]) + (n || 0)));
+  return d.getUTCFullYear() + '-' + String(d.getUTCMonth() + 1).padStart(2, '0') +
+         '-' + String(d.getUTCDate()).padStart(2, '0');
+}
+
+// SAF ÖLÇÜT, tek market. kayitlar: o marketin [{t, f}] geçmişi (sırasız
+// olabilir); fiyat: bugünkü fiyatı; liste: marketin ilan ettiği eski fiyat
+// (yoksa boş); bugun: 'yyyy-aa-gg'. İndirim yoksa null.
+function dusenOlcutu(kayitlar, fiyat, liste, bugun) {
+  if (!Array.isArray(kayitlar) || !(fiyat > 0) || !bugun) return null;
+  const a = kayitlar.filter(k => k && k.t && k.f > 0)
+    .sort((x, y) => (x.t < y.t ? -1 : (x.t > y.t ? 1 : 0)));
+  if (!a.length) return null;
+  const N = DUSEN_NORMAL_GUN + DUSEN_PENCERE_GUN;
+  const gunler = [];
+  for (let i = N - 1; i >= 0; i--) gunler.push(_isoGunKaydir(bugun, -i));
+  const seri = new Array(N).fill(null);
+  let j = 0, son = null;
+  for (let i = 0; i < N; i++) {
+    while (j < a.length && a[j].t <= gunler[i]) { son = a[j]; j++; }
+    seri[i] = son ? son.f : null;
+  }
+  // Seri bugünkü fiyatla uyuşmuyorsa indirimin ne zaman başladığı doğrulanamaz.
+  if (seri[N - 1] == null || Math.abs(seri[N - 1] - fiyat) > 0.005) return null;
+  const normalGunler = seri.slice(0, DUSEN_NORMAL_GUN).filter(v => v != null).sort((x, y) => x - y);
+  let ref, kaynak;
+  if (normalGunler.length >= DUSEN_NORMAL_MIN_GUN) { ref = normalGunler[normalGunler.length >> 1]; kaynak = 'seri'; }
+  else if (liste > fiyat) { ref = liste; kaynak = 'ilan'; }
+  else return null;
+  if ((ref - fiyat) / ref * 100 < DUSEN_ESIK - 1e-9) return null;
+  // İndirim koşusunun başı: bugünden geriye, fiyat "indirimde" kaldıkça.
+  let r = N - 1;
+  while (r > 0 && seri[r - 1] != null && seri[r - 1] < ref * DUSEN_INDIRIMDE) r--;
+  if (r < DUSEN_NORMAL_GUN) return null;        // 7 günden eski indirim
+  // Öncesinde indirimsiz bir gün GÖRÜLMÜŞ olması burada zaten garanti: 'seri'
+  // yolunda normal pencerede >=30 bilinen gün var ve seri carry-forward
+  // olduğu için r-1 dolu; 'ilan' yolunda aşağıdaki iki kapı (ilan fiyatıyla
+  // uyuşma + DUSEN_ILAN_MIN_GUN gözlem) aynı şeyi zorunlu kılıyor.
+  if (kaynak === 'ilan') {
+    // Uyuşma iki yönlü: gördüğümüz fiyat ilanın ALTINDAYSA (ilan şişik) koşu
+    // 7 günden eskiye uzar ve yukarıdaki pencere kapısı eler; ÜSTÜNDEYSE
+    // (market eski fiyatı gerçekte olduğundan düşük gösteriyor) bu kapı eler.
+    if (Math.abs(seri[r - 1] - ref) > ref * DUSEN_ILAN_TOLERANS) return null;
+    if (seri.slice(0, r).filter(v => v != null).length < DUSEN_ILAN_MIN_GUN) return null;
+  }
+  return { yuzde: Math.round((ref - fiyat) / ref * 100), normal: ref, baslangic: gunler[r], kaynak: kaynak };
+}
+
+// HAVUZ: katalogun tamamı, ürün başına EN İYİ market (en derin indirim),
+// indirim yüzdesine göre azalan (eşitlikte TL tasarrufu). Şüpheli ürün burada
+// elenir, "Bu indirimlere dikkat" şeridinde gösteriliyor.
+// bugun: 'yyyy-aa-gg' (test/ölçüm için); verilmezse yerel bugün.
+function dusenHavuzu(bugun) {
+  if (!_gecmisCache) return [];
+  const gun = bugun || _yerelGunISO(0);
+  const gorulen = {};
+  const havuz = [];
+  Object.values(catCache || {}).forEach(liste => (liste || []).forEach(u => {
+    if (!u || !u._sid || gorulen[u._sid]) return;
+    gorulen[u._sid] = 1;
+    const kayitlar = _gecmisCache[u._sid];
+    if (!Array.isArray(kayitlar) || !kayitlar.length) return;
+    const kartFiyati = enDusukFiyat(u);
+    if (kartFiyati == null) return;
+    let enIyi = null;
+    fiyatlariTemizle(u.market_fiyatlari).gecerli.forEach(f => {
+      const fiyat = Number(f.fiyat);
+      if (!f.market || !(fiyat > 0) || fiyat > kartFiyati + 0.005) return;
+      const r = dusenOlcutu(kayitlar.filter(k => k && k.m === f.market), fiyat, Number(f.liste_fiyat) || null, gun);
+      if (!r) return;
+      if (!enIyi || r.yuzde > enIyi.yuzde ||
+          (r.yuzde === enIyi.yuzde && r.normal - fiyat > enIyi.normal - enIyi.fiyat)) {
+        enIyi = { u: u, market: f.market, fiyat: fiyat, yuzde: r.yuzde, normal: r.normal,
+                  baslangic: r.baslangic, kaynak: r.kaynak };
+      }
+    });
+    if (!enIyi || supheliDurum(u)) return;
+    havuz.push(enIyi);
+  }));
+  havuz.sort((a, b) => (b.yuzde - a.yuzde) || ((b.normal - b.fiyat) - (a.normal - a.fiyat)));
+  return havuz;
+}
+
+// SEÇİM: çeşitlilik + kart sayısı. Kural yüzünden dolmazsa EŞİK DÜŞÜRÜLMEZ.
+function dusenSecHavuzdan(havuz) {
+  return _cesitliSec(havuz, DUSENLER_KART, [
+    { anahtar: x => _zamMarka(x.u && x.u.ad), max: DUSEN_MARKA_MAX },
+    { anahtar: x => (x.u && x.u.ana_kategori) || '', max: DUSEN_KAT_MAX },
+    { anahtar: x => x.market || '', max: DUSEN_MARKET_MAX },
+  ]);
+}
 
 async function renderDusenlerSeridi() {
   const wrap = document.getElementById('home-dusenler');
   const list = document.getElementById('home-dusenler-list');
   if (!wrap || !list) return;
-
-  // ÖNCE önceden hesaplanmış liste (RPC + supheliDurum süzgeci build'de koştu).
-  const on = await anasayfaVeriGetir();
-  if (on && Array.isArray(on.dusenler) && on.dusenler.length) {
-    _anasayfaKartlariKaydet(on.dusenler.map(x => x.u));
-    const sec = on.dusenler.slice(0, DUSENLER_KART);
-    list.innerHTML = sec.map(x => _kartaRozetEkle(
-      _stripKartHTML(x.u, null),
-      indirimRozetiHTML({ tip: x.dusus_yuzde >= 25 ? 'buyuk' : 'normal', yuzde: x.dusus_yuzde }, true)
-    )).join('');
-    wrap.classList.remove('gizli');
-    return;
-  }
-
-  // GERİYE DÜŞÜŞ
   try {
-    await supheliPuanlariYukle();
-    await gecmisVeriGetir();
-    const { data, error } = await window.supabaseClient.rpc('get_fiyat_dusenler', { p_limit: DUSENLER_RPC_LIMIT });
-    if (error || !data || !data.length) { wrap.classList.add('gizli'); return; }
-    data.forEach(u => {
-      if (!u._id) u._id = u.ad + '_' + (u.agirlik_hacim||'');
-      _pmEkle(u);
-    });
-    // Düşenler bir fırsat şeridi; şüpheli ürün burada iki mesajı da zayıflatıyor.
-    // Onlar "Bu indirimlere dikkat" bölümünde gösteriliyor.
-    const temiz = data.filter(u => !supheliDurum(u)).slice(0, DUSENLER_KART);
-    if (!temiz.length) { wrap.classList.add('gizli'); return; }
-    list.innerHTML = temiz.map(u => _kartaRozetEkle(
-      _stripKartHTML(u, null),
-      indirimRozetiHTML({ tip: u.dusus_yuzde >= 25 ? 'buyuk' : 'normal', yuzde: u.dusus_yuzde }, true)
+    let secilen;
+    // ÖNCE önceden hesaplanmış liste: ölçüt, şüphe elemesi ve çeşitlilik
+    // build'de AYNI kodla koştu. Boş dizi de geçerli cevap ("bu hafta düşen
+    // yok"); istemcide 14 MB katalog indirip yeniden hesaplamanın anlamı yok.
+    const on = await anasayfaVeriGetir();
+    if (on && Array.isArray(on.dusenler)) {
+      _anasayfaKartlariKaydet(on.dusenler.map(x => x.u));
+      secilen = on.dusenler.slice(0, DUSENLER_KART);
+    } else {
+      // GERİYE DÜŞÜŞ: dosya yok/bozuk — zam şeridiyle aynı yol, istemcide hesapla.
+      await loadAllCats();
+      await gecmisVeriGetir();
+      await supheliPuanlariYukle();
+      secilen = dusenSecHavuzdan(dusenHavuzu())
+        .map(x => ({ u: x.u, dusus_yuzde: x.yuzde, market: x.market }));
+      secilen.forEach(x => _pmEkle(x.u));
+    }
+    if (!secilen.length) { wrap.classList.add('gizli'); return; }
+    list.innerHTML = secilen.map(x => _kartaRozetEkle(
+      _stripKartHTML(x.u, null),
+      indirimRozetiHTML({ tip: x.dusus_yuzde >= 25 ? 'buyuk' : 'normal', yuzde: x.dusus_yuzde }, true, x.market)
     )).join('');
     wrap.classList.remove('gizli');
   } catch (e) { console.warn('[dusenler] serit cizilemedi, bolum gizlenecek:', e && e.message);
@@ -4270,6 +4394,26 @@ function _zamMarka(ad) {
   return String(ad || '').trim().split(/\s+/)[0].toLocaleLowerCase('tr');
 }
 
+// ═══ ÇEŞİTLİLİK — TEK KAYNAK ═══════════════════════════
+// Zam ve "Bu hafta düşenler" şeritleri aynı döngüyü kullanıyor; iki kopya
+// kaçınılmaz sapma demekti. Her kural bir anahtar (marka, alt kategori,
+// market...) ve bir üst sınır. Aday SIRASI korunur; kural yüzünden liste
+// dolmazsa eşik düşürülmez, daha az kartla gösterilir.
+function _cesitliSec(adaylar, limit, kurallar) {
+  if (!Array.isArray(adaylar) || !adaylar.length) return [];
+  const sayac = kurallar.map(() => ({}));
+  const secilen = [];
+  for (const x of adaylar) {
+    if (secilen.length >= limit) break;
+    if (!x) continue;
+    const anahtar = kurallar.map(k => k.anahtar(x));
+    if (kurallar.some((k, i) => (sayac[i][anahtar[i]] || 0) >= k.max)) continue;
+    anahtar.forEach((a, i) => { sayac[i][a] = (sayac[i][a] || 0) + 1; });
+    secilen.push(x);
+  }
+  return secilen;
+}
+
 // ═══ HAVUZ / SEÇİM AYRIMI ═══════════════════════════════
 // zamHavuzu() ŞEHİRDEN BAĞIMSIZ: ürünün satıldığı HER market için artış
 // hesaplanıp saklanır. zamSecHavuzdan() şehir filtresini, çeşitliliği ve
@@ -4337,18 +4481,11 @@ function zamSecHavuzdan(havuz) {
 
   // ÇEŞİTLİLİK: marka başına en fazla 2, alt kategori başına en fazla 3.
   // Kural yüzünden liste dolmazsa EŞİK DÜŞÜRÜLMEZ, daha az ürünle gösterilir.
-  const secilen = [], markaSay = {}, katSay = {};
-  for (const x of adaylar) {
-    if (secilen.length >= ZAM_MAX) break;
-    const mk = _zamMarka(x.ad);
-    const ak = (x.u && x.u.ana_kategori) || '';
-    if ((markaSay[mk] || 0) >= ZAM_MARKA_MAX) continue;
-    if ((katSay[ak] || 0) >= ZAM_KAT_MAX) continue;
-    markaSay[mk] = (markaSay[mk] || 0) + 1;
-    katSay[ak] = (katSay[ak] || 0) + 1;
-    secilen.push(x);
-  }
-  return secilen;
+  // Döngü _cesitliSec'te — "Bu hafta düşenler" şeridiyle ortak (tek kaynak).
+  return _cesitliSec(adaylar, ZAM_MAX, [
+    { anahtar: x => _zamMarka(x.ad), max: ZAM_MARKA_MAX },
+    { anahtar: x => (x.u && x.u.ana_kategori) || '', max: ZAM_KAT_MAX },
+  ]);
 }
 
 function zamAdaylari() {

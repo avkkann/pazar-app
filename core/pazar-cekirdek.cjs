@@ -686,15 +686,23 @@ function zamSecHavuzdan(havuz) {
 
   // ÇEŞİTLİLİK: marka başına en fazla 2, alt kategori başına en fazla 3.
   // Kural yüzünden liste dolmazsa EŞİK DÜŞÜRÜLMEZ, daha az ürünle gösterilir.
-  const secilen = [], markaSay = {}, katSay = {};
+  // Döngü _cesitliSec'te — "Bu hafta düşenler" şeridiyle ortak (tek kaynak).
+  return _cesitliSec(adaylar, ZAM_MAX, [
+    { anahtar: x => _zamMarka(x.ad), max: ZAM_MARKA_MAX },
+    { anahtar: x => (x.u && x.u.ana_kategori) || '', max: ZAM_KAT_MAX },
+  ]);
+}
+
+function _cesitliSec(adaylar, limit, kurallar) {
+  if (!Array.isArray(adaylar) || !adaylar.length) return [];
+  const sayac = kurallar.map(() => ({}));
+  const secilen = [];
   for (const x of adaylar) {
-    if (secilen.length >= ZAM_MAX) break;
-    const mk = _zamMarka(x.ad);
-    const ak = (x.u && x.u.ana_kategori) || '';
-    if ((markaSay[mk] || 0) >= ZAM_MARKA_MAX) continue;
-    if ((katSay[ak] || 0) >= ZAM_KAT_MAX) continue;
-    markaSay[mk] = (markaSay[mk] || 0) + 1;
-    katSay[ak] = (katSay[ak] || 0) + 1;
+    if (secilen.length >= limit) break;
+    if (!x) continue;
+    const anahtar = kurallar.map(k => k.anahtar(x));
+    if (kurallar.some((k, i) => (sayac[i][anahtar[i]] || 0) >= k.max)) continue;
+    anahtar.forEach((a, i) => { sayac[i][a] = (sayac[i][a] || 0) + 1; });
     secilen.push(x);
   }
   return secilen;
@@ -950,6 +958,7 @@ function enIyiBirimIdleri(liste) {
     _aramaSkoru: _aramaSkoru,
     _birimFiyatAyristir: _birimFiyatAyristir,
     _birimFiyatHam: _birimFiyatHam,
+    _cesitliSec: _cesitliSec,
     _ekliAyniKelime: _ekliAyniKelime,
     _hamDipMi: _hamDipMi,
     _salinimVarSeri: _salinimVarSeri,

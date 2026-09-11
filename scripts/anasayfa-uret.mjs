@@ -66,22 +66,18 @@ const tuzaklar = ic(`(() => {
 })()`);
 console.log(`[anasayfa] tuzaklar: ${tuzaklar.kirmizi.length} kirmizi + ${tuzaklar.sari.length} sari, ${Date.now() - tTuz} ms`);
 
-// ── SUPABASE'E DAYALI IKI SERIT
+// ── SUPHELI PUANLARI (Supabase): dusenler elemesi ve "dikkat" seridi kullaniyor
 await ic('supheliPuanlariYukle()');
+
+// ── DUSENLER: olcut, supheli elemesi ve cesitlilik app.js'te (dusenHavuzu +
+//    dusenSecHavuzdan); burada yalniz cagri. Eskiden Supabase'deki bir RPC
+//    cagriliyordu -- zaman penceresi olmayan, tek gunluk hatali zirveye kanan
+//    bir olcut (bkz. app.js "BU HAFTA DUSENLER" bandi).
 const tDus = Date.now();
-const dusenler = await (async () => {
-  const { data, error } = await ic('supabaseClient').rpc('get_fiyat_dusenler',
-    { p_limit: ic('DUSENLER_RPC_LIMIT') });
-  if (error || !data) { console.warn('[anasayfa] dusenler RPC hatasi: ' + (error && error.message)); return []; }
-  ic('window.__ham = null');
-  ctx.__ham = data;
-  return ic(`(() => {
-    __ham.forEach(u => { if (!u._id) u._id = u.ad + '_' + (u.agirlik_hacim || ''); });
-    return __ham.filter(u => !supheliDurum(u))
-      .map(u => ({ u: _asKart(u), dusus_yuzde: u.dusus_yuzde }));
-  })()`);
-})();
-console.log(`[anasayfa] dusenler: ${dusenler.length} aday, ${Date.now() - tDus} ms`);
+const dusenler = ic(`dusenSecHavuzdan(dusenHavuzu()).map(x => ({
+  u: _asKart(x.u), dusus_yuzde: x.yuzde, market: x.market,
+  normal: x.normal, baslangic: x.baslangic, kaynak: x.kaynak }))`);
+console.log(`[anasayfa] dusenler: ${dusenler.length} kart, ${Date.now() - tDus} ms`);
 
 const tSup = Date.now();
 const supheli = await (async () => {

@@ -45,6 +45,8 @@ const FONKSIYONLAR = [
   // zam
   'zamOlcutu', 'zamSalinimVar', 'zamMarketSerisi', 'zamMarketArtisi',
   'zamDurumu', 'zamAdaylari', 'zamHavuzu', 'zamSecHavuzdan',
+  // zamSecHavuzdan'in cesitlilik dongusu (dusenler seridiyle ortak, tek kaynak)
+  '_cesitliSec',
   // arama
   '_adAyristir', '_ekliAyniKelime', '_aramaSkoru', 'urunAra', '_ahIndexRebuildIfNeeded',
   // urun iliskileri
