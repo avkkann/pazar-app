@@ -2606,12 +2606,36 @@ let _puanCache = null;
 async function supheliPuanlariYukle() {
   if (_puanCache) return _puanCache;
   try {
-    const { data, error } = await window.supabaseClient
-      .from('urunler')
-      .select('_sid, indirim_supheli_puan, indirim_supheli_sebepler, indirim_supheli_dusus_yuzde')
-      .gte('indirim_supheli_puan', 2);
-    if (error || !data) return null;
-    _puanCache = new Map(data.map(r => [r._sid, r]));
+    // SAYFALI: Supabase sunucusu bir istekte en fazla 1000 satır veriyor.
+    // Ölçüldü: puanı 2 ve üstü 1431 satır var; sayfasız istekte 431'i
+    // tarayıcıya hiç inmiyordu (build'in vm katmanı kendisi sayfaladığı için
+    // build'de görünmüyordu). Kararlı sayfalama için _sid sırası.
+    const SAYFA = 1000, SAYFA_MAX = 50, satirlar = [];
+    let tamam = false;
+    for (let s = 0; s < SAYFA_MAX; s++) {
+      const { data, error } = await window.supabaseClient
+        .from('urunler')
+        .select('_sid, indirim_supheli_puan, indirim_supheli_sebepler, indirim_supheli_dusus_yuzde')
+        .gte('indirim_supheli_puan', 2)
+        .order('_sid', { ascending: true })
+        .range(s * SAYFA, s * SAYFA + SAYFA - 1);
+      // SESSİZ DEĞİL: bu durumda sahte-indirim rozetleri çizilmez ve "Bu hafta
+      // düşenler" boş kalır (şüpheliler ayıklanamadan liste çıkmıyor).
+      if (error || !data) {
+        console.warn('[supheli] indirim_supheli puanlari alinamadi (' + ((error && error.message) || 'bos cevap') +
+                     '); sahte-indirim rozetleri ve dusenler seridi cizilmeyecek');
+        return null;
+      }
+      satirlar.push(...data);
+      if (data.length < SAYFA) { tamam = true; break; }
+    }
+    // Sunucu aralığı dinlemiyorsa hep dolu sayfa gelir: sonsuz döngü yok ve
+    // YARIM liste kullanılmaz (eksik puan = şüphelinin şeride sızması).
+    if (!tamam) {
+      console.warn('[supheli] indirim_supheli puanlari ' + SAYFA_MAX + ' sayfada bitmedi (sunucu araligi dinlemiyor olabilir); puanlar kullanilmiyor');
+      return null;
+    }
+    _puanCache = new Map(satirlar.map(r => [r._sid, r]));
     return _puanCache;
   } catch (e) { console.warn('[supheli] indirim_supheli puanlari alinamadi, sahte-indirim rozetleri hic cizilmeyecek:', e && e.message);
     return null;
@@ -4045,15 +4069,40 @@ function _kartaRozetEkle(html, rozetHTML, altHTML) {
 //  5) Kartın gösterdiği fiyat (en ucuz) indirimli fiyat olmalı; başka market
 //     daha ucuzsa o kart "düştü" demez.
 // Ölçüm (2026-09-10 verisi): 653 kayıt + ilan yolundan 42 ürün (eski yolda 40
-// aday). %70 üstü indirim 0 çıktı — ayrı bir üst sınır gerekmedi.
+// aday).
+//
+// İNCELEME DÜZELTMELERİ (2026-09-11; iki salt-okunur ajan, iddiaları ölçülerek
+// doğrulandı):
+//  a) Şüphe puanları alınamazsa liste ÇIKMAZ. Eskiden Supabase çökünce
+//     supheliDurum her ürüne "temiz" diyordu (ölçüldü: 321 -> 568 aday).
+//  b) Şüphe elemesi HAM puana bakar. supheliDurum yalnız 30 günlük "en ucuz"
+//     seride indirim görürse devreye giriyordu; puanı 5 olan ürün kaçıyordu.
+//  c) Rozet yüzdesi ÜRÜNÜN olağan en ucuz fiyatına göre de ölçülür, KÜÇÜK olan
+//     basılır. Market kendi normaline göre "-%51" derken ürün başka markette
+//     hep 89,90'dı: gerçek düşüş %11 (Dalin kolonya, canlıda görüldü).
+//  d) Pencere VERİNİN son gününe bağlı; duvar saati bir gün kaydırıyordu.
+//  e) %50 ve üstü indirim en az 2 gün görülmeli: tek günlük derin düşüşler
+//     kümeleniyor (22 Haziran'da Migros'ta 42 ürün aynı gün) — hata deseni.
 const DUSENLER_KART = 6;
 const DUSEN_PENCERE_GUN = 7;        // indirim bu kadar gün içinde başlamış olmalı
 const DUSEN_NORMAL_GUN = 60;        // normal fiyat penceresi (bu haftadan önceki günler)
 const DUSEN_NORMAL_MIN_GUN = 30;    // normal için en az bu kadar BİLİNEN gün
 const DUSEN_ESIK = 10;              // normalin en az yüzde kaç altında
 const DUSEN_INDIRIMDE = 0.97;       // "indirimde" durumu: normalin %3'ten fazla altı
-const DUSEN_ILAN_TOLERANS = 0.05;   // ilan: indirim öncesi gözlenen fiyat ±%5 uyuşmalı
-const DUSEN_ILAN_MIN_GUN = 7;       // ilan: indirimden önce en az bu kadar gün gözlem
+// İlan uyuşması: indirim öncesi gözlenen fiyat ilanın en fazla %5 ÜSTÜNDE
+// olabilir. ALTINDA %3'ten fazlaysa zaten "indirimde" sayılır (DUSEN_INDIRIMDE)
+// ve koşu 7 günden eskiye uzar — yani fiilen -%3 / +%5.
+const DUSEN_ILAN_TOLERANS = 0.05;
+const DUSEN_ILAN_MIN_GUN = 7;       // indirimden önce en az bu kadar gün gözlem
+const DUSEN_SUPHE_PUAN = 2;         // bu şüphe puanı ve üstü elenir (supheliDurum'un ilk kapısıyla AYNI)
+const DUSEN_TEYIT_YUZDE = 50;       // bu indirim ve üstü teyit ister (indirim_analiz.py "aşırı yüksek oran")
+const DUSEN_TEYIT_GUN = 2;          // teyit: DERİN fiyat en az bu kadar gündür görülüyor olmalı
+// Kısa kesinti köprüsü: indirim koşusu geriye doğru aranırken en fazla bu
+// kadar günlük bir "normal fiyat" arası, öncesinde yine indirim varsa AYNI
+// indirim sayılır. Ölçüldü (88 günlük geri oynatma): haftalardır süren
+// indirimi "bu hafta başladı" gösteren aralar 1 gün 10, 2 gün 13, 3 gün 6
+// kez; bir kısmı mağaza değişiminden gelen hayalet gün (Wasa: 1012 -> 5411).
+const DUSEN_KESINTI_GUN = 3;
 // Çeşitlilik zam şeridiyle AYNI kodla (_cesitliSec). Market sınırı ÖLÇÜMLE
 // eklendi: yalnız marka/kategori kuralıyla ilk 6'nın 6'sı Carrefour çıkıyordu.
 const DUSEN_MARKA_MAX = 1;
@@ -4068,23 +4117,41 @@ function _isoGunKaydir(iso, n) {
          '-' + String(d.getUTCDate()).padStart(2, '0');
 }
 
+// Pencerenin günleri: bugünden geriye DUSEN_NORMAL_GUN + DUSEN_PENCERE_GUN gün.
+// Aynı "bugün" için bir kez kuruluyor — havuz taraması her ürün ve market için
+// soruyor. Dizi SALT OKUNUR kullanılmalı.
+let _dusenGunBellek = null;
+function _dusenGunler(bugun) {
+  if (_dusenGunBellek && _dusenGunBellek.bugun === bugun) return _dusenGunBellek.gunler;
+  const N = DUSEN_NORMAL_GUN + DUSEN_PENCERE_GUN, gunler = [];
+  for (let i = N - 1; i >= 0; i--) gunler.push(_isoGunKaydir(bugun, -i));
+  _dusenGunBellek = { bugun: bugun, gunler: gunler };
+  return gunler;
+}
+
+// Tek marketin verilen günlerdeki (carry-forward) fiyatı. Kayıtlar sırasız
+// olabilir. Fiyat SAYIYA çevrilir: dize gelirse "90" < "100" alfabetik olarak
+// yanlış çıkıyor ve ürünün en ucuzu yanlış seçiliyordu.
+function _gunlukSeri(kayitlar, gunler) {
+  const a = kayitlar.filter(k => k && k.t && Number(k.f) > 0)
+    .sort((x, y) => (x.t < y.t ? -1 : (x.t > y.t ? 1 : 0)));
+  const seri = new Array(gunler.length).fill(null);
+  let j = 0, son = null;
+  for (let i = 0; i < gunler.length; i++) {
+    while (j < a.length && a[j].t <= gunler[i]) { son = a[j]; j++; }
+    seri[i] = son ? Number(son.f) : null;
+  }
+  return seri;
+}
+
 // SAF ÖLÇÜT, tek market. kayitlar: o marketin [{t, f}] geçmişi (sırasız
 // olabilir); fiyat: bugünkü fiyatı; liste: marketin ilan ettiği eski fiyat
 // (yoksa boş); bugun: 'yyyy-aa-gg'. İndirim yoksa null.
 function dusenOlcutu(kayitlar, fiyat, liste, bugun) {
   if (!Array.isArray(kayitlar) || !(fiyat > 0) || !bugun) return null;
-  const a = kayitlar.filter(k => k && k.t && k.f > 0)
-    .sort((x, y) => (x.t < y.t ? -1 : (x.t > y.t ? 1 : 0)));
-  if (!a.length) return null;
-  const N = DUSEN_NORMAL_GUN + DUSEN_PENCERE_GUN;
-  const gunler = [];
-  for (let i = N - 1; i >= 0; i--) gunler.push(_isoGunKaydir(bugun, -i));
-  const seri = new Array(N).fill(null);
-  let j = 0, son = null;
-  for (let i = 0; i < N; i++) {
-    while (j < a.length && a[j].t <= gunler[i]) { son = a[j]; j++; }
-    seri[i] = son ? son.f : null;
-  }
+  const gunler = _dusenGunler(bugun);
+  const N = gunler.length;
+  const seri = _gunlukSeri(kayitlar, gunler);
   // Seri bugünkü fiyatla uyuşmuyorsa indirimin ne zaman başladığı doğrulanamaz.
   if (seri[N - 1] == null || Math.abs(seri[N - 1] - fiyat) > 0.005) return null;
   const normalGunler = seri.slice(0, DUSEN_NORMAL_GUN).filter(v => v != null).sort((x, y) => x - y);
@@ -4094,8 +4161,19 @@ function dusenOlcutu(kayitlar, fiyat, liste, bugun) {
   else return null;
   if ((ref - fiyat) / ref * 100 < DUSEN_ESIK - 1e-9) return null;
   // İndirim koşusunun başı: bugünden geriye, fiyat "indirimde" kaldıkça.
+  // KISA KESİNTİ KÖPRÜLENİR: en fazla DUSEN_KESINTI_GUN günlük bir "normal"
+  // ara, öncesinde yine indirim varsa AYNI indirimdir. Yoksa 26 gündür süren
+  // bir indirim tek günlük bir 269,95 yüzünden "bu hafta başladı" görünüyordu
+  // (Mowi somon burger; 88 günlük geri oynatmada seçilen kartlara 29 giriş).
+  const indirimde = i => seri[i] != null && seri[i] < ref * DUSEN_INDIRIMDE;
   let r = N - 1;
-  while (r > 0 && seri[r - 1] != null && seri[r - 1] < ref * DUSEN_INDIRIMDE) r--;
+  for (;;) {
+    while (r > 0 && indirimde(r - 1)) r--;
+    let k = r - 1, ara = 0;
+    while (k >= 0 && ara < DUSEN_KESINTI_GUN && seri[k] != null && !indirimde(k)) { k--; ara++; }
+    if (ara > 0 && k >= 0 && indirimde(k)) { r = k; continue; }
+    break;
+  }
   if (r < DUSEN_NORMAL_GUN) return null;        // 7 günden eski indirim
   // Öncesinde indirimsiz bir gün GÖRÜLMÜŞ olması burada zaten garanti: 'seri'
   // yolunda normal pencerede >=30 bilinen gün var ve seri carry-forward
@@ -4108,39 +4186,126 @@ function dusenOlcutu(kayitlar, fiyat, liste, bugun) {
     if (Math.abs(seri[r - 1] - ref) > ref * DUSEN_ILAN_TOLERANS) return null;
     if (seri.slice(0, r).filter(v => v != null).length < DUSEN_ILAN_MIN_GUN) return null;
   }
-  return { yuzde: Math.round((ref - fiyat) / ref * 100), normal: ref, baslangic: gunler[r], kaynak: kaynak };
+  // TEYİT İÇİN: bugünkü fiyat (ya da daha ucuzu) kaç gündür görülüyor. Koşunun
+  // başı DEĞİL: dün %4'lük bir adım koşuyu bir gün geri çekiyor ve yalnız bugün
+  // görülen %60'lık fiyat teyitsiz geçiyordu.
+  let seviyeGun = 0;
+  for (let i = N - 1; i >= 0 && seri[i] != null && seri[i] <= fiyat + 0.005; i--) seviyeGun++;
+  return { yuzde: Math.round((ref - fiyat) / ref * 100), normal: ref, baslangic: gunler[r],
+           kaynak: kaynak, seviyeGun: seviyeGun };
 }
 
-// HAVUZ: katalogun tamamı, ürün başına EN İYİ market (en derin indirim),
-// indirim yüzdesine göre azalan (eşitlikte TL tasarrufu). Şüpheli ürün burada
-// elenir, "Bu indirimlere dikkat" şeridinde gösteriliyor.
-// bugun: 'yyyy-aa-gg' (test/ölçüm için); verilmezse yerel bugün.
+// ÜRÜNÜN REFERANSI (alışverişçinin gözünden): BUGÜN satan marketlerin günlük
+// fiyatlarının en ucuzu, indirimin başladığı günden ÖNCEKİ günlerde:
+//  - olağan: o serinin üst ortancası;
+//  - yakın: indirimli market DIŞINDAKİ marketlerin, indirimden önceki son
+//    DUSEN_PENCERE_GUN gündeki en ucuzu. Başka markette haftalardır aynı ucuz
+//    fiyat varsa (pencerenin yarısından kısa sürdüyse) ortanca onu görmüyordu
+//    ve kart "-%40" diyordu; oysa alışverişçi o fiyatı haftalardır ödeyebiliyordu.
+// İkisinin KÜÇÜĞÜ döner (rozet abartmasın).
+// Artık satmayan market SAYILMAZ: geçmişte "çıktı" kaydı yok, son fiyatı
+// carry-forward ile sonsuza taşınırdı (ölçüldü: Toblerone'da "olağan 75 TL",
+// bugün satanlarla 179,90).
+function _dusenUrunNormali(kayitlar, marketler, bitis, bugun, haric) {
+  const gunler = _dusenGunler(bugun);
+  const kes = gunler.indexOf(bitis);
+  if (kes <= 0) return null;
+  const once = gunler.slice(0, kes);
+  const yakinBas = Math.max(0, once.length - DUSEN_PENCERE_GUN);
+  const byM = {};
+  kayitlar.forEach(k => { if (k && marketler.has(k.m)) (byM[k.m] = byM[k.m] || []).push(k); });
+  const enUcuz = new Array(once.length).fill(null);
+  let yakin = null;
+  Object.keys(byM).forEach(m => _gunlukSeri(byM[m], once).forEach((v, i) => {
+    if (v == null) return;
+    if (enUcuz[i] == null || v < enUcuz[i]) enUcuz[i] = v;
+    if (m !== haric && i >= yakinBas && (yakin == null || v < yakin)) yakin = v;
+  }));
+  const bilinen = enUcuz.filter(v => v != null).sort((x, y) => x - y);
+  // Boş olamaz: indirimli marketin kendi günleri de burada ve dusenOlcutu en
+  // az DUSEN_ILAN_MIN_GUN bilinen günü zaten zorunlu kılıyor. Savunma.
+  if (!bilinen.length) return null;
+  const olagan = bilinen[bilinen.length >> 1];
+  return yakin == null ? olagan : Math.min(olagan, yakin);
+}
+
+// Pencere VERİNİN son gününe bağlı, duvar saatine değil: build veri gelmeden
+// koşarsa "bu hafta" bir gün kaymasın (ölçüldü: 73 ürün bir gün erken
+// düşüyordu). Gelecek tarihli bozuk bir kayıt pencereyi ileri itmesin diye
+// bugünle sınırlı; yalnız yyyy-aa-gg kabul — saatli tek bir kayıt ("...T08:00")
+// veri günü seçilince 67 günün hepsi "NaN-NaN-NaN" oluyor ve şerit uyarısız
+// boşalıyordu.
+function _dusenVeriGunu() {
+  let m = '';
+  for (const k in _gecmisCache) {
+    const a = _gecmisCache[k];
+    if (Array.isArray(a)) for (const e of a) if (e && e.t > m && /^\d{4}-\d{2}-\d{2}$/.test(e.t)) m = e.t;
+  }
+  const bugun = _yerelGunISO(0);
+  return !m || m > bugun ? bugun : m;
+}
+
+// HAVUZ: katalogun tamamı, ürün başına bir kayıt, gösterilen yüzdeye göre
+// azalan (eşitlikte TL tasarrufu). Market, KENDİ normaline göre en derin düşen
+// ve bugün en ucuz olan; gösterilen yüzde o marketin düşüşü ile ürünün
+// referansına göre düşüşün KÜÇÜĞÜ. Şüpheli ürün burada elenir ("Bu indirimlere
+// dikkat" şeridinde gösteriliyor). bugun verilmezse verinin son günü.
 function dusenHavuzu(bugun) {
-  if (!_gecmisCache) return [];
-  const gun = bugun || _yerelGunISO(0);
-  const gorulen = {};
+  // Veri yoksa ölçülemez ve bu SESSİZ kalmıyor. Şüphe puanları yoksa hiç
+  // liste çıkmıyor: sahte indirimler ayıklanamaz.
+  let gecmisVar = false;
+  for (const k in (_gecmisCache || {})) { gecmisVar = true; break; }
+  if (!gecmisVar) { console.warn('[dusenler] fiyat gecmisi yok, bu hafta dusenler hesaplanamiyor'); return []; }
+  if (!_puanCache) { console.warn('[dusenler] supheli puanlari yok, sahte indirimler ayiklanamaz: serit bos birakiliyor'); return []; }
+  const gun = bugun || _dusenVeriGunu();
+  const gorulenSid = {};
   const havuz = [];
   Object.values(catCache || {}).forEach(liste => (liste || []).forEach(u => {
-    if (!u || !u._sid || gorulen[u._sid]) return;
-    gorulen[u._sid] = 1;
+    if (!u || !u._sid || gorulenSid[u._sid]) return;
+    gorulenSid[u._sid] = 1;
     const kayitlar = _gecmisCache[u._sid];
     if (!Array.isArray(kayitlar) || !kayitlar.length) return;
     const kartFiyati = enDusukFiyat(u);
     if (kartFiyati == null) return;
+    const puan = _puanCache.get(u._sid);
+    if (puan && puan.indirim_supheli_puan >= DUSEN_SUPHE_PUAN) return;
+    // Aday marketler aykırı fiyatı gizlenmiş listeden; ürünün REFERANSI ise
+    // HAM listeden. Aykırı filtre derin indirimde normal fiyatla satan marketi
+    // "aykırı yüksek" sayıp gizliyordu: o market ürünün olağan fiyatının
+    // kanıtı, hesaptan düşünce rozet büyüyordu (%80 yerine %89).
+    const adaylar = fiyatlariTemizle(u.market_fiyatlari).gecerli.filter(f => f.market && Number(f.fiyat) > 0);
+    const satanlar = new Set((u.market_fiyatlari || []).filter(f => f && f.market && Number(f.fiyat) > 0).map(f => f.market));
     let enIyi = null;
-    fiyatlariTemizle(u.market_fiyatlari).gecerli.forEach(f => {
+    adaylar.forEach(f => {
       const fiyat = Number(f.fiyat);
-      if (!f.market || !(fiyat > 0) || fiyat > kartFiyati + 0.005) return;
+      if (fiyat > kartFiyati + 0.005) return;
       const r = dusenOlcutu(kayitlar.filter(k => k && k.m === f.market), fiyat, Number(f.liste_fiyat) || null, gun);
       if (!r) return;
-      if (!enIyi || r.yuzde > enIyi.yuzde ||
-          (r.yuzde === enIyi.yuzde && r.normal - fiyat > enIyi.normal - enIyi.fiyat)) {
-        enIyi = { u: u, market: f.market, fiyat: fiyat, yuzde: r.yuzde, normal: r.normal,
-                  baslangic: r.baslangic, kaynak: r.kaynak };
+      // Eşit yüzdede DERİN fiyatı daha uzun süredir görülen market: sonuç
+      // market_fiyatlari sırasına bağlı kalmasın (teyit de rozet de buna bakar).
+      if (!enIyi || r.yuzde > enIyi.pazarYuzde ||
+          (r.yuzde === enIyi.pazarYuzde && r.seviyeGun > enIyi.seviyeGun)) {
+        enIyi = { market: f.market, fiyat: fiyat, pazarYuzde: r.yuzde, pazarNormal: r.normal,
+                  baslangic: r.baslangic, kaynak: r.kaynak, seviyeGun: r.seviyeGun };
       }
     });
-    if (!enIyi || supheliDurum(u)) return;
-    havuz.push(enIyi);
+    if (!enIyi) return;
+    // TEYİT: marketin KENDİ düşüşü %50 ve üstüyse derin fiyat en az
+    // DUSEN_TEYIT_GUN gündür görülmeli. Gösterilen (küçük) yüzdeye değil:
+    // 100 -> 20 tek günlük bir hata, başka markette 36 varken "-%44" diye
+    // teyitsiz basılıyordu.
+    if (enIyi.pazarYuzde >= DUSEN_TEYIT_YUZDE && enIyi.seviyeGun < DUSEN_TEYIT_GUN) return;
+    const urunNormal = _dusenUrunNormali(kayitlar, satanlar, enIyi.baslangic, gun, enIyi.market);
+    if (urunNormal == null) return;
+    const pazarOran = (enIyi.pazarNormal - enIyi.fiyat) / enIyi.pazarNormal;
+    const urunOran = (urunNormal - enIyi.fiyat) / urunNormal;
+    const oran = Math.min(pazarOran, urunOran);
+    if (oran * 100 < DUSEN_ESIK - 1e-9) return;
+    havuz.push({ u: u, market: enIyi.market, fiyat: enIyi.fiyat, yuzde: Math.round(oran * 100),
+                 normal: urunOran < pazarOran ? urunNormal : enIyi.pazarNormal,
+                 pazarNormal: enIyi.pazarNormal, urunNormal: urunNormal,
+                 pazarYuzde: enIyi.pazarYuzde, seviyeGun: enIyi.seviyeGun,
+                 baslangic: enIyi.baslangic, kaynak: enIyi.kaynak });
   }));
   havuz.sort((a, b) => (b.yuzde - a.yuzde) || ((b.normal - b.fiyat) - (a.normal - a.fiyat)));
   return havuz;
@@ -4155,6 +4320,14 @@ function dusenSecHavuzdan(havuz) {
   ]);
 }
 
+// KAYIT BİÇİMİ: build (anasayfa.json) ve istemcinin geriye düşüşü AYNI biçimi
+// üretiyor, çizim yalnız bunu okuyor. Alan adı TEK yerde — build'deki bir ad
+// değişikliği rozeti "-%undefined" yapardı ve çizim testi görmezdi.
+function dusenKayit(x) {
+  return { dusus_yuzde: x.yuzde, market: x.market, normal: x.normal,
+           baslangic: x.baslangic, kaynak: x.kaynak };
+}
+
 async function renderDusenlerSeridi() {
   const wrap = document.getElementById('home-dusenler');
   const list = document.getElementById('home-dusenler-list');
@@ -4162,19 +4335,22 @@ async function renderDusenlerSeridi() {
   try {
     let secilen;
     // ÖNCE önceden hesaplanmış liste: ölçüt, şüphe elemesi ve çeşitlilik
-    // build'de AYNI kodla koştu. Boş dizi de geçerli cevap ("bu hafta düşen
-    // yok"); istemcide 14 MB katalog indirip yeniden hesaplamanın anlamı yok.
+    // build'de AYNI kodla koştu. Boş dizi de geçerli cevap: bu hafta düşen yok
+    // YA DA build şüphe puanlarını alamadı (build logunda uyarı var). İki
+    // durumda da istemcide 14 MB katalog indirip hesaplamak yanlış.
     const on = await anasayfaVeriGetir();
     if (on && Array.isArray(on.dusenler)) {
       _anasayfaKartlariKaydet(on.dusenler.map(x => x.u));
       secilen = on.dusenler.slice(0, DUSENLER_KART);
     } else {
-      // GERİYE DÜŞÜŞ: dosya yok/bozuk — zam şeridiyle aynı yol, istemcide hesapla.
+      // GERİYE DÜŞÜŞ yalnız anasayfa.json inmezse: zam şeridiyle aynı yol ve
+      // aynı ödün — tüm katalog + geçmiş gerekiyor, tarama birkaç saniye
+      // sürüyor (Node'da 3-5 sn ölçüldü) ama dosya yoksa başka kaynak yok.
       await loadAllCats();
       await gecmisVeriGetir();
       await supheliPuanlariYukle();
       secilen = dusenSecHavuzdan(dusenHavuzu())
-        .map(x => ({ u: x.u, dusus_yuzde: x.yuzde, market: x.market }));
+        .map(x => Object.assign({ u: x.u }, dusenKayit(x)));
       secilen.forEach(x => _pmEkle(x.u));
     }
     if (!secilen.length) { wrap.classList.add('gizli'); return; }

@@ -16,6 +16,30 @@
 //  4) indirim bittiyse ya da 7 gunden eskiyse seritten duser
 //  5) cesitlilik: marka<=1, alt kategori<=2, market<=2 (zam seridiyle AYNI kod)
 //
+// BIRINCI INCELEME DUZELTMELERI (2026-09-11; iki salt-okunur ajan, olculdu):
+//  a) supheli puanlari ALINAMAZSA havuz BOS (321 -> 568 supheli sizmasi)
+//  b) supheli eleme HAM puana bakar (supheliDurum baska tanima bagliydi)
+//  c) rozet URUNUN olagan en ucuzuna gore de olculur, KUCUK olan basilir
+//     (Dalin "-%51" -> gercek %11); yalniz BUGUN satan marketler sayilir
+//  d) pencere VERININ son gunune bagli (73 urun bir gun erken dusuyordu)
+//  e) %50 ve ustu indirim teyit ister (tek gunluk derin dususler kumeleniyor)
+//  f) build ve istemci AYNI kayit bicimi (dusenKayit)
+//
+// IKINCI INCELEME DUZELTMELERI (2026-09-11; 3 bakis + her bulguya curutme
+// denemesi, 12 bulgu dogrulandi, 0 curutuldu):
+//  g) 1-3 gunluk KESINTI koprulenir: haftalardir suren indirim tek gunluk bir
+//     "normal" fiyat (magaza degisimi hayaleti) yuzunden "bu hafta basladi"
+//     gorunuyordu (Mowi somon burger 26 gundur indirimdeydi)
+//  h) teyit DERIN FIYATIN kac gundur goruldugune ve MARKETIN KENDI dususune
+//     bakar (dun %4'luk adim, bugun %60 teyitsiz geciyordu)
+//  i) urunun referansi BASKA marketlerin indirimden onceki son 7 gundeki en
+//     ucuzunu da gorur (haftalardir 60 TL satan market varken "-%40")
+//  j) aykiri fiyat filtresi urun referansini ETKILEMEZ (normal fiyatla satan
+//     market "aykiri" sayilip hesaptan dusuyor, rozet buyuyordu)
+//  k) tarayicida supheli puanlari SAYFALI (sunucu 1000'de kesiyor, 1431 var)
+//  l) build'de puanlar alinamazsa GORUNUR uyari (::warning) ve iki kez daha deneme
+//  m) bozuk tarihli tek kayit seridi bosaltmaz; n) dize fiyat sayiya cevrilir
+//
 // Test DAVRANISSAL: app.js'in tamami node:vm'de, build'in kullandigi AYNI
 // ortamda (scripts/app-vm.mjs) kosturuluyor; sentetik seriler + gercek katalog.
 
@@ -31,6 +55,7 @@ const bitir = () => { console.log('\nPASS=' + GECTI + '  FAIL=' + KALDI); proces
 
 const APP = fs.readFileSync(new URL('./app.js', import.meta.url), 'utf8');
 const URET = fs.readFileSync(new URL('./scripts/anasayfa-uret.mjs', import.meta.url), 'utf8');
+const PY = fs.readFileSync(new URL('./indirim_analiz.py', import.meta.url), 'utf8');
 
 function govde(ad) {
   const m = new RegExp('(?:^|\\n)\\s*(?:async )?function ' + ad + '\\s*\\([^)]*\\)\\s*\\{').exec(APP);
@@ -77,8 +102,28 @@ const { ic, ctx } = appOrtamiKur();
 await new Promise(r => setTimeout(r, 300));
 const cagir = (ifade, veri) => { ctx.__v = veri; return ic(ifade); };
 const gunNo = s => Math.round(Date.UTC(+s.slice(0, 4), +s.slice(5, 7) - 1, +s.slice(8, 10)) / 864e5);
+const sabitDeger = ad => ic('typeof ' + ad + ' === "number" ? ' + ad + ' : null');
 
-console.log('\n=== 0. ALET: yeni fonksiyonlar var mi ===');
+// vm host'un console nesnesini kullaniyor (scripts/app-vm.mjs); warn gecici
+// olarak degistirilip HER kosulda geri konuyor.
+function uyariYakala(fn) {
+  const uyari = [];
+  const eski = console.warn;
+  console.warn = (...a) => { uyari.push(a.map(String).join(' ')); };
+  let sonuc;
+  try { sonuc = fn(); } finally { console.warn = eski; }
+  return { sonuc, uyari };
+}
+async function uyariYakalaAsync(fn) {
+  const uyari = [];
+  const eski = console.warn;
+  console.warn = (...a) => { uyari.push(a.map(String).join(' ')); };
+  let sonuc;
+  try { sonuc = await fn(); } finally { console.warn = eski; }
+  return { sonuc, uyari };
+}
+
+console.log('\n=== 0. ALET: fonksiyonlar var mi ===');
 for (const f of ['dusenOlcutu', 'dusenHavuzu', 'dusenSecHavuzdan', '_cesitliSec', '_isoGunKaydir'])
   ok(f + ' tanimli', ic('typeof ' + f) === 'function');
 if (KALDI) bitir();
@@ -138,18 +183,78 @@ const olc = (k, f, l) => cagir('dusenOlcutu(__v.k, __v.f, __v.l, "' + B0 + '")',
   ok('seri bugunku fiyatla uyusmuyorsa girmiyor', olc(K(['2026-06-01', 100], ['2026-09-07', 80]), 75) === null);
   ok('bos/bozuk girdi -> null', olc([], 80) === null && olc(null, 80) === null && olc(K(['2026-06-01', 100]), 0) === null);
 }
+// SINIRLAR SABITLENIYOR (inceleme: 60/30/+-5/7 degisse test yesil kaliyordu).
+{
+  // 07-06..08-04 = 30 gun 100, 08-05..09-03 = 30 gun 97 (97 "indirimde" sayilmaz),
+  // 06-01'deki 50 pencerenin DISINDA. Dogru pencere -> normal 100 -> %15.
+  // Pencere 30 gun olsaydi (hepsi 97), 90 gun olsaydi (50'ler girer) ya da bu
+  // haftayi da kapsasaydi normal 97 cikar -> %12.
+  const r = olc(K(['2026-06-01', 50], ['2026-07-06', 100], ['2026-08-05', 97], ['2026-09-08', 85]), 85);
+  ok('normal penceresi TAM 60 gun ve bu haftayi KAPSAMIYOR (%15; 30/90 gun ya da hafta dahil %12)',
+     r && r.normal === 100 && r.yuzde === 15, JSON.stringify(r));
+}
+{
+  // 08-05..09-03 = TAM 30 bilinen gun; 08-06 -> 29.
+  const r = olc(K(['2026-08-05', 100], ['2026-09-08', 80]), 80);
+  ok('normal icin TAM 30 bilinen gun yetiyor (seri yolu)', r && r.kaynak === 'seri' && r.yuzde === 20, JSON.stringify(r));
+  ok('  29 bilinen gun YETMIYOR (ilan yoksa girmiyor)', olc(K(['2026-08-06', 100], ['2026-09-08', 80]), 80) === null);
+}
+{
+  // Ilan uyusmasi: gorulen fiyat ilanin en fazla %5 USTUNDE olabilir; ALTINDA
+  // %3'ten fazlaysa zaten "indirimde" sayilir ve kosu 7 gunden eskiye uzar.
+  const i = gor => olc(K(['2026-08-20', gor], ['2026-09-08', 80]), 80, 100);
+  const i105 = i(105), i106 = i(106), i97 = i(97), i96 = i(96);
+  ok('ilan: gorulen 105 / ilan 100 -> giriyor (+%5 siniri)', i105 && i105.kaynak === 'ilan', JSON.stringify(i105));
+  ok('  gorulen 106 -> girmiyor', i106 === null, JSON.stringify(i106));
+  ok('  gorulen 97 -> giriyor (-%3 siniri)', i97 && i97.kaynak === 'ilan', JSON.stringify(i97));
+  ok('  gorulen 96 -> girmiyor (zaten "indirimde")', i96 === null, JSON.stringify(i96));
+}
+{
+  ok('ilan: indirimden once TAM 7 gun gozlem yetiyor', !!olc(K(['2026-09-01', 100], ['2026-09-08', 80]), 80, 100));
+  ok('  6 gun yetmiyor', olc(K(['2026-09-02', 100], ['2026-09-08', 80]), 80, 100) === null);
+}
+{
+  const a = olc(K(['2026-06-01', 100], ['2026-09-07', 80]), 80);
+  const b = olc(K(['2026-09-07', 80], ['2026-06-01', 100]), 80);
+  ok('kayit SIRASI onemsiz (ters sirali girdi ayni sonuc)', a !== null && JSON.stringify(a) === JSON.stringify(b), JSON.stringify(b));
+}
+{
+  // (g) KISA KESINTI KOPRUSU: 08-21'den beri 80, 09-05'te TEK GUN 99 (99 >= 97,
+  // "indirimde" degil), sonra yine 80. Indirim 20 gundur suruyor -> girmemeli.
+  ok('1 gunluk kesinti koprulenir: 20 gundur suren indirim "bu hafta" SAYILMIYOR',
+     olc(K(['2026-06-01', 100], ['2026-08-21', 80], ['2026-09-05', 99], ['2026-09-06', 80]), 80) === null);
+  ok('  3 gunluk kesinti de koprulenir',
+     olc(K(['2026-06-01', 100], ['2026-08-21', 80], ['2026-09-03', 100], ['2026-09-06', 80]), 80) === null);
+  const r = olc(K(['2026-06-01', 100], ['2026-08-21', 80], ['2026-09-02', 100], ['2026-09-06', 80]), 80);
+  ok('  kontrol: 4 gunluk ara GERCEK mola -> yeni indirim bu hafta basladi (09-06)',
+     r && r.baslangic === '2026-09-06' && r.yuzde === 20, JSON.stringify(r));
+}
+{
+  // (h) seviyeGun: bugunku fiyat (ya da daha ucuzu) kac gundur goruluyor.
+  const r1 = olc(K(['2026-06-01', 100], ['2026-09-09', 96], ['2026-09-10', 40]), 40);
+  ok('seviyeGun: dun hafif indirim (96), bugun 40 -> derin fiyat 1 gundur', r1 && r1.seviyeGun === 1 && r1.baslangic === '2026-09-09',
+     JSON.stringify(r1));
+  const r2 = olc(K(['2026-06-01', 100], ['2026-09-09', 40]), 40);
+  ok('  40 iki gundur goruluyor -> 2', r2 && r2.seviyeGun === 2, JSON.stringify(r2));
+}
+{
+  // (n) dize fiyat sayiya cevrilir.
+  const r = olc(K(['2026-06-01', '100'], ['2026-09-07', '80']), 80);
+  ok('gecmiste DIZE fiyat sayiya cevriliyor (normal sayi, sonuc ayni)',
+     r && r.normal === 100 && typeof r.normal === 'number' && r.yuzde === 20, JSON.stringify(r));
+}
 
 // ─────────────────────────────────────────────────────────────────────
-console.log('\n=== 2. HAVUZ (sentetik katalog, gercek saate gore) ===');
+console.log('\n=== 2. HAVUZ (sentetik katalog) ===');
 const G = n => ic('_yerelGunISO(' + n + ')');
 function kur(urunler, gecmis, puan) {
-  ctx.__u = urunler; ctx.__g = gecmis; ctx.__p = puan || [];
+  ctx.__u = urunler; ctx.__g = gecmis; ctx.__p = puan === null ? null : (puan || []);
   ic(`(() => {
     for (const k of Object.keys(catCache)) delete catCache[k];
     catCache.test = __u;
     _gecmisCache = __g;
     _seriCache = new Map();
-    _puanCache = new Map(__p.map(r => [r._sid, r]));
+    _puanCache = __p === null ? null : new Map(__p.map(r => [r._sid, r]));
   })()`);
 }
 const U = (sid, ad, kat, mf) => ({ _id: sid, _sid: sid, ad, ana_kategori: kat, market_fiyatlari: mf,
@@ -157,44 +262,265 @@ const U = (sid, ad, kat, mf) => ({ _id: sid, _sid: sid, ad, ana_kategori: kat, m
 const dus = (m, eski, yeni, gunOnce) => [{ t: G(90), m, f: eski }, { t: G(gunOnce), m, f: yeni }];
 const sabit = (m, f) => [{ t: G(90), m, f }];
 const SUPHE = sid => ({ _sid: sid, indirim_supheli_puan: 5, indirim_supheli_sebepler: ['kisa_zirve'] });
+const havuz = () => ic('dusenHavuzu()');
+const ozet = h => JSON.stringify(h.map(x => ({ s: x.u._sid, y: x.yuzde, n: x.normal, m: x.market })));
 {
   kur([U('p1', 'Aaa Bisküvi', 'Bisküvi', [{ market: 'migros', fiyat: 80 }, { market: 'a101', fiyat: 75 }]),
-       U('p2', 'Bbb Bisküvi', 'Bisküvi', [{ market: 'migros', fiyat: 80 }, { market: 'a101', fiyat: 85 }])],
+       U('p2', 'Bbb Bisküvi', 'Bisküvi', [{ market: 'migros', fiyat: 80 }, { market: 'a101', fiyat: 100 }])],
       { p1: [...dus('migros', 100, 80, 3), ...sabit('a101', 75)],
-        p2: [...dus('migros', 100, 80, 3), ...sabit('a101', 85)] });
-  const sid = ic('dusenHavuzu()').map(x => x.u._sid);
+        p2: [...dus('migros', 100, 80, 3), ...sabit('a101', 100)] });
+  const sid = havuz().map(x => x.u._sid);
   ok('baska market daha ucuzsa (kart o fiyati gosterir) GIRMIYOR', !sid.includes('p1'), sid.join(','));
   ok('  kontrol: indirimli market en ucuzsa GIRIYOR', sid.includes('p2'), sid.join(','));
 }
 {
   kur([U('p3', 'Ccc Deterjan', 'Deterjan', [{ market: 'migros', fiyat: 70 }, { market: 'carrefour', fiyat: 70 }])],
       { p3: [...dus('migros', 100, 70, 3), ...dus('carrefour', 90, 70, 2)] });
-  const h = ic('dusenHavuzu()');
+  const h = havuz();
   ok('iki markette dusen urun TEK kayit', h.length === 1, h.length);
-  ok('  en derin indirimli market secildi (migros %30, carrefour %22)', h[0] && h[0].market === 'migros' && h[0].yuzde === 30,
-     h[0] && (h[0].market + ' %' + h[0].yuzde));
+  ok('  market: kendi normaline gore en derin dusen (migros %30 > carrefour %22); rozet URUN duzeyi (olagan en ucuz 90 -> 70 = %22)',
+     h[0] && h[0].market === 'migros' && h[0].yuzde === 22, h[0] && (h[0].market + ' %' + h[0].yuzde));
+}
+{
+  kur([U('t1', 'Ttt Çay', 'Çay', [{ market: 'sok', fiyat: 80 }])], { t1: dus('sok', 100, 80, 2) });
+  ic('catCache.test2 = [catCache.test[0]]');
+  ok('ayni urun iki kategoride olsa da havuzda TEK kayit', havuz().length === 1);
+}
+{
+  // DALIN VAKASI: Migros 160 -> 80 (kendi normaline gore %50) ama bugun de
+  // satan Carrefour hep 90'di: urunun olagan en ucuzu 90 -> gercek dusus %11.
+  // Indirim 2 GUNDUR goruluyor: marketin kendi dususu %50 oldugu icin (h)
+  // teyidi ilk gunku karti zaten eler; bu vaka URUN duzeyini olcuyor.
+  kur([U('d1', 'Dalin Kolonya', 'Kolonya', [{ market: 'migros', fiyat: 80 }, { market: 'carrefour', fiyat: 90 }])],
+      { d1: [...dus('migros', 160, 80, 3), ...sabit('carrefour', 90)], vz: [{ t: G(2), m: 'bim', f: 1 }] });
+  const h = havuz();
+  ok('rozet URUNUN olagan en ucuzuna gore (Migros kendine gore %50; urun 90 -> 80 = %11)',
+     h.length === 1 && h[0].yuzde === 11 && h[0].normal === 90 && h[0].market === 'migros', ozet(h));
+}
+{
+  // (n) ayni Dalin vakasi, gecmis fiyatlari DIZE.
+  kur([U('d2', 'Dalin Kolonya', 'Kolonya', [{ market: 'migros', fiyat: 80 }, { market: 'carrefour', fiyat: 90 }])],
+      { d2: [{ t: G(90), m: 'migros', f: '160' }, { t: G(3), m: 'migros', f: '80' }, { t: G(90), m: 'carrefour', f: '90' }],
+        vz: [{ t: G(2), m: 'bim', f: 1 }] });
+  const h = havuz();
+  ok('gecmis fiyatlari DIZE olsa da urunun en ucuzu dogru (%11, normal SAYI)',
+     h.length === 1 && h[0].yuzde === 11 && h[0].normal === 90 && typeof h[0].normal === 'number', ozet(h));
+}
+{
+  // Yakin alternatif yalniz BASKA marketler: ayni marketin 5 gun once biten
+  // eski indirimi (80, sonra 5 gun 100 -- kopru esiginin ustu, gercek mola)
+  // bu haftaki yeni indirimi silmemeli.
+  kur([U('o2', 'Ooo Makarna', 'Makarna', [{ market: 'migros', fiyat: 80 }])],
+      { o2: [{ t: G(90), m: 'migros', f: 100 }, { t: G(12), m: 'migros', f: 80 },
+             { t: G(7), m: 'migros', f: 100 }, { t: G(2), m: 'migros', f: 80 }] });
+  const h = havuz();
+  ok('ayni marketin 5 gun once biten eski indirimi yeni indirimi SILMIYOR (yakin alternatif yalniz baska marketler)',
+     h.length === 1 && h[0].yuzde === 20 && h[0].baslangic === G(2), ozet(h));
+}
+{
+  // COLGATE DESENI: Migros 250 -> 130 ama bugun de satan BIM hep 135.
+  kur([U('c1', 'Colgate Macun', 'Diş', [{ market: 'migros', fiyat: 130 }, { market: 'bim', fiyat: 135 }])],
+      { c1: [...dus('migros', 250, 130, 2), ...sabit('bim', 135)] });
+  ok('urunun en ucuz fiyati %10 dusmediyse GIRMIYOR (Migros kendine gore %48 olsa da)', havuz().length === 0);
+}
+{
+  // CIKMIS MARKET: Carrefour gecmiste 60'a satiyordu, BUGUN satmiyor. Gecmiste
+  // "cikis" kaydi olmadigi icin carry-forward onu sonsuza tasirdi.
+  kur([U('e1', 'Eee Kahve', 'Kahve', [{ market: 'migros', fiyat: 80 }])],
+      { e1: [...dus('migros', 100, 80, 2), ...sabit('carrefour', 60)] });
+  const h = havuz();
+  ok('artik SATMAYAN marketin eski fiyati olagan en ucuza SAYILMIYOR', h.length === 1 && h[0].yuzde === 20, ozet(h));
+}
+{
+  // OMO DESENI + ilan yolu HAVUZ duzeyinde: Migros'un gecmisi kisa, ilan 100 -> 60
+  // (%40); bugun de satan Carrefour hep 120 -> urun duzeyinde %50. Rozet KUCUGU.
+  kur([U('o1', 'Omo Deterjan', 'Deterjan', [{ market: 'migros', fiyat: 60, liste_fiyat: 100 }, { market: 'carrefour', fiyat: 120 }])],
+      { o1: [{ t: G(10), m: 'migros', f: 100 }, { t: G(2), m: 'migros', f: 60 }, ...sabit('carrefour', 120)] });
+  const h = havuz();
+  ok('ilan yolu HAVUZDA calisiyor ve rozet iki olcunun KUCUGU (%40; urun duzeyi %50 abartirdi)',
+     h.length === 1 && h[0].kaynak === 'ilan' && h[0].yuzde === 40 && h[0].normal === 100,
+     JSON.stringify(h[0] && { k: h[0].kaynak, y: h[0].yuzde, n: h[0].normal }));
+}
+{
+  // Tek marketli, 18 gunluk gecmisli yeni urun, ilanla: urun referansi icin
+  // 30 gun beklenseydi bu urunler seritten duserdi.
+  kur([U('i1', 'Iii Kahve', 'Kahve', [{ market: 'migros', fiyat: 60, liste_fiyat: 100 }])],
+      { i1: [{ t: G(20), m: 'migros', f: 100 }, { t: G(2), m: 'migros', f: 60 }] });
+  const h = havuz();
+  ok('tek marketli, 18 gun gecmisli ilan urunu GIRIYOR (%40)', h.length === 1 && h[0].yuzde === 40 && h[0].kaynak === 'ilan', ozet(h));
+}
+{
+  // (i) YAKIN ALTERNATIF: BIM 20 gundur 60 TL; Migros 2 gun once 100 -> 60.
+  // Alisverisci o fiyati haftalardir BIM'de odeyebiliyordu -> "bu hafta dustu" DEGIL.
+  kur([U('a1', 'Aaa Makarna', 'Makarna', [{ market: 'migros', fiyat: 60 }, { market: 'bim', fiyat: 60 }])],
+      { a1: [...dus('migros', 100, 60, 2), ...dus('bim', 100, 60, 22)] });
+  ok('baska markette HAFTALARDIR ayni ucuz fiyat varsa GIRMIYOR', havuz().length === 0, ozet(havuz()));
+  kur([U('a2', 'Bbb Makarna', 'Makarna', [{ market: 'migros', fiyat: 60 }, { market: 'bim', fiyat: 60 }])],
+      { a2: [...dus('migros', 100, 60, 2), ...dus('bim', 100, 60, 1)] });
+  const h = havuz();
+  ok('  kontrol: BIM ancak Migros dustukten SONRA indi -> GIRIYOR (%40, daha uzun suren Migros)',
+     h.length === 1 && h[0].yuzde === 40 && h[0].market === 'migros', ozet(h));
+}
+{
+  // (j) AYKIRI FILTRE: Migros 100 -> 11; BIM hep 56. Iki markette 5 kat kurali
+  // BIM'i "aykiri yuksek" sayip gizliyor, ama BIM urunun olagan fiyatinin KANITI.
+  kur([U('x1', 'Xxx Deterjan', 'Deterjan', [{ market: 'migros', fiyat: 11 }, { market: 'bim', fiyat: 56 }])],
+      { x1: [...dus('migros', 100, 11, 3), ...sabit('bim', 56)], vz: [{ t: G(2), m: 'bim', f: 1 }] });
+  const h = havuz();
+  ok('aykiri fiyat filtresi urunun referansini ETKILEMIYOR (%80, normal 56; filtreyle %89 cikiyordu)',
+     h.length === 1 && h[0].yuzde === 80 && h[0].normal === 56, ozet(h));
+}
+{
+  // Marketler arasi EN UCUZ (siraya bagli degil): Carrefour'un kayitlari ONCE;
+  // eski gunlerde 110, son 20 gunde 200. Migros 150 -> 100. Olagan en ucuz 110
+  // -> gercek dusus %9 -> girmemeli. "Son islenen market kazanir" hatasi 150 alirdi.
+  kur([U('k1', 'Kkk Şampuan', 'Şampuan', [{ market: 'migros', fiyat: 100 }, { market: 'carrefour', fiyat: 200 }])],
+      { k1: [{ t: G(90), m: 'carrefour', f: 110 }, { t: G(22), m: 'carrefour', f: 200 },
+             { t: G(90), m: 'migros', f: 150 }, { t: G(2), m: 'migros', f: 100 }] });
+  ok('urunun olagan en ucuzu marketlerin gunluk EN UCUZU (kayit sirasina bagli degil)', havuz().length === 0, ozet(havuz()));
+}
+{
+  // UST ORTANCA (cift sayi, iki seviye): gunluk en ucuz 33 gun 90 + 33 gun 100.
+  kur([U('m1', 'Mmm Süt', 'Süt', [{ market: 'migros', fiyat: 80 }, { market: 'bim', fiyat: 100 }])],
+      { m1: [...dus('migros', 100, 80, 2), { t: G(90), m: 'bim', f: 90 }, { t: G(35), m: 'bim', f: 100 }] });
+  const h = havuz();
+  ok('urun referansi UST ortanca (33 gun 90 + 33 gun 100 -> 100, %20)', h.length === 1 && h[0].yuzde === 20, ozet(h));
 }
 {
   kur([U('p4', 'Ddd Şampuan', 'Şampuan', [{ market: 'bim', fiyat: 80 }]),
        U('p5', 'Eee Şampuan', 'Şampuan', [{ market: 'bim', fiyat: 80 }])],
       { p4: dus('bim', 100, 80, 3), p5: dus('bim', 100, 80, 3) }, [SUPHE('p4')]);
-  const sid = ic('dusenHavuzu()').map(x => x.u._sid);
+  const sid = havuz().map(x => x.u._sid);
   ok('sahte indirim SUPHESI olan urun GIRMIYOR ("dikkat" seridinde)', !sid.includes('p4'), sid.join(','));
   ok('  kontrol: ayni desen, suphesiz urun GIRIYOR', sid.includes('p5'), sid.join(','));
 }
 {
-  kur([U('p6', 'Fff Kahve', 'Kahve', [{ market: 'sok', fiyat: 60 }]),
-       U('p7', 'Ggg Çay', 'Çay', [{ market: 'sok', fiyat: 160 }]),
-       U('p8', 'Hhh Süt', 'Süt', [{ market: 'sok', fiyat: 80 }])],
-      { p6: dus('sok', 100, 60, 2), p7: dus('sok', 200, 160, 2), p8: dus('sok', 100, 80, 2) });
-  const sid = ic('dusenHavuzu()').map(x => x.u._sid).join(',');
-  ok('siralama: once indirim yuzdesi, esitlikte TL tasarrufu (p6 %40, p7 %20/40 TL, p8 %20/20 TL)', sid === 'p6,p7,p8', sid);
+  // (b) HAM PUAN: supheliDurum yalniz 30 gunluk "en ucuz" seride (TUM
+  // marketler, cikmislar dahil) indirim gorurse devreye giriyor. Artik satmayan
+  // Carrefour'un eski 75'i o seride kaliyor -> dusus %2,7 -> supheliDurum null.
+  const urun = U('s1', 'Sss Şampuan', 'Şampuan', [{ market: 'migros', fiyat: 73 }]);
+  const g = { s1: [...dus('migros', 100, 73, 3), ...sabit('carrefour', 75)] };
+  kur([urun], g, [{ _sid: 's1', indirim_supheli_puan: 6, indirim_supheli_sebepler: ['tekrarli_dongu'] }]);
+  ok('  (vaka supheliDurum kapisindan GERCEKTEN kaciyor)', cagir('supheliDurum(__v)', urun) === null);
+  ok('supheli PUANI olan urun, supheliDurum rozet cizmese de GIRMIYOR', havuz().length === 0);
+  kur([urun], g);
+  ok('  kontrol: ayni vaka puansiz GIRIYOR', havuz().length === 1);
+}
+{
+  const u = [U('z1', 'Zzz Kek', 'Kek', [{ market: 'bim', fiyat: 80 }])], g = { z1: dus('bim', 100, 80, 2) };
+  kur(u, g, [{ _sid: 'z1', indirim_supheli_puan: 2, indirim_supheli_sebepler: [] }]);
+  ok('supheli puani TAM 2 olan urun GIRMIYOR (en kalabalik grup: 598 urun)', havuz().length === 0);
+  kur(u, g, [{ _sid: 'z1', indirim_supheli_puan: 1, indirim_supheli_sebepler: [] }]);
+  ok('  puani 1 olan GIRIYOR', havuz().length === 1);
+}
+{
+  const urun = [U('n1', 'Nnn Kek', 'Kek', [{ market: 'bim', fiyat: 80 }])], g = { n1: dus('bim', 100, 80, 2) };
+  kur(urun, g, null);
+  const y = uyariYakala(() => ic('dusenHavuzu()'));
+  ok('supheli puanlari ALINAMAZSA havuz BOS (supheliler sessizce giremez)', y.sonuc.length === 0, y.sonuc.length);
+  ok('  ve konsola UYARI dusuyor', y.uyari.some(s => /dusenler/.test(s)), y.uyari.join(' | '));
+  kur(urun, g, []);
+  ok('  kontrol: puanlar yuklendiyse (bos da olsa) ayni urun GIRIYOR', havuz().length === 1);
 }
 {
   kur([U('p9', 'Iii Makarna', 'Makarna', [{ market: 'bim', fiyat: 50 }])], {});
-  let h = null, hata = null;
-  try { h = ic('dusenHavuzu()'); } catch (e) { hata = e; }
-  ok('gecmisi olmayan urun atlaniyor, hata yok', !hata && h && h.length === 0, hata && hata.message);
+  let y = null, hata = null;
+  try { y = uyariYakala(() => ic('dusenHavuzu()')); } catch (e) { hata = e; }
+  ok('fiyat gecmisi BOS yuklendiyse hata yok, havuz bos', !hata && y && y.sonuc.length === 0, hata && hata.message);
+  ok('  ve bu durum konsola UYARI olarak dusuyor', !!y && y.uyari.some(s => /dusenler/.test(s)), y && y.uyari.join(' | '));
+}
+{
+  // (m) BOZUK TARIH: baska bir urunde saatli tek bir kayit "veri gunu" olmamali.
+  kur([U('b1', 'Bbb Un', 'Un', [{ market: 'bim', fiyat: 80 }])],
+      { b1: dus('bim', 100, 80, 2), bozuk: [{ t: G(1) + 'T08:00:00', m: 'bim', f: 5 }] });
+  ok('bozuk tarihli TEK kayit seridi BOSALTMIYOR', havuz().length === 1, ozet(havuz()));
+}
+{
+  // Katalog sirasi TERS (p8 once): esitlik bozma kaldirilirsa p8 p7'nin onune gecer.
+  kur([U('p8', 'Hhh Süt', 'Süt', [{ market: 'sok', fiyat: 80 }]),
+       U('p6', 'Fff Kahve', 'Kahve', [{ market: 'sok', fiyat: 60 }]),
+       U('p7', 'Ggg Çay', 'Çay', [{ market: 'sok', fiyat: 160 }])],
+      { p6: dus('sok', 100, 60, 2), p7: dus('sok', 200, 160, 2), p8: dus('sok', 100, 80, 2) });
+  const sid = havuz().map(x => x.u._sid).join(',');
+  ok('siralama: once yuzde, esitlikte TL tasarrufu (katalog sirasi ters olsa da)', sid === 'p6,p7,p8', sid);
+}
+{
+  // Esitlikte TL tasarrufu GOSTERILEN referansa gore: u2 Migros'ta 200 -> 80
+  // ama Carrefour hep 100 (gercek tasarruf 20 TL); u1 150 -> 120 (30 TL).
+  kur([U('u2', 'Uuu Deterjan', 'Deterjan', [{ market: 'migros', fiyat: 80 }, { market: 'carrefour', fiyat: 100 }]),
+       U('u1', 'Vvv Deterjan', 'Deterjan2', [{ market: 'sok', fiyat: 120 }])],
+      { u2: [...dus('migros', 200, 80, 3), ...sabit('carrefour', 100)], u1: dus('sok', 150, 120, 2) });
+  const sid = havuz().map(x => x.u._sid).join(',');
+  ok('esitlikte TL tasarrufu marketin sisik normaline degil GOSTERILEN referansa gore (u1 30 TL > u2 20 TL)', sid === 'u1,u2', sid);
+}
+{
+  kur([U('y1', 'Yyy Un', 'Un', [{ market: 'a101', fiyat: 84.5 }])], { y1: dus('a101', 100, 84.5, 2) });
+  const h = havuz();
+  ok('yuzde YUVARLANIYOR (100 -> 84,5 = %15,5 -> 16)', h.length === 1 && h[0].yuzde === 16, h[0] && h[0].yuzde);
+}
+{
+  // YUVARLAMA SINIRLARI: %10 esigi yuvarlamadan ONCE, kayan nokta payiyla.
+  kur([U('r1', 'Rrr Un', 'Un', [{ market: 'migros', fiyat: 81 }, { market: 'carrefour', fiyat: 89.9 }])],
+      { r1: [...dus('migros', 100, 81, 2), ...sabit('carrefour', 89.9)] });
+  ok('gercek dusus %9,9 -> GIRMIYOR (yuvarlanip %10 sayilmiyor)', havuz().length === 0, ozet(havuz()));
+  kur([U('r2', 'Sss Un', 'Un', [{ market: 'migros', fiyat: 9.09 }, { market: 'carrefour', fiyat: 10.10 }])],
+      { r2: [...dus('migros', 13.13, 9.09, 2), ...sabit('carrefour', 10.10)] });
+  const h = havuz();
+  ok('  tam %10 (kayan noktada 9,999...) -> GIRIYOR', h.length === 1 && h[0].yuzde === 10, ozet(h));
+}
+{
+  // PENCERE VERININ SON GUNUNE BAGLI: veri 2 gun once bitiyor, indirim 8 gun
+  // once basladi -> verinin gunune gore 6 gun: "bu hafta".
+  kur([U('v1', 'Vvv Makarna', 'Makarna', [{ market: 'bim', fiyat: 80 }])],
+      { v1: dus('bim', 100, 80, 8), vz: [{ t: G(2), m: 'bim', f: 5 }] });
+  ok('varsayilan "bugun" = VERININ son gunu (indirim 8 gun once, veri 2 gun once bitiyor -> GIRIYOR)', havuz().length === 1);
+  ok('  kontrol: duvar saatiyle verilince 7 gunu asiyor -> girmiyor', ic('dusenHavuzu("' + G(0) + '")').length === 0);
+  kur([U('v2', 'Www Makarna', 'Makarna', [{ market: 'bim', fiyat: 80 }])],
+      { v2: dus('bim', 100, 80, 6), vz: [{ t: G(-5), m: 'bim', f: 5 }] });
+  ok('gelecek tarihli BOZUK kayit pencereyi ileri itmiyor (bugunle sinirli)', havuz().length === 1);
+}
+{
+  // TEYIT: marketin KENDI dususu %50 ve ustuyse (indirim_analiz.py'nin "asiri
+  // yuksek oran" siniri) DERIN fiyat en az 2 gundur gorulmeli.
+  const T = (sid, yeni, veriGunu) => {
+    const g = { [sid]: dus('migros', 100, yeni, 2) };
+    if (veriGunu != null) g.vz = [{ t: G(veriGunu), m: 'bim', f: 1 }];
+    kur([U(sid, 'T' + sid + ' Deterjan', 'Deterjan', [{ market: 'migros', fiyat: yeni }])], g);
+    return havuz().map(x => x.yuzde).join(',');
+  };
+  ok('%60 indirim YALNIZ son gun goruldu -> girmiyor (teyit bekliyor)', T('w1', 40) === '');
+  ok('  ayni indirim IKINCI gununde -> giriyor', T('w2', 40, 1) === '60');
+  ok('  sinir: tam %50 de teyit istiyor', T('w3', 50) === '');
+  ok('  %40 teyit istemiyor (ilk gun giriyor)', T('w4', 60) === '40');
+  ok('  %49,6 yuvarlaninca %50 -> teyit istiyor', T('w5', 50.4) === '');
+  ok('  %49,4 yuvarlaninca %49 -> ilk gun giriyor', T('w6', 50.6) === '49');
+}
+{
+  // (h) dun %4'luk adim (96), bugun 40: kosu dun basladi ama DERIN fiyat 1 gunluk.
+  kur([U('h1', 'Hhh Deterjan', 'Deterjan', [{ market: 'migros', fiyat: 40 }])],
+      { h1: [{ t: G(90), m: 'migros', f: 100 }, { t: G(3), m: 'migros', f: 96 }, { t: G(2), m: 'migros', f: 40 }] });
+  ok('teyit DERIN fiyatin kac gundur goruldugune bakiyor (dun hafif indirim, bugun %60 -> girmiyor)', havuz().length === 0, ozet(havuz()));
+}
+{
+  // (h) Migros bugun 100 -> 20 (kendi dususu %80), BIM hep 36 -> gosterilen %44.
+  // Hata olabilecek tek gunluk fiyat teyitsiz kartta basilmamali.
+  const u = [U('h2', 'Hhh Kahve', 'Kahve', [{ market: 'migros', fiyat: 20 }, { market: 'bim', fiyat: 36 }])];
+  kur(u, { h2: [...dus('migros', 100, 20, 2), ...sabit('bim', 36)] });
+  ok('teyit MARKETIN KENDI dususune bakiyor (%80 ilk gun; gosterilen %44 olsa da girmiyor)', havuz().length === 0, ozet(havuz()));
+  kur(u, { h2: [...dus('migros', 100, 20, 2), ...sabit('bim', 36)], vz: [{ t: G(1), m: 'bim', f: 1 }] });
+  const h = havuz();
+  ok('  ikinci gunde giriyor (%44)', h.length === 1 && h[0].yuzde === 44, ozet(h));
+}
+{
+  // Esit yuzdede market secimi SIRAYA BAGLI DEGIL: ikisi de 100 -> 40; Migros
+  // bugun indi (1 gun), Carrefour 4 gundur. Daha uzun gorulen secilir (teyitli).
+  const g = { e2: [...dus('migros', 100, 40, 1), ...dus('carrefour', 100, 40, 4)] };
+  for (const sira of [['migros', 'carrefour'], ['carrefour', 'migros']]) {
+    kur([U('e2', 'Eee Deterjan', 'Deterjan', sira.map(m => ({ market: m, fiyat: 40 })))], g);
+    const h = havuz();
+    ok('esit yuzdede daha uzun suren market secilir (sira ' + sira.join('>') + ')',
+       h.length === 1 && h[0].market === 'carrefour' && h[0].yuzde === 60, ozet(h));
+  }
 }
 {
   const mk = ['migros', 'carrefour', 'a101', 'bim', 'sok', 'hakmar', 'tarim_kredi', 'migros', 'carrefour', 'a101'];
@@ -209,13 +535,13 @@ const SUPHE = sid => ({ _sid: sid, indirim_supheli_puan: 5, indirim_supheli_sebe
   const sec = ic('dusenSecHavuzdan(dusenHavuzu())').map(x => x.u._sid);
   ok('en ustteki 4 aday supheli olsa da serit 6 kartla DOLUYOR', sec.length === 6 && sec.every(s => +s.slice(1) >= 4), sec.join(','));
   kur(urun, g, urun.map(u => SUPHE(u._sid)));
-  ok('hepsi supheliyse havuz BOS', ic('dusenHavuzu()').length === 0);
+  ok('hepsi supheliyse havuz BOS', havuz().length === 0);
 }
 
 // ─────────────────────────────────────────────────────────────────────
 console.log('\n=== 3. SECIM: cesitlilik (marka<=1, alt kategori<=2, market<=2) ===');
 const A = (ad, kat, market, yuzde) => ({ u: { ad, ana_kategori: kat }, market, yuzde });
-const sec = havuz => cagir('dusenSecHavuzdan(__v)', havuz).map(x => x.u.ad);
+const sec = h => cagir('dusenSecHavuzdan(__v)', h).map(x => x.u.ad);
 {
   const s = sec([A('Kent Jelibon A', 'Şeker', 'a101', 64), A('Kent Jelibon B', 'Şeker', 'a101', 64),
                  A('Kent Jelibon C', 'Şeker2', 'migros', 60), A('Ülker Çikolata', 'Çikolata', 'bim', 50)]);
@@ -253,7 +579,7 @@ const sec = havuz => cagir('dusenSecHavuzdan(__v)', havuz).map(x => x.u.ad);
 }
 
 // ─────────────────────────────────────────────────────────────────────
-console.log('\n=== 4. ESKI RPC YOLU EMEKLI ===');
+console.log('\n=== 4. ESKI RPC YOLU EMEKLI + TEK KAYNAK SOZLESMELERI ===');
 {
   const APP_T = kodTemiz(APP), URET_T = kodTemiz(URET);
   ok('app.js get_fiyat_dusenler CAGIRMIYOR', !/get_fiyat_dusenler/.test(APP_T));
@@ -261,10 +587,71 @@ console.log('\n=== 4. ESKI RPC YOLU EMEKLI ===');
   ok('build (anasayfa-uret) get_fiyat_dusenler CAGIRMIYOR', !/get_fiyat_dusenler/.test(URET_T));
   ok('build AYNI secim kodunu cagiriyor: dusenSecHavuzdan(dusenHavuzu())',
      /dusenSecHavuzdan\(\s*dusenHavuzu\(\s*\)\s*\)/.test(URET_T));
+  // Build'in yazdigi alan adi degisse rozet "-%undefined" olurdu; cizim testi
+  // kendi verisini kurdugu icin gormezdi. Bicim tek fonksiyonda.
+  ok('build ve istemci AYNI kayit bicimi: dusenKayit (alan adi tek yerde)',
+     /dusenKayit\(/.test(URET_T) && /dusenKayit\(/.test(kodTemiz(govde('renderDusenlerSeridi'))));
+  const kk = ic('typeof dusenKayit') === 'function'
+    ? cagir('dusenKayit(__v)', { u: {}, yuzde: 30, market: 'migros', normal: 100, baslangic: '2026-09-09', kaynak: 'seri' }) : null;
+  ok('  dusenKayit cizimin okudugu alanlari veriyor (dusus_yuzde, market), karti tasimiyor',
+     !!kk && kk.dusus_yuzde === 30 && kk.market === 'migros' && kk.normal === 100 && !('u' in kk), JSON.stringify(kk));
+  const esik = /indirim_supheli_puan\s*<\s*(\d+)/.exec(govde('supheliDurum'));
+  ok('supheli puan esigi supheliDurum ile AYNI (DUSEN_SUPHE_PUAN)',
+     !!esik && +esik[1] === sabitDeger('DUSEN_SUPHE_PUAN'), (esik && esik[1]) + ' vs ' + sabitDeger('DUSEN_SUPHE_PUAN'));
+  const iA = PY.indexOf('"asiri_yuksek_oran"');
+  const pyEsik = /dusus_yuzde\s*>=\s*(\d+)/.exec(PY.slice(Math.max(0, iA - 200), iA));
+  ok('teyit esigi indirim_analiz.py "asiri yuksek oran" siniriyla AYNI (DUSEN_TEYIT_YUZDE)',
+     !!pyEsik && +pyEsik[1] === sabitDeger('DUSEN_TEYIT_YUZDE'), (pyEsik && pyEsik[1]) + ' vs ' + sabitDeger('DUSEN_TEYIT_YUZDE'));
+  // (l) Build puanlari BEKLEYEREK ve dusenler'den ONCE yuklemeli: yoksa
+  // (a) kurali geregi serit her gun bos cikardi.
+  const iPuan = URET_T.search(/await\s+ic\(\s*'supheliPuanlariYukle\(\)'\s*\)/);
+  const iDus = URET_T.search(/dusenSecHavuzdan\(\s*dusenHavuzu\(\s*\)\s*\)/);
+  ok('build supheli puanlarini BEKLEYEREK ve dusenler hesabindan ONCE yukluyor', iPuan >= 0 && iPuan < iDus, iPuan + ' / ' + iDus);
+  ok('build puanlari alamazsa CI\'da GORUNUR uyari basiyor (::warning), sessiz degil',
+     /::warning/.test(URET_T) && /_puanCache/.test(URET_T.slice(Math.max(0, URET_T.indexOf('::warning') - 400), URET_T.indexOf('::warning') + 50)));
 }
 
 // ─────────────────────────────────────────────────────────────────────
-console.log('\n=== 5. GERCEK VERI ("bugun" = verinin son gunu) ===');
+console.log('\n=== 4b. SUPHE PUANLARI YUKLEYICI (gercek fonksiyon, sahte sunucu) ===');
+{
+  // Sahte sunucu gercegi gibi: Range yoksa ilk 1000 satiri, varsa istenen
+  // dilimi (en fazla 1000) veriyor. araligiYoksay: sunucu range'i dinlemezse.
+  const sahteFrom = (toplam, hata, araligiYoksay) => function () {
+    const q = { _bas: null, _son: null,
+      select() { return q; }, gte() { return q; }, order() { return q; }, limit() { return q; },
+      range(a, b) { if (!araligiYoksay) { q._bas = a; q._son = b; } return q; },
+      then(res, rej) {
+        if (hata) return Promise.resolve({ data: null, error: { message: hata } }).then(res, rej);
+        const bas = q._bas == null ? 0 : q._bas;
+        const son = Math.min(q._son == null ? bas + 999 : q._son, bas + 999, toplam - 1);
+        const data = [];
+        for (let i = bas; i <= son; i++) data.push({ _sid: 'x' + i, indirim_supheli_puan: 2, indirim_supheli_sebepler: [], indirim_supheli_dusus_yuzde: 10 });
+        return Promise.resolve({ data, error: null }).then(res, rej);
+      } };
+    return q;
+  };
+  ctx.__eskiFrom = ic('window.supabaseClient.from');
+  const dene = async (toplam, hata, araligiYoksay) => {
+    ctx.__sahteFrom = sahteFrom(toplam, hata, araligiYoksay);
+    ic('window.supabaseClient.from = __sahteFrom; _puanCache = null');
+    return uyariYakalaAsync(() => ic('supheliPuanlariYukle()'));
+  };
+  try {
+    let y = await dene(1431);
+    ok('puanlar SAYFALI iniyor: 1431 satirin HEPSI (sunucu tek istekte 1000 veriyor)', ic('_puanCache ? _puanCache.size : -1') === 1431,
+       ic('_puanCache ? _puanCache.size : -1'));
+    y = await dene(0, 'sahte 503');
+    ok('sunucu hata donerse null ve konsola UYARI', y.sonuc === null && y.uyari.some(s => /\[supheli\]/.test(s)), y.uyari.join(' | '));
+    y = await dene(5000, null, true);
+    ok('sunucu araligi DINLEMEZSE sonsuz dongu yok: null + UYARI (yarim liste kullanilmiyor)',
+       y.sonuc === null && ic('_puanCache') === null && y.uyari.some(s => /\[supheli\]/.test(s)), y.uyari.join(' | '));
+  } finally {
+    ic('window.supabaseClient.from = __eskiFrom; _puanCache = null');
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────
+console.log('\n=== 5. GERCEK VERI ===');
 {
   ic(`(() => {
     for (const k of Object.keys(catCache)) delete catCache[k];
@@ -275,14 +662,16 @@ console.log('\n=== 5. GERCEK VERI ("bugun" = verinin son gunu) ===');
   await ic('gecmisVeriGetir()');
   const D = ic('(() => { let m = ""; for (const k in _gecmisCache) for (const e of _gecmisCache[k]) if (e && e.t > m) m = e.t; return m; })()');
   const t0 = Date.now();
-  const havuz = ic('dusenHavuzu("' + D + '")');
+  const hv = ic('dusenHavuzu("' + D + '")');
   const sure = Date.now() - t0;
-  console.log(`  (veri gunu ${D}, havuz ${havuz.length} urun, ${sure} ms)`);
-  ok('gercek veride havuz DOLU (olculen 693; alt sinir 20)', havuz.length >= 20, havuz.length);
+  console.log(`  (veri gunu ${D}, havuz ${hv.length} urun, ${sure} ms)`);
+  ok('gercek veride havuz DOLU (alt sinir 20)', hv.length >= 20, hv.length);
+  ok('varsayilan yol (build ve istemci) VERI GUNUYLE birebir ayni',
+     ic('dusenHavuzu()').map(x => x.u._sid).join() === hv.map(x => x.u._sid).join());
   const Dg = gunNo(D);
   const hatali = [];
   let onceki = Infinity, sirali = true;
-  for (const x of havuz) {
+  for (const x of hv) {
     const kartFiyat = Math.min(...x.u.market_fiyatlari.map(f => +f.fiyat).filter(f => f > 0));
     const b = gunNo(x.baslangic);
     if (!(b >= Dg - 6 && b <= Dg)) hatali.push('baslangic ' + x.baslangic + ' ' + x.u._sid);
@@ -290,18 +679,33 @@ console.log('\n=== 5. GERCEK VERI ("bugun" = verinin son gunu) ===');
     if (x.kaynak !== 'seri' && x.kaynak !== 'ilan') hatali.push('kaynak ' + x.kaynak);
     if (Math.abs(x.fiyat - kartFiyat) > 0.005) hatali.push('kart ' + x.fiyat + '!=' + kartFiyat + ' ' + x.u._sid);
     if (!(x.normal > x.fiyat)) hatali.push('normal ' + x.normal + '<=' + x.fiyat);
+    if (typeof x.normal !== 'number') hatali.push('normal sayi degil ' + x.u._sid);
+    const beklenen = Math.round(Math.min((x.pazarNormal - x.fiyat) / x.pazarNormal, (x.urunNormal - x.fiyat) / x.urunNormal) * 100);
+    if (x.yuzde !== beklenen) hatali.push('yuzde ' + x.yuzde + ' != iki olcunun kucugu ' + beklenen + ' ' + x.u._sid);
+    if (typeof x.pazarYuzde !== 'number' || typeof x.seviyeGun !== 'number') hatali.push('pazarYuzde/seviyeGun eksik ' + x.u._sid);
+    else if (x.pazarYuzde >= 50 && x.seviyeGun < 2) hatali.push('teyitsiz %' + x.pazarYuzde + ' ' + x.u._sid);
     if (x.yuzde > onceki) sirali = false;
     onceki = x.yuzde;
   }
-  ok('her kayit: indirim son 7 gunde basladi, >=%10, kaynak belli, kart fiyati = indirimli fiyat',
+  ok('her kayit: son 7 gunde basladi, >=%10, kart fiyati = indirimli fiyat, rozet iki olcunun KUCUGU, %50+ teyitli',
      hatali.length === 0, hatali.slice(0, 4).join(' | '));
   ok('havuz indirim yuzdesine gore AZALAN sirali', sirali);
-  const secim = cagir('dusenSecHavuzdan(__v)', havuz);
-  const say = f => secim.reduce((m, x) => { const k = f(x); m[k] = (m[k] || 0) + 1; return m; }, {});
-  ok('gercek veride serit 6 kartla doluyor', secim.length === 6, secim.length);
-  ok('  marka tekrari yok', Object.values(say(x => x.u.ad.trim().split(/\s+/)[0].toLocaleLowerCase('tr'))).every(n => n <= 1));
-  ok('  tek market en fazla 2 kart', Object.values(say(x => x.market)).every(n => n <= 2), JSON.stringify(say(x => x.market)));
-  ok('  alt kategori en fazla 2 kart', Object.values(say(x => x.u.ana_kategori)).every(n => n <= 2));
+  const secim = cagir('dusenSecHavuzdan(__v)', hv);
+  // Bagimsiz hesap: ayni kurallar elle. "Tam 6 kart" beklemek YANLIS KIRMIZI
+  // verebilirdi (indirimler 2 markette toplanirsa kural geregi daha az kart).
+  const lim = { kart: sabitDeger('DUSENLER_KART'), marka: sabitDeger('DUSEN_MARKA_MAX'),
+                kat: sabitDeger('DUSEN_KAT_MAX'), market: sabitDeger('DUSEN_MARKET_MAX') };
+  const beklenenSecim = [], sM = {}, sK = {}, sP = {};
+  for (const x of hv) {
+    if (beklenenSecim.length >= lim.kart) break;
+    const m = String(x.u.ad).trim().split(/\s+/)[0].toLocaleLowerCase('tr'), k = x.u.ana_kategori || '', p = x.market || '';
+    if ((sM[m] || 0) >= lim.marka || (sK[k] || 0) >= lim.kat || (sP[p] || 0) >= lim.market) continue;
+    sM[m] = (sM[m] || 0) + 1; sK[k] = (sK[k] || 0) + 1; sP[p] = (sP[p] || 0) + 1;
+    beklenenSecim.push(x.u._sid);
+  }
+  ok('secim BAGIMSIZ bir hesapla birebir ayni', secim.map(x => x.u._sid).join() === beklenenSecim.join(),
+     secim.map(x => x.u._sid).join() + ' vs ' + beklenenSecim.join());
+  ok('  gercek veride en az 1 kart var', secim.length >= 1, secim.length);
   ok('tum katalog taramasi build icin makul surede (<20 sn)', sure < 20000, sure + ' ms');
 }
 
@@ -313,15 +717,20 @@ console.log('\n=== 6. CIZIM: renderDusenlerSeridi ===');
     classList: { add: c => s.add(c), remove: c => s.delete(c), contains: c => s.has(c),
                  toggle: (c, z) => ((z === undefined ? !s.has(c) : z) ? s.add(c) : s.delete(c)) } }; };
   ctx.document.getElementById = id => (DOM[id] = DOM[id] || yeniEl());
-  ctx.__rpc = 0; ctx.__yukle = 0;
+  ctx.__rpc = 0; ctx.__yukle = 0; ctx.__puanHazir = [];
   ic('supabaseClient.rpc = function () { __rpc++; return Promise.resolve({ data: [], error: null }); }');
   ic('loadAllCats = async function () { __yukle++; }');
   ic('gecmisVeriGetir = async function () { return _gecmisCache; }');
-  ic('supheliPuanlariYukle = async function () { return _puanCache; }');
-  const ciz = async (anasayfa) => {
+  // Puanlar GERCEKTEN yuklenmeli: cizim once null baslatiliyor, bu sahte
+  // yukleyici cagrilmazsa _puanCache null kalir ve (a) geregi havuz bos cikar.
+  ic('supheliPuanlariYukle = async function () { if (!_puanCache) _puanCache = new Map(__puanHazir); return _puanCache; }');
+  // gizliBasla: gorunurluk degisiminin GERCEKTEN yapildigini olcmek icin olumlu
+  // vakalar gizli, olumsuz vakalar gorunur ve ESKI kartla basliyor.
+  const ciz = async (anasayfa, gizliBasla) => {
     ctx.__rpc = 0; ctx.__yukle = 0;
     DOM['home-dusenler'] = yeniEl(); DOM['home-dusenler-list'] = yeniEl();
-    DOM['home-dusenler'].classList.add('gizli');      // index.html'deki baslangic durumu
+    if (gizliBasla) DOM['home-dusenler'].classList.add('gizli');
+    DOM['home-dusenler-list'].innerHTML = 'ESKI_KART';
     ctx.__a = anasayfa;
     ic('_anasayfaCache = __a');
     await ic('renderDusenlerSeridi()');
@@ -332,37 +741,50 @@ console.log('\n=== 6. CIZIM: renderDusenlerSeridi ===');
          en_dusuk_fiyat: fiyat, market_fiyatlari: [{ market, fiyat }] },
     dusus_yuzde: yuzde, market, normal: 100, baslangic: G(2), kaynak: 'seri' });
   {
+    ic('delete productMap["r1"]; delete productMap["r3"]');
     const r = await ciz({ surum: 1, dusenler: [kart('r1', 'Rrr Kek', 'migros', 70, 30),
-      kart('r2', 'Sss Kek', 'bim', 85, 15), kart('r3', 'Ttt Kek', 'a101', 80, 20)] });
+      kart('r2', 'Sss Kek', 'bim', 85, 15), kart('r3', 'Ttt Kek', 'a101', 80, 20)] }, true);
     const n = (r.html.match(/class="strip-card"/g) || []).length;
-    ok('onceden hesaplanmis liste ciziliyor (3 kart)', n === 3, 'kart=' + n);
-    ok('  rozet MARKETI soyluyor (indirim artik market bazli)', /Migros/.test(r.html) && /BİM/.test(r.html), r.html.slice(0, 200));
-    ok('  %25 ve ustu buyuk rozet, alti normal rozet', /buyuk-kisa/.test(r.html) && /normal-kisa/.test(r.html));
-    ok('  serit gorunur', !r.gizli);
+    ok('onceden hesaplanmis liste ciziliyor (3 kart, eski kart gitti)', n === 3 && !/ESKI_KART/.test(r.html), 'kart=' + n);
+    ok('  rozet MARKETI soyluyor', /Migros/.test(r.html) && /BİM/.test(r.html), r.html.slice(0, 200));
+    ok('  serit GIZLI basladi, gorunur oldu', !r.gizli);
+    ok('  kartlar productMap\'e KAYITLI (dokununca detay acilsin)', ic('!!productMap["r1"] && !!productMap["r3"]'));
     ok('  RPC CAGRILMADI', ctx.__rpc === 0, ctx.__rpc);
     ok('  istemcide yeniden hesaplama YOK (katalog inmedi)', ctx.__yukle === 0, ctx.__yukle);
   }
   {
-    const r = await ciz({ surum: 1, dusenler: [] });
-    ok('bu hafta hic dusen yoksa serit GIZLI ve katalog yine INMEDI', r.gizli && ctx.__yukle === 0,
+    const r25 = await ciz({ surum: 1, dusenler: [kart('r5', 'Xxx Kek', 'bim', 75, 25)] }, true);
+    const r24 = await ciz({ surum: 1, dusenler: [kart('r6', 'Yyy Kek', 'bim', 76, 24)] }, true);
+    ok('rozet siniri: tam %25 BUYUK, %24 normal',
+       /buyuk-kisa/.test(r25.html) && !/normal-kisa/.test(r25.html) && /normal-kisa/.test(r24.html) && !/buyuk-kisa/.test(r24.html));
+  }
+  {
+    const r = await ciz({ surum: 1, dusenler: [] }, false);
+    ok('bu hafta hic dusen yoksa serit GIZLENIYOR (gorunur basladi) ve katalog INMEDI', r.gizli && ctx.__yukle === 0,
        'gizli=' + r.gizli + ' yukle=' + ctx.__yukle);
   }
   {
-    const r = await ciz({ surum: 1, dusenler: [kart('r4', 'Uuu Kek', '<img src=x>', 70, 30)] });
+    const r = await ciz({ surum: 1, dusenler: [kart('r4', 'Uuu Kek', '<img src=x>', 70, 30)] }, true);
     ok('market adi KACISLI basiliyor', /&lt;img/.test(r.html) && !/<img src=x>/.test(r.html), r.html.slice(0, 160));
   }
   {
     // GERIYE DUSUS: anasayfa.json yok -> istemcide AYNI kodla hesapla (zam seridiyle ayni yol).
     kur([U('f1', 'Vvv Kek', 'Kek', [{ market: 'migros', fiyat: 70 }])], { f1: dus('migros', 100, 70, 2) });
-    const r = await ciz(false);
-    ok('anasayfa.json yoksa istemcide hesaplanip ciziliyor', /Vvv Kek/.test(r.html) && !r.gizli && ctx.__yukle === 1,
-       'yukle=' + ctx.__yukle + ' ' + r.html.slice(0, 120));
+    ic('_puanCache = null; delete productMap["f1"]');
+    ctx.__puanHazir = [];
+    const r = await ciz(false, true);
+    ok('anasayfa.json yoksa istemcide hesaplanip ciziliyor (puanlar ONCE yukleniyor)',
+       /Vvv Kek/.test(r.html) && !r.gizli && ctx.__yukle === 1, 'yukle=' + ctx.__yukle + ' ' + r.html.slice(0, 120));
+    ok('  rozet dusenKayit alanlarindan (-%30 Migros)', /-%30/.test(r.html) && /Migros/.test(r.html), r.html.slice(0, 200));
+    ok('  geriye dususte de kart productMap\'e KAYITLI', ic('!!productMap["f1"]'));
     ok('  geriye dususte de RPC CAGRILMADI', ctx.__rpc === 0, ctx.__rpc);
   }
   {
-    kur([U('f2', 'Www Kek', 'Kek', [{ market: 'migros', fiyat: 70 }])], { f2: dus('migros', 100, 70, 2) }, [SUPHE('f2')]);
-    const r = await ciz(false);
-    ok('geriye dususte hepsi supheliyse serit GIZLI', r.gizli && !/Www Kek/.test(r.html));
+    kur([U('f2', 'Www Kek', 'Kek', [{ market: 'migros', fiyat: 70 }])], { f2: dus('migros', 100, 70, 2) });
+    ic('_puanCache = null');
+    ctx.__puanHazir = [['f2', SUPHE('f2')]];
+    const r = await ciz(false, false);
+    ok('geriye dususte hepsi supheliyse serit GIZLENIYOR', r.gizli && !/Www Kek/.test(r.html));
   }
 }
 

@@ -38,6 +38,9 @@ function supabaseIstemci(url, anahtar) {
       eq(k, v) { p.append(k, 'eq.' + v); return q; },
       order(k, o) { p.set('order', k + '.' + (o && o.ascending === false ? 'desc' : 'asc')); return q; },
       limit(n) { p.set('limit', String(n)); return q; },
+      // range(a, b): istemcinin KENDI sayfalamasi (supheliPuanlariYukle). Tek
+      // istek, offset+limit olarak; verilmezse eskisi gibi burada sayfalanir.
+      range(a, b) { p.set('offset', String(a)); p.set('limit', String(b - a + 1)); return q; },
       async _cek() {
         if (!p.has('select')) p.set('select', '*');
         const hepsi = [];

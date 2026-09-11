@@ -66,17 +66,28 @@ const tuzaklar = ic(`(() => {
 })()`);
 console.log(`[anasayfa] tuzaklar: ${tuzaklar.kirmizi.length} kirmizi + ${tuzaklar.sari.length} sari, ${Date.now() - tTuz} ms`);
 
-// ── SUPHELI PUANLARI (Supabase): dusenler elemesi ve "dikkat" seridi kullaniyor
-await ic('supheliPuanlariYukle()');
+// ── SUPHELI PUANLARI (Supabase): dusenler elemesi ve "dikkat" seridi kullaniyor.
+//    Puanlar yoksa dusenHavuzu bos doner (supheliler ayiklanamaz). Gecici bir
+//    ag hatasi seridi bir gun bos birakmasin diye iki kez daha deneniyor; yine
+//    alinamazsa CI'da GORUNUR uyari (::warning). Eskiden yalniz console.warn
+//    vardi: is yesil geciyor, serit bir gun sessizce bos kaliyordu.
+for (let deneme = 1; deneme <= 3; deneme++) {
+  await ic('supheliPuanlariYukle()');
+  if (ic('!!_puanCache')) break;
+  if (deneme < 3) await new Promise((r) => setTimeout(r, 3000));
+}
+if (!ic('!!_puanCache')) {
+  console.log('::warning title=Bu hafta dusenler bos::Supheli puanlari 3 denemede alinamadi (_puanCache yok); serit bos yazildi.');
+}
 
-// ── DUSENLER: olcut, supheli elemesi ve cesitlilik app.js'te (dusenHavuzu +
-//    dusenSecHavuzdan); burada yalniz cagri. Eskiden Supabase'deki bir RPC
-//    cagriliyordu -- zaman penceresi olmayan, tek gunluk hatali zirveye kanan
-//    bir olcut (bkz. app.js "BU HAFTA DUSENLER" bandi).
+// ── DUSENLER: olcut, supheli elemesi, cesitlilik VE kayit bicimi app.js'te
+//    (dusenHavuzu + dusenSecHavuzdan + dusenKayit); burada yalniz cagri.
+//    Istemcinin geriye dusus yolu AYNI dusenKayit'i kullaniyor -- alan adi
+//    tek yerde. Supheli puanlari yuklenemediyse dusenHavuzu uyari basip bos
+//    doner (sahte indirimler ayiklanamaz). Eskiden Supabase'deki bir RPC
+//    cagriliyordu (bkz. app.js "BU HAFTA DUSENLER" bandi).
 const tDus = Date.now();
-const dusenler = ic(`dusenSecHavuzdan(dusenHavuzu()).map(x => ({
-  u: _asKart(x.u), dusus_yuzde: x.yuzde, market: x.market,
-  normal: x.normal, baslangic: x.baslangic, kaynak: x.kaynak }))`);
+const dusenler = ic('dusenSecHavuzdan(dusenHavuzu()).map(x => Object.assign({ u: _asKart(x.u) }, dusenKayit(x)))');
 console.log(`[anasayfa] dusenler: ${dusenler.length} kart, ${Date.now() - tDus} ms`);
 
 const tSup = Date.now();
