@@ -123,7 +123,17 @@ console.log('\n=== 3. ISTEMCI MEMO\'LARI BOSALTIYOR (yoksa mesaj NO-OP) ===');
   // parantez sayarak kapaniyor -- bu depoda sabit pencere defalarca kaydi).
   const i = APP.indexOf("'DATA_UPDATED'");
   ok('DATA_UPDATED handler bulundu', i > 0);
-  const govde = APP.slice(i, i + 1400);
+  // Govde PARANTEZ SAYARAK cikariliyor. Ustteki aciklama bunu zaten soyluyordu
+  // ama kod SABIT 1400 karakterlik pencere kullaniyordu: handler'a iki satir
+  // yorum eklenince loadData() pencerenin DISINDA kaldi ve iddia YANLIS
+  // KIRMIZI verdi (2026-09-12). Bu depoda belgelenmis "sabit pencere" tuzagi.
+  let derinlik = 0, son = APP.length;
+  for (let j = i; j < APP.length; j++) {
+    const c = APP[j];
+    if (c === '{') derinlik++;
+    else if (c === '}') { if (derinlik === 0) { son = j + 1; break; } derinlik--; }
+  }
+  const govde = APP.slice(i, son);
   for (const [ad, degisken] of [
     ['anasayfa memo', '_anasayfaCache'],
     ['anasayfa ucus', '_anasayfaYukleniyor'],

@@ -42,9 +42,12 @@ ok('  modul kendi zam esigini UYDURMUYOR (disaridan aliyor)',
 console.log('\n=== 2. SEKME DELEGASYONLA BAGLI ===');
 const sekmeBlogu = (HTML.match(/<div class="firsat-tabs">[\s\S]*?<\/div>/) || [''])[0];
 ok('zam sekmesi var', /data-tab="zam"/.test(sekmeBlogu), sekmeBlogu.slice(0, 200));
-ok('  uc sekmenin UCU de data-tab tasiyor',
-   (sekmeBlogu.match(/data-tab="/g) || []).length === 3,
-   'bulunan=' + (sekmeBlogu.match(/data-tab="/g) || []).length);
+// Sayi SABITLENMIYOR (2026-09-11'de 4. sekme "Bu hafta dusenler" geldi): iddianin
+// ozu "sekmelerin HEPSI delegasyonla bagli" -- sekme sayisi kadar data-tab.
+const sekmeSayisi = (sekmeBlogu.match(/class="firsat-tab[ "]/g) || []).length;
+ok('  sekmelerin HEPSI data-tab tasiyor (en az 3)',
+   sekmeSayisi >= 3 && (sekmeBlogu.match(/data-tab="/g) || []).length === sekmeSayisi,
+   'sekme=' + sekmeSayisi + ' data-tab=' + (sekmeBlogu.match(/data-tab="/g) || []).length);
 // En onemlisi: sekme blogunda satir ici olay ozniteligi KALMADI.
 ok('  sekme blogunda satir ici olay ozniteligi YOK',
    !/\son[a-z]+=/i.test(sekmeBlogu), sekmeBlogu.slice(0, 200));

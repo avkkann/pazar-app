@@ -86,9 +86,16 @@ if (!ic('!!_puanCache')) {
 //    tek yerde. Supheli puanlari yuklenemediyse dusenHavuzu uyari basip bos
 //    doner (sahte indirimler ayiklanamaz). Eskiden Supabase'deki bir RPC
 //    cagriliyordu (bkz. app.js "BU HAFTA DUSENLER" bandi).
+//    Havuz BIR KEZ hesaplaniyor: serit (secim, en fazla DUSENLER_KART) ve
+//    Firsatlar > "Bu hafta dusenler" sekmesinin tam listesi (data/dusenler.json)
+//    AYNI havuzdan ve AYNI kayit bicimiyle. Iki ayri cagri iki ayri sonuc
+//    verebilirdi.
 const tDus = Date.now();
-const dusenler = ic('dusenSecHavuzdan(dusenHavuzu()).map(x => Object.assign({ u: _asKart(x.u) }, dusenKayit(x)))');
-console.log(`[anasayfa] dusenler: ${dusenler.length} kart, ${Date.now() - tDus} ms`);
+const DUSEN_KART_BICIMI = 'x => Object.assign({ u: _asKart(x.u) }, dusenKayit(x))';
+ic('globalThis.__dusenHavuz = dusenHavuzu()');
+const dusenler = ic(`dusenSecHavuzdan(__dusenHavuz).map(${DUSEN_KART_BICIMI})`);
+const dusenTum = ic(`__dusenHavuz.map(${DUSEN_KART_BICIMI})`);
+console.log(`[anasayfa] dusenler: ${dusenler.length} kart (tam liste ${dusenTum.length}), ${Date.now() - tDus} ms`);
 
 const tSup = Date.now();
 const supheli = await (async () => {
@@ -220,6 +227,19 @@ const hedef = D('data/anasayfa.json');
 fs.writeFileSync(hedef, JSON.stringify(cikti), 'utf8');
 const kb = fs.statSync(hedef).size / 1024;
 console.log(`[anasayfa] data/anasayfa.json yazildi: ${kb.toFixed(1)} KB ham  (toplam ${Date.now() - t0} ms)`);
+
+// ── TAM DUSENLER LISTESI: Firsatlar > "Bu hafta dusenler" sekmesi. Ana sayfa
+//    icin GEREKMIYOR (serit anasayfa.json'da); sekme acilinca TEMBEL iniyor,
+//    sw.js onbellegine alinmiyor. Saf build ciktisi, depoya girmiyor (.gitignore).
+//    olculdu: "OLCULEMEDI" ile "OLCULDU, SIFIR" AYRIMI. Supheli puanlari
+//    alinamazsa dusenHavuzu bilerek BOS donuyor (app.js) ve bu bayrak olmadan
+//    istemci bos listeyi "bu hafta hic dusen yok" diye OLCULMUS bir iddiaya
+//    ceviriyordu -- oysa altyapi arizasi. Deponun "iddia = olcum" kurali:
+//    bilinmeyen sey sifir diye yazilmaz.
+const dusenHedef = D('data/dusenler.json');
+const dusenOlculdu = ic('!!_puanCache');
+fs.writeFileSync(dusenHedef, JSON.stringify({ surum: 1, uretim: cikti.uretim, veri_tarihi: veriTarihi, olculdu: dusenOlculdu, dusenler: dusenTum }), 'utf8');
+console.log(`[anasayfa] data/dusenler.json yazildi: ${dusenTum.length} urun, ${(fs.statSync(dusenHedef).size / 1024).toFixed(1)} KB ham`);
 if (!zam.length && !tuzaklar.kirmizi.length && !dusenler.length && !supheli.length) {
   console.error('[anasayfa] UYARI: dort serit de bos — dosya yazildi ama istemci geriye dusecek');
   process.exit(1);

@@ -78,3 +78,9 @@ data/mercek.json
 # kosuyor -> dist'te her zaman taze. Commit'lenseydi gunluk veri kosusu her gece
 # 3,2 MB'lik bir dosyayi yeniden yazip git gecmisini sisirirdi.
 data/arama.json
+
+# data/dusenler.json — AYNI SINIF: Firsatlar > "Bu hafta dusenler" sekmesinin tam
+# listesi. scripts/anasayfa-uret.mjs her build'de seritle AYNI havuzdan uretiyor;
+# deploy zaten build kosuyor. Gece isi de uretiyor ama commit'lemiyor (git add
+# yalniz anasayfa.json + indirim_analiz_son.json).
+data/dusenler.json

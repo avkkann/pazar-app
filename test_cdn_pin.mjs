@@ -228,6 +228,7 @@ console.log('\n=== ONBELLEK BASLIGI: damgali varliklar IMMUTABLE, degisenler DEG
     ['/sw.js',                        'service worker (surum atlar)'],
     ['/manifest.json',                'PWA manifesti'],
     ['/data/anasayfa.json',           'her gece degisiyor'],
+    ['/data/dusenler.json',           'her gece degisiyor (tembel; sw onbelleginde degil)'],
     ['/data/hal.json',                'her gece degisiyor'],
     ['/static/fonts/inter-latin.woff2', 'adinda damga YOK; sw.js cacheFirst tutuyor'],
     ['/static/og-image.png',          'adinda damga YOK'],

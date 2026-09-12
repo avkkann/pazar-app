@@ -199,6 +199,10 @@
   <div id="home-dusenler" class="home-strip gizli">
     <div class="home-strip-head">
       <span class="home-strip-title">🔻 Bu hafta düşenler</span>
+      <!-- Serit en fazla 12 kart; tam liste Firsatlar > "Bu hafta dusenler"
+           sekmesinde. Dokunus app.js'te _firsatSekmesineGit delegasyonuyla
+           (satir ici handler sayaci kilitli). -->
+      <button type="button" class="home-strip-paylas" data-firsat-sekme="dusen">Tümünü gör</button>
     </div>
     <div class="home-strip-scroll" id="home-dusenler-list"></div>
   </div>
@@ -416,6 +420,7 @@
     <button class="firsat-tab active" data-tab="ucuz">💰 En Ucuz</button>
     <button class="firsat-tab" data-tab="tasarruf">En Tasarruflu</button>
     <button class="firsat-tab" data-tab="zam">📈 Zamlananlar</button>
+    <button class="firsat-tab" data-tab="dusen">🔻 Bu hafta düşenler</button>
   </div>
   <!-- Ay cipleri: icerik app.js'te anasayfa.json'daki zamAylik'ten uretiliyor.
        SABIT AY YAZILMIYOR -- veride hangi aylar varsa onlar cikiyor, yeni ay

@@ -79,7 +79,8 @@ console.log('\n=== 0. KONTROL GRUBU: sayac kor mu? ===');
 // ── TABAN ────────────────────────────────────────────────────────────────────
 // 2026-08-23 olcumu. Goc ilerledikce bu sayilar DUSURULUR (asla yukseltilmez);
 // yukseltmek gerekiyorsa once "neden yeni satir ici handler sart" sorusu cevaplanir.
-const TABAN = { 'index.html': 66, 'app.js': 51 };
+// 2026-09-11: index.html 66 -> 65 (olculdu; test kendisi "tabani dusur" diyordu).
+const TABAN = { 'index.html': 65, 'app.js': 51 };
 
 console.log('\n=== 1. SATIR ICI HANDLER SAYISI TABANI ASMASIN ===');
 let toplam = 0, tabanToplam = 0;

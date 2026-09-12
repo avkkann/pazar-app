@@ -3642,6 +3642,14 @@
 .firsat-badge-zam { background: var(--rozet-zam-bg); color: var(--rozet-zam-fg); }
 [data-theme="dark"] .firsat-badge-zam { background: var(--rozet-zam-bg-koyu); color: var(--rozet-zam-fg-koyu); }
 
+/* FIRSATLAR > BU HAFTA DÜŞENLER (4. sekme, 2026-09-11). YENİ RENK YOK: ana
+   sayfa şeridindeki indirim rozetiyle AYNI iki kademe (.indirim-rozet.normal /
+   .buyuk) — aynı ürün iki ekranda aynı renkte. Sınır app.js DUSEN_BUYUK_YUZDE. */
+.firsat-badge-dusen { background: var(--rozet-iyi-bg); color: var(--rozet-iyi-fg); }
+.firsat-badge-dusen--buyuk { background: var(--rozet-supheli-bg); color: var(--rozet-supheli-fg); }
+[data-theme="dark"] .firsat-badge-dusen { background: var(--rozet-iyi-bg-koyu); color: var(--rozet-iyi-fg-koyu); }
+[data-theme="dark"] .firsat-badge-dusen--buyuk { background: var(--rozet-supheli-bg-koyu); color: var(--rozet-supheli-fg-koyu); }
+
 /* Ay cipleri. .firsat-tabs ile AYNI yapisal desen (yatay kaydirilabilir,
    scrollbar gizli) -- ikinci bir kaydirma dili kurulmuyor. */
 .firsat-aylar {

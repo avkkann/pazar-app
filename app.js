@@ -4083,7 +4083,13 @@ function _kartaRozetEkle(html, rozetHTML, altHTML) {
 //  d) Pencere VERİNİN son gününe bağlı; duvar saati bir gün kaydırıyordu.
 //  e) %50 ve üstü indirim en az 2 gün görülmeli: tek günlük derin düşüşler
 //     kümeleniyor (22 Haziran'da Migros'ta 42 ürün aynı gün) — hata deseni.
-const DUSENLER_KART = 6;
+// Şerit 12 kart (2026-09-11, önce 6). Havuzun TAMAMI Fırsatlar > "Bu hafta
+// düşenler" sekmesinde (data/dusenler.json, tembel); şeridin "Tümünü gör"
+// düğmesi oraya götürüyor.
+const DUSENLER_KART = 12;
+// Rozet 2 kademe: bu yüzde ve üstü "büyük". Şerit ve Fırsatlar sekmesi AYNI
+// sınırı kullanıyor (aynı ürün iki ekranda farklı renkte görünmesin).
+const DUSEN_BUYUK_YUZDE = 25;
 const DUSEN_PENCERE_GUN = 7;        // indirim bu kadar gün içinde başlamış olmalı
 const DUSEN_NORMAL_GUN = 60;        // normal fiyat penceresi (bu haftadan önceki günler)
 const DUSEN_NORMAL_MIN_GUN = 30;    // normal için en az bu kadar BİLİNEN gün
@@ -4107,7 +4113,11 @@ const DUSEN_KESINTI_GUN = 3;
 // eklendi: yalnız marka/kategori kuralıyla ilk 6'nın 6'sı Carrefour çıkıyordu.
 const DUSEN_MARKA_MAX = 1;
 const DUSEN_KAT_MAX = 2;
-const DUSEN_MARKET_MAX = 2;
+// 12 kartta 2 -> 3 (ölçüldü 2026-09-11, 336 ürünlük havuz): 2'de 12. kart
+// havuzun 106. sırasından (-%25) geliyordu — şerit güçlü indirimleri atlayıp
+// dipten doluyordu; 3'te 50. sıradan (-%31), 5 market. 4'te 30. sıradan ama
+// 4 market kalıyor (12 kartın 8'i iki zincirden) — çeşitlilik kaybı.
+const DUSEN_MARKET_MAX = 3;
 
 // 'yyyy-aa-gg' + n gün. UTC aritmetiği: saat dilimi kaydırmaz.
 function _isoGunKaydir(iso, n) {
@@ -4323,8 +4333,13 @@ function dusenSecHavuzdan(havuz) {
 // KAYIT BİÇİMİ: build (anasayfa.json) ve istemcinin geriye düşüşü AYNI biçimi
 // üretiyor, çizim yalnız bunu okuyor. Alan adı TEK yerde — build'deki bir ad
 // değişikliği rozeti "-%undefined" yapardı ve çizim testi görmezdi.
+// fiyat ALANI EKLENDI (2026-09-12, inceleme bulgusu): Fırsatlar sekmesindeki
+// çizim indirimli fiyatı CANLI üründen okuyordu, yani tek kartta ÜÇ kaynak
+// vardı (rozet ve "normal" anlık görüntüden, okun sağ ucu katalogdan). Katalog
+// oturum boyunca yapışık kaldığı için (catCache hiç boşaltılmıyor) bayat fiyat
+// rozetle ÇELİŞEBİLİYORDU: "-%60" derken "249,90 ₺ → 249,90 ₺".
 function dusenKayit(x) {
-  return { dusus_yuzde: x.yuzde, market: x.market, normal: x.normal,
+  return { dusus_yuzde: x.yuzde, market: x.market, normal: x.normal, fiyat: x.fiyat,
            baslangic: x.baslangic, kaynak: x.kaynak };
 }
 
@@ -4356,7 +4371,7 @@ async function renderDusenlerSeridi() {
     if (!secilen.length) { wrap.classList.add('gizli'); return; }
     list.innerHTML = secilen.map(x => _kartaRozetEkle(
       _stripKartHTML(x.u, null),
-      indirimRozetiHTML({ tip: x.dusus_yuzde >= 25 ? 'buyuk' : 'normal', yuzde: x.dusus_yuzde }, true, x.market)
+      indirimRozetiHTML({ tip: x.dusus_yuzde >= DUSEN_BUYUK_YUZDE ? 'buyuk' : 'normal', yuzde: x.dusus_yuzde }, true, x.market)
     )).join('');
     wrap.classList.remove('gizli');
   } catch (e) { console.warn('[dusenler] serit cizilemedi, bolum gizlenecek:', e && e.message);
@@ -7008,18 +7023,53 @@ function goFirsatlar() {
   renderFirsatlar(_firsatAktifTab);
 }
 
-function firsatTab(tab, btn) {
+// Sekmeyi ISARETLE (durum + gorunum), CIZME. Sekme tiklamasi (firsatTab) ve
+// ana sayfadaki "Tumunu gor" (_firsatSekmesineGit) ikisi de buradan geciyor:
+// ikinci bir kopya zamanla sapardi.
+function _firsatSekmeIsaretle(tab, btn) {
   _firsatAktifTab = tab;
   document.querySelectorAll('.firsat-tab').forEach(b => b.classList.remove('active'));
   if (btn) btn.classList.add('active');
-  const ara = document.getElementById('firsatArama');
-  if (ara) ara.value = '';
-  window._firsatArama = '';
   // Ay cipleri YALNIZ zam sekmesinde. Diger sekmelerde gizli kalmali, yoksa
   // "En Ucuz"un ustunde anlamsiz bir ay secici durur.
   const ayKap = document.getElementById('firsatAylar');
   if (ayKap) ayKap.classList.toggle('gizli', tab !== 'zam');
+}
+
+function firsatTab(tab, btn) {
+  _firsatSekmeIsaretle(tab, btn);
+  const ara = document.getElementById('firsatArama');
+  if (ara) ara.value = '';
+  window._firsatArama = '';
   renderFirsatlar(tab);
+}
+
+// ANA SAYFA -> FIRSATLAR SEKMESI ("Tumunu gor"). Satir ici handler YOK (sayac
+// kilidi); document uzerinde tek dinleyici, asagidaki _firsatSekmeTikla deseni.
+// SIRA: once sekme ISARETLENIYOR, sonra goFirsatlar ekrani acip
+// _firsatAktifTab'i BIR KEZ ciziyor (firsatTab + goFirsatlar iki kez cizerdi).
+function _firsatSekmesineGit(e) {
+  const hedef = e.target && e.target.closest ? e.target.closest('[data-firsat-sekme]') : null;
+  if (!hedef) return;
+  const tab = hedef.dataset.firsatSekme;
+  // Secici metin birlestirilerek KURULMUYOR: dugmeler taraniyor, veri secici olmuyor.
+  const btn = [...document.querySelectorAll('.firsat-tab[data-tab]')].find(b => b.dataset.tab === tab);
+  if (!btn) { console.warn('[firsat] boyle bir sekme yok, Firsatlar acilmadi:', tab); return; }
+  _firsatSekmeIsaretle(tab, btn);
+  goFirsatlar();
+  _firsatSekmeGorunur(btn);
+}
+document.addEventListener('click', _firsatSekmesineGit);
+
+// Sekme cubugu yatay kayiyor; 4. sekme dar ekranda disarida kalabilir ve
+// "Tumunu gor"dan gelen kullanici hangi sekmede oldugunu GORMELI. Yalniz cubuk
+// kaydiriliyor, sayfa degil (scrollIntoView sayfayi da kaydirabilirdi).
+function _firsatSekmeGorunur(btn) {
+  const cubuk = btn && btn.parentElement;
+  if (!cubuk || !cubuk.clientWidth) return;
+  const sol = btn.offsetLeft, sag = sol + btn.offsetWidth;
+  if (sol >= cubuk.scrollLeft && sag <= cubuk.scrollLeft + cubuk.clientWidth) return;
+  cubuk.scrollLeft = Math.max(0, sag - cubuk.clientWidth);
 }
 
 // Sekme + ay cipi DELEGASYONU. Satir ici handler EKLENMIYOR (sayac kilidi 117).
@@ -7074,10 +7124,18 @@ function renderFirsatlar(tab) {
   const container = document.getElementById('firsatContent');
   if (!container) return;
   container.innerHTML = '<div class="firsat-loading">⏳ Yükleniyor...</div>';
+  // OZET CIPI DE SIFIRLANIYOR: onceden gec gelen cevaba kadar ONCEKI sekmenin
+  // sayisi ekranda kaliyordu -- "En Ucuz" sekmesinde "336 Düşen ürün" yaziyordu
+  // (inceleme 2026-09-12). Yanlis ETIKETLI bir sayi, sayinin yoklugundan kotu.
+  const ozetKap = document.getElementById('firsatOzet');
+  if (ozetKap) ozetKap.innerHTML = '';
   // ZAM SEKMESI ERKEN DONUYOR: verisi anasayfa.json'da, ZATEN inmis durumda.
   // Asagidaki iki Supabase sorgusunu beklemek sekmeyi bosuna gecikirdi --
   // sekmenin build'de hesaplanmasinin sebebi tam da aninda acilmasiydi.
   if (tab === 'zam') { renderFirsatZam(container); return; }
+  // DUSENLER SEKMESI de erken donuyor: liste build'de hesaplandi
+  // (data/dusenler.json), Supabase gerekmiyor.
+  if (tab === 'dusen') { renderFirsatDusen(container); return; }
   // KUTUPHANE YOKSA: asagidaki iki sorgu try/catch DISINDA. Korumasiz
   // birakilirsa Supabase yuklenmediginde bu ekran TypeError ile oluyordu.
   // Zam sekmesi Supabase'e hic ihtiyac duymuyor (yukarida donuyor), o yuzden
@@ -7105,6 +7163,11 @@ function renderFirsatlar(tab) {
     .lt('fiyat_farki_yuzde', 70);
 
   Promise.all([ucuzQuery, tasarrufSayiQuery]).then(function(sonuclar) {
+    // YARIS KAPISI: cevap gelene kadar kullanici baska sekmeye gectiyse o
+    // sekmenin icerigini ve ozetini EZME. Sorgusuz acilan sekmeler (Zamlananlar,
+    // Bu hafta dusenler) aninda ciziliyor, bu cevap ise saniyeler sonra
+    // gelebiliyor -- ezerse kullanici bakarken liste siliniyor.
+    if (_firsatAktifTab !== tab) return;   // yaris kapisi: En Ucuz / En Tasarruflu
     const ucuzGruplari = sonuclar[0];
     const tasarrufSayi = sonuclar[1].count || 0;
     let ucuzSayi = 0;
@@ -7121,6 +7184,7 @@ function renderFirsatlar(tab) {
         .order('fiyat_farki_tl', { ascending: false })
         .limit(30)
         .then(function(res) {
+          if (_firsatAktifTab !== tab) return;   // ayni yaris kapisi
           renderFirsatTasarruf(container, res.data || []);
         });
     }
@@ -7147,7 +7211,11 @@ function _firsatBirimFiyat(u) {
 
 function _firsatKartHtml(u, badge, badgeClass, altText) {
   if (!u._id) u._id = u.ad + '_' + (u.agirlik_hacim||'');
-  _pmEkle(u);
+  // TAM urun KISA kartla EZILMIYOR -- _anasayfaKartlariKaydet ile AYNI kural.
+  // Onceden kosulsuz yaziyordu: daha once yuklenmis TAM urun (fiyat_gecmisi,
+  // seri, rozetler) kartin tasidigi kucuk nesneyle degistiriliyor ve detay
+  // veriyi yeniden indirmek zorunda kaliyordu.
+  if (!productMap[u._id] || productMap[u._id]._kisa) _pmEkle(u);
   const emoji = KAT_EMOJI[ustKategori(u.ana_kategori||'')] || '📦';
   const fiyat = u.en_dusuk_fiyat != null ? tlHTML(u.en_dusuk_fiyat) : '<span class="fp"><span class="fp-l">—</span></span>';
   const imgHtml = u.resim
@@ -7252,14 +7320,144 @@ document.addEventListener('load', _gorselYuklendi, true);
 function _firsatOzetGuncelle(ucuzSayi, tasarrufSayi, zamSayi) {
   const ozet = document.getElementById('firsatOzet');
   if (!ozet) return;
-  if (zamSayi != null) {
-    ozet.innerHTML =
-      '<div class="firsat-ozet-chip"><div class="firsat-ozet-sayi">'+zamSayi+'</div><div class="firsat-ozet-lbl">Zamlanan ürün</div></div>';
-    return;
-  }
+  if (zamSayi != null) { _firsatOzetTek(zamSayi, 'Zamlanan ürün'); return; }
   ozet.innerHTML = ''
     + '<div class="firsat-ozet-chip"><div class="firsat-ozet-sayi">'+ucuzSayi+'</div><div class="firsat-ozet-lbl">En Ucuz</div></div>'
     + '<div class="firsat-ozet-chip"><div class="firsat-ozet-sayi">'+tasarrufSayi+'</div><div class="firsat-ozet-lbl">Fiyat Farkı</div></div>';
+}
+
+// TEK SAYILI OZET (Zamlananlar, Bu hafta dusenler): o sekmenin KENDI sorusunun
+// sayisi. Sayi BILINMIYORSA hic cagrilmiyor -- "0" yazmak yanlis bilgi olurdu
+// (ustteki yorumun ayni gerekcesi).
+function _firsatOzetTek(sayi, etiket) {
+  const ozet = document.getElementById('firsatOzet');
+  if (!ozet) return;
+  ozet.innerHTML = '<div class="firsat-ozet-chip"><div class="firsat-ozet-sayi">' + Number(sayi)
+    + '</div><div class="firsat-ozet-lbl">' + _kacir(etiket) + '</div></div>';
+}
+
+// ── FIRSATLAR > BU HAFTA DUSENLER (tam liste) ─────────────────────────
+// Ana sayfa seridi en fazla DUSENLER_KART kart gosteriyor; seritteki
+// "Tumunu gor" buraya getiriyor. Liste build'de SERITLE AYNI havuzdan
+// uretiliyor (scripts/anasayfa-uret.mjs -> data/dusenler.json): olcut, supheli
+// elemesi ve kayit bicimi (dusenKayit) TEK yerde. Burada yeni bir "dusus nedir"
+// tanimi YOK -- yalnizca cizim.
+//
+// VERI TEMBEL: dosya yalnizca sekme acilinca iniyor (mercek.json ile ayni
+// gerekce) ve sw.js onbellegine ALINMIYOR; ana sayfa hafif kaliyor.
+let _dusenTumCache = null;
+let _dusenTumYukleniyor = null;
+
+async function dusenTumunuGetir() {
+  if (_dusenTumCache) return _dusenTumCache;
+  if (_dusenTumYukleniyor) return _dusenTumYukleniyor;
+  _dusenTumYukleniyor = (async () => {
+    try {
+      const r = await fetch('./data/dusenler.json');
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      const d = await r.json();
+      // BICIM KAPISI: uretici bicimi degistirirse burada DURUR (arama indeksi
+      // deseninin aynisi). Sessizce yanlis alan okumak bu depoda en pahali
+      // hata sinifi -- kullaniciya yanlis fiyat/urun gostermek demek.
+      if (!d || d.surum !== 1 || !Array.isArray(d.dusenler)) {
+        throw new Error('bicim taninmiyor: surum ' + (d && d.surum));
+      }
+      // Bayrak da tasiniyor: cizim "olculemedi" ile "olculdu, sifir"i ayirmak
+      // zorunda. Eski dosyada alan yoksa OLCULDU sayiliyor (bugunku davranis).
+      _dusenTumCache = { liste: d.dusenler, olculdu: d.olculdu !== false };
+    } catch (e) {
+      // SESSIZ YUTMA YOK ve HATA ONBELLEGE YAZILMIYOR: null kalinca sekme bir
+      // sonraki acilista yeniden deniyor. Bos dizi yazilsaydi truthy oldugu
+      // icin "yuklendi" sayilir ve liste oturum boyunca OLU kalirdi (catCache
+      // ve arama indeksinde yasanan kusurun aynisi).
+      console.warn('[dusenler] tam liste yuklenemedi, seritteki kartlarla devam ediliyor:', e && e.message);
+      _dusenTumCache = null;
+    }
+    return _dusenTumCache;
+  })().finally(() => { _dusenTumYukleniyor = null; });
+  return _dusenTumYukleniyor;
+}
+
+async function renderFirsatDusen(container) {
+  const tam = await dusenTumunuGetir();
+  let liste = tam && tam.liste;
+  // "OLCULEMEDI" ile "OLCULDU, SIFIR" AYRI SEY. Build supheli puanlarini
+  // alamazsa havuz bilerek BOS doniyor; bu bayrak olmadan bos liste "bu hafta
+  // hic dusen yok" diye OLCULMUS bir iddiaya donusuyordu (inceleme 2026-09-12).
+  // Bayrak yoksa (eski dosya) olculdu sayiliyor -- bugunku davranis.
+  let olculdu = !tam || tam.olculdu !== false;
+  let eksik = false;
+  if (!liste) {
+    // GERIYE DUSUS: tam liste inmediyse ana sayfanin ZATEN inmis seridi.
+    // Istemcide 14 MB katalog indirip yeniden hesaplama YOK (serit de oyle).
+    const on = await anasayfaVeriGetir();
+    liste = on && Array.isArray(on.dusenler) ? on.dusenler : null;
+    eksik = true;
+    olculdu = false;   // tam liste inmedi: "hic yok" diyecek dayanagimiz YOK
+  }
+  // YARIS KAPISI: indirme surerken kullanici baska sekmeye gectiyse onun
+  // icerigini EZME ("En Ucuz" yolunda da ayni kapi var).
+  if (_firsatAktifTab !== 'dusen') return;
+  const ozetKabi = document.getElementById('firsatOzet');
+  if (!liste) {
+    container.innerHTML = '<div class="state-msg">Bu hafta düşenler şu an yüklenemiyor. Bağlantını kontrol edip sayfayı yenile.</div>';
+    if (ozetKabi) ozetKabi.innerHTML = '';   // "0" YAZILMIYOR: sayi bilinmiyor, sifir degil
+    return;
+  }
+  // Rozet yalniz SAYI tasiyor: rozet ham HTML olarak basiliyor (_firsatKartHtml),
+  // sayi olmayan kayit hic cizilmiyor.
+  const gecerli = liste.filter(x => x && x.u && x.u._id && Number.isFinite(Number(x.dusus_yuzde)));
+  if (!gecerli.length) {
+    // Bos liste IKI AYRI sebepten gelebilir. Ikisini ayni cumleyle anlatmak
+    // altyapi arizasini OLCULMUS bir urun iddiasina cevirirdi ("0 Düşen ürün").
+    container.innerHTML = olculdu
+      ? '<div class="firsat-loading">Bu hafta gerçek bir fiyat düşüşü yakalanmadı.</div>'
+      : '<div class="state-msg">Bu hafta düşenler şu an ölçülemedi — liste bir sonraki güncellemede dolacak.</div>';
+    if (olculdu) _firsatOzetTek(0, 'Düşen ürün');
+    else if (ozetKabi) ozetKabi.innerHTML = '';   // "0" YAZILMIYOR: sayi bilinmiyor
+    return;
+  }
+  // Kartlar productMap'e "kisa" giriyor (dokununca detay acilsin). TAM urun
+  // zaten yuklendiyse EZILMIYOR ve kart onu ciziyor: _firsatKartHtml verdigimiz
+  // nesneyi productMap'e yaziyor, kisa karti verseydik tam urunu ezerdi.
+  _anasayfaKartlariKaydet(gecerli.map(x => x.u));
+  let html = '';
+  if (eksik) {
+    html += '<div class="state-msg">Tam liste yüklenemedi; ana sayfadaki ' + gecerli.length + ' ürün gösteriliyor.</div>';
+  }
+  html += '<div class="firsat-section"><div class="firsat-section-title">Son ' + DUSEN_PENCERE_GUN
+    + ' günde fiyatı düşen ' + gecerli.length + ' ürün</div>';
+  gecerli.forEach(function (x) {
+    // KART ANLIK GORUNTUDEN ciziliyor: rozet, okun iki ucu ve kartin fiyati
+    // AYNI kayittan gelsin. Onceden kart CANLI urunden (productMap[x.u._id])
+    // cozuluyordu; iki kusur birden vardi (inceleme 2026-09-12):
+    //  (a) _id KARARSIZ (slug_index; gece yeniden dizilince ayni index BASKA
+    //      urune denk gelebiliyor -- deponun kayitli tuzagi; sepet tarafinda
+    //      ayni sinif _sid ile cozulmustu),
+    //  (b) katalog oturum boyunca yapisik kaliyor (catCache hic bosaltilmiyor),
+    //      yani bayat fiyat rozetle CELISEBILIYORDU: "-%60" derken
+    //      "249,90 ₺ → 249,90 ₺". Rozetin abartmasi bu deponun en pahali hata
+    //      sinifi (Dalin "-%51" -> gercek %11).
+    const u = x.u;
+    const yuzde = Math.round(Number(x.dusus_yuzde));
+    const marketAd = MARKET_NAMES[x.market] || x.market || '';
+    // fiyat alani ESKI anasayfa.json'da yok; o zaman kartin kendi fiyatina
+    // dusuluyor (ikisi de ayni anlik goruntuden geldigi icin celismiyor).
+    const fiyat = x.fiyat != null ? x.fiyat : u.en_dusuk_fiyat;
+    // Alt metin REFERANSI da soyluyor: "-%30" tek basina neye gore oldugunu
+    // soylemiyor (zam sekmesindeki "zirve -> son fiyat" satiriyla ayni desen).
+    const alt = marketAd + ' · ' + tl(x.normal) + ' → ' + tl(fiyat);
+    // Rozet kademesi SERITLE AYNI sabitten (DUSEN_BUYUK_YUZDE): ayni urun iki
+    // ekranda farkli renkte gorunmesin.
+    const sinif = 'firsat-badge-dusen' + (yuzde >= DUSEN_BUYUK_YUZDE ? ' firsat-badge-dusen--buyuk' : '');
+    html += _firsatKartHtml(u, '-%' + yuzde, sinif, alt);
+  });
+  html += '</div>';
+  container.innerHTML = html;
+  // Tam liste inmediyse sayi BILINMIYOR: seritteki 12'yi "toplam" gibi yazmak
+  // yanlis bilgi olurdu.
+  if (eksik) { if (ozetKabi) ozetKabi.innerHTML = ''; }
+  else _firsatOzetTek(gecerli.length, 'Düşen ürün');
 }
 
 function renderFirsatUcuz(container, ucuzGruplari) {
@@ -7312,6 +7510,9 @@ function renderFirsatUcuz(container, ucuzGruplari) {
 // Boylece tiklama/klavye/sepet davranisi ucunde de birebir ayni.
 async function renderFirsatZam(container) {
   const on = await anasayfaVeriGetir();
+  // YARIS KAPISI: veri beklenirken baska sekmeye gecildiyse onun icerigini EZME
+  // (ayni kapi "En Ucuz" ve "Bu hafta dusenler" yollarinda da var).
+  if (_firsatAktifTab !== 'zam') return;
   const aylar = (on && on.zamAylik) || [];
   const ayKap = document.getElementById('firsatAylar');
 
@@ -8032,6 +8233,8 @@ if ('serviceWorker' in navigator) {
       // "Fiyatlar 1 Eylul 2026 verisi · 2 gun eski".
       _anasayfaCache = null; _anasayfaYukleniyor = null;
       _halCache = null; _halPromise = null;
+      // "Bu hafta dusenler" tam listesi de bayatlamasin (ayni build, ayni havuz).
+      _dusenTumCache = null; _dusenTumYukleniyor = null;
       // veriTazelikCiz'i anasayfaVeriGetir kendi icinde cagiriyor; loadData da
       // _anaEkraniCiz ile seritleri yeniden ciziyor -> ikisi de tazeleniyor.
       loadData();

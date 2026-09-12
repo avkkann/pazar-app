@@ -539,7 +539,7 @@ const ozet = h => JSON.stringify(h.map(x => ({ s: x.u._sid, y: x.yuzde, n: x.nor
 }
 
 // ─────────────────────────────────────────────────────────────────────
-console.log('\n=== 3. SECIM: cesitlilik (marka<=1, alt kategori<=2, market<=2) ===');
+console.log('\n=== 3. SECIM: cesitlilik (marka<=1, alt kategori<=2, market<=3), 12 kart ===');
 const A = (ad, kat, market, yuzde) => ({ u: { ad, ana_kategori: kat }, market, yuzde });
 const sec = h => cagir('dusenSecHavuzdan(__v)', h).map(x => x.u.ad);
 {
@@ -552,7 +552,10 @@ const sec = h => cagir('dusenSecHavuzdan(__v)', h).map(x => x.u.ad);
   const h = ['Aa', 'Bb', 'Cc', 'Dd', 'Ee'].map((b, i) => A(b + ' Ürün', 'K' + i, 'carrefour', 60 - i))
     .concat([A('Ff Ürün', 'K9', 'migros', 40)]);
   const s = sec(h);
-  ok('ayni marketten EN FAZLA 2 (olculdu: ilk 6nin 6si Carrefour cikiyordu)', s.length === 3 && s.includes('Ff Ürün'), s.join(' | '));
+  // 6 kartta sinir 2'ydi (ilk 6'nin 6'si Carrefour cikiyordu). 12 kartta 3:
+  // 2'de kalsa 12. kart havuzun dibinden gelirdi (olcum app.js yorumunda).
+  ok('ayni marketten EN FAZLA 3 (12 kart)', s.length === 4 && s.includes('Ff Ürün')
+     && s.filter(a => a !== 'Ff Ürün').join(',') === 'Aa Ürün,Bb Ürün,Cc Ürün', s.join(' | '));
 }
 {
   const s = sec(['Aa', 'Bb', 'Cc'].map((b, i) => A(b + ' Süt', 'Süt', ['bim', 'sok', 'a101'][i], 50 - i)));
@@ -561,8 +564,9 @@ const sec = h => cagir('dusenSecHavuzdan(__v)', h).map(x => x.u.ad);
 {
   const mk = ['migros', 'carrefour', 'a101', 'bim', 'sok', 'hakmar', 'tarim_kredi'];
   const s = sec(Array.from({ length: 20 }, (_, i) => A('M' + i + ' Ürün', 'K' + i, mk[i % 7], 90 - i)));
-  ok('en fazla DUSENLER_KART (6) kart', s.length === 6, s.length);
-  ok('  sira korunuyor (en yuksek indirimden basliyor)', s.join(',') === 'M0 Ürün,M1 Ürün,M2 Ürün,M3 Ürün,M4 Ürün,M5 Ürün', s.join(','));
+  ok('en fazla DUSENLER_KART (12) kart', s.length === 12, s.length);
+  ok('  sira korunuyor (en yuksek indirimden basliyor)',
+     s.join(',') === Array.from({ length: 12 }, (_, i) => 'M' + i + ' Ürün').join(','), s.join(','));
 }
 {
   const s = sec(Array.from({ length: 6 }, (_, i) =>
@@ -585,8 +589,26 @@ console.log('\n=== 4. ESKI RPC YOLU EMEKLI + TEK KAYNAK SOZLESMELERI ===');
   ok('app.js get_fiyat_dusenler CAGIRMIYOR', !/get_fiyat_dusenler/.test(APP_T));
   ok('  olu sabit DUSENLER_RPC_LIMIT kalkti', !/DUSENLER_RPC_LIMIT/.test(APP_T));
   ok('build (anasayfa-uret) get_fiyat_dusenler CAGIRMIYOR', !/get_fiyat_dusenler/.test(URET_T));
-  ok('build AYNI secim kodunu cagiriyor: dusenSecHavuzdan(dusenHavuzu())',
-     /dusenSecHavuzdan\(\s*dusenHavuzu\(\s*\)\s*\)/.test(URET_T));
+  // Havuz BIR KEZ hesaplaniyor: serit (secim) ve Firsatlar > "Bu hafta dusenler"
+  // sekmesinin tam listesi AYNI havuzdan. Iki ayri cagri iki ayri sonuc
+  // verebilirdi (bkz. "iki kaynak = kacinilmaz sapma").
+  ok('build havuzu BIR KEZ hesapliyor (serit ve tam liste AYNI havuzdan)',
+     (URET_T.match(/dusenHavuzu\(/g) || []).length === 1 && /__dusenHavuz\s*=\s*dusenHavuzu\(\s*\)/.test(URET_T),
+     'dusenHavuzu( sayisi=' + (URET_T.match(/dusenHavuzu\(/g) || []).length);
+  ok('  serit: AYNI secim kodu dusenSecHavuzdan(havuz)', /dusenSecHavuzdan\(\s*__dusenHavuz\s*\)/.test(URET_T));
+  // Iddia DIZEYE degil YAZMA HEDEFINE bagli: onceki hali kaynakta
+  // "data/dusenler.json" dizesini ariyordu ve console.log satiri da o dizeyi
+  // tasidigi icin dosya adi degistirilse bile YESIL kaliyordu (prove-by-breaking
+  // 2026-09-12'de yakaladi -- guard kor).
+  // "OLCULEMEDI" ile "OLCULDU, SIFIR" ayrimi VERIDE tasiniyor: bayrak build'de
+  // _puanCache'ten turuyor. Sabit true yazilirsa istemci altyapi arizasini
+  // "bu hafta hic dusen yok" diye OLCULMUS bir iddiaya cevirir.
+  ok('  build "olculdu" bayragini _puanCache\'ten yaziyor',
+     /const dusenOlculdu = ic\('!!_puanCache'\)/.test(URET_T) && /olculdu:\s*dusenOlculdu/.test(URET_T));
+  ok('  tam liste: havuzun TAMAMI, data/dusenler.json\'a yaziliyor',
+     /__dusenHavuz\.map\(/.test(URET_T)
+     && /const dusenHedef = D\('data\/dusenler\.json'\)/.test(URET_T)
+     && /writeFileSync\(\s*dusenHedef,[\s\S]{0,220}dusenler:\s*dusenTum/.test(URET_T));
   // Build'in yazdigi alan adi degisse rozet "-%undefined" olurdu; cizim testi
   // kendi verisini kurdugu icin gormezdi. Bicim tek fonksiyonda.
   ok('build ve istemci AYNI kayit bicimi: dusenKayit (alan adi tek yerde)',
@@ -605,7 +627,7 @@ console.log('\n=== 4. ESKI RPC YOLU EMEKLI + TEK KAYNAK SOZLESMELERI ===');
   // (l) Build puanlari BEKLEYEREK ve dusenler'den ONCE yuklemeli: yoksa
   // (a) kurali geregi serit her gun bos cikardi.
   const iPuan = URET_T.search(/await\s+ic\(\s*'supheliPuanlariYukle\(\)'\s*\)/);
-  const iDus = URET_T.search(/dusenSecHavuzdan\(\s*dusenHavuzu\(\s*\)\s*\)/);
+  const iDus = URET_T.search(/dusenHavuzu\(\s*\)/);
   ok('build supheli puanlarini BEKLEYEREK ve dusenler hesabindan ONCE yukluyor', iPuan >= 0 && iPuan < iDus, iPuan + ' / ' + iDus);
   ok('build puanlari alamazsa CI\'da GORUNUR uyari basiyor (::warning), sessiz degil',
      /::warning/.test(URET_T) && /_puanCache/.test(URET_T.slice(Math.max(0, URET_T.indexOf('::warning') - 400), URET_T.indexOf('::warning') + 50)));
@@ -786,6 +808,316 @@ console.log('\n=== 6. CIZIM: renderDusenlerSeridi ===');
     const r = await ciz(false, false);
     ok('geriye dususte hepsi supheliyse serit GIZLENIYOR', r.gizli && !/Www Kek/.test(r.html));
   }
+}
+
+// ─────────────────────────────────────────────────────────────────────
+console.log('\n=== 7. SERIT 12 KART + "TUMUNU GOR" + FIRSATLAR > BU HAFTA DUSENLER ===');
+{
+  const HTML = fs.readFileSync(new URL('./index.html', import.meta.url), 'utf8');
+  const SW = fs.readFileSync(new URL('./sw.js', import.meta.url), 'utf8');
+  const GI = fs.readFileSync(new URL('./.gitignore', import.meta.url), 'utf8');
+  const APP_T = kodTemiz(APP);
+  const HTML_Y = HTML.replace(/<!--[\s\S]*?-->/g, '');
+
+  ok('serit 12 kart (DUSENLER_KART)', sabitDeger('DUSENLER_KART') === 12, sabitDeger('DUSENLER_KART'));
+  ok('  12 kartta market siniri 3 (DUSEN_MARKET_MAX)', sabitDeger('DUSEN_MARKET_MAX') === 3, sabitDeger('DUSEN_MARKET_MAX'));
+
+  // (a) MARKUP: dugme seridin BASLIGINDA, sekme Firsatlar'in sekme cubugunda.
+  const serit = (HTML_Y.match(/<div id="home-dusenler"[\s\S]*?id="home-dusenler-list"/) || [''])[0];
+  const tumu = (serit.match(/<button[^>]*data-firsat-sekme="dusen"[^>]*>[^<]*<\/button>/) || [''])[0];
+  ok('seritte "Tumunu gor" dugmesi var, Firsatlar > dusen sekmesine bagli', /Tümünü gör/.test(tumu), serit.slice(0, 300));
+  ok('  <button type="button">', /type="button"/.test(tumu), tumu);
+  ok('  satir ici olay ozniteligi YOK (sayac kilidi)', tumu !== '' && !/\son[a-z]+=/i.test(tumu), tumu);
+  ok('  44px dokunma hedefi olan mevcut sinif (.home-strip-paylas)', /class="home-strip-paylas"/.test(tumu), tumu);
+  const sekmeler = (HTML_Y.match(/<div class="firsat-tabs">[\s\S]*?<\/div>/) || [''])[0];
+  ok('Firsatlar\'da "Bu hafta dusenler" sekmesi var (data-tab, delegasyon)',
+     /<button class="firsat-tab" data-tab="dusen">[^<]*Bu hafta düşenler<\/button>/.test(sekmeler), sekmeler.slice(0, 400));
+  ok('  "Tumunu gor" dinleyicisi kayitli (document, tek)', /document\.addEventListener\('click',\s*_firsatSekmesineGit\)/.test(APP_T));
+
+  // (b) VERI SOZLESMESI: tam liste tembel, onbellege ve depoya girmiyor.
+  ok('data/dusenler.json sw.js onbellegine ALINMIYOR (tembel)', !/dusenler/.test(SW));
+  ok('  saf build ciktisi, depoya alinmiyor (.gitignore)', /^data\/dusenler\.json\s*$/m.test(GI));
+  const iDU = APP_T.indexOf("'DATA_UPDATED'");
+  const du = iDU >= 0 ? APP_T.slice(iDU, APP_T.indexOf('loadData()', iDU)) : '';
+  ok('  veri degisince (DATA_UPDATED) tam liste bellegi bosaltiliyor', /_dusenTumCache\s*=\s*null/.test(du), du.slice(0, 160));
+
+  // DOM taklidi: sekme dugmeleri + kaplar.
+  const DOM = {};
+  const yeniEl = ek => { const s = new Set(); return Object.assign({ innerHTML: '', value: 'eski', style: {}, dataset: {}, _s: s,
+    classList: { add: c => s.add(c), remove: c => s.delete(c), contains: c => s.has(c),
+                 toggle: (c, z) => ((z === undefined ? !s.has(c) : z) ? s.add(c) : s.delete(c)) } }, ek || {}); };
+  const TABS = ['ucuz', 'tasarruf', 'zam', 'dusen'].map(t => yeniEl({ dataset: { tab: t } }));
+  const aktifler = () => TABS.filter(t => t.classList.contains('active')).map(t => t.dataset.tab).join();
+  ctx.document.getElementById = id => (DOM[id] = DOM[id] || yeniEl());
+  ctx.document.querySelectorAll = sel => (String(sel).indexOf('.firsat-tab') === 0 ? TABS : []);
+  ctx.btoa = globalThis.btoa;   // _firsatKartHtml'in sepet dugmesi (tarayicida zaten var)
+  // ZAMANA DEGIL KOSULA BAGLI BEKLEME. Sabit 20 ms, makine mesgulken (tarayici
+  // olcumu ayni anda kosarken) YANLIS KIRMIZI verebiliyordu -- bu depoda
+  // "alet artefakti" diye kayitli sinif. Olumlu vakalar KOSULU bekliyor;
+  // "hicbir sey olmamali" diyen olumsuz vakalar sabit ama GENIS bekliyor.
+  const tik = (ms = 250) => new Promise(r => setTimeout(r, ms));
+  const bekle = async (kosul, ms = 4000) => {
+    const t0 = Date.now();
+    while (Date.now() - t0 < ms) { if (kosul()) return true; await new Promise(r => setTimeout(r, 5)); }
+    return false;
+  };
+
+  // (c) DAVRANIS: dokunus sekmeyi ISARETLEYIP Firsatlar'i BIR KEZ ciziyor.
+  const varGit = ic('typeof _firsatSekmesineGit') === 'function';
+  ok('_firsatSekmesineGit tanimli', varGit);
+  if (varGit) {
+    ctx.__gs = ic('showScreen'); ctx.__gr = ic('renderFirsatlar');
+    ctx.__ekran = []; ctx.__cizim = [];
+    ic('showScreen = function (id) { __ekran.push(id); }');
+    ic('renderFirsatlar = function (t) { __cizim.push(t); }');
+    const olay = hedef => ({ target: { closest: s => (s === '[data-firsat-sekme]' ? hedef : null) } });
+    TABS[0].classList.add('active');
+    ic('_firsatAktifTab = "ucuz"');
+    ctx.__o = olay(null); ic('_firsatSekmesineGit(__o)');
+    ok('kontrol: dugme disina dokunmak HICBIR SEY yapmiyor',
+       ctx.__ekran.length === 0 && ctx.__cizim.length === 0 && ic('_firsatAktifTab') === 'ucuz' && aktifler() === 'ucuz');
+    DOM['firsatArama'] = yeniEl();
+    ctx.__o = olay({ dataset: { firsatSekme: 'dusen' } }); ic('_firsatSekmesineGit(__o)');
+    ok('"Tumunu gor": aktif sekme dusen', ic('_firsatAktifTab') === 'dusen', ic('_firsatAktifTab'));
+    ok('  sekme cubugunda YALNIZ dusen isaretli', aktifler() === 'dusen', aktifler());
+    ok('  Firsatlar ekrani acildi', ctx.__ekran.join() === 'screen-firsatlar', ctx.__ekran.join());
+    ok('  liste BIR KEZ ve dusen olarak ciziliyor (once isaretle, sonra ciz)', ctx.__cizim.join() === 'dusen', ctx.__cizim.join());
+    ok('  alt menude Firsatlar isaretli', !!DOM['navFirsat'] && DOM['navFirsat'].classList.contains('active'));
+    ok('  ay cipleri gizli (yalniz Zamlananlar\'da)', !!DOM['firsatAylar'] && DOM['firsatAylar'].classList.contains('gizli'));
+    ok('  arama kutusu temizlendi', DOM['firsatArama'].value === '', DOM['firsatArama'].value);
+    // SEKME CUBUGU KAYDIRMASI: sahte DOM olculebilir hale getiriliyor. Onceki
+    // hali offsetLeft/clientWidth tasimadigi icin _firsatSekmeGorunur SESSIZCE
+    // erken donuyordu -- yani yardimci hic test EDILMIYORDU (inceleme
+    // 2026-09-12). Gercek tarayicida 375px'te cubuk 140px kaydirilmisti.
+    const cubuk = { clientWidth: 300, scrollLeft: 0 };
+    TABS.forEach((t, i) => { t.parentElement = cubuk; t.offsetLeft = i * 120; t.offsetWidth = 120; });
+    ic('_firsatAktifTab = "ucuz"');
+    ic('_firsatSekmesineGit(__o)');
+    ok('dar ekranda sekme cubugu KAYDIRILIYOR (4. sekme gorunur oluyor)',
+       cubuk.scrollLeft === 180
+       && TABS[3].offsetLeft >= cubuk.scrollLeft
+       && TABS[3].offsetLeft + TABS[3].offsetWidth <= cubuk.scrollLeft + cubuk.clientWidth,
+       'scrollLeft=' + cubuk.scrollLeft);
+    cubuk.scrollLeft = 0; cubuk.clientWidth = 600;
+    ic('_firsatAktifTab = "ucuz"');
+    ic('_firsatSekmesineGit(__o)');
+    ok('  kontrol: sekme zaten gorunuyorsa cubuk OYNAMIYOR', cubuk.scrollLeft === 0, 'scrollLeft=' + cubuk.scrollLeft);
+    ctx.__ekran = []; ctx.__cizim = [];
+    ctx.__o = olay({ dataset: { firsatSekme: 'yok' } });
+    const y = uyariYakala(() => ic('_firsatSekmesineGit(__o)'));
+    ok('olmayan sekme: Firsatlar ACILMIYOR ve sessiz degil (uyari)',
+       ctx.__ekran.length === 0 && ctx.__cizim.length === 0 && y.uyari.length === 1, y.uyari.join(' | '));
+    // Mevcut sekme tiklamasi (firsatTab) ayni isaretleme kapisindan geciyor.
+    DOM['firsatArama'] = yeniEl();
+    ctx.__b = TABS[2]; ic('firsatTab("zam", __b)');
+    ok('sekme tiklamasi (firsatTab) bozulmadi: zam isaretli, ay cipleri acik, bir kez ciziliyor, arama temiz',
+       ic('_firsatAktifTab') === 'zam' && aktifler() === 'zam' && !DOM['firsatAylar'].classList.contains('gizli')
+       && ctx.__cizim.join() === 'zam' && DOM['firsatArama'].value === '', aktifler() + ' / ' + ctx.__cizim.join());
+    ic('showScreen = __gs; renderFirsatlar = __gr');
+  }
+
+  // (d)+(e) SEKME CIZIMI: data/dusenler.json sahte sunucudan, istekler sayiliyor.
+  const eskiFetch = ctx.fetch;
+  let yanit = null, istek = 0;
+  ctx.fetch = (u, o) => (/dusenler\.json/.test(String(u))
+    ? (istek++, Promise.resolve().then(() => yanit()))
+    : eskiFetch(u, o));
+  const cevap = (govde, durum = 200) => () => ({ ok: durum === 200, status: durum, headers: { get: () => null }, json: async () => govde });
+  // KAYIT KENDI ICINDE TUTARLI: fiyat = normal * (1 - yuzde/100). Onceki hali
+  // normal=100 ve fiyat=70 SABITKEN yuzdeyi 30'dan 16'ya dusuruyordu -- yani 15
+  // kartin 14'u celiskili ciziliyordu ve test bunu GORMUYORDU (2026-09-12
+  // incelemesi yakaladi). Asagida rozet ile okun iki ucu BIRBIRINE baglandi.
+  const dk = (sid, ad, market, yuzde, normal = 100) => {
+    const fiyat = Math.round(normal * (100 - yuzde)) / 100;
+    return { u: { _id: sid, _sid: sid, ad, ana_kategori: 'K-' + sid, resim: null, agirlik_hacim: null,
+                  en_dusuk_fiyat: fiyat, market_fiyatlari: [{ market, fiyat }] },
+             dusus_yuzde: yuzde, market, normal, fiyat, baslangic: G(2), kaynak: 'seri' };
+  };
+  const on15 = Array.from({ length: 15 }, (_, i) => dk('t' + i, 'Tüm' + i + ' Ürün', ['migros', 'bim', 'a101'][i % 3], 30 - i));
+  const kartSay = h => (h.match(/class="firsat-card"/g) || []).length;
+  const sifirla = () => ic('_dusenTumCache = null; _dusenTumYukleniyor = null');
+  const firsatCiz = async () => {
+    DOM['firsatContent'] = yeniEl(); DOM['firsatOzet'] = yeniEl();
+    ic('_firsatAktifTab = "dusen"'); ic('renderFirsatlar("dusen")');
+    // Cizimin BITTIGI kosul: "Yukleniyor" gitti ve kap doldu.
+    const bitti = await bekle(() => { const h = DOM['firsatContent'].innerHTML; return h !== '' && !/Yükleniyor/.test(h); });
+    if (!bitti) console.log('        NOT: cizim 4 sn icinde bitmedi -- asagidaki iddia bunu gosterecek');
+    return { html: DOM['firsatContent'].innerHTML, ozet: DOM['firsatOzet'].innerHTML };
+  };
+  ctx.__sbEski = ic('window.supabaseClient');
+  const varCiz = ic('typeof renderFirsatDusen') === 'function' && ic('typeof dusenTumunuGetir') === 'function';
+  ok('renderFirsatDusen ve dusenTumunuGetir tanimli', varCiz);
+  if (varCiz) {
+    sifirla(); istek = 0; yanit = cevap({ surum: 1, dusenler: on15 });
+    ctx.__a = { surum: 1, dusenler: on15.slice(0, 12) }; ic('_anasayfaCache = __a; _anasayfaYukleniyor = null');
+    ic('window.supabaseClient = null');
+    ic('delete productMap["t0"]; delete productMap["t1"]');
+    // BAYAT CANLI URUN: productMap'te DUNKU tam urun duruyor (catCache oturum
+    // boyunca yapisik kaliyor, DATA_UPDATED onu bosaltmiyor). Kart ANLIK
+    // GORUNTUDEN cizilmeli; canli fiyattan cizilseydi "-%29" rozetinin yaninda
+    // "249,90 ₺" basilirdi (inceleme 2026-09-12).
+    ctx.__tam = { _id: 't1', _sid: 't1', ad: 'Tüm1 Ürün', ana_kategori: 'K-t1', en_dusuk_fiyat: 249.9,
+                  market_fiyatlari: [{ market: 'bim', fiyat: 249.9 }], fiyat_gecmisi: [{ t: '2026-09-01', f: 90 }] };
+    ic('_pmEkle(__tam)');
+    const r = await firsatCiz();
+    // Kart fiyati tlHTML ile PARCALI basiliyor (fp-l / fp-k / fp-tl), yani duz
+    // "249,90" aramak KORDU: kart canli urunden cizilse bile iddia yesil
+    // kaliyordu (bozma 2026-09-12 yakaladi). Artik kartin KENDI fiyati da
+    // anlik goruntuye bagli.
+    const t1Kart = (r.html.split('class="firsat-card"').find(k => /data-id="t1"/.test(k)) || '');
+    ok('bayat CANLI urun varken bile kart ANLIK GORUNTUDEN ciziliyor (rozet, ok ve kart fiyati celismiyor)',
+       /BİM · 100,00 ₺ → 71,00 ₺/.test(r.html)
+       && /fp-l">71<\/span><span class="fp-k">,00</.test(t1Kart)
+       && !/fp-l">249</.test(r.html), t1Kart.slice(0, 240));
+    ok('tam liste ciziliyor: 15 kart (seritteki 12 degil)', kartSay(r.html) === 15, 'kart=' + kartSay(r.html) + ' ' + r.html.slice(0, 160));
+    ok('  Supabase YOKKEN de aciliyor', !/yüklenemiyor/.test(r.html) && kartSay(r.html) > 0);
+    ok('  rozet -%yuzde, kendi sinifiyla', /firsat-badge-dusen[^"]*">-%30</.test(r.html), r.html.slice(0, 300));
+    // Seritle AYNI iki kademe (>= DUSEN_BUYUK_YUZDE "buyuk"): ayni urun iki ekranda ayni renk.
+    const rozetSinifi = y => ((r.html.match(new RegExp('class="firsat-card-badge ([^"]*)">-%' + y + '<')) || [])[1] || '');
+    ok('  rozet siniri seritle AYNI: tam %25 buyuk, %24 normal',
+       sabitDeger('DUSEN_BUYUK_YUZDE') === 25 && /firsat-badge-dusen--buyuk/.test(rozetSinifi(25))
+       && /firsat-badge-dusen/.test(rozetSinifi(24)) && !/--buyuk/.test(rozetSinifi(24)),
+       '25=' + rozetSinifi(25) + ' 24=' + rozetSinifi(24));
+    ok('  serit de AYNI sabiti kullaniyor (sihirli 25 yok)',
+       /DUSEN_BUYUK_YUZDE/.test(kodTemiz(govde('renderDusenlerSeridi'))) && !/>=\s*25\b/.test(kodTemiz(govde('renderDusenlerSeridi'))));
+    ok('  alt metin: market + referans -> fiyat', /Migros · 100,00 ₺ → 70,00 ₺/.test(r.html), (r.html.match(/firsat-card-sub">[^<]*/) || [''])[0]);
+    // BAGLAYICI IDDIA (inceleme 2026-09-12): rozetteki yuzde ile okun iki ucu
+    // AYNI KARTTA tutarli olmali. Onceden rozet ve ok AYRI AYRI araniyordu;
+    // ikisi de tesadufen tutarli olan tek karta dusuyor, kalan 14 kart celiskili
+    // cizilse bile test YESIL kaliyordu.
+    {
+      const kartlar = r.html.split('class="firsat-card"').slice(1);
+      const sayiyaCevir = (tam, kurus) => Number(String(tam).replace(/\./g, '') + '.' + kurus);
+      const celiskili = [];
+      for (const k of kartlar) {
+        const ok2 = k.match(/firsat-card-sub">[^<]*?([\d.]+),(\d{2}) ₺ → ([\d.]+),(\d{2}) ₺/);
+        const roz = k.match(/firsat-card-badge [^"]*">-%(\d+)</);
+        if (!ok2 || !roz) { celiskili.push('eksik eslesme: ' + k.slice(0, 70)); continue; }
+        const normal = sayiyaCevir(ok2[1], ok2[2]), fiyat = sayiyaCevir(ok2[3], ok2[4]);
+        const beklenen = Math.round((normal - fiyat) / normal * 100);
+        if (beklenen !== Number(roz[1])) celiskili.push('rozet -%' + roz[1] + ' ama ok %' + beklenen);
+      }
+      ok('  HER kartta rozet = (normal - fiyat) / normal (rozet ile ok CELISEMEZ)',
+         kartlar.length === 15 && celiskili.length === 0, 'kart=' + kartlar.length + ' ' + celiskili.slice(0, 3).join(' | '));
+    }
+    ok('  bolum basligi pencereyi ve sayiyi soyluyor', /Son 7 günde fiyatı düşen 15 ürün/.test(r.html));
+    ok('  ozet: 15 dusen urun', /firsat-ozet-sayi">15</.test(r.ozet) && /Düşen ürün/.test(r.ozet), r.ozet);
+    ok('  kartlar productMap\'e KAYITLI (dokununca detay acilsin)', ic('!!productMap["t0"] && productMap["t0"]._kisa === true'));
+    ok('  TAM urun kisa kartla EZILMIYOR (kategori gezildiyse)', ic('Array.isArray(productMap["t1"].fiyat_gecmisi) && !productMap["t1"]._kisa'));
+    ok('  kart data-id urunun _id\'si', /data-id="t0"/.test(r.html));
+    ok('  tek istek', istek === 1, istek);
+    const r2 = await firsatCiz();
+    ok('ikinci acilista YENIDEN INMIYOR (bellek)', istek === 1 && kartSay(r2.html) === 15, 'istek=' + istek);
+    sifirla(); istek = 0;
+    await Promise.all([ic('dusenTumunuGetir()'), ic('dusenTumunuGetir()')]);
+    ok('  ayni anda iki cagri TEK istek', istek === 1, istek);
+
+    sifirla(); yanit = cevap({ surum: 1, dusenler: [dk('k1', 'Kkk <b>Ürün</b>', '<img src=x>', 30),
+      Object.assign(dk('k2', 'Bozuk Ürün', 'bim', 30), { dusus_yuzde: '<b>x</b>' })] });
+    const r3 = await firsatCiz();
+    ok('market adi ve urun adi KACISLI', /&lt;img src=x&gt;/.test(r3.html) && !/<img src=x>/.test(r3.html) && /Kkk &lt;b&gt;/.test(r3.html), r3.html.slice(0, 300));
+    ok('  yuzdesi sayi olmayan kayit CIZILMIYOR (rozete yalniz sayi girer)', !/Bozuk Ürün/.test(r3.html) && kartSay(r3.html) === 1, kartSay(r3.html));
+
+    sifirla(); istek = 0; yanit = cevap({}, 404);
+    const y4 = await uyariYakalaAsync(() => firsatCiz());
+    ok('tam liste inmezse: seritteki 12 kart + listenin EKSIK oldugu soyleniyor',
+       kartSay(y4.sonuc.html) === 12 && /Tam liste yüklenemedi/.test(y4.sonuc.html), y4.sonuc.html.slice(0, 200));
+    ok('  sessiz degil (uyari)', y4.uyari.some(u => /dusenler/.test(u)), y4.uyari.join(' | '));
+    ok('  ozet BOS: eksik listede seritteki 12 "toplam" gibi yazilmiyor', y4.sonuc.ozet === '', y4.sonuc.ozet);
+    yanit = cevap({ surum: 1, dusenler: on15 });
+    const r4b = await firsatCiz();
+    ok('  hata bellege YAZILMADI: sonraki acilista yeniden deneniyor', istek === 2 && kartSay(r4b.html) === 15, 'istek=' + istek);
+
+    sifirla(); yanit = cevap({ surum: 2, dusenler: on15 });
+    const y5 = await uyariYakalaAsync(() => firsatCiz());
+    ok('surum uyumsuzsa KULLANILMIYOR (seritteki kartlar + uyari)', /Tam liste yüklenemedi/.test(y5.sonuc.html) && y5.uyari.length >= 1, y5.uyari.join(' | '));
+
+    sifirla(); yanit = cevap({}, 500); ctx.__a = false; ic('_anasayfaCache = __a');
+    const y6 = await uyariYakalaAsync(() => firsatCiz());
+    ok('ne tam liste ne serit: acik mesaj, kart yok, ozet bos (sifir DEGIL, bilinmiyor)',
+       /yüklenemiyor/.test(y6.sonuc.html) && kartSay(y6.sonuc.html) === 0 && y6.sonuc.ozet === '', y6.sonuc.html.slice(0, 160) + ' | ' + y6.sonuc.ozet);
+
+    sifirla(); yanit = cevap({ surum: 1, dusenler: [] });
+    const r7 = await firsatCiz();
+    ok('bu hafta dusen yoksa bunu soyluyor, ozet 0', /düşüşü yakalanmadı/.test(r7.html) && /firsat-ozet-sayi">0</.test(r7.ozet), r7.html + ' | ' + r7.ozet);
+    // OLCULEMEDI, OLCULDU-SIFIR DEGILDIR (inceleme 2026-09-12). Build supheli
+    // puanlarini alamazsa havuz BOS yaziliyor; ayni cumleyi kurmak altyapi
+    // arizasini olculmus bir urun iddiasina cevirirdi.
+    sifirla(); yanit = cevap({ surum: 1, olculdu: false, dusenler: [] });
+    const r8 = await firsatCiz();
+    ok('olculemediyse "0" DEMIYOR, olculemedigini soyluyor ve ozet BOS kaliyor',
+       /ölçülemedi/.test(r8.html) && !/yakalanmadı/.test(r8.html) && r8.ozet === '', r8.html + ' | ' + r8.ozet);
+    ok('  kontrol: ayni bos liste olculdu bayragiyla gelince "yakalanmadı" diyor (kapi her seyi yutmuyor)',
+       /düşüşü yakalanmadı/.test(r7.html) && /firsat-ozet-sayi">0</.test(r7.ozet));
+
+    // YARIS: indirme surerken baska sekmeye gecildi.
+    sifirla(); let birak = null; const oncekiIstek = istek;
+    yanit = () => new Promise(res => { birak = () => res(cevap({ surum: 1, dusenler: on15 })()); });
+    DOM['firsatContent'] = yeniEl(); DOM['firsatOzet'] = yeniEl();
+    ic('_firsatAktifTab = "dusen"'); ic('renderFirsatlar("dusen")');
+    await bekle(() => istek > oncekiIstek);   // istek GERCEKTEN atildi (sabit ms degil)
+    ic('_firsatAktifTab = "ucuz"'); DOM['firsatContent'].innerHTML = 'BASKA_SEKME'; DOM['firsatOzet'].innerHTML = 'BASKA_OZET';
+    if (birak) birak();
+    await tik();
+    ok('yaris: indirme surerken baska sekmeye gecildiyse o sekme EZILMIYOR',
+       !!birak && DOM['firsatContent'].innerHTML === 'BASKA_SEKME' && DOM['firsatOzet'].innerHTML === 'BASKA_OZET',
+       DOM['firsatContent'].innerHTML.slice(0, 80));
+  }
+
+  // (e2) OZET CIPI SEKMEYLE SIFIRLANIYOR (inceleme 2026-09-12): baska sekmeye
+  // gecince, o sekmenin cevabi gelene kadar "336 Düşen ürün" yaziyordu.
+  {
+    DOM['firsatContent'] = yeniEl(); DOM['firsatOzet'] = yeniEl();
+    DOM['firsatOzet'].innerHTML = '<div class="firsat-ozet-chip"><div class="firsat-ozet-sayi">336</div><div class="firsat-ozet-lbl">Düşen ürün</div></div>';
+    ic('window.supabaseClient = null');
+    ic('_firsatAktifTab = "ucuz"'); ic('renderFirsatlar("ucuz")');
+    ok('sekme degisince ONCEKI sekmenin ozeti ANINDA siliniyor (yanlis etiketli sayi kalmiyor)',
+       DOM['firsatOzet'].innerHTML === '', DOM['firsatOzet'].innerHTML.slice(0, 90));
+  }
+
+  // (f) MEVCUT SEKMELERIN YARISI: yeni sekme gec gelen cevaplara kurban gitmesin.
+  {
+    const sahteSb = () => {
+      let birak; const bekle = new Promise(r => { birak = r; });
+      const q = {};
+      ['select', 'eq', 'not', 'order', 'limit', 'gte', 'lt'].forEach(m => { q[m] = () => q; });
+      q.then = (res, rej) => bekle.then(() => ({ data: [], count: 0, error: null })).then(res, rej);
+      return { sb: { from: () => q }, birak: () => birak() };
+    };
+    for (const degis of [true, false]) {
+      const s = sahteSb(); ctx.__sb = s.sb; ic('window.supabaseClient = __sb');
+      DOM['firsatContent'] = yeniEl(); DOM['firsatOzet'] = yeniEl();
+      ic('_firsatAktifTab = "ucuz"'); ic('renderFirsatlar("ucuz")');
+      if (degis) { ic('_firsatAktifTab = "dusen"'); DOM['firsatContent'].innerHTML = 'DUSEN_ICERIK'; DOM['firsatOzet'].innerHTML = 'DUSEN_OZET'; }
+      s.birak(); await tik();
+      if (degis) ok('gec gelen "En Ucuz" cevabi Dusenler\'i ve ozetini EZMIYOR',
+        DOM['firsatContent'].innerHTML === 'DUSEN_ICERIK' && DOM['firsatOzet'].innerHTML === 'DUSEN_OZET',
+        DOM['firsatContent'].innerHTML.slice(0, 80) + ' | ' + DOM['firsatOzet'].innerHTML.slice(0, 80));
+      else ok('  kontrol: sekme degismediyse cevap GERCEKTEN ciziliyor (kapi her seyi yutmuyor)',
+        /En Ucuz/.test(DOM['firsatOzet'].innerHTML), DOM['firsatOzet'].innerHTML.slice(0, 120));
+    }
+    let birakZ; ctx.__bekleZ = new Promise(r => { birakZ = r; });
+    ic('_anasayfaCache = null; _anasayfaYukleniyor = __bekleZ');
+    DOM['firsatContent'] = yeniEl(); DOM['firsatOzet'] = yeniEl(); DOM['firsatAylar'] = yeniEl();
+    ic('_firsatAktifTab = "zam"'); ic('renderFirsatlar("zam")');
+    ic('_firsatAktifTab = "dusen"'); DOM['firsatContent'].innerHTML = 'DUSEN_ICERIK';
+    birakZ({ surum: 1, zamAylik: [] }); await tik();
+    ok('gec gelen Zamlananlar verisi de Dusenler\'i EZMIYOR', DOM['firsatContent'].innerHTML === 'DUSEN_ICERIK', DOM['firsatContent'].innerHTML.slice(0, 80));
+    ic('_anasayfaYukleniyor = null');
+    ic('window.supabaseClient = __sbEski');
+  }
+
+  // (g) ANA SAYFA SERIDI: en fazla 12 kart ve tam listeyi INDIRMIYOR.
+  {
+    istek = 0;
+    DOM['home-dusenler'] = yeniEl(); DOM['home-dusenler-list'] = yeniEl();
+    ctx.__a = { surum: 1, dusenler: on15 }; ic('_anasayfaCache = __a; _anasayfaYukleniyor = null');
+    await ic('renderDusenlerSeridi()');
+    const n = (DOM['home-dusenler-list'].innerHTML.match(/class="strip-card"/g) || []).length;
+    ok('ana sayfa seridi en fazla 12 kart', n === 12, n);
+    ok('  serit tam listeyi INDIRMIYOR (ana sayfa hafif kalsin)', istek === 0, istek);
+  }
+  ctx.fetch = eskiFetch;
 }
 
 bitir();
