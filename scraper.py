@@ -13,6 +13,12 @@ import re
 from datetime import datetime, timedelta
 from urllib.parse import quote
 
+# Il merkezi koordinatlari TEK KAYNAKTA (il_market_tara.py da ayni tablodan
+# okuyor). Fiyatin hangi ILDEKI magazadan okundugunu kaydetmek icin gerekiyor:
+# olculdu 2026-09-13, katalogun tamami 27 magazadan besleniyor ve hepsi
+# Istanbul'da -- kullaniciya bunu soyleyebilmek icin veride tasinmasi sart.
+from iller_tablo import il_bul
+
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 API_URL     = "https://api.marketfiyati.org.tr/api/v2/searchByCategories"
@@ -478,6 +484,26 @@ def parse_product(item, kategori_adi, slug_kisa="urun"):
                 deger = str(deger).strip()
                 if deger:
                     kayit[hedef] = deger
+            # indexTime = fiyatin KAYNAKTA guncellendigi an ("13.09.2026 08:50").
+            # API bunu bastan beri veriyordu ve ATILIYORDU (ayni sinif: marka,
+            # liste_fiyat, depot_id). "Bu fiyat bayat mi" sorusu bu alan olmadan
+            # CEVAPLANAMIYORDU. ISO'ya cevriliyor; ayristirilamazsa anahtar HIC
+            # acilmiyor (additive).
+            _ham_zaman = str(depot.get("indexTime") or "").strip()
+            _m_zaman = re.match(r"^(\d{2})\.(\d{2})\.(\d{4})(?:[ T](\d{2}):(\d{2}))?$", _ham_zaman)
+            if _m_zaman:
+                _g, _a, _y, _sa, _dk = _m_zaman.groups()
+                if 1 <= int(_a) <= 12 and 1 <= int(_g) <= 31:
+                    kayit["fiyat_guncelleme"] = "%s-%s-%sT%s:%s" % (_y, _a, _g, _sa or "00", _dk or "00")
+            # Fiyatin okundugu magazanin ILI (API latitude/longitude veriyor).
+            # Olculdu 2026-09-13: katalogu besleyen 27 magazanin HEPSI Istanbul'da
+            # ve bunu hicbir yerde SOYLEMIYORDUK -- Antalya'daki kullaniciya
+            # Istanbul fiyati "fiyat" diye gosteriliyordu. Il TEK KAYNAKTAN
+            # geliyor (iller_tablo.il_bul); uzak/gecersiz koordinatta alan
+            # ACILMIYOR -- yanlis il yazmaktansa hic yazma.
+            _il = il_bul(depot.get("latitude"), depot.get("longitude"))
+            if _il:
+                kayit["depot_il"] = _il
             market_fiyatlari.append(kayit)
 
     prices = [f["fiyat"] for f in market_fiyatlari]

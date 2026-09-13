@@ -58,6 +58,21 @@ if (varFn) {
   ok('fiyat null', calis(ctx, 'listeFiyatHTML({market:"sok", fiyat:null, liste_fiyat:20})') === '');
   ok('arguman yok', calis(ctx, 'listeFiyatHTML(null)') === '');
 
+  // 2026-09-13 olcumu: ilan tasiyan 2.776 kaydin 749'u (%27) bizim o markette
+  // HIC gormedigimiz bir fiyat (kaynak da discount=false diyor). Ornek:
+  // Finish Quantum ilan 858,00 iken 103 gunde gordugumuz en yuksek 849,90.
+  console.log('\n=== 1b. GOZLENMEMIS ILAN: yuzde rozeti BASILMIYOR ===');
+  {
+    const h2 = calis(ctx, 'listeFiyatHTML({market:"carrefour", fiyat:399.9, liste_fiyat:858}, 849.9)');
+    ok('ilan YINE gosteriliyor (marketin beyani silinmiyor)', /858/.test(h2), h2);
+    ok('  "-%N" rozeti YOK (biz dogrulamadik)', !/%\d/.test(h2), h2);
+    ok('  yerine "biz gormedik" notu var', /görmedik/.test(h2), h2);
+    const h3 = calis(ctx, 'listeFiyatHTML({market:"carrefour", fiyat:399.9, liste_fiyat:858}, 858)');
+    ok('kontrol: gozlem DESTEKLIYORSA rozet yine basiliyor', /%53/.test(h3), h3);
+    const h4 = calis(ctx, 'listeFiyatHTML({market:"c", fiyat:100, liste_fiyat:200})');
+    ok('kontrol: gozlem bilinmiyorsa bugunku davranis korunuyor', /%50/.test(h4), h4);
+  }
+
   console.log('\n=== 3. YUZDE HESABI ===');
   const y = (l, f) => (calis(ctx, `listeFiyatHTML({market:"m", fiyat:${f}, liste_fiyat:${l}})`).match(/%(\d+)/) || [])[1];
   ok('185.9 -> 129.9  = %30', y(185.9, 129.9) === '30', y(185.9, 129.9));
@@ -67,9 +82,53 @@ if (varFn) {
 
 console.log('\n=== 4. DETAY SATIRINA BAGLANMIS MI ===');
 {
-  const det = APP.slice(APP.indexOf('function openDetay('), APP.indexOf('function openDetay(') + 3000);
-  ok('detay market satiri listeFiyatHTML cagiriyor', /listeFiyatHTML\s*\(/.test(det), '');
-  ok('mktRows icinde cagriliyor', /detay-mkt-row[\s\S]{0,400}listeFiyatHTML/.test(det), '');
+  const det = APP.slice(APP.indexOf('function openDetay('), APP.indexOf('function openDetay(') + 3800);
+  ok('detay market satirlari TEK yerden uretiliyor', /_detayMarketSatirlariHTML\(/.test(det), '');
+  // Uretici openDetay'in DISINDA: uc test (al_zamani, esit_fiyat, supheli) o
+  // fonksiyonu SABIT karakter penceresiyle kesip icinde cagri ariyor; govdeye
+  // eklenen her satir aranan cagrilari disari itiyor (CLAUDE.md'de kayitli
+  // tuzak, 2026-09-13'te bir kez daha yasandi: cagrilar 4299-4619, pencere 4000).
+  const satir = fnKaynak('_detayMarketSatirlariHTML') || '';
+  ok('  uretici listeFiyatHTML cagiriyor', /listeFiyatHTML\s*\(/.test(satir), '');
+  ok('  detay-mkt-row icinde cagriliyor', /detay-mkt-row[\s\S]{0,400}listeFiyatHTML/.test(satir), '');
+  ok('  gozlenen en yuksek fiyat ikinci arguman olarak veriliyor',
+     /listeFiyatHTML\(f,\s*gozlenen/.test(satir), '');
+  ok('  gozlem haritasi _marketEnYuksekHaritasi\'ndan geliyor',
+     /_marketEnYuksekHaritasi\(/.test(satir), '');
+  ok('  fiyatin KAYNAGI (magaza/il/saat) satirin altinda basiliyor',
+     /_fiyatKaynagiHTML\(f\)/.test(satir), '');
+}
+
+console.log('\n=== 4c. GOZLENEN EN YUKSEK FIYAT HARITASI ===');
+{
+  const ctx4 = { _gecmisCache: null };
+  vm.createContext(ctx4);
+  vm.runInContext(fnKaynak('_marketEnYuksekHaritasi') || 'function _marketEnYuksekHaritasi(){}', ctx4);
+  const c = i => vm.runInContext(i, ctx4);
+  ok('gecmis INMEDIYSE null (bilmedigimizi iddiaya cevirmiyoruz)', c('_marketEnYuksekHaritasi("x")') === null);
+  vm.runInContext('_gecmisCache = { x: [{t:"2026-09-01",m:"carrefour",f:849.9},{t:"2026-09-07",m:"carrefour",f:399.9},{t:"2026-09-01",m:"bim",f:"120"}] };', ctx4);
+  const h = c('_marketEnYuksekHaritasi("x")');
+  ok('  market bazinda EN YUKSEK gozlem', h && h.carrefour === 849.9, JSON.stringify(h));
+  ok('  dize fiyat sayiya cevriliyor (alfabetik karsilastirma tuzagi)', h && h.bim === 120, JSON.stringify(h));
+  ok('  kaydi olmayan urun icin BOS harita (null degil)',
+     JSON.stringify(c('_marketEnYuksekHaritasi("yok")')) === '{}', JSON.stringify(c('_marketEnYuksekHaritasi("yok")')));
+}
+
+console.log('\n=== 4b. FIYAT KAYNAGI SATIRI ===');
+{
+  const ctx3 = { _kacir: s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'),
+                 ZAM_AYLAR: ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'] };
+  vm.createContext(ctx3);
+  vm.runInContext(fnKaynak('_fiyatZamaniYazi') + '\n' + fnKaynak('_fiyatKaynagiHTML'), ctx3);
+  const c = i => vm.runInContext(i, ctx3);
+  const h = c('_fiyatKaynagiHTML({market:"carrefour", fiyat:399.9, depot_ad:"Istanbul Üsküdar Salacak Mını", depot_il:"İstanbul", fiyat_guncelleme:"2026-09-13T08:50"})');
+  ok('magaza adi yaziliyor', /Üsküdar Salacak/.test(h), h);
+  ok('  guncelleme zamani okunur bicimde', /13 Eylül 08:50/.test(h), h);
+  ok('  il magaza adinda zaten geciyorsa TEKRAR yazilmiyor', (h.match(/İstanbul/g) || []).length === 1, h);
+  const h2 = c('_fiyatKaynagiHTML({market:"migros", fiyat:1, depot_ad:"Pelitlik Cd M", depot_il:"Antalya"})');
+  ok('il magaza adinda yoksa EKLENIYOR', /Antalya/.test(h2), h2);
+  ok('veri yoksa satir HIC cizilmiyor', c('_fiyatKaynagiHTML({market:"bim", fiyat:1})') === '');
+  ok('kacis uygulaniyor', /&lt;img/.test(c('_fiyatKaynagiHTML({market:"bim", fiyat:1, depot_ad:"<img src=x>"})')));
 }
 
 console.log('\n=== 5. KART TARAFINA DOKUNULMADI ===');

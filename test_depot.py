@@ -110,6 +110,49 @@ esles = {f["market"]: f.get("depot_id") for f in u["market_fiyatlari"]}
 ok("carrefour dogru depota bagli", esles.get("carrefour") == "carrefour-1012", esles)
 ok("migros dogru depota bagli", esles.get("migros") == "migros-1991", esles)
 
+print("\n=== indexTime -> fiyat_guncelleme (additive) ===")
+# NEDEN: API fiyatin KAYNAKTA guncellendigi ani ("13.09.2026 08:50") bastan beri
+# veriyordu ve ATILIYORDU (ayni sinif: marka, liste_fiyat, depot_id). Bu alan
+# olmadan "bu fiyat bayat mi" sorusu cevaplanamiyor.
+u = scr.parse_product(urun([
+    depot("carrefour", 399.9, depotId="carrefour-5254", indexTime="13.09.2026 08:50"),
+]), "Test")
+mf = u["market_fiyatlari"][0]
+ok("indexTime ISO'ya cevriliyor", mf.get("fiyat_guncelleme") == "2026-09-13T08:50", mf)
+
+u = scr.parse_product(urun([depot("bim", 10.0)]), "Test")
+ok("indexTime YOKSA anahtar hic acilmiyor", "fiyat_guncelleme" not in u["market_fiyatlari"][0],
+   u["market_fiyatlari"][0])
+
+u = scr.parse_product(urun([depot("bim", 10.0, indexTime="bozuk damga")]), "Test")
+ok("ayristirilamayan damga YAZILMIYOR", "fiyat_guncelleme" not in u["market_fiyatlari"][0],
+   u["market_fiyatlari"][0])
+
+print("\n=== magaza koordinati -> depot_il (additive, TEK KAYNAK) ===")
+# Kaynak her zincir icin TEK temsilci magaza veriyor; olculdu 2026-09-13:
+# katalogu besleyen 27 magazanin HEPSI Istanbul. Kullaniciya bunu soyleyebilmek
+# icin il veride tasinmali.
+import iller_tablo
+
+ok("il tablosu TEK KAYNAKTAN geliyor (kopya yok)", scr.il_bul is iller_tablo.il_bul)
+
+u = scr.parse_product(urun([
+    depot("carrefour", 399.9, latitude=41.018646, longitude=29.011852),
+]), "Test")
+ok("Istanbul magazasi -> depot_il 'İstanbul'",
+   u["market_fiyatlari"][0].get("depot_il") == "İstanbul", u["market_fiyatlari"][0])
+
+u = scr.parse_product(urun([depot("migros", 174.95, latitude=36.5437, longitude=31.9833)]), "Test")
+ok("Mahmutlar/Alanya magazasi -> depot_il 'Antalya'",
+   u["market_fiyatlari"][0].get("depot_il") == "Antalya", u["market_fiyatlari"][0])
+
+u = scr.parse_product(urun([depot("sok", 10.0)]), "Test")
+ok("koordinat YOKSA depot_il yok", "depot_il" not in u["market_fiyatlari"][0], u["market_fiyatlari"][0])
+
+u = scr.parse_product(urun([depot("sok", 10.0, latitude=0, longitude=0)]), "Test")
+ok("Turkiye disi/uzak koordinat -> il YAZILMIYOR (yanlis il yazmaktansa hic yazma)",
+   "depot_il" not in u["market_fiyatlari"][0], u["market_fiyatlari"][0])
+
 print("\n=== gecmis_kaydet: depot fiyat GECMISINE de yaziliyor ===")
 # NEDEN: depot_id 2026-08-11'den beri market_fiyatlari'nda vardi ama fiyat
 # GECMISINE hic girmiyordu -> calisma aninda "bu iki fiyat ayni magazadan mi"

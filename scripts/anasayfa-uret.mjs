@@ -212,11 +212,28 @@ for (let i = 0; i < AY_SAYISI; i++) {
 }
 console.log(`[anasayfa] aylik zam: ${zamAylik.map((a) => a.ay + '=' + a.urunler.length).join(' ') || '(hic ay yok)'}, ${Date.now() - tAy} ms`);
 
+// ── FIYAT KAPSAMI (2026-09-13): kaynak her zincir icin TEK temsilci magaza
+//    veriyor ve olculdu ki bugun o magazalarin HEPSI Istanbul'da (27 magaza).
+//    Kullaniciya bunu soyleyebilmek icin kapsam VERIDEN turetiliyor -- sabit
+//    sehir adi YAZILMIYOR; yarin baska bir il gelirse cumle kendiliginden
+//    degisir (zam sekmesindeki "sabit ay yazma" kuralinin aynisi).
+const fiyatKapsami = ic(`(() => {
+  const magaza = {}, il = {};
+  Object.values(catCache || {}).forEach(l => (l || []).forEach(u => (u.market_fiyatlari || []).forEach(f => {
+    if (!f) return;
+    if (f.depot_id) magaza[f.depot_id] = 1;
+    if (f.depot_il) il[f.depot_il] = (il[f.depot_il] || 0) + 1;
+  })));
+  return { magaza: Object.keys(magaza).length, iller: Object.keys(il).sort() };
+})()`);
+console.log(`[anasayfa] fiyat kapsami: ${fiyatKapsami.magaza} magaza, iller: ${fiyatKapsami.iller.join(', ') || '(veride henuz yok)'}`);
+
 const cikti = {
   surum: 1,
   uretim: new Date().toISOString(),
   veri_tarihi: veriTarihi,
   urun_sayisi: urunSayisi,
+  fiyat_kapsami: fiyatKapsami,
   zam: zam,
   zamAylik: zamAylik,
   tuzaklar: tuzaklar,

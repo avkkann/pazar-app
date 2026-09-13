@@ -1818,13 +1818,8 @@ function openDetay(urunId) {
 
   const { fiyatlarFarkli, durumlar } = _mktRowDurumu(mktler);
 
-  const mktRows = mktler.map((f, i) => {
-    const { isBest, isWorst } = durumlar[i];
-    return `<div class="detay-mkt-row${isBest ? ' best' : isWorst ? ' worst' : ''}">
-      ${_marketEtiketiHTML(f.market)}
-      <span class="detay-mkt-price">${listeFiyatHTML(f)}${tlHTML(f.fiyat)}${isWorst ? '<span class="detay-mkt-badge">en pahalı</span>' : ''}</span>
-    </div>${bildirimUyariHTML(u._sid, f.market)}`;
-  }).join('');
+  // Market satırları FONKSİYONUN DIŞINDA üretiliyor (bkz. _detayMarketSatirlariHTML).
+  const mktRows = _detayMarketSatirlariHTML(u, mktler, durumlar);
 
   const inCart = sepet.some(s => _sepetEslesir(s, urunId));
   const btnHtml = `<button id="detayEkleBtn" class="detay-btn-ekle${inCart ? ' added' : ''}" data-id="${_kacir(u._id)}"
@@ -2410,7 +2405,7 @@ async function anasayfaVeriGetir() {
     // istek yok. Yüklenemezse gösterge hiç çizilmiyor (yanlış tarih
     // göstermektense hiç göstermemek doğru).
     if (_anasayfaCache && _anasayfaCache.veri_tarihi) {
-      try { veriTazelikCiz(_anasayfaCache.veri_tarihi); }
+      try { veriTazelikCiz(_anasayfaCache.veri_tarihi, _anasayfaCache.fiyat_kapsami); }
       catch (e) { console.warn('[tazelik] gosterge cizilemedi:', e && e.message); }
     }
     return _anasayfaCache;
@@ -3455,13 +3450,86 @@ function birimFiyatYazi(bf) {
 // Marketin ILAN ETTIGI liste fiyati (API: discountlessPrice). Bizim
 // fiyat_gecmisi cikarimimizdan bagimsiz, kaynagin kendi beyani.
 // Sadece urun detayinda, market fiyat satirinda gosterilir.
-function listeFiyatHTML(mf) {
+function listeFiyatHTML(mf, gozlenenMax) {
   if (!mf) return '';
   const liste = mf.liste_fiyat, satis = mf.fiyat;
   if (liste == null || satis == null || !(liste > satis)) return '';
   const yuzde = Math.round(((liste - satis) / liste) * 100);
   if (!(yuzde > 0)) return '';
+  // BIZIM GOZLEMIMIZ DESTEKLEMIYORSA "-%N" ROZETI BASILMIYOR (olculdu
+  // 2026-09-13): ilan tasiyan 2.776 kaydin 749'u (%27) bizim o markette HIC
+  // gormedigimiz bir fiyat; kaynak da o kayitlarda discount=false diyor.
+  // Ilan SILINMIYOR -- marketin kendi beyani, ama "biz gormedik" diye
+  // isaretleniyor (Mercek A1'in dil kurali: "market yalan soyluyor" DEMIYORUZ).
+  // gozlenenMax verilmezse bugunku davranis korunuyor.
+  if (gozlenenMax != null && liste > gozlenenMax + 0.005) {
+    return `<span class="detay-mkt-liste"><s>${tl(liste)}</s><span class="detay-mkt-liste-not">ilan · biz görmedik</span></span>`;
+  }
   return `<span class="detay-mkt-liste"><s>${tl(liste)}</s><span class="detay-mkt-liste-yuzde">-%${yuzde}</span></span>`;
+}
+
+// ── FİYATIN KAYNAĞI: hangi mağaza, hangi il, ne zaman güncellendi ────
+// NEDEN (ölçüldü 2026-09-13): kaynak her zincir için TEK temsilci mağaza
+// veriyor ve bugün o mağazaların HEPSİ İstanbul'da (27 mağaza). Antalya'daki
+// bir kullanıcı için fiyat tutmayabiliyor: örneklemde indirim iddialarının
+// 3'te 1'i orada geçersizdi (%12 ürün o illerde kaynakta yok, %20 fiyat
+// farklı). Fiyatı gizlemiyoruz — NEREDEN geldiğini söylüyoruz.
+// O üründe MARKET BAŞINA bugüne kadar gördüğümüz en yüksek fiyat.
+// Geçmiş henüz inmediyse null döner: "bilmiyoruz"u "biz görmedik" iddiasına
+// ÇEVİRMİYORUZ (listeFiyatHTML ikinci argüman null gelince bugünkü davranışı
+// koruyor). Geçmiş inmiş ama o ürünün kaydı yoksa BOŞ harita döner — o zaman
+// gerçekten hiç gözlemimiz yok demektir.
+// openDetay'in DIŞINDA: üç test o fonksiyonu sabit karakter penceresiyle kesiyor.
+function _marketEnYuksekHaritasi(sid) {
+  if (!_gecmisCache) return null;
+  const harita = {};
+  ((_gecmisCache[sid]) || []).forEach(e => {
+    if (!e || !e.m) return;
+    // Sayıya çevriliyor: geçmişte dize fiyat var ve "90" < "100" alfabetik
+    // karşılaştırması bu depoda kayıtlı bir tuzak.
+    const v = Number(e.f);
+    if (isFinite(v) && (harita[e.m] == null || v > harita[e.m])) harita[e.m] = v;
+  });
+  return harita;
+}
+
+function _fiyatZamaniYazi(iso) {
+  const m = /^(\d{4})-(\d{2})-(\d{2})(?:T(\d{2}):(\d{2}))?/.exec(String(iso || ''));
+  if (!m) return '';
+  const ay = ZAM_AYLAR[Number(m[2]) - 1];
+  if (!ay) return '';
+  return Number(m[3]) + ' ' + ay + (m[4] ? ' ' + m[4] + ':' + m[5] : '');
+}
+
+function _fiyatKaynagiHTML(mf) {
+  if (!mf) return '';
+  const parcalar = [];
+  const magaza = mf.depot_ad ? String(mf.depot_ad).trim() : '';
+  const il = mf.depot_il ? String(mf.depot_il).trim() : '';
+  if (magaza) parcalar.push(_kacir(magaza));
+  // İl yalnızca mağaza adında geçmiyorsa ekleniyor ("Istanbul Üsküdar ..."
+  // zaten ili taşıyor; iki kez yazmak satırı gereksiz uzatırdı).
+  if (il && (!magaza || magaza.toLocaleLowerCase('tr').indexOf(il.toLocaleLowerCase('tr')) < 0)) parcalar.push(_kacir(il));
+  const zaman = _fiyatZamaniYazi(mf.fiyat_guncelleme);
+  if (zaman) parcalar.push(_kacir(zaman));
+  if (!parcalar.length) return '';
+  return '<div class="detay-mkt-kaynak">' + parcalar.join(' · ') + '</div>';
+}
+
+// DETAY: market fiyat satırları. openDetay'in DIŞINDA — üç test (al_zamani,
+// esit_fiyat, supheli) o fonksiyonu SABİT karakter penceresiyle kesip içinde
+// çağrı arıyor ve gövdeye eklenen her satır aranan çağrıları pencerenin dışına
+// itiyor (ölçüldü 2026-09-13: çağrılar 4299-4619 karakterde, pencere 4000 —
+// CLAUDE.md'de kayıtlı, tekrarlayan tuzak). Satır üretimi de tek yerde toplandı.
+function _detayMarketSatirlariHTML(u, mktler, durumlar) {
+  const gozlenen = _marketEnYuksekHaritasi(u._sid);
+  return (mktler || []).map((f, i) => {
+    const { isBest, isWorst } = (durumlar && durumlar[i]) || {};
+    return `<div class="detay-mkt-row${isBest ? ' best' : isWorst ? ' worst' : ''}">
+      ${_marketEtiketiHTML(f.market)}
+      <span class="detay-mkt-price">${listeFiyatHTML(f, gozlenen && Math.max(gozlenen[f.market] || 0, Number(f.fiyat) || 0))}${tlHTML(f.fiyat)}${isWorst ? '<span class="detay-mkt-badge">en pahalı</span>' : ''}</span>
+    </div>${_fiyatKaynagiHTML(f)}${bildirimUyariHTML(u._sid, f.market)}`;
+  }).join('');
 }
 
 function fiyatlariTemizle(market_fiyatlari) {
@@ -3918,7 +3986,19 @@ function _stripKartHTML(u, rozet) {
 // tarihi (scripts/veri-tarihi.mjs). `uretim` BİLEREK kullanılmıyor — o build
 // anıdır, her deploy'da tazelenir ve tazelik ölçemez; hub sayfalarında tam
 // bu kusur Görev 8'de düzeltilmişti, ana sayfada aynı hataya düşmeyelim.
-function veriTazelikCiz(veriTarihi) {
+// "Bu fiyatlar NEREDEN?" — kapsam VERİDEN geliyor (anasayfa.json fiyat_kapsami),
+// sabit şehir adı YAZILMIYOR: yarın temsilci mağaza başka ile geçerse cümle
+// kendiliğinden değişir (zam sekmesindeki "sabit ay yazma" kuralının aynısı).
+// Mağaza sayısı 0 ya da kapsam yoksa cümle HİÇ çıkmıyor — "0 mağazadan
+// derlendi" yanlış bilgi olurdu.
+function _fiyatKapsamiYazi(kapsam) {
+  if (!kapsam || !(Number(kapsam.magaza) > 0)) return '';
+  const iller = Array.isArray(kapsam.iller) ? kapsam.iller.filter(Boolean) : [];
+  const ilYazi = iller.length ? ' (' + iller.map(_kacir).join(', ') + ')' : '';
+  return ' · ' + Number(kapsam.magaza) + ' mağazadan derlendi' + ilYazi;
+}
+
+function veriTazelikCiz(veriTarihi, kapsam) {
   const el = document.getElementById('veri-tazelik');
   if (!el) return;
   if (!veriTarihi) { el.hidden = true; return; }
@@ -3938,7 +4018,8 @@ function veriTazelikCiz(veriTarihi) {
   el.className = 'veri-tazelik' + (eski ? ' veri-tazelik--eski' : '');
   el.innerHTML = lcIcon('clock', 'lc-icon') +
     ` Fiyatlar <time datetime="${iso}">${tarihYazi}</time> verisi` +
-    (eski ? ` · ${gun} gün eski` : '');
+    (eski ? ` · ${gun} gün eski` : '') +
+    _fiyatKapsamiYazi(kapsam);
   el.hidden = false;
 }
 

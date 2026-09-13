@@ -1125,6 +1125,17 @@
       padding: var(--space-05) var(--space-2); border-radius: 6px;
     }
     [data-theme="dark"] .detay-mkt-liste-yuzde { background: rgba(34,197,94,0.15); color: #86EFAC; }
+    /* İlan edilen eski fiyatı BİZİM gözlemimiz desteklemiyorsa yüzde rozeti
+       basılmıyor; yerine sönük bir not (Mercek A1'in dil kuralı: "market yalan
+       söylüyor" değil, "biz görmedik"). Yeni renk YOK — mevcut --text-muted. */
+    .detay-mkt-liste-not { font-size: var(--fs-1); font-weight: 500; color: var(--text-muted); }
+    /* Fiyatın hangi mağazadan/ilden ve ne zaman geldiği. Satırın ALTINDA kendi
+       bloğunda duruyor: .detay-mkt-row bir flex satır, üçüncü çocuk eklemek
+       hizayı bozardı (bildirim uyarısı da aynı desende satırın dışında). */
+    .detay-mkt-kaynak {
+      font-size: var(--fs-1); font-weight: 500; color: var(--text-muted);
+      line-height: 1.35; padding: 0 var(--space-1) var(--space-2);
+    }
     /* ═══ Fiyat Geçmişi (fg-*) ═══ */
     .fg-wrap { padding: var(--space-2) 0 var(--space-1); }
     .fg-svg { width: 100%; height: auto; display: block; }

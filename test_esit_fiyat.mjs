@@ -131,7 +131,23 @@ console.log('\n=== 5. DETAY EKRANI _mktRowDurumu KULLANIYOR MU ===');
 {
   const det = APP.slice(APP.indexOf('function openDetay('), APP.indexOf('function openDetay(') + 4500);
   ok('openDetay _mktRowDurumu cagiriyor', /_mktRowDurumu\s*\(\s*mktler\s*\)/.test(det));
-  ok('rozet isWorst durumuna bagli', /isWorst \? '<span class="detay-mkt-badge">/.test(det), det);
+  // Satir sablonu 2026-09-13'te openDetay'in DISINA tasindi: uc test bu
+  // fonksiyonu SABIT karakter penceresiyle kesiyor ve eklenen satirlar aranan
+  // cagrilari pencerenin disina itmisti (olculdu: cagrilar 4299-4619, pencere
+  // 4000/4500). Iddia GEVSETILMEDI -- sablon artik ureticinin govdesinde
+  // araniyor, ustune openDetay'in ona BAGLI oldugu da kilitleniyor.
+  const uretici = (() => {
+    const b = APP.indexOf('function _detayMarketSatirlariHTML(');
+    if (b < 0) return '';
+    let d = 0;
+    for (let j = APP.indexOf('{', b); j < APP.length; j++) {
+      if (APP[j] === '{') d++;
+      else if (APP[j] === '}') { d--; if (d === 0) return APP.slice(b, j + 1); }
+    }
+    return '';
+  })();
+  ok('rozet isWorst durumuna bagli', /isWorst \? '<span class="detay-mkt-badge">/.test(uretici), uretici.slice(0, 200));
+  ok('  openDetay satirlari o ureticiden aliyor', /_detayMarketSatirlariHTML\(/.test(det), det.slice(0, 120));
   ok('_esitFiyatBilgiHTML detay sablonuna baglanmis', /_esitFiyatBilgiHTML\s*\(\s*mktler\s*,\s*fiyatlarFarkli\s*\)/.test(det));
 }
 
