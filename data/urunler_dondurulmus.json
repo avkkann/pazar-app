@@ -11,19 +11,21 @@
         "market": "a101",
         "fiyat": 209.0,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Keskinoğlu",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         209.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -42,19 +44,21 @@
         "market": "tarim_kredi",
         "fiyat": 230.0,
         "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak"
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Tarım Kredi",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         230.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "400 GR"
       ]
     ],
@@ -73,25 +77,29 @@
         "market": "sok",
         "fiyat": 239.0,
         "depot_id": "sok-4707",
-        "depot_ad": "Şok Minifevziçakmak"
+        "depot_ad": "Şok Minifevziçakmak",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       },
       {
         "market": "a101",
         "fiyat": 239.0,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Erpiliç",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         239.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "700 GR"
       ]
     ],
@@ -110,18 +118,20 @@
         "market": "bim",
         "fiyat": 249.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         249.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -140,19 +150,21 @@
         "market": "migros",
         "fiyat": 469.95,
         "depot_id": "migros-4479",
-        "depot_ad": "Mjet Üsküdar Paşakapısı"
+        "depot_ad": "Mjet Üsküdar Paşakapısı",
+        "fiyat_guncelleme": "2026-09-13T08:45",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Uzman Kasap",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         469.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "500 GR"
       ]
     ],
@@ -171,19 +183,21 @@
         "market": "tarim_kredi",
         "fiyat": 119.9,
         "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak"
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Bakpiliç",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         119.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -202,19 +216,21 @@
         "market": "bim",
         "fiyat": 139.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Gedik",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         139.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -233,18 +249,20 @@
         "market": "bim",
         "fiyat": 149.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         149.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "250 GR"
       ]
     ],
@@ -263,19 +281,21 @@
         "market": "a101",
         "fiyat": 219.0,
         "depot_id": "a101-4102",
-        "depot_ad": "Adem Yavuz Ümraniye Istanbul"
+        "depot_ad": "Adem Yavuz Ümraniye Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Balık Dünyası",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         219.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "550 GR"
       ]
     ],
@@ -294,19 +314,21 @@
         "market": "carrefour",
         "fiyat": 167.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Dönerşah",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         167.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "500 GR"
       ]
     ],
@@ -325,18 +347,20 @@
         "market": "bim",
         "fiyat": 225.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         225.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "500 GR"
       ]
     ],
@@ -355,19 +379,21 @@
         "market": "a101",
         "fiyat": 225.0,
         "depot_id": "a101-9324",
-        "depot_ad": "Şahap Gürler Kadıköy Istanbul"
+        "depot_ad": "Şahap Gürler Kadıköy Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Keskinoğlu",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         225.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -386,19 +412,21 @@
         "market": "carrefour",
         "fiyat": 599.95,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         599.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "360 GR"
       ]
     ],
@@ -417,18 +445,20 @@
         "market": "bim",
         "fiyat": 645.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         645.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -447,19 +477,21 @@
         "market": "a101",
         "fiyat": 59.5,
         "depot_id": "a101-4102",
-        "depot_ad": "Adem Yavuz Ümraniye Istanbul"
+        "depot_ad": "Adem Yavuz Ümraniye Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Şenpiliç",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         59.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -478,18 +510,20 @@
         "market": "bim",
         "fiyat": 65.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         65.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -508,19 +542,21 @@
         "market": "tarim_kredi",
         "fiyat": 199.0,
         "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak"
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Fish Fish",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         199.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "500 GR"
       ]
     ],
@@ -539,25 +575,29 @@
         "market": "migros",
         "fiyat": 165.95,
         "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 179.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         165.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "150 GR"
       ]
     ],
@@ -576,19 +616,21 @@
         "market": "migros",
         "fiyat": 165.95,
         "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         165.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "150 GR"
       ]
     ],
@@ -607,19 +649,21 @@
         "market": "tarim_kredi",
         "fiyat": 260.0,
         "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak"
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Tarım Kredi",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         260.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "400 GR"
       ]
     ],
@@ -638,19 +682,21 @@
         "market": "bim",
         "fiyat": 319.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Bonfilet",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         319.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "500 GR"
       ]
     ],
@@ -669,18 +715,20 @@
         "market": "bim",
         "fiyat": 59.9,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         59.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -699,19 +747,21 @@
         "market": "carrefour",
         "fiyat": 199.0,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Balık Dünyası",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         199.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "500 GR"
       ]
     ],
@@ -730,19 +780,21 @@
         "market": "hakmar",
         "fiyat": 219.75,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Lezita",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         219.75
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1.08 KG"
       ]
     ],
@@ -761,19 +813,21 @@
         "market": "a101",
         "fiyat": 235.0,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Beşler",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         235.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "250 GR"
       ]
     ],
@@ -793,31 +847,35 @@
         "fiyat": 314.96,
         "liste_fiyat": 419.95,
         "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 419.95,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         314.96
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "225 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "migros",
         "liste_fiyat": 419.95,
         "satis_fiyat": 314.96
@@ -837,19 +895,21 @@
         "market": "a101",
         "fiyat": 89.5,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Keskinoğlu",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         89.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -868,19 +928,21 @@
         "market": "tarim_kredi",
         "fiyat": 299.0,
         "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak"
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Kuzey Balık",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         299.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "500 GR"
       ]
     ],
@@ -899,19 +961,21 @@
         "market": "a101",
         "fiyat": 245.0,
         "depot_id": "a101-9324",
-        "depot_ad": "Şahap Gürler Kadıköy Istanbul"
+        "depot_ad": "Şahap Gürler Kadıköy Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Şampiyon",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         245.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "200 GR"
       ]
     ],
@@ -930,19 +994,21 @@
         "market": "carrefour",
         "fiyat": 382.9,
         "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını"
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         382.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "225 GR"
       ]
     ],
@@ -961,19 +1027,21 @@
         "market": "a101",
         "fiyat": 219.0,
         "depot_id": "a101-4102",
-        "depot_ad": "Adem Yavuz Ümraniye Istanbul"
+        "depot_ad": "Adem Yavuz Ümraniye Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Lezita",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         219.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -992,18 +1060,20 @@
         "market": "bim",
         "fiyat": 269.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         269.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "850 GR"
       ]
     ],
@@ -1022,19 +1092,21 @@
         "market": "a101",
         "fiyat": 199.0,
         "depot_id": "a101-4217",
-        "depot_ad": "Rıhtım Kadıköy Istanbul"
+        "depot_ad": "Rıhtım Kadıköy Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Erpiliç",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         199.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -1053,19 +1125,21 @@
         "market": "a101",
         "fiyat": 399.0,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Ramiz",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         399.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "500 GR"
       ]
     ],
@@ -1084,19 +1158,21 @@
         "market": "bim",
         "fiyat": 69.9,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Erpiliç",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         69.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -1116,25 +1192,27 @@
         "fiyat": 139.0,
         "liste_fiyat": 199.0,
         "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını"
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Nora",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         139.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "250 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "carrefour",
         "liste_fiyat": 199.0,
         "satis_fiyat": 139.0
@@ -1154,19 +1232,21 @@
         "market": "tarim_kredi",
         "fiyat": 189.0,
         "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak"
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Maret",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         189.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "200 GR"
       ]
     ],
@@ -1185,19 +1265,21 @@
         "market": "tarim_kredi",
         "fiyat": 349.0,
         "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak"
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Tarım Kredi",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         349.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "250 GR"
       ]
     ],
@@ -1216,19 +1298,21 @@
         "market": "tarim_kredi",
         "fiyat": 389.0,
         "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak"
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Kuzey Balık",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         389.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "400 GR"
       ]
     ],
@@ -1247,19 +1331,21 @@
         "market": "a101",
         "fiyat": 239.0,
         "depot_id": "a101-4141",
-        "depot_ad": "Doğanevler Ümraniye Istanbul"
+        "depot_ad": "Doğanevler Ümraniye Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Torku",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         239.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "390 GR"
       ]
     ],
@@ -1278,12 +1364,14 @@
         "market": "bim",
         "fiyat": 69.9,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         69.9
       ]
     ],
@@ -1303,19 +1391,21 @@
         "market": "a101",
         "fiyat": 99.5,
         "depot_id": "a101-9324",
-        "depot_ad": "Şahap Gürler Kadıköy Istanbul"
+        "depot_ad": "Şahap Gürler Kadıköy Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Lezita",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         99.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -1334,19 +1424,21 @@
         "market": "carrefour",
         "fiyat": 209.0,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Balık Dünyası",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         209.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "150 GR"
       ]
     ],
@@ -1365,19 +1457,21 @@
         "market": "hakmar",
         "fiyat": 199.0,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         199.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "300 GR"
       ]
     ],
@@ -1396,19 +1490,21 @@
         "market": "a101",
         "fiyat": 69.5,
         "depot_id": "a101-9324",
-        "depot_ad": "Şahap Gürler Kadıköy Istanbul"
+        "depot_ad": "Şahap Gürler Kadıköy Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Aspiliç",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         69.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -1427,18 +1523,20 @@
         "market": "bim",
         "fiyat": 89.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         89.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -1457,18 +1555,20 @@
         "market": "bim",
         "fiyat": 299.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         299.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "500 GR"
       ]
     ],
@@ -1487,19 +1587,21 @@
         "market": "a101",
         "fiyat": 69.0,
         "depot_id": "a101-9324",
-        "depot_ad": "Şahap Gürler Kadıköy Istanbul"
+        "depot_ad": "Şahap Gürler Kadıköy Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Erpiliç",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         69.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -1518,19 +1620,21 @@
         "market": "bim",
         "fiyat": 239.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Lezita",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         239.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "700 GR"
       ]
     ],
@@ -1549,19 +1653,21 @@
         "market": "hakmar",
         "fiyat": 159.75,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Lezita",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         159.75
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "700 GR"
       ]
     ],
@@ -1580,19 +1686,21 @@
         "market": "carrefour",
         "fiyat": 337.9,
         "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını"
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Lezita",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         337.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "700 GR"
       ]
     ],
@@ -1612,24 +1720,26 @@
         "fiyat": 119.0,
         "liste_fiyat": 189.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         119.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "bim",
         "liste_fiyat": 189.0,
         "satis_fiyat": 119.0
@@ -1649,19 +1759,21 @@
         "market": "a101",
         "fiyat": 165.0,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Balık Dünyası",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         165.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "440 GR"
       ]
     ],
@@ -1680,19 +1792,21 @@
         "market": "carrefour",
         "fiyat": 382.95,
         "depot_id": "carrefour-5411",
-        "depot_ad": "Istanbul Kadıköy Moda Cad"
+        "depot_ad": "Istanbul Kadıköy Moda Cad",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         382.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "225 GR"
       ]
     ],
@@ -1711,19 +1825,21 @@
         "market": "a101",
         "fiyat": 129.0,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Erpiliç",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         129.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -1742,19 +1858,21 @@
         "market": "bim",
         "fiyat": 189.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Banvit",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         189.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -1773,19 +1891,21 @@
         "market": "hakmar",
         "fiyat": 209.75,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Lezita",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         209.75
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -1805,31 +1925,35 @@
         "fiyat": 305.96,
         "liste_fiyat": 407.95,
         "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 409.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         305.96
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "280 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "migros",
         "liste_fiyat": 407.95,
         "satis_fiyat": 305.96
@@ -1849,19 +1973,21 @@
         "market": "a101",
         "fiyat": 99.0,
         "depot_id": "a101-9324",
-        "depot_ad": "Şahap Gürler Kadıköy Istanbul"
+        "depot_ad": "Şahap Gürler Kadıköy Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Bonfilet",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         99.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "400 GR"
       ]
     ],
@@ -1880,19 +2006,21 @@
         "market": "a101",
         "fiyat": 269.0,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Keskinoğlu",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         269.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "850 GR"
       ]
     ],
@@ -1911,19 +2039,21 @@
         "market": "bim",
         "fiyat": 499.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Altınkaz",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         499.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -1942,19 +2072,21 @@
         "market": "hakmar",
         "fiyat": 209.75,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Lezita",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         209.75
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "990 GR"
       ]
     ],
@@ -1973,19 +2105,21 @@
         "market": "tarim_kredi",
         "fiyat": 285.0,
         "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak"
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Kuzey Balık",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         285.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "500 GR"
       ]
     ],
@@ -2005,25 +2139,27 @@
         "fiyat": 329.96,
         "liste_fiyat": 439.95,
         "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         329.96
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "280 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "migros",
         "liste_fiyat": 439.95,
         "satis_fiyat": 329.96
@@ -2043,19 +2179,21 @@
         "market": "a101",
         "fiyat": 49.5,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Erpiliç",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         49.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -2074,19 +2212,21 @@
         "market": "a101",
         "fiyat": 225.0,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Banvit",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         225.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -2105,18 +2245,20 @@
         "market": "bim",
         "fiyat": 275.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         275.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "500 GR"
       ]
     ],
@@ -2135,19 +2277,21 @@
         "market": "carrefour",
         "fiyat": 349.0,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Balık Dünyası",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         349.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "130 GR"
       ]
     ],
@@ -2166,19 +2310,21 @@
         "market": "tarim_kredi",
         "fiyat": 1350.0,
         "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak"
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Tarım Kredi",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         1350.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -2197,19 +2343,21 @@
         "market": "tarim_kredi",
         "fiyat": 109.0,
         "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak"
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Bereket",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         109.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "200 GR"
       ]
     ],
@@ -2228,19 +2376,21 @@
         "market": "bim",
         "fiyat": 119.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Lezita",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         119.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -2259,19 +2409,21 @@
         "market": "tarim_kredi",
         "fiyat": 155.0,
         "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak"
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Kuzey Balık",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         155.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "320 GR"
       ]
     ],
@@ -2290,19 +2442,21 @@
         "market": "bim",
         "fiyat": 159.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         159.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "270 GR"
       ]
     ],
@@ -2321,18 +2475,20 @@
         "market": "bim",
         "fiyat": 245.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         245.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -2351,19 +2507,21 @@
         "market": "sok",
         "fiyat": 399.0,
         "depot_id": "sok-4707",
-        "depot_ad": "Şok Minifevziçakmak"
+        "depot_ad": "Şok Minifevziçakmak",
+        "fiyat_guncelleme": "2026-09-13T08:42",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Aytaç",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         399.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "500 GR"
       ]
     ],
@@ -2382,19 +2540,21 @@
         "market": "a101",
         "fiyat": 99.5,
         "depot_id": "a101-4217",
-        "depot_ad": "Rıhtım Kadıköy Istanbul"
+        "depot_ad": "Rıhtım Kadıköy Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Lezita",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         99.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1.08 KG"
       ]
     ],
@@ -2413,18 +2573,20 @@
         "market": "bim",
         "fiyat": 399.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         399.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "500 GR"
       ]
     ],
@@ -2443,19 +2605,21 @@
         "market": "a101",
         "fiyat": 219.0,
         "depot_id": "a101-9324",
-        "depot_ad": "Şahap Gürler Kadıköy Istanbul"
+        "depot_ad": "Şahap Gürler Kadıköy Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Erpiliç",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         219.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -2475,25 +2639,27 @@
         "fiyat": 99.9,
         "liste_fiyat": 269.95,
         "depot_id": "migros-4479",
-        "depot_ad": "Mjet Üsküdar Paşakapısı"
+        "depot_ad": "Mjet Üsküdar Paşakapısı",
+        "fiyat_guncelleme": "2026-09-13T08:45",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Mowi Fyord",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         99.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "200 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "migros",
         "liste_fiyat": 269.95,
         "satis_fiyat": 99.9
@@ -2513,12 +2679,14 @@
         "market": "bim",
         "fiyat": 149.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         149.0
       ]
     ],
@@ -2538,19 +2706,21 @@
         "market": "tarim_kredi",
         "fiyat": 299.0,
         "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak"
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         299.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "420 GR"
       ]
     ],
@@ -2570,24 +2740,26 @@
         "fiyat": 139.0,
         "liste_fiyat": 209.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         139.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "bim",
         "liste_fiyat": 209.0,
         "satis_fiyat": 139.0
@@ -2607,19 +2779,21 @@
         "market": "tarim_kredi",
         "fiyat": 180.0,
         "depot_id": "tarim_kredi-5022",
-        "depot_ad": "Istanbul Kadıköy Market"
+        "depot_ad": "Istanbul Kadıköy Market",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Konet",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         180.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "250 GR"
       ]
     ],
@@ -2638,19 +2812,21 @@
         "market": "carrefour",
         "fiyat": 209.0,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Balık Dünyası",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         209.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "115 GR"
       ]
     ],
@@ -2670,25 +2846,27 @@
         "fiyat": 287.21,
         "liste_fiyat": 382.95,
         "depot_id": "migros-564",
-        "depot_ad": "Kadıköy Çarşı M Migros"
+        "depot_ad": "Kadıköy Çarşı M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         287.21
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "225 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "migros",
         "liste_fiyat": 382.95,
         "satis_fiyat": 287.21
@@ -2708,19 +2886,21 @@
         "market": "tarim_kredi",
         "fiyat": 1500.0,
         "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak"
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Sancak",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         1500.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -2739,19 +2919,21 @@
         "market": "a101",
         "fiyat": 89.5,
         "depot_id": "a101-9324",
-        "depot_ad": "Şahap Gürler Kadıköy Istanbul"
+        "depot_ad": "Şahap Gürler Kadıköy Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Keskinoğlu",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         89.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -2770,19 +2952,21 @@
         "market": "a101",
         "fiyat": 175.0,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Kombinet",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         175.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "225 GR"
       ]
     ],
@@ -2801,19 +2985,21 @@
         "market": "a101",
         "fiyat": 199.0,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Balık Dünyası",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         199.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "500 GR"
       ]
     ],
@@ -2832,18 +3018,20 @@
         "market": "bim",
         "fiyat": 299.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         299.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "500 GR"
       ]
     ],
@@ -2863,25 +3051,27 @@
         "fiyat": 135.0,
         "liste_fiyat": 175.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Emin",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         135.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "225 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "bim",
         "liste_fiyat": 175.0,
         "satis_fiyat": 135.0
@@ -2901,19 +3091,21 @@
         "market": "tarim_kredi",
         "fiyat": 269.0,
         "depot_id": "tarim_kredi-5022",
-        "depot_ad": "Istanbul Kadıköy Market"
+        "depot_ad": "Istanbul Kadıköy Market",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Bakpiliç",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         269.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -2933,25 +3125,27 @@
         "fiyat": 285.0,
         "liste_fiyat": 349.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Emin",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         285.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "500 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "bim",
         "liste_fiyat": 349.0,
         "satis_fiyat": 285.0
@@ -2972,25 +3166,27 @@
         "fiyat": 287.21,
         "liste_fiyat": 382.95,
         "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         287.21
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "225 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "migros",
         "liste_fiyat": 382.95,
         "satis_fiyat": 287.21
@@ -3010,19 +3206,21 @@
         "market": "carrefour",
         "fiyat": 329.0,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Balık Dünyası",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         329.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "500 GR"
       ]
     ],
@@ -3041,19 +3239,21 @@
         "market": "a101",
         "fiyat": 245.0,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Akşeker",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         245.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "200 GR"
       ]
     ],
@@ -3072,19 +3272,21 @@
         "market": "a101",
         "fiyat": 79.5,
         "depot_id": "a101-9324",
-        "depot_ad": "Şahap Gürler Kadıköy Istanbul"
+        "depot_ad": "Şahap Gürler Kadıköy Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Banvit",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         79.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -3103,19 +3305,21 @@
         "market": "bim",
         "fiyat": 99.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Banvit",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         99.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -3134,19 +3338,21 @@
         "market": "bim",
         "fiyat": 199.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Banvit",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         199.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -3165,19 +3371,21 @@
         "market": "a101",
         "fiyat": 250.0,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Dönerşah",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         250.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "500 GR"
       ]
     ],
@@ -3196,19 +3404,21 @@
         "market": "carrefour",
         "fiyat": 399.0,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Dardanel",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         399.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "200 GR"
       ]
     ],
@@ -3227,19 +3437,21 @@
         "market": "a101",
         "fiyat": 99.5,
         "depot_id": "a101-4217",
-        "depot_ad": "Rıhtım Kadıköy Istanbul"
+        "depot_ad": "Rıhtım Kadıköy Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Lezita",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         99.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -3258,19 +3470,21 @@
         "market": "a101",
         "fiyat": 119.5,
         "depot_id": "a101-9324",
-        "depot_ad": "Şahap Gürler Kadıköy Istanbul"
+        "depot_ad": "Şahap Gürler Kadıköy Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Banvit",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         119.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -3289,19 +3503,21 @@
         "market": "hakmar",
         "fiyat": 159.75,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Lezita",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         159.75
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "700 GR"
       ]
     ],
@@ -3320,19 +3536,21 @@
         "market": "bim",
         "fiyat": 189.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Akşeker",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         189.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "200 GR"
       ]
     ],
@@ -3351,19 +3569,21 @@
         "market": "a101",
         "fiyat": 99.5,
         "depot_id": "a101-9324",
-        "depot_ad": "Şahap Gürler Kadıköy Istanbul"
+        "depot_ad": "Şahap Gürler Kadıköy Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Dönerşah",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         99.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "750 GR"
       ]
     ],
@@ -3382,12 +3602,14 @@
         "market": "bim",
         "fiyat": 189.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         189.0
       ]
     ],
@@ -3407,19 +3629,21 @@
         "market": "a101",
         "fiyat": 57.5,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Çokça",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         57.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "450 GR"
       ]
     ],
@@ -3438,55 +3662,26 @@
         "market": "bim",
         "fiyat": 89.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         89.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "600 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Konserve"
-  },
-  {
-    "_sid": "dondurulmus_feast-ispanak-450-gr",
-    "ad": "Feast Ispanak 450 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "450 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30074708.jpg",
-    "en_dusuk_fiyat": 109.85,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 109.85,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
-      }
-    ],
-    "marka": "Feast",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-13",
-        109.85
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-13",
-        "450 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
   },
   {
     "_sid": "dondurulmus_superfresh-dondurulmus-bogurtlen-300-gr",
@@ -3500,19 +3695,21 @@
         "market": "a101",
         "fiyat": 139.0,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         139.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "300 GR"
       ]
     ],
@@ -3531,19 +3728,21 @@
         "market": "bim",
         "fiyat": 199.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Mutfağım",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         199.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "350 GR"
       ]
     ],
@@ -3562,19 +3761,54 @@
         "market": "hakmar",
         "fiyat": 69.5,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         69.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
+        "450 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_feast-ispanak-450-gr",
+    "ad": "Feast Ispanak 450 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "450 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30074708.jpg",
+    "en_dusuk_fiyat": 109.85,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 109.85,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Feast",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-14",
+        109.85
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-14",
         "450 GR"
       ]
     ],
@@ -3593,19 +3827,21 @@
         "market": "hakmar",
         "fiyat": 159.5,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         159.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -3624,19 +3860,21 @@
         "market": "carrefour",
         "fiyat": 172.8,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         172.8
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "450 GR"
       ]
     ],
@@ -3655,19 +3893,21 @@
         "market": "a101",
         "fiyat": 189.0,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         189.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "600 GR"
       ]
     ],
@@ -3686,19 +3926,21 @@
         "market": "tarim_kredi",
         "fiyat": 74.9,
         "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak"
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Tarım Kredi",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         74.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "400 GR"
       ]
     ],
@@ -3718,25 +3960,27 @@
         "fiyat": 72.5,
         "liste_fiyat": 82.5,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Lezzethane",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         72.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "bim",
         "liste_fiyat": 82.5,
         "satis_fiyat": 72.5
@@ -3756,19 +4000,21 @@
         "market": "migros",
         "fiyat": 199.95,
         "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:45",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Pizza Mi-go",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         199.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "475 GR"
       ]
     ],
@@ -3788,25 +4034,27 @@
         "fiyat": 69.5,
         "liste_fiyat": 79.5,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         69.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "200 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "bim",
         "liste_fiyat": 79.5,
         "satis_fiyat": 69.5
@@ -3826,19 +4074,21 @@
         "market": "migros",
         "fiyat": 49.95,
         "depot_id": "migros-3296",
-        "depot_ad": "Kadıköy Caferağa M Migros"
+        "depot_ad": "Kadıköy Caferağa M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:45",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Migros",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         49.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "450 GR"
       ]
     ],
@@ -3857,50 +4107,21 @@
         "market": "bim",
         "fiyat": 99.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Mutfağım",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         99.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
-        "450 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_migros-hizli-dondurulmus-misir-450-gr",
-    "ad": "Migros Hızlı Dondurulmuş Mısır 450 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "450 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/17010059.jpg",
-    "en_dusuk_fiyat": 55.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 55.0,
-        "depot_id": "migros-3296",
-        "depot_ad": "Kadıköy Caferağa M Migros"
-      }
-    ],
-    "marka": "Migros",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-13",
-        55.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-13",
+        "2026-09-14",
         "450 GR"
       ]
     ],
@@ -3919,19 +4140,21 @@
         "market": "carrefour",
         "fiyat": 131.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         131.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "500 GR"
       ]
     ],
@@ -3950,19 +4173,21 @@
         "market": "carrefour",
         "fiyat": 154.95,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         154.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "500 GR"
       ]
     ],
@@ -3981,19 +4206,21 @@
         "market": "hakmar",
         "fiyat": 119.5,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         119.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "300 GR"
       ]
     ],
@@ -4013,25 +4240,27 @@
         "fiyat": 75.0,
         "liste_fiyat": 85.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Mutfağım",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         75.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "bim",
         "liste_fiyat": 85.0,
         "satis_fiyat": 75.0
@@ -4051,19 +4280,21 @@
         "market": "carrefour",
         "fiyat": 109.95,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         109.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "300 GR"
       ]
     ],
@@ -4082,19 +4313,21 @@
         "market": "hakmar",
         "fiyat": 119.9,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         119.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -4114,25 +4347,27 @@
         "fiyat": 115.47,
         "liste_fiyat": 164.95,
         "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:45",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         115.47
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "400 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "migros",
         "liste_fiyat": 164.95,
         "satis_fiyat": 115.47
@@ -4152,19 +4387,21 @@
         "market": "migros",
         "fiyat": 39.95,
         "depot_id": "migros-6679",
-        "depot_ad": "Mjet Kadıköy Rasımpaşa Istanbu"
+        "depot_ad": "Mjet Kadıköy Rasımpaşa Istanbu",
+        "fiyat_guncelleme": "2026-09-13T08:45",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Migros",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         39.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "450 GR"
       ]
     ],
@@ -4183,19 +4420,21 @@
         "market": "a101",
         "fiyat": 189.0,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Pidemiss",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         189.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "375 GR"
       ]
     ],
@@ -4214,19 +4453,21 @@
         "market": "hakmar",
         "fiyat": 219.75,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Pek Food",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         219.75
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "400 GR"
       ]
     ],
@@ -4245,19 +4486,21 @@
         "market": "a101",
         "fiyat": 109.0,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Nimet",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         109.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "650 GR"
       ]
     ],
@@ -4276,25 +4519,29 @@
         "market": "hakmar",
         "fiyat": 79.5,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "tarim_kredi",
         "fiyat": 134.9,
         "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak"
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         79.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "450 GR"
       ]
     ],
@@ -4313,19 +4560,21 @@
         "market": "bim",
         "fiyat": 159.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Lezzethane",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         159.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "505 GR"
       ]
     ],
@@ -4344,19 +4593,21 @@
         "market": "sok",
         "fiyat": 220.0,
         "depot_id": "sok-4707",
-        "depot_ad": "Şok Minifevziçakmak"
+        "depot_ad": "Şok Minifevziçakmak",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Hacıoğlu",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         220.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "440 GR"
       ]
     ],
@@ -4375,19 +4626,21 @@
         "market": "a101",
         "fiyat": 82.5,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Nimet",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         82.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -4406,19 +4659,21 @@
         "market": "carrefour",
         "fiyat": 219.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         219.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "450 GR"
       ]
     ],
@@ -4437,19 +4692,21 @@
         "market": "carrefour",
         "fiyat": 499.95,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         499.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "300 GR"
       ]
     ],
@@ -4468,19 +4725,21 @@
         "market": "tarim_kredi",
         "fiyat": 79.9,
         "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak"
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Tarım Kredi",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         79.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -4499,19 +4758,21 @@
         "market": "hakmar",
         "fiyat": 119.5,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         119.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "450 GR"
       ]
     ],
@@ -4530,19 +4791,21 @@
         "market": "hakmar",
         "fiyat": 99.5,
         "depot_id": "hakmar-5602",
-        "depot_ad": "Selimpaşa  Üsküdar"
+        "depot_ad": "Selimpaşa  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         99.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "200 GR"
       ]
     ],
@@ -4561,19 +4824,21 @@
         "market": "carrefour",
         "fiyat": 379.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         379.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "300 GR"
       ]
     ],
@@ -4592,51 +4857,22 @@
         "market": "a101",
         "fiyat": 117.5,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Froland",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         117.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "600 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_mutfagim-dondurulmus-citir-patates-1-kg",
-    "ad": "Mutfağım Dondurulmuş Çıtır Patates 1 Kg",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/bim/1101505.jpg",
-    "en_dusuk_fiyat": 95.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 95.0,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
-      }
-    ],
-    "marka": "Mutfağım",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-13",
-        95.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-13",
-        "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -4654,20 +4890,55 @@
         "market": "carrefour",
         "fiyat": 179.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         179.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "150 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_mutfagim-dondurulmus-citir-patates-1-kg",
+    "ad": "Mutfağım Dondurulmuş Çıtır Patates 1 Kg",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/bim/1101505.jpg",
+    "en_dusuk_fiyat": 95.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 95.0,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Mutfağım",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-14",
+        95.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-14",
+        "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -4685,19 +4956,21 @@
         "market": "bim",
         "fiyat": 109.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Lezzethane",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         109.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "650 GR"
       ]
     ],
@@ -4716,19 +4989,21 @@
         "market": "bim",
         "fiyat": 49.5,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Mutfağım",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         49.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "450 GR"
       ]
     ],
@@ -4747,19 +5022,21 @@
         "market": "tarim_kredi",
         "fiyat": 184.9,
         "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak"
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Mantı Atölyesi",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         184.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "400 GR"
       ]
     ],
@@ -4778,19 +5055,21 @@
         "market": "a101",
         "fiyat": 185.0,
         "depot_id": "a101-9324",
-        "depot_ad": "Şahap Gürler Kadıköy Istanbul"
+        "depot_ad": "Şahap Gürler Kadıköy Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         185.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "400 GR"
       ]
     ],
@@ -4809,19 +5088,21 @@
         "market": "carrefour",
         "fiyat": 219.95,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         219.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "420 GR"
       ]
     ],
@@ -4840,18 +5121,20 @@
         "market": "bim",
         "fiyat": 179.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         179.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "400 GR"
       ]
     ],
@@ -4870,19 +5153,21 @@
         "market": "a101",
         "fiyat": 139.0,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Nimet",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         139.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "820 GR"
       ]
     ],
@@ -4902,31 +5187,35 @@
         "fiyat": 39.95,
         "liste_fiyat": 54.95,
         "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 54.95,
         "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını"
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         39.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "200 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "migros",
         "liste_fiyat": 54.95,
         "satis_fiyat": 39.95
@@ -4947,25 +5236,27 @@
         "fiyat": 199.9,
         "liste_fiyat": 339.95,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         199.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "2.5 KG"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "carrefour",
         "liste_fiyat": 339.95,
         "satis_fiyat": 199.9
@@ -4985,19 +5276,21 @@
         "market": "a101",
         "fiyat": 79.5,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Nimet",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         79.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "500 GR"
       ]
     ],
@@ -5017,67 +5310,40 @@
         "fiyat": 104.5,
         "liste_fiyat": 129.95,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "sok",
         "fiyat": 114.9,
         "depot_id": "sok-4707",
-        "depot_ad": "Şok Minifevziçakmak"
+        "depot_ad": "Şok Minifevziçakmak",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         104.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "200 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "carrefour",
         "liste_fiyat": 129.95,
         "satis_fiyat": 104.5
       }
     ],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_intacto-dondurulmus-parmak-patates-1-kg",
-    "ad": "Intacto Dondurulmuş Parmak Patates 1 Kg",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "1 KG",
-    "resim": null,
-    "en_dusuk_fiyat": 85.0,
-    "market_fiyatlari": [
-      {
-        "market": "hakmar",
-        "fiyat": 85.0,
-        "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
-      }
-    ],
-    "marka": "Intacto",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-13",
-        85.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-13",
-        "1 KG"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
     "_original_kategori": "Hazır Yemekler"
   },
   {
@@ -5092,20 +5358,55 @@
         "market": "a101",
         "fiyat": 139.0,
         "depot_id": "a101-4102",
-        "depot_ad": "Adem Yavuz Ümraniye Istanbul"
+        "depot_ad": "Adem Yavuz Ümraniye Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Sushida",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         139.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "140 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_intacto-dondurulmus-parmak-patates-1-kg",
+    "ad": "Intacto Dondurulmuş Parmak Patates 1 Kg",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "1 KG",
+    "resim": null,
+    "en_dusuk_fiyat": 85.0,
+    "market_fiyatlari": [
+      {
+        "market": "hakmar",
+        "fiyat": 85.0,
+        "depot_id": "hakmar-5521",
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Intacto",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-14",
+        85.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-14",
+        "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -5123,19 +5424,21 @@
         "market": "hakmar",
         "fiyat": 99.5,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         99.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "200 GR"
       ]
     ],
@@ -5154,25 +5457,29 @@
         "market": "migros",
         "fiyat": 90.95,
         "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 90.95,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         90.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "600 GR"
       ]
     ],
@@ -5192,31 +5499,35 @@
         "fiyat": 139.9,
         "liste_fiyat": 201.9,
         "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını"
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "migros",
         "fiyat": 224.95,
         "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         139.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "500 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "carrefour",
         "liste_fiyat": 201.9,
         "satis_fiyat": 139.9
@@ -5236,19 +5547,21 @@
         "market": "hakmar",
         "fiyat": 289.5,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         289.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "780 GR"
       ]
     ],
@@ -5268,25 +5581,27 @@
         "fiyat": 125.0,
         "liste_fiyat": 149.95,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         125.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "500 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "carrefour",
         "liste_fiyat": 149.95,
         "satis_fiyat": 125.0
@@ -5306,13 +5621,15 @@
         "market": "bim",
         "fiyat": 149.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Pek Food",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         149.0
       ]
     ],
@@ -5332,51 +5649,22 @@
         "market": "hakmar",
         "fiyat": 79.5,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         79.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "450 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_nimet-dondurulmus-su-boregi-800-gr",
-    "ad": "Nimet Dondurulmuş Su Böreği 800 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "800 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/21001105.png",
-    "en_dusuk_fiyat": 199.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 199.0,
-        "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
-      }
-    ],
-    "marka": "Nimet",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-13",
-        199.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-13",
-        "800 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -5395,31 +5683,35 @@
         "fiyat": 83.97,
         "liste_fiyat": 119.95,
         "depot_id": "migros-6679",
-        "depot_ad": "Mjet Kadıköy Rasımpaşa Istanbu"
+        "depot_ad": "Mjet Kadıköy Rasımpaşa Istanbu",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 119.95,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         83.97
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "migros",
         "liste_fiyat": 119.95,
         "satis_fiyat": 83.97
@@ -5428,48 +5720,36 @@
     "_original_kategori": "Hazır Yemekler"
   },
   {
-    "_sid": "dondurulmus_superfresh-citir-patates-1-kg",
-    "ad": "SuperFresh Çıtır Patates 1 Kg",
+    "_sid": "dondurulmus_nimet-dondurulmus-su-boregi-800-gr",
+    "ad": "Nimet Dondurulmuş Su Böreği 800 Gr",
     "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/131345.jpg",
-    "en_dusuk_fiyat": 167.97,
+    "agirlik_hacim": "800 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/21001105.png",
+    "en_dusuk_fiyat": 199.0,
     "market_fiyatlari": [
       {
-        "market": "migros",
-        "fiyat": 167.97,
-        "liste_fiyat": 239.95,
-        "depot_id": "migros-6679",
-        "depot_ad": "Mjet Kadıköy Rasımpaşa Istanbu"
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 264.95,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "market": "a101",
+        "fiyat": 199.0,
+        "depot_id": "a101-6815",
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
-    "marka": "Superfresh",
+    "marka": "Nimet",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
-        167.97
+        "2026-09-14",
+        199.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
-        "1 KG"
+        "2026-09-14",
+        "800 GR"
       ]
     ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-09-13",
-        "market": "migros",
-        "liste_fiyat": 239.95,
-        "satis_fiyat": 167.97
-      }
-    ],
+    "ilan_indirim_gecmisi": [],
     "_original_kategori": "Hazır Yemekler"
   },
   {
@@ -5484,19 +5764,21 @@
         "market": "bim",
         "fiyat": 79.5,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Lezzethane",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         79.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "500 GR"
       ]
     ],
@@ -5515,19 +5797,21 @@
         "market": "a101",
         "fiyat": 79.5,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Nimet",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         79.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "500 GR"
       ]
     ],
@@ -5546,19 +5830,21 @@
         "market": "carrefour",
         "fiyat": 123.95,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         123.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "450 GR"
       ]
     ],
@@ -5577,69 +5863,83 @@
         "market": "bim",
         "fiyat": 139.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "migros",
         "fiyat": 149.07,
         "liste_fiyat": 212.95,
         "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "hakmar",
         "fiyat": 169.5,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 185.9,
         "liste_fiyat": 244.95,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "sok",
         "fiyat": 212.0,
         "depot_id": "sok-4707",
-        "depot_ad": "Şok Minifevziçakmak"
+        "depot_ad": "Şok Minifevziçakmak",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "tarim_kredi",
         "fiyat": 212.0,
         "depot_id": "tarim_kredi-5022",
-        "depot_ad": "Istanbul Kadıköy Market"
+        "depot_ad": "Istanbul Kadıköy Market",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "a101",
         "fiyat": 244.0,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         139.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "migros",
         "liste_fiyat": 212.95,
         "satis_fiyat": 149.07
       },
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "carrefour",
         "liste_fiyat": 244.95,
         "satis_fiyat": 185.9
@@ -5659,19 +5959,21 @@
         "market": "a101",
         "fiyat": 79.5,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Nimet",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         79.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "500 GR"
       ]
     ],
@@ -5690,19 +5992,21 @@
         "market": "hakmar",
         "fiyat": 89.0,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         89.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "600 GR"
       ]
     ],
@@ -5721,19 +6025,21 @@
         "market": "bim",
         "fiyat": 39.5,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         39.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "450 GR"
       ]
     ],
@@ -5752,19 +6058,21 @@
         "market": "migros",
         "fiyat": 87.5,
         "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:45",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Migros",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         87.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -5783,32 +6091,36 @@
         "market": "a101",
         "fiyat": 145.0,
         "depot_id": "a101-9324",
-        "depot_ad": "Şahap Gürler Kadıköy Istanbul"
+        "depot_ad": "Şahap Gürler Kadıköy Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 209.9,
         "liste_fiyat": 249.95,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         145.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "475 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "carrefour",
         "liste_fiyat": 249.95,
         "satis_fiyat": 209.9
@@ -5828,19 +6140,21 @@
         "market": "migros",
         "fiyat": 154.95,
         "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         154.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "450 GR"
       ]
     ],
@@ -5859,25 +6173,29 @@
         "market": "carrefour",
         "fiyat": 203.95,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "migros",
         "fiyat": 209.95,
         "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         203.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "450 GR"
       ]
     ],
@@ -5896,19 +6214,21 @@
         "market": "a101",
         "fiyat": 45.0,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Iff's",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         45.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "200 ML"
       ]
     ],
@@ -5927,25 +6247,29 @@
         "market": "migros",
         "fiyat": 109.95,
         "depot_id": "migros-3296",
-        "depot_ad": "Kadıköy Caferağa M Migros"
+        "depot_ad": "Kadıköy Caferağa M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 109.95,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         109.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "300 GR"
       ]
     ],
@@ -5965,31 +6289,35 @@
         "fiyat": 160.97,
         "liste_fiyat": 229.95,
         "depot_id": "migros-6679",
-        "depot_ad": "Mjet Kadıköy Rasımpaşa Istanbu"
+        "depot_ad": "Mjet Kadıköy Rasımpaşa Istanbu",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 254.95,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         160.97
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "migros",
         "liste_fiyat": 229.95,
         "satis_fiyat": 160.97
@@ -6009,19 +6337,21 @@
         "market": "a101",
         "fiyat": 219.0,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Pek Food",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         219.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "400 GR"
       ]
     ],
@@ -6040,19 +6370,21 @@
         "market": "a101",
         "fiyat": 109.0,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Nimet",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         109.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "650 GR"
       ]
     ],
@@ -6071,19 +6403,21 @@
         "market": "a101",
         "fiyat": 85.0,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Nimet",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         85.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -6103,25 +6437,27 @@
         "fiyat": 250.9,
         "liste_fiyat": 314.95,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "SF",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         250.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "400 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "carrefour",
         "liste_fiyat": 314.95,
         "satis_fiyat": 250.9
@@ -6141,19 +6477,21 @@
         "market": "carrefour",
         "fiyat": 243.5,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         243.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "400 GR"
       ]
     ],
@@ -6172,19 +6510,21 @@
         "market": "bim",
         "fiyat": 39.5,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Mutfağım",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         39.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "450 GR"
       ]
     ],
@@ -6203,19 +6543,21 @@
         "market": "bim",
         "fiyat": 115.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         115.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -6234,19 +6576,21 @@
         "market": "a101",
         "fiyat": 189.0,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         189.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -6265,19 +6609,21 @@
         "market": "sok",
         "fiyat": 109.0,
         "depot_id": "sok-4707",
-        "depot_ad": "Şok Minifevziçakmak"
+        "depot_ad": "Şok Minifevziçakmak",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         109.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "650 GR"
       ]
     ],
@@ -6296,19 +6642,21 @@
         "market": "bim",
         "fiyat": 185.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Pelmeni",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         185.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "400 GR"
       ]
     ],
@@ -6327,19 +6675,21 @@
         "market": "carrefour",
         "fiyat": 259.0,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         259.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -6359,25 +6709,27 @@
         "fiyat": 119.0,
         "liste_fiyat": 139.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Lezzethane",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         119.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "820 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "bim",
         "liste_fiyat": 139.0,
         "satis_fiyat": 119.0
@@ -6397,25 +6749,29 @@
         "market": "bim",
         "fiyat": 115.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 283.4,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         115.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -6434,19 +6790,21 @@
         "market": "bim",
         "fiyat": 189.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         189.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "600 GR"
       ]
     ],
@@ -6465,19 +6823,21 @@
         "market": "carrefour",
         "fiyat": 249.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         249.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "300 GR"
       ]
     ],
@@ -6496,19 +6856,21 @@
         "market": "carrefour",
         "fiyat": 128.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         128.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "450 GR"
       ]
     ],
@@ -6527,19 +6889,21 @@
         "market": "migros",
         "fiyat": 305.95,
         "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:45",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         305.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "280 GR"
       ]
     ],
@@ -6558,19 +6922,21 @@
         "market": "hakmar",
         "fiyat": 99.5,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         99.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "420 GR"
       ]
     ],
@@ -6590,31 +6956,35 @@
         "fiyat": 167.97,
         "liste_fiyat": 239.95,
         "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 264.95,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         167.97
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "migros",
         "liste_fiyat": 239.95,
         "satis_fiyat": 167.97
@@ -6634,19 +7004,21 @@
         "market": "a101",
         "fiyat": 79.5,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         79.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "200 GR"
       ]
     ],
@@ -6665,19 +7037,21 @@
         "market": "carrefour",
         "fiyat": 144.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         144.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "450 GR"
       ]
     ],
@@ -6696,19 +7070,21 @@
         "market": "tarim_kredi",
         "fiyat": 82.5,
         "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak"
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Bolca",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         82.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -6727,19 +7103,21 @@
         "market": "tarim_kredi",
         "fiyat": 89.9,
         "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak"
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         89.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "180 GR"
       ]
     ],
@@ -6758,19 +7136,21 @@
         "market": "carrefour",
         "fiyat": 258.25,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         258.25
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -6789,19 +7169,21 @@
         "market": "hakmar",
         "fiyat": 99.5,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         99.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "420 GR"
       ]
     ],
@@ -6820,19 +7202,21 @@
         "market": "bim",
         "fiyat": 52.5,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Lezzethane",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         52.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "400 GR"
       ]
     ],
@@ -6851,19 +7235,21 @@
         "market": "bim",
         "fiyat": 57.5,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Mutfağım",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         57.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "450 GR"
       ]
     ],
@@ -6882,19 +7268,21 @@
         "market": "migros",
         "fiyat": 399.95,
         "depot_id": "migros-3296",
-        "depot_ad": "Kadıköy Caferağa M Migros"
+        "depot_ad": "Kadıköy Caferağa M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:45",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         399.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "445 GR"
       ]
     ],
@@ -6913,19 +7301,21 @@
         "market": "carrefour",
         "fiyat": 469.95,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         469.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "350 GR"
       ]
     ],
@@ -6944,19 +7334,21 @@
         "market": "carrefour",
         "fiyat": 259.95,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         259.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -6975,19 +7367,21 @@
         "market": "bim",
         "fiyat": 49.5,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         49.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "450 GR"
       ]
     ],
@@ -7006,13 +7400,15 @@
         "market": "bim",
         "fiyat": 200.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Lezzethane",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         200.0
       ]
     ],
@@ -7032,19 +7428,21 @@
         "market": "carrefour",
         "fiyat": 99.95,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         99.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "450 GR"
       ]
     ],
@@ -7063,19 +7461,21 @@
         "market": "a101",
         "fiyat": 247.5,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Dr. Oetker",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         247.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "405 GR"
       ]
     ],
@@ -7094,19 +7494,21 @@
         "market": "migros",
         "fiyat": 199.95,
         "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:45",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Pizza Mi-go",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         199.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "545 GR"
       ]
     ],
@@ -7125,19 +7527,21 @@
         "market": "carrefour",
         "fiyat": 270.25,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         270.25
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -7156,19 +7560,21 @@
         "market": "carrefour",
         "fiyat": 124.85,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         124.85
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "450 GR"
       ]
     ],
@@ -7188,25 +7594,27 @@
         "fiyat": 139.9,
         "liste_fiyat": 199.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         139.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "420 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "carrefour",
         "liste_fiyat": 199.9,
         "satis_fiyat": 139.9
@@ -7226,19 +7634,21 @@
         "market": "migros",
         "fiyat": 119.95,
         "depot_id": "migros-4479",
-        "depot_ad": "Mjet Üsküdar Paşakapısı"
+        "depot_ad": "Mjet Üsküdar Paşakapısı",
+        "fiyat_guncelleme": "2026-09-13T08:45",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Tukaş",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         119.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -7257,19 +7667,21 @@
         "market": "a101",
         "fiyat": 189.5,
         "depot_id": "a101-9324",
-        "depot_ad": "Şahap Gürler Kadıköy Istanbul"
+        "depot_ad": "Şahap Gürler Kadıköy Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Leventbörek",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         189.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "400 GR"
       ]
     ],
@@ -7289,25 +7701,27 @@
         "fiyat": 219.9,
         "liste_fiyat": 294.95,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         219.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "carrefour",
         "liste_fiyat": 294.95,
         "satis_fiyat": 219.9
@@ -7327,19 +7741,21 @@
         "market": "hakmar",
         "fiyat": 52.5,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Mevsiminden",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         52.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "450 GR"
       ]
     ],
@@ -7359,31 +7775,35 @@
         "fiyat": 69.97,
         "liste_fiyat": 99.95,
         "depot_id": "migros-6679",
-        "depot_ad": "Mjet Kadıköy Rasımpaşa Istanbu"
+        "depot_ad": "Mjet Kadıköy Rasımpaşa Istanbu",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 99.95,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         69.97
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "migros",
         "liste_fiyat": 99.95,
         "satis_fiyat": 69.97
@@ -7403,19 +7823,21 @@
         "market": "tarim_kredi",
         "fiyat": 89.0,
         "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak"
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         89.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "600 GR"
       ]
     ],
@@ -7434,19 +7856,21 @@
         "market": "carrefour",
         "fiyat": 104.95,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         104.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "450 GR"
       ]
     ],
@@ -7465,19 +7889,21 @@
         "market": "migros",
         "fiyat": 114.95,
         "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         114.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "450 GR"
       ]
     ],
@@ -7496,19 +7922,21 @@
         "market": "carrefour",
         "fiyat": 270.25,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         270.25
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -7527,19 +7955,21 @@
         "market": "sok",
         "fiyat": 89.0,
         "depot_id": "sok-4707",
-        "depot_ad": "Şok Minifevziçakmak"
+        "depot_ad": "Şok Minifevziçakmak",
+        "fiyat_guncelleme": "2026-09-13T08:42",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         89.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "600 GR"
       ]
     ],
@@ -7559,25 +7989,27 @@
         "fiyat": 104.5,
         "liste_fiyat": 129.95,
         "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını"
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         104.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "200 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "carrefour",
         "liste_fiyat": 129.95,
         "satis_fiyat": 104.5
@@ -7597,25 +8029,29 @@
         "market": "carrefour",
         "fiyat": 219.95,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "migros",
         "fiyat": 224.95,
         "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         219.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "500 GR"
       ]
     ],
@@ -7634,19 +8070,21 @@
         "market": "hakmar",
         "fiyat": 55.0,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         55.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "450 GR"
       ]
     ],
@@ -7665,19 +8103,21 @@
         "market": "a101",
         "fiyat": 139.0,
         "depot_id": "a101-9324",
-        "depot_ad": "Şahap Gürler Kadıköy Istanbul"
+        "depot_ad": "Şahap Gürler Kadıköy Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         139.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "300 GR"
       ]
     ],
@@ -7696,19 +8136,21 @@
         "market": "carrefour",
         "fiyat": 209.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         209.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "450 GR"
       ]
     ],
@@ -7727,25 +8169,29 @@
         "market": "a101",
         "fiyat": 215.0,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       },
       {
         "market": "bim",
         "fiyat": 215.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         215.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -7764,19 +8210,21 @@
         "market": "a101",
         "fiyat": 52.5,
         "depot_id": "a101-9324",
-        "depot_ad": "Şahap Gürler Kadıköy Istanbul"
+        "depot_ad": "Şahap Gürler Kadıköy Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Nimet",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         52.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "400 GR"
       ]
     ],
@@ -7795,19 +8243,21 @@
         "market": "sok",
         "fiyat": 109.0,
         "depot_id": "sok-4707",
-        "depot_ad": "Şok Minifevziçakmak"
+        "depot_ad": "Şok Minifevziçakmak",
+        "fiyat_guncelleme": "2026-09-13T08:42",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Şef Franzi",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         109.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "475 GR"
       ]
     ],
@@ -7826,19 +8276,21 @@
         "market": "carrefour",
         "fiyat": 118.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         118.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "450 GR"
       ]
     ],
@@ -7857,19 +8309,21 @@
         "market": "bim",
         "fiyat": 65.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Iff's",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         65.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "350 GR"
       ]
     ],
@@ -7889,68 +8343,41 @@
         "fiyat": 119.9,
         "liste_fiyat": 164.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "migros",
         "fiyat": 164.95,
         "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         119.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "400 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "carrefour",
         "liste_fiyat": 164.9,
         "satis_fiyat": 119.9
       }
     ],
     "_original_kategori": "Ekmek ve Unlu Mamüller"
-  },
-  {
-    "_sid": "dondurulmus_superfresh-taze-fasulye-450-gr",
-    "ad": "Superfresh Taze Fasulye 450 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "450 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30035227.png",
-    "en_dusuk_fiyat": 139.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 139.9,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
-      }
-    ],
-    "marka": "Superfresh",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-13",
-        139.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-13",
-        "450 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
   },
   {
     "_sid": "dondurulmus_superfresh-acma-sade-4-adet-320-gr",
@@ -7965,25 +8392,27 @@
         "fiyat": 119.9,
         "liste_fiyat": 169.95,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         119.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "320 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "carrefour",
         "liste_fiyat": 169.95,
         "satis_fiyat": 119.9
@@ -8003,20 +8432,55 @@
         "market": "carrefour",
         "fiyat": 121.95,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         121.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "400 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_superfresh-taze-fasulye-450-gr",
+    "ad": "Superfresh Taze Fasulye 450 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "450 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30035227.png",
+    "en_dusuk_fiyat": 139.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 139.9,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Superfresh",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-14",
+        139.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-14",
+        "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -8035,31 +8499,35 @@
         "fiyat": 90.97,
         "liste_fiyat": 129.95,
         "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 129.95,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         90.97
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "migros",
         "liste_fiyat": 129.95,
         "satis_fiyat": 90.97
@@ -8079,19 +8547,21 @@
         "market": "tarim_kredi",
         "fiyat": 249.9,
         "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak"
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         249.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "350 GR"
       ]
     ],
@@ -8111,31 +8581,35 @@
         "fiyat": 94.47,
         "liste_fiyat": 134.95,
         "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 134.95,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         94.47
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "migros",
         "liste_fiyat": 134.95,
         "satis_fiyat": 94.47
@@ -8155,19 +8629,21 @@
         "market": "a101",
         "fiyat": 129.5,
         "depot_id": "a101-4102",
-        "depot_ad": "Adem Yavuz Ümraniye Istanbul"
+        "depot_ad": "Adem Yavuz Ümraniye Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         129.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -8186,19 +8662,21 @@
         "market": "carrefour",
         "fiyat": 179.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         179.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "450 GR"
       ]
     ],
@@ -8217,19 +8695,21 @@
         "market": "hakmar",
         "fiyat": 44.5,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Mevsiminden",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         44.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "450 GR"
       ]
     ],
@@ -8248,19 +8728,21 @@
         "market": "bim",
         "fiyat": 199.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Lezzethane",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         199.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "800 GR"
       ]
     ],
@@ -8279,19 +8761,21 @@
         "market": "bim",
         "fiyat": 145.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Mutfağım",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         145.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "2.5 KG"
       ]
     ],
@@ -8310,19 +8794,21 @@
         "market": "a101",
         "fiyat": 269.0,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         269.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "300 GR"
       ]
     ],
@@ -8341,19 +8827,21 @@
         "market": "carrefour",
         "fiyat": 769.95,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         769.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "500 GR"
       ]
     ],
@@ -8372,25 +8860,29 @@
         "market": "migros",
         "fiyat": 224.95,
         "depot_id": "migros-6679",
-        "depot_ad": "Mjet Kadıköy Rasımpaşa Istanbu"
+        "depot_ad": "Mjet Kadıköy Rasımpaşa Istanbu",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 224.95,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         224.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "500 GR"
       ]
     ],
@@ -8409,19 +8901,21 @@
         "market": "bim",
         "fiyat": 99.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Lezzethane",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         99.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "650 GR"
       ]
     ],
@@ -8440,19 +8934,21 @@
         "market": "carrefour",
         "fiyat": 239.0,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Sushida",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         239.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "140 GR"
       ]
     ],
@@ -8472,31 +8968,35 @@
         "fiyat": 145.9,
         "liste_fiyat": 184.95,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "sok",
         "fiyat": 184.9,
         "depot_id": "sok-4707",
-        "depot_ad": "Şok Minifevziçakmak"
+        "depot_ad": "Şok Minifevziçakmak",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         145.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "400 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "carrefour",
         "liste_fiyat": 184.95,
         "satis_fiyat": 145.9
@@ -8516,19 +9016,21 @@
         "market": "carrefour",
         "fiyat": 264.95,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         264.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "1 KG"
       ]
     ],
@@ -8547,19 +9049,21 @@
         "market": "a101",
         "fiyat": 69.0,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Hamidiye",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         69.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "720 ML"
       ]
     ],
@@ -8578,19 +9082,21 @@
         "market": "a101",
         "fiyat": 240.0,
         "depot_id": "a101-9324",
-        "depot_ad": "Şahap Gürler Kadıköy Istanbul"
+        "depot_ad": "Şahap Gürler Kadıköy Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Sefer Usta Özsüt",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         240.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "650 GR"
       ]
     ],
@@ -8609,23 +9115,66 @@
         "market": "a101",
         "fiyat": 199.0,
         "depot_id": "a101-9324",
-        "depot_ad": "Şahap Gürler Kadıköy Istanbul"
+        "depot_ad": "Şahap Gürler Kadıköy Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         199.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "550 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Tatlılar"
+  },
+  {
+    "_sid": "dondurulmus_daphne-dondurulmus-sufle-2x90-gr",
+    "ad": "Daphne Dondurulmuş Sufle 2x90 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "180 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 95.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 95.0,
+        "liste_fiyat": 119.0,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Daphne",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-14",
+        95.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-14",
+        "180 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-09-14",
+        "market": "bim",
+        "liste_fiyat": 119.0,
+        "satis_fiyat": 95.0
+      }
+    ],
     "_original_kategori": "Tatlılar"
   },
   {
@@ -8640,19 +9189,21 @@
         "market": "bim",
         "fiyat": 229.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Ma Sante",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         229.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "600 GR"
       ]
     ],
@@ -8671,19 +9222,21 @@
         "market": "hakmar",
         "fiyat": 229.0,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Valonia",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         229.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "600 GR"
       ]
     ],
@@ -8702,19 +9255,21 @@
         "market": "carrefour",
         "fiyat": 350.0,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Donuk",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         350.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "700 GR"
       ]
     ],
@@ -8733,19 +9288,21 @@
         "market": "carrefour",
         "fiyat": 409.8,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         409.8
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "650 GR"
       ]
     ],
@@ -8764,19 +9321,21 @@
         "market": "carrefour",
         "fiyat": 416.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         416.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "650 GR"
       ]
     ],
@@ -8795,25 +9354,29 @@
         "market": "migros",
         "fiyat": 219.95,
         "depot_id": "migros-4479",
-        "depot_ad": "Mjet Üsküdar Paşakapısı"
+        "depot_ad": "Mjet Üsküdar Paşakapısı",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 219.95,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         219.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "360 GR"
       ]
     ],
@@ -8832,19 +9395,21 @@
         "market": "carrefour",
         "fiyat": 408.9,
         "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını"
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         408.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "650 GR"
       ]
     ],
@@ -8863,19 +9428,21 @@
         "market": "bim",
         "fiyat": 145.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Artmac",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         145.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "135 GR"
       ]
     ],
@@ -8894,19 +9461,21 @@
         "market": "a101",
         "fiyat": 67.0,
         "depot_id": "a101-9324",
-        "depot_ad": "Şahap Gürler Kadıköy Istanbul"
+        "depot_ad": "Şahap Gürler Kadıköy Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Artmac",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         67.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "75 GR"
       ]
     ],
@@ -8925,19 +9494,21 @@
         "market": "a101",
         "fiyat": 219.0,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Özsüt",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         219.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "650 GR"
       ]
     ],
@@ -8956,19 +9527,21 @@
         "market": "carrefour",
         "fiyat": 419.25,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         419.25
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "600 GR"
       ]
     ],
@@ -8988,25 +9561,27 @@
         "fiyat": 179.0,
         "liste_fiyat": 219.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Ma Sante",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         179.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "650 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-13",
+        "tarih": "2026-09-14",
         "market": "bim",
         "liste_fiyat": 219.0,
         "satis_fiyat": 179.0
@@ -9026,81 +9601,21 @@
         "market": "bim",
         "fiyat": 229.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Osmanoğlu Damak Tadı",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         229.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
-        "400 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Tatlılar"
-  },
-  {
-    "_sid": "dondurulmus_hatay-asi-dondurulmus-tepsi-kunefe-500-gr",
-    "ad": "Hatay Asi Dondurulmuş Tepsi Künefe 500 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/21001401.png",
-    "en_dusuk_fiyat": 110.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 110.0,
-        "depot_id": "a101-9324",
-        "depot_ad": "Şahap Gürler Kadıköy Istanbul"
-      }
-    ],
-    "marka": "Hatay Asi",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-13",
-        110.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-13",
-        "500 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Tatlılar"
-  },
-  {
-    "_sid": "dondurulmus_sinangil-dondurulmus-soguk-baklava-400-gr",
-    "ad": "Sinangil Dondurulmuş Soğuk Baklava 400 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "400 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/21001198.png",
-    "en_dusuk_fiyat": 199.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 199.5,
-        "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
-      }
-    ],
-    "marka": "Sinangil",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-13",
-        199.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-13",
+        "2026-09-14",
         "400 GR"
       ]
     ],
@@ -9119,20 +9634,88 @@
         "market": "hakmar",
         "fiyat": 239.0,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Valonia",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         239.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "600 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Tatlılar"
+  },
+  {
+    "_sid": "dondurulmus_hatay-asi-dondurulmus-tepsi-kunefe-500-gr",
+    "ad": "Hatay Asi Dondurulmuş Tepsi Künefe 500 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "500 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/21001401.png",
+    "en_dusuk_fiyat": 110.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 110.0,
+        "depot_id": "a101-9324",
+        "depot_ad": "Şahap Gürler Kadıköy Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Hatay Asi",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-14",
+        110.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-14",
+        "500 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Tatlılar"
+  },
+  {
+    "_sid": "dondurulmus_sinangil-dondurulmus-soguk-baklava-400-gr",
+    "ad": "Sinangil Dondurulmuş Soğuk Baklava 400 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "400 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/21001198.png",
+    "en_dusuk_fiyat": 199.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 199.5,
+        "depot_id": "a101-6815",
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Sinangil",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-14",
+        199.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-14",
+        "400 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -9150,18 +9733,20 @@
         "market": "carrefour",
         "fiyat": 55.0,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         55.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "118 GR"
       ]
     ],
@@ -9180,18 +9765,20 @@
         "market": "bim",
         "fiyat": 69.5,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         69.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "250 GR"
       ]
     ],
@@ -9210,19 +9797,21 @@
         "market": "hakmar",
         "fiyat": 99.5,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Elif",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         99.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "200 GR"
       ]
     ],
@@ -9241,19 +9830,21 @@
         "market": "bim",
         "fiyat": 135.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Ma Sante",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         135.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "500 GR"
       ]
     ],
@@ -9272,19 +9863,21 @@
         "market": "carrefour",
         "fiyat": 249.95,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Galez",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         249.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "270 GR"
       ]
     ],
@@ -9303,19 +9896,21 @@
         "market": "carrefour",
         "fiyat": 149.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         149.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-13",
+        "2026-09-14",
         "200 GR"
       ]
     ],

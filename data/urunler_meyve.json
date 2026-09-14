@@ -11,7 +11,9 @@
         "market": "bim",
         "fiyat": 9.5,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -88,19 +90,25 @@
         "market": "carrefour",
         "fiyat": 19.9,
         "depot_id": "carrefour-5406",
-        "depot_ad": "Istanbul Kadıköy Moda Bademalt"
+        "depot_ad": "Istanbul Kadıköy Moda Bademalt",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "a101",
         "fiyat": 21.0,
         "depot_id": "a101-4141",
-        "depot_ad": "Doğanevler Ümraniye Istanbul"
+        "depot_ad": "Doğanevler Ümraniye Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "hakmar",
         "fiyat": 24.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -237,7 +245,9 @@
         "market": "tarim_kredi",
         "fiyat": 24.9,
         "depot_id": "tarim_kredi-5022",
-        "depot_ad": "Istanbul Kadıköy Market"
+        "depot_ad": "Istanbul Kadıköy Market",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Tagem",
@@ -263,38 +273,50 @@
         "fiyat": 26.9,
         "liste_fiyat": 49.9,
         "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını"
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "hakmar",
         "fiyat": 29.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "bim",
         "fiyat": 34.5,
         "liste_fiyat": 39.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "a101",
         "fiyat": 34.9,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "tarim_kredi",
         "fiyat": 39.0,
         "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak"
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "sok",
         "fiyat": 49.9,
         "depot_id": "sok-1017",
-        "depot_ad": "Selimiye"
+        "depot_ad": "Selimiye",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -390,7 +412,9 @@
         "market": "bim",
         "fiyat": 29.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -424,19 +448,25 @@
         "fiyat": 29.0,
         "liste_fiyat": 35.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       },
       {
         "market": "a101",
         "fiyat": 29.9,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       },
       {
         "market": "hakmar",
         "fiyat": 29.95,
         "depot_id": "hakmar-5602",
-        "depot_ad": "Selimpaşa  Üsküdar"
+        "depot_ad": "Selimpaşa  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -557,13 +587,17 @@
         "fiyat": 39.9,
         "liste_fiyat": 79.9,
         "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını"
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "bim",
         "fiyat": 99.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -659,27 +693,35 @@
         "market": "a101",
         "fiyat": 50.5,
         "depot_id": "a101-4141",
-        "depot_ad": "Doğanevler Ümraniye Istanbul"
+        "depot_ad": "Doğanevler Ümraniye Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "bim",
         "fiyat": 59.0,
         "liste_fiyat": 75.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 59.9,
         "liste_fiyat": 89.9,
         "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını"
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "hakmar",
         "fiyat": 69.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -849,13 +891,17 @@
         "market": "carrefour",
         "fiyat": 54.9,
         "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını"
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "migros",
         "fiyat": 74.95,
         "depot_id": "migros-6679",
-        "depot_ad": "Mjet Kadıköy Rasımpaşa Istanbu"
+        "depot_ad": "Mjet Kadıköy Rasımpaşa Istanbu",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -933,38 +979,50 @@
         "fiyat": 59.0,
         "liste_fiyat": 75.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "a101",
         "fiyat": 59.5,
         "depot_id": "a101-4102",
-        "depot_ad": "Adem Yavuz Ümraniye Istanbul"
+        "depot_ad": "Adem Yavuz Ümraniye Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "tarim_kredi",
         "fiyat": 59.9,
         "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak"
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 69.9,
         "liste_fiyat": 129.9,
         "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını"
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "sok",
         "fiyat": 79.9,
         "depot_id": "sok-1017",
-        "depot_ad": "Selimiye"
+        "depot_ad": "Selimiye",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "hakmar",
         "fiyat": 99.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -1100,19 +1158,25 @@
         "market": "sok",
         "fiyat": 59.0,
         "depot_id": "sok-1017",
-        "depot_ad": "Selimiye"
+        "depot_ad": "Selimiye",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 69.9,
         "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını"
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "migros",
         "fiyat": 69.95,
         "depot_id": "migros-564",
-        "depot_ad": "Kadıköy Çarşı M Migros"
+        "depot_ad": "Kadıköy Çarşı M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -1186,7 +1250,9 @@
         "fiyat": 59.9,
         "liste_fiyat": 99.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -1252,7 +1318,9 @@
         "market": "carrefour",
         "fiyat": 64.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -1282,7 +1350,9 @@
         "fiyat": 69.0,
         "liste_fiyat": 79.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -1382,31 +1452,41 @@
         "market": "hakmar",
         "fiyat": 69.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "a101",
         "fiyat": 75.9,
         "depot_id": "a101-4141",
-        "depot_ad": "Doğanevler Ümraniye Istanbul"
+        "depot_ad": "Doğanevler Ümraniye Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 84.9,
         "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını"
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "bim",
         "fiyat": 89.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "sok",
         "fiyat": 99.0,
         "depot_id": "sok-1017",
-        "depot_ad": "Selimiye"
+        "depot_ad": "Selimiye",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -1467,31 +1547,41 @@
         "market": "hakmar",
         "fiyat": 69.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "a101",
         "fiyat": 83.9,
         "depot_id": "a101-4141",
-        "depot_ad": "Doğanevler Ümraniye Istanbul"
+        "depot_ad": "Doğanevler Ümraniye Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "sok",
         "fiyat": 99.0,
         "depot_id": "sok-1017",
-        "depot_ad": "Selimiye"
+        "depot_ad": "Selimiye",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "migros",
         "fiyat": 99.95,
         "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 129.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -1596,13 +1686,17 @@
         "market": "hakmar",
         "fiyat": 69.95,
         "depot_id": "hakmar-5602",
-        "depot_ad": "Selimpaşa  Üsküdar"
+        "depot_ad": "Selimpaşa  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 124.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -1674,14 +1768,18 @@
         "market": "a101",
         "fiyat": 97.5,
         "depot_id": "a101-4141",
-        "depot_ad": "Doğanevler Ümraniye Istanbul"
+        "depot_ad": "Doğanevler Ümraniye Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 99.0,
         "liste_fiyat": 129.9,
         "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını"
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -1768,19 +1866,25 @@
         "fiyat": 99.0,
         "liste_fiyat": 119.9,
         "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını"
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "bim",
         "fiyat": 129.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "sok",
         "fiyat": 129.0,
         "depot_id": "sok-7238",
-        "depot_ad": "Rıhtım Cdkadıköy"
+        "depot_ad": "Rıhtım Cdkadıköy",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -1834,7 +1938,9 @@
         "market": "carrefour",
         "fiyat": 109.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -1878,7 +1984,9 @@
         "market": "carrefour",
         "fiyat": 119.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -1902,7 +2010,9 @@
         "market": "a101",
         "fiyat": 129.5,
         "depot_id": "a101-9324",
-        "depot_ad": "Şahap Gürler Kadıköy Istanbul"
+        "depot_ad": "Şahap Gürler Kadıköy Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -1931,7 +2041,9 @@
         "market": "carrefour",
         "fiyat": 139.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -1955,7 +2067,9 @@
         "market": "migros",
         "fiyat": 175.95,
         "depot_id": "migros-6679",
-        "depot_ad": "Mjet Kadıköy Rasımpaşa Istanbu"
+        "depot_ad": "Mjet Kadıköy Rasımpaşa Istanbu",
+        "fiyat_guncelleme": "2026-09-13T08:45",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Gurumen",
@@ -2000,7 +2114,9 @@
         "market": "carrefour",
         "fiyat": 199.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -2049,7 +2165,9 @@
         "market": "hakmar",
         "fiyat": 24.95,
         "depot_id": "hakmar-5602",
-        "depot_ad": "Selimpaşa  Üsküdar"
+        "depot_ad": "Selimpaşa  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -2093,20 +2211,26 @@
         "market": "hakmar",
         "fiyat": 29.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "a101",
         "fiyat": 39.5,
         "depot_id": "a101-4217",
-        "depot_ad": "Rıhtım Kadıköy Istanbul"
+        "depot_ad": "Rıhtım Kadıköy Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 39.9,
         "liste_fiyat": 54.9,
         "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını"
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -2159,7 +2283,9 @@
         "fiyat": 39.0,
         "liste_fiyat": 45.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -2199,13 +2325,17 @@
         "market": "hakmar",
         "fiyat": 39.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "a101",
         "fiyat": 49.5,
         "depot_id": "a101-4141",
-        "depot_ad": "Doğanevler Ümraniye Istanbul"
+        "depot_ad": "Doğanevler Ümraniye Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -2246,14 +2376,18 @@
         "market": "hakmar",
         "fiyat": 39.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 49.9,
         "liste_fiyat": 79.9,
         "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını"
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -2323,7 +2457,9 @@
         "market": "sok",
         "fiyat": 49.5,
         "depot_id": "sok-4707",
-        "depot_ad": "Şok Minifevziçakmak"
+        "depot_ad": "Şok Minifevziçakmak",
+        "fiyat_guncelleme": "2026-09-13T08:42",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "İnci",
@@ -2357,7 +2493,9 @@
         "market": "hakmar",
         "fiyat": 49.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -2386,7 +2524,9 @@
         "market": "sok",
         "fiyat": 57.5,
         "depot_id": "sok-4707",
-        "depot_ad": "Şok Minifevziçakmak"
+        "depot_ad": "Şok Minifevziçakmak",
+        "fiyat_guncelleme": "2026-09-13T08:43",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "İnci",
@@ -2420,13 +2560,17 @@
         "market": "bim",
         "fiyat": 59.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 99.9,
         "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını"
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -2466,19 +2610,25 @@
         "market": "bim",
         "fiyat": 59.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       },
       {
         "market": "sok",
         "fiyat": 64.9,
         "depot_id": "sok-1017",
-        "depot_ad": "Selimiye"
+        "depot_ad": "Selimiye",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       },
       {
         "market": "a101",
         "fiyat": 79.5,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -2569,7 +2719,9 @@
         "market": "carrefour",
         "fiyat": 59.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -2622,25 +2774,33 @@
         "market": "a101",
         "fiyat": 69.5,
         "depot_id": "a101-4141",
-        "depot_ad": "Doğanevler Ümraniye Istanbul"
+        "depot_ad": "Doğanevler Ümraniye Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "hakmar",
         "fiyat": 69.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "bim",
         "fiyat": 75.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "sok",
         "fiyat": 79.9,
         "depot_id": "sok-1017",
-        "depot_ad": "Selimiye"
+        "depot_ad": "Selimiye",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -2728,7 +2888,9 @@
         "market": "carrefour",
         "fiyat": 69.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -2769,7 +2931,9 @@
         "market": "carrefour",
         "fiyat": 69.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -2802,25 +2966,33 @@
         "market": "bim",
         "fiyat": 79.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "tarim_kredi",
         "fiyat": 94.9,
         "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak"
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "sok",
         "fiyat": 99.0,
         "depot_id": "sok-1017",
-        "depot_ad": "Selimiye"
+        "depot_ad": "Selimiye",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 109.9,
         "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını"
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -2869,7 +3041,9 @@
         "market": "hakmar",
         "fiyat": 79.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -2918,7 +3092,9 @@
         "market": "carrefour",
         "fiyat": 89.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -2952,13 +3128,17 @@
         "fiyat": 99.0,
         "liste_fiyat": 109.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "hakmar",
         "fiyat": 139.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -3002,7 +3182,9 @@
         "market": "hakmar",
         "fiyat": 99.95,
         "depot_id": "hakmar-5770",
-        "depot_ad": "Selamlıüsküdar"
+        "depot_ad": "Selamlıüsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -3026,7 +3208,9 @@
         "market": "migros",
         "fiyat": 109.95,
         "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Burcu",
@@ -3056,7 +3240,9 @@
         "market": "migros",
         "fiyat": 109.95,
         "depot_id": "migros-564",
-        "depot_ad": "Kadıköy Çarşı M Migros"
+        "depot_ad": "Kadıköy Çarşı M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:45",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Deli Chef",
@@ -3086,7 +3272,9 @@
         "market": "carrefour",
         "fiyat": 129.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -3115,7 +3303,9 @@
         "market": "hakmar",
         "fiyat": 129.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -3152,7 +3342,9 @@
         "market": "carrefour",
         "fiyat": 249.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -3189,7 +3381,9 @@
         "market": "migros",
         "fiyat": 295.95,
         "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:45",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Lavi",
@@ -3231,7 +3425,9 @@
         "market": "tarim_kredi",
         "fiyat": 24.9,
         "depot_id": "tarim_kredi-5022",
-        "depot_ad": "Istanbul Kadıköy Market"
+        "depot_ad": "Istanbul Kadıköy Market",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Tagem",
@@ -3256,7 +3452,9 @@
         "market": "tarim_kredi",
         "fiyat": 24.9,
         "depot_id": "tarim_kredi-5022",
-        "depot_ad": "Istanbul Kadıköy Market"
+        "depot_ad": "Istanbul Kadıköy Market",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Tagem",
@@ -3281,7 +3479,9 @@
         "market": "tarim_kredi",
         "fiyat": 24.9,
         "depot_id": "tarim_kredi-5022",
-        "depot_ad": "Istanbul Kadıköy Market"
+        "depot_ad": "Istanbul Kadıköy Market",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Tagem",
@@ -3312,7 +3512,9 @@
         "fiyat": 29.0,
         "liste_fiyat": 39.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -3390,7 +3592,9 @@
         "market": "carrefour",
         "fiyat": 32.95,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -3414,19 +3618,25 @@
         "market": "bim",
         "fiyat": 35.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "sok",
         "fiyat": 49.0,
         "depot_id": "sok-1017",
-        "depot_ad": "Selimiye"
+        "depot_ad": "Selimiye",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "hakmar",
         "fiyat": 49.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -3476,7 +3686,9 @@
         "market": "a101",
         "fiyat": 37.9,
         "depot_id": "a101-4141",
-        "depot_ad": "Doğanevler Ümraniye Istanbul"
+        "depot_ad": "Doğanevler Ümraniye Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -3553,7 +3765,9 @@
         "market": "bim",
         "fiyat": 39.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -3605,38 +3819,50 @@
         "market": "a101",
         "fiyat": 41.9,
         "depot_id": "a101-4141",
-        "depot_ad": "Doğanevler Ümraniye Istanbul"
+        "depot_ad": "Doğanevler Ümraniye Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "migros",
         "fiyat": 42.95,
         "depot_id": "migros-6679",
-        "depot_ad": "Mjet Kadıköy Rasımpaşa Istanbu"
+        "depot_ad": "Mjet Kadıköy Rasımpaşa Istanbu",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "tarim_kredi",
         "fiyat": 44.9,
         "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak"
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "bim",
         "fiyat": 49.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 49.9,
         "liste_fiyat": 64.9,
         "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını"
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "hakmar",
         "fiyat": 49.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -3818,7 +4044,9 @@
         "market": "a101",
         "fiyat": 41.9,
         "depot_id": "a101-4141",
-        "depot_ad": "Doğanevler Ümraniye Istanbul"
+        "depot_ad": "Doğanevler Ümraniye Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -3914,7 +4142,9 @@
         "market": "bim",
         "fiyat": 49.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "K.Akdeniz",
@@ -3939,13 +4169,17 @@
         "market": "bim",
         "fiyat": 49.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "a101",
         "fiyat": 75.9,
         "depot_id": "a101-4141",
-        "depot_ad": "Doğanevler Ümraniye Istanbul"
+        "depot_ad": "Doğanevler Ümraniye Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -3973,7 +4207,9 @@
         "market": "sok",
         "fiyat": 49.9,
         "depot_id": "sok-1017",
-        "depot_ad": "Selimiye"
+        "depot_ad": "Selimiye",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -3997,21 +4233,27 @@
         "market": "a101",
         "fiyat": 50.5,
         "depot_id": "a101-4141",
-        "depot_ad": "Doğanevler Ümraniye Istanbul"
+        "depot_ad": "Doğanevler Ümraniye Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "bim",
         "fiyat": 59.0,
         "liste_fiyat": 75.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 59.9,
         "liste_fiyat": 89.9,
         "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını"
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -4175,26 +4417,34 @@
         "market": "tarim_kredi",
         "fiyat": 57.9,
         "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak"
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "bim",
         "fiyat": 59.0,
         "liste_fiyat": 65.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "a101",
         "fiyat": 59.5,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "sok",
         "fiyat": 65.0,
         "depot_id": "sok-1017",
-        "depot_ad": "Selimiye"
+        "depot_ad": "Selimiye",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -4358,26 +4608,34 @@
         "market": "a101",
         "fiyat": 59.5,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 59.9,
         "liste_fiyat": 79.9,
         "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını"
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "sok",
         "fiyat": 69.9,
         "depot_id": "sok-1017",
-        "depot_ad": "Selimiye"
+        "depot_ad": "Selimiye",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "hakmar",
         "fiyat": 69.95,
         "depot_id": "hakmar-5602",
-        "depot_ad": "Selimpaşa  Üsküdar"
+        "depot_ad": "Selimpaşa  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -4421,7 +4679,9 @@
         "market": "hakmar",
         "fiyat": 59.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -4470,7 +4730,9 @@
         "market": "carrefour",
         "fiyat": 69.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -4494,7 +4756,9 @@
         "market": "bim",
         "fiyat": 79.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -4523,7 +4787,9 @@
         "market": "bim",
         "fiyat": 79.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -4560,7 +4826,9 @@
         "market": "bim",
         "fiyat": 79.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -4608,7 +4876,9 @@
         "market": "bim",
         "fiyat": 89.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -4645,7 +4915,9 @@
         "market": "hakmar",
         "fiyat": 99.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -4669,7 +4941,9 @@
         "market": "migros",
         "fiyat": 199.95,
         "depot_id": "migros-3296",
-        "depot_ad": "Kadıköy Caferağa M Migros"
+        "depot_ad": "Kadıköy Caferağa M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:45",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Lavi",
@@ -4699,7 +4973,9 @@
         "market": "carrefour",
         "fiyat": 945.0,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -4728,19 +5004,25 @@
         "market": "bim",
         "fiyat": 5.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "tarim_kredi",
         "fiyat": 5.0,
         "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak"
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "hakmar",
         "fiyat": 12.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -4848,7 +5130,9 @@
         "market": "bim",
         "fiyat": 19.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -4952,7 +5236,9 @@
         "market": "hakmar",
         "fiyat": 24.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -4997,32 +5283,42 @@
         "market": "tarim_kredi",
         "fiyat": 26.9,
         "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak"
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       },
       {
         "market": "bim",
         "fiyat": 29.0,
         "liste_fiyat": 35.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       },
       {
         "market": "sok",
         "fiyat": 29.0,
         "depot_id": "sok-1017",
-        "depot_ad": "Selimiye"
+        "depot_ad": "Selimiye",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       },
       {
         "market": "a101",
         "fiyat": 29.9,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       },
       {
         "market": "hakmar",
         "fiyat": 29.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -5164,7 +5460,9 @@
         "market": "bim",
         "fiyat": 27.5,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -5193,7 +5491,9 @@
         "market": "hakmar",
         "fiyat": 29.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -5233,13 +5533,17 @@
         "market": "a101",
         "fiyat": 35.9,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       },
       {
         "market": "hakmar",
         "fiyat": 49.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -5340,13 +5644,17 @@
         "market": "sok",
         "fiyat": 39.9,
         "depot_id": "sok-1017",
-        "depot_ad": "Selimiye"
+        "depot_ad": "Selimiye",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "hakmar",
         "fiyat": 99.95,
         "depot_id": "hakmar-5200",
-        "depot_ad": "Valide  Üsküdar"
+        "depot_ad": "Valide  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -5383,7 +5691,9 @@
         "market": "migros",
         "fiyat": 39.95,
         "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -5520,13 +5830,17 @@
         "market": "hakmar",
         "fiyat": 39.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "a101",
         "fiyat": 47.5,
         "depot_id": "a101-4141",
-        "depot_ad": "Doğanevler Ümraniye Istanbul"
+        "depot_ad": "Doğanevler Ümraniye Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -5579,7 +5893,9 @@
         "market": "hakmar",
         "fiyat": 39.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -5603,13 +5919,17 @@
         "market": "sok",
         "fiyat": 49.0,
         "depot_id": "sok-4711",
-        "depot_ad": "Şok Minitamer Yeni"
+        "depot_ad": "Şok Minitamer Yeni",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "hakmar",
         "fiyat": 49.95,
         "depot_id": "hakmar-5602",
-        "depot_ad": "Selimpaşa  Üsküdar"
+        "depot_ad": "Selimpaşa  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -5666,7 +5986,9 @@
         "market": "bim",
         "fiyat": 49.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -5730,7 +6052,9 @@
         "market": "carrefour",
         "fiyat": 49.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -5771,7 +6095,9 @@
         "market": "hakmar",
         "fiyat": 49.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -5816,7 +6142,9 @@
         "market": "carrefour",
         "fiyat": 59.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -5853,13 +6181,17 @@
         "market": "carrefour",
         "fiyat": 69.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "sok",
         "fiyat": 74.9,
         "depot_id": "sok-7238",
-        "depot_ad": "Rıhtım Cdkadıköy"
+        "depot_ad": "Rıhtım Cdkadıköy",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -5904,7 +6236,9 @@
         "market": "bim",
         "fiyat": 79.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -5933,7 +6267,9 @@
         "market": "carrefour",
         "fiyat": 79.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -5957,7 +6293,9 @@
         "market": "carrefour",
         "fiyat": 89.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -6045,19 +6383,25 @@
         "market": "a101",
         "fiyat": 104.9,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "bim",
         "fiyat": 109.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 129.9,
         "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını"
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -6149,7 +6493,9 @@
         "market": "carrefour",
         "fiyat": 129.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -6178,7 +6524,9 @@
         "market": "carrefour",
         "fiyat": 129.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -6207,7 +6555,9 @@
         "market": "carrefour",
         "fiyat": 1133.0,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -6236,7 +6586,9 @@
         "market": "carrefour",
         "fiyat": 1150.0,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -6265,31 +6617,41 @@
         "market": "bim",
         "fiyat": 19.5,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "sok",
         "fiyat": 19.5,
         "depot_id": "sok-1017",
-        "depot_ad": "Selimiye"
+        "depot_ad": "Selimiye",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "tarim_kredi",
         "fiyat": 19.5,
         "depot_id": "tarim_kredi-5022",
-        "depot_ad": "Istanbul Kadıköy Market"
+        "depot_ad": "Istanbul Kadıköy Market",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "a101",
         "fiyat": 19.9,
         "depot_id": "a101-4102",
-        "depot_ad": "Adem Yavuz Ümraniye Istanbul"
+        "depot_ad": "Adem Yavuz Ümraniye Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "hakmar",
         "fiyat": 29.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -6393,7 +6755,9 @@
         "market": "a101",
         "fiyat": 19.9,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -6430,20 +6794,26 @@
         "market": "tarim_kredi",
         "fiyat": 28.9,
         "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak"
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "sok",
         "fiyat": 29.0,
         "depot_id": "sok-7238",
-        "depot_ad": "Rıhtım Cdkadıköy"
+        "depot_ad": "Rıhtım Cdkadıköy",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 29.9,
         "liste_fiyat": 43.9,
         "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını"
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -6556,7 +6926,9 @@
         "fiyat": 29.9,
         "liste_fiyat": 43.75,
         "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını"
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -6604,13 +6976,17 @@
         "market": "hakmar",
         "fiyat": 29.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "a101",
         "fiyat": 41.9,
         "depot_id": "a101-4141",
-        "depot_ad": "Doğanevler Ümraniye Istanbul"
+        "depot_ad": "Doğanevler Ümraniye Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -6678,7 +7054,9 @@
         "market": "a101",
         "fiyat": 34.9,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -6755,7 +7133,9 @@
         "market": "a101",
         "fiyat": 34.9,
         "depot_id": "a101-4102",
-        "depot_ad": "Adem Yavuz Ümraniye Istanbul"
+        "depot_ad": "Adem Yavuz Ümraniye Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -6788,7 +7168,9 @@
         "market": "bim",
         "fiyat": 39.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -6854,7 +7236,9 @@
         "market": "a101",
         "fiyat": 39.5,
         "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye"
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -6943,7 +7327,9 @@
         "market": "tarim_kredi",
         "fiyat": 44.9,
         "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak"
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -6976,7 +7362,9 @@
         "market": "bim",
         "fiyat": 49.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -7074,7 +7462,9 @@
         "market": "carrefour",
         "fiyat": 54.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -7103,7 +7493,9 @@
         "market": "bim",
         "fiyat": 55.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -7132,7 +7524,9 @@
         "market": "a101",
         "fiyat": 63.5,
         "depot_id": "a101-4141",
-        "depot_ad": "Doğanevler Ümraniye Istanbul"
+        "depot_ad": "Doğanevler Ümraniye Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -7210,7 +7604,9 @@
         "fiyat": 69.0,
         "liste_fiyat": 79.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:48",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -7310,31 +7706,41 @@
         "market": "bim",
         "fiyat": 75.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "a101",
         "fiyat": 79.5,
         "depot_id": "a101-4217",
-        "depot_ad": "Rıhtım Kadıköy Istanbul"
+        "depot_ad": "Rıhtım Kadıköy Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "hakmar",
         "fiyat": 89.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "sok",
         "fiyat": 99.0,
         "depot_id": "sok-1017",
-        "depot_ad": "Selimiye"
+        "depot_ad": "Selimiye",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 99.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -7375,7 +7781,9 @@
         "market": "carrefour",
         "fiyat": 79.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -7408,7 +7816,9 @@
         "market": "hakmar",
         "fiyat": 79.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -7453,7 +7863,9 @@
         "market": "carrefour",
         "fiyat": 99.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -7481,7 +7893,9 @@
         "market": "carrefour",
         "fiyat": 99.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -7510,7 +7924,9 @@
         "market": "carrefour",
         "fiyat": 109.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -7539,7 +7955,9 @@
         "market": "carrefour",
         "fiyat": 109.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -7596,7 +8014,9 @@
         "market": "migros",
         "fiyat": 139.95,
         "depot_id": "migros-564",
-        "depot_ad": "Kadıköy Çarşı M Migros"
+        "depot_ad": "Kadıköy Çarşı M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Tat",
@@ -7626,7 +8046,9 @@
         "market": "migros",
         "fiyat": 199.95,
         "depot_id": "migros-564",
-        "depot_ad": "Kadıköy Çarşı M Migros"
+        "depot_ad": "Kadıköy Çarşı M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:45",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Lavi",
@@ -7656,7 +8078,9 @@
         "market": "carrefour",
         "fiyat": 239.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Hünnap",
@@ -7694,7 +8118,9 @@
         "market": "hakmar",
         "fiyat": 12.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -7726,7 +8152,9 @@
         "market": "sok",
         "fiyat": 19.9,
         "depot_id": "sok-1017",
-        "depot_ad": "Selimiye"
+        "depot_ad": "Selimiye",
+        "fiyat_guncelleme": "2026-09-13T08:43",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -7755,19 +8183,25 @@
         "market": "a101",
         "fiyat": 23.9,
         "depot_id": "a101-4102",
-        "depot_ad": "Adem Yavuz Ümraniye Istanbul"
+        "depot_ad": "Adem Yavuz Ümraniye Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "tarim_kredi",
         "fiyat": 24.9,
         "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak"
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "hakmar",
         "fiyat": 39.95,
         "depot_id": "hakmar-5770",
-        "depot_ad": "Selamlıüsküdar"
+        "depot_ad": "Selamlıüsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -7904,7 +8338,9 @@
         "market": "tarim_kredi",
         "fiyat": 24.9,
         "depot_id": "tarim_kredi-5022",
-        "depot_ad": "Istanbul Kadıköy Market"
+        "depot_ad": "Istanbul Kadıköy Market",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Tagem",
@@ -7929,7 +8365,9 @@
         "market": "hakmar",
         "fiyat": 24.95,
         "depot_id": "hakmar-5770",
-        "depot_ad": "Selamlıüsküdar"
+        "depot_ad": "Selamlıüsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -7953,7 +8391,9 @@
         "market": "sok",
         "fiyat": 25.9,
         "depot_id": "sok-7238",
-        "depot_ad": "Rıhtım Cdkadıköy"
+        "depot_ad": "Rıhtım Cdkadıköy",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -7977,7 +8417,9 @@
         "market": "a101",
         "fiyat": 29.5,
         "depot_id": "a101-9324",
-        "depot_ad": "Şahap Gürler Kadıköy Istanbul"
+        "depot_ad": "Şahap Gürler Kadıköy Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -8015,7 +8457,9 @@
         "fiyat": 39.9,
         "liste_fiyat": 54.9,
         "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını"
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -8051,13 +8495,17 @@
         "market": "hakmar",
         "fiyat": 39.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 99.9,
         "depot_id": "carrefour-5036",
-        "depot_ad": "Istanbul Moda Caddesı Mını"
+        "depot_ad": "Istanbul Moda Caddesı Mını",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -8144,25 +8592,33 @@
         "market": "bim",
         "fiyat": 49.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "sok",
         "fiyat": 79.9,
         "depot_id": "sok-7238",
-        "depot_ad": "Rıhtım Cdkadıköy"
+        "depot_ad": "Rıhtım Cdkadıköy",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "hakmar",
         "fiyat": 79.95,
         "depot_id": "hakmar-5602",
-        "depot_ad": "Selimpaşa  Üsküdar"
+        "depot_ad": "Selimpaşa  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 99.9,
         "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını"
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -8224,7 +8680,9 @@
         "fiyat": 49.9,
         "liste_fiyat": 69.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -8266,25 +8724,33 @@
         "market": "hakmar",
         "fiyat": 49.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "bim",
         "fiyat": 59.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "tarim_kredi",
         "fiyat": 59.0,
         "depot_id": "tarim_kredi-5022",
-        "depot_ad": "Istanbul Kadıköy Market"
+        "depot_ad": "Istanbul Kadıköy Market",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "a101",
         "fiyat": 64.9,
         "depot_id": "a101-4141",
-        "depot_ad": "Doğanevler Ümraniye Istanbul"
+        "depot_ad": "Doğanevler Ümraniye Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -8353,13 +8819,17 @@
         "market": "a101",
         "fiyat": 50.5,
         "depot_id": "a101-4141",
-        "depot_ad": "Doğanevler Ümraniye Istanbul"
+        "depot_ad": "Doğanevler Ümraniye Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "bim",
         "fiyat": 59.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -8497,7 +8967,9 @@
         "market": "a101",
         "fiyat": 54.9,
         "depot_id": "a101-4141",
-        "depot_ad": "Doğanevler Ümraniye Istanbul"
+        "depot_ad": "Doğanevler Ümraniye Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -8626,13 +9098,17 @@
         "market": "carrefour",
         "fiyat": 54.9,
         "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını"
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "bim",
         "fiyat": 79.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -8696,13 +9172,17 @@
         "market": "bim",
         "fiyat": 79.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 129.9,
         "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını"
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -8731,7 +9211,9 @@
         "market": "carrefour",
         "fiyat": 79.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -8764,7 +9246,9 @@
         "market": "carrefour",
         "fiyat": 89.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -8793,13 +9277,17 @@
         "market": "bim",
         "fiyat": 99.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       },
       {
         "market": "tarim_kredi",
         "fiyat": 99.0,
         "depot_id": "tarim_kredi-5022",
-        "depot_ad": "Istanbul Kadıköy Market"
+        "depot_ad": "Istanbul Kadıköy Market",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -8836,7 +9324,9 @@
         "market": "migros",
         "fiyat": 99.95,
         "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:45",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Torpat",
@@ -8866,7 +9356,9 @@
         "market": "carrefour",
         "fiyat": 119.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -8890,7 +9382,9 @@
         "market": "carrefour",
         "fiyat": 119.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -8935,7 +9429,9 @@
         "market": "bim",
         "fiyat": 125.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -8965,7 +9461,9 @@
         "fiyat": 175.0,
         "liste_fiyat": 195.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -9093,7 +9591,9 @@
         "market": "sok",
         "fiyat": 195.0,
         "depot_id": "sok-7238",
-        "depot_ad": "Rıhtım Cdkadıköy"
+        "depot_ad": "Rıhtım Cdkadıköy",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -9123,19 +9623,25 @@
         "fiyat": 23.0,
         "liste_fiyat": 29.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "hakmar",
         "fiyat": 24.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "sok",
         "fiyat": 29.9,
         "depot_id": "sok-1017",
-        "depot_ad": "Selimiye"
+        "depot_ad": "Selimiye",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -9290,20 +9796,26 @@
         "fiyat": 35.0,
         "liste_fiyat": 49.0,
         "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar"
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 39.9,
         "liste_fiyat": 129.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "sok",
         "fiyat": 49.0,
         "depot_id": "sok-1017",
-        "depot_ad": "Selimiye"
+        "depot_ad": "Selimiye",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -9467,7 +9979,9 @@
         "market": "a101",
         "fiyat": 36.45,
         "depot_id": "a101-4141",
-        "depot_ad": "Doğanevler Ümraniye Istanbul"
+        "depot_ad": "Doğanevler Ümraniye Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:46",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -9564,7 +10078,9 @@
         "market": "a101",
         "fiyat": 41.9,
         "depot_id": "a101-4141",
-        "depot_ad": "Doğanevler Ümraniye Istanbul"
+        "depot_ad": "Doğanevler Ümraniye Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:47",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -9669,7 +10185,9 @@
         "market": "carrefour",
         "fiyat": 54.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -9698,7 +10216,9 @@
         "market": "carrefour",
         "fiyat": 59.9,
         "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını"
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-09-13T08:50",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -9731,7 +10251,9 @@
         "market": "tarim_kredi",
         "fiyat": 59.9,
         "depot_id": "tarim_kredi-5022",
-        "depot_ad": "Istanbul Kadıköy Market"
+        "depot_ad": "Istanbul Kadıköy Market",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -9760,7 +10282,9 @@
         "market": "hakmar",
         "fiyat": 59.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -9789,7 +10313,9 @@
         "market": "tarim_kredi",
         "fiyat": 69.0,
         "depot_id": "tarim_kredi-5022",
-        "depot_ad": "Istanbul Kadıköy Market"
+        "depot_ad": "Istanbul Kadıköy Market",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -9822,7 +10348,9 @@
         "market": "hakmar",
         "fiyat": 69.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -9863,31 +10391,41 @@
         "market": "hakmar",
         "fiyat": 79.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "sok",
         "fiyat": 99.0,
         "depot_id": "sok-7238",
-        "depot_ad": "Rıhtım Cdkadıköy"
+        "depot_ad": "Rıhtım Cdkadıköy",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "migros",
         "fiyat": 99.95,
         "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros"
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "a101",
         "fiyat": 100.9,
         "depot_id": "a101-4141",
-        "depot_ad": "Doğanevler Ümraniye Istanbul"
+        "depot_ad": "Doğanevler Ümraniye Istanbul",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
         "fiyat": 149.9,
         "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper"
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-13T08:51",
+        "depot_il": "İstanbul"
       }
     ],
     "fiyat_gecmisi": [
@@ -9977,7 +10515,9 @@
         "market": "hakmar",
         "fiyat": 89.95,
         "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar"
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-13T08:49",
+        "depot_il": "İstanbul"
       }
     ],
     "marka": "Safkar",
