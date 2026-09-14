@@ -2957,6 +2957,26 @@
    ══════════════════════════════════════════════════════════════════════ */
 @media (min-width: 1024px) {
 
+  /* FIRSATLAR SEKME ÇUBUĞU — masaüstünde (2026-09-14, Mustafa bildirdi).
+     Ölçüldü (1440px, açık tema): yukarıdaki toplu kural (.search-wrap, …,
+     .firsat-tabs) çubuğu SAYDAM yapıyor ve çubuk ekranın yeşil bandının
+     üstüne düşüyordu; pasif sekmeler #6B7280, aktif #0E4938 → yeşil üstünde
+     OKUNMUYORDU. Yalnız yazıyı beyaz yapmak YETMEZDİ: çubuk sticky ve
+     kaydırınca arkasına #F8F9FA liste zemini geliyor — beyaz yazı beyaz
+     üstünde kaybolurdu. Bu yüzden çubuk KENDİ yeşil zeminini taşıyor (bandın
+     taban tokeni) ve yazı her durumda yeşil üstünde kalıyor.
+     Kontrast (ölçüldü): aktif beyaz 10,35 · pasif (%80 beyaz) 7,28 — ikisi de AA.
+     Koyu tema DEĞİŞMİYOR: sekme renkleri kendi (0,2,0) kurallarından geliyor,
+     çubuk da eskisi gibi saydam kalıyor. */
+  .firsat-tabs { background: var(--zemin-a); }
+  .firsat-tab { color: rgba(255,255,255,.8); }
+  .firsat-tab:hover { color: #fff; }
+  .firsat-tab.active { color: #fff; border-bottom-color: #fff; }
+  /* Genel :focus-visible halkası --primary (#0E4938) — yeşil çubukta görünmez.
+     Yalnız renk ve boşluk değişiyor; kalınlık genel kuraldan (yüksek kontrastta 3px). */
+  .firsat-tab:focus-visible { outline-color: #fff; outline-offset: -4px; }
+  [data-theme="dark"] .firsat-tabs { background: transparent; }
+
   /* Üç ekranda da başlık aynı 1180px kolonuna hizalanır */
   #screen-sepet > .app-header--sub,
   #screen-profil > .app-header--sub,
