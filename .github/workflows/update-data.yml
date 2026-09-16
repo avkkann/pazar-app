@@ -112,3 +112,31 @@ jobs:
             echo "::error::fiyat-alarm-scan HTTP $KOD dondu (200 bekleniyordu)"
             exit 1
           fi
+
+  # Yan is: "Bu fiyat tutmadi" bildirimlerinin gecelik ozeti (2026-09-16).
+  # NEDEN AYRI JOB: fiyat-alarm ile ayni gerekce — yayin yolunu bloke etmez,
+  # ama HARD-FAIL kalir (cokerse workflow kirmizi, sessiz yutma yok).
+  # needs: update -> gun icindeki veri islendikten SONRA kosar; ozet urun
+  # adlarini DB'den okuyor.
+  # KARAR (Mustafa): e-posta bildirim OLMASA DA her gece gidiyor; gelmemesi
+  # "bozuldu" isareti olsun diye. Bu yuzden burada "bildirim yoksa atla" gibi
+  # bir kosul YOK — fonksiyon her cagrildiginda gonderiyor.
+  bildirim-ozet:
+    needs: update
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fiyat Bildirimi Ozeti
+        # fiyat-alarm ile AYNI teshis deseni: -f YOK; kodu yakala, kodu+govdeyi
+        # logla, 200 degilse exit 1. Istek basliklari BASILMAZ (secret sizmasin).
+        run: |
+          KOD=$(curl -s -o /tmp/ozet.txt -w "%{http_code}" -X POST \
+            "https://gbgxxahhbfnulmyecxia.supabase.co/functions/v1/bildirim-ozet" \
+            -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}" \
+            -H "x-cron-secret: ${{ secrets.CRON_SECRET }}" \
+            -H "Content-Type: application/json")
+          echo "HTTP=$KOD"
+          echo "yanit: $(cat /tmp/ozet.txt)"
+          if [ "$KOD" != "200" ]; then
+            echo "::error::bildirim-ozet HTTP $KOD dondu (200 bekleniyordu) - ozet e-postasi gonderilmemis olabilir"
+            exit 1
+          fi
