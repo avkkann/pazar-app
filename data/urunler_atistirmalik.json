@@ -2612,105 +2612,6 @@
     ]
   },
   {
-    "_sid": "atistirmalik_ulker-cokomel-marshmallow-sade-180-gr",
-    "ad": "Ülker Çokomel Marshmallow Sade 180 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "180 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30397834.png",
-    "en_dusuk_fiyat": 89.9,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 89.9,
-        "depot_id": "migros-564",
-        "depot_ad": "Kadıköy Çarşı M Migros",
-        "fiyat_guncelleme": "2026-09-15T08:07",
-        "depot_il": "İstanbul"
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 93.95,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-09-15T08:07",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Ülker",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-27",
-        63.9
-      ],
-      [
-        "2026-07-31",
-        89.9
-      ],
-      [
-        "2026-08-09",
-        89.95
-      ],
-      [
-        "2026-08-15",
-        56.37
-      ],
-      [
-        "2026-08-19",
-        89.95
-      ],
-      [
-        "2026-08-21",
-        69.9
-      ],
-      [
-        "2026-08-25",
-        93.95
-      ],
-      [
-        "2026-08-28",
-        69.9
-      ],
-      [
-        "2026-09-04",
-        61.07
-      ],
-      [
-        "2026-09-09",
-        69.9
-      ],
-      [
-        "2026-09-15",
-        89.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-27",
-        "180 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-08-15",
-        "market": "carrefour",
-        "liste_fiyat": 93.95,
-        "satis_fiyat": 56.37
-      },
-      {
-        "tarih": "2026-08-21",
-        "market": "migros",
-        "liste_fiyat": 89.9,
-        "satis_fiyat": 69.9
-      },
-      {
-        "tarih": "2026-09-04",
-        "market": "carrefour",
-        "liste_fiyat": 93.95,
-        "satis_fiyat": 61.07
-      }
-    ]
-  },
-  {
     "_sid": "atistirmalik_magnum-badem-dondurma-100-ml",
     "ad": "Magnum Badem Dondurma 100 Ml",
     "ana_kategori": "Dondurmalar",
@@ -2778,6 +2679,38 @@
       [
         "2026-08-28",
         "102 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "atistirmalik_mis-cilek-vanilya-kakao-1-5-lt",
+    "ad": "Mis Çilek-Vanilya-Kakao 1.5 Lt",
+    "ana_kategori": "Dondurmalar",
+    "agirlik_hacim": "1.5 LT",
+    "resim": "https://cdn.marketfiyati.org.tr/sokimages/39459.png",
+    "en_dusuk_fiyat": 99.0,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 99.0,
+        "depot_id": "sok-4707",
+        "depot_ad": "Şok Minifevziçakmak",
+        "fiyat_guncelleme": "2026-09-15T08:00",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Mis",
+    "fiyat_gecmisi": [
+      [
+        "2026-07-23",
+        99.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-23",
+        "1.5 LT"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -4109,6 +4042,105 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "atistirmalik_ulker-cokomel-marshmallow-sade-180-gr",
+    "ad": "Ülker Çokomel Marshmallow Sade 180 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "180 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30397834.png",
+    "en_dusuk_fiyat": 89.9,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 89.9,
+        "depot_id": "migros-564",
+        "depot_ad": "Kadıköy Çarşı M Migros",
+        "fiyat_guncelleme": "2026-09-15T08:07",
+        "depot_il": "İstanbul"
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 93.95,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-15T08:07",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Ülker",
+    "fiyat_gecmisi": [
+      [
+        "2026-07-27",
+        63.9
+      ],
+      [
+        "2026-07-31",
+        89.9
+      ],
+      [
+        "2026-08-09",
+        89.95
+      ],
+      [
+        "2026-08-15",
+        56.37
+      ],
+      [
+        "2026-08-19",
+        89.95
+      ],
+      [
+        "2026-08-21",
+        69.9
+      ],
+      [
+        "2026-08-25",
+        93.95
+      ],
+      [
+        "2026-08-28",
+        69.9
+      ],
+      [
+        "2026-09-04",
+        61.07
+      ],
+      [
+        "2026-09-09",
+        69.9
+      ],
+      [
+        "2026-09-15",
+        89.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-27",
+        "180 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-08-15",
+        "market": "carrefour",
+        "liste_fiyat": 93.95,
+        "satis_fiyat": 56.37
+      },
+      {
+        "tarih": "2026-08-21",
+        "market": "migros",
+        "liste_fiyat": 89.9,
+        "satis_fiyat": 69.9
+      },
+      {
+        "tarih": "2026-09-04",
+        "market": "carrefour",
+        "liste_fiyat": 93.95,
+        "satis_fiyat": 61.07
+      }
+    ]
+  },
+  {
     "_sid": "atistirmalik_eti-browni-mini-intense-poset-cikolatali-160-gr",
     "ad": "Eti Browni Mini Intense Poşet Çikolatalı 160 Gr",
     "ana_kategori": "Kek",
@@ -4168,38 +4200,6 @@
         "satis_fiyat": 69.9
       }
     ]
-  },
-  {
-    "_sid": "atistirmalik_mis-cilek-vanilya-kakao-1-5-lt",
-    "ad": "Mis Çilek-Vanilya-Kakao 1.5 Lt",
-    "ana_kategori": "Dondurmalar",
-    "agirlik_hacim": "1.5 LT",
-    "resim": "https://cdn.marketfiyati.org.tr/sokimages/39459.png",
-    "en_dusuk_fiyat": 99.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 99.0,
-        "depot_id": "sok-4707",
-        "depot_ad": "Şok Minifevziçakmak",
-        "fiyat_guncelleme": "2026-09-15T08:00",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Mis",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-23",
-        99.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-23",
-        "1.5 LT"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
   },
   {
     "_sid": "atistirmalik_tarim-kredi-kavrulmus-tuzsuz-kabak-cekirdegi-250-gr",
@@ -15553,126 +15553,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "atistirmalik_ulker-cokomel-marshmallow-sade-36-gr",
-    "ad": "Ülker Çokomel Marshmallow Sade 36 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "36 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30397832.jpg",
-    "en_dusuk_fiyat": 11.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 11.0,
-        "liste_fiyat": 18.9,
-        "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını",
-        "fiyat_guncelleme": "2026-09-15T08:07",
-        "depot_il": "İstanbul"
-      },
-      {
-        "market": "tarim_kredi",
-        "fiyat": 18.0,
-        "depot_id": "tarim_kredi-5022",
-        "depot_ad": "Istanbul Kadıköy Market",
-        "fiyat_guncelleme": "2026-09-15T08:07",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Ülker",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-27",
-        11.0
-      ],
-      [
-        "2026-07-31",
-        16.9
-      ],
-      [
-        "2026-08-04",
-        11.0
-      ],
-      [
-        "2026-08-15",
-        11.25
-      ],
-      [
-        "2026-08-19",
-        11.0
-      ],
-      [
-        "2026-08-22",
-        18.0
-      ],
-      [
-        "2026-08-23",
-        11.0
-      ],
-      [
-        "2026-08-24",
-        18.0
-      ],
-      [
-        "2026-08-27",
-        15.0
-      ],
-      [
-        "2026-08-29",
-        18.75
-      ],
-      [
-        "2026-09-02",
-        15.0
-      ],
-      [
-        "2026-09-04",
-        12.19
-      ],
-      [
-        "2026-09-09",
-        11.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-27",
-        "36 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-08-09",
-        "market": "carrefour",
-        "liste_fiyat": 18.9,
-        "satis_fiyat": 11.0
-      },
-      {
-        "tarih": "2026-08-15",
-        "market": "carrefour",
-        "liste_fiyat": 18.75,
-        "satis_fiyat": 11.25
-      },
-      {
-        "tarih": "2026-08-19",
-        "market": "carrefour",
-        "liste_fiyat": 18.9,
-        "satis_fiyat": 11.0
-      },
-      {
-        "tarih": "2026-09-04",
-        "market": "carrefour",
-        "liste_fiyat": 18.75,
-        "satis_fiyat": 12.19
-      },
-      {
-        "tarih": "2026-09-09",
-        "market": "carrefour",
-        "liste_fiyat": 18.9,
-        "satis_fiyat": 11.0
-      }
-    ]
-  },
-  {
     "_sid": "atistirmalik_eti-topkek-findikli-kek-35-gr",
     "ad": "Eti Topkek Fındıklı Kek 35 Gr",
     "ana_kategori": "Kek",
@@ -16661,6 +16541,50 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "atistirmalik_magnum-mini-double-6-li-360-ml",
+    "ad": "Magnum Mini Double 6'lı 360 Ml",
+    "ana_kategori": "Dondurmalar",
+    "agirlik_hacim": "360 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/sok/32405.jpg",
+    "en_dusuk_fiyat": 269.0,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 269.0,
+        "depot_id": "sok-4707",
+        "depot_ad": "Şok Minifevziçakmak",
+        "fiyat_guncelleme": "2026-09-15T08:00",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Magnum",
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        325.0
+      ],
+      [
+        "2026-08-13",
+        269.0
+      ],
+      [
+        "2026-08-20",
+        325.0
+      ],
+      [
+        "2026-09-10",
+        269.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "360 ML"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "atistirmalik_bauvian-antep-fistikli-baklava-dondurma-473-ml",
     "ad": "Bauvian Antep Fıstıklı Baklava Dondurma 473 Ml",
     "ana_kategori": "Dondurmalar",
@@ -16691,6 +16615,126 @@
       ]
     ],
     "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "atistirmalik_ulker-cokomel-marshmallow-sade-36-gr",
+    "ad": "Ülker Çokomel Marshmallow Sade 36 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "36 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30397832.jpg",
+    "en_dusuk_fiyat": 11.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 11.0,
+        "liste_fiyat": 18.9,
+        "depot_id": "carrefour-5254",
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-09-15T08:07",
+        "depot_il": "İstanbul"
+      },
+      {
+        "market": "tarim_kredi",
+        "fiyat": 18.0,
+        "depot_id": "tarim_kredi-5022",
+        "depot_ad": "Istanbul Kadıköy Market",
+        "fiyat_guncelleme": "2026-09-15T08:07",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Ülker",
+    "fiyat_gecmisi": [
+      [
+        "2026-07-27",
+        11.0
+      ],
+      [
+        "2026-07-31",
+        16.9
+      ],
+      [
+        "2026-08-04",
+        11.0
+      ],
+      [
+        "2026-08-15",
+        11.25
+      ],
+      [
+        "2026-08-19",
+        11.0
+      ],
+      [
+        "2026-08-22",
+        18.0
+      ],
+      [
+        "2026-08-23",
+        11.0
+      ],
+      [
+        "2026-08-24",
+        18.0
+      ],
+      [
+        "2026-08-27",
+        15.0
+      ],
+      [
+        "2026-08-29",
+        18.75
+      ],
+      [
+        "2026-09-02",
+        15.0
+      ],
+      [
+        "2026-09-04",
+        12.19
+      ],
+      [
+        "2026-09-09",
+        11.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-27",
+        "36 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-08-09",
+        "market": "carrefour",
+        "liste_fiyat": 18.9,
+        "satis_fiyat": 11.0
+      },
+      {
+        "tarih": "2026-08-15",
+        "market": "carrefour",
+        "liste_fiyat": 18.75,
+        "satis_fiyat": 11.25
+      },
+      {
+        "tarih": "2026-08-19",
+        "market": "carrefour",
+        "liste_fiyat": 18.9,
+        "satis_fiyat": 11.0
+      },
+      {
+        "tarih": "2026-09-04",
+        "market": "carrefour",
+        "liste_fiyat": 18.75,
+        "satis_fiyat": 12.19
+      },
+      {
+        "tarih": "2026-09-09",
+        "market": "carrefour",
+        "liste_fiyat": 18.9,
+        "satis_fiyat": 11.0
+      }
+    ]
   },
   {
     "_sid": "atistirmalik_eti-topkek-hindistan-cevizli-kakaolu-kek-40-gr",
@@ -17792,50 +17836,6 @@
       [
         "2026-08-28",
         "500 ML"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "atistirmalik_magnum-mini-double-6-li-360-ml",
-    "ad": "Magnum Mini Double 6'lı 360 Ml",
-    "ana_kategori": "Dondurmalar",
-    "agirlik_hacim": "360 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/sok/32405.jpg",
-    "en_dusuk_fiyat": 269.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 269.0,
-        "depot_id": "sok-4707",
-        "depot_ad": "Şok Minifevziçakmak",
-        "fiyat_guncelleme": "2026-09-15T08:00",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Magnum",
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        325.0
-      ],
-      [
-        "2026-08-13",
-        269.0
-      ],
-      [
-        "2026-08-20",
-        325.0
-      ],
-      [
-        "2026-09-10",
-        269.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "360 ML"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -35594,38 +35594,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "atistirmalik_susse-portakal-joleli-biskuvi-114-gr",
-    "ad": "Süsse Portakal Jöleli Bisküvi 114 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "114 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bimages/702995.jpg",
-    "en_dusuk_fiyat": 16.5,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 16.5,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar",
-        "fiyat_guncelleme": "2026-09-15T08:05",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Süsse",
-    "fiyat_gecmisi": [
-      [
-        "2026-08-30",
-        16.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-08-30",
-        "114 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
     "_sid": "atistirmalik_eti-crax-chili-lime-cubuk-kraker-50-gr",
     "ad": "Eti Crax Chili Lime Çubuk Kraker 50 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
@@ -35685,6 +35653,38 @@
       [
         "2026-09-02",
         "85 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "atistirmalik_eti-maximus-yer-fistikli-karamelli-bar-50-gr",
+    "ad": "Eti Maximus Yer Fıstıklı Karamelli Bar 50 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "50 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/hakmar/1014559.jpg",
+    "en_dusuk_fiyat": 22.0,
+    "market_fiyatlari": [
+      {
+        "market": "hakmar",
+        "fiyat": 22.0,
+        "depot_id": "hakmar-5521",
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-15T08:05",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Eti",
+    "fiyat_gecmisi": [
+      [
+        "2026-07-27",
+        22.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-27",
+        "50 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -36646,6 +36646,38 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "atistirmalik_susse-portakal-joleli-biskuvi-114-gr",
+    "ad": "Süsse Portakal Jöleli Bisküvi 114 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "114 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bimages/702995.jpg",
+    "en_dusuk_fiyat": 16.5,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 16.5,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-15T08:05",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Süsse",
+    "fiyat_gecmisi": [
+      [
+        "2026-08-30",
+        16.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-08-30",
+        "114 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "atistirmalik_cosby-box-barbie-hot-wheels-5-gr",
     "ad": "Cosby Box Barbie & Hot Wheels 5 Gr",
     "ana_kategori": "Sakız ve Şekerleme",
@@ -36673,38 +36705,6 @@
       [
         "2026-07-22",
         "5 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "atistirmalik_eti-maximus-yer-fistikli-karamelli-bar-50-gr",
-    "ad": "Eti Maximus Yer Fıstıklı Karamelli Bar 50 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "50 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/hakmar/1014559.jpg",
-    "en_dusuk_fiyat": 22.0,
-    "market_fiyatlari": [
-      {
-        "market": "hakmar",
-        "fiyat": 22.0,
-        "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar",
-        "fiyat_guncelleme": "2026-09-15T08:05",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Eti",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-27",
-        22.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-27",
-        "50 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -52475,42 +52475,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "atistirmalik_haribo-altin-ayicik-maxi-200-gr",
-    "ad": "Haribo Altın Ayıcık Maxi 200 Gr",
-    "ana_kategori": "Sakız ve Şekerleme",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7110287.png",
-    "en_dusuk_fiyat": 114.45,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 114.45,
-        "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros",
-        "fiyat_guncelleme": "2026-09-15T08:01",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Haribo",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-27",
-        99.95
-      ],
-      [
-        "2026-08-13",
-        114.45
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-27",
-        "200 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
     "_sid": "atistirmalik_cerezya-antep-fistigi-150-gr",
     "ad": "Çerezya Antep Fıstığı 150 Gr",
     "ana_kategori": "Kuruyemiş ve Kuru Meyve",
@@ -52538,6 +52502,37 @@
       [
         "2026-07-27",
         "150 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "atistirmalik_yagsiz-kavrulmus-kaju-200-gr",
+    "ad": "Yağsız Kavrulmuş Kaju 200 Gr",
+    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
+    "agirlik_hacim": "200 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 199.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 199.0,
+        "depot_id": "migros-1991",
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-15T08:02",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-08-11",
+        199.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-08-11",
+        "200 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -53679,6 +53674,42 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "atistirmalik_haribo-altin-ayicik-maxi-200-gr",
+    "ad": "Haribo Altın Ayıcık Maxi 200 Gr",
+    "ana_kategori": "Sakız ve Şekerleme",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7110287.png",
+    "en_dusuk_fiyat": 114.45,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 114.45,
+        "depot_id": "migros-1991",
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-15T08:01",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Haribo",
+    "fiyat_gecmisi": [
+      [
+        "2026-07-27",
+        99.95
+      ],
+      [
+        "2026-08-13",
+        114.45
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-27",
+        "200 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "atistirmalik_miniyum-meyve-sulu-yumusak-seker-120-adet",
     "ad": "Miniyum Meyve Sulu Yumuşak Şeker 120 Adet",
     "ana_kategori": "Sakız ve Şekerleme",
@@ -53707,37 +53738,6 @@
       ]
     ],
     "agirlik_hacim_gecmisi": [],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "atistirmalik_yagsiz-kavrulmus-kaju-200-gr",
-    "ad": "Yağsız Kavrulmuş Kaju 200 Gr",
-    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
-    "agirlik_hacim": "200 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 199.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 199.0,
-        "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros",
-        "fiyat_guncelleme": "2026-09-15T08:02",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-08-11",
-        199.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-08-11",
-        "200 GR"
-      ]
-    ],
     "ilan_indirim_gecmisi": []
   },
   {
@@ -61485,111 +61485,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "atistirmalik_ulker-cokoprens-atistirmalik-81-gr",
-    "ad": "Ülker Çokoprens Atıştırmalık 81 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "81 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/7019708.jpg",
-    "en_dusuk_fiyat": 19.9,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 19.9,
-        "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
-        "fiyat_guncelleme": "2026-09-15T08:07",
-        "depot_il": "İstanbul"
-      },
-      {
-        "market": "migros",
-        "fiyat": 19.95,
-        "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros",
-        "fiyat_guncelleme": "2026-09-15T08:07",
-        "depot_il": "İstanbul"
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 20.45,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-09-15T08:07",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Ülker",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-27",
-        14.0
-      ],
-      [
-        "2026-07-31",
-        19.95
-      ],
-      [
-        "2026-08-09",
-        19.9
-      ],
-      [
-        "2026-08-15",
-        12.27
-      ],
-      [
-        "2026-08-19",
-        19.9
-      ],
-      [
-        "2026-08-22",
-        13.0
-      ],
-      [
-        "2026-09-04",
-        13.29
-      ],
-      [
-        "2026-09-09",
-        13.0
-      ],
-      [
-        "2026-09-10",
-        19.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-27",
-        "81 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-08-15",
-        "market": "carrefour",
-        "liste_fiyat": 20.45,
-        "satis_fiyat": 12.27
-      },
-      {
-        "tarih": "2026-08-22",
-        "market": "carrefour",
-        "liste_fiyat": 20.75,
-        "satis_fiyat": 13.0
-      },
-      {
-        "tarih": "2026-09-04",
-        "market": "carrefour",
-        "liste_fiyat": 20.45,
-        "satis_fiyat": 13.29
-      },
-      {
-        "tarih": "2026-09-09",
-        "market": "carrefour",
-        "liste_fiyat": 20.75,
-        "satis_fiyat": 13.0
-      }
-    ]
-  },
-  {
     "_sid": "atistirmalik_dr-oetker-yogotella-cilekli-muzlu-68-gr",
     "ad": "Dr. Oetker Yogotella Çilekli & Muzlu 68 Gr",
     "ana_kategori": "Tatlılar",
@@ -67180,38 +67075,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "atistirmalik_ulker-cizi-citir-peynir-soganli-kraker-40-gr",
-    "ad": "Ülker Çizi Çıtır Peynir Soğanlı Kraker 40 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "40 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/hakmarimages/1027027.png",
-    "en_dusuk_fiyat": 25.0,
-    "market_fiyatlari": [
-      {
-        "market": "hakmar",
-        "fiyat": 25.0,
-        "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar",
-        "fiyat_guncelleme": "2026-09-15T08:05",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Ülker",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-27",
-        25.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-27",
-        "40 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
     "_sid": "atistirmalik_piyale-puding-bitter-cikolatali-115-gr",
     "ad": "Piyale Puding Bitter Çikolatalı 115 Gr",
     "ana_kategori": "Tatlılar",
@@ -67704,6 +67567,38 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "atistirmalik_cerezya-kaju-kuruyemis-250-gr",
+    "ad": "Çerezya Kaju Kuruyemiş 250 Gr",
+    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
+    "agirlik_hacim": "250 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/15001538.png",
+    "en_dusuk_fiyat": 159.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 159.0,
+        "depot_id": "a101-4141",
+        "depot_ad": "Doğanevler Ümraniye Istanbul",
+        "fiyat_guncelleme": "2026-09-15T08:04",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Çerezya",
+    "fiyat_gecmisi": [
+      [
+        "2026-07-27",
+        159.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-27",
+        "250 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "atistirmalik_carte-d-or-classic-visne-bitter-vanilya-dondurma-850-ml",
     "ad": "Carte D'Or Classic Vişne Bitter Vanilya Dondurma 850 Ml",
     "ana_kategori": "Dondurmalar",
@@ -67994,6 +67889,38 @@
       [
         "2026-07-27",
         "20 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "atistirmalik_ulker-cizi-citir-peynir-soganli-kraker-40-gr",
+    "ad": "Ülker Çizi Çıtır Peynir Soğanlı Kraker 40 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "40 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/hakmarimages/1027027.png",
+    "en_dusuk_fiyat": 25.0,
+    "market_fiyatlari": [
+      {
+        "market": "hakmar",
+        "fiyat": 25.0,
+        "depot_id": "hakmar-5521",
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-15T08:05",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Ülker",
+    "fiyat_gecmisi": [
+      [
+        "2026-07-27",
+        25.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-27",
+        "40 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -68542,38 +68469,6 @@
       [
         "2026-09-07",
         "125 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "atistirmalik_cerezya-kaju-kuruyemis-250-gr",
-    "ad": "Çerezya Kaju Kuruyemiş 250 Gr",
-    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
-    "agirlik_hacim": "250 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/15001538.png",
-    "en_dusuk_fiyat": 159.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 159.0,
-        "depot_id": "a101-4141",
-        "depot_ad": "Doğanevler Ümraniye Istanbul",
-        "fiyat_guncelleme": "2026-09-15T08:04",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Çerezya",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-27",
-        159.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-27",
-        "250 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -69780,38 +69675,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "atistirmalik_ulker-cokoprens-cikolata-kremali-biskuvi-30-gr",
-    "ad": "Ülker Çokoprens Çikolata Kremalı Bisküvi 30 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "30 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/17002812.png",
-    "en_dusuk_fiyat": 6.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 6.5,
-        "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye",
-        "fiyat_guncelleme": "2026-09-15T08:02",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Ülker",
-    "fiyat_gecmisi": [
-      [
-        "2026-08-25",
-        6.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-08-25",
-        "30 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
     "_sid": "atistirmalik_kidy-cilekli-70-ml",
     "ad": "Kidy Çilekli 70 Ml",
     "ana_kategori": "Dondurmalar",
@@ -70508,6 +70371,38 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "atistirmalik_glutensiz-fabrika-sade-karabugday-patlagi-100-gr",
+    "ad": "Glutensiz Fabrika Sade Karabuğday Patlağı 100 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "100 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/127010.jpg",
+    "en_dusuk_fiyat": 64.5,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 64.5,
+        "depot_id": "migros-1991",
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-15T08:05",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Glutensiz Fabrika",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-16",
+        64.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-16",
+        "100 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "atistirmalik_xroll-hindistan-cevizli-bar-cikolata-250-gr",
     "ad": "Xroll Hindistan Cevizli Bar Çikolata 250 Gr",
     "ana_kategori": "Çikolata",
@@ -71029,6 +70924,38 @@
         "satis_fiyat": 179.95
       }
     ]
+  },
+  {
+    "_sid": "atistirmalik_ulker-cokoprens-cikolata-kremali-biskuvi-30-gr",
+    "ad": "Ülker Çokoprens Çikolata Kremalı Bisküvi 30 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "30 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/17002812.png",
+    "en_dusuk_fiyat": 6.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 6.5,
+        "depot_id": "a101-6815",
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-15T08:02",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Ülker",
+    "fiyat_gecmisi": [
+      [
+        "2026-08-25",
+        6.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-08-25",
+        "30 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
   },
   {
     "_sid": "atistirmalik_tarim-kredi-sutlu-cikolata-kaplamali-gofret-36-gr",
@@ -73899,57 +73826,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "atistirmalik_ulker-albeni-4-lu-paket-160-gr",
-    "ad": "Ülker Albeni 4'lü Paket 160 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "160 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30394192.png",
-    "en_dusuk_fiyat": 75.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 75.95,
-        "depot_id": "migros-6679",
-        "depot_ad": "Mjet Kadıköy Rasımpaşa Istanbu",
-        "fiyat_guncelleme": "2026-09-15T08:08",
-        "depot_il": "İstanbul"
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 77.45,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-09-15T08:08",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Ülker",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-07",
-        49.0
-      ],
-      [
-        "2026-09-15",
-        75.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-07",
-        "160 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-09-11",
-        "market": "carrefour",
-        "liste_fiyat": 77.45,
-        "satis_fiyat": 54.22
-      }
-    ]
-  },
-  {
     "_sid": "atistirmalik_lezzethane-kavala-bademli-kurabiye-290-gr",
     "ad": "Lezzethane Kavala Bademli Kurabiye 290 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
@@ -74099,6 +73975,38 @@
       [
         "2026-08-28",
         "490 ML"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "atistirmalik_ulker-buklet-dolgulu-kutu-cikolata-200-gr",
+    "ad": "Ülker Buklet Dolgulu Kutu Çikolata 200 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bim/1711235.jpg",
+    "en_dusuk_fiyat": 179.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 179.0,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-15T08:05",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Ülker",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-16",
+        179.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-16",
+        "200 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -74409,33 +74317,37 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "atistirmalik_tarim-kredi-kavrulmus-tuzsuz-siyah-ay-cekirdegi-180-gr",
-    "ad": "Tarım Kredi Kavrulmuş Tuzsuz Siyah Ay Çekirdeği 180 Gr",
-    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
-    "agirlik_hacim": "180 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/101314.jpg",
-    "en_dusuk_fiyat": 49.9,
+    "_sid": "atistirmalik_amigo-yer-fistikli-misir-cerezi-mega-boy-150-gr",
+    "ad": "Amigo Yer Fıstıklı Mısır Çerezi Mega Boy 150 Gr",
+    "ana_kategori": "Cips",
+    "agirlik_hacim": "150 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 45.0,
     "market_fiyatlari": [
       {
-        "market": "tarim_kredi",
-        "fiyat": 49.9,
-        "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
-        "fiyat_guncelleme": "2026-09-15T08:05",
+        "market": "sok",
+        "fiyat": 45.0,
+        "depot_id": "sok-4707",
+        "depot_ad": "Şok Minifevziçakmak",
+        "fiyat_guncelleme": "2026-09-15T08:00",
         "depot_il": "İstanbul"
       }
     ],
-    "marka": "Tarım Kredi",
+    "marka": "Amigo",
     "fiyat_gecmisi": [
       [
-        "2026-09-02",
-        49.9
+        "2026-07-23",
+        39.5
+      ],
+      [
+        "2026-08-20",
+        45.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-02",
-        "180 GR"
+        "2026-07-23",
+        "150 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -75548,42 +75460,6 @@
     ]
   },
   {
-    "_sid": "atistirmalik_amigo-yer-fistikli-misir-cerezi-mega-boy-150-gr",
-    "ad": "Amigo Yer Fıstıklı Mısır Çerezi Mega Boy 150 Gr",
-    "ana_kategori": "Cips",
-    "agirlik_hacim": "150 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 45.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 45.0,
-        "depot_id": "sok-4707",
-        "depot_ad": "Şok Minifevziçakmak",
-        "fiyat_guncelleme": "2026-09-15T08:00",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Amigo",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-23",
-        39.5
-      ],
-      [
-        "2026-08-20",
-        45.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-23",
-        "150 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
     "_sid": "atistirmalik_eti-hosbes-muz-kremali-gofret-120-gr",
     "ad": "Eti Hoşbeş Muz Kremalı Gofret 120 Gr",
     "ana_kategori": "Gofret",
@@ -75749,6 +75625,38 @@
       [
         "2026-07-27",
         "246 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "atistirmalik_tarim-kredi-kavrulmus-tuzsuz-siyah-ay-cekirdegi-180-gr",
+    "ad": "Tarım Kredi Kavrulmuş Tuzsuz Siyah Ay Çekirdeği 180 Gr",
+    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
+    "agirlik_hacim": "180 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/101314.jpg",
+    "en_dusuk_fiyat": 49.9,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 49.9,
+        "depot_id": "tarim_kredi-7488",
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-09-15T08:05",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Tarım Kredi",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-02",
+        49.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-02",
+        "180 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -89527,6 +89435,70 @@
     ]
   },
   {
+    "_sid": "atistirmalik_eti-browni-gold-cikolata-soslu-cikolatali-kek-45-gr",
+    "ad": "Eti Browni Gold Çikolata Soslu Çikolatalı Kek 45 Gr",
+    "ana_kategori": "Kek",
+    "agirlik_hacim": "45 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/17002254.png",
+    "en_dusuk_fiyat": 14.75,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 14.75,
+        "depot_id": "tarim_kredi-7488",
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-09-15T08:07",
+        "depot_il": "İstanbul"
+      },
+      {
+        "market": "sok",
+        "fiyat": 15.0,
+        "depot_id": "sok-4707",
+        "depot_ad": "Şok Minifevziçakmak",
+        "fiyat_guncelleme": "2026-09-15T08:07",
+        "depot_il": "İstanbul"
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 15.35,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-15T08:07",
+        "depot_il": "İstanbul"
+      },
+      {
+        "market": "migros",
+        "fiyat": 17.9,
+        "depot_id": "migros-4479",
+        "depot_ad": "Mjet Üsküdar Paşakapısı",
+        "fiyat_guncelleme": "2026-09-15T08:07",
+        "depot_il": "İstanbul"
+      },
+      {
+        "market": "a101",
+        "fiyat": 18.0,
+        "depot_id": "a101-6815",
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-15T08:07",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Eti",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-16",
+        14.75
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-16",
+        "45 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "atistirmalik_algida-conboo-cilek-vanilya-60-ml",
     "ad": "Algida Conboo Çilek Vanilya 60 Ml",
     "ana_kategori": "Dondurmalar",
@@ -91262,6 +91234,46 @@
         "satis_fiyat": 135.07
       }
     ]
+  },
+  {
+    "_sid": "atistirmalik_beyoglu-sutlu-dubai-cikolatasi-200-gr",
+    "ad": "Beyoğlu Sütlü Dubai Çikolatası 200 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/27002352.png",
+    "en_dusuk_fiyat": 199.0,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 199.0,
+        "depot_id": "sok-4707",
+        "depot_ad": "Şok Minifevziçakmak",
+        "fiyat_guncelleme": "2026-09-15T08:03",
+        "depot_il": "İstanbul"
+      },
+      {
+        "market": "migros",
+        "fiyat": 209.95,
+        "depot_id": "migros-6679",
+        "depot_ad": "Mjet Kadıköy Rasımpaşa Istanbu",
+        "fiyat_guncelleme": "2026-09-15T08:03",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Beyoğlu",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-16",
+        199.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-16",
+        "200 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
   },
   {
     "_sid": "atistirmalik_nestor-touch-mini-dondurma-beyaz-klasik-badem-360-ml",
@@ -99982,6 +99994,38 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "atistirmalik_adora-bademli-dondurma-100-ml",
+    "ad": "Adora Bademli Dondurma 100 Ml",
+    "ana_kategori": "Dondurmalar",
+    "agirlik_hacim": "100 ML",
+    "resim": null,
+    "en_dusuk_fiyat": 60.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 60.0,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-15T08:05",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Adora",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-16",
+        60.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-16",
+        "100 ML"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "atistirmalik_doritos-nacho-peynir-super-130-gr",
     "ad": "Doritos Nacho Peynir Süper 130 Gr",
     "ana_kategori": "Cips",
@@ -100075,32 +100119,6 @@
         "249 GR"
       ]
     ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "atistirmalik_kazandibi-2-adet",
-    "ad": "Kazandibi 2 Adet",
-    "ana_kategori": "Tatlılar",
-    "agirlik_hacim": null,
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30097174.png",
-    "en_dusuk_fiyat": 107.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 107.9,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-09-15T08:07",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-07-31",
-        107.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [],
     "ilan_indirim_gecmisi": []
   },
   {
@@ -101199,6 +101217,32 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "atistirmalik_kazandibi-2-adet",
+    "ad": "Kazandibi 2 Adet",
+    "ana_kategori": "Tatlılar",
+    "agirlik_hacim": null,
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30097174.png",
+    "en_dusuk_fiyat": 107.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 107.9,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-15T08:07",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-07-31",
+        107.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "atistirmalik_takita-cool-mint-sekersiz-tablet-seker-12-gr",
     "ad": "Takita Cool Mint Şekersiz Tablet Şeker 12 Gr",
     "ana_kategori": "Sakız ve Şekerleme",
@@ -102203,33 +102247,33 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "atistirmalik_senocak-cig-i-c-findik-150-gr",
-    "ad": "Şenocak Çiğ İç Fındık 150 Gr",
-    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
-    "agirlik_hacim": "150 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/8080511.jpg",
-    "en_dusuk_fiyat": 159.0,
+    "_sid": "atistirmalik_tatdo-cikolata-fistik-sade-dondurma-500-gr",
+    "ad": "Tatdo Çikolata Fıstık Sade Dondurma 500 Gr",
+    "ana_kategori": "Dondurmalar",
+    "agirlik_hacim": "500 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/images/1006239.jpg",
+    "en_dusuk_fiyat": 159.5,
     "market_fiyatlari": [
       {
-        "market": "migros",
-        "fiyat": 159.0,
-        "depot_id": "migros-6679",
-        "depot_ad": "Mjet Kadıköy Rasımpaşa Istanbu",
-        "fiyat_guncelleme": "2026-09-15T08:02",
+        "market": "hakmar",
+        "fiyat": 159.5,
+        "depot_id": "hakmar-5521",
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-15T08:05",
         "depot_il": "İstanbul"
       }
     ],
-    "marka": "Şenocak",
+    "marka": "Tatdo",
     "fiyat_gecmisi": [
       [
         "2026-07-27",
-        159.0
+        159.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-27",
-        "150 GR"
+        "500 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -103318,33 +103362,33 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "atistirmalik_tatdo-cikolata-fistik-sade-dondurma-500-gr",
-    "ad": "Tatdo Çikolata Fıstık Sade Dondurma 500 Gr",
-    "ana_kategori": "Dondurmalar",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/images/1006239.jpg",
-    "en_dusuk_fiyat": 159.5,
+    "_sid": "atistirmalik_senocak-cig-i-c-findik-150-gr",
+    "ad": "Şenocak Çiğ İç Fındık 150 Gr",
+    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
+    "agirlik_hacim": "150 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/8080511.jpg",
+    "en_dusuk_fiyat": 159.0,
     "market_fiyatlari": [
       {
-        "market": "hakmar",
-        "fiyat": 159.5,
-        "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar",
-        "fiyat_guncelleme": "2026-09-15T08:05",
+        "market": "migros",
+        "fiyat": 159.0,
+        "depot_id": "migros-6679",
+        "depot_ad": "Mjet Kadıköy Rasımpaşa Istanbu",
+        "fiyat_guncelleme": "2026-09-15T08:02",
         "depot_il": "İstanbul"
       }
     ],
-    "marka": "Tatdo",
+    "marka": "Şenocak",
     "fiyat_gecmisi": [
       [
         "2026-07-27",
-        159.5
+        159.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-27",
-        "500 GR"
+        "150 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -106858,6 +106902,61 @@
     ]
   },
   {
+    "_sid": "atistirmalik_ulker-dankek-muz-kremali-rulo-kek-28-gr",
+    "ad": "Ülker Dankek Muz Kremalı Rulo Kek 28 Gr",
+    "ana_kategori": "Kek",
+    "agirlik_hacim": "28 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/7031413.jpg",
+    "en_dusuk_fiyat": 11.9,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 11.9,
+        "depot_id": "migros-4479",
+        "depot_ad": "Mjet Üsküdar Paşakapısı",
+        "fiyat_guncelleme": "2026-09-15T08:02",
+        "depot_il": "İstanbul"
+      },
+      {
+        "market": "sok",
+        "fiyat": 13.0,
+        "depot_id": "sok-4707",
+        "depot_ad": "Şok Minifevziçakmak",
+        "fiyat_guncelleme": "2026-09-15T08:02",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Ülker",
+    "fiyat_gecmisi": [
+      [
+        "2026-07-27",
+        11.9
+      ],
+      [
+        "2026-08-07",
+        9.9
+      ],
+      [
+        "2026-08-21",
+        11.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-27",
+        "28 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-08-09",
+        "market": "migros",
+        "liste_fiyat": 11.9,
+        "satis_fiyat": 9.9
+      }
+    ]
+  },
+  {
     "_sid": "atistirmalik_eti-browni-gold-visneli-kek-45-gr",
     "ad": "Eti Browni Gold Vişneli Kek 45 Gr",
     "ana_kategori": "Kek",
@@ -107422,38 +107521,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "atistirmalik_roll-cilek-dolgulu-kruvasan-110-gr",
-    "ad": "Roll Çilek Dolgulu Kruvasan 110 Gr",
-    "ana_kategori": "Kek",
-    "agirlik_hacim": "110 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 99.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 99.9,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-09-15T08:07",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Roll",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-02",
-        99.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-02",
-        "110 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
     "_sid": "atistirmalik_toblerone-crunchy-almonds-100-gr",
     "ad": "Toblerone Crunchy Almonds 100 Gr",
     "ana_kategori": "Çikolata",
@@ -107854,93 +107921,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "atistirmalik_ulker-hobby-findikli-cikolata-bar-25-gr",
-    "ad": "Ülker Hobby Fındıklı Çikolata Bar 25 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "25 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/27000215.jpg",
-    "en_dusuk_fiyat": 10.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 10.0,
-        "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye",
-        "fiyat_guncelleme": "2026-09-15T08:03",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Ülker",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-27",
-        10.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-27",
-        "25 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "atistirmalik_ulker-dankek-muz-kremali-rulo-kek-28-gr",
-    "ad": "Ülker Dankek Muz Kremalı Rulo Kek 28 Gr",
-    "ana_kategori": "Kek",
-    "agirlik_hacim": "28 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/7031413.jpg",
-    "en_dusuk_fiyat": 11.9,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 11.9,
-        "depot_id": "migros-4479",
-        "depot_ad": "Mjet Üsküdar Paşakapısı",
-        "fiyat_guncelleme": "2026-09-15T08:02",
-        "depot_il": "İstanbul"
-      },
-      {
-        "market": "sok",
-        "fiyat": 13.0,
-        "depot_id": "sok-4707",
-        "depot_ad": "Şok Minifevziçakmak",
-        "fiyat_guncelleme": "2026-09-15T08:02",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Ülker",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-27",
-        11.9
-      ],
-      [
-        "2026-08-07",
-        9.9
-      ],
-      [
-        "2026-08-21",
-        11.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-27",
-        "28 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-08-09",
-        "market": "migros",
-        "liste_fiyat": 11.9,
-        "satis_fiyat": 9.9
-      }
-    ]
-  },
-  {
     "_sid": "atistirmalik_nestor-joy-vanilya-dondurma-70-ml",
     "ad": "Nestor Joy Vanilya Dondurma 70 Ml",
     "ana_kategori": "Dondurmalar",
@@ -108176,6 +108156,38 @@
       [
         "2026-09-07",
         "175 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "atistirmalik_oylum-finger-biskuvi-450-gr",
+    "ad": "Oylum Finger Bisküvi 450 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "450 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/tarimkrediimages/125291.png",
+    "en_dusuk_fiyat": 39.0,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 39.0,
+        "depot_id": "tarim_kredi-7488",
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-09-15T08:06",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Oylum",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-16",
+        39.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-16",
+        "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -108811,6 +108823,38 @@
         "satis_fiyat": 79.9
       }
     ]
+  },
+  {
+    "_sid": "atistirmalik_roll-cilek-dolgulu-kruvasan-110-gr",
+    "ad": "Roll Çilek Dolgulu Kruvasan 110 Gr",
+    "ana_kategori": "Kek",
+    "agirlik_hacim": "110 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 99.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 99.9,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-15T08:07",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Roll",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-02",
+        99.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-02",
+        "110 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
   },
   {
     "_sid": "atistirmalik_alacati-damla-sakizli-kurabiye-250-gr",
@@ -121649,6 +121693,38 @@
     ]
   },
   {
+    "_sid": "atistirmalik_sbu-kazandibi-sutlu-tatli-450-gr",
+    "ad": "Sbu Kazandibi Sütlü Tatlı 450 Gr",
+    "ana_kategori": "Tatlılar",
+    "agirlik_hacim": "450 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/hakmarimages/1024082.png",
+    "en_dusuk_fiyat": 119.5,
+    "market_fiyatlari": [
+      {
+        "market": "hakmar",
+        "fiyat": 119.5,
+        "depot_id": "hakmar-5200",
+        "depot_ad": "Valide  Üsküdar",
+        "fiyat_guncelleme": "2026-09-15T08:05",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Sbu",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-16",
+        119.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-16",
+        "450 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "atistirmalik_algida-boom-boom-tub-570-ml",
     "ad": "Algida Boom Boom Tub 570 Ml",
     "ana_kategori": "Dondurmalar",
@@ -122355,38 +122431,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "atistirmalik_ozmo-egg-cikolata-surpriz-yumurta-20-gr",
-    "ad": "Ozmo Egg Çikolata Sürpriz Yumurta 20 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "20 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/27000004.png",
-    "en_dusuk_fiyat": 39.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 39.0,
-        "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye",
-        "fiyat_guncelleme": "2026-09-15T08:03",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Ozmo Egg",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-27",
-        39.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-27",
-        "20 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
     "_sid": "atistirmalik_ulker-misirli-badem-kraker-135-gr",
     "ad": "Ülker Mısırlı Badem Kraker 135 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
@@ -122929,6 +122973,38 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "atistirmalik_migros-kavrulmus-tuzlu-kaju-fistigi-150-gr",
+    "ad": "Migros Kavrulmuş Tuzlu Kaju Fıstığı 150 Gr",
+    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
+    "agirlik_hacim": "150 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/8090095.png",
+    "en_dusuk_fiyat": 105.9,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 105.9,
+        "depot_id": "migros-1991",
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-15T08:02",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Migros",
+    "fiyat_gecmisi": [
+      [
+        "2026-07-27",
+        105.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-27",
+        "150 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "atistirmalik_zuber-lokma-antep-fistigi-kapli-topu-96-gr",
     "ad": "Züber Lokma Antep Fıstığı Kaplı Topu 96 Gr",
     "ana_kategori": "Kuruyemiş ve Kuru Meyve",
@@ -123206,6 +123282,38 @@
       [
         "2026-07-27",
         "200 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "atistirmalik_ozmo-egg-cikolata-surpriz-yumurta-20-gr",
+    "ad": "Ozmo Egg Çikolata Sürpriz Yumurta 20 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "20 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/27000004.png",
+    "en_dusuk_fiyat": 39.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 39.0,
+        "depot_id": "a101-6815",
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-15T08:03",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Ozmo Egg",
+    "fiyat_gecmisi": [
+      [
+        "2026-07-27",
+        39.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-27",
+        "20 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -123836,38 +123944,6 @@
       [
         "2026-07-27",
         "15 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "atistirmalik_migros-kavrulmus-tuzlu-kaju-fistigi-150-gr",
-    "ad": "Migros Kavrulmuş Tuzlu Kaju Fıstığı 150 Gr",
-    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
-    "agirlik_hacim": "150 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/8090095.png",
-    "en_dusuk_fiyat": 105.9,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 105.9,
-        "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros",
-        "fiyat_guncelleme": "2026-09-15T08:02",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Migros",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-27",
-        105.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-27",
-        "150 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -130442,6 +130518,38 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "atistirmalik_nestor-joy-antep-fistik-dondurma-70-ml",
+    "ad": "Nestor Joy Antep Fıstık Dondurma 70 Ml",
+    "ana_kategori": "Dondurmalar",
+    "agirlik_hacim": "70 ML",
+    "resim": "https://cdn.marketfiyati.org.tr/hakmar/1033459.jpg",
+    "en_dusuk_fiyat": 13.0,
+    "market_fiyatlari": [
+      {
+        "market": "hakmar",
+        "fiyat": 13.0,
+        "depot_id": "hakmar-5521",
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-15T08:05",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Nestor",
+    "fiyat_gecmisi": [
+      [
+        "2026-07-27",
+        13.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-27",
+        "70 ML"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "atistirmalik_eti-bumbo-portakal-aromali-kakaolu-biskuvi-42-gr",
     "ad": "Eti Bumbo Portakal Aromalı Kakaolu Bisküvi 42 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
@@ -131327,54 +131435,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "atistirmalik_pol-s-freeze-fresh-life-fun-mix-20-gr",
-    "ad": "Pol's Freeze Fresh Life Fun Mix 20 Gr",
-    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
-    "agirlik_hacim": "20 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/5080262.jpg",
-    "en_dusuk_fiyat": 109.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 109.95,
-        "liste_fiyat": 147.95,
-        "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros",
-        "fiyat_guncelleme": "2026-09-15T08:01",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Pol's Freeze Fresh",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-27",
-        109.95
-      ],
-      [
-        "2026-08-07",
-        147.95
-      ],
-      [
-        "2026-08-21",
-        109.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-27",
-        "20 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-08-21",
-        "market": "migros",
-        "liste_fiyat": 147.95,
-        "satis_fiyat": 109.95
-      }
-    ]
-  },
-  {
     "_sid": "atistirmalik_cerezya-kuruyemis-cig-kokteyl-180-gr",
     "ad": "Çerezya Kuruyemiş Çiğ Kokteyl 180 Gr",
     "ana_kategori": "Kuruyemiş ve Kuru Meyve",
@@ -131566,38 +131626,6 @@
       [
         "2026-07-27",
         "40 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "atistirmalik_nestor-joy-antep-fistik-dondurma-70-ml",
-    "ad": "Nestor Joy Antep Fıstık Dondurma 70 Ml",
-    "ana_kategori": "Dondurmalar",
-    "agirlik_hacim": "70 ML",
-    "resim": "https://cdn.marketfiyati.org.tr/hakmar/1033459.jpg",
-    "en_dusuk_fiyat": 13.0,
-    "market_fiyatlari": [
-      {
-        "market": "hakmar",
-        "fiyat": 13.0,
-        "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar",
-        "fiyat_guncelleme": "2026-09-15T08:05",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Nestor",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-27",
-        13.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-27",
-        "70 ML"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -132058,6 +132086,38 @@
     ]
   },
   {
+    "_sid": "atistirmalik_tipitip-karisik-meyve-aromali-sakiz-27-gr",
+    "ad": "Tipitip Karışık Meyve Aromalı Sakız 27 Gr",
+    "ana_kategori": "Sakız ve Şekerleme",
+    "agirlik_hacim": "27 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/tarimkrediimages/112660.png",
+    "en_dusuk_fiyat": 47.9,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 47.9,
+        "depot_id": "tarim_kredi-7488",
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-09-15T08:05",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Tipitip",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-02",
+        47.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-02",
+        "27 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "atistirmalik_ulker-bitter-kare-cikolata-80-kakaolu-60-gr",
     "ad": "Ülker Bitter Kare Çikolata %80 Kakaolu 60 Gr",
     "ana_kategori": "Çikolata",
@@ -132263,56 +132323,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "atistirmalik_godiva-antep-fistikli-karamelli-sutlu-cikolata-kare-60-gr",
-    "ad": "Godiva Antep Fıstıklı Karamelli Sütlü Çikolata Kare 60 Gr",
-    "ana_kategori": "Çikolata",
-    "agirlik_hacim": "60 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30268380.png",
-    "en_dusuk_fiyat": 105.75,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 105.75,
-        "liste_fiyat": 162.75,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-09-15T08:07",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Godiva",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-01",
-        112.0
-      ],
-      [
-        "2026-09-04",
-        105.75
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-01",
-        "60 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-09-01",
-        "market": "carrefour",
-        "liste_fiyat": 162.75,
-        "satis_fiyat": 112.0
-      },
-      {
-        "tarih": "2026-09-04",
-        "market": "carrefour",
-        "liste_fiyat": 162.75,
-        "satis_fiyat": 105.75
-      }
-    ]
-  },
-  {
     "_sid": "atistirmalik_nestl-damak-cikolata-60-gr",
     "ad": "Nestlé Damak Çikolata 60 Gr",
     "ana_kategori": "Çikolata",
@@ -132343,6 +132353,54 @@
       ]
     ],
     "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "atistirmalik_pol-s-freeze-fresh-life-fun-mix-20-gr",
+    "ad": "Pol's Freeze Fresh Life Fun Mix 20 Gr",
+    "ana_kategori": "Kuruyemiş ve Kuru Meyve",
+    "agirlik_hacim": "20 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/5080262.jpg",
+    "en_dusuk_fiyat": 109.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 109.95,
+        "liste_fiyat": 147.95,
+        "depot_id": "migros-1991",
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-15T08:01",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Pol's Freeze Fresh",
+    "fiyat_gecmisi": [
+      [
+        "2026-07-27",
+        109.95
+      ],
+      [
+        "2026-08-07",
+        147.95
+      ],
+      [
+        "2026-08-21",
+        109.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-27",
+        "20 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-08-21",
+        "market": "migros",
+        "liste_fiyat": 147.95,
+        "satis_fiyat": 109.95
+      }
+    ]
   },
   {
     "_sid": "atistirmalik_tadelle-sutlu-cikolata-3x30-gr-90-gr",
@@ -133032,38 +133090,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "atistirmalik_tipitip-karisik-meyve-aromali-sakiz-27-gr",
-    "ad": "Tipitip Karışık Meyve Aromalı Sakız 27 Gr",
-    "ana_kategori": "Sakız ve Şekerleme",
-    "agirlik_hacim": "27 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/tarimkrediimages/112660.png",
-    "en_dusuk_fiyat": 47.9,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 47.9,
-        "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
-        "fiyat_guncelleme": "2026-09-15T08:05",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Tipitip",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-02",
-        47.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-02",
-        "27 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
     "_sid": "atistirmalik_ulker-biskrem-extra-kakaolu-184-gr",
     "ad": "Ülker Biskrem Extra Kakaolu 184 Gr",
     "ana_kategori": "Bisküvi ve Kraker",
@@ -133498,6 +133524,56 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "atistirmalik_godiva-antep-fistikli-karamelli-sutlu-cikolata-kare-60-gr",
+    "ad": "Godiva Antep Fıstıklı Karamelli Sütlü Çikolata Kare 60 Gr",
+    "ana_kategori": "Çikolata",
+    "agirlik_hacim": "60 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30268380.png",
+    "en_dusuk_fiyat": 105.75,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 105.75,
+        "liste_fiyat": 162.75,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-15T08:07",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Godiva",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-01",
+        112.0
+      ],
+      [
+        "2026-09-04",
+        105.75
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-01",
+        "60 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-09-01",
+        "market": "carrefour",
+        "liste_fiyat": 162.75,
+        "satis_fiyat": 112.0
+      },
+      {
+        "tarih": "2026-09-04",
+        "market": "carrefour",
+        "liste_fiyat": 162.75,
+        "satis_fiyat": 105.75
+      }
+    ]
+  },
+  {
     "_sid": "atistirmalik_patiswiss-bitter-cikolata-kapli-cilek-cubugu-80-gr",
     "ad": "Patiswiss Bitter Çikolata Kaplı Çilek Çubuğu 80 Gr",
     "ana_kategori": "Çikolata",
@@ -133870,6 +133946,77 @@
         "market": "carrefour",
         "liste_fiyat": 12.75,
         "satis_fiyat": 8.29
+      }
+    ]
+  },
+  {
+    "_sid": "atistirmalik_eti-form-mahlep-ciya-tohumlu-corek-otlu-kepekli-biskuvi-40-gr",
+    "ad": "Eti Form Mahlep Çiya Tohumlu Çörek Otlu Kepekli Bisküvi 40 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "40 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30384433.jpg",
+    "en_dusuk_fiyat": 15.5,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 15.5,
+        "depot_id": "migros-564",
+        "depot_ad": "Kadıköy Çarşı M Migros",
+        "fiyat_guncelleme": "2026-09-15T08:08",
+        "depot_il": "İstanbul"
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 16.5,
+        "depot_id": "carrefour-5254",
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-09-15T08:08",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Eti",
+    "fiyat_gecmisi": [
+      [
+        "2026-07-29",
+        15.75
+      ],
+      [
+        "2026-07-31",
+        15.5
+      ],
+      [
+        "2026-08-05",
+        15.75
+      ],
+      [
+        "2026-08-07",
+        10.24
+      ],
+      [
+        "2026-08-11",
+        15.5
+      ],
+      [
+        "2026-09-04",
+        10.24
+      ],
+      [
+        "2026-09-09",
+        15.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-29",
+        "40 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-08-09",
+        "market": "carrefour",
+        "liste_fiyat": 15.75,
+        "satis_fiyat": 10.24
       }
     ]
   },
@@ -134829,38 +134976,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "atistirmalik_alacati-tuzlu-kurabiye-250-gr",
-    "ad": "Alaçatı Tuzlu Kurabiye 250 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "250 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30050770.png",
-    "en_dusuk_fiyat": 209.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 209.95,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-09-15T08:07",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Alaçatı",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-07",
-        209.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-07",
-        "250 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
     "_sid": "atistirmalik_yenigun-cevizli-i-ncir-tatlisi-gold-seri-400-gr",
     "ad": "Yenigün Cevizli İncir Tatlısı Gold Seri 400 Gr",
     "ana_kategori": "Tatlılar",
@@ -134891,77 +135006,6 @@
       ]
     ],
     "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "atistirmalik_eti-form-mahlep-ciya-tohumlu-corek-otlu-kepekli-biskuvi-40-gr",
-    "ad": "Eti Form Mahlep Çiya Tohumlu Çörek Otlu Kepekli Bisküvi 40 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "40 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30384433.jpg",
-    "en_dusuk_fiyat": 15.5,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 15.5,
-        "depot_id": "migros-564",
-        "depot_ad": "Kadıköy Çarşı M Migros",
-        "fiyat_guncelleme": "2026-09-15T08:08",
-        "depot_il": "İstanbul"
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 16.5,
-        "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını",
-        "fiyat_guncelleme": "2026-09-15T08:08",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Eti",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-29",
-        15.75
-      ],
-      [
-        "2026-07-31",
-        15.5
-      ],
-      [
-        "2026-08-05",
-        15.75
-      ],
-      [
-        "2026-08-07",
-        10.24
-      ],
-      [
-        "2026-08-11",
-        15.5
-      ],
-      [
-        "2026-09-04",
-        10.24
-      ],
-      [
-        "2026-09-09",
-        15.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-29",
-        "40 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-08-09",
-        "market": "carrefour",
-        "liste_fiyat": 15.75,
-        "satis_fiyat": 10.24
-      }
-    ]
   },
   {
     "_sid": "atistirmalik_crax-baharatli-cubuk-kraker-50-gr",
@@ -135689,6 +135733,38 @@
         "satis_fiyat": 114.99
       }
     ]
+  },
+  {
+    "_sid": "atistirmalik_alacati-tuzlu-kurabiye-250-gr",
+    "ad": "Alaçatı Tuzlu Kurabiye 250 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "250 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30050770.png",
+    "en_dusuk_fiyat": 209.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 209.95,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-15T08:07",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Alaçatı",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-07",
+        209.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-07",
+        "250 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
   },
   {
     "_sid": "atistirmalik_ekonomik-tuzlu-fistik-1-kg",
@@ -156818,6 +156894,74 @@
     ]
   },
   {
+    "_sid": "atistirmalik_biscolata-pia-frambuazli-kek-100-gr",
+    "ad": "Biscolata Pia Frambuazlı Kek 100 Gr",
+    "ana_kategori": "Kek",
+    "agirlik_hacim": "100 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/124710.jpg",
+    "en_dusuk_fiyat": 49.9,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 49.9,
+        "liste_fiyat": 64.95,
+        "depot_id": "migros-1991",
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-15T08:08",
+        "depot_il": "İstanbul"
+      },
+      {
+        "market": "tarim_kredi",
+        "fiyat": 59.9,
+        "depot_id": "tarim_kredi-5022",
+        "depot_ad": "Istanbul Kadıköy Market",
+        "fiyat_guncelleme": "2026-09-15T08:08",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Biscolata",
+    "fiyat_gecmisi": [
+      [
+        "2026-07-27",
+        59.9
+      ],
+      [
+        "2026-08-29",
+        64.95
+      ],
+      [
+        "2026-09-02",
+        59.9
+      ],
+      [
+        "2026-09-05",
+        64.95
+      ],
+      [
+        "2026-09-10",
+        59.9
+      ],
+      [
+        "2026-09-15",
+        49.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-27",
+        "100 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-09-15",
+        "market": "migros",
+        "liste_fiyat": 64.95,
+        "satis_fiyat": 49.9
+      }
+    ]
+  },
+  {
     "_sid": "atistirmalik_dr-oetker-krem-karamel-92-gr",
     "ad": "Dr. Oetker Krem Karamel 92 Gr",
     "ana_kategori": "Tatlılar",
@@ -157315,42 +157459,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "atistirmalik_mayalihane-glutensiz-findikli-kurabiye-150-gr",
-    "ad": "Mayalıhane Glutensiz Fındıklı Kurabiye 150 Gr",
-    "ana_kategori": "Bisküvi ve Kraker",
-    "agirlik_hacim": "150 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30467041.png",
-    "en_dusuk_fiyat": 199.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 199.0,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-09-15T08:07",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Mayalıhane",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-31",
-        63.99
-      ],
-      [
-        "2026-08-05",
-        199.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-31",
-        "150 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
     "_sid": "atistirmalik_carte-d-or-selection-belcika-ruyasi-800-ml",
     "ad": "Carte d'Or Selection Belçika Rüyası 800 Ml",
     "ana_kategori": "Dondurmalar",
@@ -157722,74 +157830,6 @@
         "market": "migros",
         "liste_fiyat": 68.95,
         "satis_fiyat": 47.45
-      }
-    ]
-  },
-  {
-    "_sid": "atistirmalik_biscolata-pia-frambuazli-kek-100-gr",
-    "ad": "Biscolata Pia Frambuazlı Kek 100 Gr",
-    "ana_kategori": "Kek",
-    "agirlik_hacim": "100 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/124710.jpg",
-    "en_dusuk_fiyat": 49.9,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 49.9,
-        "liste_fiyat": 64.95,
-        "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros",
-        "fiyat_guncelleme": "2026-09-15T08:08",
-        "depot_il": "İstanbul"
-      },
-      {
-        "market": "tarim_kredi",
-        "fiyat": 59.9,
-        "depot_id": "tarim_kredi-5022",
-        "depot_ad": "Istanbul Kadıköy Market",
-        "fiyat_guncelleme": "2026-09-15T08:08",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Biscolata",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-27",
-        59.9
-      ],
-      [
-        "2026-08-29",
-        64.95
-      ],
-      [
-        "2026-09-02",
-        59.9
-      ],
-      [
-        "2026-09-05",
-        64.95
-      ],
-      [
-        "2026-09-10",
-        59.9
-      ],
-      [
-        "2026-09-15",
-        49.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-27",
-        "100 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-09-15",
-        "market": "migros",
-        "liste_fiyat": 64.95,
-        "satis_fiyat": 49.9
       }
     ]
   },
@@ -158405,6 +158445,42 @@
         "satis_fiyat": 130.0
       }
     ]
+  },
+  {
+    "_sid": "atistirmalik_mayalihane-glutensiz-findikli-kurabiye-150-gr",
+    "ad": "Mayalıhane Glutensiz Fındıklı Kurabiye 150 Gr",
+    "ana_kategori": "Bisküvi ve Kraker",
+    "agirlik_hacim": "150 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30467041.png",
+    "en_dusuk_fiyat": 199.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 199.0,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-15T08:07",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Mayalıhane",
+    "fiyat_gecmisi": [
+      [
+        "2026-07-31",
+        63.99
+      ],
+      [
+        "2026-08-05",
+        199.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-31",
+        "150 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
   },
   {
     "_sid": "atistirmalik_mis-gold-antep-fistigi-badem-trio-360-ml",

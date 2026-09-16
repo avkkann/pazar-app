@@ -3395,6 +3395,57 @@
     ]
   },
   {
+    "_sid": "sut_cupido-cikolatali-misir-ve-bugday-gevregi-450-gr",
+    "ad": "Cupido Çikolatalı Mısır ve Buğday Gevreği 450 Gr",
+    "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
+    "agirlik_hacim": "450 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/601553.png",
+    "en_dusuk_fiyat": 74.5,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 74.5,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-15T08:04",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Cupido",
+    "fiyat_gecmisi": [
+      [
+        "2026-07-16",
+        63.5
+      ],
+      [
+        "2026-08-12",
+        74.5
+      ],
+      [
+        "2026-09-05",
+        67.0
+      ],
+      [
+        "2026-09-12",
+        74.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-16",
+        "450 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-09-05",
+        "market": "bim",
+        "liste_fiyat": 74.5,
+        "satis_fiyat": 67.0
+      }
+    ]
+  },
+  {
     "_sid": "sut_pinar-denge-laktozsuz-sut-1-lt",
     "ad": "Pınar Denge Laktozsuz Süt 1 Lt",
     "ana_kategori": "Süt",
@@ -3568,46 +3619,6 @@
       [
         "2026-09-02",
         "1.08 LT"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "sut_sek-ciftlik-kaymaksiz-yogurt-900-gr",
-    "ad": "Sek Çiftlik Kaymaksız Yoğurt 900 Gr",
-    "ana_kategori": "Yoğurt",
-    "agirlik_hacim": "900 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30240936.png",
-    "en_dusuk_fiyat": 110.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 110.0,
-        "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros",
-        "fiyat_guncelleme": "2026-09-15T08:07",
-        "depot_il": "İstanbul"
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 110.0,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-09-15T08:07",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Sek",
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        110.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "900 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -4566,57 +4577,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "sut_cupido-cikolatali-misir-ve-bugday-gevregi-450-gr",
-    "ad": "Cupido Çikolatalı Mısır ve Buğday Gevreği 450 Gr",
-    "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
-    "agirlik_hacim": "450 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/601553.png",
-    "en_dusuk_fiyat": 74.5,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 74.5,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar",
-        "fiyat_guncelleme": "2026-09-15T08:04",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Cupido",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-16",
-        63.5
-      ],
-      [
-        "2026-08-12",
-        74.5
-      ],
-      [
-        "2026-09-05",
-        67.0
-      ],
-      [
-        "2026-09-12",
-        74.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-16",
-        "450 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-09-05",
-        "market": "bim",
-        "liste_fiyat": 74.5,
-        "satis_fiyat": 67.0
-      }
-    ]
-  },
-  {
     "_sid": "sut_migros-granola-yulafli-balli-ve-keten-tohumlu-250-gr",
     "ad": "Migros Granola Yulaflı Ballı Ve Keten Tohumlu 250 Gr",
     "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
@@ -4753,6 +4713,46 @@
         "satis_fiyat": 70.69
       }
     ]
+  },
+  {
+    "_sid": "sut_sek-ciftlik-kaymaksiz-yogurt-900-gr",
+    "ad": "Sek Çiftlik Kaymaksız Yoğurt 900 Gr",
+    "ana_kategori": "Yoğurt",
+    "agirlik_hacim": "900 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30240936.png",
+    "en_dusuk_fiyat": 110.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 110.0,
+        "depot_id": "migros-1991",
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-15T08:07",
+        "depot_il": "İstanbul"
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 110.0,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-15T08:07",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Sek",
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        110.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "900 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
   },
   {
     "_sid": "sut_goynuk-suzme-peynir-850-gr",
@@ -14560,6 +14560,46 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "sut_carrefour-kasar-peyniri-225-gr",
+    "ad": "Carrefour Kaşar Peyniri 225 Gr",
+    "ana_kategori": "Peynir",
+    "agirlik_hacim": "225 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30297940.png",
+    "en_dusuk_fiyat": 129.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 129.9,
+        "depot_id": "carrefour-5254",
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-09-15T08:07",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Carrefour",
+    "fiyat_gecmisi": [
+      [
+        "2026-07-16",
+        115.0
+      ],
+      [
+        "2026-08-09",
+        109.0
+      ],
+      [
+        "2026-09-04",
+        129.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-16",
+        "225 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "sut_mis-suzme-yogurt-900-gr",
     "ad": "Mis Süzme Yoğurt 900 Gr",
     "ana_kategori": "Yoğurt",
@@ -15114,53 +15154,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "sut_torku-tereyag-1-kg",
-    "ad": "Torku Tereyağ 1 Kg",
-    "ana_kategori": "Tereyağı ve Margarin",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/12013729.png",
-    "en_dusuk_fiyat": 949.9,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 949.9,
-        "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros",
-        "fiyat_guncelleme": "2026-09-15T08:01",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Torku",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-16",
-        968.95
-      ],
-      [
-        "2026-08-07",
-        749.0
-      ],
-      [
-        "2026-08-21",
-        949.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-16",
-        "1 KG"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-08-09",
-        "market": "migros",
-        "liste_fiyat": 949.9,
-        "satis_fiyat": 749.0
-      }
-    ]
-  },
-  {
     "_sid": "sut_sek-cilekli-milkshake-285-ml",
     "ad": "Sek Çilekli Milkshake 285 Ml",
     "ana_kategori": "Süt",
@@ -15565,46 +15558,6 @@
       [
         "2026-07-03",
         "280 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "sut_carrefour-kasar-peyniri-225-gr",
-    "ad": "Carrefour Kaşar Peyniri 225 Gr",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "225 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30297940.png",
-    "en_dusuk_fiyat": 129.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 129.9,
-        "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını",
-        "fiyat_guncelleme": "2026-09-15T08:07",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Carrefour",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-16",
-        115.0
-      ],
-      [
-        "2026-08-09",
-        109.0
-      ],
-      [
-        "2026-09-04",
-        129.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-16",
-        "225 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -29119,41 +29072,41 @@
     ]
   },
   {
-    "_sid": "sut_cihanser-hellim-peyniri-250-gr",
-    "ad": "Cihanser Hellim Peyniri 250 Gr",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "250 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30084623.png",
-    "en_dusuk_fiyat": 206.9,
+    "_sid": "sut_pinar-folyo-tereyagi-200-gr",
+    "ad": "Pınar Folyo Tereyağı 200 Gr",
+    "ana_kategori": "Tereyağı ve Margarin",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/12017017.jpg",
+    "en_dusuk_fiyat": 195.0,
     "market_fiyatlari": [
       {
+        "market": "migros",
+        "fiyat": 195.0,
+        "depot_id": "migros-1991",
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-15T08:07",
+        "depot_il": "İstanbul"
+      },
+      {
         "market": "carrefour",
-        "fiyat": 206.9,
+        "fiyat": 195.0,
         "depot_id": "carrefour-1012",
         "depot_ad": "Istanbul Acıbadem Hıper",
         "fiyat_guncelleme": "2026-09-15T08:07",
         "depot_il": "İstanbul"
       }
     ],
-    "marka": "Cihanser",
+    "marka": "Pınar",
     "fiyat_gecmisi": [
       [
-        "2026-06-22",
-        129.9
-      ],
-      [
-        "2026-06-25",
-        179.9
-      ],
-      [
-        "2026-07-23",
-        206.9
+        "2026-09-15",
+        195.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-07-03",
-        "250 GR"
+        "2026-09-15",
+        "200 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -29964,41 +29917,41 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "sut_pinar-folyo-tereyagi-200-gr",
-    "ad": "Pınar Folyo Tereyağı 200 Gr",
-    "ana_kategori": "Tereyağı ve Margarin",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/12017017.jpg",
-    "en_dusuk_fiyat": 195.0,
+    "_sid": "sut_cihanser-hellim-peyniri-250-gr",
+    "ad": "Cihanser Hellim Peyniri 250 Gr",
+    "ana_kategori": "Peynir",
+    "agirlik_hacim": "250 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30084623.png",
+    "en_dusuk_fiyat": 206.9,
     "market_fiyatlari": [
       {
-        "market": "migros",
-        "fiyat": 195.0,
-        "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros",
-        "fiyat_guncelleme": "2026-09-15T08:07",
-        "depot_il": "İstanbul"
-      },
-      {
         "market": "carrefour",
-        "fiyat": 195.0,
+        "fiyat": 206.9,
         "depot_id": "carrefour-1012",
         "depot_ad": "Istanbul Acıbadem Hıper",
         "fiyat_guncelleme": "2026-09-15T08:07",
         "depot_il": "İstanbul"
       }
     ],
-    "marka": "Pınar",
+    "marka": "Cihanser",
     "fiyat_gecmisi": [
       [
-        "2026-09-15",
-        195.0
+        "2026-06-22",
+        129.9
+      ],
+      [
+        "2026-06-25",
+        179.9
+      ],
+      [
+        "2026-07-23",
+        206.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-15",
-        "200 GR"
+        "2026-07-03",
+        "250 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -34173,6 +34126,38 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "sut_migros-yarim-yagli-olgunlastirilmis-tulum-peyniri-300-gr",
+    "ad": "Migros Yarım Yağlı Olgunlaştırılmış Tulum Peyniri 300 Gr",
+    "ana_kategori": "Peynir",
+    "agirlik_hacim": "300 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/10207385.jpg",
+    "en_dusuk_fiyat": 182.9,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 182.9,
+        "depot_id": "migros-4479",
+        "depot_ad": "Mjet Üsküdar Paşakapısı",
+        "fiyat_guncelleme": "2026-09-15T08:02",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Migros",
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        182.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "300 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "sut_marmarabirlik-sepet-serisi-siyah-zeytin-400-gr",
     "ad": "Marmarabirlik Sepet Serisi Siyah Zeytin 400 Gr",
     "ana_kategori": "Zeytin",
@@ -34433,54 +34418,6 @@
       [
         "2026-07-03",
         "2 KG"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "sut_mis-tam-yagli-kasar-peyniri-700-gr",
-    "ad": "Mis Tam Yağlı Kaşar Peyniri 700 Gr",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "700 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/sokimages/65128.png",
-    "en_dusuk_fiyat": 309.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 309.0,
-        "depot_id": "sok-4707",
-        "depot_ad": "Şok Minifevziçakmak",
-        "fiyat_guncelleme": "2026-09-15T08:00",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Mis",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-16",
-        309.0
-      ],
-      [
-        "2026-08-16",
-        269.0
-      ],
-      [
-        "2026-08-20",
-        309.0
-      ],
-      [
-        "2026-09-12",
-        269.0
-      ],
-      [
-        "2026-09-15",
-        309.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-16",
-        "700 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -35381,38 +35318,6 @@
       [
         "2026-07-03",
         "460 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "sut_migros-yarim-yagli-olgunlastirilmis-tulum-peyniri-300-gr",
-    "ad": "Migros Yarım Yağlı Olgunlaştırılmış Tulum Peyniri 300 Gr",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "300 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/10207385.jpg",
-    "en_dusuk_fiyat": 182.9,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 182.9,
-        "depot_id": "migros-4479",
-        "depot_ad": "Mjet Üsküdar Paşakapısı",
-        "fiyat_guncelleme": "2026-09-15T08:02",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Migros",
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        182.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "300 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -45838,6 +45743,38 @@
     ]
   },
   {
+    "_sid": "sut_zuber-kidz-cilekli-meyve-tatlisi-25-gr",
+    "ad": "Züber Kidz Çilekli Meyve Tatlısı 25 Gr",
+    "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
+    "agirlik_hacim": "25 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30489314.jpg",
+    "en_dusuk_fiyat": 54.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 54.95,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-15T08:07",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Züber",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-05",
+        54.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-05",
+        "25 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "sut_i-cim-1-5-yagli-sut-1-lt",
     "ad": "İçim %1.5 Yağlı Süt 1 Lt",
     "ana_kategori": "Süt",
@@ -46537,38 +46474,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "sut_i-anatolia-erzincan-tulum-peyniri-175-gr",
-    "ad": "I-anatolia Erzincan Tulum Peyniri 175 Gr",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "175 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30422675.png",
-    "en_dusuk_fiyat": 281.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 281.9,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-09-15T08:07",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "İ-anatolia",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-16",
-        281.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-16",
-        "175 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
     "_sid": "sut_carrefour-gravyer-200-gr",
     "ad": "Carrefour Gravyer 200 Gr",
     "ana_kategori": "Peynir",
@@ -47060,38 +46965,6 @@
         "satis_fiyat": 26.95
       }
     ]
-  },
-  {
-    "_sid": "sut_zuber-kidz-cilekli-meyve-tatlisi-25-gr",
-    "ad": "Züber Kidz Çilekli Meyve Tatlısı 25 Gr",
-    "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
-    "agirlik_hacim": "25 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30489314.jpg",
-    "en_dusuk_fiyat": 54.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 54.95,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-09-15T08:07",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Züber",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        54.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-05",
-        "25 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
   },
   {
     "_sid": "sut_tarim-kredi-tahin-300-gr",
@@ -47903,6 +47776,38 @@
         "satis_fiyat": 284.95
       }
     ]
+  },
+  {
+    "_sid": "sut_i-anatolia-erzincan-tulum-peyniri-175-gr",
+    "ad": "I-anatolia Erzincan Tulum Peyniri 175 Gr",
+    "ana_kategori": "Peynir",
+    "agirlik_hacim": "175 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30422675.png",
+    "en_dusuk_fiyat": 281.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 281.9,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-15T08:07",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "İ-anatolia",
+    "fiyat_gecmisi": [
+      [
+        "2026-07-16",
+        281.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-16",
+        "175 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
   },
   {
     "_sid": "sut_pinar-az-yagli-yuksek-proteinli-beyaz-peynir-400-gr",
@@ -62855,50 +62760,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "sut_pinar-laktozsuz-sut-1-lt",
-    "ad": "Pınar Laktozsuz Süt 1 Lt",
-    "ana_kategori": "Süt",
-    "agirlik_hacim": "1 LT",
-    "resim": null,
-    "en_dusuk_fiyat": 57.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 57.5,
-        "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye",
-        "fiyat_guncelleme": "2026-09-15T08:05",
-        "depot_il": "İstanbul"
-      },
-      {
-        "market": "bim",
-        "fiyat": 59.5,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar",
-        "fiyat_guncelleme": "2026-09-15T08:05",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Pınar",
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        59.0
-      ],
-      [
-        "2026-07-15",
-        57.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 LT"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
     "_sid": "sut_mis-labne-200-gr",
     "ad": "Mis Labne 200 Gr",
     "ana_kategori": "Peynir",
@@ -63455,6 +63316,50 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "sut_binboga-suzme-cicek-bali-850-gr",
+    "ad": "Binboğa Süzme Çiçek Balı 850 Gr",
+    "ana_kategori": "Bal ve Reçel",
+    "agirlik_hacim": "850 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/16002284.jpg",
+    "en_dusuk_fiyat": 359.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 359.0,
+        "depot_id": "a101-6815",
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-15T08:07",
+        "depot_il": "İstanbul"
+      },
+      {
+        "market": "bim",
+        "fiyat": 359.0,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-15T08:07",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Binboğa",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-07",
+        315.0
+      ],
+      [
+        "2026-09-10",
+        359.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-07",
+        "850 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "sut_bonne-maman-karamelize-sut-receli-380-gr",
     "ad": "Bonne Maman Karamelize Süt Reçeli 380 Gr",
     "ana_kategori": "Bal ve Reçel",
@@ -63706,6 +63611,50 @@
         "satis_fiyat": 43.9
       }
     ]
+  },
+  {
+    "_sid": "sut_pinar-laktozsuz-sut-1-lt",
+    "ad": "Pınar Laktozsuz Süt 1 Lt",
+    "ana_kategori": "Süt",
+    "agirlik_hacim": "1 LT",
+    "resim": null,
+    "en_dusuk_fiyat": 57.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 57.5,
+        "depot_id": "a101-6815",
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-15T08:05",
+        "depot_il": "İstanbul"
+      },
+      {
+        "market": "bim",
+        "fiyat": 59.5,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-15T08:05",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Pınar",
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        59.0
+      ],
+      [
+        "2026-07-15",
+        57.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 LT"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
   },
   {
     "_sid": "sut_dimes-muzlu-kurabiyeli-milkshake-310-ml",
@@ -64514,50 +64463,6 @@
         "satis_fiyat": 324.0
       }
     ]
-  },
-  {
-    "_sid": "sut_binboga-suzme-cicek-bali-850-gr",
-    "ad": "Binboğa Süzme Çiçek Balı 850 Gr",
-    "ana_kategori": "Bal ve Reçel",
-    "agirlik_hacim": "850 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/16002284.jpg",
-    "en_dusuk_fiyat": 359.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 359.0,
-        "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye",
-        "fiyat_guncelleme": "2026-09-15T08:07",
-        "depot_il": "İstanbul"
-      },
-      {
-        "market": "bim",
-        "fiyat": 359.0,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar",
-        "fiyat_guncelleme": "2026-09-15T08:07",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Binboğa",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-07",
-        315.0
-      ],
-      [
-        "2026-09-10",
-        359.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-07",
-        "850 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
   },
   {
     "_sid": "sut_st-dalfour-ananas-mango-receli-284-gr",
@@ -65713,6 +65618,38 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "sut_sirinkos-kagit-helva-45-gr",
+    "ad": "Şirinkos Kağıt Helva 45 Gr",
+    "ana_kategori": "Helva Tahin ve Pekmez",
+    "agirlik_hacim": "45 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/hakmarimages/1000517.png",
+    "en_dusuk_fiyat": 15.0,
+    "market_fiyatlari": [
+      {
+        "market": "hakmar",
+        "fiyat": 15.0,
+        "depot_id": "hakmar-5521",
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-15T08:05",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Şirinkos",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-16",
+        15.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-16",
+        "45 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "sut_koska-super-i-kili-tahin-pekmez-karisimi-40-gr",
     "ad": "Koska Süper İkili Tahin Pekmez Karışımı 40 Gr",
     "ana_kategori": "Helva Tahin ve Pekmez",
@@ -66318,42 +66255,6 @@
       [
         "2026-07-03",
         "250 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "sut_carrefour-kuru-sele-siyah-zeytin-350-gr",
-    "ad": "Carrefour Kuru Sele Siyah Zeytin 350 Gr",
-    "ana_kategori": "Zeytin",
-    "agirlik_hacim": "350 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30210497.png",
-    "en_dusuk_fiyat": 149.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 149.9,
-        "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını",
-        "fiyat_guncelleme": "2026-09-15T08:07",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Carrefour",
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        149.0
-      ],
-      [
-        "2026-08-27",
-        149.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "350 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -67455,6 +67356,42 @@
       [
         "2026-09-15",
         "1.25 KG"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "sut_carrefour-kuru-sele-siyah-zeytin-350-gr",
+    "ad": "Carrefour Kuru Sele Siyah Zeytin 350 Gr",
+    "ana_kategori": "Zeytin",
+    "agirlik_hacim": "350 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30210497.png",
+    "en_dusuk_fiyat": 149.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 149.9,
+        "depot_id": "carrefour-5254",
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-09-15T08:07",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Carrefour",
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        149.0
+      ],
+      [
+        "2026-08-27",
+        149.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "350 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -80102,70 +80039,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "sut_i-nci-siyah-zeytin-321-380-kalibre-250-gr",
-    "ad": "İnci Siyah Zeytin 321-380 Kalibre 250 Gr",
-    "ana_kategori": "Zeytin",
-    "agirlik_hacim": "250 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 49.5,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 49.5,
-        "liste_fiyat": 58.5,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar",
-        "fiyat_guncelleme": "2026-09-15T08:04",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "İnci",
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        49.5
-      ],
-      [
-        "2026-06-27",
-        58.5
-      ],
-      [
-        "2026-07-19",
-        49.5
-      ],
-      [
-        "2026-07-26",
-        58.5
-      ],
-      [
-        "2026-08-09",
-        49.5
-      ],
-      [
-        "2026-08-16",
-        58.5
-      ],
-      [
-        "2026-09-01",
-        49.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "250 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-08-09",
-        "market": "bim",
-        "liste_fiyat": 58.5,
-        "satis_fiyat": 49.5
-      }
-    ]
-  },
-  {
     "_sid": "sut_corny-findikli-kakaolu-kuruyemis-meyve-bar-35-gr",
     "ad": "Corny Fındıklı Kakaolu Kuruyemiş Meyve Bar 35 Gr",
     "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
@@ -80431,6 +80304,38 @@
       [
         "2026-07-03",
         "350 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "sut_marmarabirlik-sepet-serisi-3xs-381-410-400-gr",
+    "ad": "Marmarabirlik Sepet Serisi 3xs (381-410) 400 Gr",
+    "ana_kategori": "Zeytin",
+    "agirlik_hacim": "400 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30251060.jpg",
+    "en_dusuk_fiyat": 137.45,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 137.45,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-15T08:07",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Marmarabirlik",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-07",
+        137.45
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-07",
+        "400 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -81009,6 +80914,70 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "sut_i-nci-siyah-zeytin-321-380-kalibre-250-gr",
+    "ad": "İnci Siyah Zeytin 321-380 Kalibre 250 Gr",
+    "ana_kategori": "Zeytin",
+    "agirlik_hacim": "250 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 49.5,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 49.5,
+        "liste_fiyat": 58.5,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-15T08:04",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "İnci",
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        49.5
+      ],
+      [
+        "2026-06-27",
+        58.5
+      ],
+      [
+        "2026-07-19",
+        49.5
+      ],
+      [
+        "2026-07-26",
+        58.5
+      ],
+      [
+        "2026-08-09",
+        49.5
+      ],
+      [
+        "2026-08-16",
+        58.5
+      ],
+      [
+        "2026-09-01",
+        49.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "250 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-08-09",
+        "market": "bim",
+        "liste_fiyat": 58.5,
+        "satis_fiyat": 49.5
+      }
+    ]
+  },
+  {
     "_sid": "sut_president-cheddarli-ucgen-peynir-100-gr",
     "ad": "President Cheddarlı Üçgen Peynir 100 Gr",
     "ana_kategori": "Peynir",
@@ -81387,38 +81356,6 @@
         "satis_fiyat": 109.95
       }
     ]
-  },
-  {
-    "_sid": "sut_marmarabirlik-sepet-serisi-3xs-381-410-400-gr",
-    "ad": "Marmarabirlik Sepet Serisi 3xs (381-410) 400 Gr",
-    "ana_kategori": "Zeytin",
-    "agirlik_hacim": "400 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30251060.jpg",
-    "en_dusuk_fiyat": 137.45,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 137.45,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-09-15T08:07",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Marmarabirlik",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-07",
-        137.45
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-07",
-        "400 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
   },
   {
     "_sid": "sut_haktat-jumbo-siyah-zeytin-261-290-kalibre-600-gr",
@@ -83430,6 +83367,38 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "sut_torku-tam-yagli-ucgen-peynir-100-gr",
+    "ad": "Torku Tam Yağlı Üçgen Peynir 100 Gr",
+    "ana_kategori": "Peynir",
+    "agirlik_hacim": "100 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30141583.png",
+    "en_dusuk_fiyat": 74.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 74.9,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-15T08:07",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Torku",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-15",
+        74.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-15",
+        "100 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "sut_i-cim-i-cimino-cilekli-sut-1-08-lt",
     "ad": "İçim İçimino Çilekli Süt 1.08 Lt",
     "ana_kategori": "Süt",
@@ -83812,57 +83781,6 @@
       ]
     ],
     "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "sut_yenigun-kusburnu-marmelati-380-gr",
-    "ad": "Yenigün Kuşburnu Marmelatı 380 Gr",
-    "ana_kategori": "Bal ve Reçel",
-    "agirlik_hacim": "380 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30179401.png",
-    "en_dusuk_fiyat": 174.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 174.95,
-        "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros",
-        "fiyat_guncelleme": "2026-09-15T08:07",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Yenigün",
-    "fiyat_gecmisi": [
-      [
-        "2026-08-15",
-        175.9
-      ],
-      [
-        "2026-08-22",
-        174.95
-      ],
-      [
-        "2026-08-28",
-        123.13
-      ],
-      [
-        "2026-09-01",
-        174.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-08-15",
-        "380 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-08-28",
-        "market": "carrefour",
-        "liste_fiyat": 175.9,
-        "satis_fiyat": 123.13
-      }
-    ]
   },
   {
     "_sid": "sut_alpro-bitter-cikolata-badem-i-cecegi-1-lt",
@@ -84399,38 +84317,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "sut_torku-tam-yagli-ucgen-peynir-100-gr",
-    "ad": "Torku Tam Yağlı Üçgen Peynir 100 Gr",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "100 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30141583.png",
-    "en_dusuk_fiyat": 74.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 74.9,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-09-15T08:07",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Torku",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-15",
-        74.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-15",
-        "100 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
     "_sid": "sut_tarim-kredi-cikolata-dolgulu-kakaolu-tahil-gevregi-310-gr",
     "ad": "Tarım Kredi Çikolata Dolgulu Kakaolu Tahıl Gevreği 310 Gr",
     "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
@@ -84717,6 +84603,57 @@
       ]
     ],
     "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "sut_yenigun-kusburnu-marmelati-380-gr",
+    "ad": "Yenigün Kuşburnu Marmelatı 380 Gr",
+    "ana_kategori": "Bal ve Reçel",
+    "agirlik_hacim": "380 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30179401.png",
+    "en_dusuk_fiyat": 174.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 174.95,
+        "depot_id": "migros-1991",
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-15T08:07",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Yenigün",
+    "fiyat_gecmisi": [
+      [
+        "2026-08-15",
+        175.9
+      ],
+      [
+        "2026-08-22",
+        174.95
+      ],
+      [
+        "2026-08-28",
+        123.13
+      ],
+      [
+        "2026-09-01",
+        174.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-08-15",
+        "380 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-08-28",
+        "market": "carrefour",
+        "liste_fiyat": 175.9,
+        "satis_fiyat": 123.13
+      }
+    ]
   },
   {
     "_sid": "sut_keskinoglu-yumurta-xl-boy-73-gr-20-adet",
@@ -85629,6 +85566,38 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "sut_tarim-kredi-bademli-helva-350-gr",
+    "ad": "Tarım Kredi Bademli Helva 350 Gr",
+    "ana_kategori": "Helva Tahin ve Pekmez",
+    "agirlik_hacim": "350 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/tarimkrediimages/102390.png",
+    "en_dusuk_fiyat": 89.0,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 89.0,
+        "depot_id": "tarim_kredi-7488",
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-09-15T08:06",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Tarım Kredi",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-16",
+        89.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-16",
+        "350 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "sut_kelly-s-cikolata-findik-cranberry-granola-300-gr",
     "ad": "Kelly's Çikolata Fındık Cranberry Granola 300 Gr",
     "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
@@ -85927,61 +85896,6 @@
       ]
     ],
     "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "sut_pinar-labne-peyniri-400-gr",
-    "ad": "Pınar Labne Peyniri 400 Gr",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "400 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30089880.jpg",
-    "en_dusuk_fiyat": 165.9,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 165.9,
-        "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros",
-        "fiyat_guncelleme": "2026-09-15T08:07",
-        "depot_il": "İstanbul"
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 165.9,
-        "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını",
-        "fiyat_guncelleme": "2026-09-15T08:07",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Pınar",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-07",
-        165.9
-      ],
-      [
-        "2026-09-10",
-        109.0
-      ],
-      [
-        "2026-09-15",
-        165.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-07",
-        "400 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-09-10",
-        "market": "migros",
-        "liste_fiyat": 165.9,
-        "satis_fiyat": 109.0
-      }
-    ]
   },
   {
     "_sid": "sut_hun-pekmez-800-gr",
@@ -87919,6 +87833,42 @@
     ]
   },
   {
+    "_sid": "sut_pinar-cheddarli-krem-peynir-270-gr",
+    "ad": "Pınar Cheddarlı Krem Peynir 270 Gr",
+    "ana_kategori": "Peynir",
+    "agirlik_hacim": "270 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30412603.png",
+    "en_dusuk_fiyat": 146.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 146.95,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-15T08:07",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Pınar",
+    "fiyat_gecmisi": [
+      [
+        "2026-06-26",
+        144.9
+      ],
+      [
+        "2026-08-22",
+        146.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "270 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "sut_kiri-labne-450-gr",
     "ad": "Kiri Labne 450 Gr",
     "ana_kategori": "Peynir",
@@ -88121,38 +88071,6 @@
         "satis_fiyat": 89.0
       }
     ]
-  },
-  {
-    "_sid": "sut_gunesoglu-dilimli-tost-peyniri-400-gr",
-    "ad": "Güneşoğlu Dilimli Tost Peyniri 400 Gr",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "400 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 174.5,
-    "market_fiyatlari": [
-      {
-        "market": "hakmar",
-        "fiyat": 174.5,
-        "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar",
-        "fiyat_guncelleme": "2026-09-15T08:05",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Güneşoğlu",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-25",
-        174.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-25",
-        "400 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
   },
   {
     "_sid": "sut_migros-cicek-bali-460-gr",
@@ -89135,42 +89053,6 @@
     ]
   },
   {
-    "_sid": "sut_pinar-cheddarli-krem-peynir-270-gr",
-    "ad": "Pınar Cheddarlı Krem Peynir 270 Gr",
-    "ana_kategori": "Peynir",
-    "agirlik_hacim": "270 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30412603.png",
-    "en_dusuk_fiyat": 146.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 146.95,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-09-15T08:07",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Pınar",
-    "fiyat_gecmisi": [
-      [
-        "2026-06-26",
-        144.9
-      ],
-      [
-        "2026-08-22",
-        146.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "270 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
     "_sid": "sut_tat-geleneksel-visne-receli-380-gr",
     "ad": "Tat Geleneksel Vişne Reçeli 380 Gr",
     "ana_kategori": "Bal ve Reçel",
@@ -89198,6 +89080,38 @@
       [
         "2026-08-15",
         "380 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "sut_gunesoglu-dilimli-tost-peyniri-400-gr",
+    "ad": "Güneşoğlu Dilimli Tost Peyniri 400 Gr",
+    "ana_kategori": "Peynir",
+    "agirlik_hacim": "400 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 174.5,
+    "market_fiyatlari": [
+      {
+        "market": "hakmar",
+        "fiyat": 174.5,
+        "depot_id": "hakmar-5521",
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-15T08:05",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Güneşoğlu",
+    "fiyat_gecmisi": [
+      [
+        "2026-07-25",
+        174.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-25",
+        "400 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -99120,6 +99034,38 @@
     ]
   },
   {
+    "_sid": "sut_marmarabirlik-kuru-sele-siyah-zeytin-321-350-kalibre-400-gr",
+    "ad": "Marmarabirlik Kuru Sele Siyah Zeytin 321-350 Kalibre 400 Gr",
+    "ana_kategori": "Zeytin",
+    "agirlik_hacim": "400 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/hakmar/1012883.jpg",
+    "en_dusuk_fiyat": 159.0,
+    "market_fiyatlari": [
+      {
+        "market": "hakmar",
+        "fiyat": 159.0,
+        "depot_id": "hakmar-5521",
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-15T08:05",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Marmarabirlik",
+    "fiyat_gecmisi": [
+      [
+        "2026-07-25",
+        159.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-25",
+        "400 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "sut_nestl-corn-flakes-gevrek-misir-400-gr",
     "ad": "Nestlé Corn Flakes Gevrek Mısır 400 Gr",
     "ana_kategori": "Kahvaltılık Gevrek Bar ve Granola",
@@ -99389,57 +99335,6 @@
         "market": "carrefour",
         "liste_fiyat": 294.95,
         "satis_fiyat": 176.97
-      }
-    ]
-  },
-  {
-    "_sid": "sut_fitnut-100-parcacikli-fistik-ezmesi-360-gr",
-    "ad": "Fitnut %100 Parçacıklı Fıstık Ezmesi 360 Gr",
-    "ana_kategori": "Sürülebilir Ürünler ve Kahvaltılık Soslar",
-    "agirlik_hacim": "360 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7155899.png",
-    "en_dusuk_fiyat": 299.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 299.95,
-        "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros",
-        "fiyat_guncelleme": "2026-09-15T08:01",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Fitnut",
-    "fiyat_gecmisi": [
-      [
-        "2026-06-22",
-        242.5
-      ],
-      [
-        "2026-07-08",
-        299.95
-      ],
-      [
-        "2026-08-07",
-        169.0
-      ],
-      [
-        "2026-08-21",
-        299.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "360 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-08-09",
-        "market": "migros",
-        "liste_fiyat": 299.95,
-        "satis_fiyat": 169.0
       }
     ]
   },
@@ -100165,38 +100060,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "sut_marmarabirlik-kuru-sele-siyah-zeytin-321-350-kalibre-400-gr",
-    "ad": "Marmarabirlik Kuru Sele Siyah Zeytin 321-350 Kalibre 400 Gr",
-    "ana_kategori": "Zeytin",
-    "agirlik_hacim": "400 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/hakmar/1012883.jpg",
-    "en_dusuk_fiyat": 159.0,
-    "market_fiyatlari": [
-      {
-        "market": "hakmar",
-        "fiyat": 159.0,
-        "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar",
-        "fiyat_guncelleme": "2026-09-15T08:05",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Marmarabirlik",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-25",
-        159.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-25",
-        "400 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
     "_sid": "sut_mis-tam-yagli-homojenize-yogurt-3-kg",
     "ad": "Mis Tam Yağlı Homojenize Yoğurt 3 Kg",
     "ana_kategori": "Yoğurt",
@@ -100460,6 +100323,57 @@
       ]
     ],
     "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "sut_fitnut-100-parcacikli-fistik-ezmesi-360-gr",
+    "ad": "Fitnut %100 Parçacıklı Fıstık Ezmesi 360 Gr",
+    "ana_kategori": "Sürülebilir Ürünler ve Kahvaltılık Soslar",
+    "agirlik_hacim": "360 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7155899.png",
+    "en_dusuk_fiyat": 299.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 299.95,
+        "depot_id": "migros-1991",
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-09-15T08:01",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Fitnut",
+    "fiyat_gecmisi": [
+      [
+        "2026-06-22",
+        242.5
+      ],
+      [
+        "2026-07-08",
+        299.95
+      ],
+      [
+        "2026-08-07",
+        169.0
+      ],
+      [
+        "2026-08-21",
+        299.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "360 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-08-09",
+        "market": "migros",
+        "liste_fiyat": 299.95,
+        "satis_fiyat": 169.0
+      }
+    ]
   },
   {
     "_sid": "sut_city-farm-organik-sikma-kapak-tahin-350-gr",
