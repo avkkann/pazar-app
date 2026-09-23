@@ -19,13 +19,13 @@
     "marka": "Balık Dünyası",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         165.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "440 GR"
       ]
     ],
@@ -52,13 +52,13 @@
     "marka": "Lezita",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         219.75
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1.08 KG"
       ]
     ],
@@ -85,13 +85,13 @@
     "marka": "Banvit",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         225.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -118,13 +118,13 @@
     "marka": "Dardanel",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         399.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "200 GR"
       ]
     ],
@@ -151,13 +151,13 @@
     "marka": "Erpiliç",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         49.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -192,51 +192,18 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         165.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "150 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Deniz Ürünleri"
-  },
-  {
-    "_sid": "dondurulmus_lezita-dondurulmus-pilic-citir-kitir-fileto-700-gr",
-    "ad": "Lezita Dondurulmuş Piliç Çıtır Kıtır Fileto 700 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "700 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 239.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 239.0,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar",
-        "fiyat_guncelleme": "2026-09-22T08:47",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Lezita",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-22",
-        239.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-22",
-        "700 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Beyaz Et"
   },
   {
     "_sid": "dondurulmus_emin-dondurulmus-kasarli-kasap-kofte-500-gr",
@@ -258,13 +225,13 @@
     "marka": "Emin",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         349.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "500 GR"
       ]
     ],
@@ -291,18 +258,51 @@
     "marka": "Akşeker",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         189.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "200 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Sakatat"
+  },
+  {
+    "_sid": "dondurulmus_lezita-dondurulmus-pilic-citir-kitir-fileto-700-gr",
+    "ad": "Lezita Dondurulmuş Piliç Çıtır Kıtır Fileto 700 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "700 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 239.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 239.0,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-22T08:47",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Lezita",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-23",
+        239.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-23",
+        "700 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Beyaz Et"
   },
   {
     "_sid": "dondurulmus_donuk-dana-doner-250-gr",
@@ -323,51 +323,18 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         149.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "250 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Kırmızı Et"
-  },
-  {
-    "_sid": "dondurulmus_lezita-dondurulmus-pilic-pirzola-tabak-1-kg",
-    "ad": "Lezita Dondurulmuş Piliç Pirzola Tabak 1 Kg",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/11001740.png",
-    "en_dusuk_fiyat": 169.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 169.5,
-        "depot_id": "a101-9324",
-        "depot_ad": "Şahap Gürler Kadıköy Istanbul",
-        "fiyat_guncelleme": "2026-09-22T08:47",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Lezita",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-22",
-        169.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-22",
-        "1 KG"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Beyaz Et"
   },
   {
     "_sid": "dondurulmus_altinkaz-donuk-kaz-eti-1-kg",
@@ -389,13 +356,13 @@
     "marka": "Altınkaz",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         499.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -422,13 +389,46 @@
     "marka": "Banvit",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         99.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
+        "1 KG"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Beyaz Et"
+  },
+  {
+    "_sid": "dondurulmus_lezita-dondurulmus-pilic-pirzola-tabak-1-kg",
+    "ad": "Lezita Dondurulmuş Piliç Pirzola Tabak 1 Kg",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/11001740.png",
+    "en_dusuk_fiyat": 169.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 169.5,
+        "depot_id": "a101-9324",
+        "depot_ad": "Şahap Gürler Kadıköy Istanbul",
+        "fiyat_guncelleme": "2026-09-22T08:47",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Lezita",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-23",
+        169.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -454,13 +454,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         65.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -487,13 +487,13 @@
     "marka": "Dönerşah",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         167.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "500 GR"
       ]
     ],
@@ -519,13 +519,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         299.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "500 GR"
       ]
     ],
@@ -551,13 +551,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         399.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "500 GR"
       ]
     ],
@@ -584,13 +584,13 @@
     "marka": "Keskinoğlu",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         89.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -618,19 +618,19 @@
     "marka": "Nora",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         139.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "250 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-22",
+        "tarih": "2026-09-23",
         "market": "carrefour",
         "liste_fiyat": 199.0,
         "satis_fiyat": 139.0
@@ -658,13 +658,13 @@
     "marka": "Emin",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         175.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "225 GR"
       ]
     ],
@@ -691,13 +691,13 @@
     "marka": "Balık Dünyası",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         199.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "500 GR"
       ]
     ],
@@ -723,13 +723,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         275.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "500 GR"
       ]
     ],
@@ -756,13 +756,13 @@
     "marka": "Omega61",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         499.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "500 GR"
       ]
     ],
@@ -789,13 +789,13 @@
     "marka": "Tarım Kredi",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         1500.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -821,13 +821,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         249.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -854,13 +854,13 @@
     "marka": "Lezita",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         159.75
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "700 GR"
       ]
     ],
@@ -886,13 +886,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         239.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -919,13 +919,13 @@
     "marka": "Kuzey Balık",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         299.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "500 GR"
       ]
     ],
@@ -952,13 +952,13 @@
     "marka": "Uzman Kasap",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         469.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "500 GR"
       ]
     ],
@@ -985,13 +985,13 @@
     "marka": "Gedik",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         139.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -1018,13 +1018,13 @@
     "marka": "Aytaç",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         399.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "500 GR"
       ]
     ],
@@ -1051,13 +1051,13 @@
     "marka": "Kuzey Balık",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         309.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "500 GR"
       ]
     ],
@@ -1084,13 +1084,13 @@
     "marka": "Akşeker",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         245.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "200 GR"
       ]
     ],
@@ -1117,13 +1117,13 @@
     "marka": "Banvit",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         189.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -1158,13 +1158,13 @@
     "marka": "Erpiliç",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         199.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "700 GR"
       ]
     ],
@@ -1191,13 +1191,13 @@
     "marka": "Balık Dünyası",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         209.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "150 GR"
       ]
     ],
@@ -1224,13 +1224,13 @@
     "marka": "Tarım Kredi",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         230.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "400 GR"
       ]
     ],
@@ -1257,13 +1257,13 @@
     "marka": "Balık Dünyası",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         329.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "500 GR"
       ]
     ],
@@ -1290,13 +1290,13 @@
     "marka": "Lezita",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         159.75
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "700 GR"
       ]
     ],
@@ -1322,13 +1322,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         225.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "500 GR"
       ]
     ],
@@ -1354,13 +1354,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         269.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "850 GR"
       ]
     ],
@@ -1387,13 +1387,13 @@
     "marka": "Balık Dünyası",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         349.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "130 GR"
       ]
     ],
@@ -1420,13 +1420,13 @@
     "marka": "Tarım Kredi",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         419.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "250 GR"
       ]
     ],
@@ -1452,13 +1452,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         645.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -1485,13 +1485,13 @@
     "marka": "Kocaman",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         939.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -1517,7 +1517,7 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         69.9
       ]
     ],
@@ -1545,13 +1545,13 @@
     "marka": "Erpiliç",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         69.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -1578,13 +1578,13 @@
     "marka": "Banvit",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         119.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -1611,13 +1611,13 @@
     "marka": "Kuzey Balık",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         169.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "320 GR"
       ]
     ],
@@ -1644,13 +1644,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         599.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "360 GR"
       ]
     ],
@@ -1677,13 +1677,13 @@
     "marka": "Kombinet",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         175.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "225 GR"
       ]
     ],
@@ -1710,13 +1710,13 @@
     "marka": "Lezita",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         209.75
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -1743,13 +1743,13 @@
     "marka": "Lezita",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         209.75
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "990 GR"
       ]
     ],
@@ -1776,13 +1776,13 @@
     "marka": "Beşler",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         235.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "250 GR"
       ]
     ],
@@ -1809,13 +1809,13 @@
     "marka": "Keskinoğlu",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         269.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "850 GR"
       ]
     ],
@@ -1841,13 +1841,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         59.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -1873,13 +1873,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         89.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -1906,13 +1906,13 @@
     "marka": "Lezita",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         99.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -1940,19 +1940,19 @@
     "marka": "Mowi Fyord",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         99.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "200 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-22",
+        "tarih": "2026-09-23",
         "market": "migros",
         "liste_fiyat": 269.95,
         "satis_fiyat": 99.9
@@ -1979,13 +1979,46 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         189.0
       ]
     ],
     "agirlik_hacim_gecmisi": [],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Beyaz Et"
+  },
+  {
+    "_sid": "dondurulmus_superfresh-klasik-ton-baligi-4x75-gr",
+    "ad": "Superfresh Klasik Ton Balığı 4x75 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "300 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 199.0,
+    "market_fiyatlari": [
+      {
+        "market": "hakmar",
+        "fiyat": 199.0,
+        "depot_id": "hakmar-5521",
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-22T08:48",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Superfresh",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-23",
+        199.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-23",
+        "300 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Deniz Ürünleri"
   },
   {
     "_sid": "dondurulmus_torku-dondurulmus-dana-kuzu-cizbiz-kofte-390-gr",
@@ -2007,13 +2040,13 @@
     "marka": "Torku",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         329.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "390 GR"
       ]
     ],
@@ -2048,13 +2081,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         407.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "280 GR"
       ]
     ],
@@ -2080,51 +2113,18 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         189.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Beyaz Et"
-  },
-  {
-    "_sid": "dondurulmus_superfresh-klasik-ton-baligi-4x75-gr",
-    "ad": "Superfresh Klasik Ton Balığı 4x75 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "300 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 199.0,
-    "market_fiyatlari": [
-      {
-        "market": "hakmar",
-        "fiyat": 199.0,
-        "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar",
-        "fiyat_guncelleme": "2026-09-22T08:48",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Superfresh",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-22",
-        199.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-22",
-        "300 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Deniz Ürünleri"
   },
   {
     "_sid": "dondurulmus_superfresh-zeytinyagli-ton-baligi-3x75-gr",
@@ -2155,19 +2155,19 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         314.96
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "225 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-22",
+        "tarih": "2026-09-23",
         "market": "migros",
         "liste_fiyat": 419.95,
         "satis_fiyat": 314.96
@@ -2195,13 +2195,13 @@
     "marka": "Lezita",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         337.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "700 GR"
       ]
     ],
@@ -2228,13 +2228,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         382.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "225 GR"
       ]
     ],
@@ -2261,13 +2261,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         165.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "150 GR"
       ]
     ],
@@ -2293,13 +2293,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         209.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -2326,19 +2326,19 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         259.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "500 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-22",
+        "tarih": "2026-09-23",
         "market": "bim",
         "liste_fiyat": 299.0,
         "satis_fiyat": 259.0
@@ -2366,13 +2366,13 @@
     "marka": "Erpiliç",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         69.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -2398,13 +2398,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         175.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "700 GR"
       ]
     ],
@@ -2432,19 +2432,19 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         329.96
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "280 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-22",
+        "tarih": "2026-09-23",
         "market": "migros",
         "liste_fiyat": 439.95,
         "satis_fiyat": 329.96
@@ -2472,13 +2472,13 @@
     "marka": "Banvit",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         199.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -2505,13 +2505,13 @@
     "marka": "Balık Dünyası",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         109.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "500 GR"
       ]
     ],
@@ -2538,13 +2538,13 @@
     "marka": "Lezita",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         119.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -2570,7 +2570,7 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         149.0
       ]
     ],
@@ -2598,13 +2598,13 @@
     "marka": "Erpiliç",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         209.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -2630,13 +2630,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         245.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -2664,19 +2664,19 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         287.21
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "225 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-22",
+        "tarih": "2026-09-23",
         "market": "migros",
         "liste_fiyat": 382.95,
         "satis_fiyat": 287.21
@@ -2705,19 +2705,19 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         287.21
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "225 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-22",
+        "tarih": "2026-09-23",
         "market": "migros",
         "liste_fiyat": 382.95,
         "satis_fiyat": 287.21
@@ -2745,13 +2745,13 @@
     "marka": "Bonfilet",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         319.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "500 GR"
       ]
     ],
@@ -2779,19 +2779,19 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         129.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "270 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-22",
+        "tarih": "2026-09-23",
         "market": "bim",
         "liste_fiyat": 159.0,
         "satis_fiyat": 129.0
@@ -2819,13 +2819,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         382.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "225 GR"
       ]
     ],
@@ -2852,13 +2852,13 @@
     "marka": "Migros",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         55.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "450 GR"
       ]
     ],
@@ -2893,13 +2893,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         114.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "200 GR"
       ]
     ],
@@ -2926,13 +2926,13 @@
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         49.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "450 GR"
       ]
     ],
@@ -2959,18 +2959,51 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         89.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "600 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Konserve"
+  },
+  {
+    "_sid": "dondurulmus_nimet-dondurulmus-su-boregi-800-gr",
+    "ad": "Nimet Dondurulmuş Su Böreği 800 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "800 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/21001105.png",
+    "en_dusuk_fiyat": 159.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 159.5,
+        "depot_id": "a101-6815",
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-22T08:47",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Nimet",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-23",
+        159.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-23",
+        "800 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
   },
   {
     "_sid": "dondurulmus_feast-gurme-churros-kesim-patates-1-kg",
@@ -3000,47 +3033,14 @@
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         115.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_nimet-dondurulmus-su-boregi-800-gr",
-    "ad": "Nimet Dondurulmuş Su Böreği 800 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "800 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/21001105.png",
-    "en_dusuk_fiyat": 159.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 159.5,
-        "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye",
-        "fiyat_guncelleme": "2026-09-22T08:47",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Nimet",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-22",
-        159.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-22",
-        "800 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -3066,13 +3066,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         189.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "600 GR"
       ]
     ],
@@ -3099,13 +3099,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         379.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "300 GR"
       ]
     ],
@@ -3133,19 +3133,19 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         89.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "400 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-22",
+        "tarih": "2026-09-23",
         "market": "carrefour",
         "liste_fiyat": 121.95,
         "satis_fiyat": 89.95
@@ -3182,19 +3182,19 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         90.97
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-22",
+        "tarih": "2026-09-23",
         "market": "migros",
         "liste_fiyat": 129.95,
         "satis_fiyat": 90.97
@@ -3222,13 +3222,13 @@
     "marka": "Migros",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         39.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "450 GR"
       ]
     ],
@@ -3255,13 +3255,13 @@
     "marka": "Mutfağım",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         57.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "450 GR"
       ]
     ],
@@ -3288,13 +3288,13 @@
     "marka": "Mevsiminden",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         49.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "450 GR"
       ]
     ],
@@ -3321,13 +3321,13 @@
     "marka": "Mutfağım",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         99.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "450 GR"
       ]
     ],
@@ -3354,47 +3354,14 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         179.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "150 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_feast-dondurulmus-bezelye-450-gr",
-    "ad": "Feast Dondurulmuş Bezelye 450 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "450 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30074704.jpg",
-    "en_dusuk_fiyat": 134.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 134.95,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-09-22T08:50",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Feast",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-22",
-        134.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-22",
-        "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -3420,11 +3387,44 @@
     "marka": "Pek Food",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         149.0
       ]
     ],
     "agirlik_hacim_gecmisi": [],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_feast-dondurulmus-bezelye-450-gr",
+    "ad": "Feast Dondurulmuş Bezelye 450 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "450 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30074704.jpg",
+    "en_dusuk_fiyat": 134.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 134.95,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-22T08:50",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Feast",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-23",
+        134.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-23",
+        "450 GR"
+      ]
+    ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Hazır Yemekler"
   },
@@ -3448,13 +3448,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         469.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "350 GR"
       ]
     ],
@@ -3481,13 +3481,13 @@
     "marka": "Lezzethane",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         159.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "505 GR"
       ]
     ],
@@ -3514,13 +3514,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         499.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "300 GR"
       ]
     ],
@@ -3547,13 +3547,13 @@
     "marka": "Nimet",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         109.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "650 GR"
       ]
     ],
@@ -3580,13 +3580,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         89.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "600 GR"
       ]
     ],
@@ -3613,13 +3613,13 @@
     "marka": "Mutfağım",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         95.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -3646,13 +3646,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         99.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "200 GR"
       ]
     ],
@@ -3679,47 +3679,14 @@
     "marka": "Pekfood",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         219.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "400 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_feast-renkli-karnabahar-500-gr",
-    "ad": "Feast Renkli Karnabahar 500 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30486687.jpg",
-    "en_dusuk_fiyat": 132.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 132.95,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-09-22T08:50",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Feast",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-22",
-        132.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-22",
-        "500 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -3745,14 +3712,47 @@
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         289.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_feast-renkli-karnabahar-500-gr",
+    "ad": "Feast Renkli Karnabahar 500 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "500 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30486687.jpg",
+    "en_dusuk_fiyat": 132.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 132.95,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-22T08:50",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Feast",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-23",
+        132.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-23",
+        "500 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -3778,13 +3778,13 @@
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         119.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "450 GR"
       ]
     ],
@@ -3811,13 +3811,13 @@
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         39.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "450 GR"
       ]
     ],
@@ -3845,19 +3845,19 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         169.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-22",
+        "tarih": "2026-09-23",
         "market": "carrefour",
         "liste_fiyat": 209.9,
         "satis_fiyat": 169.95
@@ -3885,13 +3885,13 @@
     "marka": "Lezzethane",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         199.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "800 GR"
       ]
     ],
@@ -3918,13 +3918,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         294.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -3951,13 +3951,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         99.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "420 GR"
       ]
     ],
@@ -3992,13 +3992,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         224.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "500 GR"
       ]
     ],
@@ -4025,13 +4025,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         99.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "420 GR"
       ]
     ],
@@ -4058,13 +4058,13 @@
     "marka": "Sushida",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         239.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "140 GR"
       ]
     ],
@@ -4099,13 +4099,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         254.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -4132,13 +4132,13 @@
     "marka": "Intacto",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         85.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -4165,13 +4165,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         159.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -4206,13 +4206,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         184.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "400 GR"
       ]
     ],
@@ -4239,13 +4239,13 @@
     "marka": "Pelmeni",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         185.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "400 GR"
       ]
     ],
@@ -4272,13 +4272,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         109.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "650 GR"
       ]
     ],
@@ -4305,13 +4305,13 @@
     "marka": "Migros",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         49.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "450 GR"
       ]
     ],
@@ -4338,13 +4338,13 @@
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         55.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "450 GR"
       ]
     ],
@@ -4371,13 +4371,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         99.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "200 GR"
       ]
     ],
@@ -4404,18 +4404,84 @@
     "marka": "Lezzethane",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         109.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "650 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_superfresh-dondurulmus-misir-450-gr",
+    "ad": "SuperFresh Dondurulmuş Mısır 450 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "450 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/21001115.png",
+    "en_dusuk_fiyat": 79.5,
+    "market_fiyatlari": [
+      {
+        "market": "hakmar",
+        "fiyat": 79.5,
+        "depot_id": "hakmar-5521",
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-22T08:50",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Superfresh",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-23",
+        79.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-23",
+        "450 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_lezzethane-dondurulmus-milfoy-hamuru-1-kg",
+    "ad": "Lezzethane Dondurulmuş Milföy Hamuru 1 Kg",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1100785.png",
+    "en_dusuk_fiyat": 82.5,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 82.5,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-22T08:48",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Lezzethane",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-23",
+        82.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-23",
+        "1 KG"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Ekmek ve Unlu Mamüller"
   },
   {
     "_sid": "dondurulmus_superfresh-7-24-firindan-simit-400-gr",
@@ -4446,90 +4512,24 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         115.47
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "400 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-22",
+        "tarih": "2026-09-23",
         "market": "migros",
         "liste_fiyat": 164.95,
         "satis_fiyat": 115.47
       }
     ],
-    "_original_kategori": "Ekmek ve Unlu Mamüller"
-  },
-  {
-    "_sid": "dondurulmus_superfresh-dondurulmus-misir-450-gr",
-    "ad": "SuperFresh Dondurulmuş Mısır 450 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "450 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/21001115.png",
-    "en_dusuk_fiyat": 79.5,
-    "market_fiyatlari": [
-      {
-        "market": "hakmar",
-        "fiyat": 79.5,
-        "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar",
-        "fiyat_guncelleme": "2026-09-22T08:50",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Superfresh",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-22",
-        79.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-22",
-        "450 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_lezzethane-dondurulmus-milfoy-hamuru-1-kg",
-    "ad": "Lezzethane Dondurulmuş Milföy Hamuru 1 Kg",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1100785.png",
-    "en_dusuk_fiyat": 82.5,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 82.5,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar",
-        "fiyat_guncelleme": "2026-09-22T08:48",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Lezzethane",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-22",
-        82.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-22",
-        "1 KG"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
     "_original_kategori": "Ekmek ve Unlu Mamüller"
   },
   {
@@ -4552,13 +4552,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         129.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "200 GR"
       ]
     ],
@@ -4601,13 +4601,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         265.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "780 GR"
       ]
     ],
@@ -4642,13 +4642,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         219.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "500 GR"
       ]
     ],
@@ -4675,13 +4675,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         249.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "300 GR"
       ]
     ],
@@ -4708,13 +4708,13 @@
     "marka": "Dnk Lapestos",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         271.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "300 GR"
       ]
     ],
@@ -4773,13 +4773,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         139.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -4806,13 +4806,13 @@
     "marka": "Dr. Oetker",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         247.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "405 GR"
       ]
     ],
@@ -4839,13 +4839,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         769.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "500 GR"
       ]
     ],
@@ -4872,13 +4872,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         69.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "450 GR"
       ]
     ],
@@ -4905,13 +4905,13 @@
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         184.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "500 GR"
       ]
     ],
@@ -4946,13 +4946,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         264.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -4979,13 +4979,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         169.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "320 GR"
       ]
     ],
@@ -5012,13 +5012,13 @@
     "marka": "Mutfağım",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         49.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "450 GR"
       ]
     ],
@@ -5045,13 +5045,13 @@
     "marka": "Nimet",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         139.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "820 GR"
       ]
     ],
@@ -5079,19 +5079,19 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         329.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "445 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-22",
+        "tarih": "2026-09-23",
         "market": "migros",
         "liste_fiyat": 399.95,
         "satis_fiyat": 329.95
@@ -5127,13 +5127,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         224.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "500 GR"
       ]
     ],
@@ -5160,13 +5160,13 @@
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         282.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -5193,13 +5193,13 @@
     "marka": "Nimet",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         79.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "500 GR"
       ]
     ],
@@ -5226,13 +5226,13 @@
     "marka": "Nimet",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         79.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "500 GR"
       ]
     ],
@@ -5268,19 +5268,19 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         95.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-22",
+        "tarih": "2026-09-23",
         "market": "carrefour",
         "liste_fiyat": 119.95,
         "satis_fiyat": 95.95
@@ -5308,13 +5308,13 @@
     "marka": "Nimet",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         109.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "650 GR"
       ]
     ],
@@ -5349,13 +5349,13 @@
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         224.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "450 GR"
       ]
     ],
@@ -5382,13 +5382,46 @@
     "marka": "Mutfağım",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         39.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
+        "450 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_superfresh-dondurulmus-fasulye-450-gr",
+    "ad": "Superfresh Dondurulmuş Fasulye 450 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "450 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/hakmar/1031993.jpg",
+    "en_dusuk_fiyat": 79.5,
+    "market_fiyatlari": [
+      {
+        "market": "hakmar",
+        "fiyat": 79.5,
+        "depot_id": "hakmar-5521",
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-09-22T08:48",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Superfresh",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-23",
+        79.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-23",
         "450 GR"
       ]
     ],
@@ -5415,47 +5448,14 @@
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         299.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_superfresh-dondurulmus-fasulye-450-gr",
-    "ad": "Superfresh Dondurulmuş Fasulye 450 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "450 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/hakmar/1031993.jpg",
-    "en_dusuk_fiyat": 79.5,
-    "market_fiyatlari": [
-      {
-        "market": "hakmar",
-        "fiyat": 79.5,
-        "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar",
-        "fiyat_guncelleme": "2026-09-22T08:48",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Superfresh",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-22",
-        79.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-22",
-        "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -5481,13 +5481,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         109.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "300 GR"
       ]
     ],
@@ -5522,13 +5522,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         264.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -5563,13 +5563,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         90.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "600 GR"
       ]
     ],
@@ -5596,14 +5596,46 @@
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         119.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_dondurulmus-kiymali-mini-pide-400-gr",
+    "ad": "Dondurulmuş Kıymalı Mini Pide 400 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "400 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 179.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 179.0,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-22T08:48",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-23",
+        179.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-23",
+        "400 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -5629,79 +5661,14 @@
     "marka": "Lezzethane",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         139.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "820 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_dondurulmus-kiymali-mini-pide-400-gr",
-    "ad": "Dondurulmuş Kıymalı Mini Pide 400 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "400 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 179.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 179.0,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar",
-        "fiyat_guncelleme": "2026-09-22T08:48",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-22",
-        179.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-22",
-        "400 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_superfresh-dondurulmus-patates-kroket-450-gr",
-    "ad": "Superfresh Dondurulmuş Patates Kroket 450 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "450 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/21001161.png",
-    "en_dusuk_fiyat": 79.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 79.5,
-        "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye",
-        "fiyat_guncelleme": "2026-09-22T08:47",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Superfresh",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-22",
-        79.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-22",
-        "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -5728,19 +5695,19 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         177.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-22",
+        "tarih": "2026-09-23",
         "market": "carrefour",
         "liste_fiyat": 219.9,
         "satis_fiyat": 177.95
@@ -5768,14 +5735,47 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         189.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "600 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_superfresh-dondurulmus-patates-kroket-450-gr",
+    "ad": "Superfresh Dondurulmuş Patates Kroket 450 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "450 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/21001161.png",
+    "en_dusuk_fiyat": 79.5,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 79.5,
+        "depot_id": "a101-6815",
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-09-22T08:47",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Superfresh",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-23",
+        79.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-23",
+        "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -5802,19 +5802,19 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         179.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-22",
+        "tarih": "2026-09-23",
         "market": "carrefour",
         "liste_fiyat": 264.95,
         "satis_fiyat": 179.95
@@ -5843,19 +5843,19 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         69.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "200 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-22",
+        "tarih": "2026-09-23",
         "market": "bim",
         "liste_fiyat": 79.5,
         "satis_fiyat": 69.5
@@ -5883,13 +5883,13 @@
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         139.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "450 GR"
       ]
     ],
@@ -5916,13 +5916,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         149.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "500 GR"
       ]
     ],
@@ -5950,19 +5950,19 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         79.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-22",
+        "tarih": "2026-09-23",
         "market": "carrefour",
         "liste_fiyat": 99.95,
         "satis_fiyat": 79.95
@@ -5998,13 +5998,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         54.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "200 GR"
       ]
     ],
@@ -6031,13 +6031,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         119.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "450 GR"
       ]
     ],
@@ -6064,13 +6064,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         184.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "400 GR"
       ]
     ],
@@ -6097,13 +6097,13 @@
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         299.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -6130,13 +6130,13 @@
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         287.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -6171,13 +6171,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         215.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -6204,13 +6204,13 @@
     "marka": "Iff's",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         65.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "350 GR"
       ]
     ],
@@ -6237,13 +6237,13 @@
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         134.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "450 GR"
       ]
     ],
@@ -6270,13 +6270,13 @@
     "marka": "Mutfağım",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         199.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "350 GR"
       ]
     ],
@@ -6303,13 +6303,46 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         139.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
+        "450 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_superfresh-dondurulmus-pratik-sebze-sote-mix-450-gr",
+    "ad": "Superfresh Dondurulmuş Pratik Sebze Sote Mix 450 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "450 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30503977.jpg",
+    "en_dusuk_fiyat": 179.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 179.95,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-22T08:50",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Superfresh",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-23",
+        179.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-23",
         "450 GR"
       ]
     ],
@@ -6336,47 +6369,14 @@
     "marka": "Pizza Mi-go",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         199.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "475 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_superfresh-dondurulmus-pratik-sebze-sote-mix-450-gr",
-    "ad": "Superfresh Dondurulmuş Pratik Sebze Sote Mix 450 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "450 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30503977.jpg",
-    "en_dusuk_fiyat": 179.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 179.95,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-09-22T08:50",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Superfresh",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-22",
-        179.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-22",
-        "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -6402,13 +6402,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         219.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "420 GR"
       ]
     ],
@@ -6435,13 +6435,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         149.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -6468,46 +6468,13 @@
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         243.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
-        "400 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_lezzethane-dondurulmus-sigara-boregi-400-gr",
-    "ad": "Lezzethane Dondurulmuş Sigara Böreği 400 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "400 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1100717.png",
-    "en_dusuk_fiyat": 52.5,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 52.5,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar",
-        "fiyat_guncelleme": "2026-09-22T08:48",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Lezzethane",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-22",
-        52.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-22",
+        "2026-09-23",
         "400 GR"
       ]
     ],
@@ -6534,13 +6501,13 @@
     "marka": "Pizza Mi-go",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         199.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "545 GR"
       ]
     ],
@@ -6575,18 +6542,51 @@
     "marka": "SF",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         314.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "400 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Mantı Makarna ve Erişte"
+  },
+  {
+    "_sid": "dondurulmus_lezzethane-dondurulmus-sigara-boregi-400-gr",
+    "ad": "Lezzethane Dondurulmuş Sigara Böreği 400 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "400 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1100717.png",
+    "en_dusuk_fiyat": 52.5,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 52.5,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-22T08:48",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Lezzethane",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-23",
+        52.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-23",
+        "400 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
   },
   {
     "_sid": "dondurulmus_superfresh-misir-450-gr",
@@ -6618,25 +6618,25 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         94.47
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-22",
+        "tarih": "2026-09-23",
         "market": "migros",
         "liste_fiyat": 134.95,
         "satis_fiyat": 94.47
       },
       {
-        "tarih": "2026-09-22",
+        "tarih": "2026-09-23",
         "market": "carrefour",
         "liste_fiyat": 134.95,
         "satis_fiyat": 104.95
@@ -6664,13 +6664,13 @@
     "marka": "Mevsiminden",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         57.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "450 GR"
       ]
     ],
@@ -6697,13 +6697,13 @@
     "marka": "Zel",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         99.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "480 GR"
       ]
     ],
@@ -6730,13 +6730,13 @@
     "marka": "Tukaş",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         119.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -6771,51 +6771,18 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         109.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "300 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Ekmek ve Unlu Mamüller"
-  },
-  {
-    "_sid": "dondurulmus_feast-dondurulmus-i-nce-citir-patates-7x7-1-kg",
-    "ad": "Feast Dondurulmuş İnce Çıtır Patates 7x7 1 Kg",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1707122.png",
-    "en_dusuk_fiyat": 115.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 115.0,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar",
-        "fiyat_guncelleme": "2026-09-22T08:48",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Feast",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-22",
-        115.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-22",
-        "1 KG"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
   },
   {
     "_sid": "dondurulmus_superfresh-pizza-king-slimmo-300-gr",
@@ -6837,13 +6804,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         119.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "300 GR"
       ]
     ],
@@ -6870,18 +6837,51 @@
     "marka": "Migros",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         87.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Ekmek ve Unlu Mamüller"
+  },
+  {
+    "_sid": "dondurulmus_feast-dondurulmus-i-nce-citir-patates-7x7-1-kg",
+    "ad": "Feast Dondurulmuş İnce Çıtır Patates 7x7 1 Kg",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/bimimages/1707122.png",
+    "en_dusuk_fiyat": 115.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 115.0,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-22T08:48",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Feast",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-23",
+        115.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-23",
+        "1 KG"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
   },
   {
     "_sid": "dondurulmus_superfresh-dondurulmus-patates-7x7-1-kg",
@@ -6903,13 +6903,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         189.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -6936,13 +6936,13 @@
     "marka": "Pek Food",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         219.75
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "400 GR"
       ]
     ],
@@ -6969,13 +6969,13 @@
     "marka": "Nimet",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         79.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "500 GR"
       ]
     ],
@@ -7002,13 +7002,13 @@
     "marka": "Lezzethane",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         79.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "500 GR"
       ]
     ],
@@ -7035,47 +7035,14 @@
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         139.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "450 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
-  },
-  {
-    "_sid": "dondurulmus_mutfagim-dondurulmus-patates-1-kg",
-    "ad": "Mutfağım Dondurulmuş Patates 1 Kg",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/bim/1100273.jpg",
-    "en_dusuk_fiyat": 85.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 85.0,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar",
-        "fiyat_guncelleme": "2026-09-22T08:48",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Mutfağım",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-22",
-        85.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-22",
-        "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -7111,30 +7078,63 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         69.97
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-22",
+        "tarih": "2026-09-23",
         "market": "migros",
         "liste_fiyat": 99.95,
         "satis_fiyat": 69.97
       },
       {
-        "tarih": "2026-09-22",
+        "tarih": "2026-09-23",
         "market": "carrefour",
         "liste_fiyat": 99.95,
         "satis_fiyat": 79.95
       }
     ],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_mutfagim-dondurulmus-patates-1-kg",
+    "ad": "Mutfağım Dondurulmuş Patates 1 Kg",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/bim/1100273.jpg",
+    "en_dusuk_fiyat": 85.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 85.0,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-09-22T08:48",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Mutfağım",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-23",
+        85.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-23",
+        "1 KG"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
     "_original_kategori": "Hazır Yemekler"
   },
   {
@@ -7158,19 +7158,19 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         108.47
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-22",
+        "tarih": "2026-09-23",
         "market": "migros",
         "liste_fiyat": 154.95,
         "satis_fiyat": 108.47
@@ -7198,51 +7198,18 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         499.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "500 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Mantı Makarna ve Erişte"
-  },
-  {
-    "_sid": "dondurulmus_sef-franzi-dondurulmus-peynirli-pizza-475-gr",
-    "ad": "Şef Franzi Dondurulmuş Peynirli Pizza 475 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "475 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 99.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 99.0,
-        "depot_id": "sok-4707",
-        "depot_ad": "Şok Minifevziçakmak",
-        "fiyat_guncelleme": "2026-09-22T08:44",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Şef Franzi",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-22",
-        99.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-22",
-        "475 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
   },
   {
     "_sid": "dondurulmus_feast-organik-brokoli-450-gr",
@@ -7264,13 +7231,13 @@
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         199.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "450 GR"
       ]
     ],
@@ -7278,33 +7245,33 @@
     "_original_kategori": "Hazır Yemekler"
   },
   {
-    "_sid": "dondurulmus_superfresh-patates-2-5-kg",
-    "ad": "Superfresh Patates 2.5 Kg",
+    "_sid": "dondurulmus_sef-franzi-dondurulmus-peynirli-pizza-475-gr",
+    "ad": "Şef Franzi Dondurulmuş Peynirli Pizza 475 Gr",
     "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "2.5 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30468489.png",
-    "en_dusuk_fiyat": 339.95,
+    "agirlik_hacim": "475 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 99.0,
     "market_fiyatlari": [
       {
-        "market": "carrefour",
-        "fiyat": 339.95,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-09-22T08:50",
+        "market": "sok",
+        "fiyat": 99.0,
+        "depot_id": "sok-4707",
+        "depot_ad": "Şok Minifevziçakmak",
+        "fiyat_guncelleme": "2026-09-22T08:44",
         "depot_il": "İstanbul"
       }
     ],
-    "marka": "Superfresh",
+    "marka": "Şef Franzi",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
-        339.95
+        "2026-09-23",
+        99.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
-        "2.5 KG"
+        "2026-09-23",
+        "475 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -7338,14 +7305,47 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         145.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "475 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_superfresh-patates-2-5-kg",
+    "ad": "Superfresh Patates 2.5 Kg",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "2.5 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30468489.png",
+    "en_dusuk_fiyat": 339.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 339.95,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-22T08:50",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Superfresh",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-23",
+        339.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-23",
+        "2.5 KG"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -7371,13 +7371,13 @@
     "marka": "Pidemiss",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         209.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "375 GR"
       ]
     ],
@@ -7404,51 +7404,18 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         89.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "600 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
     "_original_kategori": "Konserve"
-  },
-  {
-    "_sid": "dondurulmus_dnk-lapestos-bogurtlen-300-gr",
-    "ad": "Dnk Lapestos Böğürtlen 300 Gr",
-    "ana_kategori": "Dondurulmuş Ürünler",
-    "agirlik_hacim": "300 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 246.5,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 246.5,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-09-22T08:49",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Dnk Lapestos",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-22",
-        246.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-22",
-        "300 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [],
-    "_original_kategori": "Hazır Yemekler"
   },
   {
     "_sid": "dondurulmus_pek-food-klasik-dondurulmus-lahmacun-400-gr",
@@ -7470,13 +7437,13 @@
     "marka": "Pek Food",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         179.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "400 GR"
       ]
     ],
@@ -7503,14 +7470,47 @@
     "marka": "Hacıoğlu",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         220.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "440 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [],
+    "_original_kategori": "Hazır Yemekler"
+  },
+  {
+    "_sid": "dondurulmus_dnk-lapestos-bogurtlen-300-gr",
+    "ad": "Dnk Lapestos Böğürtlen 300 Gr",
+    "ana_kategori": "Dondurulmuş Ürünler",
+    "agirlik_hacim": "300 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 246.5,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 246.5,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-09-22T08:49",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Dnk Lapestos",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-23",
+        246.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-23",
+        "300 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [],
@@ -7536,13 +7536,13 @@
     "marka": "Nimet",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         82.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "1 KG"
       ]
     ],
@@ -7569,13 +7569,13 @@
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         149.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "450 GR"
       ]
     ],
@@ -7602,7 +7602,7 @@
     "marka": "Lezzethane",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         200.0
       ]
     ],
@@ -7631,19 +7631,19 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         214.17
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "280 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-22",
+        "tarih": "2026-09-23",
         "market": "migros",
         "liste_fiyat": 305.95,
         "satis_fiyat": 214.17
@@ -7671,13 +7671,13 @@
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         164.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "450 GR"
       ]
     ],
@@ -7704,13 +7704,13 @@
     "marka": "Lezzethane",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         99.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "650 GR"
       ]
     ],
@@ -7737,13 +7737,13 @@
     "marka": "Dnk Lapestos",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         399.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "300 GR"
       ]
     ],
@@ -7770,13 +7770,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         149.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "200 GR"
       ]
     ],
@@ -7803,13 +7803,13 @@
     "marka": "Osmanoğlu Damak Tadı",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         229.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "400 GR"
       ]
     ],
@@ -7836,13 +7836,13 @@
     "marka": "Galez",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         249.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "270 GR"
       ]
     ],
@@ -7869,13 +7869,13 @@
     "marka": "Özsüt",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         219.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "650 GR"
       ]
     ],
@@ -7902,13 +7902,13 @@
     "marka": "Valonia",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         229.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "600 GR"
       ]
     ],
@@ -7935,13 +7935,13 @@
     "marka": "Valonia",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         239.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "600 GR"
       ]
     ],
@@ -7968,13 +7968,13 @@
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         504.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "600 GR"
       ]
     ],
@@ -8001,13 +8001,13 @@
     "marka": "Ma Sante",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         219.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "650 GR"
       ]
     ],
@@ -8033,13 +8033,13 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         69.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "250 GR"
       ]
     ],
@@ -8066,13 +8066,13 @@
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         472.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "650 GR"
       ]
     ],
@@ -8099,13 +8099,13 @@
     "marka": "Sinangil",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         239.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "400 GR"
       ]
     ],
@@ -8133,19 +8133,19 @@
     "marka": "Daphne",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         95.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "180 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-22",
+        "tarih": "2026-09-23",
         "market": "bim",
         "liste_fiyat": 119.0,
         "satis_fiyat": 95.0
@@ -8173,13 +8173,13 @@
     "marka": "Donuk",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         350.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "700 GR"
       ]
     ],
@@ -8206,13 +8206,13 @@
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         464.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "650 GR"
       ]
     ],
@@ -8239,13 +8239,13 @@
     "marka": "Ma Sante",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         229.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "600 GR"
       ]
     ],
@@ -8272,13 +8272,13 @@
     "marka": "Elif",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         99.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "200 GR"
       ]
     ],
@@ -8305,13 +8305,13 @@
     "marka": "Ma Sante",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         135.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "500 GR"
       ]
     ],
@@ -8338,13 +8338,13 @@
     "marka": "Artmac",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         145.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "135 GR"
       ]
     ],
@@ -8371,13 +8371,13 @@
     "marka": "Hatay Asi",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         110.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "500 GR"
       ]
     ],
@@ -8404,13 +8404,13 @@
     "marka": "Feast",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         479.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "650 GR"
       ]
     ],
@@ -8445,13 +8445,13 @@
     "marka": "Superfresh",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         219.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "360 GR"
       ]
     ],
@@ -8478,13 +8478,13 @@
     "marka": "Artmac",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         85.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
+        "2026-09-23",
         "75 GR"
       ]
     ],
