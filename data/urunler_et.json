@@ -371,10 +371,6 @@
     "marka": "Emin",
     "fiyat_gecmisi": [
       [
-        "2026-07-03",
-        159.0
-      ],
-      [
         "2026-07-07",
         189.0
       ],
@@ -421,71 +417,6 @@
         "market": "bim",
         "liste_fiyat": 189.0,
         "satis_fiyat": 139.0
-      }
-    ]
-  },
-  {
-    "_sid": "et_carrefour-dana-kavurma-150-gr",
-    "ad": "Carrefour Dana Kavurma 150 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "150 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30324588.png",
-    "en_dusuk_fiyat": 250.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 250.0,
-        "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını",
-        "fiyat_guncelleme": "2026-10-01T12:16",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Carrefour",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-30",
-        189.0
-      ],
-      [
-        "2026-08-09",
-        250.0
-      ],
-      [
-        "2026-08-12",
-        200.0
-      ],
-      [
-        "2026-08-17",
-        250.0
-      ],
-      [
-        "2026-08-26",
-        212.5
-      ],
-      [
-        "2026-08-29",
-        250.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "150 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-08-12",
-        "market": "carrefour",
-        "liste_fiyat": 250.0,
-        "satis_fiyat": 200.0
-      },
-      {
-        "tarih": "2026-08-26",
-        "market": "carrefour",
-        "liste_fiyat": 250.0,
-        "satis_fiyat": 212.5
       }
     ]
   },
@@ -539,48 +470,11 @@
       }
     ],
     "marka": "İnci",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-03",
-        289.0
-      ]
-    ],
+    "fiyat_gecmisi": [],
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-03",
         "500 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "et_polonez-dilimli-dana-antrikot-pastirma-100-gr",
-    "ad": "Polonez Dilimli Dana Antrikot Pastırma 100 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "100 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/14309094.png",
-    "en_dusuk_fiyat": 289.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 289.0,
-        "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros",
-        "fiyat_guncelleme": "2026-10-01T12:12",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Polonez",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-19",
-        289.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-19",
-        "100 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -650,53 +544,36 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "et_apikoglu-kavurma-100-gr",
-    "ad": "Apikoğlu Kavurma 100 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "100 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30159109.png",
-    "en_dusuk_fiyat": 331.9,
+    "_sid": "et_marine-isli-midye-200-gr",
+    "ad": "Marine Isli Midye 200 Gr",
+    "ana_kategori": "Deniz Ürünleri",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30206652.png",
+    "en_dusuk_fiyat": 349.0,
     "market_fiyatlari": [
       {
         "market": "carrefour",
-        "fiyat": 331.9,
+        "fiyat": 349.0,
         "depot_id": "carrefour-1012",
         "depot_ad": "Istanbul Acıbadem Hıper",
         "fiyat_guncelleme": "2026-10-01T12:16",
         "depot_il": "İstanbul"
       }
     ],
-    "marka": "Apikoğlu",
+    "marka": "Marine",
     "fiyat_gecmisi": [
       [
-        "2026-07-23",
-        249.9
-      ],
-      [
-        "2026-10-01",
-        331.9
+        "2026-08-24",
+        349.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-07-03",
-        "100 GR"
+        "2026-08-24",
+        "200 GR"
       ]
     ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-08-09",
-        "market": "carrefour",
-        "liste_fiyat": 335.5,
-        "satis_fiyat": 249.9
-      },
-      {
-        "tarih": "2026-09-07",
-        "market": "carrefour",
-        "liste_fiyat": 331.9,
-        "satis_fiyat": 249.9
-      }
-    ]
+    "ilan_indirim_gecmisi": []
   },
   {
     "_sid": "et_bolca-butun-fileto-hindi-gogus-750-gr",
@@ -841,6 +718,53 @@
     ]
   },
   {
+    "_sid": "et_dardanel-kalamar-tava-300-gr",
+    "ad": "Dardanel Kalamar Tava 300 Gr",
+    "ana_kategori": "Deniz Ürünleri",
+    "agirlik_hacim": "300 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30186135.png",
+    "en_dusuk_fiyat": 519.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 519.0,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-10-01T12:15",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Dardanel",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-04",
+        519.0
+      ],
+      [
+        "2026-09-09",
+        365.0
+      ],
+      [
+        "2026-09-22",
+        519.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-04",
+        "300 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-09-09",
+        "market": "carrefour",
+        "liste_fiyat": 519.0,
+        "satis_fiyat": 365.0
+      }
+    ]
+  },
+  {
     "_sid": "et_maret-altin-sucuk-250-gr",
     "ad": "Maret Altın Sucuk 250 Gr",
     "ana_kategori": "Şarküteri",
@@ -871,6 +795,49 @@
       ]
     ],
     "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "et_ersan-acili-fermente-kangal-sucuk-1-kg",
+    "ad": "Erşan Acılı Fermente Kangal Sucuk 1 Kg",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30274753.png",
+    "en_dusuk_fiyat": 1429.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 1429.9,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-10-01T12:16",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Erşan",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-09",
+        1195.0
+      ],
+      [
+        "2026-10-01",
+        1429.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-09",
+        "1 KG"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-09-09",
+        "market": "carrefour",
+        "liste_fiyat": 1429.9,
+        "satis_fiyat": 1195.0
+      }
+    ]
   },
   {
     "_sid": "et_haket-dana-antrikot-1-kg",
@@ -905,33 +872,41 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "et_aytac-sipsak-hindi-salam-fistikli-50-gr",
-    "ad": "Aytaç Şipşak Hindi Salam Fıstıklı 50 Gr",
+    "_sid": "et_polonez-parmak-sucuk-1-kg",
+    "ad": "Polonez Parmak Sucuk 1 Kg",
     "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "50 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/sokimages/100488.png",
-    "en_dusuk_fiyat": 32.5,
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/14209424.png",
+    "en_dusuk_fiyat": 1990.0,
     "market_fiyatlari": [
       {
-        "market": "sok",
-        "fiyat": 32.5,
-        "depot_id": "sok-1017",
-        "depot_ad": "Selimiye",
-        "fiyat_guncelleme": "2026-10-01T12:10",
+        "market": "migros",
+        "fiyat": 1990.0,
+        "depot_id": "migros-564",
+        "depot_ad": "Kadıköy Çarşı M Migros",
+        "fiyat_guncelleme": "2026-10-01T12:12",
         "depot_il": "İstanbul"
       }
     ],
-    "marka": "Aytaç",
+    "marka": "Polonez",
     "fiyat_gecmisi": [
       [
         "2026-09-24",
-        32.5
+        1990.0
+      ],
+      [
+        "2026-09-28",
+        999.0
+      ],
+      [
+        "2026-10-01",
+        1990.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
         "2026-09-24",
-        "50 GR"
+        "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -964,42 +939,6 @@
       [
         "2026-09-28",
         "50 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "et_maret-hindi-sosis-130-gr",
-    "ad": "Maret Hindi Sosis 130 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "130 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/sokimages/94436.png",
-    "en_dusuk_fiyat": 45.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 45.0,
-        "depot_id": "sok-4707",
-        "depot_ad": "Şok Minifevziçakmak",
-        "fiyat_guncelleme": "2026-10-01T12:16",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Maret",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-22",
-        39.0
-      ],
-      [
-        "2026-09-24",
-        45.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "130 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -1282,6 +1221,49 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "et_gedik-pilic-nugget-700-gr",
+    "ad": "Gedik Piliç Nugget 700 Gr",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "700 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 154.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 154.95,
+        "depot_id": "migros-564",
+        "depot_ad": "Kadıköy Çarşı M Migros",
+        "fiyat_guncelleme": "2026-10-01T12:12",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Gedik",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-17",
+        123.96
+      ],
+      [
+        "2026-09-25",
+        154.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-17",
+        "700 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-09-17",
+        "market": "migros",
+        "liste_fiyat": 154.95,
+        "satis_fiyat": 123.96
+      }
+    ]
+  },
+  {
     "_sid": "et_pismis-parmak-misket-kofte-250-gr",
     "ad": "Pişmiş Parmak Misket Köfte 250 Gr",
     "ana_kategori": "Kırmızı Et",
@@ -1482,6 +1464,103 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "et_carrefour-dana-kavurma-150-gr",
+    "ad": "Carrefour Dana Kavurma 150 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "150 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30324588.png",
+    "en_dusuk_fiyat": 250.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 250.0,
+        "depot_id": "carrefour-5254",
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-10-01T12:16",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Carrefour",
+    "fiyat_gecmisi": [
+      [
+        "2026-07-30",
+        189.0
+      ],
+      [
+        "2026-08-09",
+        250.0
+      ],
+      [
+        "2026-08-12",
+        200.0
+      ],
+      [
+        "2026-08-17",
+        250.0
+      ],
+      [
+        "2026-08-26",
+        212.5
+      ],
+      [
+        "2026-08-29",
+        250.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "150 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-08-12",
+        "market": "carrefour",
+        "liste_fiyat": 250.0,
+        "satis_fiyat": 200.0
+      },
+      {
+        "tarih": "2026-08-26",
+        "market": "carrefour",
+        "liste_fiyat": 250.0,
+        "satis_fiyat": 212.5
+      }
+    ]
+  },
+  {
+    "_sid": "et_polonez-dilimli-dana-antrikot-pastirma-100-gr",
+    "ad": "Polonez Dilimli Dana Antrikot Pastırma 100 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "100 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/14309094.png",
+    "en_dusuk_fiyat": 289.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 289.0,
+        "depot_id": "migros-1991",
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-10-01T12:12",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Polonez",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-19",
+        289.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-19",
+        "100 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "et_dardanel-mezgit-pane-300-gr",
     "ad": "Dardanel Mezgit Pane 300 Gr",
     "ana_kategori": "Deniz Ürünleri",
@@ -1514,6 +1593,55 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "et_apikoglu-kavurma-100-gr",
+    "ad": "Apikoğlu Kavurma 100 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "100 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30159109.png",
+    "en_dusuk_fiyat": 331.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 331.9,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-10-01T12:16",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Apikoğlu",
+    "fiyat_gecmisi": [
+      [
+        "2026-07-23",
+        249.9
+      ],
+      [
+        "2026-10-01",
+        331.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "100 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-08-09",
+        "market": "carrefour",
+        "liste_fiyat": 335.5,
+        "satis_fiyat": 249.9
+      },
+      {
+        "tarih": "2026-09-07",
+        "market": "carrefour",
+        "liste_fiyat": 331.9,
+        "satis_fiyat": 249.9
+      }
+    ]
+  },
+  {
     "_sid": "et_fide-klasik-ton-baligi-2x160-gr",
     "ad": "Fide Klasik Ton Balığı 2x160 Gr",
     "ana_kategori": "Deniz Ürünleri",
@@ -1541,38 +1669,6 @@
       [
         "2026-07-03",
         "320 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "et_marine-isli-midye-200-gr",
-    "ad": "Marine Isli Midye 200 Gr",
-    "ana_kategori": "Deniz Ürünleri",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30206652.png",
-    "en_dusuk_fiyat": 349.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 349.0,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-10-01T12:16",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Marine",
-    "fiyat_gecmisi": [
-      [
-        "2026-08-24",
-        349.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-08-24",
-        "200 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -1691,38 +1787,6 @@
         "satis_fiyat": 305.0
       }
     ]
-  },
-  {
-    "_sid": "et_tazem-pilic-kanat-izgara-1-kg",
-    "ad": "Tazem Piliç Kanat Izgara 1 Kg",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "1 KG",
-    "resim": null,
-    "en_dusuk_fiyat": 369.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 369.0,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar",
-        "fiyat_guncelleme": "2026-10-01T12:13",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Tazem",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-22",
-        369.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
   },
   {
     "_sid": "et_catal-sucuk-i-likli-dana-kangal-sucuk-450-gr",
@@ -2031,6 +2095,74 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "et_aytac-sipsak-hindi-salam-fistikli-50-gr",
+    "ad": "Aytaç Şipşak Hindi Salam Fıstıklı 50 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "50 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/sokimages/100488.png",
+    "en_dusuk_fiyat": 32.5,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 32.5,
+        "depot_id": "sok-1017",
+        "depot_ad": "Selimiye",
+        "fiyat_guncelleme": "2026-10-01T12:10",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Aytaç",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-24",
+        32.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-24",
+        "50 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "et_maret-hindi-sosis-130-gr",
+    "ad": "Maret Hindi Sosis 130 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "130 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/sokimages/94436.png",
+    "en_dusuk_fiyat": 45.0,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 45.0,
+        "depot_id": "sok-4707",
+        "depot_ad": "Şok Minifevziçakmak",
+        "fiyat_guncelleme": "2026-10-01T12:16",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Maret",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-22",
+        39.0
+      ],
+      [
+        "2026-09-24",
+        45.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "130 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "et_tombik-pilic-kangal-sucuk-250-gr",
     "ad": "Tombik Piliç Kangal Sucuk 250 Gr",
     "ana_kategori": "Şarküteri",
@@ -2240,49 +2372,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "et_gedik-pilic-nugget-700-gr",
-    "ad": "Gedik Piliç Nugget 700 Gr",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "700 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 154.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 154.95,
-        "depot_id": "migros-564",
-        "depot_ad": "Kadıköy Çarşı M Migros",
-        "fiyat_guncelleme": "2026-10-01T12:12",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Gedik",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-17",
-        123.96
-      ],
-      [
-        "2026-09-25",
-        154.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-17",
-        "700 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-09-17",
-        "market": "migros",
-        "liste_fiyat": 154.95,
-        "satis_fiyat": 123.96
-      }
-    ]
-  },
-  {
     "_sid": "et_besler-pilic-kokteyl-sosis-400-gr",
     "ad": "Beşler Piliç Kokteyl Sosis 400 Gr",
     "ana_kategori": "Şarküteri",
@@ -2431,38 +2520,6 @@
     ]
   },
   {
-    "_sid": "et_bastaci-dana-doner-250-gr",
-    "ad": "Baştacı Dana Döner 250 Gr",
-    "ana_kategori": "Kırmızı Et",
-    "agirlik_hacim": "250 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/11002426.png",
-    "en_dusuk_fiyat": 205.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 205.0,
-        "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye",
-        "fiyat_guncelleme": "2026-10-01T12:16",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Baştacı",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-21",
-        205.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-21",
-        "250 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
     "_sid": "et_emin-dana-dilimli-sucuk-250-gr",
     "ad": "Emin Dana Dilimli Sucuk 250 Gr",
     "ana_kategori": "Şarküteri",
@@ -2481,10 +2538,6 @@
     ],
     "marka": "Emin",
     "fiyat_gecmisi": [
-      [
-        "2026-07-03",
-        169.0
-      ],
       [
         "2026-07-07",
         209.0
@@ -2897,33 +2950,33 @@
     ]
   },
   {
-    "_sid": "et_super-kartal-tup-ancuez-90-gr",
-    "ad": "Super Kartal Tüp Ançuez 90 Gr",
-    "ana_kategori": "Deniz Ürünleri",
-    "agirlik_hacim": "90 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30097724.png",
-    "en_dusuk_fiyat": 320.0,
+    "_sid": "et_tazem-pilic-kanat-izgara-1-kg",
+    "ad": "Tazem Piliç Kanat Izgara 1 Kg",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "1 KG",
+    "resim": null,
+    "en_dusuk_fiyat": 369.0,
     "market_fiyatlari": [
       {
-        "market": "carrefour",
-        "fiyat": 320.0,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-10-01T12:16",
+        "market": "bim",
+        "fiyat": 369.0,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-10-01T12:13",
         "depot_il": "İstanbul"
       }
     ],
-    "marka": "Super Kartal",
+    "marka": "Tazem",
     "fiyat_gecmisi": [
       [
-        "2026-09-24",
-        320.0
+        "2026-09-22",
+        369.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-03",
-        "90 GR"
+        "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -3073,57 +3126,6 @@
         "market": "carrefour",
         "liste_fiyat": 689.95,
         "satis_fiyat": 514.95
-      }
-    ]
-  },
-  {
-    "_sid": "et_polonez-pastirma-90-gr",
-    "ad": "Polonez Pastırma 90 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "90 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/14309091.jpg",
-    "en_dusuk_fiyat": 519.9,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 519.9,
-        "depot_id": "migros-3296",
-        "depot_ad": "Kadıköy Caferağa M Migros",
-        "fiyat_guncelleme": "2026-10-01T12:12",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Polonez",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-14",
-        250.0
-      ],
-      [
-        "2026-08-04",
-        519.9
-      ],
-      [
-        "2026-09-26",
-        399.0
-      ],
-      [
-        "2026-09-28",
-        519.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "90 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-09-26",
-        "market": "migros",
-        "liste_fiyat": 519.9,
-        "satis_fiyat": 399.0
       }
     ]
   },
@@ -3593,6 +3595,38 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "et_bastaci-dana-doner-250-gr",
+    "ad": "Baştacı Dana Döner 250 Gr",
+    "ana_kategori": "Kırmızı Et",
+    "agirlik_hacim": "250 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/11002426.png",
+    "en_dusuk_fiyat": 205.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 205.0,
+        "depot_id": "a101-6815",
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-10-01T12:16",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Baştacı",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-21",
+        205.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-21",
+        "250 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "et_lezita-pilic-fileto-citir-kova-700-gr",
     "ad": "Lezita Piliç Fileto Çıtır Kova 700 Gr",
     "ana_kategori": "Beyaz Et",
@@ -3775,6 +3809,38 @@
     ]
   },
   {
+    "_sid": "et_super-kartal-tup-ancuez-90-gr",
+    "ad": "Super Kartal Tüp Ançuez 90 Gr",
+    "ana_kategori": "Deniz Ürünleri",
+    "agirlik_hacim": "90 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30097724.png",
+    "en_dusuk_fiyat": 320.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 320.0,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-10-01T12:16",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Super Kartal",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-24",
+        320.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "90 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "et_emin-20-yagli-dana-kiyma-400-gr",
     "ad": "Emin %20 Yağlı Dana Kıyma 400 Gr",
     "ana_kategori": "Kırmızı Et",
@@ -3793,10 +3859,6 @@
     ],
     "marka": "Emin",
     "fiyat_gecmisi": [
-      [
-        "2026-07-03",
-        275.0
-      ],
       [
         "2026-07-07",
         330.0
@@ -3910,38 +3972,6 @@
     ]
   },
   {
-    "_sid": "et_gedik-pilic-izgara-kanat-1-kg",
-    "ad": "Gedik Piliç Izgara Kanat 1 Kg",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/13019308.png",
-    "en_dusuk_fiyat": 369.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 369.0,
-        "depot_id": "sok-1017",
-        "depot_ad": "Selimiye",
-        "fiyat_guncelleme": "2026-10-01T12:16",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Gedik Piliç",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-22",
-        369.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
     "_sid": "et_pinar-kokteyl-sosis-215-gr",
     "ad": "Pınar Kokteyl Sosis 215 Gr",
     "ana_kategori": "Şarküteri",
@@ -4006,6 +4036,57 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "et_polonez-pastirma-90-gr",
+    "ad": "Polonez Pastırma 90 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "90 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/14309091.jpg",
+    "en_dusuk_fiyat": 519.9,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 519.9,
+        "depot_id": "migros-3296",
+        "depot_ad": "Kadıköy Caferağa M Migros",
+        "fiyat_guncelleme": "2026-10-01T12:12",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Polonez",
+    "fiyat_gecmisi": [
+      [
+        "2026-07-14",
+        250.0
+      ],
+      [
+        "2026-08-04",
+        519.9
+      ],
+      [
+        "2026-09-26",
+        399.0
+      ],
+      [
+        "2026-09-28",
+        519.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "90 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-09-26",
+        "market": "migros",
+        "liste_fiyat": 519.9,
+        "satis_fiyat": 399.0
+      }
+    ]
+  },
+  {
     "_sid": "et_coskun-catal-sucuk-1-kg",
     "ad": "Coşkun Çatal Sucuk 1 Kg",
     "ana_kategori": "Şarküteri",
@@ -4045,83 +4126,6 @@
         "market": "carrefour",
         "liste_fiyat": 1479.9,
         "satis_fiyat": 999.9
-      }
-    ]
-  },
-  {
-    "_sid": "et_apikoglu-kangal-sucuk-1-kg",
-    "ad": "Apikoğlu Kangal Sucuk 1 Kg",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30077470.png",
-    "en_dusuk_fiyat": 2390.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 2390.0,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-10-01T12:16",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Apikoğlu",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-09",
-        2149.9
-      ],
-      [
-        "2026-07-24",
-        2390.0
-      ],
-      [
-        "2026-07-25",
-        999.0
-      ],
-      [
-        "2026-07-26",
-        2390.0
-      ],
-      [
-        "2026-08-07",
-        2149.9
-      ],
-      [
-        "2026-08-09",
-        999.9
-      ],
-      [
-        "2026-08-11",
-        2399.0
-      ],
-      [
-        "2026-08-15",
-        2149.9
-      ],
-      [
-        "2026-08-21",
-        2390.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-08-09",
-        "market": "carrefour",
-        "liste_fiyat": 2390.0,
-        "satis_fiyat": 999.9
-      },
-      {
-        "tarih": "2026-08-15",
-        "market": "carrefour",
-        "liste_fiyat": 2390.0,
-        "satis_fiyat": 2149.9
       }
     ]
   },
@@ -4328,62 +4332,6 @@
       [
         "2026-07-03",
         "60 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "et_namet-7-24-dana-jambon-50-gr",
-    "ad": "Namet 7/24 Dana Jambon 50 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "50 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30057102.jpg",
-    "en_dusuk_fiyat": 47.5,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 47.5,
-        "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye",
-        "fiyat_guncelleme": "2026-10-01T12:16",
-        "depot_il": "İstanbul"
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 55.5,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-10-01T12:16",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Namet",
-    "fiyat_gecmisi": [
-      [
-        "2026-08-05",
-        39.5
-      ],
-      [
-        "2026-08-09",
-        47.5
-      ],
-      [
-        "2026-09-17",
-        56.5
-      ],
-      [
-        "2026-09-19",
-        55.5
-      ],
-      [
-        "2026-09-25",
-        47.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "50 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -4660,46 +4608,6 @@
     ]
   },
   {
-    "_sid": "et_bolca-hindi-sote-gogus-750-gr",
-    "ad": "Bolca Hindi Sote Göğüs 750 Gr",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "750 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/13302770.png",
-    "en_dusuk_fiyat": 269.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 269.95,
-        "liste_fiyat": 369.95,
-        "depot_id": "migros-6679",
-        "depot_ad": "Mjet Kadıköy Rasımpaşa Istanbu",
-        "fiyat_guncelleme": "2026-10-01T12:12",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Bolca",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-26",
-        269.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-26",
-        "750 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-09-26",
-        "market": "migros",
-        "liste_fiyat": 369.95,
-        "satis_fiyat": 269.95
-      }
-    ]
-  },
-  {
     "_sid": "et_keskinoglu-pilic-doner-500-gr",
     "ad": "Keskinoğlu Piliç Döner 500 Gr",
     "ana_kategori": "Beyaz Et",
@@ -4907,6 +4815,38 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "et_gedik-pilic-izgara-kanat-1-kg",
+    "ad": "Gedik Piliç Izgara Kanat 1 Kg",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/13019308.png",
+    "en_dusuk_fiyat": 369.0,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 369.0,
+        "depot_id": "sok-1017",
+        "depot_ad": "Selimiye",
+        "fiyat_guncelleme": "2026-10-01T12:16",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Gedik Piliç",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-22",
+        369.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "et_dardanel-aycicekyagli-ton-baligi-225-gr",
     "ad": "Dardanel Ayçiçekyağlı Ton Balığı 225 Gr",
     "ana_kategori": "Deniz Ürünleri",
@@ -4970,38 +4910,6 @@
       [
         "2026-09-21",
         "400 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "et_haket-20-yagli-dana-kiyma-500-gr",
-    "ad": "Haket %20 Yağlı Dana Kıyma 500 Gr",
-    "ana_kategori": "Kırmızı Et",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/hakmarimages/1000045.png",
-    "en_dusuk_fiyat": 430.0,
-    "market_fiyatlari": [
-      {
-        "market": "hakmar",
-        "fiyat": 430.0,
-        "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar",
-        "fiyat_guncelleme": "2026-10-01T12:14",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Haket",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-25",
-        430.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-25",
-        "500 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -5084,6 +4992,83 @@
     ]
   },
   {
+    "_sid": "et_apikoglu-kangal-sucuk-1-kg",
+    "ad": "Apikoğlu Kangal Sucuk 1 Kg",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30077470.png",
+    "en_dusuk_fiyat": 2390.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 2390.0,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-10-01T12:16",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Apikoğlu",
+    "fiyat_gecmisi": [
+      [
+        "2026-07-09",
+        2149.9
+      ],
+      [
+        "2026-07-24",
+        2390.0
+      ],
+      [
+        "2026-07-25",
+        999.0
+      ],
+      [
+        "2026-07-26",
+        2390.0
+      ],
+      [
+        "2026-08-07",
+        2149.9
+      ],
+      [
+        "2026-08-09",
+        999.9
+      ],
+      [
+        "2026-08-11",
+        2399.0
+      ],
+      [
+        "2026-08-15",
+        2149.9
+      ],
+      [
+        "2026-08-21",
+        2390.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-08-09",
+        "market": "carrefour",
+        "liste_fiyat": 2390.0,
+        "satis_fiyat": 999.9
+      },
+      {
+        "tarih": "2026-08-15",
+        "market": "carrefour",
+        "liste_fiyat": 2390.0,
+        "satis_fiyat": 2149.9
+      }
+    ]
+  },
+  {
     "_sid": "et_sultan-dilimli-hindi-salam-50-gr",
     "ad": "Sultan Dilimli Hindi Salam 50 Gr",
     "ana_kategori": "Şarküteri",
@@ -5102,10 +5087,6 @@
     ],
     "marka": "Sultan",
     "fiyat_gecmisi": [
-      [
-        "2026-07-03",
-        29.2
-      ],
       [
         "2026-07-16",
         29.52
@@ -5149,41 +5130,57 @@
     ]
   },
   {
-    "_sid": "et_aytac-macar-salam-60-gr",
-    "ad": "Aytaç Macar Salam 60 Gr",
+    "_sid": "et_namet-7-24-dana-jambon-50-gr",
+    "ad": "Namet 7/24 Dana Jambon 50 Gr",
     "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "60 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30115401.png",
-    "en_dusuk_fiyat": 42.5,
+    "agirlik_hacim": "50 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30057102.jpg",
+    "en_dusuk_fiyat": 47.5,
     "market_fiyatlari": [
       {
-        "market": "sok",
-        "fiyat": 42.5,
-        "depot_id": "sok-4707",
-        "depot_ad": "Şok Minifevziçakmak",
+        "market": "a101",
+        "fiyat": 47.5,
+        "depot_id": "a101-6815",
+        "depot_ad": "Kostak Ümraniye",
         "fiyat_guncelleme": "2026-10-01T12:16",
         "depot_il": "İstanbul"
       },
       {
         "market": "carrefour",
-        "fiyat": 82.9,
+        "fiyat": 55.5,
         "depot_id": "carrefour-1012",
         "depot_ad": "Istanbul Acıbadem Hıper",
         "fiyat_guncelleme": "2026-10-01T12:16",
         "depot_il": "İstanbul"
       }
     ],
-    "marka": "Aytaç",
+    "marka": "Namet",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
-        42.5
+        "2026-08-05",
+        39.5
+      ],
+      [
+        "2026-08-09",
+        47.5
+      ],
+      [
+        "2026-09-17",
+        56.5
+      ],
+      [
+        "2026-09-19",
+        55.5
+      ],
+      [
+        "2026-09-25",
+        47.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-03",
-        "60 GR"
+        "50 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -5540,50 +5537,42 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "et_migros-somon-fume-100-gr",
-    "ad": "Migros Somon Füme 100 Gr",
-    "ana_kategori": "Deniz Ürünleri",
-    "agirlik_hacim": "100 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/18992563.png",
-    "en_dusuk_fiyat": 265.9,
+    "_sid": "et_bolca-hindi-sote-gogus-750-gr",
+    "ad": "Bolca Hindi Sote Göğüs 750 Gr",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "750 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/13302770.png",
+    "en_dusuk_fiyat": 269.95,
     "market_fiyatlari": [
       {
         "market": "migros",
-        "fiyat": 265.9,
-        "liste_fiyat": 354.9,
-        "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros",
+        "fiyat": 269.95,
+        "liste_fiyat": 369.95,
+        "depot_id": "migros-6679",
+        "depot_ad": "Mjet Kadıköy Rasımpaşa Istanbu",
         "fiyat_guncelleme": "2026-10-01T12:12",
         "depot_il": "İstanbul"
       }
     ],
-    "marka": "Migros",
+    "marka": "Bolca",
     "fiyat_gecmisi": [
       [
-        "2026-07-07",
-        265.9
-      ],
-      [
-        "2026-07-09",
-        354.9
-      ],
-      [
-        "2026-09-25",
-        265.9
+        "2026-09-26",
+        269.95
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-07-07",
-        "100 GR"
+        "2026-09-26",
+        "750 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-09-25",
+        "tarih": "2026-09-26",
         "market": "migros",
-        "liste_fiyat": 354.9,
-        "satis_fiyat": 265.9
+        "liste_fiyat": 369.95,
+        "satis_fiyat": 269.95
       }
     ]
   },
@@ -5837,6 +5826,38 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "et_haket-20-yagli-dana-kiyma-500-gr",
+    "ad": "Haket %20 Yağlı Dana Kıyma 500 Gr",
+    "ana_kategori": "Kırmızı Et",
+    "agirlik_hacim": "500 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/hakmarimages/1000045.png",
+    "en_dusuk_fiyat": 430.0,
+    "market_fiyatlari": [
+      {
+        "market": "hakmar",
+        "fiyat": 430.0,
+        "depot_id": "hakmar-5521",
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-10-01T12:14",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Haket",
+    "fiyat_gecmisi": [
+      [
+        "2026-07-25",
+        430.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-25",
+        "500 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "et_argentina-tavuk-baget-1-kg",
     "ad": "Argentina Tavuk Baget 1 Kg",
     "ana_kategori": "Beyaz Et",
@@ -5863,38 +5884,6 @@
       [
         "2026-07-03",
         "1 KG"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "et_marines-mezgit-fileto-500-gr",
-    "ad": "Marines Mezgit Fileto 500 Gr",
-    "ana_kategori": "Deniz Ürünleri",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30090280.png",
-    "en_dusuk_fiyat": 549.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 549.0,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-10-01T12:15",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Marines",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-04",
-        549.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-04",
-        "500 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -5927,6 +5916,46 @@
       [
         "2026-09-28",
         "1 KG"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "et_aytac-macar-salam-60-gr",
+    "ad": "Aytaç Macar Salam 60 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "60 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30115401.png",
+    "en_dusuk_fiyat": 42.5,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 42.5,
+        "depot_id": "sok-4707",
+        "depot_ad": "Şok Minifevziçakmak",
+        "fiyat_guncelleme": "2026-10-01T12:16",
+        "depot_il": "İstanbul"
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 82.9,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-10-01T12:16",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Aytaç",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-22",
+        42.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "60 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -6091,98 +6120,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "et_banvit-tutsulenmis-pilic-jumbo-sosis-330-gr",
-    "ad": "Banvit Tütsülenmiş Piliç Jumbo Sosis 330 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "330 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30098665.png",
-    "en_dusuk_fiyat": 79.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 79.0,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar",
-        "fiyat_guncelleme": "2026-10-01T12:15",
-        "depot_il": "İstanbul"
-      },
-      {
-        "market": "migros",
-        "fiyat": 129.9,
-        "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros",
-        "fiyat_guncelleme": "2026-10-01T12:15",
-        "depot_il": "İstanbul"
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 129.9,
-        "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını",
-        "fiyat_guncelleme": "2026-10-01T12:15",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Banvit",
-    "fiyat_gecmisi": [
-      [
-        "2026-08-27",
-        75.0
-      ],
-      [
-        "2026-09-02",
-        79.0
-      ],
-      [
-        "2026-09-15",
-        77.0
-      ],
-      [
-        "2026-09-17",
-        79.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "330 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "et_keskinoglu-pilic-sucuk-250-gr",
-    "ad": "Keskinoğlu Piliç Sucuk 250 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "250 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/14209329.png",
-    "en_dusuk_fiyat": 81.5,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 81.5,
-        "depot_id": "migros-4479",
-        "depot_ad": "Mjet Üsküdar Paşakapısı",
-        "fiyat_guncelleme": "2026-10-01T12:12",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Keskinoğlu",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-19",
-        81.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-19",
-        "250 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
     "_sid": "et_pinar-ac-bitir-isil-i-slem-gormus-dana-sucuk-75-gr",
     "ad": "Pınar Aç Bitir Isıl İşlem Görmüş Dana Sucuk 75 Gr",
     "ana_kategori": "Şarküteri",
@@ -6210,38 +6147,6 @@
       [
         "2026-09-07",
         "75 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "et_lezita-citir-kitir-pilic-fileto-270-gr",
-    "ad": "Lezita Çıtır Kıtır Piliç Fileto 270 Gr",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "270 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30114435.png",
-    "en_dusuk_fiyat": 127.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 127.9,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-10-01T12:16",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Lezita",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-26",
-        127.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-26",
-        "270 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -6450,6 +6355,54 @@
         "market": "migros",
         "liste_fiyat": 429.95,
         "satis_fiyat": 249.95
+      }
+    ]
+  },
+  {
+    "_sid": "et_migros-somon-fume-100-gr",
+    "ad": "Migros Somon Füme 100 Gr",
+    "ana_kategori": "Deniz Ürünleri",
+    "agirlik_hacim": "100 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/18992563.png",
+    "en_dusuk_fiyat": 265.9,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 265.9,
+        "liste_fiyat": 354.9,
+        "depot_id": "migros-1991",
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-10-01T12:12",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Migros",
+    "fiyat_gecmisi": [
+      [
+        "2026-07-07",
+        265.9
+      ],
+      [
+        "2026-07-09",
+        354.9
+      ],
+      [
+        "2026-09-25",
+        265.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-07",
+        "100 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-09-25",
+        "market": "migros",
+        "liste_fiyat": 354.9,
+        "satis_fiyat": 265.9
       }
     ]
   },
@@ -6726,6 +6679,38 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "et_marines-mezgit-fileto-500-gr",
+    "ad": "Marines Mezgit Fileto 500 Gr",
+    "ana_kategori": "Deniz Ürünleri",
+    "agirlik_hacim": "500 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30090280.png",
+    "en_dusuk_fiyat": 549.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 549.0,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-10-01T12:15",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Marines",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-04",
+        549.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-04",
+        "500 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "et_tarim-kredi-kuvet-fermente-dana-kangal-sucuk-1-kg",
     "ad": "Tarım Kredi Küvet Fermente Dana Kangal Sucuk 1 Kg",
     "ana_kategori": "Şarküteri",
@@ -6807,6 +6792,98 @@
         "satis_fiyat": 1890.0
       }
     ]
+  },
+  {
+    "_sid": "et_banvit-tutsulenmis-pilic-jumbo-sosis-330-gr",
+    "ad": "Banvit Tütsülenmiş Piliç Jumbo Sosis 330 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "330 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30098665.png",
+    "en_dusuk_fiyat": 79.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 79.0,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-10-01T12:15",
+        "depot_il": "İstanbul"
+      },
+      {
+        "market": "migros",
+        "fiyat": 129.9,
+        "depot_id": "migros-1991",
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-10-01T12:15",
+        "depot_il": "İstanbul"
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 129.9,
+        "depot_id": "carrefour-5254",
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-10-01T12:15",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Banvit",
+    "fiyat_gecmisi": [
+      [
+        "2026-08-27",
+        75.0
+      ],
+      [
+        "2026-09-02",
+        79.0
+      ],
+      [
+        "2026-09-15",
+        77.0
+      ],
+      [
+        "2026-09-17",
+        79.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "330 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "et_keskinoglu-pilic-sucuk-250-gr",
+    "ad": "Keskinoğlu Piliç Sucuk 250 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "250 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/14209329.png",
+    "en_dusuk_fiyat": 81.5,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 81.5,
+        "depot_id": "migros-4479",
+        "depot_ad": "Mjet Üsküdar Paşakapısı",
+        "fiyat_guncelleme": "2026-10-01T12:12",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Keskinoğlu",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-19",
+        81.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-19",
+        "250 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
   },
   {
     "_sid": "et_polonez-fume-et-50-gr",
@@ -6905,33 +6982,33 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "et_erpilic-pilic-doner-250-gr",
-    "ad": "Erpiliç Piliç Döner 250 Gr",
+    "_sid": "et_lezita-citir-kitir-pilic-fileto-270-gr",
+    "ad": "Lezita Çıtır Kıtır Piliç Fileto 270 Gr",
     "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "250 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/sok/32363.jpg",
-    "en_dusuk_fiyat": 135.0,
+    "agirlik_hacim": "270 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30114435.png",
+    "en_dusuk_fiyat": 127.9,
     "market_fiyatlari": [
       {
-        "market": "sok",
-        "fiyat": 135.0,
-        "depot_id": "sok-1017",
-        "depot_ad": "Selimiye",
-        "fiyat_guncelleme": "2026-10-01T12:15",
+        "market": "carrefour",
+        "fiyat": 127.9,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-10-01T12:16",
         "depot_il": "İstanbul"
       }
     ],
-    "marka": "Erpiliç",
+    "marka": "Lezita",
     "fiyat_gecmisi": [
       [
-        "2026-09-28",
-        135.0
+        "2026-09-26",
+        127.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-28",
-        "250 GR"
+        "2026-09-26",
+        "270 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -7112,38 +7189,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "et_ersan-dana-doner-250-gr",
-    "ad": "Erşan Dana Döner 250 Gr",
-    "ana_kategori": "Kırmızı Et",
-    "agirlik_hacim": "250 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/25030177.png",
-    "en_dusuk_fiyat": 279.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 279.95,
-        "depot_id": "migros-3296",
-        "depot_ad": "Kadıköy Caferağa M Migros",
-        "fiyat_guncelleme": "2026-10-01T12:12",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Erşan",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-28",
-        279.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-28",
-        "250 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
     "_sid": "et_altindana-dana-pastirma-120-gr",
     "ad": "Altındana Dana Pastırma 120 Gr",
     "ana_kategori": "Şarküteri",
@@ -7225,7 +7270,12 @@
       }
     ],
     "marka": "Erşan",
-    "fiyat_gecmisi": [],
+    "fiyat_gecmisi": [
+      [
+        "2026-10-02",
+        328.9
+      ]
+    ],
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-03",
@@ -7685,10 +7735,6 @@
     "marka": "Polonez",
     "fiyat_gecmisi": [
       [
-        "2026-07-03",
-        1249.0
-      ],
-      [
         "2026-07-04",
         2079.9
       ],
@@ -8046,10 +8092,6 @@
     "marka": "Tombik",
     "fiyat_gecmisi": [
       [
-        "2026-07-03",
-        79.0
-      ],
-      [
         "2026-07-07",
         95.0
       ],
@@ -8090,54 +8132,36 @@
     ]
   },
   {
-    "_sid": "et_sultan-dilimli-kavurma-100-gr",
-    "ad": "Sultan Dilimli Kavurma 100 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "100 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30305195.png",
-    "en_dusuk_fiyat": 179.95,
+    "_sid": "et_erpilic-pilic-doner-250-gr",
+    "ad": "Erpiliç Piliç Döner 250 Gr",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "250 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/sok/32363.jpg",
+    "en_dusuk_fiyat": 135.0,
     "market_fiyatlari": [
       {
-        "market": "carrefour",
-        "fiyat": 179.95,
-        "liste_fiyat": 301.9,
-        "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını",
-        "fiyat_guncelleme": "2026-10-01T12:16",
+        "market": "sok",
+        "fiyat": 135.0,
+        "depot_id": "sok-1017",
+        "depot_ad": "Selimiye",
+        "fiyat_guncelleme": "2026-10-01T12:15",
         "depot_il": "İstanbul"
       }
     ],
-    "marka": "Sultan",
+    "marka": "Erpiliç",
     "fiyat_gecmisi": [
       [
-        "2026-09-07",
-        199.9
-      ],
-      [
-        "2026-09-19",
-        179.95
+        "2026-09-28",
+        135.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-07",
-        "100 GR"
+        "2026-09-28",
+        "250 GR"
       ]
     ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-09-07",
-        "market": "carrefour",
-        "liste_fiyat": 301.9,
-        "satis_fiyat": 199.9
-      },
-      {
-        "tarih": "2026-09-19",
-        "market": "carrefour",
-        "liste_fiyat": 301.9,
-        "satis_fiyat": 179.95
-      }
-    ]
+    "ilan_indirim_gecmisi": []
   },
   {
     "_sid": "et_namet-dilimli-dana-sucuk-250-gr",
@@ -8199,6 +8223,38 @@
       [
         "2026-09-29",
         "100 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "et_ersan-dana-doner-250-gr",
+    "ad": "Erşan Dana Döner 250 Gr",
+    "ana_kategori": "Kırmızı Et",
+    "agirlik_hacim": "250 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/25030177.png",
+    "en_dusuk_fiyat": 279.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 279.95,
+        "depot_id": "migros-3296",
+        "depot_ad": "Kadıköy Caferağa M Migros",
+        "fiyat_guncelleme": "2026-10-01T12:12",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Erşan",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-28",
+        279.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-28",
+        "250 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -8820,38 +8876,6 @@
     ]
   },
   {
-    "_sid": "et_tarim-kredi-ton-baligi-3x80-gr",
-    "ad": "Tarım Kredi Ton Balığı 3x80 Gr",
-    "ana_kategori": "Deniz Ürünleri",
-    "agirlik_hacim": "240 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 109.0,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 109.0,
-        "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
-        "fiyat_guncelleme": "2026-10-01T12:14",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Tarım Kredi",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-28",
-        109.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-28",
-        "240 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
     "_sid": "et_bahar-hindi-pismis-tandir-120-gr",
     "ad": "Bahar Hindi Pişmiş Tandır 120 Gr",
     "ana_kategori": "Beyaz Et",
@@ -8977,6 +9001,56 @@
     ]
   },
   {
+    "_sid": "et_sultan-dilimli-kavurma-100-gr",
+    "ad": "Sultan Dilimli Kavurma 100 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "100 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30305195.png",
+    "en_dusuk_fiyat": 179.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 179.95,
+        "liste_fiyat": 301.9,
+        "depot_id": "carrefour-5254",
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-10-01T12:16",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Sultan",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-07",
+        199.9
+      ],
+      [
+        "2026-09-19",
+        179.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-07",
+        "100 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-09-07",
+        "market": "carrefour",
+        "liste_fiyat": 301.9,
+        "satis_fiyat": 199.9
+      },
+      {
+        "tarih": "2026-09-19",
+        "market": "carrefour",
+        "liste_fiyat": 301.9,
+        "satis_fiyat": 179.95
+      }
+    ]
+  },
+  {
     "_sid": "et_emin-kavurma-150-gr",
     "ad": "Emin Kavurma 150 Gr",
     "ana_kategori": "Şarküteri",
@@ -8995,10 +9069,6 @@
     ],
     "marka": "Emin",
     "fiyat_gecmisi": [
-      [
-        "2026-07-03",
-        169.0
-      ],
       [
         "2026-07-07",
         249.0
@@ -9053,12 +9123,7 @@
       }
     ],
     "marka": "Müslümoğlu",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-03",
-        265.0
-      ]
-    ],
+    "fiyat_gecmisi": [],
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-03",
@@ -9191,38 +9256,6 @@
         "satis_fiyat": 215.0
       }
     ]
-  },
-  {
-    "_sid": "et_polonez-karabiberli-fume-et-90-gr",
-    "ad": "Polonez Karabiberli Füme Et 90 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "90 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/14900084.png",
-    "en_dusuk_fiyat": 319.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 319.0,
-        "depot_id": "migros-564",
-        "depot_ad": "Kadıköy Çarşı M Migros",
-        "fiyat_guncelleme": "2026-10-01T12:12",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Polonez",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-15",
-        319.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-15",
-        "90 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
   },
   {
     "_sid": "et_fide-light-ton-baligi-2x160-gr",
@@ -9631,87 +9664,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "et_pinar-ac-bitir-hindi-salam-buyuk-dilim-60-gr",
-    "ad": "Pınar Aç Bitir Hindi Salam Büyük Dilim 60 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "60 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30202211.png",
-    "en_dusuk_fiyat": 46.9,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 46.9,
-        "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros",
-        "fiyat_guncelleme": "2026-10-01T12:16",
-        "depot_il": "İstanbul"
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 46.9,
-        "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını",
-        "fiyat_guncelleme": "2026-10-01T12:16",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Pınar",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-09",
-        35.5
-      ],
-      [
-        "2026-07-24",
-        46.9
-      ],
-      [
-        "2026-07-31",
-        46.5
-      ],
-      [
-        "2026-08-07",
-        35.18
-      ],
-      [
-        "2026-08-21",
-        46.5
-      ],
-      [
-        "2026-09-01",
-        46.9
-      ],
-      [
-        "2026-09-15",
-        35.18
-      ],
-      [
-        "2026-09-25",
-        46.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "60 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-08-09",
-        "market": "migros",
-        "liste_fiyat": 46.9,
-        "satis_fiyat": 35.18
-      },
-      {
-        "tarih": "2026-08-09",
-        "market": "carrefour",
-        "liste_fiyat": 46.9,
-        "satis_fiyat": 35.5
-      }
-    ]
-  },
-  {
     "_sid": "et_erpilic-pilic-kokteyl-sosis-300-gr",
     "ad": "Erpiliç Piliç Kokteyl Sosis 300 Gr",
     "ana_kategori": "Şarküteri",
@@ -9775,6 +9727,38 @@
       [
         "2026-07-03",
         "50 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "et_tarim-kredi-ton-baligi-3x80-gr",
+    "ad": "Tarım Kredi Ton Balığı 3x80 Gr",
+    "ana_kategori": "Deniz Ürünleri",
+    "agirlik_hacim": "240 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 109.0,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 109.0,
+        "depot_id": "tarim_kredi-7488",
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-10-01T12:14",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Tarım Kredi",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-28",
+        109.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-28",
+        "240 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -10149,37 +10133,33 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "et_fide-light-ton-baligi-3x80-gr",
-    "ad": "Fide Light Ton Balığı 3x80 Gr",
-    "ana_kategori": "Deniz Ürünleri",
-    "agirlik_hacim": "240 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/9051055.jpg",
-    "en_dusuk_fiyat": 317.95,
+    "_sid": "et_polonez-karabiberli-fume-et-90-gr",
+    "ad": "Polonez Karabiberli Füme Et 90 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "90 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/14900084.png",
+    "en_dusuk_fiyat": 319.0,
     "market_fiyatlari": [
       {
         "market": "migros",
-        "fiyat": 317.95,
+        "fiyat": 319.0,
         "depot_id": "migros-564",
         "depot_ad": "Kadıköy Çarşı M Migros",
         "fiyat_guncelleme": "2026-10-01T12:12",
         "depot_il": "İstanbul"
       }
     ],
-    "marka": "Fide",
+    "marka": "Polonez",
     "fiyat_gecmisi": [
       [
-        "2026-08-09",
-        249.95
-      ],
-      [
-        "2026-08-25",
-        317.95
+        "2026-09-15",
+        319.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-08-09",
-        "240 GR"
+        "2026-09-15",
+        "90 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -10413,50 +10393,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "et_pinar-i-llaki-akcaabat-kofte-400-gr",
-    "ad": "Pınar İllaki Akçaabat Köfte 400 Gr",
-    "ana_kategori": "Kırmızı Et",
-    "agirlik_hacim": "400 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30130569.jpg",
-    "en_dusuk_fiyat": 514.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 514.95,
-        "liste_fiyat": 689.95,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-10-01T12:16",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Pınar",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-11",
-        689.95
-      ],
-      [
-        "2026-10-01",
-        514.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-11",
-        "400 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-10-01",
-        "market": "carrefour",
-        "liste_fiyat": 689.95,
-        "satis_fiyat": 514.95
-      }
-    ]
-  },
-  {
     "_sid": "et_cipura-800-1-kg",
     "ad": "Çipura 800-1 Kg",
     "ana_kategori": "Taze Deniz Ürünleri",
@@ -10486,6 +10422,87 @@
       ]
     ],
     "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "et_pinar-ac-bitir-hindi-salam-buyuk-dilim-60-gr",
+    "ad": "Pınar Aç Bitir Hindi Salam Büyük Dilim 60 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "60 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30202211.png",
+    "en_dusuk_fiyat": 46.9,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 46.9,
+        "depot_id": "migros-1991",
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-10-01T12:16",
+        "depot_il": "İstanbul"
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 46.9,
+        "depot_id": "carrefour-5254",
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-10-01T12:16",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Pınar",
+    "fiyat_gecmisi": [
+      [
+        "2026-07-09",
+        35.5
+      ],
+      [
+        "2026-07-24",
+        46.9
+      ],
+      [
+        "2026-07-31",
+        46.5
+      ],
+      [
+        "2026-08-07",
+        35.18
+      ],
+      [
+        "2026-08-21",
+        46.5
+      ],
+      [
+        "2026-09-01",
+        46.9
+      ],
+      [
+        "2026-09-15",
+        35.18
+      ],
+      [
+        "2026-09-25",
+        46.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "60 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-08-09",
+        "market": "migros",
+        "liste_fiyat": 46.9,
+        "satis_fiyat": 35.18
+      },
+      {
+        "tarih": "2026-08-09",
+        "market": "carrefour",
+        "liste_fiyat": 46.9,
+        "satis_fiyat": 35.5
+      }
+    ]
   },
   {
     "_sid": "et_cokca-konserve-hindi-fileto-120-gr",
@@ -10580,10 +10597,6 @@
     ],
     "marka": "Banvit",
     "fiyat_gecmisi": [
-      [
-        "2026-07-03",
-        124.95
-      ],
       [
         "2026-07-06",
         79.0
@@ -10707,92 +10720,6 @@
       ]
     ],
     "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "et_namet-frankfurter-pilic-sosis-300-gr",
-    "ad": "Namet Frankfurter Piliç Sosis 300 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "300 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/14010090.jpg",
-    "en_dusuk_fiyat": 142.5,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 142.5,
-        "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros",
-        "fiyat_guncelleme": "2026-10-01T12:12",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Namet",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-22",
-        126.95
-      ],
-      [
-        "2026-09-29",
-        142.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "300 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "et_i-skender-soslu-pilic-doner-500-gr",
-    "ad": "İskender Soslu Piliç Döner 500 Gr",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bim/101582.jpg",
-    "en_dusuk_fiyat": 179.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 179.0,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar",
-        "fiyat_guncelleme": "2026-10-01T12:13",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-08-09",
-        159.0
-      ],
-      [
-        "2026-08-26",
-        179.0
-      ],
-      [
-        "2026-09-26",
-        149.0
-      ],
-      [
-        "2026-09-29",
-        179.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-08-09",
-        "500 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-09-26",
-        "market": "bim",
-        "liste_fiyat": 179.0,
-        "satis_fiyat": 149.0
-      }
-    ]
   },
   {
     "_sid": "et_sultan-kangal-sucuk-isil-i-slem-250-gr",
@@ -11216,6 +11143,42 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "et_fide-light-ton-baligi-3x80-gr",
+    "ad": "Fide Light Ton Balığı 3x80 Gr",
+    "ana_kategori": "Deniz Ürünleri",
+    "agirlik_hacim": "240 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/9051055.jpg",
+    "en_dusuk_fiyat": 317.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 317.95,
+        "depot_id": "migros-564",
+        "depot_ad": "Kadıköy Çarşı M Migros",
+        "fiyat_guncelleme": "2026-10-01T12:12",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Fide",
+    "fiyat_gecmisi": [
+      [
+        "2026-08-09",
+        249.95
+      ],
+      [
+        "2026-08-25",
+        317.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-08-09",
+        "240 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "et_banvit-pilic-bonfile-1-kg",
     "ad": "Banvit Piliç Bonfile 1 Kg",
     "ana_kategori": "Beyaz Et",
@@ -11334,6 +11297,50 @@
       ]
     ],
     "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "et_pinar-i-llaki-akcaabat-kofte-400-gr",
+    "ad": "Pınar İllaki Akçaabat Köfte 400 Gr",
+    "ana_kategori": "Kırmızı Et",
+    "agirlik_hacim": "400 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30130569.jpg",
+    "en_dusuk_fiyat": 514.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 514.95,
+        "liste_fiyat": 689.95,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-10-01T12:16",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Pınar",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-11",
+        689.95
+      ],
+      [
+        "2026-10-01",
+        514.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-11",
+        "400 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-10-01",
+        "market": "carrefour",
+        "liste_fiyat": 689.95,
+        "satis_fiyat": 514.95
+      }
+    ]
   },
   {
     "_sid": "et_cumhuriyet-fermente-dana-kangal-sucuk-350-gr",
@@ -11458,38 +11465,6 @@
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-31",
-        "1 KG"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "et_apikoglu-klasik-fermente-kangal-sucuk-1-kg",
-    "ad": "Apikoğlu Klasik Fermente Kangal Sucuk 1 Kg",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30095704.png",
-    "en_dusuk_fiyat": 2790.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 2790.0,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-10-01T12:15",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Apikoğlu",
-    "fiyat_gecmisi": [
-      [
-        "2026-08-21",
-        2790.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-08-21",
         "1 KG"
       ]
     ],
@@ -11833,89 +11808,88 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "et_namet-hindi-fume-200-gr",
-    "ad": "Namet Hindi Füme 200 Gr",
+    "_sid": "et_namet-frankfurter-pilic-sosis-300-gr",
+    "ad": "Namet Frankfurter Piliç Sosis 300 Gr",
     "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30098878.jpg",
-    "en_dusuk_fiyat": 152.95,
+    "agirlik_hacim": "300 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/14010090.jpg",
+    "en_dusuk_fiyat": 142.5,
     "market_fiyatlari": [
       {
-        "market": "carrefour",
-        "fiyat": 152.95,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-10-01T12:16",
-        "depot_il": "İstanbul"
-      },
-      {
         "market": "migros",
-        "fiyat": 155.0,
+        "fiyat": 142.5,
         "depot_id": "migros-1991",
         "depot_ad": "Çiçekçi M Migros",
-        "fiyat_guncelleme": "2026-10-01T12:16",
+        "fiyat_guncelleme": "2026-10-01T12:12",
         "depot_il": "İstanbul"
       }
     ],
     "marka": "Namet",
     "fiyat_gecmisi": [
       [
-        "2026-07-09",
-        141.9
-      ],
-      [
-        "2026-07-16",
-        132.0
+        "2026-09-22",
+        126.95
       ],
       [
         "2026-09-29",
-        152.95
+        142.5
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-03",
-        "200 GR"
+        "300 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "et_bonfilet-steak-burger-360-gr",
-    "ad": "Bonfilet Steak Burger 360 Gr",
-    "ana_kategori": "Kırmızı Et",
-    "agirlik_hacim": "360 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 245.0,
+    "_sid": "et_i-skender-soslu-pilic-doner-500-gr",
+    "ad": "İskender Soslu Piliç Döner 500 Gr",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "500 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bim/101582.jpg",
+    "en_dusuk_fiyat": 179.0,
     "market_fiyatlari": [
       {
         "market": "bim",
-        "fiyat": 245.0,
+        "fiyat": 179.0,
         "depot_id": "bim-5712",
         "depot_ad": "Çiçekçi  Üsküdar",
-        "fiyat_guncelleme": "2026-10-01T12:14",
+        "fiyat_guncelleme": "2026-10-01T12:13",
         "depot_il": "İstanbul"
       }
     ],
-    "marka": "Bonfilet",
     "fiyat_gecmisi": [
       [
         "2026-08-09",
-        245.0
+        159.0
+      ],
+      [
+        "2026-08-26",
+        179.0
+      ],
+      [
+        "2026-09-26",
+        149.0
+      ],
+      [
+        "2026-09-29",
+        179.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-07-03",
-        "360 GR"
+        "2026-08-09",
+        "500 GR"
       ]
     ],
     "ilan_indirim_gecmisi": [
       {
-        "tarih": "2026-08-09",
+        "tarih": "2026-09-26",
         "market": "bim",
-        "liste_fiyat": 289.0,
-        "satis_fiyat": 245.0
+        "liste_fiyat": 179.0,
+        "satis_fiyat": 149.0
       }
     ]
   },
@@ -12078,42 +12052,6 @@
     ]
   },
   {
-    "_sid": "et_namet-dana-evlik-sucuk-300-gr",
-    "ad": "Namet Dana Evlik Sucuk 300 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "300 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 299.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 299.0,
-        "depot_id": "sok-4711",
-        "depot_ad": "Şok Minitamer Yeni",
-        "fiyat_guncelleme": "2026-10-01T12:10",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Namet",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-22",
-        224.0
-      ],
-      [
-        "2026-08-14",
-        299.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-22",
-        "300 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
     "_sid": "et_aytac-isil-i-slem-gormus-hindi-sucuk-280-gr",
     "ad": "Aytaç Isıl İşlem Görmüş Hindi Sucuk 280 Gr",
     "ana_kategori": "Şarküteri",
@@ -12164,10 +12102,6 @@
     ],
     "marka": "Uzman Kasap",
     "fiyat_gecmisi": [
-      [
-        "2026-07-03",
-        240.0
-      ],
       [
         "2026-07-04",
         273.0
@@ -12482,6 +12416,38 @@
     ]
   },
   {
+    "_sid": "et_sultan-catal-sucuk-isil-i-slem-450-gr",
+    "ad": "Sultan Çatal Sucuk Isıl İşlem 450 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "450 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/sokimages/87230.png",
+    "en_dusuk_fiyat": 379.0,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 379.0,
+        "depot_id": "sok-7238",
+        "depot_ad": "Rıhtım Cdkadıköy",
+        "fiyat_guncelleme": "2026-10-01T12:09",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Sultan",
+    "fiyat_gecmisi": [
+      [
+        "2026-10-02",
+        379.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "450 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "et_dardanel-light-ton-baligi-2x140-gr",
     "ad": "Dardanel Light Ton Balığı 2x140 Gr",
     "ana_kategori": "Deniz Ürünleri",
@@ -12737,6 +12703,38 @@
     ]
   },
   {
+    "_sid": "et_apikoglu-klasik-fermente-kangal-sucuk-1-kg",
+    "ad": "Apikoğlu Klasik Fermente Kangal Sucuk 1 Kg",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30095704.png",
+    "en_dusuk_fiyat": 2790.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 2790.0,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-10-01T12:15",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Apikoğlu",
+    "fiyat_gecmisi": [
+      [
+        "2026-08-21",
+        2790.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-08-21",
+        "1 KG"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "et_namet-dilimli-hindi-fume-salam-60-gr",
     "ad": "Namet Dilimli Hindi Füme Salam 60 Gr",
     "ana_kategori": "Şarküteri",
@@ -12768,38 +12766,6 @@
       [
         "2026-07-25",
         "60 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "et_tazem-pilic-corbalik-1-kg",
-    "ad": "Tazem Piliç Çorbalık 1 Kg",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "1 KG",
-    "resim": null,
-    "en_dusuk_fiyat": 75.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 75.0,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar",
-        "fiyat_guncelleme": "2026-10-01T12:13",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Tazem",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-22",
-        75.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -12902,10 +12868,6 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-07-03",
-        89.0
-      ],
-      [
         "2026-07-07",
         109.0
       ],
@@ -12980,6 +12942,54 @@
         "satis_fiyat": 89.0
       }
     ]
+  },
+  {
+    "_sid": "et_namet-hindi-fume-200-gr",
+    "ad": "Namet Hindi Füme 200 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30098878.jpg",
+    "en_dusuk_fiyat": 152.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 152.95,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-10-01T12:16",
+        "depot_il": "İstanbul"
+      },
+      {
+        "market": "migros",
+        "fiyat": 155.0,
+        "depot_id": "migros-1991",
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-10-01T12:16",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Namet",
+    "fiyat_gecmisi": [
+      [
+        "2026-07-09",
+        141.9
+      ],
+      [
+        "2026-07-16",
+        132.0
+      ],
+      [
+        "2026-09-29",
+        152.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "200 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
   },
   {
     "_sid": "et_bolca-hindi-akdeniz-soslu-sote-but-500-gr",
@@ -13086,36 +13096,43 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "et_dana-usta-kofte-320-gr",
-    "ad": "Dana Usta Köfte 320 Gr",
+    "_sid": "et_bonfilet-steak-burger-360-gr",
+    "ad": "Bonfilet Steak Burger 360 Gr",
     "ana_kategori": "Kırmızı Et",
-    "agirlik_hacim": "320 GR",
+    "agirlik_hacim": "360 GR",
     "resim": null,
-    "en_dusuk_fiyat": 275.0,
+    "en_dusuk_fiyat": 245.0,
     "market_fiyatlari": [
       {
-        "market": "tarim_kredi",
-        "fiyat": 275.0,
-        "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "market": "bim",
+        "fiyat": 245.0,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar",
         "fiyat_guncelleme": "2026-10-01T12:14",
         "depot_il": "İstanbul"
       }
     ],
-    "marka": "Tarım Kredi",
+    "marka": "Bonfilet",
     "fiyat_gecmisi": [
       [
-        "2026-09-22",
-        275.0
+        "2026-08-09",
+        245.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-22",
-        "320 GR"
+        "2026-07-03",
+        "360 GR"
       ]
     ],
-    "ilan_indirim_gecmisi": []
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-08-09",
+        "market": "bim",
+        "liste_fiyat": 289.0,
+        "satis_fiyat": 245.0
+      }
+    ]
   },
   {
     "_sid": "et_senpilic-lezita-tavuk-kanat-i-ncik-ust-1-kg",
@@ -13145,6 +13162,42 @@
       [
         "2026-09-28",
         "1 KG"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "et_namet-dana-evlik-sucuk-300-gr",
+    "ad": "Namet Dana Evlik Sucuk 300 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "300 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 299.0,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 299.0,
+        "depot_id": "sok-4711",
+        "depot_ad": "Şok Minitamer Yeni",
+        "fiyat_guncelleme": "2026-10-01T12:10",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Namet",
+    "fiyat_gecmisi": [
+      [
+        "2026-07-22",
+        224.0
+      ],
+      [
+        "2026-08-14",
+        299.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-22",
+        "300 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -13493,33 +13546,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "et_sultan-catal-sucuk-isil-i-slem-450-gr",
-    "ad": "Sultan Çatal Sucuk Isıl İşlem 450 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "450 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/sokimages/87230.png",
-    "en_dusuk_fiyat": 379.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 379.0,
-        "depot_id": "sok-7238",
-        "depot_ad": "Rıhtım Cdkadıköy",
-        "fiyat_guncelleme": "2026-10-01T12:09",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Sultan",
-    "fiyat_gecmisi": [],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "450 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
     "_sid": "et_pinar-ekonomik-10-lu-sosis-430-gr",
     "ad": "Pınar Ekonomik 10'lu Sosis 430 Gr",
     "ana_kategori": "Şarküteri",
@@ -13569,38 +13595,6 @@
         "satis_fiyat": 489.0
       }
     ]
-  },
-  {
-    "_sid": "et_marines-uskumru-fileto-1-kg",
-    "ad": "Marines Uskumru Fileto 1 Kg",
-    "ana_kategori": "Deniz Ürünleri",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30051967.png",
-    "en_dusuk_fiyat": 699.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 699.0,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-10-01T12:16",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Marines",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-14",
-        699.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-14",
-        "1 KG"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
   },
   {
     "_sid": "et_yaki-nori-i-slenmis-alg-1-adet",
@@ -13878,6 +13872,38 @@
     ]
   },
   {
+    "_sid": "et_tazem-pilic-corbalik-1-kg",
+    "ad": "Tazem Piliç Çorbalık 1 Kg",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "1 KG",
+    "resim": null,
+    "en_dusuk_fiyat": 75.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 75.0,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-10-01T12:13",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Tazem",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-22",
+        75.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "et_lezita-pilic-nugget-300-gr",
     "ad": "Lezita Piliç Nugget 300 Gr",
     "ana_kategori": "Beyaz Et",
@@ -13967,38 +13993,6 @@
       [
         "2026-09-21",
         "120 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "et_lezita-izgara-dilim-pilic-fileto-chili-soslu-200-gr",
-    "ad": "Lezita Izgara Dilim Piliç Fileto Chili Soslu 200 Gr",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/sok/162242.jpg",
-    "en_dusuk_fiyat": 99.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 99.95,
-        "depot_id": "migros-564",
-        "depot_ad": "Kadıköy Çarşı M Migros",
-        "fiyat_guncelleme": "2026-10-01T12:16",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Lezita",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-25",
-        99.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-25",
-        "200 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -14243,6 +14237,38 @@
     ]
   },
   {
+    "_sid": "et_dana-usta-kofte-320-gr",
+    "ad": "Dana Usta Köfte 320 Gr",
+    "ana_kategori": "Kırmızı Et",
+    "agirlik_hacim": "320 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 275.0,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 275.0,
+        "depot_id": "tarim_kredi-7488",
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-10-01T12:14",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Tarım Kredi",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-22",
+        275.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-22",
+        "320 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "et_dana-sarimsakli-kofte-320-gr",
     "ad": "Dana Sarımsaklı Köfte 320 Gr",
     "ana_kategori": "Kırmızı Et",
@@ -14307,38 +14333,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "et_lezzetlim-dana-kiyma-400-gr",
-    "ad": "Lezzetlim Dana Kıyma 400 Gr",
-    "ana_kategori": "Kırmızı Et",
-    "agirlik_hacim": "400 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/sokimages/80971.png",
-    "en_dusuk_fiyat": 330.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 330.0,
-        "depot_id": "sok-4707",
-        "depot_ad": "Şok Minifevziçakmak",
-        "fiyat_guncelleme": "2026-10-01T12:09",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Lezzetlim",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-22",
-        330.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "400 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
     "_sid": "et_emin-dana-kusbasi-et-400-gr",
     "ad": "Emin Dana Kuşbaşı Et 400 Gr",
     "ana_kategori": "Kırmızı Et",
@@ -14357,10 +14351,6 @@
     ],
     "marka": "Emin",
     "fiyat_gecmisi": [
-      [
-        "2026-07-03",
-        295.0
-      ],
       [
         "2026-07-07",
         350.0
@@ -14462,46 +14452,6 @@
     ]
   },
   {
-    "_sid": "et_keskinoglu-pilic-izgara-tava-1-kg",
-    "ad": "Keskinoğlu Piliç Izgara Tava 1 Kg",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/13000294.jpg",
-    "en_dusuk_fiyat": 379.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 379.95,
-        "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros",
-        "fiyat_guncelleme": "2026-10-01T12:14",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Keskinoğlu",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-25",
-        379.95
-      ],
-      [
-        "2026-09-26",
-        279.95
-      ],
-      [
-        "2026-09-29",
-        379.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-25",
-        "1 KG"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
     "_sid": "et_emin-dana-evlik-sucuk-400-gr",
     "ad": "Emin Dana Evlik Sucuk 400 Gr",
     "ana_kategori": "Şarküteri",
@@ -14592,6 +14542,38 @@
     "agirlik_hacim_gecmisi": [
       [
         "2026-08-06",
+        "1 KG"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "et_marines-uskumru-fileto-1-kg",
+    "ad": "Marines Uskumru Fileto 1 Kg",
+    "ana_kategori": "Deniz Ürünleri",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30051967.png",
+    "en_dusuk_fiyat": 699.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 699.0,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-10-01T12:16",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Marines",
+    "fiyat_gecmisi": [
+      [
+        "2026-07-14",
+        699.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-14",
         "1 KG"
       ]
     ],
@@ -14767,10 +14749,6 @@
     "marka": "Sultan",
     "fiyat_gecmisi": [
       [
-        "2026-07-03",
-        23.6
-      ],
-      [
         "2026-10-01",
         29.9
       ]
@@ -14895,6 +14873,38 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "et_lezita-izgara-dilim-pilic-fileto-chili-soslu-200-gr",
+    "ad": "Lezita Izgara Dilim Piliç Fileto Chili Soslu 200 Gr",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/sok/162242.jpg",
+    "en_dusuk_fiyat": 99.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 99.95,
+        "depot_id": "migros-564",
+        "depot_ad": "Kadıköy Çarşı M Migros",
+        "fiyat_guncelleme": "2026-10-01T12:16",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Lezita",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-25",
+        99.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-25",
+        "200 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "et_pinar-ac-bitir-dana-jambon-50-gr",
     "ad": "Pınar Aç Bitir Dana Jambon 50 Gr",
     "ana_kategori": "Şarküteri",
@@ -14944,10 +14954,6 @@
       }
     ],
     "fiyat_gecmisi": [
-      [
-        "2026-07-03",
-        99.0
-      ],
       [
         "2026-07-07",
         125.0
@@ -15270,6 +15276,78 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "et_lezzetlim-dana-kiyma-400-gr",
+    "ad": "Lezzetlim Dana Kıyma 400 Gr",
+    "ana_kategori": "Kırmızı Et",
+    "agirlik_hacim": "400 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/sokimages/80971.png",
+    "en_dusuk_fiyat": 330.0,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 330.0,
+        "depot_id": "sok-4707",
+        "depot_ad": "Şok Minifevziçakmak",
+        "fiyat_guncelleme": "2026-10-01T12:09",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Lezzetlim",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-22",
+        330.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "400 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "et_keskinoglu-pilic-izgara-tava-1-kg",
+    "ad": "Keskinoğlu Piliç Izgara Tava 1 Kg",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/13000294.jpg",
+    "en_dusuk_fiyat": 379.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 379.95,
+        "depot_id": "migros-1991",
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-10-01T12:14",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Keskinoğlu",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-25",
+        379.95
+      ],
+      [
+        "2026-09-26",
+        279.95
+      ],
+      [
+        "2026-09-29",
+        379.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-25",
+        "1 KG"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "et_ersan-antrikot-fume-100-gr",
     "ad": "Erşan Antrikot Füme 100 Gr",
     "ana_kategori": "Şarküteri",
@@ -15287,7 +15365,12 @@
       }
     ],
     "marka": "Erşan",
-    "fiyat_gecmisi": [],
+    "fiyat_gecmisi": [
+      [
+        "2026-10-02",
+        395.9
+      ]
+    ],
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-03",
@@ -15431,134 +15514,6 @@
       ]
     ],
     "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "et_basyazici-dana-kasap-sucuk-400-gr",
-    "ad": "Başyazıcı Dana Kasap Sucuk 400 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "400 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30497782.jpg",
-    "en_dusuk_fiyat": 699.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 699.9,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-10-01T12:16",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Başyazıcı",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-09",
-        699.9
-      ],
-      [
-        "2026-07-14",
-        399.9
-      ],
-      [
-        "2026-07-29",
-        349.95
-      ],
-      [
-        "2026-08-19",
-        399.9
-      ],
-      [
-        "2026-08-26",
-        349.95
-      ],
-      [
-        "2026-08-31",
-        399.9
-      ],
-      [
-        "2026-10-01",
-        699.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "400 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-08-09",
-        "market": "carrefour",
-        "liste_fiyat": 699.9,
-        "satis_fiyat": 349.95
-      },
-      {
-        "tarih": "2026-08-19",
-        "market": "carrefour",
-        "liste_fiyat": 706.9,
-        "satis_fiyat": 399.9
-      },
-      {
-        "tarih": "2026-08-26",
-        "market": "carrefour",
-        "liste_fiyat": 699.9,
-        "satis_fiyat": 349.95
-      },
-      {
-        "tarih": "2026-08-31",
-        "market": "carrefour",
-        "liste_fiyat": 706.9,
-        "satis_fiyat": 399.9
-      }
-    ]
-  },
-  {
-    "_sid": "et_polonez-sosis-1-kg",
-    "ad": "Polonez Sosis 1 Kg",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30080865.png",
-    "en_dusuk_fiyat": 1719.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 1719.9,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-10-01T12:16",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Polonez",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-01",
-        1719.9
-      ],
-      [
-        "2026-09-04",
-        1299.9
-      ],
-      [
-        "2026-10-01",
-        1719.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-08-09",
-        "market": "carrefour",
-        "liste_fiyat": 1719.9,
-        "satis_fiyat": 1299.9
-      }
-    ]
   },
   {
     "_sid": "et_namet-pilic-fume-etli-dilimli-salam-60-gr",
@@ -15851,42 +15806,6 @@
     ]
   },
   {
-    "_sid": "et_maret-hindi-salam-500-gr",
-    "ad": "Maret Hindi Salam 500 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "500 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 125.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 125.0,
-        "depot_id": "sok-4707",
-        "depot_ad": "Şok Minifevziçakmak",
-        "fiyat_guncelleme": "2026-10-01T12:09",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Maret",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-22",
-        109.0
-      ],
-      [
-        "2026-09-24",
-        125.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "500 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
     "_sid": "et_gedik-baton-pilic-sucuk-450-gr",
     "ad": "Gedik Baton Piliç Sucuk 450 Gr",
     "ana_kategori": "Şarküteri",
@@ -16158,10 +16077,6 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-07-03",
-        169.0
-      ],
-      [
         "2026-07-07",
         249.0
       ],
@@ -16334,81 +16249,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "et_kuzuoglu-vakumlu-somon-dilim-fileto-400-gr",
-    "ad": "Kuzuoğlu Vakumlu Somon Dilim Fileto 400 Gr",
-    "ana_kategori": "Taze Deniz Ürünleri",
-    "agirlik_hacim": "400 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 359.0,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 359.0,
-        "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
-        "fiyat_guncelleme": "2026-10-01T12:14",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Kuzuoğlu",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-28",
-        359.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-28",
-        "400 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "et_pinar-burger-ozel-225-gr",
-    "ad": "Pınar Burger Özel 225 Gr",
-    "ana_kategori": "Kırmızı Et",
-    "agirlik_hacim": "225 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30077510.png",
-    "en_dusuk_fiyat": 421.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 421.0,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-10-01T12:15",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Pınar",
-    "fiyat_gecmisi": [
-      [
-        "2026-08-07",
-        295.0
-      ],
-      [
-        "2026-08-21",
-        421.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "225 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-08-09",
-        "market": "carrefour",
-        "liste_fiyat": 421.0,
-        "satis_fiyat": 295.0
-      }
-    ]
-  },
-  {
     "_sid": "et_ozlem-dana-fume-kuru-et-100-gr",
     "ad": "Özlem Dana Füme Kuru Et 100 Gr",
     "ana_kategori": "Şarküteri",
@@ -16439,6 +16279,134 @@
       ]
     ],
     "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "et_basyazici-dana-kasap-sucuk-400-gr",
+    "ad": "Başyazıcı Dana Kasap Sucuk 400 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "400 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30497782.jpg",
+    "en_dusuk_fiyat": 699.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 699.9,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-10-01T12:16",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Başyazıcı",
+    "fiyat_gecmisi": [
+      [
+        "2026-07-09",
+        699.9
+      ],
+      [
+        "2026-07-14",
+        399.9
+      ],
+      [
+        "2026-07-29",
+        349.95
+      ],
+      [
+        "2026-08-19",
+        399.9
+      ],
+      [
+        "2026-08-26",
+        349.95
+      ],
+      [
+        "2026-08-31",
+        399.9
+      ],
+      [
+        "2026-10-01",
+        699.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "400 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-08-09",
+        "market": "carrefour",
+        "liste_fiyat": 699.9,
+        "satis_fiyat": 349.95
+      },
+      {
+        "tarih": "2026-08-19",
+        "market": "carrefour",
+        "liste_fiyat": 706.9,
+        "satis_fiyat": 399.9
+      },
+      {
+        "tarih": "2026-08-26",
+        "market": "carrefour",
+        "liste_fiyat": 699.9,
+        "satis_fiyat": 349.95
+      },
+      {
+        "tarih": "2026-08-31",
+        "market": "carrefour",
+        "liste_fiyat": 706.9,
+        "satis_fiyat": 399.9
+      }
+    ]
+  },
+  {
+    "_sid": "et_polonez-sosis-1-kg",
+    "ad": "Polonez Sosis 1 Kg",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30080865.png",
+    "en_dusuk_fiyat": 1719.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 1719.9,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-10-01T12:16",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Polonez",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-01",
+        1719.9
+      ],
+      [
+        "2026-09-04",
+        1299.9
+      ],
+      [
+        "2026-10-01",
+        1719.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-08-09",
+        "market": "carrefour",
+        "liste_fiyat": 1719.9,
+        "satis_fiyat": 1299.9
+      }
+    ]
   },
   {
     "_sid": "et_namet-parmak-sucuk-1-kg",
@@ -16504,42 +16472,6 @@
       [
         "2026-07-03",
         "50 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "et_namet-hindi-fume-salam-110-gr",
-    "ad": "Namet Hindi Füme Salam 110 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "110 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/11002672.png",
-    "en_dusuk_fiyat": 68.75,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 68.75,
-        "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye",
-        "fiyat_guncelleme": "2026-10-01T12:12",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Namet",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-20",
-        59.5
-      ],
-      [
-        "2026-09-25",
-        68.75
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-20",
-        "110 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -16760,6 +16692,42 @@
     ]
   },
   {
+    "_sid": "et_maret-hindi-salam-500-gr",
+    "ad": "Maret Hindi Salam 500 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "500 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 125.0,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 125.0,
+        "depot_id": "sok-4707",
+        "depot_ad": "Şok Minifevziçakmak",
+        "fiyat_guncelleme": "2026-10-01T12:09",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Maret",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-22",
+        109.0
+      ],
+      [
+        "2026-09-24",
+        125.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "500 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "et_pinar-keyifle-hindi-salam-500-gr",
     "ad": "Pınar Keyifle Hindi Salam 500 Gr",
     "ana_kategori": "Şarküteri",
@@ -16791,41 +16759,6 @@
       [
         "2026-07-25",
         "500 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "et_firinlik-pilic-1-kg",
-    "ad": "Fırınlık Piliç 1 Kg",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "1 KG",
-    "resim": null,
-    "en_dusuk_fiyat": 155.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 155.0,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar",
-        "fiyat_guncelleme": "2026-10-01T12:13",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-08-26",
-        145.0
-      ],
-      [
-        "2026-09-09",
-        155.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -16984,38 +16917,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "et_hamburger-kofte-360-gr",
-    "ad": "Hamburger Köfte 360 Gr",
-    "ana_kategori": "Kırmızı Et",
-    "agirlik_hacim": "360 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/tarimkrediimages/115410.png",
-    "en_dusuk_fiyat": 329.0,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 329.0,
-        "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
-        "fiyat_guncelleme": "2026-10-01T12:14",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Tarım Kredi",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-28",
-        329.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-28",
-        "360 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
     "_sid": "et_ramiz-i-negol-kofte-500-gr",
     "ad": "Ramiz İnegöl Köfte 500 Gr",
     "ana_kategori": "Kırmızı Et",
@@ -17078,6 +16979,81 @@
       ]
     ],
     "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "et_kuzuoglu-vakumlu-somon-dilim-fileto-400-gr",
+    "ad": "Kuzuoğlu Vakumlu Somon Dilim Fileto 400 Gr",
+    "ana_kategori": "Taze Deniz Ürünleri",
+    "agirlik_hacim": "400 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 359.0,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 359.0,
+        "depot_id": "tarim_kredi-7488",
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-10-01T12:14",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Kuzuoğlu",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-28",
+        359.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-28",
+        "400 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "et_pinar-burger-ozel-225-gr",
+    "ad": "Pınar Burger Özel 225 Gr",
+    "ana_kategori": "Kırmızı Et",
+    "agirlik_hacim": "225 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30077510.png",
+    "en_dusuk_fiyat": 421.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 421.0,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-10-01T12:15",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Pınar",
+    "fiyat_gecmisi": [
+      [
+        "2026-08-07",
+        295.0
+      ],
+      [
+        "2026-08-21",
+        421.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "225 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-08-09",
+        "market": "carrefour",
+        "liste_fiyat": 421.0,
+        "satis_fiyat": 295.0
+      }
+    ]
   },
   {
     "_sid": "et_maret-geleneksel-kangal-sucuk-1-kg",
@@ -17251,6 +17227,42 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "et_namet-hindi-fume-salam-110-gr",
+    "ad": "Namet Hindi Füme Salam 110 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "110 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/11002672.png",
+    "en_dusuk_fiyat": 68.75,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 68.75,
+        "depot_id": "a101-6815",
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-10-01T12:12",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Namet",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-20",
+        59.5
+      ],
+      [
+        "2026-09-25",
+        68.75
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-20",
+        "110 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "et_aytac-tavuk-durum-doner-170-gr",
     "ad": "Aytaç Tavuk Dürüm Döner 170 Gr",
     "ana_kategori": "Beyaz Et",
@@ -17341,38 +17353,6 @@
         "satis_fiyat": 65.0
       }
     ]
-  },
-  {
-    "_sid": "et_tarim-kredi-ton-baligi-2x160-gr",
-    "ad": "Tarım Kredi Ton Balığı 2x160 Gr",
-    "ana_kategori": "Deniz Ürünleri",
-    "agirlik_hacim": "320 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/113423.jpg",
-    "en_dusuk_fiyat": 121.0,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 121.0,
-        "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
-        "fiyat_guncelleme": "2026-10-01T12:14",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Tarım Kredi",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-28",
-        121.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-28",
-        "320 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
   },
   {
     "_sid": "et_et-ve-sut-kurumu-pilic-sirtsiz-gogus-1-kg",
@@ -17474,6 +17454,41 @@
       [
         "2026-09-05",
         "165 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "et_firinlik-pilic-1-kg",
+    "ad": "Fırınlık Piliç 1 Kg",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "1 KG",
+    "resim": null,
+    "en_dusuk_fiyat": 155.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 155.0,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-10-01T12:13",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-08-26",
+        145.0
+      ],
+      [
+        "2026-09-09",
+        155.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -17619,10 +17634,6 @@
     ],
     "marka": "Emin",
     "fiyat_gecmisi": [
-      [
-        "2026-07-03",
-        249.0
-      ],
       [
         "2026-07-07",
         279.0
@@ -17823,6 +17834,38 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "et_hamburger-kofte-360-gr",
+    "ad": "Hamburger Köfte 360 Gr",
+    "ana_kategori": "Kırmızı Et",
+    "agirlik_hacim": "360 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/tarimkrediimages/115410.png",
+    "en_dusuk_fiyat": 329.0,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 329.0,
+        "depot_id": "tarim_kredi-7488",
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-10-01T12:14",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Tarım Kredi",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-28",
+        329.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-28",
+        "360 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "et_carrefour-cemeni-siyrilmis-dana-pastirma-120-gr",
     "ad": "Carrefour Çemeni Sıyrılmış Dana Pastırma 120 Gr",
     "ana_kategori": "Şarküteri",
@@ -17919,64 +17962,6 @@
       [
         "2026-07-03",
         "320 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "et_aytac-dana-kasap-sucuk-400-gr",
-    "ad": "Aytaç Dana Kasap Sucuk 400 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "400 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/sokimages/83860.png",
-    "en_dusuk_fiyat": 379.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 379.0,
-        "depot_id": "sok-4707",
-        "depot_ad": "Şok Minifevziçakmak",
-        "fiyat_guncelleme": "2026-10-01T12:10",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Aytaç",
-    "fiyat_gecmisi": [],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "400 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "et_karides-et-41-50-glazeli-1-kg",
-    "ad": "Karides Et 41-50 Glazeli 1 Kg",
-    "ana_kategori": "Deniz Ürünleri",
-    "agirlik_hacim": "1 KG",
-    "resim": null,
-    "en_dusuk_fiyat": 449.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 449.0,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-10-01T12:16",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-09-19",
-        449.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-19",
-        "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -18317,6 +18302,38 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "et_tarim-kredi-ton-baligi-2x160-gr",
+    "ad": "Tarım Kredi Ton Balığı 2x160 Gr",
+    "ana_kategori": "Deniz Ürünleri",
+    "agirlik_hacim": "320 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/113423.jpg",
+    "en_dusuk_fiyat": 121.0,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 121.0,
+        "depot_id": "tarim_kredi-7488",
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-10-01T12:14",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Tarım Kredi",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-28",
+        121.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-28",
+        "320 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "et_dardanel-ekonomik-ton-baligi-250-gr",
     "ad": "Dardanel Ekonomik Ton Balığı 250 Gr",
     "ana_kategori": "Deniz Ürünleri",
@@ -18357,79 +18374,6 @@
     ]
   },
   {
-    "_sid": "et_tombik-pilic-salam-900-gr",
-    "ad": "Tombik Piliç Salam 900 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "900 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/bim/100784.jpg",
-    "en_dusuk_fiyat": 129.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 129.0,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar",
-        "fiyat_guncelleme": "2026-10-01T12:13",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Tombik",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-25",
-        99.0
-      ],
-      [
-        "2026-07-29",
-        119.0
-      ],
-      [
-        "2026-08-09",
-        99.0
-      ],
-      [
-        "2026-08-12",
-        119.0
-      ],
-      [
-        "2026-08-22",
-        99.0
-      ],
-      [
-        "2026-08-26",
-        129.0
-      ],
-      [
-        "2026-09-19",
-        99.0
-      ],
-      [
-        "2026-09-22",
-        129.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "900 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-08-09",
-        "market": "bim",
-        "liste_fiyat": 119.0,
-        "satis_fiyat": 99.0
-      },
-      {
-        "tarih": "2026-09-19",
-        "market": "bim",
-        "liste_fiyat": 129.0,
-        "satis_fiyat": 99.0
-      }
-    ]
-  },
-  {
     "_sid": "et_keskinoglu-tavuk-kalcali-but-1-kg",
     "ad": "Keskinoğlu Tavuk Kalçalı But 1 Kg",
     "ana_kategori": "Beyaz Et",
@@ -18457,38 +18401,6 @@
       [
         "2026-09-29",
         "1 KG"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "et_keskinoglu-pilic-nugget-700-gr",
-    "ad": "Keskinoğlu Piliç Nugget 700 Gr",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "700 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/13509404.png",
-    "en_dusuk_fiyat": 154.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 154.95,
-        "depot_id": "migros-564",
-        "depot_ad": "Kadıköy Çarşı M Migros",
-        "fiyat_guncelleme": "2026-10-01T12:12",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Keskinoğlu",
-    "fiyat_gecmisi": [
-      [
-        "2026-10-01",
-        154.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-10-01",
-        "700 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -18724,47 +18636,36 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "et_cipura-400-1-kg-1-kg",
-    "ad": "Çipura 400-1 Kg 1 Kg",
-    "ana_kategori": "Taze Deniz Ürünleri",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30171457.png",
-    "en_dusuk_fiyat": 299.0,
+    "_sid": "et_aytac-dana-kasap-sucuk-400-gr",
+    "ad": "Aytaç Dana Kasap Sucuk 400 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "400 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/sokimages/83860.png",
+    "en_dusuk_fiyat": 379.0,
     "market_fiyatlari": [
       {
-        "market": "carrefour",
-        "fiyat": 299.0,
-        "liste_fiyat": 459.0,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-10-01T12:15",
+        "market": "sok",
+        "fiyat": 379.0,
+        "depot_id": "sok-4707",
+        "depot_ad": "Şok Minifevziçakmak",
+        "fiyat_guncelleme": "2026-10-01T12:10",
         "depot_il": "İstanbul"
       }
     ],
+    "marka": "Aytaç",
     "fiyat_gecmisi": [
       [
-        "2026-07-25",
-        459.0
-      ],
-      [
-        "2026-08-05",
-        299.0
+        "2026-10-02",
+        379.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-07-25",
-        "1 KG"
+        "2026-07-03",
+        "400 GR"
       ]
     ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-09-01",
-        "market": "carrefour",
-        "liste_fiyat": 459.0,
-        "satis_fiyat": 299.0
-      }
-    ]
+    "ilan_indirim_gecmisi": []
   },
   {
     "_sid": "et_haket-i-negol-kofte-500-gr",
@@ -18794,6 +18695,37 @@
       [
         "2026-09-28",
         "500 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "et_karides-et-41-50-glazeli-1-kg",
+    "ad": "Karides Et 41-50 Glazeli 1 Kg",
+    "ana_kategori": "Deniz Ürünleri",
+    "agirlik_hacim": "1 KG",
+    "resim": null,
+    "en_dusuk_fiyat": 449.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 449.0,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-10-01T12:16",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-19",
+        449.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-19",
+        "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -19067,42 +18999,6 @@
         "satis_fiyat": 1299.0
       }
     ]
-  },
-  {
-    "_sid": "et_carrefour-hindi-fume-50-gr",
-    "ad": "Carrefour Hindi Füme 50 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "50 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30280213.png",
-    "en_dusuk_fiyat": 27.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 27.95,
-        "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını",
-        "fiyat_guncelleme": "2026-10-01T12:16",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Carrefour",
-    "fiyat_gecmisi": [
-      [
-        "2026-08-27",
-        29.95
-      ],
-      [
-        "2026-09-09",
-        27.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "50 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
   },
   {
     "_sid": "et_pinar-ac-bitir-dilimli-hindi-salam-70-gr",
@@ -19525,6 +19421,111 @@
     ]
   },
   {
+    "_sid": "et_tombik-pilic-salam-900-gr",
+    "ad": "Tombik Piliç Salam 900 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "900 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/bim/100784.jpg",
+    "en_dusuk_fiyat": 129.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 129.0,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-10-01T12:13",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Tombik",
+    "fiyat_gecmisi": [
+      [
+        "2026-07-25",
+        99.0
+      ],
+      [
+        "2026-07-29",
+        119.0
+      ],
+      [
+        "2026-08-09",
+        99.0
+      ],
+      [
+        "2026-08-12",
+        119.0
+      ],
+      [
+        "2026-08-22",
+        99.0
+      ],
+      [
+        "2026-08-26",
+        129.0
+      ],
+      [
+        "2026-09-19",
+        99.0
+      ],
+      [
+        "2026-09-22",
+        129.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "900 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-08-09",
+        "market": "bim",
+        "liste_fiyat": 119.0,
+        "satis_fiyat": 99.0
+      },
+      {
+        "tarih": "2026-09-19",
+        "market": "bim",
+        "liste_fiyat": 129.0,
+        "satis_fiyat": 99.0
+      }
+    ]
+  },
+  {
+    "_sid": "et_keskinoglu-pilic-nugget-700-gr",
+    "ad": "Keskinoğlu Piliç Nugget 700 Gr",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "700 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/13509404.png",
+    "en_dusuk_fiyat": 154.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 154.95,
+        "depot_id": "migros-564",
+        "depot_ad": "Kadıköy Çarşı M Migros",
+        "fiyat_guncelleme": "2026-10-01T12:12",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Keskinoğlu",
+    "fiyat_gecmisi": [
+      [
+        "2026-10-01",
+        154.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-10-01",
+        "700 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "et_pinar-hindi-doyum-sucuk-225-gr",
     "ad": "Pınar Hindi Doyum Sucuk 225 Gr",
     "ana_kategori": "Şarküteri",
@@ -19785,38 +19786,6 @@
     ]
   },
   {
-    "_sid": "et_kalite-tonla-zeytinyagli-ton-baligi-2x150-gr",
-    "ad": "Kalite Tonla Zeytinyağlı Ton Balığı 2x150 Gr",
-    "ana_kategori": "Deniz Ürünleri",
-    "agirlik_hacim": "300 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 269.95,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 269.95,
-        "depot_id": "migros-564",
-        "depot_ad": "Kadıköy Çarşı M Migros",
-        "fiyat_guncelleme": "2026-10-01T12:12",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Kalite Tonla",
-    "fiyat_gecmisi": [
-      [
-        "2026-08-22",
-        269.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-08-22",
-        "300 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
     "_sid": "et_besler-dana-doner-250-gr",
     "ad": "Beşler Dana Döner 250 Gr",
     "ana_kategori": "Kırmızı Et",
@@ -19858,38 +19827,6 @@
         "satis_fiyat": 179.95
       }
     ]
-  },
-  {
-    "_sid": "et_aytac-ciftlik-dana-evlik-sucuk-300-gr",
-    "ad": "Aytaç Çiftlik Dana Evlik Sucuk 300 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "300 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 299.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 299.0,
-        "depot_id": "sok-4707",
-        "depot_ad": "Şok Minifevziçakmak",
-        "fiyat_guncelleme": "2026-10-01T12:09",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Aytaç",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-22",
-        299.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "300 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
   },
   {
     "_sid": "et_karides-et-100-200-glazeli-1-kg",
@@ -19953,6 +19890,49 @@
       ]
     ],
     "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "et_cipura-400-1-kg-1-kg",
+    "ad": "Çipura 400-1 Kg 1 Kg",
+    "ana_kategori": "Taze Deniz Ürünleri",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30171457.png",
+    "en_dusuk_fiyat": 299.0,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 299.0,
+        "liste_fiyat": 459.0,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-10-01T12:15",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-07-25",
+        459.0
+      ],
+      [
+        "2026-08-05",
+        299.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-25",
+        "1 KG"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-09-01",
+        "market": "carrefour",
+        "liste_fiyat": 459.0,
+        "satis_fiyat": 299.0
+      }
+    ]
   },
   {
     "_sid": "et_erpilic-taze-tabak-bonfile-1-kg",
@@ -20213,6 +20193,42 @@
         "satis_fiyat": 1299.0
       }
     ]
+  },
+  {
+    "_sid": "et_carrefour-hindi-fume-50-gr",
+    "ad": "Carrefour Hindi Füme 50 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "50 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30280213.png",
+    "en_dusuk_fiyat": 27.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 27.95,
+        "depot_id": "carrefour-5254",
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-10-01T12:16",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Carrefour",
+    "fiyat_gecmisi": [
+      [
+        "2026-08-27",
+        29.95
+      ],
+      [
+        "2026-09-09",
+        27.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "50 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
   },
   {
     "_sid": "et_emin-sade-fistikli-dilimli-dana-salam-60-gr",
@@ -20742,12 +20758,7 @@
       }
     ],
     "marka": "Aytaç",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-03",
-        209.0
-      ]
-    ],
+    "fiyat_gecmisi": [],
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-03",
@@ -20853,6 +20864,38 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "et_kalite-tonla-zeytinyagli-ton-baligi-2x150-gr",
+    "ad": "Kalite Tonla Zeytinyağlı Ton Balığı 2x150 Gr",
+    "ana_kategori": "Deniz Ürünleri",
+    "agirlik_hacim": "300 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 269.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 269.95,
+        "depot_id": "migros-564",
+        "depot_ad": "Kadıköy Çarşı M Migros",
+        "fiyat_guncelleme": "2026-10-01T12:12",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Kalite Tonla",
+    "fiyat_gecmisi": [
+      [
+        "2026-08-22",
+        269.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-08-22",
+        "300 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "et_kocaman-marmara-jumbo-sogus-karides-200-gr",
     "ad": "Kocaman Marmara Jumbo Söğüş Karides 200 Gr",
     "ana_kategori": "Deniz Ürünleri",
@@ -20880,6 +20923,38 @@
       [
         "2026-07-03",
         "200 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "et_aytac-ciftlik-dana-evlik-sucuk-300-gr",
+    "ad": "Aytaç Çiftlik Dana Evlik Sucuk 300 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "300 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 299.0,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 299.0,
+        "depot_id": "sok-4707",
+        "depot_ad": "Şok Minifevziçakmak",
+        "fiyat_guncelleme": "2026-10-01T12:09",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Aytaç",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-22",
+        299.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "300 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -21079,38 +21154,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "et_polonez-fistikli-hindi-salam-1-kg",
-    "ad": "Polonez Fıstıklı Hindi Salam 1 Kg",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30098242.png",
-    "en_dusuk_fiyat": 949.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 949.9,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-10-01T12:16",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Polonez",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-24",
-        949.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-24",
-        "1 KG"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
     "_sid": "et_namet-kavurma-1-kg",
     "ad": "Namet Kavurma 1 Kg",
     "ana_kategori": "Şarküteri",
@@ -21203,42 +21246,6 @@
         "satis_fiyat": 1799.0
       }
     ]
-  },
-  {
-    "_sid": "et_aytac-sipsak-hindi-salam-dilimli-75-gr",
-    "ad": "Aytaç Şipşak Hindi Salam Dilimli 75 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "75 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/sokimages/73160.png",
-    "en_dusuk_fiyat": 37.5,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 37.5,
-        "depot_id": "sok-1017",
-        "depot_ad": "Selimiye",
-        "fiyat_guncelleme": "2026-10-01T12:10",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Aytaç",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-22",
-        32.5
-      ],
-      [
-        "2026-09-24",
-        37.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "75 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
   },
   {
     "_sid": "et_pilic-schnitzel-320-gr",
@@ -21383,42 +21390,6 @@
       [
         "2026-07-03",
         "250 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "et_gedik-acili-hazir-pismis-kebap-400-gr",
-    "ad": "Gedik Acılı Hazır Pişmiş Kebap 400 Gr",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "400 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/hakmarimages/1027152.png",
-    "en_dusuk_fiyat": 105.0,
-    "market_fiyatlari": [
-      {
-        "market": "hakmar",
-        "fiyat": 105.0,
-        "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar",
-        "fiyat_guncelleme": "2026-10-01T12:14",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Gedik",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-25",
-        95.0
-      ],
-      [
-        "2026-09-01",
-        105.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-25",
-        "400 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -21770,38 +21741,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "et_namet-dana-mangal-sucuk-350-gr",
-    "ad": "Namet Dana Mangal Sucuk 350 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "350 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/11000150.jpg",
-    "en_dusuk_fiyat": 335.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 335.0,
-        "depot_id": "a101-6815",
-        "depot_ad": "Kostak Ümraniye",
-        "fiyat_guncelleme": "2026-10-01T12:16",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Namet",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-21",
-        335.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-21",
-        "350 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
     "_sid": "et_leroy-somon-dilim-500-gr",
     "ad": "Leroy Somon Dilim 500 Gr",
     "ana_kategori": "Taze Deniz Ürünleri",
@@ -21891,6 +21830,38 @@
         "satis_fiyat": 490.0
       }
     ]
+  },
+  {
+    "_sid": "et_polonez-fistikli-hindi-salam-1-kg",
+    "ad": "Polonez Fıstıklı Hindi Salam 1 Kg",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30098242.png",
+    "en_dusuk_fiyat": 949.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 949.9,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-10-01T12:16",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Polonez",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-24",
+        949.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-24",
+        "1 KG"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
   },
   {
     "_sid": "et_haket-dana-biftek-1-kg",
@@ -21989,6 +21960,42 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "et_aytac-sipsak-hindi-salam-dilimli-75-gr",
+    "ad": "Aytaç Şipşak Hindi Salam Dilimli 75 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "75 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/sokimages/73160.png",
+    "en_dusuk_fiyat": 37.5,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 37.5,
+        "depot_id": "sok-1017",
+        "depot_ad": "Selimiye",
+        "fiyat_guncelleme": "2026-10-01T12:10",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Aytaç",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-22",
+        32.5
+      ],
+      [
+        "2026-09-24",
+        37.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "75 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "et_banvit-pilic-schnitzel-300-gr",
     "ad": "Banvit Piliç Schnitzel 300 Gr",
     "ana_kategori": "Beyaz Et",
@@ -22079,10 +22086,6 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-07-03",
-        55.0
-      ],
-      [
         "2026-07-07",
         69.0
       ],
@@ -22137,75 +22140,40 @@
     ]
   },
   {
-    "_sid": "et_banvit-kokteyl-pilic-sosis-500-gr",
-    "ad": "Banvit Kokteyl Piliç Sosis 500 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/11002031.png",
-    "en_dusuk_fiyat": 94.9,
+    "_sid": "et_gedik-acili-hazir-pismis-kebap-400-gr",
+    "ad": "Gedik Acılı Hazır Pişmiş Kebap 400 Gr",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "400 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/hakmarimages/1027152.png",
+    "en_dusuk_fiyat": 105.0,
     "market_fiyatlari": [
       {
-        "market": "tarim_kredi",
-        "fiyat": 94.9,
-        "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
-        "fiyat_guncelleme": "2026-10-01T12:16",
-        "depot_il": "İstanbul"
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 141.9,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-10-01T12:16",
+        "market": "hakmar",
+        "fiyat": 105.0,
+        "depot_id": "hakmar-5521",
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-10-01T12:14",
         "depot_il": "İstanbul"
       }
     ],
-    "marka": "Banvit",
+    "marka": "Gedik",
     "fiyat_gecmisi": [
       [
-        "2026-07-03",
+        "2026-07-25",
         95.0
       ],
       [
-        "2026-08-21",
-        89.9
-      ],
-      [
-        "2026-09-04",
-        95.0
-      ],
-      [
-        "2026-09-07",
+        "2026-09-01",
         105.0
-      ],
-      [
-        "2026-09-17",
-        94.9
-      ],
-      [
-        "2026-09-19",
-        141.9
-      ],
-      [
-        "2026-09-28",
-        94.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-07-03",
-        "500 GR"
+        "2026-07-25",
+        "400 GR"
       ]
     ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-08-21",
-        "market": "carrefour",
-        "liste_fiyat": 128.9,
-        "satis_fiyat": 89.9
-      }
-    ]
+    "ilan_indirim_gecmisi": []
   },
   {
     "_sid": "et_ozlem-dana-dilimli-tavalik-sucuk-80-gr",
@@ -22539,6 +22507,38 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "et_namet-dana-mangal-sucuk-350-gr",
+    "ad": "Namet Dana Mangal Sucuk 350 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "350 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/11000150.jpg",
+    "en_dusuk_fiyat": 335.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 335.0,
+        "depot_id": "a101-6815",
+        "depot_ad": "Kostak Ümraniye",
+        "fiyat_guncelleme": "2026-10-01T12:16",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Namet",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-21",
+        335.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-21",
+        "350 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "et_apikoglu-dana-sucuk-100-gr",
     "ad": "Apikoğlu Dana Sucuk 100 Gr",
     "ana_kategori": "Şarküteri",
@@ -22556,7 +22556,12 @@
       }
     ],
     "marka": "Apikoğlu",
-    "fiyat_gecmisi": [],
+    "fiyat_gecmisi": [
+      [
+        "2026-10-02",
+        348.9
+      ]
+    ],
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-03",
@@ -22596,57 +22601,6 @@
       ]
     ],
     "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "et_ersan-vakumlu-kangal-sucuk-200-gr",
-    "ad": "Erşan Vakumlu Kangal Sucuk 200 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30281544.png",
-    "en_dusuk_fiyat": 369.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 369.9,
-        "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını",
-        "fiyat_guncelleme": "2026-10-01T12:16",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Erşan",
-    "fiyat_gecmisi": [
-      [
-        "2026-08-09",
-        275.0
-      ],
-      [
-        "2026-09-01",
-        369.9
-      ],
-      [
-        "2026-09-09",
-        275.0
-      ],
-      [
-        "2026-10-01",
-        369.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "200 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-08-09",
-        "market": "carrefour",
-        "liste_fiyat": 369.9,
-        "satis_fiyat": 275.0
-      }
-    ]
   },
   {
     "_sid": "et_namet-catal-dana-sucuk-isil-i-slem-450-gr",
@@ -22775,84 +22729,6 @@
       ]
     ],
     "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "et_pinar-sosis-430-gr",
-    "ad": "Pınar Sosis 430 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "430 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 474.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 474.95,
-        "liste_fiyat": 599.0,
-        "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını",
-        "fiyat_guncelleme": "2026-10-01T12:16",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Pınar",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-24",
-        594.9
-      ],
-      [
-        "2026-08-07",
-        475.9
-      ],
-      [
-        "2026-08-21",
-        594.9
-      ],
-      [
-        "2026-09-01",
-        599.0
-      ],
-      [
-        "2026-09-29",
-        449.25
-      ],
-      [
-        "2026-10-01",
-        474.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "430 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-08-09",
-        "market": "carrefour",
-        "liste_fiyat": 600.9,
-        "satis_fiyat": 475.9
-      },
-      {
-        "tarih": "2026-08-14",
-        "market": "carrefour",
-        "liste_fiyat": 594.9,
-        "satis_fiyat": 475.9
-      },
-      {
-        "tarih": "2026-09-29",
-        "market": "carrefour",
-        "liste_fiyat": 599.0,
-        "satis_fiyat": 449.25
-      },
-      {
-        "tarih": "2026-10-01",
-        "market": "carrefour",
-        "liste_fiyat": 599.0,
-        "satis_fiyat": 474.95
-      }
-    ]
   },
   {
     "_sid": "et_bolca-kemiksiz-hindi-pirzola-1-kg",
@@ -23037,10 +22913,6 @@
     ],
     "marka": "Sultan",
     "fiyat_gecmisi": [
-      [
-        "2026-07-03",
-        26.0
-      ],
       [
         "2026-07-14",
         26.32
@@ -23317,6 +23189,73 @@
       ]
     ],
     "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "et_banvit-kokteyl-pilic-sosis-500-gr",
+    "ad": "Banvit Kokteyl Piliç Sosis 500 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "500 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/11002031.png",
+    "en_dusuk_fiyat": 94.9,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 94.9,
+        "depot_id": "tarim_kredi-7488",
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-10-01T12:16",
+        "depot_il": "İstanbul"
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 141.9,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-10-01T12:16",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Banvit",
+    "fiyat_gecmisi": [
+      [
+        "2026-08-21",
+        89.9
+      ],
+      [
+        "2026-09-04",
+        95.0
+      ],
+      [
+        "2026-09-07",
+        105.0
+      ],
+      [
+        "2026-09-17",
+        94.9
+      ],
+      [
+        "2026-09-19",
+        141.9
+      ],
+      [
+        "2026-09-28",
+        94.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "500 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-08-21",
+        "market": "carrefour",
+        "liste_fiyat": 128.9,
+        "satis_fiyat": 89.9
+      }
+    ]
   },
   {
     "_sid": "et_lezita-pilic-kebap-400-gr",
@@ -23638,6 +23577,57 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "et_ersan-vakumlu-kangal-sucuk-200-gr",
+    "ad": "Erşan Vakumlu Kangal Sucuk 200 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30281544.png",
+    "en_dusuk_fiyat": 369.9,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 369.9,
+        "depot_id": "carrefour-5254",
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-10-01T12:16",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Erşan",
+    "fiyat_gecmisi": [
+      [
+        "2026-08-09",
+        275.0
+      ],
+      [
+        "2026-09-01",
+        369.9
+      ],
+      [
+        "2026-09-09",
+        275.0
+      ],
+      [
+        "2026-10-01",
+        369.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "200 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-08-09",
+        "market": "carrefour",
+        "liste_fiyat": 369.9,
+        "satis_fiyat": 275.0
+      }
+    ]
+  },
+  {
     "_sid": "et_marines-uskumru-fileto-500-gr",
     "ad": "Marines Uskumru Fileto 500 Gr",
     "ana_kategori": "Deniz Ürünleri",
@@ -23779,6 +23769,84 @@
       ]
     ],
     "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "et_pinar-sosis-430-gr",
+    "ad": "Pınar Sosis 430 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "430 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 474.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 474.95,
+        "liste_fiyat": 599.0,
+        "depot_id": "carrefour-5254",
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-10-01T12:16",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Pınar",
+    "fiyat_gecmisi": [
+      [
+        "2026-07-24",
+        594.9
+      ],
+      [
+        "2026-08-07",
+        475.9
+      ],
+      [
+        "2026-08-21",
+        594.9
+      ],
+      [
+        "2026-09-01",
+        599.0
+      ],
+      [
+        "2026-09-29",
+        449.25
+      ],
+      [
+        "2026-10-01",
+        474.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "430 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-08-09",
+        "market": "carrefour",
+        "liste_fiyat": 600.9,
+        "satis_fiyat": 475.9
+      },
+      {
+        "tarih": "2026-08-14",
+        "market": "carrefour",
+        "liste_fiyat": 594.9,
+        "satis_fiyat": 475.9
+      },
+      {
+        "tarih": "2026-09-29",
+        "market": "carrefour",
+        "liste_fiyat": 599.0,
+        "satis_fiyat": 449.25
+      },
+      {
+        "tarih": "2026-10-01",
+        "market": "carrefour",
+        "liste_fiyat": 599.0,
+        "satis_fiyat": 474.95
+      }
+    ]
   },
   {
     "_sid": "et_cumhuriyet-dana-kangal-sucuk-400-gr",
@@ -23959,48 +24027,6 @@
         "market": "bim",
         "liste_fiyat": 32.5,
         "satis_fiyat": 25.0
-      }
-    ]
-  },
-  {
-    "_sid": "et_dana-jambon-50-gr",
-    "ad": "Dana Jambon 50 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "50 GR",
-    "resim": null,
-    "en_dusuk_fiyat": 47.5,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 47.5,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar",
-        "fiyat_guncelleme": "2026-10-01T12:13",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "fiyat_gecmisi": [
-      [
-        "2026-08-15",
-        35.0
-      ],
-      [
-        "2026-08-19",
-        47.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "50 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-08-15",
-        "market": "bim",
-        "liste_fiyat": 47.5,
-        "satis_fiyat": 35.0
       }
     ]
   },
@@ -24283,38 +24309,6 @@
     ]
   },
   {
-    "_sid": "et_pinar-gurme-hindi-fume-karabiberli-110-gr",
-    "ad": "Pınar Gurme Hindi Füme Karabiberli 110 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "110 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30489068.jpg",
-    "en_dusuk_fiyat": 105.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 105.0,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-10-01T12:16",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Pınar",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-07",
-        105.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-07",
-        "110 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
     "_sid": "et_tarim-kredi-dana-gurme-sucuk-110-gr",
     "ad": "Tarım Kredi Dana Gurme Sucuk 110 Gr",
     "ana_kategori": "Şarküteri",
@@ -24409,129 +24403,6 @@
       ]
     ],
     "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "et_pinar-mangal-keyfi-sucuk-300-gr",
-    "ad": "Pınar Mangal Keyfi Sucuk 300 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "300 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30124190.jpg",
-    "en_dusuk_fiyat": 275.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 275.0,
-        "depot_id": "migros-4479",
-        "depot_ad": "Mjet Üsküdar Paşakapısı",
-        "fiyat_guncelleme": "2026-10-01T12:16",
-        "depot_il": "İstanbul"
-      },
-      {
-        "market": "carrefour",
-        "fiyat": 275.0,
-        "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını",
-        "fiyat_guncelleme": "2026-10-01T12:16",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Pınar",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-09",
-        265.9
-      ],
-      [
-        "2026-07-14",
-        190.0
-      ],
-      [
-        "2026-07-24",
-        209.9
-      ],
-      [
-        "2026-07-25",
-        199.0
-      ],
-      [
-        "2026-08-04",
-        209.9
-      ],
-      [
-        "2026-08-06",
-        199.0
-      ],
-      [
-        "2026-08-07",
-        265.9
-      ],
-      [
-        "2026-08-20",
-        189.0
-      ],
-      [
-        "2026-09-01",
-        169.95
-      ],
-      [
-        "2026-09-04",
-        189.0
-      ],
-      [
-        "2026-09-07",
-        169.95
-      ],
-      [
-        "2026-09-19",
-        165.0
-      ],
-      [
-        "2026-09-26",
-        189.0
-      ],
-      [
-        "2026-10-01",
-        275.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "300 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-08-20",
-        "market": "migros",
-        "liste_fiyat": 275.0,
-        "satis_fiyat": 189.0
-      },
-      {
-        "tarih": "2026-08-21",
-        "market": "carrefour",
-        "liste_fiyat": 265.9,
-        "satis_fiyat": 209.9
-      },
-      {
-        "tarih": "2026-09-01",
-        "market": "carrefour",
-        "liste_fiyat": 265.9,
-        "satis_fiyat": 169.95
-      },
-      {
-        "tarih": "2026-09-07",
-        "market": "carrefour",
-        "liste_fiyat": 275.0,
-        "satis_fiyat": 169.95
-      },
-      {
-        "tarih": "2026-09-19",
-        "market": "carrefour",
-        "liste_fiyat": 275.0,
-        "satis_fiyat": 165.0
-      }
-    ]
   },
   {
     "_sid": "et_tazem-pilic-soslu-kok-kanat-1-kg",
@@ -25007,6 +24878,48 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "et_dana-jambon-50-gr",
+    "ad": "Dana Jambon 50 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "50 GR",
+    "resim": null,
+    "en_dusuk_fiyat": 47.5,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 47.5,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-10-01T12:13",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-08-15",
+        35.0
+      ],
+      [
+        "2026-08-19",
+        47.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "50 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-08-15",
+        "market": "bim",
+        "liste_fiyat": 47.5,
+        "satis_fiyat": 35.0
+      }
+    ]
+  },
+  {
     "_sid": "et_pinar-ac-bitir-hindi-salam-75-gr",
     "ad": "Pınar Aç Bitir Hindi Salam 75 Gr",
     "ana_kategori": "Şarküteri",
@@ -25096,69 +25009,33 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "et_banvit-pilic-hazir-doner-200-gr",
-    "ad": "Banvit Piliç Hazır Döner 200 Gr",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/hakmar/1000047.jpg",
-    "en_dusuk_fiyat": 109.0,
-    "market_fiyatlari": [
-      {
-        "market": "hakmar",
-        "fiyat": 109.0,
-        "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar",
-        "fiyat_guncelleme": "2026-10-01T12:14",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Banvit",
-    "fiyat_gecmisi": [
-      [
-        "2026-08-09",
-        99.0
-      ],
-      [
-        "2026-09-11",
-        109.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-08-09",
-        "200 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "et_tarim-kredi-dana-kokteyl-sosis-200-gr",
-    "ad": "Tarım Kredi Dana Kokteyl Sosis 200 Gr",
+    "_sid": "et_pinar-gurme-hindi-fume-karabiberli-110-gr",
+    "ad": "Pınar Gurme Hindi Füme Karabiberli 110 Gr",
     "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/112563.jpg",
-    "en_dusuk_fiyat": 115.9,
+    "agirlik_hacim": "110 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30489068.jpg",
+    "en_dusuk_fiyat": 105.0,
     "market_fiyatlari": [
       {
-        "market": "tarim_kredi",
-        "fiyat": 115.9,
-        "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
-        "fiyat_guncelleme": "2026-10-01T12:14",
+        "market": "carrefour",
+        "fiyat": 105.0,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-10-01T12:16",
         "depot_il": "İstanbul"
       }
     ],
-    "marka": "Tarım Kredi",
+    "marka": "Pınar",
     "fiyat_gecmisi": [
       [
-        "2026-09-29",
-        115.9
+        "2026-09-07",
+        105.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-29",
-        "200 GR"
+        "2026-09-07",
+        "110 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -25479,6 +25356,129 @@
     ]
   },
   {
+    "_sid": "et_pinar-mangal-keyfi-sucuk-300-gr",
+    "ad": "Pınar Mangal Keyfi Sucuk 300 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "300 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefour/30124190.jpg",
+    "en_dusuk_fiyat": 275.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 275.0,
+        "depot_id": "migros-4479",
+        "depot_ad": "Mjet Üsküdar Paşakapısı",
+        "fiyat_guncelleme": "2026-10-01T12:16",
+        "depot_il": "İstanbul"
+      },
+      {
+        "market": "carrefour",
+        "fiyat": 275.0,
+        "depot_id": "carrefour-5254",
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-10-01T12:16",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Pınar",
+    "fiyat_gecmisi": [
+      [
+        "2026-07-09",
+        265.9
+      ],
+      [
+        "2026-07-14",
+        190.0
+      ],
+      [
+        "2026-07-24",
+        209.9
+      ],
+      [
+        "2026-07-25",
+        199.0
+      ],
+      [
+        "2026-08-04",
+        209.9
+      ],
+      [
+        "2026-08-06",
+        199.0
+      ],
+      [
+        "2026-08-07",
+        265.9
+      ],
+      [
+        "2026-08-20",
+        189.0
+      ],
+      [
+        "2026-09-01",
+        169.95
+      ],
+      [
+        "2026-09-04",
+        189.0
+      ],
+      [
+        "2026-09-07",
+        169.95
+      ],
+      [
+        "2026-09-19",
+        165.0
+      ],
+      [
+        "2026-09-26",
+        189.0
+      ],
+      [
+        "2026-10-01",
+        275.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "300 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-08-20",
+        "market": "migros",
+        "liste_fiyat": 275.0,
+        "satis_fiyat": 189.0
+      },
+      {
+        "tarih": "2026-08-21",
+        "market": "carrefour",
+        "liste_fiyat": 265.9,
+        "satis_fiyat": 209.9
+      },
+      {
+        "tarih": "2026-09-01",
+        "market": "carrefour",
+        "liste_fiyat": 265.9,
+        "satis_fiyat": 169.95
+      },
+      {
+        "tarih": "2026-09-07",
+        "market": "carrefour",
+        "liste_fiyat": 275.0,
+        "satis_fiyat": 169.95
+      },
+      {
+        "tarih": "2026-09-19",
+        "market": "carrefour",
+        "liste_fiyat": 275.0,
+        "satis_fiyat": 165.0
+      }
+    ]
+  },
+  {
     "_sid": "et_apikoglu-parca-pastirma-80-gr",
     "ad": "Apikoğlu Parça Pastırma 80 Gr",
     "ana_kategori": "Şarküteri",
@@ -25760,33 +25760,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "et_aytac-dana-catal-sucuk-isil-i-slem-450-gr",
-    "ad": "Aytaç Dana Çatal Sucuk Isıl İşlem 450 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "450 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/sokimages/89760.png",
-    "en_dusuk_fiyat": 379.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 379.0,
-        "depot_id": "sok-4707",
-        "depot_ad": "Şok Minifevziçakmak",
-        "fiyat_guncelleme": "2026-10-01T12:09",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Aytaç",
-    "fiyat_gecmisi": [],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "450 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
     "_sid": "et_dana-fermente-mangal-sucuk-400-gr",
     "ad": "Dana Fermente Mangal Sucuk 400 Gr",
     "ana_kategori": "Şarküteri",
@@ -26054,70 +26027,6 @@
     ]
   },
   {
-    "_sid": "et_carrefour-dana-macar-salam-50-gr",
-    "ad": "Carrefour Dana Macar Salam 50 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "50 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30280211.png",
-    "en_dusuk_fiyat": 37.95,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 37.95,
-        "depot_id": "carrefour-5254",
-        "depot_ad": "Istanbul Üsküdar Salacak Mını",
-        "fiyat_guncelleme": "2026-10-01T12:16",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Carrefour",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-05",
-        37.95
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "50 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "et_maret-enfes-dana-macar-salam-60-gr",
-    "ad": "Maret Enfes Dana Macar Salam 60 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "60 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/sokimages/96073.png",
-    "en_dusuk_fiyat": 42.5,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 42.5,
-        "depot_id": "sok-4711",
-        "depot_ad": "Şok Minitamer Yeni",
-        "fiyat_guncelleme": "2026-10-01T12:10",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Maret",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-10",
-        42.5
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-10",
-        "60 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
     "_sid": "et_gedik-hazir-pismis-kasap-kofte-240-gr",
     "ad": "Gedik Hazır Pişmiş Kasap Köfte 240 Gr",
     "ana_kategori": "Kırmızı Et",
@@ -26253,6 +26162,74 @@
     ]
   },
   {
+    "_sid": "et_banvit-pilic-hazir-doner-200-gr",
+    "ad": "Banvit Piliç Hazır Döner 200 Gr",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/hakmar/1000047.jpg",
+    "en_dusuk_fiyat": 109.0,
+    "market_fiyatlari": [
+      {
+        "market": "hakmar",
+        "fiyat": 109.0,
+        "depot_id": "hakmar-5521",
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-10-01T12:14",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Banvit",
+    "fiyat_gecmisi": [
+      [
+        "2026-08-09",
+        99.0
+      ],
+      [
+        "2026-09-11",
+        109.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-08-09",
+        "200 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "et_tarim-kredi-dana-kokteyl-sosis-200-gr",
+    "ad": "Tarım Kredi Dana Kokteyl Sosis 200 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/tarim_kredi/112563.jpg",
+    "en_dusuk_fiyat": 115.9,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 115.9,
+        "depot_id": "tarim_kredi-7488",
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-10-01T12:14",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Tarım Kredi",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-29",
+        115.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-29",
+        "200 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "et_senpilic-lezita-kemiksiz-tavuk-but-1-kg",
     "ad": "Şenpiliç Lezita Kemiksiz Tavuk But 1 Kg",
     "ana_kategori": "Beyaz Et",
@@ -26339,10 +26316,6 @@
     ],
     "marka": "Tazem",
     "fiyat_gecmisi": [
-      [
-        "2026-07-03",
-        99.0
-      ],
       [
         "2026-07-07",
         145.0
@@ -26548,38 +26521,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "et_tazem-pilic-butun-gogus-1-kg",
-    "ad": "Tazem Piliç Bütün Göğüs 1 Kg",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "1 KG",
-    "resim": null,
-    "en_dusuk_fiyat": 199.0,
-    "market_fiyatlari": [
-      {
-        "market": "bim",
-        "fiyat": 199.0,
-        "depot_id": "bim-5712",
-        "depot_ad": "Çiçekçi  Üsküdar",
-        "fiyat_guncelleme": "2026-10-01T12:13",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Tazem",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-09",
-        199.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "1 KG"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
     "_sid": "et_banvit-pilic-kokteyl-sosis-1-kg",
     "ad": "Banvit Piliç Kokteyl Sosis 1 Kg",
     "ana_kategori": "Şarküteri",
@@ -26778,6 +26719,38 @@
       [
         "2026-07-25",
         "300 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "et_aytac-dana-catal-sucuk-isil-i-slem-450-gr",
+    "ad": "Aytaç Dana Çatal Sucuk Isıl İşlem 450 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "450 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/sokimages/89760.png",
+    "en_dusuk_fiyat": 379.0,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 379.0,
+        "depot_id": "sok-4707",
+        "depot_ad": "Şok Minifevziçakmak",
+        "fiyat_guncelleme": "2026-10-01T12:09",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Aytaç",
+    "fiyat_gecmisi": [
+      [
+        "2026-10-02",
+        379.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "450 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -27178,6 +27151,70 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "et_carrefour-dana-macar-salam-50-gr",
+    "ad": "Carrefour Dana Macar Salam 50 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "50 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30280211.png",
+    "en_dusuk_fiyat": 37.95,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 37.95,
+        "depot_id": "carrefour-5254",
+        "depot_ad": "Istanbul Üsküdar Salacak Mını",
+        "fiyat_guncelleme": "2026-10-01T12:16",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Carrefour",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-05",
+        37.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "50 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "et_maret-enfes-dana-macar-salam-60-gr",
+    "ad": "Maret Enfes Dana Macar Salam 60 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "60 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/sokimages/96073.png",
+    "en_dusuk_fiyat": 42.5,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 42.5,
+        "depot_id": "sok-4711",
+        "depot_ad": "Şok Minitamer Yeni",
+        "fiyat_guncelleme": "2026-10-01T12:10",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Maret",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-10",
+        42.5
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-10",
+        "60 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "et_keskinoglu-acili-pilic-kebap-400-gr",
     "ad": "Keskinoğlu Acılı Piliç Kebap 400 Gr",
     "ana_kategori": "Beyaz Et",
@@ -27326,10 +27363,6 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-07-03",
-        79.0
-      ],
-      [
         "2026-07-07",
         109.0
       ],
@@ -27405,38 +27438,6 @@
       [
         "2026-08-13",
         "110 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "et_senpilic-lezita-tavuk-baget-1-kg",
-    "ad": "Şenpiliç Lezita Tavuk Baget 1 Kg",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "1 KG",
-    "resim": null,
-    "en_dusuk_fiyat": 145.0,
-    "market_fiyatlari": [
-      {
-        "market": "hakmar",
-        "fiyat": 145.0,
-        "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar",
-        "fiyat_guncelleme": "2026-10-01T12:14",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Şenpiliç Lezita",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-25",
-        145.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-25",
-        "1 KG"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -27625,6 +27626,38 @@
         "satis_fiyat": 127.46
       }
     ]
+  },
+  {
+    "_sid": "et_tazem-pilic-butun-gogus-1-kg",
+    "ad": "Tazem Piliç Bütün Göğüs 1 Kg",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "1 KG",
+    "resim": null,
+    "en_dusuk_fiyat": 199.0,
+    "market_fiyatlari": [
+      {
+        "market": "bim",
+        "fiyat": 199.0,
+        "depot_id": "bim-5712",
+        "depot_ad": "Çiçekçi  Üsküdar",
+        "fiyat_guncelleme": "2026-10-01T12:13",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Tazem",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-09",
+        199.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "1 KG"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
   },
   {
     "_sid": "et_pinar-hindi-uzun-sosis-430-gr",
@@ -27890,6 +27923,38 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "et_haket-yagsiz-dana-kiyma-500-gr",
+    "ad": "Haket Yağsız Dana Kıyma 500 Gr",
+    "ana_kategori": "Kırmızı Et",
+    "agirlik_hacim": "500 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/hakmarimages/1027965.png",
+    "en_dusuk_fiyat": 449.0,
+    "market_fiyatlari": [
+      {
+        "market": "hakmar",
+        "fiyat": 449.0,
+        "depot_id": "hakmar-5200",
+        "depot_ad": "Valide  Üsküdar",
+        "fiyat_guncelleme": "2026-10-01T12:14",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Haket",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-07",
+        449.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-07",
+        "500 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "et_bolez-koylum-pilic-bonfile-1-kg",
     "ad": "Bolez Köylüm Piliç Bonfile 1 Kg",
     "ana_kategori": "Beyaz Et",
@@ -27916,38 +27981,6 @@
     "agirlik_hacim_gecmisi": [
       [
         "2026-09-28",
-        "1 KG"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "et_marines-halka-kalamar-1-kg",
-    "ad": "Marines Halka Kalamar 1 Kg",
-    "ana_kategori": "Deniz Ürünleri",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30090285.png",
-    "en_dusuk_fiyat": 699.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 699.0,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-10-01T12:16",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Marines",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-25",
-        699.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-25",
         "1 KG"
       ]
     ],
@@ -28161,64 +28194,32 @@
     ]
   },
   {
-    "_sid": "et_keskinoglu-dilimli-pilic-sucuk-400-gr",
-    "ad": "Keskinoğlu Dilimli Piliç Sucuk 400 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "400 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101/11002569.jpg",
-    "en_dusuk_fiyat": 125.0,
-    "market_fiyatlari": [
-      {
-        "market": "sok",
-        "fiyat": 125.0,
-        "depot_id": "sok-4707",
-        "depot_ad": "Şok Minifevziçakmak",
-        "fiyat_guncelleme": "2026-10-01T12:12",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Keskinoğlu",
-    "fiyat_gecmisi": [
-      [
-        "2026-08-27",
-        125.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "400 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "et_gedik-pilic-baget-1-kg",
-    "ad": "Gedik Piliç Baget 1 Kg",
+    "_sid": "et_senpilic-lezita-tavuk-baget-1-kg",
+    "ad": "Şenpiliç Lezita Tavuk Baget 1 Kg",
     "ana_kategori": "Beyaz Et",
     "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/13019307.jpg",
+    "resim": null,
     "en_dusuk_fiyat": 145.0,
     "market_fiyatlari": [
       {
-        "market": "sok",
+        "market": "hakmar",
         "fiyat": 145.0,
-        "depot_id": "sok-7238",
-        "depot_ad": "Rıhtım Cdkadıköy",
-        "fiyat_guncelleme": "2026-10-01T12:16",
+        "depot_id": "hakmar-5521",
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-10-01T12:14",
         "depot_il": "İstanbul"
       }
     ],
-    "marka": "Gedik Piliç",
+    "marka": "Şenpiliç Lezita",
     "fiyat_gecmisi": [
       [
-        "2026-09-29",
+        "2026-07-25",
         145.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-29",
+        "2026-07-25",
         "1 KG"
       ]
     ],
@@ -28554,10 +28555,6 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-07-03",
-        275.0
-      ],
-      [
         "2026-07-07",
         379.0
       ],
@@ -28726,38 +28723,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "et_haket-yagsiz-dana-kiyma-500-gr",
-    "ad": "Haket Yağsız Dana Kıyma 500 Gr",
-    "ana_kategori": "Kırmızı Et",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/hakmarimages/1027965.png",
-    "en_dusuk_fiyat": 449.0,
-    "market_fiyatlari": [
-      {
-        "market": "hakmar",
-        "fiyat": 449.0,
-        "depot_id": "hakmar-5200",
-        "depot_ad": "Valide  Üsküdar",
-        "fiyat_guncelleme": "2026-10-01T12:14",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Haket",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-07",
-        449.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-07",
-        "500 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
     "_sid": "et_polonez-secme-pastirma-75-gr",
     "ad": "Polonez Seçme Pastırma 75 Gr",
     "ana_kategori": "Şarküteri",
@@ -28873,31 +28838,32 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "et_kuzu-kusbasi-1-kg",
-    "ad": "Kuzu Kuşbaşı 1 Kg",
-    "ana_kategori": "Kırmızı Et",
+    "_sid": "et_marines-halka-kalamar-1-kg",
+    "ad": "Marines Halka Kalamar 1 Kg",
+    "ana_kategori": "Deniz Ürünleri",
     "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7040005.png",
-    "en_dusuk_fiyat": 1090.0,
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30090285.png",
+    "en_dusuk_fiyat": 699.0,
     "market_fiyatlari": [
       {
-        "market": "hakmar",
-        "fiyat": 1090.0,
-        "depot_id": "hakmar-5770",
-        "depot_ad": "Selamlıüsküdar",
-        "fiyat_guncelleme": "2026-10-01T12:14",
+        "market": "carrefour",
+        "fiyat": 699.0,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-10-01T12:16",
         "depot_il": "İstanbul"
       }
     ],
+    "marka": "Marines",
     "fiyat_gecmisi": [
       [
-        "2026-09-28",
-        1090.0
+        "2026-09-25",
+        699.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-09-28",
+        "2026-09-25",
         "1 KG"
       ]
     ],
@@ -29019,10 +28985,6 @@
     ],
     "marka": "Sultan",
     "fiyat_gecmisi": [
-      [
-        "2026-07-03",
-        49.52
-      ],
       [
         "2026-07-07",
         48.72
@@ -29363,32 +29325,64 @@
     ]
   },
   {
-    "_sid": "et_uzman-kasap-pilic-kalcali-but-1-kg",
-    "ad": "Uzman Kasap Piliç Kalçalı But 1 Kg",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/migros/13000274.jpg",
-    "en_dusuk_fiyat": 134.95,
+    "_sid": "et_keskinoglu-dilimli-pilic-sucuk-400-gr",
+    "ad": "Keskinoğlu Dilimli Piliç Sucuk 400 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "400 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101/11002569.jpg",
+    "en_dusuk_fiyat": 125.0,
     "market_fiyatlari": [
       {
-        "market": "migros",
-        "fiyat": 134.95,
-        "depot_id": "migros-4479",
-        "depot_ad": "Mjet Üsküdar Paşakapısı",
-        "fiyat_guncelleme": "2026-10-01T12:16",
+        "market": "sok",
+        "fiyat": 125.0,
+        "depot_id": "sok-4707",
+        "depot_ad": "Şok Minifevziçakmak",
+        "fiyat_guncelleme": "2026-10-01T12:12",
         "depot_il": "İstanbul"
       }
     ],
-    "marka": "Uzman Kasap",
+    "marka": "Keskinoğlu",
     "fiyat_gecmisi": [
       [
-        "2026-10-01",
-        134.95
+        "2026-08-27",
+        125.0
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-10-01",
+        "2026-07-03",
+        "400 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "et_gedik-pilic-baget-1-kg",
+    "ad": "Gedik Piliç Baget 1 Kg",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/13019307.jpg",
+    "en_dusuk_fiyat": 145.0,
+    "market_fiyatlari": [
+      {
+        "market": "sok",
+        "fiyat": 145.0,
+        "depot_id": "sok-7238",
+        "depot_ad": "Rıhtım Cdkadıköy",
+        "fiyat_guncelleme": "2026-10-01T12:16",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Gedik Piliç",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-29",
+        145.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-29",
         "1 KG"
       ]
     ],
@@ -29674,70 +29668,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "et_dana-izgara-kofte-320-gr",
-    "ad": "Dana Izgara Köfte 320 Gr",
-    "ana_kategori": "Kırmızı Et",
-    "agirlik_hacim": "320 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/tarimkrediimages/115409.png",
-    "en_dusuk_fiyat": 275.0,
-    "market_fiyatlari": [
-      {
-        "market": "tarim_kredi",
-        "fiyat": 275.0,
-        "depot_id": "tarim_kredi-7488",
-        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
-        "fiyat_guncelleme": "2026-10-01T12:16",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Tarım Kredi",
-    "fiyat_gecmisi": [
-      [
-        "2026-10-01",
-        275.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-10-01",
-        "320 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "et_capanoglu-cemensiz-pastirma-120-gr",
-    "ad": "Çapanoğlu Çemensiz Pastırma 120 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "120 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/hakmarimages/1020716.png",
-    "en_dusuk_fiyat": 289.0,
-    "market_fiyatlari": [
-      {
-        "market": "hakmar",
-        "fiyat": 289.0,
-        "depot_id": "hakmar-5521",
-        "depot_ad": "Ahmediye  Üsküdar",
-        "fiyat_guncelleme": "2026-10-01T12:14",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Çapanoğlu",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-25",
-        289.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-25",
-        "120 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
     "_sid": "et_dana-kavurma-250-gr",
     "ad": "Dana Kavurma 250 Gr",
     "ana_kategori": "Şarküteri",
@@ -29981,6 +29911,37 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "et_kuzu-kusbasi-1-kg",
+    "ad": "Kuzu Kuşbaşı 1 Kg",
+    "ana_kategori": "Kırmızı Et",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/7040005.png",
+    "en_dusuk_fiyat": 1090.0,
+    "market_fiyatlari": [
+      {
+        "market": "hakmar",
+        "fiyat": 1090.0,
+        "depot_id": "hakmar-5770",
+        "depot_ad": "Selamlıüsküdar",
+        "fiyat_guncelleme": "2026-10-01T12:14",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "fiyat_gecmisi": [
+      [
+        "2026-09-28",
+        1090.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-28",
+        "1 KG"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "et_polonez-pilic-jambon-120-gr",
     "ad": "Polonez Piliç Jambon 120 Gr",
     "ana_kategori": "Şarküteri",
@@ -30184,6 +30145,38 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "et_uzman-kasap-pilic-kalcali-but-1-kg",
+    "ad": "Uzman Kasap Piliç Kalçalı But 1 Kg",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "1 KG",
+    "resim": "https://cdn.marketfiyati.org.tr/migros/13000274.jpg",
+    "en_dusuk_fiyat": 134.95,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 134.95,
+        "depot_id": "migros-4479",
+        "depot_ad": "Mjet Üsküdar Paşakapısı",
+        "fiyat_guncelleme": "2026-10-01T12:16",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Uzman Kasap",
+    "fiyat_gecmisi": [
+      [
+        "2026-10-01",
+        134.95
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-10-01",
+        "1 KG"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "et_erpilic-taze-posetli-butun-pilic-1-kg",
     "ad": "Erpiliç Taze Poşetli Bütün Piliç 1 Kg",
     "ana_kategori": "Beyaz Et",
@@ -30271,38 +30264,6 @@
         "satis_fiyat": 135.96
       }
     ]
-  },
-  {
-    "_sid": "et_besler-pilic-doner-60-yaprak-40-kiyma-500-gr",
-    "ad": "Beşler Piliç Döner %60 Yaprak %40 Kıyma 500 Gr",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/a101images/11002970.png",
-    "en_dusuk_fiyat": 179.0,
-    "market_fiyatlari": [
-      {
-        "market": "a101",
-        "fiyat": 179.0,
-        "depot_id": "a101-4141",
-        "depot_ad": "Doğanevler Ümraniye Istanbul",
-        "fiyat_guncelleme": "2026-10-01T12:13",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Beşler",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-29",
-        179.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-29",
-        "500 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
   },
   {
     "_sid": "et_fermente-dana-kangal-sucuk-200-gr",
@@ -30445,73 +30406,6 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "et_bolca-hindi-kulbasti-500-gr",
-    "ad": "Bolca Hindi Külbastı 500 Gr",
-    "ana_kategori": "Beyaz Et",
-    "agirlik_hacim": "500 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30412407.png",
-    "en_dusuk_fiyat": 244.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 244.9,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-10-01T12:16",
-        "depot_il": "İstanbul"
-      },
-      {
-        "market": "migros",
-        "fiyat": 244.95,
-        "depot_id": "migros-6679",
-        "depot_ad": "Mjet Kadıköy Rasımpaşa Istanbu",
-        "fiyat_guncelleme": "2026-10-01T12:16",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Bolca",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-17",
-        169.95
-      ],
-      [
-        "2026-09-19",
-        233.9
-      ],
-      [
-        "2026-09-20",
-        169.95
-      ],
-      [
-        "2026-09-25",
-        234.95
-      ],
-      [
-        "2026-09-26",
-        244.95
-      ],
-      [
-        "2026-10-01",
-        244.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-17",
-        "500 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-09-17",
-        "market": "migros",
-        "liste_fiyat": 234.95,
-        "satis_fiyat": 169.95
-      }
-    ]
-  },
-  {
     "_sid": "et_ant-bahar-hindi-tandir-konservesi-2x120-gr",
     "ad": "Ant Bahar Hindi Tandır Konservesi 2x120 Gr",
     "ana_kategori": "Beyaz Et",
@@ -30565,6 +30459,70 @@
         "satis_fiyat": 194.93
       }
     ]
+  },
+  {
+    "_sid": "et_dana-izgara-kofte-320-gr",
+    "ad": "Dana Izgara Köfte 320 Gr",
+    "ana_kategori": "Kırmızı Et",
+    "agirlik_hacim": "320 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/tarimkrediimages/115409.png",
+    "en_dusuk_fiyat": 275.0,
+    "market_fiyatlari": [
+      {
+        "market": "tarim_kredi",
+        "fiyat": 275.0,
+        "depot_id": "tarim_kredi-7488",
+        "depot_ad": "Istanbul Kadıköy Kızıltoprak",
+        "fiyat_guncelleme": "2026-10-01T12:16",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Tarım Kredi",
+    "fiyat_gecmisi": [
+      [
+        "2026-10-01",
+        275.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-10-01",
+        "320 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "et_capanoglu-cemensiz-pastirma-120-gr",
+    "ad": "Çapanoğlu Çemensiz Pastırma 120 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "120 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/hakmarimages/1020716.png",
+    "en_dusuk_fiyat": 289.0,
+    "market_fiyatlari": [
+      {
+        "market": "hakmar",
+        "fiyat": 289.0,
+        "depot_id": "hakmar-5521",
+        "depot_ad": "Ahmediye  Üsküdar",
+        "fiyat_guncelleme": "2026-10-01T12:14",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Çapanoğlu",
+    "fiyat_gecmisi": [
+      [
+        "2026-07-25",
+        289.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-25",
+        "120 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
   },
   {
     "_sid": "et_uzman-kasap-tekirdag-kofte-320-gr",
@@ -30711,38 +30669,6 @@
       [
         "2026-09-24",
         "250 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "et_migros-torik-lakerda-200-gr",
-    "ad": "Migros Torik Lakerda 200 Gr",
-    "ana_kategori": "Deniz Ürünleri",
-    "agirlik_hacim": "200 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/18992794.png",
-    "en_dusuk_fiyat": 399.9,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 399.9,
-        "depot_id": "migros-564",
-        "depot_ad": "Kadıköy Çarşı M Migros",
-        "fiyat_guncelleme": "2026-10-01T12:12",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Migros",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-28",
-        399.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-28",
-        "200 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -31058,10 +30984,6 @@
     ],
     "fiyat_gecmisi": [
       [
-        "2026-07-03",
-        29.0
-      ],
-      [
         "2026-07-07",
         39.0
       ],
@@ -31108,38 +31030,6 @@
         "satis_fiyat": 29.0
       }
     ]
-  },
-  {
-    "_sid": "et_pinar-ac-bitir-fistikli-hindi-salam-50-gr",
-    "ad": "Pınar Aç Bitir Fıstıklı Hindi Salam 50 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "50 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/14109262.png",
-    "en_dusuk_fiyat": 45.75,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 45.75,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-10-01T12:17",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Pınar",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-31",
-        45.75
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-07-03",
-        "50 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
   },
   {
     "_sid": "et_polonez-hindi-jambon-2x50-gr",
@@ -31350,6 +31240,38 @@
     "ilan_indirim_gecmisi": []
   },
   {
+    "_sid": "et_besler-pilic-doner-60-yaprak-40-kiyma-500-gr",
+    "ad": "Beşler Piliç Döner %60 Yaprak %40 Kıyma 500 Gr",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "500 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/a101images/11002970.png",
+    "en_dusuk_fiyat": 179.0,
+    "market_fiyatlari": [
+      {
+        "market": "a101",
+        "fiyat": 179.0,
+        "depot_id": "a101-4141",
+        "depot_ad": "Doğanevler Ümraniye Istanbul",
+        "fiyat_guncelleme": "2026-10-01T12:13",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Beşler",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-29",
+        179.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-29",
+        "500 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "et_migros-dana-doner-250-gr",
     "ad": "Migros Dana Döner 250 Gr",
     "ana_kategori": "Kırmızı Et",
@@ -31382,36 +31304,71 @@
     "ilan_indirim_gecmisi": []
   },
   {
-    "_sid": "et_basyazicioglu-i-nan-dana-pastirma-120-gr",
-    "ad": "Başyazıcıoğlu İnan Dana Pastırma 120 Gr",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "120 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/14309080.png",
-    "en_dusuk_fiyat": 299.0,
+    "_sid": "et_bolca-hindi-kulbasti-500-gr",
+    "ad": "Bolca Hindi Külbastı 500 Gr",
+    "ana_kategori": "Beyaz Et",
+    "agirlik_hacim": "500 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30412407.png",
+    "en_dusuk_fiyat": 244.9,
     "market_fiyatlari": [
       {
+        "market": "carrefour",
+        "fiyat": 244.9,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-10-01T12:16",
+        "depot_il": "İstanbul"
+      },
+      {
         "market": "migros",
-        "fiyat": 299.0,
-        "depot_id": "migros-1991",
-        "depot_ad": "Çiçekçi M Migros",
-        "fiyat_guncelleme": "2026-10-01T12:12",
+        "fiyat": 244.95,
+        "depot_id": "migros-6679",
+        "depot_ad": "Mjet Kadıköy Rasımpaşa Istanbu",
+        "fiyat_guncelleme": "2026-10-01T12:16",
         "depot_il": "İstanbul"
       }
     ],
-    "marka": "Başyazıcıoğlu",
+    "marka": "Bolca",
     "fiyat_gecmisi": [
       [
+        "2026-09-17",
+        169.95
+      ],
+      [
+        "2026-09-19",
+        233.9
+      ],
+      [
+        "2026-09-20",
+        169.95
+      ],
+      [
+        "2026-09-25",
+        234.95
+      ],
+      [
+        "2026-09-26",
+        244.95
+      ],
+      [
         "2026-10-01",
-        299.0
+        244.9
       ]
     ],
     "agirlik_hacim_gecmisi": [
       [
-        "2026-10-01",
-        "120 GR"
+        "2026-09-17",
+        "500 GR"
       ]
     ],
-    "ilan_indirim_gecmisi": []
+    "ilan_indirim_gecmisi": [
+      {
+        "tarih": "2026-09-17",
+        "market": "migros",
+        "liste_fiyat": 234.95,
+        "satis_fiyat": 169.95
+      }
+    ]
   },
   {
     "_sid": "et_kombinet-dana-kusbasi-400-gr",
@@ -31525,6 +31482,38 @@
       [
         "2026-09-25",
         "250 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "et_migros-torik-lakerda-200-gr",
+    "ad": "Migros Torik Lakerda 200 Gr",
+    "ana_kategori": "Deniz Ürünleri",
+    "agirlik_hacim": "200 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/18992794.png",
+    "en_dusuk_fiyat": 399.9,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 399.9,
+        "depot_id": "migros-564",
+        "depot_ad": "Kadıköy Çarşı M Migros",
+        "fiyat_guncelleme": "2026-10-01T12:12",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Migros",
+    "fiyat_gecmisi": [
+      [
+        "2026-09-28",
+        399.9
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-09-28",
+        "200 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -31860,6 +31849,38 @@
     ]
   },
   {
+    "_sid": "et_pinar-ac-bitir-fistikli-hindi-salam-50-gr",
+    "ad": "Pınar Aç Bitir Fıstıklı Hindi Salam 50 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "50 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/14109262.png",
+    "en_dusuk_fiyat": 45.75,
+    "market_fiyatlari": [
+      {
+        "market": "carrefour",
+        "fiyat": 45.75,
+        "depot_id": "carrefour-1012",
+        "depot_ad": "Istanbul Acıbadem Hıper",
+        "fiyat_guncelleme": "2026-10-01T12:17",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Pınar",
+    "fiyat_gecmisi": [
+      [
+        "2026-07-31",
+        45.75
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-07-03",
+        "50 GR"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
     "_sid": "et_senpilic-lezita-butun-tavuk-1-kg",
     "ad": "Şenpiliç Lezita Bütün Tavuk 1 Kg",
     "ana_kategori": "Beyaz Et",
@@ -31999,6 +32020,38 @@
       [
         "2026-09-21",
         "1 KG"
+      ]
+    ],
+    "ilan_indirim_gecmisi": []
+  },
+  {
+    "_sid": "et_basyazicioglu-i-nan-dana-pastirma-120-gr",
+    "ad": "Başyazıcıoğlu İnan Dana Pastırma 120 Gr",
+    "ana_kategori": "Şarküteri",
+    "agirlik_hacim": "120 GR",
+    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/14309080.png",
+    "en_dusuk_fiyat": 299.0,
+    "market_fiyatlari": [
+      {
+        "market": "migros",
+        "fiyat": 299.0,
+        "depot_id": "migros-1991",
+        "depot_ad": "Çiçekçi M Migros",
+        "fiyat_guncelleme": "2026-10-01T12:12",
+        "depot_il": "İstanbul"
+      }
+    ],
+    "marka": "Başyazıcıoğlu",
+    "fiyat_gecmisi": [
+      [
+        "2026-10-01",
+        299.0
+      ]
+    ],
+    "agirlik_hacim_gecmisi": [
+      [
+        "2026-10-01",
+        "120 GR"
       ]
     ],
     "ilan_indirim_gecmisi": []
@@ -32216,12 +32269,7 @@
       }
     ],
     "marka": "Balık Dünyası",
-    "fiyat_gecmisi": [
-      [
-        "2026-07-03",
-        379.0
-      ]
-    ],
+    "fiyat_gecmisi": [],
     "agirlik_hacim_gecmisi": [
       [
         "2026-07-03",
@@ -32229,53 +32277,6 @@
       ]
     ],
     "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "et_dardanel-kalamar-tava-300-gr",
-    "ad": "Dardanel Kalamar Tava 300 Gr",
-    "ana_kategori": "Deniz Ürünleri",
-    "agirlik_hacim": "300 GR",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30186135.png",
-    "en_dusuk_fiyat": 519.0,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 519.0,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-10-01T12:15",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Dardanel",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-04",
-        519.0
-      ],
-      [
-        "2026-09-09",
-        365.0
-      ],
-      [
-        "2026-09-22",
-        519.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-04",
-        "300 GR"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-09-09",
-        "market": "carrefour",
-        "liste_fiyat": 519.0,
-        "satis_fiyat": 365.0
-      }
-    ]
   },
   {
     "_sid": "et_ersan-dilimli-cemeni-siyrilmis-dana-pastirma-110-gr",
@@ -32336,89 +32337,6 @@
     "agirlik_hacim_gecmisi": [
       [
         "2026-09-10",
-        "1 KG"
-      ]
-    ],
-    "ilan_indirim_gecmisi": []
-  },
-  {
-    "_sid": "et_ersan-acili-fermente-kangal-sucuk-1-kg",
-    "ad": "Erşan Acılı Fermente Kangal Sucuk 1 Kg",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/carrefourimages/30274753.png",
-    "en_dusuk_fiyat": 1429.9,
-    "market_fiyatlari": [
-      {
-        "market": "carrefour",
-        "fiyat": 1429.9,
-        "depot_id": "carrefour-1012",
-        "depot_ad": "Istanbul Acıbadem Hıper",
-        "fiyat_guncelleme": "2026-10-01T12:16",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Erşan",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-09",
-        1195.0
-      ],
-      [
-        "2026-10-01",
-        1429.9
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-09",
-        "1 KG"
-      ]
-    ],
-    "ilan_indirim_gecmisi": [
-      {
-        "tarih": "2026-09-09",
-        "market": "carrefour",
-        "liste_fiyat": 1429.9,
-        "satis_fiyat": 1195.0
-      }
-    ]
-  },
-  {
-    "_sid": "et_polonez-parmak-sucuk-1-kg",
-    "ad": "Polonez Parmak Sucuk 1 Kg",
-    "ana_kategori": "Şarküteri",
-    "agirlik_hacim": "1 KG",
-    "resim": "https://cdn.marketfiyati.org.tr/migrosimages/14209424.png",
-    "en_dusuk_fiyat": 1990.0,
-    "market_fiyatlari": [
-      {
-        "market": "migros",
-        "fiyat": 1990.0,
-        "depot_id": "migros-564",
-        "depot_ad": "Kadıköy Çarşı M Migros",
-        "fiyat_guncelleme": "2026-10-01T12:12",
-        "depot_il": "İstanbul"
-      }
-    ],
-    "marka": "Polonez",
-    "fiyat_gecmisi": [
-      [
-        "2026-09-24",
-        1990.0
-      ],
-      [
-        "2026-09-28",
-        999.0
-      ],
-      [
-        "2026-10-01",
-        1990.0
-      ]
-    ],
-    "agirlik_hacim_gecmisi": [
-      [
-        "2026-09-24",
         "1 KG"
       ]
     ],
